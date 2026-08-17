@@ -439,18 +439,50 @@
     border:1px solid #ddd6fe;border-radius:6px;padding:5px 10px}
   .cl-scope .ar{color:var(--purple-soft);font-weight:800;font-size:14px}
 
-  /* --- milestone strip --- */
+  /* --- milestone timeline: one rail, three dots, detail on hover or focus --- */
   .cl-mile{margin:18px 0 6px;padding-top:16px;border-top:1px solid var(--line)}
-  .cl-milegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:12px}
-  .cl-m{background:#fbfaff;border:1px solid var(--line);border-radius:10px;padding:13px 14px;
-    transition:transform .16s ease,box-shadow .16s ease}
-  .cl-m:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(76,29,149,.14)}
-  .cl-mdate{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;
-    text-transform:uppercase;color:var(--purple-deep);background:#efeafe;
-    border:1px solid #ddd6fe;border-radius:5px;padding:2px 7px;margin-bottom:8px}
-  .cl-m h6{margin:0 0 5px;font-size:13px;font-weight:800;color:var(--navy)}
-  .cl-m p{margin:0;font-size:12px;line-height:1.55;color:var(--ink)}
-  @media(max-width:700px){ .cl-milegrid{grid-template-columns:1fr} }
+  .cl-tl{margin-top:12px}
+
+  /* All three details share one grid cell, so the box never changes height as you move along the
+     rail and nothing below it shifts. */
+  .cl-tlbox{display:grid;position:relative;background:#fbfaff;border:1px solid var(--line);
+    border-radius:10px;padding:14px 16px;margin-bottom:15px}
+  .cl-tlp{grid-area:1/1;visibility:hidden}
+  .cl-tlp.cl-on{visibility:visible}
+  .cl-tld{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--purple-deep);background:#efeafe;border:1px solid #ddd6fe;
+    border-radius:5px;padding:2px 7px;margin-bottom:7px}
+  .cl-tlt{margin:0 0 5px;font-size:13.5px;font-weight:800;color:var(--navy)}
+  .cl-tlp p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink)}
+  /* pointer down to the active dot; --x is the dot's measured centre */
+  .cl-tlbox::after,.cl-tlbox::before{content:"";position:absolute;top:100%;left:var(--x,50%);
+    width:0;height:0;transform:translateX(-50%);transition:left .22s cubic-bezier(.22,1,.36,1)}
+  .cl-tlbox::before{border:8px solid transparent;border-top-color:var(--line)}
+  .cl-tlbox::after{border:7px solid transparent;border-top-color:#fbfaff;margin-top:-1px}
+
+  .cl-tlrail{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));position:relative}
+  .cl-tlrail::before{content:"";position:absolute;left:0;right:0;top:6px;height:2px;
+    background:var(--line);border-radius:2px}
+  .cl-tldot{appearance:none;background:none;border:0;font:inherit;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:9px;padding:0 4px;position:relative}
+  .cl-tldot .dt{width:14px;height:14px;border-radius:50%;background:#fff;
+    box-shadow:0 0 0 2px var(--purple-soft) inset,0 0 0 4px #fff;
+    transition:background .16s ease,box-shadow .16s ease,transform .16s ease}
+  .cl-tldot .lb{font-size:12.5px;font-weight:700;color:var(--muted);text-align:center;
+    transition:color .16s ease}
+  .cl-tldot:hover .dt,.cl-tldot:focus-visible .dt{background:var(--purple);
+    box-shadow:0 0 0 2px var(--purple) inset,0 0 0 4px #fff;transform:scale(1.12)}
+  .cl-tldot:hover .lb{color:var(--purple-deep)}
+  .cl-tldot[aria-current="true"] .dt{background:var(--purple);
+    box-shadow:0 0 0 2px var(--purple) inset,0 0 0 4px #fff,0 0 0 6px #ede7fd}
+  .cl-tldot[aria-current="true"] .lb{color:var(--purple-deep);font-weight:800}
+  .cl-tldot:focus{outline:none}
+  .cl-tldot:focus-visible{outline:2px solid var(--purple);outline-offset:3px;border-radius:6px}
+  @media(prefers-reduced-motion:reduce){
+    .cl-tlbox::after,.cl-tlbox::before{transition:none}
+    .cl-tldot .dt{transition:none}
+  }
+
 
   /* --- accordion: current and emerging technologies --- */
   .cl-acc{margin:14px 0 6px;border-top:1px solid var(--line)}
@@ -1076,23 +1108,43 @@
 
         <div class="cl-mile">
           <div class="cl-cap">Platform milestones behind the convergence</div>
-          <div class="cl-milegrid">
-            <div class="cl-m">
-              <span class="cl-mdate">Sep 2025</span>
-              <h6>Brainlab Spine Mixed Reality Navigation</h6>
-              <p>FDA clearance extends Brainlab's digital surgery portfolio into mixed-reality navigation.</p>
+
+          <div class="cl-tl" id="clTl">
+            <!-- all three details are in the page; the first is shown by default so the box is never
+                 empty, and reads correctly even if the script never runs -->
+            <div class="cl-tlbox" role="status" aria-live="polite">
+              <div class="cl-tlp cl-on" id="clM1">
+                <span class="cl-tld">Sep 2025</span>
+                <div class="cl-tlt">Brainlab Spine Mixed Reality Navigation</div>
+                <p>FDA clearance extends Brainlab's digital surgery portfolio into mixed-reality navigation.</p>
+              </div>
+              <div class="cl-tlp" id="clM2">
+                <span class="cl-tld">Feb 2026</span>
+                <div class="cl-tlt">Medtronic Stealth AXiS</div>
+                <p>FDA clearance for the first platform to natively combine planning, navigation and robotics for
+                  spine surgery.</p>
+              </div>
+              <div class="cl-tlp" id="clM3">
+                <span class="cl-tld">Apr 2026</span>
+                <div class="cl-tlt">GE HealthCare bkActiv &times; Stealth AXiS</div>
+                <p>Digital integration layers real-time intraoperative ultrasound into an existing navigation
+                  workflow.</p>
+              </div>
             </div>
-            <div class="cl-m">
-              <span class="cl-mdate">Feb 2026</span>
-              <h6>Medtronic Stealth AXiS</h6>
-              <p>FDA clearance for the first platform to natively combine planning, navigation and robotics for
-                spine surgery.</p>
-            </div>
-            <div class="cl-m">
-              <span class="cl-mdate">Apr 2026</span>
-              <h6>GE HealthCare bkActiv &times; Stealth AXiS</h6>
-              <p>Digital integration layers real-time intraoperative ultrasound into an existing navigation
-                workflow.</p>
+
+            <div class="cl-tlrail" style="--n:3">
+              <button type="button" class="cl-tldot" aria-current="true" data-for="clM1"
+                aria-label="September 2025: Brainlab Spine Mixed Reality Navigation">
+                <span class="dt" aria-hidden="true"></span><span class="lb">Sep 2025</span>
+              </button>
+              <button type="button" class="cl-tldot" aria-current="false" data-for="clM2"
+                aria-label="February 2026: Medtronic Stealth AXiS">
+                <span class="dt" aria-hidden="true"></span><span class="lb">Feb 2026</span>
+              </button>
+              <button type="button" class="cl-tldot" aria-current="false" data-for="clM3"
+                aria-label="April 2026: GE HealthCare bkActiv and Stealth AXiS">
+                <span class="dt" aria-hidden="true"></span><span class="lb">Apr 2026</span>
+              </button>
             </div>
           </div>
         </div>
@@ -1574,6 +1626,60 @@
   window.addEventListener('resize',function(){ clearTimeout(t); t = setTimeout(drawAll,150); });
   /* fonts landing late change how the boxes wrap, which moves their centres */
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(drawAll);
+})();
+
+/* ================= SECTION 4 - MILESTONE TIMELINE ================= */
+(function(){
+  var tl = document.getElementById('clTl');
+  if(!tl) return;
+  var box = tl.querySelector('.cl-tlbox');
+  var dots = [].slice.call(tl.querySelectorAll('.cl-tldot'));
+  if(!box || !dots.length) return;
+
+  function panelOf(d){ return document.getElementById(d.getAttribute('data-for')); }
+
+  /* Point the box's tail at a dot's measured centre, so it stays right through any reflow */
+  function aim(dot){
+    var br = box.getBoundingClientRect(), dr = dot.querySelector('.dt').getBoundingClientRect();
+    if(!br.width) return;
+    box.style.setProperty('--x',((dr.left - br.left + dr.width/2) / br.width * 100).toFixed(2)+'%');
+  }
+
+  function show(i){
+    dots.forEach(function(d,n){
+      var on = n === i;
+      d.setAttribute('aria-current',on ? 'true' : 'false');
+      var pan = panelOf(d);
+      if(pan) pan.classList.toggle('cl-on',on);
+    });
+    aim(dots[i]);
+  }
+
+  dots.forEach(function(d,i){
+    /* hover for pointers, focus for keyboards, click for touch - all land on the same handler */
+    d.addEventListener('mouseenter',function(){ show(i); });
+    d.addEventListener('focus',function(){ show(i); });
+    d.addEventListener('click',function(e){ e.preventDefault(); show(i); });
+  });
+
+  var start = 0;
+  dots.forEach(function(d,i){ if(d.getAttribute('aria-current') === 'true') start = i; });
+  show(start);
+
+  var t;
+  window.addEventListener('resize',function(){
+    clearTimeout(t);
+    t = setTimeout(function(){
+      var cur = 0;
+      dots.forEach(function(d,i){ if(d.getAttribute('aria-current') === 'true') cur = i; });
+      aim(dots[cur]);
+    },150);
+  });
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){
+    var cur = 0;
+    dots.forEach(function(d,i){ if(d.getAttribute('aria-current') === 'true') cur = i; });
+    aim(dots[cur]);
+  });
 })();
 </script>
 </body>
