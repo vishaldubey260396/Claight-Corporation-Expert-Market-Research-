@@ -157,39 +157,6 @@
   @media(max-width:720px){ .kgrid{grid-template-columns:1fr} }
   h4.khead{font-size:15px;font-weight:800;color:#141018;margin:24px 0 6px}
 
-  /* ---------- DRIVERS vs CONSTRAINTS ---------- */
-  .dcwrap{margin:18px 0 8px;padding:18px 20px 20px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
-  .dchead{font-size:14px;font-weight:800;color:var(--navy);margin:0 0 16px;text-align:center}
-  .dcgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-  @media(max-width:640px){ .dcgrid{grid-template-columns:1fr;gap:18px} }
-  .dccol h6{margin:0 0 12px;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
-    display:flex;align-items:center;gap:7px}
-  .dccol.drv h6{color:#059669}
-  .dccol.con h6{color:#e11d48}
-  .dcitem{margin:10px 0}
-  .dcitem .t{font-size:12.5px;color:var(--ink);margin-bottom:5px}
-  .dctrack{height:9px;border-radius:5px;background:#ece7f7;overflow:hidden}
-  .dcfill{height:100%;width:0;border-radius:5px;transition:width 1s cubic-bezier(.22,1,.36,1)}
-  .dccol.drv .dcfill{background:linear-gradient(90deg,#34d399,#059669)}
-  .dccol.con .dcfill{background:linear-gradient(90deg,#fb7185,#e11d48)}
-  .reveal.in .dcfill{width:var(--w)}
-
-  /* ---------- PATENT MOMENTUM MINI-CHART ---------- */
-  .ptrend{margin:16px 0 8px;padding:18px 20px 14px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
-  .ptrend h6{margin:0;font-size:14px;font-weight:800;color:var(--navy)}
-  .ptrend .cap{font-size:11.5px;color:var(--muted);margin:3px 0 16px}
-  .pbars{display:flex;align-items:flex-end;gap:14px;height:150px;border-bottom:2px solid #e3ddf5;padding-top:6px}
-  .pcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
-  .pbar{width:100%;max-width:46px;border-radius:6px 6px 0 0;height:0;
-    background:linear-gradient(180deg,#8663ff,#6d28d9);box-shadow:0 4px 12px rgba(76,29,149,.18);
-    transition:height 1s cubic-bezier(.22,1,.36,1)}
-  .reveal.in .pbar{height:var(--h)}
-  .pcol .pv{font-size:11.5px;font-weight:800;color:var(--purple-deep);margin-bottom:6px}
-  .pcol .py{font-size:11px;color:var(--muted);margin-top:7px;font-weight:600}
-  .ptrend .note{font-size:11px;color:var(--muted);margin-top:12px}
-
   blockquote.rb{margin:20px 0;padding:16px 18px;background:#f5f3ff;border:1px solid #ddd6fe;border-left:4px solid var(--purple);border-radius:10px}
   blockquote.rb p{margin:6px 0}
   blockquote.rb .h{font-weight:800;color:var(--purple-deep);font-size:14.5px;margin-bottom:2px}
@@ -674,25 +641,6 @@
       <li>Long hospital capital-budget approval cycles: Large capital equipment purchases at hospitals typically require multi-year budget planning and committee-level approval, slowing the pace at which even clinically compelling new platforms are adopted at scale.</li>
     </ul>
 
-    <div class="dcwrap reveal">
-      <div class="dchead">What's Driving Growth vs What's Holding It Back</div>
-      <div class="dcgrid">
-        <div class="dccol drv">
-          <h6>&#9650; Growth Drivers</h6>
-          <div class="dcitem"><div class="t">Minimally invasive surgery volumes</div><div class="dctrack"><div class="dcfill" style="--w:92%"></div></div></div>
-          <div class="dcitem"><div class="t">AI-enabled visualization &amp; navigation</div><div class="dctrack"><div class="dcfill" style="--w:85%"></div></div></div>
-          <div class="dcitem"><div class="t">Imaging + surgical-robotics integration</div><div class="dctrack"><div class="dcfill" style="--w:76%"></div></div></div>
-          <div class="dcitem"><div class="t">Growth in hybrid operating rooms</div><div class="dctrack"><div class="dcfill" style="--w:66%"></div></div></div>
-        </div>
-        <div class="dccol con">
-          <h6>&#9660; Key Constraints</h6>
-          <div class="dcitem"><div class="t">High capital cost of systems</div><div class="dctrack"><div class="dcfill" style="--w:86%"></div></div></div>
-          <div class="dcitem"><div class="t">Lack of interoperability</div><div class="dctrack"><div class="dcfill" style="--w:62%"></div></div></div>
-          <div class="dcitem"><div class="t">Long budget-approval cycles</div><div class="dctrack"><div class="dcfill" style="--w:56%"></div></div></div>
-        </div>
-      </div>
-    </div>
-
     <h4 class="khead reveal">Key Takeaways</h4>
     <ul class="dyn reveal">
       <li>The market is valued at <strong>USD 6.85 billion</strong> in <strong>2025</strong> and is forecast to reach <strong>USD 20.34 billion</strong> by <strong>2035</strong>, at a CAGR of <strong>11.50%</strong>.</li>
@@ -707,19 +655,6 @@
       and technology landscape underpinning demand, and proceeding through market dynamics, segmentation, regional
       analysis, patent and grants intelligence, and a detailed competitive and company-level assessment.
     </p>
-
-    <div class="ptrend reveal">
-      <h6>Patent Filing Momentum - 3D Surgical Imaging &amp; Navigation</h6>
-      <div class="cap">Filings indexed to 2018 (2018 = 1.0x) - activity has more than tripled</div>
-      <div class="pbars">
-        <div class="pcol"><div class="pv">1.0x</div><div class="pbar" style="--h:31%"></div><div class="py">2018</div></div>
-        <div class="pcol"><div class="pv">1.5x</div><div class="pbar" style="--h:47%"></div><div class="py">2020</div></div>
-        <div class="pcol"><div class="pv">2.2x</div><div class="pbar" style="--h:69%"></div><div class="py">2022</div></div>
-        <div class="pcol"><div class="pv">2.9x</div><div class="pbar" style="--h:91%"></div><div class="py">2024</div></div>
-        <div class="pcol"><div class="pv">3.2x</div><div class="pbar" style="--h:100%"></div><div class="py">2025</div></div>
-      </div>
-      <p class="note">Indicative index modeled on the "more than tripled since 2018" trend; illustrative of R&amp;D intensity, not absolute filing counts.</p>
-    </div>
 
     <!-- ================= SECTION 3 - GLOBAL MARKET OVERVIEW ================= -->
     <section id="global-market-overview" aria-labelledby="gmo-title">
