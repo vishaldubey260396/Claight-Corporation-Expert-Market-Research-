@@ -385,8 +385,13 @@
   .cl-tab:hover{color:var(--purple-deep);background:var(--tint)}
   .cl-tab[aria-selected="true"]{color:var(--purple-deep);border-bottom-color:var(--purple)}
   .cl-tab:focus-visible{outline:2px solid var(--purple);outline-offset:2px;border-radius:4px}
-  .cl-panel{padding:16px 0 0}
-  .cl-panel[hidden]{display:none}
+  /* All three panels share one grid cell, so the container height is the tallest panel's and
+     nothing below shifts when you switch tabs. Inactive panels are visibility:hidden rather than
+     display:none - that keeps them contributing height while staying out of the a11y tree and
+     out of the tab order. */
+  .cl-panels{display:grid;padding:16px 0 0}
+  .cl-panel{grid-area:1/1;visibility:hidden}
+  .cl-panel.cl-on{visibility:visible}
   .cl-panel p{margin:0 0 12px;font-size:14.5px}
   .cl-panel p:last-child{margin-bottom:0}
 
@@ -962,7 +967,8 @@
           <button class="cl-tab" role="tab" id="clt3" aria-controls="clp3" aria-selected="false" tabindex="-1">Data &amp; cloud</button>
         </div>
 
-        <div class="cl-panel" role="tabpanel" id="clp1" aria-labelledby="clt1" tabindex="0">
+        <div class="cl-panels">
+        <div class="cl-panel cl-on" role="tabpanel" id="clp1" aria-labelledby="clt1" tabindex="0">
           <p>The market is undergoing a period of rapid convergence. Historically distinct product categories are
             increasingly being integrated into single, unified platforms.</p>
           <div class="cl-conv">
@@ -991,7 +997,7 @@
             navigation.</p>
         </div>
 
-        <div class="cl-panel" role="tabpanel" id="clp2" aria-labelledby="clt2" tabindex="0" hidden>
+        <div class="cl-panel" role="tabpanel" id="clp2" aria-labelledby="clt2" tabindex="0">
           <p>Artificial intelligence is the second major technological vector reshaping the category. AI-enabled
             platforms now support automated anatomical segmentation, multi-modal image fusion - combining CT, MRI
             and ultrasound data within a single surgical plan - and increasingly, predictive modelling of surgical
@@ -1006,7 +1012,7 @@
             navigation workflow without disrupting established surgical protocols.</p>
         </div>
 
-        <div class="cl-panel" role="tabpanel" id="clp3" aria-labelledby="clt3" tabindex="0" hidden>
+        <div class="cl-panel" role="tabpanel" id="clp3" aria-labelledby="clt3" tabindex="0">
           <p>A third, related technological vector concerns data interoperability and cloud connectivity. As
             platforms increasingly generate and rely upon large volumes of imaging and analytics data, the ability
             to securely store, share and act upon that data across a hospital system - or even across multiple
@@ -1014,6 +1020,8 @@
           <p>This is driving continued investment in cloud-native platform architectures alongside the more visible
             advances in imaging hardware and navigation accuracy.</p>
         </div>
+
+        </div><!-- /.cl-panels -->
 
         <div class="cl-mile">
           <div class="cl-cap">Platform milestones behind the convergence</div>
@@ -1439,7 +1447,9 @@
       /* roving tabindex: only the selected tab is in the tab order, arrows move between them */
       if(on){ t.removeAttribute('tabindex'); } else { t.setAttribute('tabindex','-1'); }
       var pan = panelOf(t);
-      if(pan){ if(on){ pan.removeAttribute('hidden'); } else { pan.setAttribute('hidden',''); } }
+      /* class, not the hidden attribute - display:none would collapse the shared grid cell and let
+         the content below jump as panels of different heights swap in */
+      if(pan) pan.classList.toggle('cl-on',on);
     });
     if(focus) tabs[i].focus();
   }
