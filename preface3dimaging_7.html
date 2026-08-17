@@ -264,18 +264,10 @@
   .mo-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 6px}
   .mo-kpis .cell{box-shadow:0 4px 11px rgba(60,20,120,.13)}
   .mo-kpis .cell:hover{box-shadow:0 9px 20px rgba(60,20,120,.22)}
-  .mo-kpis .cell .pane{padding:11px 13px 12px}
-  .mo-kpis .cell .lab{font-size:9.5px;letter-spacing:.08em;color:rgba(255,255,255,.86)}
-  /* The value sits in its own translucent box so the figure reads as one block instead of
-     free-floating type; the loose radial glow behind it is dropped, it muddies the box edge. */
-  .mo-kpis .cell .big{font-size:20px;margin-top:7px;align-self:flex-start;
-    padding:5px 10px 6px;border-radius:7px;
-    background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
-    text-shadow:0 1px 4px rgba(0,0,0,.28)}
-  .mo-kpis .cell .big::before{display:none}
-  /* .72 reads as washed out against these gradients; .9 lifts contrast to 8.5-15.2:1 */
-  .mo-kpis .cell .foot{font-size:10.5px;margin-top:8px;color:rgba(255,255,255,.9)}
+  .mo-kpis .cell .pane{padding:12px 14px 13px}
+  .mo-kpis .cell .lab{font-size:9.5px;letter-spacing:.08em}
+  .mo-kpis .cell .big{font-size:21px;margin-top:6px}
+  .mo-kpis .cell .foot{font-size:10.5px;margin-top:9px}
   @media(max-width:760px){ .mo-kpis{grid-template-columns:1fr 1fr} }
   @media(max-width:460px){ .mo-kpis{grid-template-columns:1fr} }
 
@@ -286,6 +278,7 @@
       --ex-ref:#64748b;        /* historical-pace reference line */
       --ex-a:#a78bfa;          /* 2025 bars */
       --ex-track:#efeafe;      /* bar track - a mark, not a surface */
+      --ex-ink:#475569;        /* grey copy - 7.58:1 on white, vs 4.76:1 for --muted */
       margin:20px 0 10px;background:none}
   .ex-head{padding:0}
   .ex-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
@@ -297,14 +290,17 @@
   .ex-stack{padding:0}
   .ex-block{padding-top:22px}
   .ex-ph{margin:0;font-size:13.5px;font-weight:800;color:var(--navy)}
-  .ex-phs{font-size:11.5px;color:var(--muted);margin:2px 0 14px}
+  .ex-phs{font-size:11.5px;color:var(--ex-ink);margin:2px 0 14px}
 
   /* CAGR - three stats across */
   .ex-cagrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .ex-sl{font-size:11.5px;color:var(--muted);line-height:1.35}
-  .ex-sv{font-size:29px;font-weight:800;color:var(--ex-value);letter-spacing:-0.02em;line-height:1.1;margin-top:4px}
+  .ex-sl{font-size:11.5px;color:var(--ex-ink);line-height:1.35}
+  /* Each CAGR figure sits in a tinted box so it reads as one block rather than loose type */
+  .ex-sv{display:inline-block;font-size:29px;font-weight:800;color:var(--ex-value);
+    letter-spacing:-0.02em;line-height:1.1;margin-top:7px;
+    padding:7px 13px 9px;border-radius:10px;background:#f2ecff;border:1px solid #e2d8fb}
   .ex-sv span{font-size:.54em;font-weight:800}
-  .ex-sv.ref{color:var(--ex-ref)}
+  .ex-sv.ref{color:var(--ex-ink);background:#f1f5f9;border-color:#dde5ee}
 
   /* segment bars - three groups across */
   .ex-bargrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 26px}
