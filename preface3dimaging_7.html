@@ -271,45 +271,72 @@
   @media(max-width:760px){ .mo-kpis{grid-template-columns:1fr 1fr} }
   @media(max-width:460px){ .mo-kpis{grid-template-columns:1fr} }
 
-  /* ---------- EXHIBIT: stacked growth-trend figure ----------
-     No card: no surface tint, shadow, radius or padding, so the figure sits directly on the page
-     background and its content aligns flush with the surrounding body text. */
+  /* ---------- EXHIBIT: three-panel growth-trend card ---------- */
   .ex{--ex-value:#5b21b6;      /* market value line + 2035 bars */
       --ex-ref:#64748b;        /* historical-pace reference line */
       --ex-a:#a78bfa;          /* 2025 bars */
-      --ex-track:#efeafe;      /* bar track - a mark, not a surface */
-      --ex-ink:#475569;        /* grey copy - 7.58:1 on white, vs 4.76:1 for --muted */
-      margin:20px 0 10px;background:none}
-  .ex-head{padding:0}
+      --ex-surface:#fbfaff;
+      --ex-track:#efeafe;
+      margin:16px 0 8px;background:var(--ex-surface);border:1px solid var(--line);
+      border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08);overflow:hidden}
+  .ex-head{padding:18px 22px 15px;border-bottom:1px solid var(--line)}
   .ex-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
     color:var(--purple);margin-bottom:7px}
   .ex-title{margin:0;font-size:17px;line-height:1.3;font-weight:800;color:#141018;letter-spacing:-0.01em}
   .ex-sub{margin:5px 0 0;font-size:12.5px;color:var(--muted)}
+  .ex-body{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,.62fr) minmax(0,1.15fr);
+    gap:0;padding:18px 22px 4px}
+  .ex-panel{min-width:0}
+  .ex-panel+.ex-panel{border-left:1px solid var(--line);padding-left:20px;margin-left:20px}
+  .ex-ph{margin:0;font-size:13px;font-weight:800;color:var(--navy)}
+  .ex-phs{font-size:11.5px;color:var(--muted);margin:2px 0 12px}
 
-  /* CAGR row, then segment bars, then the plot - each full width, stacked */
-  .ex-stack{padding:0}
-  .ex-block{padding-top:22px}
-  .ex-ph{margin:0;font-size:13.5px;font-weight:800;color:var(--navy)}
-  .ex-phs{font-size:11.5px;color:var(--ex-ink);margin:2px 0 14px}
+  .ex-svgwrap{position:relative}
+  .ex-svgwrap svg{display:block;width:100%;height:auto;overflow:visible}
+  .ex-grid{stroke:#e9e2f7;stroke-width:1}
+  .ex-axis{fill:#a99fc4;font-weight:600}
+  .ex-xlab{fill:var(--muted);font-weight:600}
+  .ex-fill{fill:url(#exValFill)}
+  .ex-line{fill:none;stroke:var(--ex-value);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+  .ex-line.fc{stroke-dasharray:7 6}
+  .ex-refline{fill:none;stroke:var(--ex-ref);stroke-width:2;stroke-dasharray:2 5;stroke-linecap:round}
+  .ex-dot{fill:#fff;stroke:var(--ex-value);stroke-width:2.4;transition:r .12s ease}
+  .ex-cap{stroke:var(--ex-value);stroke-width:2.6;fill:var(--ex-value)}
+  .ex-base{stroke:var(--purple);stroke-width:1.4;stroke-dasharray:4 5}
+  .ex-baselab{fill:var(--purple);font-weight:800}
+  .ex-endlab{fill:var(--ex-value);font-weight:800}
+  .ex-endlab.ref{fill:var(--ex-ref)}
+  .ex-serieslab{fill:var(--ex-value);font-weight:800}
+  .ex-leader{stroke:var(--ex-ref);stroke-width:1}
+  .ex-serieslab.ref{fill:var(--ex-ref)}
+  .ex-hit{fill:transparent;cursor:pointer}
+  .ex-hit:focus{outline:none}
+  .ex-hit:focus-visible{outline:2px solid var(--purple);outline-offset:-2px}
+  .ex-tip{position:absolute;z-index:9;background:rgba(20,14,32,.94);color:#fff;border-radius:9px;
+    padding:8px 11px;font-size:11.5px;line-height:1.55;white-space:nowrap;pointer-events:none;
+    box-shadow:0 10px 24px rgba(0,0,0,.32);opacity:0;transform:translate(-50%,-120%);
+    transition:opacity .14s ease}
+  .ex-tip.on{opacity:1}
+  .ex-tip .y{font-weight:800;margin-bottom:3px}
+  .ex-tip .r{display:flex;justify-content:space-between;gap:16px}
+  .ex-tip .r b{color:#c4b5fd}
+  .ex-tip .r.ref b{color:#cbd5e1;font-weight:600}
 
-  /* CAGR - three stats across */
-  .ex-cagrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .ex-sl{font-size:11.5px;color:var(--ex-ink);line-height:1.35}
-  /* Each CAGR figure sits in a tinted box so it reads as one block rather than loose type */
-  .ex-sv{display:inline-block;font-size:29px;font-weight:800;color:var(--ex-value);
-    letter-spacing:-0.02em;line-height:1.1;margin-top:7px;
-    padding:7px 13px 9px;border-radius:10px;background:#f2ecff;border:1px solid #e2d8fb}
-  .ex-sv span{font-size:.54em;font-weight:800}
-  .ex-sv.ref{color:var(--ex-ink);background:#f1f5f9;border-color:#dde5ee}
+  /* CAGR stat column */
+  .ex-stat+.ex-stat{margin-top:16px}
+  .ex-sl{font-size:11.5px;color:var(--muted);line-height:1.35}
+  .ex-sv{font-size:25px;font-weight:800;color:var(--ex-value);letter-spacing:-0.02em;line-height:1.1;margin-top:3px}
+  .ex-sv span{font-size:.56em;font-weight:800}
+  .ex-sv.ref{color:var(--ex-ref)}
+  .ex-sv.sm{font-size:19px}
 
-  /* segment bars - three groups across */
-  .ex-bargrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 26px}
-  .ex-gl{font-size:12.5px;font-weight:800;color:var(--navy);margin-bottom:7px}
+  /* segment bars */
+  .ex-grp+.ex-grp{margin-top:14px}
+  .ex-gl{font-size:12.5px;font-weight:800;color:var(--navy);margin-bottom:6px}
   .ex-row{display:flex;align-items:center;gap:8px}
   .ex-row+.ex-row{margin-top:2px}          /* 2px surface gap between adjacent bars */
   .ex-yr{font-size:11px;color:var(--muted);font-weight:600;flex:none;width:26px}
-  .ex-track{display:block;position:relative;flex:1;min-width:0;height:18px;
-    background:var(--ex-track);border-radius:4px}
+  .ex-track{display:block;position:relative;flex:1;min-width:0;height:17px;background:var(--ex-track);border-radius:4px}
   .ex-fillbar{display:block;height:100%;border-radius:4px;background:var(--ex-a);
     transition:width .9s cubic-bezier(.22,1,.36,1);width:0}
   .ex-row.y35 .ex-fillbar{background:var(--ex-value)}
@@ -317,57 +344,30 @@
   .ex-bv{position:absolute;top:50%;transform:translateY(-50%);font-size:11.5px;font-weight:800;
     color:var(--navy);white-space:nowrap}
 
-  /* plot */
-  .ex-svgwrap{position:relative;margin-top:2px}
-  .ex-svgwrap svg{display:block;width:100%;height:auto;overflow:visible}
-  .ex-grid{stroke:#e9e2f7;stroke-width:1}
-  .ex-axis{fill:#a99fc4;font-weight:600}
-  .ex-xlab{fill:var(--muted);font-weight:600}
-  .ex-fill{fill:url(#exValFill)}
-  .ex-line{fill:none;stroke:var(--ex-value);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-  .ex-line.fc{stroke-dasharray:8 7}
-  .ex-refline{fill:none;stroke:var(--ex-ref);stroke-width:2.2;stroke-dasharray:2 6;stroke-linecap:round}
-  .ex-leader{stroke:var(--ex-ref);stroke-width:1}
-  .ex-dot{fill:#fff;stroke:var(--ex-value);stroke-width:2.6;transition:r .12s ease}
-  .ex-cap{stroke:var(--ex-value);stroke-width:2.6;fill:var(--ex-value)}
-  .ex-base{stroke:var(--purple);stroke-width:1.4;stroke-dasharray:4 5}
-  .ex-baselab{fill:var(--purple);font-weight:800}
-  .ex-endlab{fill:var(--ex-value);font-weight:800}
-  .ex-endlab.ref{fill:var(--ex-ref)}
-  .ex-serieslab{fill:var(--ex-value);font-weight:800}
-  .ex-serieslab.ref{fill:var(--ex-ref)}
-  .ex-hit{fill:transparent;cursor:pointer}
-  .ex-hit:focus{outline:none}
-  .ex-hit:focus-visible{outline:2px solid var(--purple);outline-offset:-2px}
-  .ex-tip{position:absolute;z-index:9;background:rgba(20,14,32,.94);color:#fff;border-radius:9px;
-    padding:9px 12px;font-size:12px;line-height:1.55;white-space:nowrap;pointer-events:none;
-    box-shadow:0 10px 24px rgba(0,0,0,.32);opacity:0;transform:translate(-50%,-120%);
-    transition:opacity .14s ease}
-  .ex-tip.on{opacity:1}
-  .ex-tip .y{font-weight:800;margin-bottom:3px}
-  .ex-tip .r{display:flex;justify-content:space-between;gap:18px}
-  .ex-tip .r b{color:#c4b5fd}
-  .ex-tip .r.ref b{color:#cbd5e1;font-weight:600}
-
-  .ex-foot{padding:18px 0 0}
-  .ex-legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0;padding:0;list-style:none}
+  .ex-foot{padding:4px 22px 16px}
+  .ex-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 0;padding:0;list-style:none}
   .ex-legend li{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink)}
   .ex-legend .k{width:16px;height:10px;border-radius:3px;flex:none;background:var(--ex-a)}
   .ex-legend .k.b{background:var(--ex-value)}
   .ex-legend .k.ln{height:0;border-top:3px solid var(--ex-value);border-radius:2px;background:none}
   .ex-legend .k.rf{height:0;border-top:2px dotted var(--ex-ref);border-radius:0;background:none}
-  .ex-note{font-size:11px;line-height:1.55;color:var(--muted);margin:14px 0 0}
+  .ex-note{font-size:11px;line-height:1.55;color:var(--muted);margin:14px 0 0;
+    padding-top:12px;border-top:1px solid var(--line)}
   .ex-note b{color:var(--purple-deep);font-weight:800;letter-spacing:.06em;font-size:10px;text-transform:uppercase}
   .ex-src{font-size:11px;color:#a99fc4;margin:5px 0 0;font-style:italic}
 
-  @media(max-width:760px){
-    .ex-bargrid{grid-template-columns:1fr}
-    .ex-cagrow{gap:12px}
-    .ex-sv{font-size:24px}
+  @media(max-width:900px){
+    .ex-body{grid-template-columns:1fr;gap:20px}
+    .ex-panel+.ex-panel{border-left:0;padding-left:0;margin-left:0;
+      border-top:1px solid var(--line);padding-top:18px}
+    .ex-cagr{display:flex;gap:0 28px;flex-wrap:wrap}
+    .ex-cagr .ex-ph,.ex-cagr .ex-phs{width:100%}
+    .ex-cagr .ex-phs{margin-bottom:10px}
+    .ex-stat+.ex-stat{margin-top:0}
   }
   @media(max-width:560px){
+    .ex-head,.ex-body,.ex-foot{padding-left:16px;padding-right:16px}
     .ex-title{font-size:15.5px}
-    .ex-cagrow{grid-template-columns:1fr;gap:14px}
   }
   @media(prefers-reduced-motion:reduce){
     .ex-fillbar{transition:none}
@@ -719,31 +719,36 @@
             value by segment</p>
         </div>
 
-        <div class="ex-stack">
+        <div class="ex-body">
+          <div class="ex-panel ex-plot">
+            <h6 class="ex-ph">Market value</h6>
+            <div class="ex-phs">USD bn, 2019-2035</div>
+            <div class="ex-svgwrap" id="exPlot">
+              <div class="ex-tip" id="exTip" role="status" aria-live="polite"></div>
+            </div>
+          </div>
 
-          <section class="ex-block ex-cagr">
+          <div class="ex-panel ex-cagr">
             <h6 class="ex-ph">CAGR</h6>
             <div class="ex-phs">Compound annual growth</div>
-            <div class="ex-cagrow">
-              <div class="ex-stat">
-                <div class="ex-sl">Forecast 2026-2035</div>
-                <div class="ex-sv">+11.50<span>%</span></div>
-              </div>
-              <div class="ex-stat">
-                <div class="ex-sl">Historical 2019-2025</div>
-                <div class="ex-sv ref">+9.39<span>%</span></div>
-              </div>
-              <div class="ex-stat">
-                <div class="ex-sl">Step-up</div>
-                <div class="ex-sv">+2.11<span>pp</span></div>
-              </div>
+            <div class="ex-stat">
+              <div class="ex-sl">Forecast<br>2026-2035</div>
+              <div class="ex-sv">+11.50<span>%</span></div>
             </div>
-          </section>
+            <div class="ex-stat">
+              <div class="ex-sl">Historical<br>2019-2025</div>
+              <div class="ex-sv ref">+9.39<span>%</span></div>
+            </div>
+            <div class="ex-stat">
+              <div class="ex-sl">Step-up</div>
+              <div class="ex-sv sm">+2.11<span>pp</span></div>
+            </div>
+          </div>
 
-          <section class="ex-block ex-bars">
+          <div class="ex-panel ex-bars">
             <h6 class="ex-ph">Value by segment, USD bn</h6>
             <div class="ex-phs">2025 base year vs 2035 forecast</div>
-            <div class="ex-bargrid">
+
             <div class="ex-grp">
               <div class="ex-gl">Hardware</div>
               <div class="ex-row">
@@ -757,6 +762,7 @@
                   <span class="ex-bv" style="left:calc(70.6% + 8px)">$7.70</span></span>
               </div>
             </div>
+
             <div class="ex-grp">
               <div class="ex-gl">Software &amp; Solutions</div>
               <div class="ex-row">
@@ -770,6 +776,7 @@
                   <span class="ex-bv" style="left:calc(73.9% + 8px)">$8.05</span></span>
               </div>
             </div>
+
             <div class="ex-grp">
               <div class="ex-gl">Services</div>
               <div class="ex-row">
@@ -783,17 +790,7 @@
                   <span class="ex-bv" style="left:calc(42.1% + 8px)">$4.59</span></span>
               </div>
             </div>
-            </div>
-          </section>
-
-          <section class="ex-block ex-plot">
-            <h6 class="ex-ph">Market value</h6>
-            <div class="ex-phs">USD bn, 2019-2035</div>
-            <div class="ex-svgwrap" id="exPlot">
-              <div class="ex-tip" id="exTip" role="status" aria-live="polite"></div>
-            </div>
-          </section>
-
+          </div>
         </div>
 
         <div class="ex-foot">
@@ -925,153 +922,114 @@
     {y:2030,v:11.81,r:10.73},{y:2031,v:13.16,r:11.74},{y:2032,v:14.68,r:12.84},
     {y:2033,v:16.36,r:14.04},{y:2034,v:18.25,r:15.36},{y:2035,v:20.34,r:16.81}
   ];
-  var BASE = 6, CEIL = 22;
+  var BASE = 6, CEIL = 22, VW = 560, VH = 330;
+  var X0 = 40, X1 = 486, Y0 = 30, Y1 = 276;
   var NS = 'http://www.w3.org/2000/svg';
   var el = function(n,a){ var e = document.createElementNS(NS,n);
     for(var k in a){ if(a.hasOwnProperty(k)) e.setAttribute(k,a[k]); } return e; };
+  var px = function(i){ return X0 + (i/(D.length-1))*(X1-X0); };
+  var py = function(v){ return Y1 - (v/CEIL)*(Y1-Y0); };
+  var path = function(from,to,key,close){
+    var d = '';
+    for(var i=from;i<=to;i++){ d += (i===from?'M':'L') + px(i).toFixed(2) + ' ' + py(D[i][key]).toFixed(2) + ' '; }
+    if(close){ d += 'L'+px(to).toFixed(2)+' '+Y1+' L'+px(from).toFixed(2)+' '+Y1+' Z'; }
+    return d.trim();
+  };
 
-  /* Two frames: a wide, shallow one for desktop, and a taller one with proportionally larger type
-     for narrow screens - so the labels stay legible once the SVG is scaled down to phone width. */
-  var WIDE = {vw:960,vh:400,x0:52,x1:890,y0:36,y1:336,sw:3,rsw:2.2,dash:'8 7',rdash:'2 6',
-    r:5,rb:5.2,xEvery:4,fAxis:12,fX:13,fBase:12,fSeries:13,fEnd:14,rlAnchor:'start',refLab:true};
-  /* x1 stops well short of vw so the 20.34 / 16.81 endpoint labels, which are drawn to the right of
-     the final point at this frame's larger type, stay inside the viewBox now that the figure has no
-     card padding to spill into. */
-  var NARROW = {vw:700,vh:620,x0:64,x1:566,y0:60,y1:520,sw:5,rsw:3.6,dash:'13 11',rdash:'3 10',
-    r:8,rb:8.5,xEvery:4,fAxis:20,fX:21,fBase:20,fSeries:21,fEnd:23,rlAnchor:'end',refLab:false};
+  var s = el('svg',{viewBox:'0 0 '+VW+' '+VH,role:'img',
+    'aria-label':'Line chart of global 3D medical and surgical imaging platform market value, USD billion. '+
+      'Market value rises from 4.00 in 2019 to 6.85 in the 2025 base year and a forecast 20.34 in 2035. '+
+      'A reference line holding the historical 9.39% growth rate from 2025 reaches only 16.81 in 2035, '+
+      'a gap of 3.53 billion.'});
 
-  var svg = null, mode = null;
+  var defs = el('defs');
+  var grad = el('linearGradient',{id:'exValFill',x1:'0',y1:'0',x2:'0',y2:'1'});
+  grad.appendChild(el('stop',{offset:'0%','stop-color':'#5b21b6','stop-opacity':'.16'}));
+  grad.appendChild(el('stop',{offset:'100%','stop-color':'#5b21b6','stop-opacity':'.02'}));
+  defs.appendChild(grad); s.appendChild(defs);
 
-  function build(C){
-    var px = function(i){ return C.x0 + (i/(D.length-1))*(C.x1-C.x0); };
-    var py = function(v){ return C.y1 - (v/CEIL)*(C.y1-C.y0); };
-    var pathOf = function(from,to,key,close){
-      var d = '';
-      for(var i=from;i<=to;i++){ d += (i===from?'M':'L') + px(i).toFixed(2) + ' ' + py(D[i][key]).toFixed(2) + ' '; }
-      if(close){ d += 'L'+px(to).toFixed(2)+' '+C.y1+' L'+px(from).toFixed(2)+' '+C.y1+' Z'; }
-      return d.trim();
-    };
+  /* value axis + gridlines */
+  [0,5,10,15,20].forEach(function(v){
+    var y = py(v);
+    s.appendChild(el('line',{x1:X0,y1:y,x2:X1,y2:y,'class':'ex-grid'}));
+    var t = el('text',{x:X0-9,y:y+4,'class':'ex-axis','text-anchor':'end','font-size':11});
+    t.textContent = v; s.appendChild(t);
+  });
+  var yt = el('text',{x:X0-9,y:py(20)-14,'class':'ex-axis','text-anchor':'end','font-size':11});
+  yt.textContent = 'USD bn'; s.appendChild(yt);
 
-    var s = el('svg',{viewBox:'0 0 '+C.vw+' '+C.vh,role:'img',
-      'aria-label':'Line chart of global 3D medical and surgical imaging platform market value, USD billion. '+
-        'Market value rises from 4.00 in 2019 to 6.85 in the 2025 base year and a forecast 20.34 in 2035. '+
-        'A reference line holding the historical 9.39% growth rate from 2025 reaches only 16.81 in 2035, '+
-        'a gap of 3.53 billion.'});
+  /* filled area under the value line, then the reference line beneath the value line */
+  s.appendChild(el('path',{d:path(0,D.length-1,'v',true),'class':'ex-fill'}));
+  s.appendChild(el('path',{d:path(BASE,D.length-1,'r'),'class':'ex-refline'}));
 
-    var defs = el('defs');
-    var grad = el('linearGradient',{id:'exValFill',x1:'0',y1:'0',x2:'0',y2:'1'});
-    grad.appendChild(el('stop',{offset:'0%','stop-color':'#5b21b6','stop-opacity':'.16'}));
-    grad.appendChild(el('stop',{offset:'100%','stop-color':'#5b21b6','stop-opacity':'.02'}));
-    defs.appendChild(grad); s.appendChild(defs);
+  /* base-year marker */
+  s.appendChild(el('line',{x1:px(BASE),y1:Y0,x2:px(BASE),y2:Y1,'class':'ex-base'}));
+  var bl = el('text',{x:px(BASE),y:Y0-8,'class':'ex-baselab','text-anchor':'middle','font-size':11});
+  bl.textContent = 'Base year 2025'; s.appendChild(bl);
 
-    /* value axis + gridlines */
-    [0,5,10,15,20].forEach(function(v){
-      var y = py(v);
-      s.appendChild(el('line',{x1:C.x0,y1:y,x2:C.x1,y2:y,'class':'ex-grid'}));
-      var t = el('text',{x:C.x0-C.fAxis,y:y+C.fAxis*0.35,'class':'ex-axis','text-anchor':'end','font-size':C.fAxis});
-      t.textContent = v; s.appendChild(t);
-    });
-    var yt = el('text',{x:C.x0,y:py(20)-C.fAxis*1.3,'class':'ex-axis','text-anchor':'start','font-size':C.fAxis});
-    yt.textContent = 'USD bn'; s.appendChild(yt);
+  /* value line: solid through the base year, dashed across the forecast */
+  s.appendChild(el('path',{d:path(0,BASE,'v'),'class':'ex-line'}));
+  s.appendChild(el('path',{d:path(BASE,D.length-1,'v'),'class':'ex-line fc'}));
 
-    /* filled area under the value line, then the reference line beneath the value line */
-    s.appendChild(el('path',{d:pathOf(0,D.length-1,'v',true),'class':'ex-fill'}));
-    s.appendChild(el('path',{d:pathOf(BASE,D.length-1,'r'),'class':'ex-refline',
-      'stroke-width':C.rsw,'stroke-dasharray':C.rdash}));
+  /* year labels, every third year so 2019 and 2035 both land */
+  D.forEach(function(d,i){
+    if(i % 4 !== 0 && i !== D.length-1) return;
+    var t = el('text',{x:px(i),y:Y1+21,'class':'ex-xlab','text-anchor':'middle','font-size':11.5});
+    t.textContent = d.y; s.appendChild(t);
+  });
 
-    /* base-year marker */
-    s.appendChild(el('line',{x1:px(BASE),y1:C.y0,x2:px(BASE),y2:C.y1,'class':'ex-base'}));
-    var bl = el('text',{x:px(BASE),y:C.y0-C.fBase*0.8,'class':'ex-baselab','text-anchor':'middle','font-size':C.fBase});
-    bl.textContent = 'Base year 2025'; s.appendChild(bl);
+  /* series labels, placed along each line rather than in a legend box */
+  /* Both lines climb steeply, so a horizontal label cannot sit in the wedge between them without
+     crossing a stroke: the value label is anchored back up its own line, and the reference label
+     sits clear below both lines with a short leader pointing back to it. */
+  var sl = el('text',{x:px(10),y:py(D[10].v)-14,'class':'ex-serieslab','text-anchor':'end','font-size':11.5});
+  sl.textContent = 'Market value'; s.appendChild(sl);
+  var ry = py(D[12].r);
+  s.appendChild(el('line',{x1:px(12),y1:ry+6,x2:px(12),y2:ry+22,'class':'ex-leader'}));
+  var rl = el('text',{x:px(12)+5,y:ry+30,'class':'ex-serieslab ref','text-anchor':'start','font-size':11});
+  rl.textContent = 'Held at the 2019-25 pace'; s.appendChild(rl);
 
-    /* value line: solid through the base year, dashed across the forecast */
-    s.appendChild(el('path',{d:pathOf(0,BASE,'v'),'class':'ex-line','stroke-width':C.sw}));
-    s.appendChild(el('path',{d:pathOf(BASE,D.length-1,'v'),'class':'ex-line fc',
-      'stroke-width':C.sw,'stroke-dasharray':C.dash}));
+  /* endpoint markers + direct labels (the only numbers on the plot) */
+  s.appendChild(el('circle',{cx:px(BASE),cy:py(6.85),r:4.4,'class':'ex-dot'}));
+  s.appendChild(el('circle',{cx:px(D.length-1),cy:py(20.34),r:4.6,'class':'ex-cap'}));
+  var e1 = el('text',{x:px(BASE)-9,y:py(6.85)-11,'class':'ex-endlab','text-anchor':'end','font-size':12});
+  e1.textContent = '6.85'; s.appendChild(e1);
+  var e2 = el('text',{x:px(D.length-1)+9,y:py(20.34)+4,'class':'ex-endlab','text-anchor':'start','font-size':12.5});
+  e2.textContent = '20.34'; s.appendChild(e2);
+  var e3 = el('text',{x:px(D.length-1)+9,y:py(16.81)+4,'class':'ex-endlab ref','text-anchor':'start','font-size':12});
+  e3.textContent = '16.81'; s.appendChild(e3);
 
-    /* year labels */
-    D.forEach(function(d,i){
-      if(i % C.xEvery !== 0 && i !== D.length-1) return;
-      var t = el('text',{x:px(i),y:C.y1+C.fX*1.85,'class':'ex-xlab','text-anchor':'middle','font-size':C.fX});
-      t.textContent = d.y; s.appendChild(t);
-    });
-
-    /* Both lines climb steeply, so a horizontal label cannot sit in the wedge between them without
-       crossing a stroke: the value label is anchored back up its own line, and the reference label
-       sits clear below both lines with a short leader pointing back to it. */
-    var sl = el('text',{x:px(10),y:py(D[10].v)-C.fSeries*1.25,'class':'ex-serieslab',
-      'text-anchor':'end','font-size':C.fSeries});
-    sl.textContent = 'Market value'; s.appendChild(sl);
-    /* In the tall narrow frame both lines sweep the full canvas, leaving no horizontal run clear
-       for this label - there the legend below the chart and the grey 16.81 endpoint carry its identity. */
-    if(C.refLab){
-      var ry = py(D[12].r);
-      s.appendChild(el('line',{x1:px(12),y1:ry+C.fSeries*0.55,x2:px(12),y2:ry+C.fSeries*2,'class':'ex-leader'}));
-      var rl = el('text',{x:px(12)+C.fSeries*0.5*(C.rlAnchor==='end'?-1:1),y:ry+C.fSeries*2.6,
-        'class':'ex-serieslab ref','text-anchor':C.rlAnchor||'start','font-size':C.fSeries*0.96});
-      rl.textContent = 'Held at the 2019-25 pace'; s.appendChild(rl);
+  /* hover / keyboard layer */
+  var band = (X1-X0)/(D.length-1);
+  var hoverDot = el('circle',{r:0,'class':'ex-dot','pointer-events':'none'});
+  var show = function(i){
+    var d = D[i];
+    var html = '<div class="y">'+d.y+(i===BASE?' · base year':'')+'</div>'+
+      '<div class="r"><span>Market value</span><b>'+d.v.toFixed(2)+'</b></div>';
+    if(d.r !== undefined && i > BASE){
+      html += '<div class="r ref"><span>At 2019-25 pace</span><b>'+d.r.toFixed(2)+'</b></div>'+
+              '<div class="r"><span>Gap</span><b>+'+(d.v-d.r).toFixed(2)+'</b></div>';
     }
-
-    /* endpoint markers + direct labels (the only numbers on the plot) */
-    s.appendChild(el('circle',{cx:px(BASE),cy:py(6.85),r:C.r,'class':'ex-dot'}));
-    s.appendChild(el('circle',{cx:px(D.length-1),cy:py(20.34),r:C.rb,'class':'ex-cap'}));
-    var e1 = el('text',{x:px(BASE)-C.fEnd*0.8,y:py(6.85)-C.fEnd*0.85,'class':'ex-endlab',
-      'text-anchor':'end','font-size':C.fEnd});
-    e1.textContent = '6.85'; s.appendChild(e1);
-    var e2 = el('text',{x:px(D.length-1)+C.fEnd*0.8,y:py(20.34)+C.fEnd*0.35,'class':'ex-endlab',
-      'text-anchor':'start','font-size':C.fEnd});
-    e2.textContent = '20.34'; s.appendChild(e2);
-    var e3 = el('text',{x:px(D.length-1)+C.fEnd*0.8,y:py(16.81)+C.fEnd*0.35,'class':'ex-endlab ref',
-      'text-anchor':'start','font-size':C.fEnd*0.95});
-    e3.textContent = '16.81'; s.appendChild(e3);
-
-    /* hover / keyboard layer */
-    var band = (C.x1-C.x0)/(D.length-1);
-    var hoverDot = el('circle',{r:0,'class':'ex-dot','pointer-events':'none'});
-    var show = function(i){
-      var d = D[i];
-      var html = '<div class="y">'+d.y+(i===BASE?' · base year':'')+'</div>'+
-        '<div class="r"><span>Market value</span><b>'+d.v.toFixed(2)+'</b></div>';
-      if(d.r !== undefined && i > BASE){
-        html += '<div class="r ref"><span>At 2019-25 pace</span><b>'+d.r.toFixed(2)+'</b></div>'+
-                '<div class="r"><span>Gap</span><b>+'+(d.v-d.r).toFixed(2)+'</b></div>';
-      }
-      tip.innerHTML = html;
-      tip.style.left = (px(i)/C.vw*100)+'%';
-      tip.style.top  = (py(d.v)/C.vh*100)+'%';
-      tip.classList.add('on');
-      hoverDot.setAttribute('cx',px(i)); hoverDot.setAttribute('cy',py(d.v));
-      hoverDot.setAttribute('r',C.rb*1.2);
-    };
-    var hide = function(){ tip.classList.remove('on'); hoverDot.setAttribute('r',0); };
-    D.forEach(function(d,i){
-      var hr = el('rect',{x:px(i)-band/2,y:C.y0,width:band,height:C.y1-C.y0,'class':'ex-hit',
-        tabindex:'0',role:'img',
-        'aria-label':d.y+': market value USD '+d.v.toFixed(2)+' billion'+
-          (d.r !== undefined && i > BASE ? ', versus USD '+d.r.toFixed(2)+' billion at the historical pace' : '')});
-      hr.addEventListener('mouseenter',function(){ show(i); });
-      hr.addEventListener('focus',function(){ show(i); });
-      hr.addEventListener('blur',hide);
-      s.appendChild(hr);
-    });
-    s.appendChild(hoverDot);
-    s.addEventListener('mouseleave',hide);
-    return s;
-  }
-
-  function render(){
-    var next = host.clientWidth < 620 ? 'narrow' : 'wide';
-    if(next === mode) return;
-    mode = next;
-    if(svg && svg.parentNode) svg.parentNode.removeChild(svg);
-    tip.classList.remove('on');
-    svg = build(next === 'narrow' ? NARROW : WIDE);
-    host.insertBefore(svg,tip);
-  }
-
-  render();
-  var t;
-  window.addEventListener('resize',function(){ clearTimeout(t); t = setTimeout(render,150); });
+    tip.innerHTML = html;
+    tip.style.left = (px(i)/VW*100)+'%';
+    tip.style.top  = (py(d.v)/VH*100)+'%';
+    tip.classList.add('on');
+    hoverDot.setAttribute('cx',px(i)); hoverDot.setAttribute('cy',py(d.v)); hoverDot.setAttribute('r',5.2);
+  };
+  var hide = function(){ tip.classList.remove('on'); hoverDot.setAttribute('r',0); };
+  D.forEach(function(d,i){
+    var r = el('rect',{x:px(i)-band/2,y:Y0,width:band,height:Y1-Y0,'class':'ex-hit',
+      tabindex:'0',role:'img',
+      'aria-label':d.y+': market value USD '+d.v.toFixed(2)+' billion'+
+        (d.r !== undefined && i > BASE ? ', versus USD '+d.r.toFixed(2)+' billion at the historical pace' : '')});
+    r.addEventListener('mouseenter',function(){ show(i); });
+    r.addEventListener('focus',function(){ show(i); });
+    r.addEventListener('blur',hide);
+    s.appendChild(r);
+  });
+  s.appendChild(hoverDot);
+  s.addEventListener('mouseleave',hide);
+  host.insertBefore(s,tip);
 })();
 </script>
 </body>
