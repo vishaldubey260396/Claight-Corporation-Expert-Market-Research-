@@ -390,17 +390,22 @@
      display:none - that keeps them contributing height while staying out of the a11y tree and
      out of the tab order. */
   .cl-panels{display:grid;padding:16px 0 0}
-  .cl-panel{grid-area:1/1;visibility:hidden}
+  .cl-panel{grid-area:1/1;visibility:hidden;display:flex;flex-direction:column}
   .cl-panel.cl-on{visibility:visible}
   .cl-panel p{margin:0 0 12px;font-size:14.5px}
   .cl-panel p:last-child{margin-bottom:0}
 
   /* --- convergence flow: a row of source boxes fanning down into one target box --- */
-  .cl-flow{margin:8px 0 18px}
+  /* The panel is stretched to the tallest panel's height, so let the diagram absorb the surplus:
+     the box row grows and the boxes get taller rather than leaving dead space at the bottom. */
+  .cl-flow{margin:8px 0 18px;flex:1 1 auto;display:flex;flex-direction:column;min-height:0}
+  /* Surplus is split between the boxes and the connector, and both are capped - dumping it all into
+     the boxes left them looking hollow. */
+  .cl-row{flex:1 1 auto;max-height:104px}
   .cl-cap{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
     color:var(--muted);margin-bottom:9px}
   .cl-row{display:grid;gap:10px;grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}
-  .cl-src{display:flex;align-items:center;justify-content:center;text-align:center;
+  .cl-src{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
     font-size:12.5px;line-height:1.45;color:var(--ink);background:#fbfaff;
     border:1px solid var(--line);border-top:3px solid var(--purple-soft);
     border-radius:7px;padding:10px 11px;
@@ -408,9 +413,10 @@
   .cl-src:hover{border-top-color:var(--purple);background:var(--tint);
     transform:translateY(-2px);box-shadow:0 6px 14px rgba(76,29,149,.12)}
   .cl-src b{color:#141018;font-weight:800}
+  .cl-src .d{font-size:11.5px;line-height:1.4;color:var(--muted);margin-top:4px}
   /* connector layer - redrawn from the boxes' measured positions, so it follows any wrap */
-  .cl-join{position:relative;height:52px}
-  .cl-join svg{display:block;width:100%;height:52px}
+  .cl-join{position:relative;flex:1 1 auto;min-height:52px;max-height:132px}
+  .cl-join svg{display:block;width:100%;height:100%}
   .cl-jline{fill:none;stroke:var(--purple-soft);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .cl-jhead{fill:var(--purple);stroke:none}
   .cl-uni{max-width:660px;margin:0 auto;
@@ -1024,7 +1030,7 @@
             <div class="cl-row" style="--n:3">
               <span class="cl-src"><b>CT</b></span>
               <span class="cl-src"><b>MRI</b></span>
-              <span class="cl-src"><b>Ultrasound</b><br>including real-time intraoperative</span>
+              <span class="cl-src"><b>Ultrasound</b><span class="d">including real-time intraoperative</span></span>
             </div>
             <div class="cl-join" aria-hidden="true"></div>
             <div class="cl-uni">
@@ -1045,9 +1051,9 @@
           <div class="cl-flow">
             <div class="cl-cap">What the data layer must do</div>
             <div class="cl-row" style="--n:3">
-              <span class="cl-src"><b>Store</b><br>imaging and analytics data securely</span>
-              <span class="cl-src"><b>Share</b><br>beyond the room it was captured in</span>
-              <span class="cl-src"><b>Act</b><br>on it inside the surgical workflow</span>
+              <span class="cl-src"><b>Store</b><span class="d">imaging and analytics data securely</span></span>
+              <span class="cl-src"><b>Share</b><span class="d">beyond the room it was captured in</span></span>
+              <span class="cl-src"><b>Act</b><span class="d">on it inside the surgical workflow</span></span>
             </div>
             <div class="cl-join" aria-hidden="true"></div>
             <div class="cl-uni">
