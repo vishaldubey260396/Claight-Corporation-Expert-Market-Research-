@@ -259,11 +259,15 @@
 
   /* ================= SECTION 3 - GLOBAL MARKET OVERVIEW ================= */
   /* KPI snapshot row (reuses .cell gradients from the hero mosaic) */
-  .mo-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 6px}
-  .mo-kpis .cell{min-height:118px}
-  .mo-kpis .cell .big{font-size:27px}
-  .mo-kpis .cell .pill{align-self:flex-start}
-  .mo-kpis .cell .foot{margin-top:auto;padding-top:8px}
+  /* All four tiles carry the same label / value / footnote structure, so they size to content and
+     come out identical - no min-height needed. Scoped to .mo-kpis; the hero mosaic keeps its scale. */
+  .mo-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 6px}
+  .mo-kpis .cell{box-shadow:0 4px 11px rgba(60,20,120,.13)}
+  .mo-kpis .cell:hover{box-shadow:0 9px 20px rgba(60,20,120,.22)}
+  .mo-kpis .cell .pane{padding:12px 14px 13px}
+  .mo-kpis .cell .lab{font-size:9.5px;letter-spacing:.08em}
+  .mo-kpis .cell .big{font-size:21px;margin-top:6px}
+  .mo-kpis .cell .foot{font-size:10.5px;margin-top:9px}
   @media(max-width:760px){ .mo-kpis{grid-template-columns:1fr 1fr} }
   @media(max-width:460px){ .mo-kpis{grid-template-columns:1fr} }
 
@@ -674,8 +678,7 @@
           <div class="pane">
             <div class="lab">2025 Market Size</div>
             <div class="big">$6.85<span class="u">B</span></div>
-            <span class="pill">Base year</span>
-            <div class="foot">9.39% CAGR since 2019</div>
+            <div class="foot">base year · 9.39% CAGR since 2019</div>
           </div>
         </div>
         <div class="cell g-violet" tabindex="0">
@@ -689,7 +692,6 @@
           <div class="pane">
             <div class="lab">Forecast CAGR</div>
             <div class="big">11.50<span class="u">%</span></div>
-            <div class="glyph"><i></i><i></i><i></i><i></i><i></i></div>
             <div class="foot">2026-2035 · vs 9.39% historical</div>
           </div>
         </div>
