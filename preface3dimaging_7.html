@@ -371,6 +371,132 @@
   @media(prefers-reduced-motion:reduce){
     .ex-fillbar{transition:none}
   }
+  /* ================= SECTION 4 - CLINICAL AND TECHNOLOGY LANDSCAPE ================= */
+  .cl-lede{font-size:15px;color:#3a3f52}
+  .cl-lede strong{color:var(--purple-deep)}
+
+  /* --- tabs: the three technology vectors --- */
+  .cl-tabs{margin:16px 0 8px}
+  .cl-tablist{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:2px}
+  .cl-tab{appearance:none;border:0;background:none;font:inherit;cursor:pointer;
+    padding:9px 14px 10px;font-size:13px;font-weight:700;color:var(--muted);
+    border-bottom:2.5px solid transparent;margin-bottom:-1px;
+    transition:color .15s ease,border-color .15s ease,background .15s ease}
+  .cl-tab:hover{color:var(--purple-deep);background:var(--tint)}
+  .cl-tab[aria-selected="true"]{color:var(--purple-deep);border-bottom-color:var(--purple)}
+  .cl-tab:focus-visible{outline:2px solid var(--purple);outline-offset:2px;border-radius:4px}
+  .cl-panel{padding:16px 0 0}
+  .cl-panel[hidden]{display:none}
+  .cl-panel p{margin:0 0 12px;font-size:14.5px}
+  .cl-panel p:last-child{margin-bottom:0}
+
+  /* --- convergence diagram: many legacy categories into one platform --- */
+  .cl-conv{display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1.05fr);
+    align-items:center;gap:0;margin:6px 0 16px}
+  .cl-cap{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:9px}
+  .cl-src{display:block;font-size:12.5px;color:var(--ink);background:#fbfaff;
+    border:1px solid var(--line);border-left:3px solid var(--purple-soft);
+    border-radius:6px;padding:7px 11px}
+  .cl-src+.cl-src{margin-top:6px}
+  .cl-rail{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center}
+  .cl-rail::before{content:"";position:absolute;top:22%;bottom:22%;left:50%;width:1px;
+    background:var(--purple-soft)}
+  .cl-rail span{position:relative;z-index:2;width:22px;height:22px;border-radius:50%;
+    background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:800;line-height:1}
+  .cl-uni{background:linear-gradient(150deg,#7c5cf0 0%,#4c2c93 100%);color:#fff;
+    border-radius:10px;padding:14px 16px;box-shadow:0 6px 16px rgba(60,20,120,.22)}
+  .cl-uni h6{margin:0 0 6px;font-size:13.5px;font-weight:800}
+  .cl-uni p{margin:0;font-size:12px;line-height:1.55;color:rgba(255,255,255,.9)}
+  @media(max-width:640px){
+    .cl-conv{grid-template-columns:1fr;gap:12px}
+    .cl-rail{min-height:34px}
+    .cl-rail::before{top:0;bottom:0;left:50%}
+    .cl-rail span{transform:rotate(90deg)}   /* flow turns downward when the columns stack */
+  }
+
+  /* --- milestone strip --- */
+  .cl-mile{margin:18px 0 6px;padding-top:16px;border-top:1px solid var(--line)}
+  .cl-milegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:12px}
+  .cl-m{background:#fbfaff;border:1px solid var(--line);border-radius:10px;padding:13px 14px;
+    transition:transform .16s ease,box-shadow .16s ease}
+  .cl-m:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(76,29,149,.14)}
+  .cl-mdate{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--purple-deep);background:#efeafe;
+    border:1px solid #ddd6fe;border-radius:5px;padding:2px 7px;margin-bottom:8px}
+  .cl-m h6{margin:0 0 5px;font-size:13px;font-weight:800;color:var(--navy)}
+  .cl-m p{margin:0;font-size:12px;line-height:1.55;color:var(--ink)}
+  @media(max-width:700px){ .cl-milegrid{grid-template-columns:1fr} }
+
+  /* --- accordion: current and emerging technologies --- */
+  .cl-acc{margin:14px 0 6px;border-top:1px solid var(--line)}
+  .cl-item{border-bottom:1px solid var(--line)}
+  .cl-item>summary{cursor:pointer;list-style:none;padding:13px 34px 13px 0;position:relative;
+    display:flex;align-items:center;gap:11px;flex-wrap:wrap;
+    font-size:14px;font-weight:800;color:var(--navy);transition:color .15s ease}
+  .cl-item>summary::-webkit-details-marker{display:none}
+  .cl-item>summary:hover{color:var(--purple-deep)}
+  .cl-item>summary:focus-visible{outline:2px solid var(--purple);outline-offset:2px;border-radius:5px}
+  .cl-item>summary::after{content:"";position:absolute;right:8px;top:50%;width:8px;height:8px;
+    border-right:2px solid var(--purple);border-bottom:2px solid var(--purple);
+    transform:translateY(-70%) rotate(45deg);transition:transform .2s ease}
+  .cl-item[open]>summary::after{transform:translateY(-30%) rotate(-135deg)}
+  .cl-item .cl-body{padding:0 34px 15px 0;font-size:13.5px;line-height:1.65;color:var(--ink)}
+  .cl-item .cl-body p{margin:0 0 9px}
+  .cl-item .cl-body p:last-child{margin:0}
+  .cl-item .cl-body b{color:#141018;font-weight:800}
+  .cl-badge{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+    border-radius:5px;padding:3px 7px;flex:none}
+  .cl-badge.now{color:#065f46;background:#e7f9f0;border:1px solid #bbf0d3}
+  .cl-badge.soon{color:#92400e;background:#fef4e6;border:1px solid #fcd9a8}
+
+  /* three columns of prose need more width than a phone has - let the table scroll itself */
+  .cl-scroll{overflow-x:auto;margin:16px 0}
+  .cl-scroll table.rd{margin:0;min-width:540px}
+
+  /* --- two fronts --- */
+  .cl-fronts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0 6px}
+  .cl-front{background:linear-gradient(180deg,#fbfaff,#f5f2ff);border:1px solid var(--line);
+    border-radius:12px;padding:16px}
+  .cl-front .n{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--purple);margin-bottom:7px}
+  .cl-front h6{margin:0 0 7px;font-size:14px;font-weight:800;color:var(--purple-deep)}
+  .cl-front p{margin:0;font-size:13px;line-height:1.6;color:var(--ink)}
+  @media(max-width:640px){ .cl-fronts{grid-template-columns:1fr} }
+
+  /* --- economic case: the two paths --- */
+  .cl-stat{margin:16px 0 4px}
+  .cl-statv{font-size:40px;font-weight:800;color:var(--purple-deep);letter-spacing:-0.02em;line-height:1}
+  .cl-statv span{font-size:.5em}
+  .cl-statl{font-size:12.5px;color:var(--ink);margin-top:7px;max-width:640px}
+  .cl-paths{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0 6px}
+  .cl-path{border-radius:12px;padding:15px 16px 16px;border:1px solid}
+  .cl-path.no{background:linear-gradient(180deg,#fffbfc,#fff1f3);border-color:#fdcdd6}
+  .cl-path.yes{background:linear-gradient(180deg,#f9fefb,#eefbf4);border-color:#c3f0d7}
+  .cl-path h6{margin:0 0 12px;font-size:13px;font-weight:800;display:flex;align-items:center;gap:8px}
+  .cl-path.no h6{color:#9f1239}
+  .cl-path.yes h6{color:#065f46}
+  .cl-step{position:relative;font-size:12.5px;line-height:1.55;color:var(--ink);padding-left:19px}
+  .cl-step+.cl-step{margin-top:12px}
+  .cl-step::before{content:"";position:absolute;left:4px;top:6px;width:7px;height:7px;border-radius:2px}
+  .cl-path.no .cl-step::before{background:#e11d48}
+  .cl-path.yes .cl-step::before{background:#059669}
+  .cl-step+.cl-step::after{content:"";position:absolute;left:7px;top:-11px;height:9px;width:1px}
+  .cl-path.no .cl-step+.cl-step::after{background:#f2a6b5}
+  .cl-path.yes .cl-step+.cl-step::after{background:#8fdcb4}
+  .cl-step b{color:#141018;font-weight:800}
+  .cl-out{margin-top:13px;padding-top:11px;border-top:1px dashed;font-size:12.5px;font-weight:800}
+  .cl-path.no .cl-out{border-color:#fdcdd6;color:#9f1239}
+  .cl-path.yes .cl-out{border-color:#c3f0d7;color:#065f46}
+  @media(max-width:640px){ .cl-paths{grid-template-columns:1fr} }
+
+  /* --- training tailwind callout --- */
+  .cl-note{margin:18px 0 6px;padding:15px 17px;background:#f5f3ff;
+    border-left:4px solid var(--purple);border-radius:0 10px 10px 0}
+  .cl-note h6{margin:0 0 6px;font-size:13px;font-weight:800;color:var(--purple-deep)}
+  .cl-note p{margin:0;font-size:13px;line-height:1.65;color:var(--ink)}
+
   .mo-lede{font-size:15px;color:#3a3f52}
   .mo-lede strong{color:var(--purple-deep)}
 </style>
@@ -810,6 +936,272 @@
 
     </section>
 
+    <!-- ================= SECTION 4 - CLINICAL AND TECHNOLOGY LANDSCAPE ================= -->
+    <section id="clinical-technology-landscape" aria-labelledby="ctl-title">
+
+      <h3 class="sub reveal" id="ctl-title">Clinical and Technology Landscape</h3>
+
+      <p class="cl-lede reveal">
+        3D medical and surgical imaging platforms have moved from a niche, specialist tool to a
+        <strong>mainstream component of modern image-guided surgery</strong> over the past decade. The clinical
+        rationale is well established: intraoperative three-dimensional imaging allows surgeons to verify implant
+        or instrument placement in real time, materially reducing the rate of postoperative revision surgery.
+        Clinical experience reported by hospitals using intraoperative 3D imaging in orthopedic trauma surgery
+        indicates that, absent such imaging, a meaningful share of patients with intra-articular implant
+        misplacement would require a second surgical intervention weeks or months later, at a cost and clinical
+        risk that greatly exceeds the incremental cost of same-session correction enabled by intraoperative 3D
+        verification.
+      </p>
+
+      <h3 class="subh reveal">Three Technology Vectors</h3>
+
+      <div class="cl-tabs reveal" id="clTabs">
+        <div class="cl-tablist" role="tablist" aria-label="Technology vectors reshaping the category">
+          <button class="cl-tab" role="tab" id="clt1" aria-controls="clp1" aria-selected="true">Platform convergence</button>
+          <button class="cl-tab" role="tab" id="clt2" aria-controls="clp2" aria-selected="false" tabindex="-1">AI &amp; visualization</button>
+          <button class="cl-tab" role="tab" id="clt3" aria-controls="clp3" aria-selected="false" tabindex="-1">Data &amp; cloud</button>
+        </div>
+
+        <div class="cl-panel" role="tabpanel" id="clp1" aria-labelledby="clt1" tabindex="0">
+          <p>The market is undergoing a period of rapid convergence. Historically distinct product categories are
+            increasingly being integrated into single, unified platforms.</p>
+          <div class="cl-conv">
+            <div>
+              <div class="cl-cap">Historically distinct categories</div>
+              <span class="cl-src">Fixed intraoperative CT / MRI suites</span>
+              <span class="cl-src">Mobile C-arm and cone-beam systems</span>
+              <span class="cl-src">Optical and electromagnetic navigation</span>
+              <span class="cl-src">Surgical planning software</span>
+            </div>
+            <div class="cl-rail" aria-hidden="true"><span>&rsaquo;</span></div>
+            <div>
+              <div class="cl-cap">Converging into</div>
+              <div class="cl-uni">
+                <h6>A single unified image-guided surgery platform</h6>
+                <p>Planning, navigation, imaging and robotics delivered as one intelligent system rather than
+                  separately procured components.</p>
+              </div>
+            </div>
+          </div>
+          <p><b>Medtronic's Stealth AXiS</b> exemplifies this trend as the first platform to natively combine
+            planning, navigation and robotics for spine surgery within a single intelligent system, part of the
+            company's broader AiBLE smart ecosystem. <b>Brainlab</b> has pursued a parallel strategy, combining its
+            Loop-X mobile intraoperative imaging robot, developed with Salzburg-based partner medPhoton, with its
+            Cirq robotic alignment module, while also extending its digital surgery portfolio into mixed-reality
+            navigation.</p>
+        </div>
+
+        <div class="cl-panel" role="tabpanel" id="clp2" aria-labelledby="clt2" tabindex="0" hidden>
+          <p>Artificial intelligence is the second major technological vector reshaping the category. AI-enabled
+            platforms now support automated anatomical segmentation, multi-modal image fusion - combining CT, MRI
+            and ultrasound data within a single surgical plan - and increasingly, predictive modelling of surgical
+            outcomes.</p>
+          <p><b>Siemens Healthineers' Cinematic Rendering</b> technology, which can be paired with mixed-reality
+            headsets to deliver a photorealistic three-dimensional view of patient anatomy, illustrates how
+            visualization quality itself has become a competitive differentiator, alongside navigation accuracy and
+            workflow integration.</p>
+          <p>Cross-modality integration is a further emerging theme, illustrated by <b>GE HealthCare's</b> digital
+            integration of its bkActiv intraoperative ultrasound system with Medtronic's Stealth AXiS navigation
+            platform, allowing real-time ultrasound visualization to be layered directly into an existing
+            navigation workflow without disrupting established surgical protocols.</p>
+        </div>
+
+        <div class="cl-panel" role="tabpanel" id="clp3" aria-labelledby="clt3" tabindex="0" hidden>
+          <p>A third, related technological vector concerns data interoperability and cloud connectivity. As
+            platforms increasingly generate and rely upon large volumes of imaging and analytics data, the ability
+            to securely store, share and act upon that data across a hospital system - or even across multiple
+            affiliated institutions - has become a meaningful competitive consideration in its own right.</p>
+          <p>This is driving continued investment in cloud-native platform architectures alongside the more visible
+            advances in imaging hardware and navigation accuracy.</p>
+        </div>
+
+        <div class="cl-mile">
+          <div class="cl-cap">Platform milestones behind the convergence</div>
+          <div class="cl-milegrid">
+            <div class="cl-m">
+              <span class="cl-mdate">Sep 2025</span>
+              <h6>Brainlab Spine Mixed Reality Navigation</h6>
+              <p>FDA clearance extends Brainlab's digital surgery portfolio into mixed-reality navigation.</p>
+            </div>
+            <div class="cl-m">
+              <span class="cl-mdate">Feb 2026</span>
+              <h6>Medtronic Stealth AXiS</h6>
+              <p>FDA clearance for the first platform to natively combine planning, navigation and robotics for
+                spine surgery.</p>
+            </div>
+            <div class="cl-m">
+              <span class="cl-mdate">Apr 2026</span>
+              <h6>GE HealthCare bkActiv &times; Stealth AXiS</h6>
+              <p>Digital integration layers real-time intraoperative ultrasound into an existing navigation
+                workflow.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subh reveal">Current and Emerging Technologies</h3>
+      <p class="reveal">
+        A further set of technologies is reshaping how, and where, three-dimensional imaging and navigation are
+        delivered. Expand any row for detail.
+      </p>
+
+      <div class="cl-acc reveal">
+        <details class="cl-item">
+          <summary>Mixed-reality and holographic visualization <span class="cl-badge now">Commercial</span></summary>
+          <div class="cl-body">
+            <p>Emerging as a distinct product category in its own right, extending beyond <b>Brainlab's Spine Mixed
+              Reality Navigation</b> to include entrants such as <b>MediView</b>, whose XR90 Holographic Surgical
+              Navigation system overlays real-time imaging directly onto the surgeon's field of view for
+              percutaneous procedures.</p>
+          </div>
+        </details>
+        <details class="cl-item">
+          <summary>Robotic-assisted platforms bundled with navigation <span class="cl-badge now">Commercial</span></summary>
+          <div class="cl-body">
+            <p>Robotic-assisted platforms are increasingly bundled with, rather than sold separately from, 3D
+              navigation - as illustrated by <b>Zimmer Biomet's</b> and <b>Globus Medical's</b> spine and orthopedic
+              robotics lines, both of which depend on intraoperative or preoperative 3D imaging for registration
+              accuracy.</p>
+          </div>
+        </details>
+        <details class="cl-item">
+          <summary>Portable, point-of-care imaging <span class="cl-badge now">Commercial</span></summary>
+          <div class="cl-body">
+            <p>A further growth vector, with compact mobile C-arm and cone-beam systems extending advanced
+              visualization into <b>ambulatory surgical centers and smaller hospitals</b> that cannot justify a
+              fixed hybrid suite.</p>
+          </div>
+        </details>
+        <details class="cl-item">
+          <summary>3D-printed patient-specific guides and implants <span class="cl-badge soon">Forward-looking</span></summary>
+          <div class="cl-body">
+            <p>Surgical guides and implants generated directly from preoperative imaging data - one of the more
+              forward-looking technologies expected to move from research to commercial deployment over the
+              forecast period.</p>
+          </div>
+        </details>
+        <details class="cl-item">
+          <summary>Digital-twin procedure rehearsal <span class="cl-badge soon">Forward-looking</span></summary>
+          <div class="cl-body">
+            <p>Early-stage digital-twin platforms allow surgeons to <b>rehearse a procedure virtually</b> before
+              entering the operating room - also expected to move from research to commercial deployment over the
+              forecast period.</p>
+          </div>
+        </details>
+      </div>
+
+      <h3 class="subh reveal">Related Product Landscape</h3>
+      <p class="reveal">
+        The related product landscape extends well beyond the flagship platforms already discussed.
+      </p>
+      <div class="cl-scroll reveal">
+      <table class="rd">
+        <thead><tr><th scope="col">Category</th><th scope="col">Vendors and products</th><th scope="col">Role in the landscape</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Workhorse intraoperative imaging</b></td>
+            <td><ul>
+              <li><b>GE HealthCare</b> - OEC mobile C-arm range</li>
+              <li><b>Siemens Healthineers</b> - Cios Spin</li>
+            </ul></td>
+            <td>Serve as the everyday intraoperative imaging systems across orthopedic and trauma settings.</td>
+          </tr>
+          <tr>
+            <td><b>Imaging and endoscopic visualization hardware</b></td>
+            <td><ul>
+              <li><b>Canon Medical Systems</b></li>
+              <li><b>Fujifilm</b></li>
+              <li><b>Karl Storz</b></li>
+            </ul></td>
+            <td>Each supplies hardware that increasingly integrates with third-party navigation software rather
+              than operating as a closed, standalone system.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="reveal">
+        This growing willingness to interoperate, rather than compete purely on closed hardware ecosystems, is
+        itself one of the clearest markers of where the market's current and emerging technology is heading.
+      </p>
+
+      <h3 class="subh reveal">Where the Addressable Opportunity Expands</h3>
+      <p class="reveal">
+        Taken together, these clinical and technological dynamics point to a market in which the addressable
+        opportunity is expanding on two fronts simultaneously.
+      </p>
+      <div class="cl-fronts reveal">
+        <div class="cl-front">
+          <div class="n">Front one</div>
+          <h6>A widening base of procedures</h6>
+          <p>More surgical procedures for which 3D imaging and navigation is considered standard of care.</p>
+        </div>
+        <div class="cl-front">
+          <div class="n">Front two</div>
+          <h6>Rising value per procedure</h6>
+          <p>A rising average platform value per procedure as imaging, navigation, robotics and AI-based analytics
+            are progressively bundled into unified, higher-value systems.</p>
+        </div>
+      </div>
+
+      <div class="cl-note reveal">
+        <h6>A quieter structural tailwind: surgical training</h6>
+        <p>Surgical training and workforce familiarity represent a further, less frequently discussed dimension of
+          technology adoption. As residency and fellowship training programmes increasingly incorporate
+          navigation-assisted and robotics-integrated techniques as a standard part of surgical education, a growing
+          pipeline of newly trained surgeons enters clinical practice already comfortable with 3D imaging and
+          navigation workflows - a tailwind that operates independently of any single hospital's capital-purchase
+          decision, and one expected to compound steadily as this cohort of digitally native surgeons comes to
+          represent an increasing share of the active surgical workforce.</p>
+      </div>
+
+      <h3 class="subh reveal">The Economic Case for Intraoperative 3D Verification</h3>
+      <p class="reveal">
+        Beyond its direct clinical benefit, intraoperative 3D imaging carries an increasingly well-documented
+        economic rationale that is shaping hospital capital-purchase decisions.
+      </p>
+
+      <div class="cl-stat reveal">
+        <div class="cl-statv">20-40<span>%</span></div>
+        <div class="cl-statl">Intraoperative revision rate - the share of implant placements misaligned enough to
+          require correction - when relying on conventional imaging alone, varying by fracture location.
+          <em>Clinical experience from orthopedic trauma practice.</em></div>
+      </div>
+
+      <div class="cl-paths reveal">
+        <div class="cl-path no">
+          <h6>&#9660; Conventional imaging alone</h6>
+          <div class="cl-step">Misalignment is <b>not detected during the procedure</b></div>
+          <div class="cl-step">Patient is closed and discharged</div>
+          <div class="cl-step">Misplacement surfaces <b>weeks or months later</b></div>
+          <div class="cl-step">A second, clinically riskier procedure is required</div>
+          <div class="cl-out">Cost incurred twice - and often not reimbursed</div>
+        </div>
+        <div class="cl-path yes">
+          <h6>&#9650; With intraoperative 3D verification</h6>
+          <div class="cl-step">Misplaced screws and hardware are <b>identified in-session</b></div>
+          <div class="cl-step">Placement is corrected within the <b>same surgical session</b></div>
+          <div class="cl-step">No second admission, no second anaesthesia</div>
+          <div class="cl-step">Only the incremental cost of verification is added</div>
+          <div class="cl-out">Revision avoided - cost avoided</div>
+        </div>
+      </div>
+
+      <p class="reveal">
+        In reimbursement systems where hospitals do not receive additional payment for a revision procedure
+        following an initial surgical intervention, this same-session correction capability translates directly into
+        avoided cost, reinforcing the business case that hospital finance committees increasingly expect alongside
+        clinical evidence when evaluating capital equipment purchases.
+      </p>
+      <p class="reveal">
+        This economic framing has become a central feature of how manufacturers position their platforms
+        commercially, shifting the sales conversation from a narrow focus on imaging resolution or navigation
+        accuracy toward a broader <strong class="acc">total-cost-of-care</strong> argument that resonates more
+        directly with hospital administrators and finance leadership than with surgeons alone.
+      </p>
+
+    </section>
+
+
   </div>
 </div>
 
@@ -1030,6 +1422,43 @@
   s.appendChild(hoverDot);
   s.addEventListener('mouseleave',hide);
   host.insertBefore(s,tip);
+})();
+
+/* ================= SECTION 4 - TECHNOLOGY VECTOR TABS ================= */
+(function(){
+  var root = document.getElementById('clTabs');
+  if(!root) return;
+  var tabs = [].slice.call(root.querySelectorAll('[role="tab"]'));
+  if(!tabs.length) return;
+  var panelOf = function(t){ return document.getElementById(t.getAttribute('aria-controls')); };
+
+  function select(i,focus){
+    tabs.forEach(function(t,n){
+      var on = n === i;
+      t.setAttribute('aria-selected',on ? 'true' : 'false');
+      /* roving tabindex: only the selected tab is in the tab order, arrows move between them */
+      if(on){ t.removeAttribute('tabindex'); } else { t.setAttribute('tabindex','-1'); }
+      var pan = panelOf(t);
+      if(pan){ if(on){ pan.removeAttribute('hidden'); } else { pan.setAttribute('hidden',''); } }
+    });
+    if(focus) tabs[i].focus();
+  }
+
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){ select(i); });
+    t.addEventListener('keydown',function(e){
+      var k = e.key, last = tabs.length - 1, n = null;
+      if(k === 'ArrowRight' || k === 'ArrowDown') n = i === last ? 0 : i + 1;
+      else if(k === 'ArrowLeft' || k === 'ArrowUp') n = i === 0 ? last : i - 1;
+      else if(k === 'Home') n = 0;
+      else if(k === 'End') n = last;
+      if(n !== null){ e.preventDefault(); select(n,true); }
+    });
+  });
+
+  /* start from whatever the markup marked selected, so the DOM stays the source of truth */
+  var start = tabs.findIndex ? tabs.findIndex(function(t){ return t.getAttribute('aria-selected') === 'true'; }) : 0;
+  select(start < 0 ? 0 : start);
 })();
 </script>
 </body>
