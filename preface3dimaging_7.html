@@ -337,6 +337,20 @@
   @media(max-width:860px){ .mo-cards{grid-template-columns:1fr 1fr} }
   @media(max-width:560px){ .mo-cards,.mo-cards.two{grid-template-columns:1fr} }
 
+  /* Driver / constraint variants of the icon card (used in the Executive Summary) */
+  .mo-card.drv{background:linear-gradient(180deg,#f9fefb,#eefbf4);border-color:#c3f0d7;
+    box-shadow:0 6px 18px rgba(5,150,105,.10)}
+  .mo-card.drv:hover{box-shadow:0 12px 26px rgba(5,150,105,.20)}
+  .mo-card.drv h5{color:#065f46}
+  .mo-ico.grow{background:linear-gradient(150deg,#34d399,#047857);box-shadow:0 4px 12px rgba(5,150,105,.28)}
+  .mo-card.con{background:linear-gradient(180deg,#fffbfc,#fff1f3);border-color:#fdcdd6;
+    box-shadow:0 6px 18px rgba(225,29,72,.09)}
+  .mo-card.con:hover{box-shadow:0 12px 26px rgba(225,29,72,.18)}
+  .mo-card.con h5{color:#9f1239}
+  .mo-ico.warn{background:linear-gradient(150deg,#fb7185,#be123c);box-shadow:0 4px 12px rgba(225,29,72,.26)}
+  .mo-card.drv .stat{color:#065f46;background:#e7f9f0;border-color:#bbf0d3}
+  .mo-card.con .stat{color:#9f1239;background:#ffeef1;border-color:#fdcdd6}
+
   .mo-lede{font-size:15px;color:#3a3f52}
   .mo-lede strong{color:var(--purple-deep)}
   .mo-vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
@@ -627,28 +641,187 @@
     </div>
 
     <h4 class="khead reveal">Key Drivers</h4>
-    <ul class="dyn reveal">
-      <li>Rising minimally invasive surgical procedure volumes: The global volume of minimally invasive surgical procedures continues to expand steadily across orthopedic, neurosurgical and cardiovascular specialties, each of which depends on accurate three-dimensional visualization for safe, effective execution, sustaining structural, long-run demand for 3D imaging and navigation platforms.</li>
-      <li>AI-enabled visualization and navigation accuracy: Artificial intelligence is increasingly embedded within 3D imaging platforms for automated anatomical segmentation, real-time image registration and predictive surgical planning, meaningfully improving navigation accuracy and reducing intraoperative decision-making burden on surgeons.</li>
-      <li>Integration of imaging with surgical robotics: Next-generation platforms increasingly combine 3D imaging, navigation and robotic instrument guidance within a single integrated system, as exemplified by Medtronic's Stealth AXiS and Brainlab's Cirq and Loop-X combination, expanding the average selling price and clinical footprint per installed system.</li>
-      <li>Growth in hybrid operating rooms globally: The global installed base of hybrid operating rooms, combining fixed imaging infrastructure with full surgical capability, continues to expand, creating a natural, high-value deployment setting for advanced 3D imaging and navigation platforms.</li>
+    <ul class="mo-cards two reveal">
+      <li class="mo-card drv">
+        <div class="mo-ico grow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="2 13 7 13 9.5 8 12.5 18 15 13 22 13"></polyline>
+          </svg>
+        </div>
+        <h5>Rising minimally invasive procedure volumes</h5>
+        <p>The global volume of minimally invasive surgical procedures continues to expand steadily across
+          orthopedic, neurosurgical and cardiovascular specialties, each of which depends on accurate
+          three-dimensional visualization for safe, effective execution - sustaining structural, long-run demand
+          for 3D imaging and navigation platforms.</p>
+      </li>
+      <li class="mo-card drv">
+        <div class="mo-ico grow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.6"></circle>
+            <line x1="12" y1="1.5" x2="12" y2="4.5"></line><line x1="12" y1="19.5" x2="12" y2="22.5"></line>
+            <line x1="1.5" y1="12" x2="4.5" y2="12"></line><line x1="19.5" y1="12" x2="22.5" y2="12"></line>
+          </svg>
+        </div>
+        <h5>AI-enabled visualization and navigation accuracy</h5>
+        <p>Artificial intelligence is increasingly embedded within 3D imaging platforms for automated anatomical
+          segmentation, real-time image registration and predictive surgical planning - meaningfully improving
+          navigation accuracy and reducing the intraoperative decision-making burden on surgeons.</p>
+      </li>
+      <li class="mo-card drv">
+        <div class="mo-ico grow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="7" width="10" height="10" rx="2"></rect>
+            <line x1="10" y1="2.5" x2="10" y2="7"></line><line x1="14" y1="2.5" x2="14" y2="7"></line>
+            <line x1="10" y1="17" x2="10" y2="21.5"></line><line x1="14" y1="17" x2="14" y2="21.5"></line>
+            <line x1="2.5" y1="10" x2="7" y2="10"></line><line x1="2.5" y1="14" x2="7" y2="14"></line>
+            <line x1="17" y1="10" x2="21.5" y2="10"></line><line x1="17" y1="14" x2="21.5" y2="14"></line>
+          </svg>
+        </div>
+        <h5>Integration of imaging with surgical robotics</h5>
+        <p>Next-generation platforms increasingly combine 3D imaging, navigation and robotic
+          instrument guidance within a single integrated system - as exemplified by Medtronic's Stealth AXiS and
+          Brainlab's Cirq and Loop-X combination - expanding the average selling price and clinical footprint per
+          installed system.</p>
+      </li>
+      <li class="mo-card drv">
+        <div class="mo-ico grow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21V8.5L12 3l9 5.5V21"></path><path d="M3 21h18"></path>
+            <line x1="12" y1="10.5" x2="12" y2="16.5"></line><line x1="9" y1="13.5" x2="15" y2="13.5"></line>
+          </svg>
+        </div>
+        <h5>Growth in hybrid operating rooms globally</h5>
+        <p>The global installed base of hybrid operating rooms - combining fixed imaging infrastructure with full
+          surgical capability - continues to expand, creating a natural, high-value deployment setting for
+          advanced 3D imaging and navigation platforms.</p>
+      </li>
     </ul>
 
     <h4 class="khead reveal">Key Constraints</h4>
-    <ul class="dyn reveal">
-      <li>High capital cost of imaging and navigation systems: Integrated 3D imaging and navigation platforms typically require capital outlays ranging from the <strong>low hundreds of thousands of dollars</strong> for mobile systems to <strong>well over a million dollars</strong> for fixed intraoperative CT/MRI suites, restricting adoption among smaller hospitals and ambulatory surgical centers, particularly in price-sensitive markets.</li>
-      <li>Lack of interoperability across imaging modalities: The proliferation of proprietary hardware-software ecosystems across competing vendors continues to limit interoperability, complicating multi-vendor hospital environments and raising the effective switching cost once a platform has been adopted.</li>
-      <li>Long hospital capital-budget approval cycles: Large capital equipment purchases at hospitals typically require multi-year budget planning and committee-level approval, slowing the pace at which even clinically compelling new platforms are adopted at scale.</li>
+    <ul class="mo-cards reveal">
+      <li class="mo-card con">
+        <div class="mo-ico warn" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle><line x1="12" y1="6.5" x2="12" y2="17.5"></line>
+            <path d="M15 9.2a2.6 2.6 0 0 0-2.6-1.6h-.9a2.3 2.3 0 0 0 0 4.6h1.2a2.3 2.3 0 0 1 0 4.6h-1a2.6 2.6 0 0 1-2.6-1.7"></path>
+          </svg>
+        </div>
+        <span class="stat">$100Ks to $1M+ per system</span>
+        <h5>High capital cost of imaging and navigation systems</h5>
+        <p>Integrated 3D imaging and navigation platforms typically require capital outlays ranging from the
+          <strong>low hundreds of thousands of dollars</strong> for mobile systems to <strong>well over a million
+          dollars</strong> for fixed intraoperative CT/MRI suites - restricting adoption among smaller hospitals and
+          ambulatory surgical centers, particularly in price-sensitive markets.</p>
+      </li>
+      <li class="mo-card con">
+        <div class="mo-ico warn" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.5 14.5 6.8 17.2a3.8 3.8 0 0 1-5.4-5.4l2.7-2.7"></path>
+            <path d="M14.5 9.5l2.7-2.7a3.8 3.8 0 0 1 5.4 5.4l-2.7 2.7"></path>
+            <line x1="9" y1="4" x2="9" y2="1.8"></line><line x1="15" y1="22.2" x2="15" y2="20"></line>
+            <line x1="4" y1="9" x2="1.8" y2="9"></line><line x1="22.2" y1="15" x2="20" y2="15"></line>
+          </svg>
+        </div>
+        <span class="stat">Proprietary vendor silos</span>
+        <h5>Lack of interoperability across imaging modalities</h5>
+        <p>The proliferation of proprietary hardware-software ecosystems across competing vendors continues to
+          limit interoperability - complicating multi-vendor hospital environments and raising the effective
+          switching cost once a platform has been adopted.</p>
+      </li>
+      <li class="mo-card con">
+        <div class="mo-ico warn" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="16" rx="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line>
+            <line x1="8" y1="2.5" x2="8" y2="6"></line><line x1="16" y1="2.5" x2="16" y2="6"></line>
+            <line x1="7.5" y1="14.5" x2="16.5" y2="14.5"></line><line x1="7.5" y1="17.5" x2="13" y2="17.5"></line>
+          </svg>
+        </div>
+        <span class="stat">Multi-year approval</span>
+        <h5>Long hospital capital-budget approval cycles</h5>
+        <p>Large capital equipment purchases at hospitals typically require multi-year budget planning and
+          committee-level approval - slowing the pace at which even clinically compelling new platforms are
+          adopted at scale.</p>
+      </li>
     </ul>
 
     <h4 class="khead reveal">Key Takeaways</h4>
-    <ul class="dyn reveal">
-      <li>The market is valued at <strong>USD 6.85 billion</strong> in <strong>2025</strong> and is forecast to reach <strong>USD 20.34 billion</strong> by <strong>2035</strong>, at a CAGR of <strong>11.50%</strong>.</li>
-      <li>Hardware represents the largest segment by type in <strong>2025</strong>, though software and AI-based solutions are growing at a faster rate as platforms increasingly monetise recurring analytics and cloud subscription revenue.</li>
-      <li>North America is expected to remain the dominant regional market, while Asia Pacific is projected to record the fastest regional CAGR over the forecast period.</li>
-      <li>Medtronic, Stryker, Siemens Healthineers, Brainlab and GE HealthCare together account for a majority of branded platform revenue, though competitive intensity is rising as software-native entrants and Asian medtech manufacturers advance their own offerings.</li>
-      <li>Patent filing activity in 3D surgical imaging and navigation has <strong>more than tripled</strong> since <strong>2018</strong>, reflecting the intensity of R&amp;D investment in AI-enabled visualization and robotics-integrated navigation.</li>
-      <li>Strategic partnership activity has accelerated markedly, headlined by the <strong>2026</strong> digital integration between GE HealthCare's intraoperative ultrasound platform and Medtronic's Stealth AXiS navigation system, and Siemens Healthineers' successive multi-year Value Partnerships with major U.S. health systems.</li>
+    <ul class="mo-cards reveal">
+      <li class="mo-card">
+        <div class="mo-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 17 9 11 13 15 21 7"></polyline><polyline points="15 7 21 7 21 13"></polyline>
+          </svg>
+        </div>
+        <span class="stat">11.50% CAGR</span>
+        <h5>Tripling in a decade</h5>
+        <p>The market is valued at <strong>USD 6.85 billion</strong> in <strong>2025</strong> and is forecast to
+          reach <strong>USD 20.34 billion</strong> by <strong>2035</strong>, at a CAGR of <strong>11.50%</strong>.</p>
+      </li>
+      <li class="mo-card">
+        <div class="mo-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="12" width="4" height="9" rx="1"></rect><rect x="10" y="8" width="4" height="13" rx="1"></rect>
+            <rect x="17" y="3" width="4" height="18" rx="1"></rect>
+          </svg>
+        </div>
+        <span class="stat">Hardware leads, software compounds</span>
+        <h5>The revenue mix is shifting</h5>
+        <p>Hardware represents the largest segment by type in <strong>2025</strong>, though software and AI-based
+          solutions are growing at a faster rate as platforms increasingly monetise recurring analytics and cloud
+          subscription revenue.</p>
+      </li>
+      <li class="mo-card">
+        <div class="mo-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle><line x1="3" y1="12" x2="21" y2="12"></line>
+            <path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"></path>
+          </svg>
+        </div>
+        <span class="stat">APAC fastest</span>
+        <h5>North America leads, Asia Pacific accelerates</h5>
+        <p>North America is expected to remain the dominant regional market, while Asia Pacific is projected to
+          record the fastest regional CAGR over the forecast period.</p>
+      </li>
+      <li class="mo-card">
+        <div class="mo-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="8" r="3.2"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path>
+            <path d="M16.5 5.2a3.2 3.2 0 0 1 0 5.6"></path><path d="M18 14.4a6.5 6.5 0 0 1 3.5 5.6"></path>
+          </svg>
+        </div>
+        <span class="stat">5 incumbents</span>
+        <h5>Concentrated, but no longer closed</h5>
+        <p>Medtronic, Stryker, Siemens Healthineers, Brainlab and GE HealthCare together account for a majority of
+          branded platform revenue, though competitive intensity is rising as software-native entrants and Asian
+          medtech manufacturers advance their own offerings.</p>
+      </li>
+      <li class="mo-card">
+        <div class="mo-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.5 20 6v6c0 4.4-3.3 8.3-8 9.5-4.7-1.2-8-5.1-8-9.5V6l8-3.5z"></path>
+            <path d="M9 12.2l2.2 2.2L15.2 10"></path>
+          </svg>
+        </div>
+        <span class="stat">3x+ since 2018</span>
+        <h5>R&amp;D intensity is surging</h5>
+        <p>Patent filing activity in 3D surgical imaging and navigation has <strong>more than tripled</strong> since
+          <strong>2018</strong>, reflecting the intensity of R&amp;D investment in AI-enabled visualization and
+          robotics-integrated navigation.</p>
+      </li>
+      <li class="mo-card">
+        <div class="mo-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.5 13.5a4.2 4.2 0 0 0 6 0l3-3a4.2 4.2 0 0 0-6-6l-1.4 1.4"></path>
+            <path d="M13.5 10.5a4.2 4.2 0 0 0-6 0l-3 3a4.2 4.2 0 0 0 6 6l1.4-1.4"></path>
+          </svg>
+        </div>
+        <span class="stat">GE HealthCare &times; Medtronic, 2026</span>
+        <h5>Partnerships are reshaping the field</h5>
+        <p>Strategic partnership activity has accelerated markedly, headlined by the <strong>2026</strong> digital
+          integration between GE HealthCare's intraoperative ultrasound platform and Medtronic's Stealth AXiS
+          navigation system, and Siemens Healthineers' successive multi-year Value Partnerships with major U.S.
+          health systems.</p>
+      </li>
     </ul>
     <p class="reveal">
       Each of these takeaways is examined in greater depth in the sections that follow, beginning with the clinical
