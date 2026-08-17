@@ -404,6 +404,9 @@
     border:1px solid var(--line);border-left:3px solid var(--purple-soft);
     border-radius:6px;padding:7px 11px}
   .cl-src+.cl-src{margin-top:6px}
+  .cl-src{transition:border-left-color .15s ease,background .15s ease,transform .15s ease}
+  .cl-src:hover{border-left-color:var(--purple);background:var(--tint);transform:translateX(2px)}
+  .cl-src b{color:#141018;font-weight:800}
   .cl-rail{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center}
   .cl-rail::before{content:"";position:absolute;top:22%;bottom:22%;left:50%;width:1px;
     background:var(--purple-soft)}
@@ -420,6 +423,15 @@
     .cl-rail::before{top:0;bottom:0;left:50%}
     .cl-rail span{transform:rotate(90deg)}   /* flow turns downward when the columns stack */
   }
+
+  /* scope ladder - how far the data has to travel */
+  .cl-scope{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:14px 0 2px;
+    padding-top:13px;border-top:1px dashed var(--line)}
+  .cl-scope .lb{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);flex:none}
+  .cl-scope .s{font-size:12.5px;font-weight:700;color:var(--purple-deep);background:#efeafe;
+    border:1px solid #ddd6fe;border-radius:6px;padding:5px 10px}
+  .cl-scope .ar{color:var(--purple-soft);font-weight:800;font-size:14px}
 
   /* --- milestone strip --- */
   .cl-mile{margin:18px 0 6px;padding-top:16px;border-top:1px solid var(--line)}
@@ -1010,6 +1022,23 @@
             integration of its bkActiv intraoperative ultrasound system with Medtronic's Stealth AXiS navigation
             platform, allowing real-time ultrasound visualization to be layered directly into an existing
             navigation workflow without disrupting established surgical protocols.</p>
+          <div class="cl-conv">
+            <div>
+              <div class="cl-cap">Modalities fused</div>
+              <span class="cl-src"><b>CT</b></span>
+              <span class="cl-src"><b>MRI</b></span>
+              <span class="cl-src"><b>Ultrasound</b> - including real-time intraoperative</span>
+            </div>
+            <div class="cl-rail" aria-hidden="true"><span>&rsaquo;</span></div>
+            <div>
+              <div class="cl-cap">Into</div>
+              <div class="cl-uni">
+                <h6>A single surgical plan</h6>
+                <p>Automated anatomical segmentation and image registration align the modalities into one plan
+                  the surgeon navigates from.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="cl-panel" role="tabpanel" id="clp3" aria-labelledby="clt3" tabindex="0">
@@ -1019,6 +1048,31 @@
             affiliated institutions - has become a meaningful competitive consideration in its own right.</p>
           <p>This is driving continued investment in cloud-native platform architectures alongside the more visible
             advances in imaging hardware and navigation accuracy.</p>
+          <div class="cl-conv">
+            <div>
+              <div class="cl-cap">What the data layer must do</div>
+              <span class="cl-src"><b>Store</b> imaging and analytics data securely</span>
+              <span class="cl-src"><b>Share</b> it beyond the room it was captured in</span>
+              <span class="cl-src"><b>Act</b> on it inside the surgical workflow</span>
+            </div>
+            <div class="cl-rail" aria-hidden="true"><span>&rsaquo;</span></div>
+            <div>
+              <div class="cl-cap">Which requires</div>
+              <div class="cl-uni">
+                <h6>Cloud-native platform architecture</h6>
+                <p>A competitive consideration in its own right, drawing investment alongside imaging hardware
+                  and navigation accuracy.</p>
+              </div>
+            </div>
+          </div>
+          <div class="cl-scope">
+            <span class="lb">Scope</span>
+            <span class="s">A single operating room</span>
+            <span class="ar" aria-hidden="true">&rarr;</span>
+            <span class="s">One hospital system</span>
+            <span class="ar" aria-hidden="true">&rarr;</span>
+            <span class="s">Multiple affiliated institutions</span>
+          </div>
         </div>
 
         </div><!-- /.cl-panels -->
