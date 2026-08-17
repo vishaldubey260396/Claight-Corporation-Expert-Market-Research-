@@ -267,49 +267,107 @@
   @media(max-width:760px){ .mo-kpis{grid-template-columns:1fr 1fr} }
   @media(max-width:460px){ .mo-kpis{grid-template-columns:1fr} }
 
-  /* Chart shell */
-  .mo-chart{margin:16px 0 8px;padding:20px 20px 16px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
-  .mo-chart figcaption{margin:0 0 2px;font-size:15px;font-weight:800;color:var(--navy)}
-  .mo-chart .cap{font-size:12px;color:var(--muted);margin:0 0 12px}
-  .mo-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 10px;padding:0;list-style:none}
-  .mo-legend li{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink)}
-  .mo-legend .k{width:18px;height:0;border-top:3px solid var(--purple-deep);border-radius:2px;flex:none}
-  .mo-legend .k.fc{border-top-style:dashed;border-color:var(--purple-soft)}
-  .mo-legend .k.by{width:0;height:14px;border-top:0;border-left:2px dashed var(--purple);flex:none}
+  /* ---------- EXHIBIT: three-panel growth-trend card ---------- */
+  .ex{--ex-value:#5b21b6;      /* market value line + 2035 bars */
+      --ex-ref:#64748b;        /* historical-pace reference line */
+      --ex-a:#a78bfa;          /* 2025 bars */
+      --ex-surface:#fbfaff;
+      --ex-track:#efeafe;
+      margin:16px 0 8px;background:var(--ex-surface);border:1px solid var(--line);
+      border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08);overflow:hidden}
+  .ex-head{padding:18px 22px 15px;border-bottom:1px solid var(--line)}
+  .ex-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--purple);margin-bottom:7px}
+  .ex-title{margin:0;font-size:17px;line-height:1.3;font-weight:800;color:#141018;letter-spacing:-0.01em}
+  .ex-sub{margin:5px 0 0;font-size:12.5px;color:var(--muted)}
+  .ex-body{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,.62fr) minmax(0,1.15fr);
+    gap:0;padding:18px 22px 4px}
+  .ex-panel{min-width:0}
+  .ex-panel+.ex-panel{border-left:1px solid var(--line);padding-left:20px;margin-left:20px}
+  .ex-ph{margin:0;font-size:13px;font-weight:800;color:var(--navy)}
+  .ex-phs{font-size:11.5px;color:var(--muted);margin:2px 0 12px}
 
-  .mo-plotwrap{position:relative}
-  .mo-plotwrap svg{display:block;width:100%;height:auto;overflow:visible}
-  /* geometry (font-size, stroke-width, dash) is set per breakpoint as SVG attributes in JS */
-  .mo-grid{stroke:#e9e2f7;stroke-width:1}
-  .mo-axis{fill:#a99fc4}
-  .mo-xlab{fill:var(--muted);font-weight:600}
-  .mo-area-h{fill:url(#moHistFill)}
-  .mo-area-f{fill:url(#moFcstFill)}
-  .mo-line-h{fill:none;stroke:var(--purple-deep);stroke-linecap:round;stroke-linejoin:round}
-  .mo-line-f{fill:none;stroke:var(--purple-soft);stroke-linecap:round;stroke-linejoin:round}
-  .mo-dot{fill:#fff;stroke-width:2.4;transition:r .12s ease}
-  .mo-dot.h{stroke:var(--purple-deep)}
-  .mo-dot.f{stroke:var(--purple-soft)}
-  .mo-base{stroke:var(--purple);stroke-width:1.5;stroke-dasharray:5 5}
-  .mo-baselab{fill:var(--purple);font-weight:800}
-  .mo-callout{fill:var(--purple-deep);font-weight:800}
-  .mo-callout.f{fill:var(--purple-mid)}
-  .mo-badge rect{fill:#fff;stroke:var(--line)}
-  .mo-badge text{font-weight:800;fill:var(--purple-deep)}
-  .mo-badge.f text{fill:var(--purple-mid)}
-  .mo-hit{fill:transparent;cursor:pointer}
-  .mo-hit:focus{outline:none}
-  .mo-hit:focus-visible{outline:2px solid var(--purple);outline-offset:-2px}
-  .mo-tip{position:absolute;z-index:9;background:rgba(20,14,32,.94);color:#fff;border-radius:9px;
-    padding:8px 11px;font-size:12px;line-height:1.5;white-space:nowrap;pointer-events:none;
-    box-shadow:0 10px 24px rgba(0,0,0,.32);opacity:0;transform:translate(-50%,-118%);
+  .ex-svgwrap{position:relative}
+  .ex-svgwrap svg{display:block;width:100%;height:auto;overflow:visible}
+  .ex-grid{stroke:#e9e2f7;stroke-width:1}
+  .ex-axis{fill:#a99fc4;font-weight:600}
+  .ex-xlab{fill:var(--muted);font-weight:600}
+  .ex-fill{fill:url(#exValFill)}
+  .ex-line{fill:none;stroke:var(--ex-value);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+  .ex-line.fc{stroke-dasharray:7 6}
+  .ex-refline{fill:none;stroke:var(--ex-ref);stroke-width:2;stroke-dasharray:2 5;stroke-linecap:round}
+  .ex-dot{fill:#fff;stroke:var(--ex-value);stroke-width:2.4;transition:r .12s ease}
+  .ex-cap{stroke:var(--ex-value);stroke-width:2.6;fill:var(--ex-value)}
+  .ex-base{stroke:var(--purple);stroke-width:1.4;stroke-dasharray:4 5}
+  .ex-baselab{fill:var(--purple);font-weight:800}
+  .ex-endlab{fill:var(--ex-value);font-weight:800}
+  .ex-endlab.ref{fill:var(--ex-ref)}
+  .ex-serieslab{fill:var(--ex-value);font-weight:800}
+  .ex-leader{stroke:var(--ex-ref);stroke-width:1}
+  .ex-serieslab.ref{fill:var(--ex-ref)}
+  .ex-hit{fill:transparent;cursor:pointer}
+  .ex-hit:focus{outline:none}
+  .ex-hit:focus-visible{outline:2px solid var(--purple);outline-offset:-2px}
+  .ex-tip{position:absolute;z-index:9;background:rgba(20,14,32,.94);color:#fff;border-radius:9px;
+    padding:8px 11px;font-size:11.5px;line-height:1.55;white-space:nowrap;pointer-events:none;
+    box-shadow:0 10px 24px rgba(0,0,0,.32);opacity:0;transform:translate(-50%,-120%);
     transition:opacity .14s ease}
-  .mo-tip.on{opacity:1}
-  .mo-tip .y{font-weight:800;margin-bottom:2px}
-  .mo-tip .v{color:var(--purple-soft);font-weight:800}
-  .mo-tip .s{color:rgba(255,255,255,.7);font-size:11px}
-  .mo-chart .note{font-size:11.5px;color:var(--muted);margin:12px 0 0}
+  .ex-tip.on{opacity:1}
+  .ex-tip .y{font-weight:800;margin-bottom:3px}
+  .ex-tip .r{display:flex;justify-content:space-between;gap:16px}
+  .ex-tip .r b{color:#c4b5fd}
+  .ex-tip .r.ref b{color:#cbd5e1;font-weight:600}
+
+  /* CAGR stat column */
+  .ex-stat+.ex-stat{margin-top:16px}
+  .ex-sl{font-size:11.5px;color:var(--muted);line-height:1.35}
+  .ex-sv{font-size:25px;font-weight:800;color:var(--ex-value);letter-spacing:-0.02em;line-height:1.1;margin-top:3px}
+  .ex-sv span{font-size:.56em;font-weight:800}
+  .ex-sv.ref{color:var(--ex-ref)}
+  .ex-sv.sm{font-size:19px}
+
+  /* segment bars */
+  .ex-grp+.ex-grp{margin-top:14px}
+  .ex-gl{font-size:12.5px;font-weight:800;color:var(--navy);margin-bottom:6px}
+  .ex-row{display:flex;align-items:center;gap:8px}
+  .ex-row+.ex-row{margin-top:2px}          /* 2px surface gap between adjacent bars */
+  .ex-yr{font-size:11px;color:var(--muted);font-weight:600;flex:none;width:26px}
+  .ex-track{display:block;position:relative;flex:1;min-width:0;height:17px;background:var(--ex-track);border-radius:4px}
+  .ex-fillbar{display:block;height:100%;border-radius:4px;background:var(--ex-a);
+    transition:width .9s cubic-bezier(.22,1,.36,1);width:0}
+  .ex-row.y35 .ex-fillbar{background:var(--ex-value)}
+  .reveal.in .ex-fillbar{width:var(--w)}
+  .ex-bv{position:absolute;top:50%;transform:translateY(-50%);font-size:11.5px;font-weight:800;
+    color:var(--navy);white-space:nowrap}
+
+  .ex-foot{padding:4px 22px 16px}
+  .ex-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 0;padding:0;list-style:none}
+  .ex-legend li{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink)}
+  .ex-legend .k{width:16px;height:10px;border-radius:3px;flex:none;background:var(--ex-a)}
+  .ex-legend .k.b{background:var(--ex-value)}
+  .ex-legend .k.ln{height:0;border-top:3px solid var(--ex-value);border-radius:2px;background:none}
+  .ex-legend .k.rf{height:0;border-top:2px dotted var(--ex-ref);border-radius:0;background:none}
+  .ex-note{font-size:11px;line-height:1.55;color:var(--muted);margin:14px 0 0;
+    padding-top:12px;border-top:1px solid var(--line)}
+  .ex-note b{color:var(--purple-deep);font-weight:800;letter-spacing:.06em;font-size:10px;text-transform:uppercase}
+  .ex-src{font-size:11px;color:#a99fc4;margin:5px 0 0;font-style:italic}
+
+  @media(max-width:900px){
+    .ex-body{grid-template-columns:1fr;gap:20px}
+    .ex-panel+.ex-panel{border-left:0;padding-left:0;margin-left:0;
+      border-top:1px solid var(--line);padding-top:18px}
+    .ex-cagr{display:flex;gap:0 28px;flex-wrap:wrap}
+    .ex-cagr .ex-ph,.ex-cagr .ex-phs{width:100%}
+    .ex-cagr .ex-phs{margin-bottom:10px}
+    .ex-stat+.ex-stat{margin-top:0}
+  }
+  @media(max-width:560px){
+    .ex-head,.ex-body,.ex-foot{padding-left:16px;padding-right:16px}
+    .ex-title{font-size:15.5px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .ex-fillbar{transition:none}
+  }
   .mo-lede{font-size:15px;color:#3a3f52}
   .mo-lede strong{color:var(--purple-deep)}
 </style>
@@ -650,20 +708,103 @@
         programmes and AI-enabled platforms began reaching commercial maturity.
       </p>
 
-      <figure class="mo-chart reveal" id="moChart">
-        <figcaption>Global 3D Medical and Surgical Imaging Platform Market Size, 2019-2035 (USD Billion)</figcaption>
-        <p class="cap">Historical and forecast trend across hardware, software and solutions</p>
-        <ul class="mo-legend">
-          <li><span class="k" aria-hidden="true"></span> Historical (2019-2025)</li>
-          <li><span class="k fc" aria-hidden="true"></span> Forecast (2026-2035)</li>
-          <li><span class="k by" aria-hidden="true"></span> Base year (2025)</li>
-        </ul>
-        <div class="mo-plotwrap" id="moPlot">
-          <div class="mo-tip" id="moTip" role="status" aria-live="polite"></div>
+      <figure class="ex reveal" id="exGrowth">
+        <div class="ex-head">
+          <div class="ex-eyebrow">Exhibit 1</div>
+          <figcaption class="ex-title">Value compounds 11.5% a year - 2.1pp above the 2019-25 pace, worth
+            ~USD 3.5B of extra 2035 value</figcaption>
+          <p class="ex-sub">Market value 2019-2035 (USD bn) against the historical-pace counterfactual, with
+            value by segment</p>
         </div>
-        <p class="note">Series derived from the reported 2019 base of USD 4.00B, the 2025 base-year value of
-          USD 6.85B and the stated CAGRs of 9.39% (2019-2025) and 11.50% (2026-2035); endpoints match the
-          published figures.</p>
+
+        <div class="ex-body">
+          <div class="ex-panel ex-plot">
+            <h6 class="ex-ph">Market value</h6>
+            <div class="ex-phs">USD bn, 2019-2035</div>
+            <div class="ex-svgwrap" id="exPlot">
+              <div class="ex-tip" id="exTip" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="ex-panel ex-cagr">
+            <h6 class="ex-ph">CAGR</h6>
+            <div class="ex-phs">Compound annual growth</div>
+            <div class="ex-stat">
+              <div class="ex-sl">Forecast<br>2026-2035</div>
+              <div class="ex-sv">+11.50<span>%</span></div>
+            </div>
+            <div class="ex-stat">
+              <div class="ex-sl">Historical<br>2019-2025</div>
+              <div class="ex-sv ref">+9.39<span>%</span></div>
+            </div>
+            <div class="ex-stat">
+              <div class="ex-sl">Step-up</div>
+              <div class="ex-sv sm">+2.11<span>pp</span></div>
+            </div>
+          </div>
+
+          <div class="ex-panel ex-bars">
+            <h6 class="ex-ph">Value by segment, USD bn</h6>
+            <div class="ex-phs">2025 base year vs 2035 forecast</div>
+
+            <div class="ex-grp">
+              <div class="ex-gl">Hardware</div>
+              <div class="ex-row">
+                <span class="ex-yr">2025</span>
+                <span class="ex-track"><span class="ex-fillbar" style="--w:33.9%"></span>
+                  <span class="ex-bv" style="left:calc(33.9% + 8px)">$3.70</span></span>
+              </div>
+              <div class="ex-row y35">
+                <span class="ex-yr">2035</span>
+                <span class="ex-track"><span class="ex-fillbar" style="--w:70.6%"></span>
+                  <span class="ex-bv" style="left:calc(70.6% + 8px)">$7.70</span></span>
+              </div>
+            </div>
+
+            <div class="ex-grp">
+              <div class="ex-gl">Software &amp; Solutions</div>
+              <div class="ex-row">
+                <span class="ex-yr">2025</span>
+                <span class="ex-track"><span class="ex-fillbar" style="--w:18.5%"></span>
+                  <span class="ex-bv" style="left:calc(18.5% + 8px)">$2.02</span></span>
+              </div>
+              <div class="ex-row y35">
+                <span class="ex-yr">2035</span>
+                <span class="ex-track"><span class="ex-fillbar" style="--w:73.9%"></span>
+                  <span class="ex-bv" style="left:calc(73.9% + 8px)">$8.05</span></span>
+              </div>
+            </div>
+
+            <div class="ex-grp">
+              <div class="ex-gl">Services</div>
+              <div class="ex-row">
+                <span class="ex-yr">2025</span>
+                <span class="ex-track"><span class="ex-fillbar" style="--w:10.4%"></span>
+                  <span class="ex-bv" style="left:calc(10.4% + 8px)">$1.13</span></span>
+              </div>
+              <div class="ex-row y35">
+                <span class="ex-yr">2035</span>
+                <span class="ex-track"><span class="ex-fillbar" style="--w:42.1%"></span>
+                  <span class="ex-bv" style="left:calc(42.1% + 8px)">$4.59</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-foot">
+          <ul class="ex-legend">
+            <li><span class="k ln" aria-hidden="true"></span> Market value (solid to 2025, dashed forecast)</li>
+            <li><span class="k rf" aria-hidden="true"></span> Held at the 2019-25 pace (9.39%)</li>
+            <li><span class="k" aria-hidden="true"></span> 2025</li>
+            <li><span class="k b" aria-hidden="true"></span> 2035</li>
+          </ul>
+          <p class="ex-note"><b>Note</b> Market value compounds from the reported USD 4.00B (2019) and USD 6.85B
+            (2025) base at the stated CAGRs of 9.39% (2019-2025) and 11.50% (2026-2035); endpoints match the
+            published figures. The reference line holds the historical 9.39% pace from 2025 onward, reaching
+            USD 16.81B in 2035 - the USD 3.53B gap is the value attributable to the faster forecast pace. Segment
+            split is indicative and sums to the published 2025 and 2035 totals.</p>
+          <p class="ex-src">Source: MedTechHub syndicated estimates</p>
+        </div>
       </figure>
 
     </section>
@@ -763,156 +904,130 @@
   }
 })();
 
-/* ================= SECTION 3 - MARKET GROWTH TREND CHART ================= */
+/* ================= EXHIBIT 1 - MARKET VALUE vs HISTORICAL-PACE COUNTERFACTUAL ================= */
 (function(){
-  var host = document.getElementById('moPlot');
+  var host = document.getElementById('exPlot');
   if(!host) return;
-  var tip = document.getElementById('moTip');
+  var tip = document.getElementById('exTip');
 
-  /* Values derived from the reported endpoints (2019 = 4.00, 2025 = 6.85, 2035 = 20.34)
-     compounded at the stated CAGRs: 9.39% for 2019-2025 and 11.50% for 2026-2035. */
+  /* Market value compounds from the reported 2019 (4.00) and 2025 (6.85) anchors at the stated
+     CAGRs - 9.39% to 2025, 11.50% thereafter. `r` holds the historical 9.39% pace past 2025, so
+     the widening gap is the value attributable to the faster forecast pace. */
   var D = [
     {y:2019,v:4.00},{y:2020,v:4.38},{y:2021,v:4.79},{y:2022,v:5.24},{y:2023,v:5.73},
-    {y:2024,v:6.26},{y:2025,v:6.85},
-    {y:2026,v:7.64},{y:2027,v:8.52},{y:2028,v:9.50},{y:2029,v:10.59},{y:2030,v:11.81},
-    {y:2031,v:13.16},{y:2032,v:14.68},{y:2033,v:16.36},{y:2034,v:18.25},{y:2035,v:20.34}
+    {y:2024,v:6.26},{y:2025,v:6.85,r:6.85},
+    {y:2026,v:7.64,r:7.49},{y:2027,v:8.52,r:8.20},{y:2028,v:9.50,r:8.97},{y:2029,v:10.59,r:9.81},
+    {y:2030,v:11.81,r:10.73},{y:2031,v:13.16,r:11.74},{y:2032,v:14.68,r:12.84},
+    {y:2033,v:16.36,r:14.04},{y:2034,v:18.25,r:15.36},{y:2035,v:20.34,r:16.81}
   ];
-  var BASE = 6, CEIL = 22, VW = 900;
+  var BASE = 6, CEIL = 22, VW = 560, VH = 330;
+  var X0 = 40, X1 = 486, Y0 = 30, Y1 = 276;
   var NS = 'http://www.w3.org/2000/svg';
-  var el = function(n,a){ var e=document.createElementNS(NS,n);
+  var el = function(n,a){ var e = document.createElementNS(NS,n);
     for(var k in a){ if(a.hasOwnProperty(k)) e.setAttribute(k,a[k]); } return e; };
+  var px = function(i){ return X0 + (i/(D.length-1))*(X1-X0); };
+  var py = function(v){ return Y1 - (v/CEIL)*(Y1-Y0); };
+  var path = function(from,to,key,close){
+    var d = '';
+    for(var i=from;i<=to;i++){ d += (i===from?'M':'L') + px(i).toFixed(2) + ' ' + py(D[i][key]).toFixed(2) + ' '; }
+    if(close){ d += 'L'+px(to).toFixed(2)+' '+Y1+' L'+px(from).toFixed(2)+' '+Y1+' Z'; }
+    return d.trim();
+  };
 
-  /* Two layouts: wide screens get a compact 900x360 frame, narrow screens a taller
-     900x520 frame with larger type, so the chart stays legible once scaled down. */
-  var WIDE = {vh:360,x0:48,x1:876,y0:22,y1:318,sw:3.2,dash:'9 7',r:4,rb:5.5,
-    xEvery:2,bw:168,bh:26,b1:[196,292],b2:[660,280],
-    fAxis:12,fX:12.5,fBase:12,fCall:13.5,fBadge:12};
-  var NARROW = {vh:520,x0:60,x1:882,y0:44,y1:452,sw:5,dash:'13 10',r:6,rb:8.5,
-    xEvery:4,bw:300,bh:46,b1:[250,424],b2:[600,384],
-    fAxis:21,fX:22,fBase:21,fCall:25,fBadge:21};
+  var s = el('svg',{viewBox:'0 0 '+VW+' '+VH,role:'img',
+    'aria-label':'Line chart of global 3D medical and surgical imaging platform market value, USD billion. '+
+      'Market value rises from 4.00 in 2019 to 6.85 in the 2025 base year and a forecast 20.34 in 2035. '+
+      'A reference line holding the historical 9.39% growth rate from 2025 reaches only 16.81 in 2035, '+
+      'a gap of 3.53 billion.'});
 
-  var svg, dots = [], cfg = null, mode = null;
+  var defs = el('defs');
+  var grad = el('linearGradient',{id:'exValFill',x1:'0',y1:'0',x2:'0',y2:'1'});
+  grad.appendChild(el('stop',{offset:'0%','stop-color':'#5b21b6','stop-opacity':'.16'}));
+  grad.appendChild(el('stop',{offset:'100%','stop-color':'#5b21b6','stop-opacity':'.02'}));
+  defs.appendChild(grad); s.appendChild(defs);
 
-  function build(C){
-    var px = function(i){ return C.x0 + (i/(D.length-1))*(C.x1-C.x0); };
-    var py = function(v){ return C.y1 - (v/CEIL)*(C.y1-C.y0); };
-    var line = function(from,to,close){
-      var d='';
-      for(var i=from;i<=to;i++){ d += (i===from?'M':'L') + px(i).toFixed(2) + ' ' + py(D[i].v).toFixed(2) + ' '; }
-      if(close){ d += 'L'+px(to).toFixed(2)+' '+C.y1+' L'+px(from).toFixed(2)+' '+C.y1+' Z'; }
-      return d.trim();
-    };
+  /* value axis + gridlines */
+  [0,5,10,15,20].forEach(function(v){
+    var y = py(v);
+    s.appendChild(el('line',{x1:X0,y1:y,x2:X1,y2:y,'class':'ex-grid'}));
+    var t = el('text',{x:X0-9,y:y+4,'class':'ex-axis','text-anchor':'end','font-size':11});
+    t.textContent = v; s.appendChild(t);
+  });
+  var yt = el('text',{x:X0-9,y:py(20)-14,'class':'ex-axis','text-anchor':'end','font-size':11});
+  yt.textContent = 'USD bn'; s.appendChild(yt);
 
-    var s = el('svg',{viewBox:'0 0 '+VW+' '+C.vh,role:'img',
-      'aria-label':'Line chart of global 3D medical and surgical imaging platform market size from 2019 to 2035, '+
-        'rising from USD 4.00 billion in 2019 to USD 6.85 billion in the 2025 base year and a forecast '+
-        'USD 20.34 billion in 2035.'});
+  /* filled area under the value line, then the reference line beneath the value line */
+  s.appendChild(el('path',{d:path(0,D.length-1,'v',true),'class':'ex-fill'}));
+  s.appendChild(el('path',{d:path(BASE,D.length-1,'r'),'class':'ex-refline'}));
 
-    var defs = el('defs');
-    ['moHistFill','moFcstFill'].forEach(function(id,n){
-      var g = el('linearGradient',{id:id,x1:'0',y1:'0',x2:'0',y2:'1'});
-      g.appendChild(el('stop',{offset:'0%','stop-color':n?'#a78bfa':'#6d28d9','stop-opacity':n?'.26':'.22'}));
-      g.appendChild(el('stop',{offset:'100%','stop-color':n?'#a78bfa':'#6d28d9','stop-opacity':'.02'}));
-      defs.appendChild(g);
-    });
-    s.appendChild(defs);
+  /* base-year marker */
+  s.appendChild(el('line',{x1:px(BASE),y1:Y0,x2:px(BASE),y2:Y1,'class':'ex-base'}));
+  var bl = el('text',{x:px(BASE),y:Y0-8,'class':'ex-baselab','text-anchor':'middle','font-size':11});
+  bl.textContent = 'Base year 2025'; s.appendChild(bl);
 
-    /* gridlines + value axis */
-    [0,5,10,15,20].forEach(function(v){
-      var y = py(v);
-      s.appendChild(el('line',{x1:C.x0,y1:y,x2:C.x1,y2:y,'class':'mo-grid'}));
-      var t = el('text',{x:C.x0-10,y:y+C.fAxis*0.35,'class':'mo-axis','text-anchor':'end','font-size':C.fAxis});
-      t.textContent = v; s.appendChild(t);
-    });
-    var yt = el('text',{x:C.x0-10,y:py(20)-C.fAxis*1.4,'class':'mo-axis','text-anchor':'end','font-size':C.fAxis});
-    yt.textContent = 'USD bn'; s.appendChild(yt);
+  /* value line: solid through the base year, dashed across the forecast */
+  s.appendChild(el('path',{d:path(0,BASE,'v'),'class':'ex-line'}));
+  s.appendChild(el('path',{d:path(BASE,D.length-1,'v'),'class':'ex-line fc'}));
 
-    /* areas, split at the base year */
-    s.appendChild(el('path',{d:line(0,BASE,true),'class':'mo-area-h'}));
-    s.appendChild(el('path',{d:line(BASE,D.length-1,true),'class':'mo-area-f'}));
+  /* year labels, every third year so 2019 and 2035 both land */
+  D.forEach(function(d,i){
+    if(i % 4 !== 0 && i !== D.length-1) return;
+    var t = el('text',{x:px(i),y:Y1+21,'class':'ex-xlab','text-anchor':'middle','font-size':11.5});
+    t.textContent = d.y; s.appendChild(t);
+  });
 
-    /* base-year marker */
-    s.appendChild(el('line',{x1:px(BASE),y1:C.y0,x2:px(BASE),y2:C.y1,'class':'mo-base'}));
-    var bl = el('text',{x:px(BASE),y:C.y0-6,'class':'mo-baselab','text-anchor':'middle','font-size':C.fBase});
-    bl.textContent = 'Base year 2025'; s.appendChild(bl);
+  /* series labels, placed along each line rather than in a legend box */
+  /* Both lines climb steeply, so a horizontal label cannot sit in the wedge between them without
+     crossing a stroke: the value label is anchored back up its own line, and the reference label
+     sits clear below both lines with a short leader pointing back to it. */
+  var sl = el('text',{x:px(10),y:py(D[10].v)-14,'class':'ex-serieslab','text-anchor':'end','font-size':11.5});
+  sl.textContent = 'Market value'; s.appendChild(sl);
+  var ry = py(D[12].r);
+  s.appendChild(el('line',{x1:px(12),y1:ry+6,x2:px(12),y2:ry+22,'class':'ex-leader'}));
+  var rl = el('text',{x:px(12)+5,y:ry+30,'class':'ex-serieslab ref','text-anchor':'start','font-size':11});
+  rl.textContent = 'Held at the 2019-25 pace'; s.appendChild(rl);
 
-    /* trend lines */
-    s.appendChild(el('path',{d:line(0,BASE),'class':'mo-line-h','stroke-width':C.sw}));
-    s.appendChild(el('path',{d:line(BASE,D.length-1),'class':'mo-line-f','stroke-width':C.sw,'stroke-dasharray':C.dash}));
+  /* endpoint markers + direct labels (the only numbers on the plot) */
+  s.appendChild(el('circle',{cx:px(BASE),cy:py(6.85),r:4.4,'class':'ex-dot'}));
+  s.appendChild(el('circle',{cx:px(D.length-1),cy:py(20.34),r:4.6,'class':'ex-cap'}));
+  var e1 = el('text',{x:px(BASE)-9,y:py(6.85)-11,'class':'ex-endlab','text-anchor':'end','font-size':12});
+  e1.textContent = '6.85'; s.appendChild(e1);
+  var e2 = el('text',{x:px(D.length-1)+9,y:py(20.34)+4,'class':'ex-endlab','text-anchor':'start','font-size':12.5});
+  e2.textContent = '20.34'; s.appendChild(e2);
+  var e3 = el('text',{x:px(D.length-1)+9,y:py(16.81)+4,'class':'ex-endlab ref','text-anchor':'start','font-size':12});
+  e3.textContent = '16.81'; s.appendChild(e3);
 
-    /* year labels */
-    D.forEach(function(d,i){
-      if((d.y - 2019) % C.xEvery !== 0) return;
-      var t = el('text',{x:px(i),y:C.y1+C.fX*1.9,'class':'mo-xlab','text-anchor':'middle','font-size':C.fX});
-      t.textContent = d.y; s.appendChild(t);
-    });
-
-    /* CAGR badges */
-    var badge = function(pos,label,cls){
-      var g = el('g',{'class':'mo-badge'+(cls?' '+cls:'')});
-      g.appendChild(el('rect',{x:pos[0]-C.bw/2,y:pos[1]-C.bh/2,width:C.bw,height:C.bh,rx:C.bh*0.3}));
-      var t = el('text',{x:pos[0],y:pos[1]+C.fBadge*0.35,'text-anchor':'middle','font-size':C.fBadge});
-      t.textContent = label; g.appendChild(t); s.appendChild(g);
-    };
-    badge(C.b1,'CAGR 2019-2025 · 9.39%');
-    badge(C.b2,'CAGR 2026-2035 · 11.50%','f');
-
-    /* endpoint callouts */
-    var c1 = el('text',{x:px(BASE)-12,y:py(6.85)-C.fCall*1.2,'class':'mo-callout','text-anchor':'end','font-size':C.fCall});
-    c1.textContent = 'USD 6.85 Bn'; s.appendChild(c1);
-    var c2 = el('text',{x:C.x1,y:py(20.34)-C.fCall*1.2,'class':'mo-callout f','text-anchor':'end','font-size':C.fCall});
-    c2.textContent = 'USD 20.34 Bn'; s.appendChild(c2);
-
-    /* points */
-    dots = [];
-    D.forEach(function(d,i){
-      var c = el('circle',{cx:px(i),cy:py(d.v),r:(i===BASE||i===D.length-1)?C.rb:C.r,
-        'class':'mo-dot '+(i<=BASE?'h':'f')});
-      dots.push(c); s.appendChild(c);
-    });
-
-    /* hover / keyboard targets */
-    var band = (C.x1-C.x0)/(D.length-1);
-    var show = function(i){
-      var d = D[i];
-      tip.innerHTML = '<div class="y">'+d.y+(i===BASE?' · base year':'')+'</div>'+
-        '<div><span class="v">USD '+d.v.toFixed(2)+' Bn</span></div>'+
-        '<div class="s">'+(i<=BASE?'Historical':'Forecast')+'</div>';
-      tip.style.left = (px(i)/VW*100)+'%';
-      tip.style.top  = (py(d.v)/C.vh*100)+'%';
-      tip.classList.add('on');
-      dots.forEach(function(c,n){ c.setAttribute('r', n===i ? C.rb*1.25 : ((n===BASE||n===D.length-1)?C.rb:C.r)); });
-    };
-    var hide = function(){
-      tip.classList.remove('on');
-      dots.forEach(function(c,n){ c.setAttribute('r',(n===BASE||n===D.length-1)?C.rb:C.r); });
-    };
-    D.forEach(function(d,i){
-      var r = el('rect',{x:px(i)-band/2,y:C.y0,width:band,height:C.y1-C.y0,'class':'mo-hit',
-        tabindex:'0',role:'img',
-        'aria-label':d.y+': USD '+d.v.toFixed(2)+' billion, '+(i<=BASE?'historical':'forecast')});
-      r.addEventListener('mouseenter',function(){ show(i); });
-      r.addEventListener('focus',function(){ show(i); });
-      r.addEventListener('blur',hide);
-      s.appendChild(r);
-    });
-    s.addEventListener('mouseleave',hide);
-    return s;
-  }
-
-  function render(){
-    var next = window.innerWidth < 700 ? 'narrow' : 'wide';
-    if(next === mode) return;
-    mode = next; cfg = (next === 'narrow') ? NARROW : WIDE;
-    if(svg && svg.parentNode) svg.parentNode.removeChild(svg);
-    tip.classList.remove('on');
-    svg = build(cfg);
-    host.insertBefore(svg, tip);
-  }
-
-  render();
-  var t;
-  window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(render,150); });
+  /* hover / keyboard layer */
+  var band = (X1-X0)/(D.length-1);
+  var hoverDot = el('circle',{r:0,'class':'ex-dot','pointer-events':'none'});
+  var show = function(i){
+    var d = D[i];
+    var html = '<div class="y">'+d.y+(i===BASE?' · base year':'')+'</div>'+
+      '<div class="r"><span>Market value</span><b>'+d.v.toFixed(2)+'</b></div>';
+    if(d.r !== undefined && i > BASE){
+      html += '<div class="r ref"><span>At 2019-25 pace</span><b>'+d.r.toFixed(2)+'</b></div>'+
+              '<div class="r"><span>Gap</span><b>+'+(d.v-d.r).toFixed(2)+'</b></div>';
+    }
+    tip.innerHTML = html;
+    tip.style.left = (px(i)/VW*100)+'%';
+    tip.style.top  = (py(d.v)/VH*100)+'%';
+    tip.classList.add('on');
+    hoverDot.setAttribute('cx',px(i)); hoverDot.setAttribute('cy',py(d.v)); hoverDot.setAttribute('r',5.2);
+  };
+  var hide = function(){ tip.classList.remove('on'); hoverDot.setAttribute('r',0); };
+  D.forEach(function(d,i){
+    var r = el('rect',{x:px(i)-band/2,y:Y0,width:band,height:Y1-Y0,'class':'ex-hit',
+      tabindex:'0',role:'img',
+      'aria-label':d.y+': market value USD '+d.v.toFixed(2)+' billion'+
+        (d.r !== undefined && i > BASE ? ', versus USD '+d.r.toFixed(2)+' billion at the historical pace' : '')});
+    r.addEventListener('mouseenter',function(){ show(i); });
+    r.addEventListener('focus',function(){ show(i); });
+    r.addEventListener('blur',hide);
+    s.appendChild(r);
+  });
+  s.appendChild(hoverDot);
+  s.addEventListener('mouseleave',hide);
+  host.insertBefore(s,tip);
 })();
 </script>
 </body>
