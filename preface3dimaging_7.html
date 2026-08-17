@@ -275,17 +275,17 @@
   .ex{--ex-value:#5b21b6;      /* market value line + 2035 bars */
       --ex-ref:#64748b;        /* historical-pace reference line */
       --ex-a:#a78bfa;          /* 2025 bars */
-      --ex-surface:#fbfaff;
       --ex-track:#efeafe;
-      margin:16px 0 8px;background:var(--ex-surface);
-      border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08);overflow:hidden}
-  .ex-head{padding:18px 22px 15px;border-bottom:1px solid var(--line)}
+      /* No surface tint, radius or shadow: those were what still read as an edge against the white
+         page. The internal rules stay - they do the dividing now. */
+      margin:16px 0 8px;background:none}
+  .ex-head{padding:4px 0 15px;border-bottom:1px solid var(--line)}
   .ex-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
     color:var(--purple);margin-bottom:7px}
   .ex-title{margin:0;font-size:17px;line-height:1.3;font-weight:800;color:#141018;letter-spacing:-0.01em}
   .ex-sub{margin:5px 0 0;font-size:12.5px;color:var(--muted)}
   .ex-body{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,.62fr) minmax(0,1.15fr);
-    gap:0;padding:18px 22px 4px}
+    gap:0;padding:18px 0 4px}
   .ex-panel{min-width:0}
   .ex-panel+.ex-panel{border-left:1px solid var(--line);padding-left:20px;margin-left:20px}
   .ex-ph{margin:0;font-size:13px;font-weight:800;color:var(--navy)}
@@ -344,7 +344,7 @@
   .ex-bv{position:absolute;top:50%;transform:translateY(-50%);font-size:11.5px;font-weight:800;
     color:var(--navy);white-space:nowrap}
 
-  .ex-foot{padding:4px 22px 16px}
+  .ex-foot{padding:4px 0 0}
   .ex-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 0;padding:0;list-style:none}
   .ex-legend li{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink)}
   .ex-legend .k{width:16px;height:10px;border-radius:3px;flex:none;background:var(--ex-a)}
@@ -366,7 +366,6 @@
     .ex-stat+.ex-stat{margin-top:0}
   }
   @media(max-width:560px){
-    .ex-head,.ex-body,.ex-foot{padding-left:16px;padding-right:16px}
     .ex-title{font-size:15.5px}
   }
   @media(prefers-reduced-motion:reduce){
@@ -955,7 +954,8 @@
     var t = el('text',{x:X0-9,y:y+4,'class':'ex-axis','text-anchor':'end','font-size':11});
     t.textContent = v; s.appendChild(t);
   });
-  var yt = el('text',{x:X0-9,y:py(20)-14,'class':'ex-axis','text-anchor':'end','font-size':11});
+  /* anchored inward from the axis - end-anchored it hangs left of the content column */
+  var yt = el('text',{x:X0-9,y:py(20)-14,'class':'ex-axis','text-anchor':'start','font-size':11});
   yt.textContent = 'USD bn'; s.appendChild(yt);
 
   /* filled area under the value line, then the reference line beneath the value line */
