@@ -395,34 +395,34 @@
   .cl-panel p{margin:0 0 12px;font-size:14.5px}
   .cl-panel p:last-child{margin-bottom:0}
 
-  /* --- convergence diagram: many legacy categories into one platform --- */
-  .cl-conv{display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1.05fr);
-    align-items:center;gap:0;margin:6px 0 16px}
+  /* --- convergence flow: a row of source boxes fanning down into one target box --- */
+  .cl-flow{margin:8px 0 18px}
   .cl-cap{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
     color:var(--muted);margin-bottom:9px}
-  .cl-src{display:block;font-size:12.5px;color:var(--ink);background:#fbfaff;
-    border:1px solid var(--line);border-left:3px solid var(--purple-soft);
-    border-radius:6px;padding:7px 11px}
-  .cl-src+.cl-src{margin-top:6px}
-  .cl-src{transition:border-left-color .15s ease,background .15s ease,transform .15s ease}
-  .cl-src:hover{border-left-color:var(--purple);background:var(--tint);transform:translateX(2px)}
+  .cl-row{display:grid;gap:10px;grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}
+  .cl-src{display:flex;align-items:center;justify-content:center;text-align:center;
+    font-size:12.5px;line-height:1.45;color:var(--ink);background:#fbfaff;
+    border:1px solid var(--line);border-top:3px solid var(--purple-soft);
+    border-radius:7px;padding:10px 11px;
+    transition:border-top-color .15s ease,background .15s ease,transform .15s ease,box-shadow .15s ease}
+  .cl-src:hover{border-top-color:var(--purple);background:var(--tint);
+    transform:translateY(-2px);box-shadow:0 6px 14px rgba(76,29,149,.12)}
   .cl-src b{color:#141018;font-weight:800}
-  .cl-rail{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center}
-  .cl-rail::before{content:"";position:absolute;top:22%;bottom:22%;left:50%;width:1px;
-    background:var(--purple-soft)}
-  .cl-rail span{position:relative;z-index:2;width:22px;height:22px;border-radius:50%;
-    background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;
-    font-size:12px;font-weight:800;line-height:1}
-  .cl-uni{background:linear-gradient(150deg,#7c5cf0 0%,#4c2c93 100%);color:#fff;
+  /* connector layer - redrawn from the boxes' measured positions, so it follows any wrap */
+  .cl-join{position:relative;height:52px}
+  .cl-join svg{display:block;width:100%;height:52px}
+  .cl-jline{fill:none;stroke:var(--purple-soft);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .cl-jhead{fill:var(--purple);stroke:none}
+  .cl-uni{max-width:660px;margin:0 auto;
+    background:linear-gradient(150deg,#7c5cf0 0%,#4c2c93 100%);color:#fff;
     border-radius:10px;padding:14px 16px;box-shadow:0 6px 16px rgba(60,20,120,.22)}
+  .cl-uni .lb{font-size:9.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
+    color:rgba(255,255,255,.72);margin-bottom:6px}
   .cl-uni h6{margin:0 0 6px;font-size:13.5px;font-weight:800}
   .cl-uni p{margin:0;font-size:12px;line-height:1.55;color:rgba(255,255,255,.9)}
-  @media(max-width:640px){
-    .cl-conv{grid-template-columns:1fr;gap:12px}
-    .cl-rail{min-height:34px}
-    .cl-rail::before{top:0;bottom:0;left:50%}
-    .cl-rail span{transform:rotate(90deg)}   /* flow turns downward when the columns stack */
-  }
+  @media(max-width:820px){ .cl-row{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media(max-width:480px){ .cl-row{grid-template-columns:1fr} }
+
 
   /* scope ladder - how far the data has to travel */
   .cl-scope{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:14px 0 2px;
@@ -983,22 +983,19 @@
         <div class="cl-panel cl-on" role="tabpanel" id="clp1" aria-labelledby="clt1" tabindex="0">
           <p>The market is undergoing a period of rapid convergence. Historically distinct product categories are
             increasingly being integrated into single, unified platforms.</p>
-          <div class="cl-conv">
-            <div>
-              <div class="cl-cap">Historically distinct categories</div>
+          <div class="cl-flow">
+            <div class="cl-cap">Historically distinct categories</div>
+            <div class="cl-row" style="--n:4">
               <span class="cl-src">Fixed intraoperative CT / MRI suites</span>
               <span class="cl-src">Mobile C-arm and cone-beam systems</span>
               <span class="cl-src">Optical and electromagnetic navigation</span>
               <span class="cl-src">Surgical planning software</span>
             </div>
-            <div class="cl-rail" aria-hidden="true"><span>&rsaquo;</span></div>
-            <div>
-              <div class="cl-cap">Converging into</div>
-              <div class="cl-uni">
-                <h6>A single unified image-guided surgery platform</h6>
-                <p>Planning, navigation, imaging and robotics delivered as one intelligent system rather than
-                  separately procured components.</p>
-              </div>
+            <div class="cl-join" aria-hidden="true"></div>
+            <div class="cl-uni">
+              <div class="lb">Converging into</div>
+              <h6>A single unified image-guided surgery platform</h6>
+              <p>Planning, navigation, imaging and robotics delivered as one intelligent system rather than separately procured components.</p>
             </div>
           </div>
           <p><b>Medtronic's Stealth AXiS</b> exemplifies this trend as the first platform to natively combine
@@ -1022,21 +1019,18 @@
             integration of its bkActiv intraoperative ultrasound system with Medtronic's Stealth AXiS navigation
             platform, allowing real-time ultrasound visualization to be layered directly into an existing
             navigation workflow without disrupting established surgical protocols.</p>
-          <div class="cl-conv">
-            <div>
-              <div class="cl-cap">Modalities fused</div>
+          <div class="cl-flow">
+            <div class="cl-cap">Modalities fused</div>
+            <div class="cl-row" style="--n:3">
               <span class="cl-src"><b>CT</b></span>
               <span class="cl-src"><b>MRI</b></span>
-              <span class="cl-src"><b>Ultrasound</b> - including real-time intraoperative</span>
+              <span class="cl-src"><b>Ultrasound</b><br>including real-time intraoperative</span>
             </div>
-            <div class="cl-rail" aria-hidden="true"><span>&rsaquo;</span></div>
-            <div>
-              <div class="cl-cap">Into</div>
-              <div class="cl-uni">
-                <h6>A single surgical plan</h6>
-                <p>Automated anatomical segmentation and image registration align the modalities into one plan
-                  the surgeon navigates from.</p>
-              </div>
+            <div class="cl-join" aria-hidden="true"></div>
+            <div class="cl-uni">
+              <div class="lb">Into</div>
+              <h6>A single surgical plan</h6>
+              <p>Automated anatomical segmentation and image registration align the modalities into one plan the surgeon navigates from.</p>
             </div>
           </div>
         </div>
@@ -1048,21 +1042,18 @@
             affiliated institutions - has become a meaningful competitive consideration in its own right.</p>
           <p>This is driving continued investment in cloud-native platform architectures alongside the more visible
             advances in imaging hardware and navigation accuracy.</p>
-          <div class="cl-conv">
-            <div>
-              <div class="cl-cap">What the data layer must do</div>
-              <span class="cl-src"><b>Store</b> imaging and analytics data securely</span>
-              <span class="cl-src"><b>Share</b> it beyond the room it was captured in</span>
-              <span class="cl-src"><b>Act</b> on it inside the surgical workflow</span>
+          <div class="cl-flow">
+            <div class="cl-cap">What the data layer must do</div>
+            <div class="cl-row" style="--n:3">
+              <span class="cl-src"><b>Store</b><br>imaging and analytics data securely</span>
+              <span class="cl-src"><b>Share</b><br>beyond the room it was captured in</span>
+              <span class="cl-src"><b>Act</b><br>on it inside the surgical workflow</span>
             </div>
-            <div class="cl-rail" aria-hidden="true"><span>&rsaquo;</span></div>
-            <div>
-              <div class="cl-cap">Which requires</div>
-              <div class="cl-uni">
-                <h6>Cloud-native platform architecture</h6>
-                <p>A competitive consideration in its own right, drawing investment alongside imaging hardware
-                  and navigation accuracy.</p>
-              </div>
+            <div class="cl-join" aria-hidden="true"></div>
+            <div class="cl-uni">
+              <div class="lb">Which requires</div>
+              <h6>Cloud-native platform architecture</h6>
+              <p>A competitive consideration in its own right, drawing investment alongside imaging hardware and navigation accuracy.</p>
             </div>
           </div>
           <div class="cl-scope">
@@ -1523,6 +1514,60 @@
   /* start from whatever the markup marked selected, so the DOM stays the source of truth */
   var start = tabs.findIndex ? tabs.findIndex(function(t){ return t.getAttribute('aria-selected') === 'true'; }) : 0;
   select(start < 0 ? 0 : start);
+})();
+
+/* ================= SECTION 4 - CONVERGENCE FLOW CONNECTORS ================= */
+(function(){
+  var flows = [].slice.call(document.querySelectorAll('.cl-flow'));
+  if(!flows.length) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var el = function(n,a){ var e = document.createElementNS(NS,n);
+    for(var k in a){ if(a.hasOwnProperty(k)) e.setAttribute(k,a[k]); } return e; };
+
+  function draw(flow){
+    var join = flow.querySelector('.cl-join');
+    var boxes = [].slice.call(flow.querySelectorAll('.cl-src'));
+    var target = flow.querySelector('.cl-uni');
+    if(!join || !boxes.length || !target) return;
+
+    var jr = join.getBoundingClientRect();
+    var w = jr.width, h = jr.height;
+    if(!w) return;                       /* panel not laid out yet */
+
+    var s = el('svg',{viewBox:'0 0 '+w.toFixed(1)+' '+h.toFixed(1),'aria-hidden':'true'});
+    var d = '';
+    var tc = target.getBoundingClientRect();
+    var tx = tc.left - jr.left + tc.width/2;   /* where the arrow must land */
+    var bus = Math.round(h*0.42);
+    var tip = h - 1;
+
+    /* One line per box only while the boxes sit on a single row. Once they wrap, a fan would have
+       to start below boxes it is meant to come out of, so it collapses to one stem instead. */
+    var tops = boxes.map(function(b){ return Math.round(b.getBoundingClientRect().top); });
+    var oneRow = tops.every(function(t){ return t === tops[0]; });
+
+    if(oneRow){
+      var xs = boxes.map(function(b){
+        var r = b.getBoundingClientRect(); return r.left - jr.left + r.width/2;
+      });
+      xs.forEach(function(x){ d += 'M'+x.toFixed(1)+' 0V'+bus+' '; });
+      d += 'M'+Math.min.apply(null,xs).toFixed(1)+' '+bus+'H'+Math.max.apply(null,xs).toFixed(1)+' ';
+    }
+    d += 'M'+tx.toFixed(1)+' '+(oneRow ? bus : 0)+'V'+(tip-7);
+    s.appendChild(el('path',{d:d.trim(),'class':'cl-jline'}));
+    s.appendChild(el('path',{'class':'cl-jhead',
+      d:'M'+(tx-5.5).toFixed(1)+' '+(tip-7.5)+'L'+tx.toFixed(1)+' '+tip+'L'+(tx+5.5).toFixed(1)+' '+(tip-7.5)+'Z'}));
+
+    join.textContent = '';
+    join.appendChild(s);
+  }
+
+  function drawAll(){ flows.forEach(draw); }
+  drawAll();
+  var t;
+  window.addEventListener('resize',function(){ clearTimeout(t); t = setTimeout(drawAll,150); });
+  /* fonts landing late change how the boxes wrap, which moves their centres */
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(drawAll);
 })();
 </script>
 </body>
