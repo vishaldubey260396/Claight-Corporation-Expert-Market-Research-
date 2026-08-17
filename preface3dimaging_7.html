@@ -264,10 +264,18 @@
   .mo-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 6px}
   .mo-kpis .cell{box-shadow:0 4px 11px rgba(60,20,120,.13)}
   .mo-kpis .cell:hover{box-shadow:0 9px 20px rgba(60,20,120,.22)}
-  .mo-kpis .cell .pane{padding:12px 14px 13px}
-  .mo-kpis .cell .lab{font-size:9.5px;letter-spacing:.08em}
-  .mo-kpis .cell .big{font-size:21px;margin-top:6px}
-  .mo-kpis .cell .foot{font-size:10.5px;margin-top:9px}
+  .mo-kpis .cell .pane{padding:11px 13px 12px}
+  .mo-kpis .cell .lab{font-size:9.5px;letter-spacing:.08em;color:rgba(255,255,255,.86)}
+  /* The value sits in its own translucent box so the figure reads as one block instead of
+     free-floating type; the loose radial glow behind it is dropped, it muddies the box edge. */
+  .mo-kpis .cell .big{font-size:20px;margin-top:7px;align-self:flex-start;
+    padding:5px 10px 6px;border-radius:7px;
+    background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+    text-shadow:0 1px 4px rgba(0,0,0,.28)}
+  .mo-kpis .cell .big::before{display:none}
+  /* .72 reads as washed out against these gradients; .9 lifts contrast to 8.5-15.2:1 */
+  .mo-kpis .cell .foot{font-size:10.5px;margin-top:8px;color:rgba(255,255,255,.9)}
   @media(max-width:760px){ .mo-kpis{grid-template-columns:1fr 1fr} }
   @media(max-width:460px){ .mo-kpis{grid-template-columns:1fr} }
 
