@@ -817,9 +817,9 @@
   }
 
   /* --- 5.2 drivers / constraints as an up arrow and a down arrow --- */
-  .dc-fig{max-width:750px;margin:16px auto 0}
+  .dc-fig{max-width:600px;margin:16px auto 0}
   .dc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
-  .dc{--head:46px;position:relative;padding:17px 18px;color:#fff;
+  .dc{--head:42px;position:relative;padding:16px 16px;color:#fff;
     filter:drop-shadow(0 8px 20px rgba(60,20,120,.16))}
   .dc.up{padding-top:calc(var(--head) + 16px);
     background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 48%,#4c1d95 100%);
@@ -831,22 +831,14 @@
   .dc-hd{display:flex;align-items:baseline;gap:9px;margin:0 0 3px}
   .dc-hd .g{font-size:15px;line-height:1}
   .dc-hd h6{margin:0;font-size:14.5px;font-weight:800;letter-spacing:.01em;color:#fff}
-  .dc-sub{margin:0 0 14px;font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.93)}
-  .dc-scale{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-    color:rgba(255,255,255,.80);margin:0 0 8px}
-
-  .dc-i{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:8px;
+  .dc-sub{margin:0 0 12px;font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.93)}
+  .dc-i{display:flex;align-items:center;padding:8px 11px;border-radius:8px;
     background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);
     opacity:0;transform:translateY(10px)}
   .dc-i+.dc-i{margin-top:8px}
   .reveal.in .dc-i{opacity:1;transform:none;
     transition:opacity .45s ease var(--d),transform .5s cubic-bezier(.3,1.3,.5,1) var(--d)}
     .dc-t{flex:1 1 auto;font-size:12px;font-weight:700;line-height:1.4;color:#fff}
-  /* four dots = the item's rank on the ordinal impact scale */
-  .dc-m{flex:none;display:flex;gap:3px}
-  .dc-m i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.28)}
-  .dc-m i.on{background:#fff}
-
   .dc-foot{margin-top:14px;padding-top:11px;border-top:1px dashed rgba(255,255,255,.34);
     font-size:11.5px;font-weight:700;line-height:1.5;color:rgba(255,255,255,.94)}
 
@@ -1830,22 +1822,17 @@
           <div class="dc up">
             <div class="dc-hd"><span class="g" aria-hidden="true">&#9650;</span><h6>Drivers</h6></div>
             <p class="dc-sub">Forces pushing the market up, ordered highest impact first</p>
-            <p class="dc-scale">Degree of impact</p>
           <div class="dc-i" style="--d:0ms">
             <span class="dc-t">Rising MIS procedure volumes</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
           </div>
           <div class="dc-i" style="--d:110ms">
             <span class="dc-t">AI-enabled navigation accuracy</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
           </div>
           <div class="dc-i" style="--d:220ms">
             <span class="dc-t">Imaging + robotics integration</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span>
           </div>
           <div class="dc-i" style="--d:330ms">
             <span class="dc-t">Hybrid operating room growth</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span>
           </div>
             <p class="dc-foot">Net effect: sustained demand across every major surgical discipline</p>
           </div>
@@ -1853,29 +1840,24 @@
           <div class="dc down">
             <div class="dc-hd"><span class="g" aria-hidden="true">&#9660;</span><h6>Constraints</h6></div>
             <p class="dc-sub">Frictions holding the market back, ordered highest impact first</p>
-            <p class="dc-scale">Degree of impact</p>
           <div class="dc-i" style="--d:60ms">
             <span class="dc-t">High capital cost</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
           </div>
           <div class="dc-i" style="--d:170ms">
             <span class="dc-t">Lack of interoperability</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
           </div>
           <div class="dc-i" style="--d:280ms">
             <span class="dc-t">Long capital-budget cycles</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span>
           </div>
           <div class="dc-i" style="--d:390ms">
             <span class="dc-t">Radiation / safety concerns</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span>
           </div>
             <p class="dc-foot">Net effect: adoption is paced, not prevented - the frictions delay rather than block</p>
           </div>
 
         </div>
-        <figcaption class="md-cap">Dots show each item's rank on an ordinal impact scale (four dots = highest of
-          the four), not a measured quantity.</figcaption>
+        <figcaption class="md-cap">Within each arrow, items are ordered by degree of impact, highest first.
+          The ordering is a qualitative rank, not a measured quantity.</figcaption>
       </figure>
 
       <h3 class="subh nn reveal" style="margin-top:22px">Market Drivers</h3>
