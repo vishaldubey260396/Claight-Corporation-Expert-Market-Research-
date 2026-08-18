@@ -860,6 +860,8 @@
     font-size:11.5px;font-weight:800;color:var(--purple-deep);
     background:#efe9ff;border:1px solid #ddd0ff}
   ol.md-list>li b{color:var(--purple-deep);font-weight:700}
+  ol.md-list.co>li::before{color:#9a3412;background:#fdf1e0;border-color:#f2d3a3}
+  ol.md-list.co>li b{color:#9a3412}
 
   /* --- 5.3 SWOT --- */
   .md-swot{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
@@ -1876,6 +1878,23 @@
         <figcaption class="md-cap">Within each arrow, items are ordered by degree of impact, highest first.
           The ordering is a qualitative rank, not a measured quantity.</figcaption>
       </figure>
+
+      <h3 class="subh nn reveal">Market Constraints</h3>
+
+      <ol class="md-list co reveal">
+          <li><b>High Capital Cost:</b> Per-system pricing ranges from roughly USD 180-550k for mobile and
+            integrated navigation platforms to USD 0.9-1.8m for fixed intraoperative CT or MRI suites, which
+            places advanced platforms out of reach for many smaller hospitals and ambulatory surgical centers.</li>
+          <li><b>Lack of Cross-Vendor Interoperability:</b> Imaging, navigation and robotics components from
+            different manufacturers still integrate poorly, forcing hospitals toward closed single-vendor
+            ecosystems and complicating incremental upgrades to an existing installed base.</li>
+          <li><b>Long Capital-Budget Cycles:</b> Purchases are gated by annual hospital capital-expenditure
+            planning and multi-stakeholder committee review, so even a well-evidenced business case typically
+            converts to an order over several budget cycles rather than within one.</li>
+          <li><b>Radiation and Safety Concerns:</b> Intraoperative 3D acquisition adds ionising-radiation exposure
+            for patients and theatre staff, making dose reduction a design priority and a recurring point of
+            scrutiny in clinical and regulatory evaluation of new platforms.</li>
+      </ol>
 
       <h3 class="subh reveal">SWOT Analysis</h3>
 
