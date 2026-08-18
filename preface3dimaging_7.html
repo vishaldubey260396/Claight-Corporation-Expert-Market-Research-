@@ -683,42 +683,45 @@
   .cl-statv{font-size:40px;font-weight:800;color:var(--purple-deep);letter-spacing:-0.02em;line-height:1}
   .cl-statv span{font-size:.5em}
   .cl-statl{font-size:12.5px;color:var(--ink);margin-top:7px;max-width:640px}
-  /* Each path is drawn as an arrow: the conventional route points down, the verified route points
-     up, and the steps sit in the shaft. The silhouette is a clip-path, so there is no border to
-     draw - a border would be clipped along with the box and leave a broken outline. The edge and
-     lift come from a drop-shadow filter instead, which follows the clipped shape. */
-  .cl-paths{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:20px 0 8px;align-items:stretch}
-  /* the side padding has to clear the shaft inset, or the text is clipped by the silhouette */
-  .cl-path{--head:52px;--shaft:13%;position:relative;
-    padding:18px calc(var(--shaft) + 16px);
-    filter:drop-shadow(0 4px 12px rgba(20,16,24,.13))}
-  .cl-path.no{background:linear-gradient(180deg,#fff5f7,#ffe4ea);
-    clip-path:polygon(var(--shaft) 0,calc(100% - var(--shaft)) 0,
-      calc(100% - var(--shaft)) calc(100% - var(--head)),100% calc(100% - var(--head)),
-      50% 100%,0 calc(100% - var(--head)),var(--shaft) calc(100% - var(--head)));
-    padding-bottom:calc(var(--head) + 14px)}
-  .cl-path.yes{background:linear-gradient(180deg,#e6f9ef,#f4fdf8);
-    clip-path:polygon(50% 0,100% var(--head),calc(100% - var(--shaft)) var(--head),
-      calc(100% - var(--shaft)) 100%,var(--shaft) 100%,var(--shaft) var(--head),0 var(--head));
-    padding-top:calc(var(--head) + 14px)}
-  .cl-path h6{margin:0 0 12px;font-size:13px;font-weight:800}
+  /* Each path is a narrow arrow standing beside its steps: a dot sits on the shaft for every step
+     and a short rule runs out from it to the text, so the arrow stays slim and the copy is read
+     outside it. The silhouette is a clip-path, which rules out a border - a border is clipped with
+     the box and leaves a broken outline - so the edge comes from a drop-shadow filter. */
+  .cl-paths{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:20px 0 8px;align-items:stretch}
+  .cl-path{--bar:64px;--head:34px;position:relative;padding-left:calc(var(--bar) + 26px)}
+  .cl-arrow{position:absolute;left:0;top:0;bottom:0;width:var(--bar);
+    filter:drop-shadow(0 3px 8px rgba(20,16,24,.14))}
+  .cl-path.no .cl-arrow{background:linear-gradient(180deg,#ffd7e0,#fb7185);
+    clip-path:polygon(30% 0,70% 0,70% calc(100% - var(--head)),100% calc(100% - var(--head)),
+      50% 100%,0 calc(100% - var(--head)),30% calc(100% - var(--head)))}
+  .cl-path.yes .cl-arrow{background:linear-gradient(0deg,#c9f2dd,#34d399);
+    clip-path:polygon(50% 0,100% var(--head),70% var(--head),70% 100%,30% 100%,
+      30% var(--head),0 var(--head))}
+
+  .cl-path h6{margin:0 0 14px;font-size:13px;font-weight:800}
   .cl-path.no h6{color:#9f1239}
   .cl-path.yes h6{color:#065f46}
-  .cl-step{position:relative;font-size:12.5px;line-height:1.55;color:var(--ink);padding-left:19px}
-  .cl-step+.cl-step{margin-top:12px}
-  .cl-step::before{content:"";position:absolute;left:4px;top:6px;width:7px;height:7px;border-radius:2px}
+  .cl-step{position:relative;font-size:12.5px;line-height:1.55;color:var(--ink)}
+  .cl-step+.cl-step{margin-top:14px}
+  /* the dot sits on the arrow's shaft, the rule reaches from it back to the text */
+  .cl-step::before{content:"";position:absolute;top:5px;left:calc(-1 * (var(--bar)/2 + 26px) - 4.5px);
+    width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 2px #fff}
+  .cl-step::after{content:"";position:absolute;top:9px;
+    left:calc(-1 * (var(--bar)/2 + 26px) + 6px);width:calc(var(--bar)/2 + 14px);height:1.5px}
   .cl-path.no .cl-step::before{background:#e11d48}
+  .cl-path.no .cl-step::after{background:#f9a8b8}
   .cl-path.yes .cl-step::before{background:#059669}
-  .cl-step+.cl-step::after{content:"";position:absolute;left:7px;top:-11px;height:9px;width:1px}
-  .cl-path.no .cl-step+.cl-step::after{background:#f2a6b5}
-  .cl-path.yes .cl-step+.cl-step::after{background:#8fdcb4}
+  .cl-path.yes .cl-step::after{background:#8fdcb4}
   .cl-step b{color:#1f2937;font-weight:600}
-  .cl-out{margin-top:13px;padding-top:11px;border-top:1px dashed;font-size:12.5px;font-weight:800}
+  .cl-out{margin-top:16px;padding-top:12px;border-top:1px dashed;font-size:12.5px;font-weight:800}
   .cl-path.no .cl-out{border-color:#f8b4c2;color:#9f1239}
   .cl-path.yes .cl-out{border-color:#a7e9c8;color:#065f46}
   @media(max-width:640px){
     .cl-paths{grid-template-columns:1fr;gap:26px}
-    .cl-path{--shaft:9%}
+    .cl-path{--bar:52px;padding-left:calc(var(--bar) + 20px)}
+    .cl-step::before{left:calc(-1 * (var(--bar)/2 + 20px) - 4.5px)}
+    .cl-step::after{left:calc(-1 * (var(--bar)/2 + 20px) + 6px);width:calc(var(--bar)/2 + 8px)}
+  }
   }
 
   /* --- training tailwind callout --- */
@@ -1485,6 +1488,7 @@
 
       <div class="cl-paths reveal">
         <div class="cl-path no">
+          <span class="cl-arrow" aria-hidden="true"></span>
           <h6>Conventional imaging alone</h6>
           <div class="cl-step">Misalignment is <b>not detected during the procedure</b></div>
           <div class="cl-step">Patient is closed and discharged</div>
@@ -1493,6 +1497,7 @@
           <div class="cl-out">Cost incurred twice - and often not reimbursed</div>
         </div>
         <div class="cl-path yes">
+          <span class="cl-arrow" aria-hidden="true"></span>
           <h6>With intraoperative 3D verification</h6>
           <div class="cl-step">Misplaced screws and hardware are <b>identified in-session</b></div>
           <div class="cl-step">Placement is corrected within the <b>same surgical session</b></div>
