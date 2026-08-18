@@ -683,11 +683,25 @@
   .cl-statv{font-size:40px;font-weight:800;color:var(--purple-deep);letter-spacing:-0.02em;line-height:1}
   .cl-statv span{font-size:.5em}
   .cl-statl{font-size:12.5px;color:var(--ink);margin-top:7px;max-width:640px}
-  .cl-paths{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0 6px}
-  .cl-path{border-radius:12px;padding:15px 16px 16px;border:1px solid}
-  .cl-path.no{background:linear-gradient(180deg,#fffbfc,#fff1f3);border-color:#fdcdd6}
-  .cl-path.yes{background:linear-gradient(180deg,#f9fefb,#eefbf4);border-color:#c3f0d7}
-  .cl-path h6{margin:0 0 12px;font-size:13px;font-weight:800;display:flex;align-items:center;gap:8px}
+  /* Each path is drawn as an arrow: the conventional route points down, the verified route points
+     up, and the steps sit in the shaft. The silhouette is a clip-path, so there is no border to
+     draw - a border would be clipped along with the box and leave a broken outline. The edge and
+     lift come from a drop-shadow filter instead, which follows the clipped shape. */
+  .cl-paths{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:20px 0 8px;align-items:stretch}
+  /* the side padding has to clear the shaft inset, or the text is clipped by the silhouette */
+  .cl-path{--head:52px;--shaft:13%;position:relative;
+    padding:18px calc(var(--shaft) + 16px);
+    filter:drop-shadow(0 4px 12px rgba(20,16,24,.13))}
+  .cl-path.no{background:linear-gradient(180deg,#fff5f7,#ffe4ea);
+    clip-path:polygon(var(--shaft) 0,calc(100% - var(--shaft)) 0,
+      calc(100% - var(--shaft)) calc(100% - var(--head)),100% calc(100% - var(--head)),
+      50% 100%,0 calc(100% - var(--head)),var(--shaft) calc(100% - var(--head)));
+    padding-bottom:calc(var(--head) + 14px)}
+  .cl-path.yes{background:linear-gradient(180deg,#e6f9ef,#f4fdf8);
+    clip-path:polygon(50% 0,100% var(--head),calc(100% - var(--shaft)) var(--head),
+      calc(100% - var(--shaft)) 100%,var(--shaft) 100%,var(--shaft) var(--head),0 var(--head));
+    padding-top:calc(var(--head) + 14px)}
+  .cl-path h6{margin:0 0 12px;font-size:13px;font-weight:800}
   .cl-path.no h6{color:#9f1239}
   .cl-path.yes h6{color:#065f46}
   .cl-step{position:relative;font-size:12.5px;line-height:1.55;color:var(--ink);padding-left:19px}
@@ -698,11 +712,14 @@
   .cl-step+.cl-step::after{content:"";position:absolute;left:7px;top:-11px;height:9px;width:1px}
   .cl-path.no .cl-step+.cl-step::after{background:#f2a6b5}
   .cl-path.yes .cl-step+.cl-step::after{background:#8fdcb4}
-  .cl-step b{color:#141018;font-weight:800}
+  .cl-step b{color:#1f2937;font-weight:600}
   .cl-out{margin-top:13px;padding-top:11px;border-top:1px dashed;font-size:12.5px;font-weight:800}
-  .cl-path.no .cl-out{border-color:#fdcdd6;color:#9f1239}
-  .cl-path.yes .cl-out{border-color:#c3f0d7;color:#065f46}
-  @media(max-width:640px){ .cl-paths{grid-template-columns:1fr} }
+  .cl-path.no .cl-out{border-color:#f8b4c2;color:#9f1239}
+  .cl-path.yes .cl-out{border-color:#a7e9c8;color:#065f46}
+  @media(max-width:640px){
+    .cl-paths{grid-template-columns:1fr;gap:26px}
+    .cl-path{--shaft:9%}
+  }
 
   /* --- training tailwind callout --- */
   .cl-note{margin:18px 0 6px;padding:15px 17px;background:#f5f3ff;
@@ -1468,7 +1485,7 @@
 
       <div class="cl-paths reveal">
         <div class="cl-path no">
-          <h6>&#9660; Conventional imaging alone</h6>
+          <h6>Conventional imaging alone</h6>
           <div class="cl-step">Misalignment is <b>not detected during the procedure</b></div>
           <div class="cl-step">Patient is closed and discharged</div>
           <div class="cl-step">Misplacement surfaces <b>weeks or months later</b></div>
@@ -1476,7 +1493,7 @@
           <div class="cl-out">Cost incurred twice - and often not reimbursed</div>
         </div>
         <div class="cl-path yes">
-          <h6>&#9650; With intraoperative 3D verification</h6>
+          <h6>With intraoperative 3D verification</h6>
           <div class="cl-step">Misplaced screws and hardware are <b>identified in-session</b></div>
           <div class="cl-step">Placement is corrected within the <b>same surgical session</b></div>
           <div class="cl-step">No second admission, no second anaesthesia</div>
