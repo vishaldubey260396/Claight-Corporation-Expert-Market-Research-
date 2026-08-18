@@ -531,9 +531,67 @@
 
 
 
-  /* three columns of prose need more width than a phone has - let the table scroll itself */
-  .cl-scroll{overflow-x:auto;margin:16px 0}
-  .cl-scroll table.rd{margin:0;min-width:540px}
+  /* --- product landscape: one stack per category, laid on a shared grid ---
+     The two categories sit side by side and their three boxes share grid rows, so header, vendor
+     and role boxes line up across both however much text each holds. */
+  .cl-pl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 20px;margin:16px 0 6px}
+  .cl-plhd,.cl-plbx{position:relative;border-radius:10px;border:1px solid var(--line)}
+  .cl-plhd{display:flex;align-items:center;gap:10px;padding:0 4px 0 15px;
+    background:linear-gradient(150deg,#7c5cf0 0%,#4c2c93 100%);border-color:transparent;
+    box-shadow:0 5px 14px rgba(60,20,120,.20)}
+  .cl-plt{flex:1;min-width:0;font-size:13.5px;font-weight:800;color:#fff;line-height:1.35;padding:13px 0}
+  .cl-pltg{appearance:none;border:0;background:rgba(255,255,255,.14);cursor:pointer;flex:none;
+    width:32px;height:32px;margin-right:7px;border-radius:8px;color:#fff;
+    display:flex;align-items:center;justify-content:center;transition:background .15s ease}
+  .cl-pltg:hover{background:rgba(255,255,255,.26)}
+  .cl-pltg:focus{outline:none}
+  .cl-pltg:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .cl-pltg svg{width:14px;height:14px;transition:transform .2s ease}
+  .cl-pltg[aria-expanded="false"] svg{transform:rotate(-90deg)}
+
+  .cl-plbx{background:#fbfaff;padding:13px 15px 14px}
+  .cl-pllb{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--purple);margin-bottom:8px}
+  .cl-plbx ul{margin:0;padding-left:17px}
+  .cl-plbx li{font-size:12.5px;line-height:1.55;color:var(--ink);margin:4px 0}
+  .cl-plbx li::marker{color:var(--purple-soft)}
+  .cl-plbx li b{color:#141018;font-weight:800}
+  .cl-plbx p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink)}
+  .cl-plbx[hidden]{display:none}
+
+  /* connector into the next box of the same column, drawn in the row gap */
+  .cl-plhd::after,.cl-plbx.lk::after{content:"";position:absolute;left:50%;top:100%;
+    width:1.5px;height:26px;background:var(--purple-soft);transform:translateX(-50%)}
+  .cl-plhd::before,.cl-plbx.lk::before{content:"";position:absolute;left:50%;top:calc(100% + 25px);
+    width:0;height:0;border:5px solid transparent;border-top-color:var(--purple);
+    transform:translateX(-50%)}
+  .cl-plhd.off::after,.cl-plhd.off::before,
+  .cl-plbx.lk.off::after,.cl-plbx.lk.off::before{display:none}
+
+  /* Pinned to their own cell: without this, collapsing one category lets grid auto-placement pull
+     the other category's boxes into the vacated cells. */
+  .cl-pl > [data-cat="c1"]{grid-column:1}
+  .cl-pl > [data-cat="c2"]{grid-column:2}
+  .cl-plhd{grid-row:1}
+  .cl-plbx.lk{grid-row:2}
+  .cl-plbx:not(.lk){grid-row:3}
+
+  @media(max-width:700px){
+    /* one column: hand placement back to auto and order the stack, so a collapsed category leaves
+       no empty rows behind */
+    .cl-pl{grid-template-columns:1fr;gap:26px}
+    /* matches the specificity of the pins above, so it actually unsets them */
+    .cl-pl > .cl-plhd,.cl-pl > .cl-plbx{grid-column:auto;grid-row:auto}
+    .cl-plhd[data-cat="c1"]{order:1}
+    .cl-plbx.lk[data-cat="c1"]{order:2}
+    .cl-plbx:not(.lk)[data-cat="c1"]{order:3}
+    .cl-plhd[data-cat="c2"]{order:4}
+    .cl-plbx.lk[data-cat="c2"]{order:5}
+    .cl-plbx:not(.lk)[data-cat="c2"]{order:6}
+    .cl-plhd::after,.cl-plbx.lk::after{height:18px}
+    .cl-plhd::before,.cl-plbx.lk::before{top:calc(100% + 17px)}
+  }
+  @media(prefers-reduced-motion:reduce){ .cl-pltg svg{transition:none} }
 
   /* --- two fronts --- */
   .cl-fronts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0 6px}
@@ -1226,30 +1284,42 @@
       <p class="reveal">
         The related product landscape extends well beyond the flagship platforms already discussed.
       </p>
-      <div class="cl-scroll reveal">
-      <table class="rd">
-        <thead><tr><th scope="col">Category</th><th scope="col">Vendors and products</th><th scope="col">Role in the landscape</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><b>Workhorse intraoperative imaging</b></td>
-            <td><ul>
-              <li><b>GE HealthCare</b> - OEC mobile C-arm range</li>
-              <li><b>Siemens Healthineers</b> - Cios Spin</li>
-            </ul></td>
-            <td>Serve as the everyday intraoperative imaging systems across orthopedic and trauma settings.</td>
-          </tr>
-          <tr>
-            <td><b>Imaging and endoscopic visualization hardware</b></td>
-            <td><ul>
-              <li><b>Canon Medical Systems</b></li>
-              <li><b>Fujifilm</b></li>
-              <li><b>Karl Storz</b></li>
-            </ul></td>
-            <td>Each supplies hardware that increasingly integrates with third-party navigation software rather
-              than operating as a closed, standalone system.</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="cl-pl reveal" id="clPl">
+        <div class="cl-plhd" data-cat="c1">
+          <span class="cl-plt">Workhorse intraoperative imaging</span>
+          <button type="button" class="cl-pltg" data-cat="c1" aria-expanded="true"
+            aria-controls="plc1v plc1r" aria-label="Collapse Workhorse intraoperative imaging"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 9 12 16 19 9"></polyline></svg></button>
+        </div>
+        <div class="cl-plhd" data-cat="c2">
+          <span class="cl-plt">Imaging and endoscopic visualization hardware</span>
+          <button type="button" class="cl-pltg" data-cat="c2" aria-expanded="true"
+            aria-controls="plc2v plc2r" aria-label="Collapse Imaging and endoscopic visualization hardware"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 9 12 16 19 9"></polyline></svg></button>
+        </div>
+
+        <div class="cl-plbx lk" id="plc1v" data-cat="c1">
+          <div class="cl-pllb">Vendors and products</div>
+          <ul>
+            <li><b>GE HealthCare</b> - OEC mobile C-arm range</li>
+            <li><b>Siemens Healthineers</b> - Cios Spin</li>
+          </ul>
+        </div>
+        <div class="cl-plbx lk" id="plc2v" data-cat="c2">
+          <div class="cl-pllb">Vendors and products</div>
+          <ul>
+            <li><b>Canon Medical Systems</b></li>
+            <li><b>Fujifilm</b></li>
+            <li><b>Karl Storz</b></li>
+          </ul>
+        </div>
+
+        <div class="cl-plbx" id="plc1r" data-cat="c1">
+          <div class="cl-pllb">Role in the landscape</div>
+          <p>Serve as the everyday intraoperative imaging systems across orthopedic and trauma settings.</p>
+        </div>
+        <div class="cl-plbx" id="plc2r" data-cat="c2">
+          <div class="cl-pllb">Role in the landscape</div>
+          <p>Each supplies hardware that increasingly integrates with third-party navigation software rather than operating as a closed, standalone system.</p>
+        </div>
       </div>
       <p class="reveal">
         This growing willingness to interoperate, rather than compete purely on closed hardware ecosystems, is
@@ -1749,6 +1819,31 @@
     b.addEventListener('click',function(){ apply(b.getAttribute('data-f')); });
   });
   apply('all');
+})();
+
+/* ================= SECTION 4 - PRODUCT LANDSCAPE CATEGORY TOGGLES ================= */
+(function(){
+  var pl = document.getElementById('clPl');
+  if(!pl) return;
+  var btns = [].slice.call(pl.querySelectorAll('.cl-pltg'));
+  if(!btns.length) return;
+
+  btns.forEach(function(b){
+    var cat = b.getAttribute('data-cat');
+    var head = pl.querySelector('.cl-plhd[data-cat="'+cat+'"]');
+    var boxes = [].slice.call(pl.querySelectorAll('.cl-plbx[data-cat="'+cat+'"]'));
+    var title = head ? head.querySelector('.cl-plt').textContent.trim() : '';
+
+    b.addEventListener('click',function(){
+      var open = b.getAttribute('aria-expanded') === 'true';
+      b.setAttribute('aria-expanded',open ? 'false' : 'true');
+      b.setAttribute('aria-label',(open ? 'Expand ' : 'Collapse ') + title);
+      boxes.forEach(function(x){ if(open){ x.setAttribute('hidden',''); } else { x.removeAttribute('hidden'); } });
+      /* the connectors hang off the boxes above them - drop them when there is nothing to point at */
+      if(head) head.classList.toggle('off',open);
+      boxes.forEach(function(x){ x.classList.toggle('off',open); });
+    });
+  });
 })();
 </script>
 </body>
