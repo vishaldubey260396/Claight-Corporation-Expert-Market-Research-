@@ -738,6 +738,145 @@
 
   .mo-lede{font-size:15px;color:#3a3f52}
   .mo-lede strong{color:var(--purple-deep)}
+
+  /* ================= SECTION 5 - MARKET DYNAMICS ================= */
+  .md-lede{font-size:14.5px;line-height:1.7;color:#3a3f52;margin:0 0 16px}
+  .md-lede strong{color:var(--purple-deep)}
+  .md-cap{font-size:12.5px;color:#475569;line-height:1.6;margin:10px 0 0}
+
+  /* shared exhibit shell */
+  .md-fig{margin:16px 0 0;padding:18px 20px 16px;background:#fff;
+    border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 14px rgba(76,29,149,.06)}
+  .md-fig h6{margin:0;font-size:13px;font-weight:800;color:var(--navy)}
+  .md-fig .md-sub{margin:4px 0 0;font-size:11.5px;color:var(--muted)}
+
+  /* --- 5.1 opportunity cards --- */
+  .md-opps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:16px 0 0}
+  .md-opp{position:relative;padding:16px 18px 16px 56px;background:#fff;
+    border:1px solid var(--line);border-radius:12px;
+    box-shadow:0 3px 10px rgba(76,29,149,.05);
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+  .md-opp:hover,.md-opp:focus-within{transform:translateY(-3px);
+    border-color:#d9cbff;box-shadow:0 10px 22px rgba(76,29,149,.13)}
+  .md-opp::before{content:counter(mdopp);counter-increment:mdopp;
+    position:absolute;left:16px;top:15px;width:28px;height:28px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;color:#fff;
+    background:linear-gradient(180deg,#8b5cf6,#6d28d9)}
+  .md-opps{counter-reset:mdopp}
+  .md-opp h6{margin:0 0 6px;font-size:13.5px;font-weight:800;color:var(--purple-deep);line-height:1.35}
+  .md-opp p{margin:0;font-size:12.5px;line-height:1.65;color:var(--ink)}
+  @media(max-width:760px){.md-opps{grid-template-columns:1fr}}
+
+  /* --- 5.2 diverging impact chart --- */
+  .md-div{margin-top:14px}
+  .md-divhd{display:flex;justify-content:space-between;font-size:11px;font-weight:800;
+    letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+  .md-divhd .l{color:#b45309}
+  .md-divhd .r{color:#6d28d9}
+  .md-divrow{display:grid;grid-template-columns:1fr 1fr;align-items:center;
+    column-gap:0;margin:0 0 7px;min-height:22px}
+  .md-divbar{height:15px;border-radius:3px}
+  .md-divrow.dr .md-divlab{grid-column:1;text-align:right;padding-right:12px;
+    font-size:12px;font-weight:700;color:#5b21b6}
+  .md-divrow.dr .md-divtrk{grid-column:2;display:flex;justify-content:flex-start}
+  .md-divrow.dr .md-divbar{background:linear-gradient(90deg,#7c3aed,#6d28d9)}
+  .md-divrow.co .md-divtrk{grid-column:1;display:flex;justify-content:flex-end}
+  .md-divrow.co .md-divlab{grid-column:2;text-align:left;padding-left:12px;
+    font-size:12px;font-weight:700;color:#b45309}
+  .md-divrow.co .md-divbar{background:linear-gradient(270deg,#f59e0b,#d97706)}
+  .md-divaxis{position:relative;height:1px;background:var(--line);margin:12px 0 0}
+  .md-div .md-divmid{position:absolute;left:50%;top:-8px;bottom:0;width:1px;background:#cbc2e6}
+  .md-divwrap{position:relative}
+  @media(max-width:620px){
+    .md-divrow{display:flex;flex-direction:column;align-items:stretch;row-gap:3px;margin-bottom:11px}
+    .md-divrow.dr .md-divlab,.md-divrow.co .md-divlab{order:-1;text-align:left;padding:0}
+    .md-divrow.dr .md-divtrk,.md-divrow.co .md-divtrk{justify-content:flex-start}
+    .md-divwrap .md-divmid{display:none}
+    .md-divhd{display:none}
+    .md-divrow.f::before{
+      content:"Drivers";display:block;order:-2;font-size:11px;font-weight:800;letter-spacing:.06em;
+      text-transform:uppercase;color:#6d28d9;margin-bottom:6px}
+    .md-divrow.co.f::before{content:"Constraints";color:#b45309;margin-top:10px}
+  }
+
+  /* --- numbered prose list (drivers, demand indicators) --- */
+  ol.md-list{margin:14px 0 0;padding:0;list-style:none;counter-reset:mdli}
+  ol.md-list>li{position:relative;padding:0 0 0 34px;margin:0 0 13px;
+    font-size:13px;line-height:1.68;color:var(--ink)}
+  ol.md-list>li::before{content:counter(mdli);counter-increment:mdli;
+    position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11.5px;font-weight:800;color:var(--purple-deep);
+    background:#efe9ff;border:1px solid #ddd0ff}
+  ol.md-list>li b{color:var(--purple-deep);font-weight:700}
+
+  /* --- 5.3 SWOT --- */
+  .md-swot{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+  .md-q{padding:14px 16px 15px;border:1px solid var(--line);border-radius:10px;
+    border-top:3px solid var(--qc);background:#fff}
+  .md-q h6{margin:0 0 9px;font-size:13px;font-weight:800;color:var(--qc)}
+  .md-q ul{margin:0;padding:0;list-style:none}
+  .md-q li{position:relative;padding-left:15px;font-size:12.5px;line-height:1.6;
+    color:var(--ink);margin-bottom:6px}
+  .md-q li:last-child{margin-bottom:0}
+  .md-q li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;
+    border-radius:50%;background:var(--qc)}
+  @media(max-width:700px){.md-swot{grid-template-columns:1fr}}
+
+  /* --- 5.4 PESTEL --- */
+  .md-pest{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+  table.md-tbl{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px}
+  table.md-tbl th{background:#f3eeff;color:var(--purple-deep);font-size:11px;
+    letter-spacing:.07em;text-transform:uppercase;text-align:left;
+    padding:9px 12px;border:1px solid var(--line);font-weight:800}
+  table.md-tbl td{padding:10px 12px;border:1px solid var(--line);
+    color:var(--ink);vertical-align:top;line-height:1.6}
+  table.md-tbl td:first-child{font-weight:700;color:var(--pc,var(--purple-deep));white-space:nowrap}
+  table.md-tbl tbody tr:nth-child(even){background:#fbfaff}
+  .md-scroll{overflow-x:auto}
+
+  /* --- 5.5 Porter radar --- */
+  .md-radar{display:block;width:100%;height:auto;max-width:520px;margin:10px auto 0}
+  .md-radar .ring{fill:none;stroke:#e6e0f5;stroke-width:1}
+  .md-radar .spoke{stroke:#e6e0f5;stroke-width:1}
+  .md-radar .area{fill:rgba(124,58,237,.20);stroke:#6d28d9;stroke-width:2;
+    stroke-linejoin:round}
+  .md-radar .pt{fill:#6d28d9}
+  .md-radar .ax{font-size:11.5px;font-weight:700;fill:var(--navy)}
+  .md-radar .lv{font-size:11px;font-weight:700;fill:#7c3aed}
+
+  /* --- 5.6 demand tiles --- */
+  .md-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+  .md-tile{padding:14px 12px;text-align:center;background:#fff;
+    border:1px solid var(--line);border-radius:10px}
+  .md-tile .v{font-size:15px;font-weight:800;color:var(--purple-mid);line-height:1.3}
+  .md-tile .k{margin-top:6px;font-size:11.5px;color:var(--muted);line-height:1.45}
+  @media(max-width:760px){.md-tiles{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:420px){.md-tiles{grid-template-columns:1fr}}
+
+  /* --- 5.7 price ranges (log scale) --- */
+  .md-pr{margin-top:14px}
+  .md-prrow{display:grid;grid-template-columns:minmax(120px,200px) 1fr auto;
+    align-items:center;column-gap:14px;margin-bottom:14px}
+  .md-prlab{font-size:12px;font-weight:700;color:#b45309;text-align:right;line-height:1.4}
+  .md-prtrk{position:relative;height:22px}
+  .md-prbar{position:absolute;top:7px;height:9px;border-radius:5px;
+    background:linear-gradient(90deg,#a78bfa,#5b21b6)}
+  .md-prval{font-size:11.5px;font-weight:800;color:var(--purple-deep);white-space:nowrap}
+  .md-prax{display:grid;grid-template-columns:minmax(120px,200px) 1fr auto;column-gap:14px;
+    font-size:10.5px;color:var(--muted);font-weight:600}
+  .md-praxin{grid-column:2;position:relative;height:16px;border-top:1px solid var(--line);
+    padding-top:4px}
+  .md-praxin span{position:absolute;top:4px;transform:translateX(-50%);white-space:nowrap}
+  .md-praxin span:first-child{transform:none}
+  .md-praxin span:last-child{transform:translateX(-100%)}
+  @media(max-width:600px){
+    .md-prrow{grid-template-columns:1fr auto;row-gap:4px}
+    .md-prlab{text-align:left;grid-column:1/-1}
+    .md-prax{grid-template-columns:1fr auto}
+    .md-praxin{grid-column:1}
+  }
 </style>
 </head>
 <body>
@@ -1518,6 +1657,365 @@
         business case finance committees now expect alongside clinical evidence. Manufacturers lead with it,
         shifting the sales conversation from imaging resolution and navigation accuracy to a
         <strong class="acc">total-cost-of-care</strong> argument aimed at administrators as much as surgeons.
+      </p>
+
+    </section>
+
+    <!-- ================= SECTION 5 - MARKET DYNAMICS ================= -->
+    <section id="market-dynamics" aria-labelledby="mdy-title">
+
+      <h3 class="sub reveal" id="mdy-title">Market Dynamics</h3>
+
+      <h3 class="subh reveal">Market Opportunities</h3>
+
+      <p class="md-lede reveal">
+        Beyond the structural drivers already sustaining category growth, several distinct, less fully exploited
+        avenues offer <strong>additional upside for manufacturers and investors</strong> over the forecast period.
+      </p>
+
+      <div class="md-opps reveal">
+        <article class="md-opp">
+          <h6>Under-Penetrated Emerging Markets</h6>
+          <p>Asia Pacific, Latin America and the Middle East and Africa currently show materially lower installed-base penetration of advanced 3D imaging and navigation platforms relative to North America and Europe, representing a substantial addressable opportunity as hospital capital budgets and domestic manufacturing capability continue to expand across these regions.</p>
+        </article>
+        <article class="md-opp">
+          <h6>Software-as-a-Service and Cloud-Based Analytics Expansion</h6>
+          <p>Subscription-based, cloud-hosted AI analytics and visualization software allow smaller hospitals and ambulatory surgical centers that cannot justify a full capital hardware purchase to access advanced navigation-adjacent capability, opening a materially larger addressable customer base than the hardware-only sales model.</p>
+        </article>
+        <article class="md-opp">
+          <h6>Mixed-Reality and Next-Generation Visualization</h6>
+          <p>Emerging mixed-reality and holographic navigation platforms, such as MediView's XR90 system, represent a nascent but fast-growing premium visualization category with the potential to redefine surgeon workflow beyond conventional screen-based navigation.</p>
+        </article>
+        <article class="md-opp">
+          <h6>Cross-Platform Digital Integration Partnerships</h6>
+          <p>The growing preference for cross-platform digital-integration partnerships, exemplified by the 2026 GE HealthCare and Medtronic alliance, over closed, single-vendor ecosystems opens new go-to-market and revenue-sharing opportunities for both established manufacturers and smaller, software-focused entrants.</p>
+        </article>
+      </div>
+
+      <h3 class="subh reveal">Market Drivers and Constraints</h3>
+
+      <p class="md-lede reveal">
+        The dynamics shaping this market's growth trajectory can be organised into four principal drivers and
+        four principal constraints, each varying meaningfully in the degree of impact exerted on near-term
+        versus longer-run market outcomes. Clinical precision gains and technology convergence
+        <strong>outweigh cost and interoperability frictions</strong> over the forecast horizon.
+      </p>
+
+      <figure class="md-fig reveal" style="margin:0">
+        <h6>Drivers and Constraints, by Degree of Impact</h6>
+        <p class="md-sub">3D Surgical Imaging Market - clinical precision and convergence outweigh cost and interoperability frictions</p>
+        <div class="md-div md-divwrap">
+          <div class="md-divhd"><span class="l">Constraint impact</span><span class="r">Driver impact</span></div>
+          <span class="md-divmid" aria-hidden="true"></span>
+          <div class="md-divrow dr f">
+            <div class="md-divlab">Rising MIS procedure volumes</div>
+            <div class="md-divtrk"><span class="md-divbar" style="width:100%"></span></div>
+          </div>
+          <div class="md-divrow dr">
+            <div class="md-divlab">AI-enabled navigation accuracy</div>
+            <div class="md-divtrk"><span class="md-divbar" style="width:88%"></span></div>
+          </div>
+          <div class="md-divrow dr">
+            <div class="md-divlab">Imaging + robotics integration</div>
+            <div class="md-divtrk"><span class="md-divbar" style="width:80%"></span></div>
+          </div>
+          <div class="md-divrow dr">
+            <div class="md-divlab">Hybrid operating room growth</div>
+            <div class="md-divtrk"><span class="md-divbar" style="width:70%"></span></div>
+          </div>
+          <div class="md-divrow co f">
+            <div class="md-divtrk"><span class="md-divbar" style="width:92%"></span></div>
+            <div class="md-divlab">High capital cost</div>
+          </div>
+          <div class="md-divrow co">
+            <div class="md-divtrk"><span class="md-divbar" style="width:82%"></span></div>
+            <div class="md-divlab">Lack of interoperability</div>
+          </div>
+          <div class="md-divrow co">
+            <div class="md-divtrk"><span class="md-divbar" style="width:74%"></span></div>
+            <div class="md-divlab">Long capital-budget cycles</div>
+          </div>
+          <div class="md-divrow co">
+            <div class="md-divtrk"><span class="md-divbar" style="width:55%"></span></div>
+            <div class="md-divlab">Radiation / safety concerns</div>
+          </div>
+        </div>
+        <figcaption class="md-cap">Bar length shows relative degree of impact (rank order), not a measured
+          quantity. Drivers extend right, constraints left of the centre axis.</figcaption>
+      </figure>
+
+      <h3 class="subh nn reveal" style="margin-top:22px">Market Drivers</h3>
+
+      <ol class="md-list reveal">
+          <li><b>Rising Minimally Invasive Surgical Procedure Volumes:</b> The continued global shift toward minimally invasive surgical techniques across orthopedic, neurosurgical, spinal and cardiovascular specialties depends fundamentally on high-fidelity three-dimensional visualization to compensate for the surgeon's restricted direct line of sight, sustaining structural demand for 3D imaging and navigation platforms across essentially every major surgical discipline.</li>
+          <li><b>AI-Enabled Visualization and Navigation Accuracy:</b> The embedding of artificial intelligence within surgical imaging platforms, spanning automated anatomical segmentation, multi-modal image fusion and real-time registration, is measurably improving navigation accuracy while reducing the cognitive and workflow burden on the surgical team, a combination that is accelerating adoption even among historically conservative hospital purchasing committees.</li>
+          <li><b>Integration of Imaging with Surgical Robotics:</b> The integration of 3D imaging and navigation with robotic instrument guidance, as demonstrated by Medtronic's Stealth AXIS and Brainlab's Cirq and Loop-X combination, is expanding the average value captured per installed platform and creating a new, higher-margin category of fully integrated capital equipment.</li>
+          <li><b>Growth in Hybrid Operating Rooms Globally:</b> The continued global build-out of hybrid operating rooms, which combine fixed advanced imaging infrastructure with full surgical capability, provides a natural, high-value deployment environment for premium 3D imaging and navigation platforms, and is itself a durable multi-year capital-investment cycle for hospitals.</li>
+      </ol>
+
+      <h3 class="subh reveal">SWOT Analysis</h3>
+
+      <figure class="md-fig reveal" style="margin-top:14px">
+        <h6>SWOT Analysis</h6>
+        <p class="md-sub">3D Surgical Imaging Market</p>
+        <div class="md-swot">
+          <div class="md-q" style="--qc:#6d28d9">
+            <h6>Strengths</h6>
+            <ul><li>Clear clinical precision and revision-avoidance benefit</li><li>Deep bench of established medtech majors</li><li>Broad, defensible surgical-relationship base</li></ul>
+          </div>
+          <div class="md-q" style="--qc:#b45309">
+            <h6>Weaknesses</h6>
+            <ul><li>High capital cost limits smaller-hospital adoption</li><li>Poor cross-vendor interoperability</li><li>Long, committee-gated purchasing cycles</li></ul>
+          </div>
+          <div class="md-q" style="--qc:#047857">
+            <h6>Opportunities</h6>
+            <ul><li>Cloud / AI SaaS expands addressable base</li><li>Under-penetrated emerging markets</li><li>Mixed-reality &amp; next-gen visualization</li></ul>
+          </div>
+          <div class="md-q" style="--qc:#be123c">
+            <h6>Threats</h6>
+            <ul><li>Pricing competition from Asian hardware</li><li>Slow-moving regulatory pathways</li><li>Software-native entrants eroding leadership</li></ul>
+          </div>
+        </div>
+      </figure>
+
+      <p class="reveal" style="margin-top:16px">
+        Read together, the SWOT framework points to a market whose core strengths, clinical precision and a deep
+        bench of established medical technology companies, are structurally durable, while its principal
+        vulnerabilities cluster around cost and interoperability rather than clinical efficacy. The most
+        consequential opportunities and threats are increasingly linked to software and platform strategy rather
+        than hardware innovation alone: cloud-based and AI-enabled platform expansion represents the clearest
+        growth opportunity, while pricing competition and slow-moving regulatory pathways represent the most
+        material threats to incumbent economics. Notably, several of the strengths and opportunities identified
+        above are mutually reinforcing: the same AI-based segmentation and robotics-integration capability that
+        constitutes a strength for today's market leaders is also the mechanism by which smaller, more agile
+        competitors could most plausibly erode that leadership over the coming decade, underscoring why continued
+        R&amp;D investment intensity, rather than installed-base scale alone, is likely to determine long-run
+        competitive outcomes in this category.
+      </p>
+
+      <h3 class="subh reveal">PESTEL Analysis</h3>
+
+      <p class="md-lede reveal">
+        A PESTEL framework provides a structured view of the broader <strong>macro-environmental factors</strong>
+        shaping the market beyond the direct commercial drivers and constraints discussed above.
+      </p>
+
+      <figure class="md-fig reveal" style="margin-top:14px">
+        <h6>PESTEL Analysis</h6>
+        <p class="md-sub">3D Surgical Imaging Market - macro-environmental factors shaping the market</p>
+        <div class="md-pest">
+          <div class="md-q" style="--qc:#6d28d9">
+            <h6>Political</h6>
+            <ul><li>Political capex &amp; public procurement cycles</li><li>Trade / tariff policy on components</li><li>National digital-health &amp; AI policy</li></ul>
+          </div>
+          <div class="md-q" style="--qc:#0369a1">
+            <h6>Economic</h6>
+            <ul><li>High per-system capital cost</li><li>Emerging-market affordability &amp; FX</li><li>GPO bargaining power</li></ul>
+          </div>
+          <div class="md-q" style="--qc:#047857">
+            <h6>Social</h6>
+            <ul><li>Expectation of precise, minimally invasive care</li><li>Acceptance of AI decision support</li><li>Ageing populations lifting procedure volumes</li></ul>
+          </div>
+          <div class="md-q" style="--qc:#7c3aed">
+            <h6>Technological</h6>
+            <ul><li>Imaging-navigation-robotics convergence</li><li>AI segmentation &amp; image fusion</li><li>Mixed-reality &amp; cloud-native architectures</li></ul>
+          </div>
+          <div class="md-q" style="--qc:#b45309">
+            <h6>Environmental</h6>
+            <ul><li>Radiation-dose reduction priority</li><li>Sustainability of hardware manufacturing</li><li>E-waste from retired imaging systems</li></ul>
+          </div>
+          <div class="md-q" style="--qc:#be123c">
+            <h6>Legal</h6>
+            <ul><li>Dense, overlapping patent filings</li><li>Device regulatory clearance pathways</li><li>Data-privacy rules for cloud platforms</li></ul>
+          </div>
+        </div>
+        <div class="md-scroll">
+          <table class="md-tbl">
+            <thead><tr><th>Dimension</th><th>Key considerations</th></tr></thead>
+            <tbody>
+              <tr><td style="--pc:#6d28d9">Political</td><td>Hospital capital-expenditure policy and public health-system procurement cycles; trade and tariff policy affecting medical device component sourcing; national digital-health and AI-in-healthcare policy frameworks.</td></tr>
+              <tr><td style="--pc:#0369a1">Economic</td><td>High per-system capital cost relative to hospital capital budgets; currency and macroeconomic conditions affecting emerging-market affordability; group purchasing organisation bargaining power.</td></tr>
+              <tr><td style="--pc:#047857">Social</td><td>Rising surgeon and patient expectation of precision, minimally invasive care; growing acceptance of AI-assisted clinical decision support; ageing populations driving orthopedic and cardiovascular procedure volumes.</td></tr>
+              <tr><td style="--pc:#7c3aed">Technological</td><td>Convergence of imaging, navigation and robotics into unified platforms; advances in AI-based segmentation and image fusion; mixed-reality and cloud-native visualization architectures.</td></tr>
+              <tr><td style="--pc:#b45309">Environmental</td><td>Radiation-dose reduction as a design priority; sustainability of hardware manufacturing and electronic-waste considerations for retired imaging systems.</td></tr>
+              <tr><td style="--pc:#be123c">Legal</td><td>Patent protection and freedom-to-operate risk given dense, overlapping patent filings around navigation and imaging methods; medical device regulatory clearance pathways; data-privacy regulation applicable to cloud-connected platforms.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </figure>
+
+      <p class="reveal" style="margin-top:16px">
+        Of the six PESTEL dimensions, technological and legal factors are currently exerting the most direct
+        influence on company-level outcomes, as the imaging-navigation-robotics convergence trend reshapes both
+        product roadmaps and patent strategy, while economic factors, particularly hospital capital-budget cycles,
+        remain the most significant near-term gating factor on the pace of adoption across price-sensitive regions.
+      </p>
+
+      <h3 class="subh reveal">Porter's Five Forces Analysis</h3>
+
+      <figure class="md-fig reveal" style="margin-top:14px">
+        <h6>Porter's Five Forces Analysis</h6>
+        <p class="md-sub">3D Surgical Imaging Market - intensity of each competitive force</p>
+        <svg class="md-radar" viewBox="0 0 520 340" role="img"
+             aria-label="Radar chart of Porter's Five Forces: competitive rivalry high, buyer power high, supplier power moderate, threat of new entrants moderate, threat of substitutes moderate.">
+        <polygon class="ring" points="260.0,140.7 295.5,166.5 281.9,208.2 238.1,208.2 224.5,166.5"/>
+        <polygon class="ring" points="260.0,103.3 331.0,154.9 303.9,238.4 216.1,238.4 189.0,154.9"/>
+        <polygon class="ring" points="260.0,66.0 366.5,143.4 325.8,268.6 194.2,268.6 153.5,143.4"/>
+        <line class="spoke" x1="260" y1="178" x2="260.0" y2="66.0"/>
+        <line class="spoke" x1="260" y1="178" x2="366.5" y2="143.4"/>
+        <line class="spoke" x1="260" y1="178" x2="325.8" y2="268.6"/>
+        <line class="spoke" x1="260" y1="178" x2="194.2" y2="268.6"/>
+        <line class="spoke" x1="260" y1="178" x2="153.5" y2="143.4"/>
+        <polygon class="area" points="260.0,66.0 366.5,143.4 303.9,238.4 216.1,238.4 189.0,154.9"/>
+        <circle class="pt" cx="260.0" cy="66.0" r="3.5"/>
+        <circle class="pt" cx="366.5" cy="143.4" r="3.5"/>
+        <circle class="pt" cx="303.9" cy="238.4" r="3.5"/>
+        <circle class="pt" cx="216.1" cy="238.4" r="3.5"/>
+        <circle class="pt" cx="189.0" cy="154.9" r="3.5"/>
+        <text class="ax" x="260.0" y="38.0" text-anchor="middle">Competitive rivalry</text>
+        <text class="lv" x="260.0" y="52.0" text-anchor="middle">High</text>
+        <text class="ax" x="391.2" y="133.4" text-anchor="start">Buyer power</text>
+        <text class="lv" x="391.2" y="147.4" text-anchor="start">High</text>
+        <text class="ax" x="341.1" y="301.6" text-anchor="start">Supplier power</text>
+        <text class="lv" x="341.1" y="315.6" text-anchor="start">Moderate</text>
+        <text class="ax" x="178.9" y="301.6" text-anchor="end">New entrants</text>
+        <text class="lv" x="178.9" y="315.6" text-anchor="end">Moderate</text>
+        <text class="ax" x="128.8" y="133.4" text-anchor="end">Substitutes</text>
+        <text class="lv" x="128.8" y="147.4" text-anchor="end">Moderate</text>
+        </svg>
+      </figure>
+
+      <p class="reveal" style="margin-top:16px">
+        Competitive rivalry within the 3D surgical imaging platform market is high, concentrated among a small
+        number of diversified medical technology majors, Medtronic, Stryker, Siemens Healthineers, Brainlab and
+        GE HealthCare, competing on navigation accuracy, workflow integration and total platform breadth. The
+        bargaining power of buyers is high, reflecting the concentrated purchasing influence of large hospital
+        systems and group purchasing organisations able to negotiate aggressively on capital equipment pricing.
+        Supplier bargaining power is moderate, given the reasonably concentrated base of precision optics, sensor
+        and semiconductor component suppliers feeding into navigation hardware. The threat of new entrants is
+        moderate, tempered by the regulatory and capital intensity required to bring an integrated platform to
+        market, though software-only entrants face a meaningfully lower barrier. The threat of substitutes,
+        principally conventional 2D imaging and freehand surgical technique, is moderate, reflecting the
+        entrenched but gradually eroding role of traditional approaches in lower-acuity procedures.
+      </p>
+
+      <h3 class="subh reveal">Key Demand Indicators</h3>
+
+      <figure class="md-fig reveal" style="margin-top:14px">
+        <h6>Key Demand Indicators</h6>
+        <p class="md-sub">Structural demand drivers underpinning the forecast</p>
+        <div class="md-tiles">
+          <div class="md-tile"><div class="v">&#9650; Rising</div><div class="k">MIS procedure volume</div></div>
+          <div class="md-tile"><div class="v">Documented</div><div class="k">Revision-cost avoidance</div></div>
+          <div class="md-tile"><div class="v">Expanding</div><div class="k">Hybrid OR build-out</div></div>
+          <div class="md-tile"><div class="v">&#9650; Growing</div><div class="k">AI acceptance</div></div>
+        </div>
+      </figure>
+
+      <ol class="md-list reveal">
+          <li><b>Procedure Volume Growth:</b> Continued global growth in minimally invasive orthopedic, spinal, neurosurgical and cardiovascular procedure volumes sustains long-run structural demand for 3D imaging and navigation, independent of any single product cycle; each additional procedure category for which minimally invasive technique becomes standard of care effectively widens the platform's addressable market without requiring any further clinical innovation.</li>
+          <li><b>Revision-Surgery Cost Avoidance:</b> Documented reductions in revision-surgery rates associated with intraoperative 3D verification are an increasingly persuasive part of the capital-purchase business case hospitals present internally when justifying platform investment, particularly in reimbursement systems that do not separately compensate hospitals for a revision procedure following an initial surgical intervention.</li>
+          <li><b>Hybrid Operating Room Build-Out:</b> The steady expansion of the global hybrid operating room installed base continues to create new, high-value deployment opportunities for advanced imaging and navigation platforms, with each new hybrid suite typically representing a multi-year, multi-system capital commitment rather than a single discrete purchase.</li>
+          <li><b>Physician and Institutional AI Acceptance:</b> Growing surgeon and hospital-administrator familiarity with AI-assisted clinical tools is lowering the psychological and workflow barrier to adopting AI-enabled imaging and navigation platforms relative to just a few years ago, a shift reinforced by the growing volume of peer-reviewed clinical evidence supporting AI-based segmentation and navigation accuracy.</li>
+      </ol>
+
+      <p class="reveal">
+        Taken together, these demand indicators reinforce a central theme of this report: growth in this category
+        is being driven less by any single breakthrough technology and more by the cumulative, mutually
+        reinforcing effect of rising procedure volumes, accumulating clinical evidence, and steadily improving
+        institutional comfort with AI-assisted surgical tools, a combination that tends to produce durable rather
+        than cyclical demand.
+      </p>
+
+      <h3 class="subh reveal">Key Price Indicators</h3>
+
+      <figure class="md-fig reveal" style="margin-top:14px">
+        <h6>System Price by Platform Category</h6>
+        <p class="md-sub">3D Surgical Imaging Platforms - capital cost range by architecture (log scale)</p>
+        <div class="md-pr">
+            <div class="md-prrow">
+              <div class="md-prlab">Fixed intraoperative CT / MRI</div>
+              <div class="md-prtrk"><span class="md-prbar" style="left:84.93%;width:13.08%"></span></div>
+              <div class="md-prval">$0.9-1.8M</div>
+            </div>
+            <div class="md-prrow">
+              <div class="md-prlab">Integrated navigation + robotics</div>
+              <div class="md-prtrk"><span class="md-prbar" style="left:60.75%;width:14.88%"></span></div>
+              <div class="md-prval">$250-550k</div>
+            </div>
+            <div class="md-prrow">
+              <div class="md-prlab">Mobile intraoperative 3D imaging</div>
+              <div class="md-prtrk"><span class="md-prbar" style="left:54.55%;width:15.07%"></span></div>
+              <div class="md-prval">$180-400k</div>
+            </div>
+            <div class="md-prrow">
+              <div class="md-prlab">Software-only / cloud (per year)</div>
+              <div class="md-prtrk"><span class="md-prbar" style="left:7.65%;width:33.82%"></span></div>
+              <div class="md-prval">$15-90k/yr</div>
+            </div>
+          <div class="md-prax"><div class="md-praxin"><span style="left:0.00%">$10k</span><span style="left:43.46%">$100k</span><span style="left:86.92%">$1M</span><span style="left:100.00%">$2M</span></div></div>
+        </div>
+      </figure>
+
+      <p class="reveal" style="margin-top:16px">
+        Pricing across the category varies enormously by platform architecture, spanning four broad tiers.
+        Integrated navigation-and-robotics platforms sit at the premium end, reflecting the combined hardware,
+        software and installation complexity involved in a fully bundled system. Mobile intraoperative 3D imaging
+        systems occupy a mid-tier position, given their comparatively more modular, single-function design. Fixed
+        intraoperative CT or MRI suites represent the highest capital tier of the category, given the
+        hybrid-room construction and integration typically required alongside the imaging hardware itself.
+        Software-only and cloud-based platforms sit at the most accessible end, priced on an annual subscription
+        basis rather than as a capital purchase, a model that is expanding access for smaller hospitals and
+        ambulatory surgical centers that cannot justify a full capital hardware purchase.
+      </p>
+
+      <h3 class="subh reveal">Value Chain Analysis</h3>
+
+      <p class="md-lede reveal">
+        Understanding the full value chain, from component manufacturing through to ongoing clinical service and
+        analytics revenue, helps clarify where the <strong>greatest commercial value, and the greatest
+        operational risk</strong>, is concentrated within this market.
+      </p>
+
+      <p class="reveal">
+        The value chain for 3D medical and surgical imaging platforms begins with precision component
+        manufacturing, spanning optical sensors, semiconductor detectors and imaging-grade displays, followed by
+        system integration and software development, where platform manufacturers combine hardware with
+        proprietary navigation, visualization and increasingly AI-based analytics software. This is followed by
+        regulatory clearance and quality certification, hospital sales and capital-equipment procurement
+        (frequently mediated by group purchasing organisations), installation and clinical integration (often
+        requiring hybrid operating room construction or retrofit), and finally ongoing service, software updates
+        and, increasingly, subscription-based analytics revenue. Component supply concentration, particularly for
+        precision optical tracking hardware and medical-grade semiconductor sensors, has emerged as an important
+        operational risk factor for platform manufacturers, prompting several major players to deepen direct
+        relationships with specialised component suppliers and, in some cases, pursue vertical integration
+        through acquisition.
+      </p>
+
+      <p class="reveal">
+        Supply-chain resilience has become an increasingly important strategic consideration for platform
+        manufacturers. Precision optical tracking components and medical-grade semiconductor sensors are sourced
+        from a relatively concentrated supplier base, and geopolitical or trade-policy disruption to
+        semiconductor and specialty-electronics supply chains represents a material operational risk that
+        manufacturers are increasingly building explicit contingency and dual-sourcing plans around, mirroring
+        practices already well established across the broader medical-device and electronics industries.
+      </p>
+
+      <h3 class="subh reveal">Industry Events, Initiatives and Trends</h3>
+
+      <p class="reveal">
+        Beyond individual company announcements, several broader industry-level trends are shaping the trajectory
+        of this market. Major clinical and industry conferences, including the American Association of
+        Neurological Surgeons annual meeting and the Radiological Society of North America's annual meeting, have
+        become key venues for platform launches and head-to-head clinical-evidence presentations, with hospital
+        purchasing committees increasingly citing conference-presented data in their internal evaluation
+        processes. Cross-industry convergence between imaging, navigation, robotics and AI-based analytics
+        companies continues to accelerate, as illustrated by the growing frequency of digital-integration
+        partnerships between historically separate product categories, such as the 2026 GE HealthCare and
+        Medtronic collaboration. Finally, the gradual shift of software and analytics revenue toward
+        subscription-based commercial models, rather than one-time licence sales bundled with hardware, is
+        reshaping how manufacturers structure both pricing and long-term customer relationships, a trend expected
+        to remain one of the defining structural themes of the market through the remainder of this decade.
       </p>
 
     </section>
