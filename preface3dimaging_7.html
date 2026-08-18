@@ -593,15 +593,47 @@
   }
   @media(prefers-reduced-motion:reduce){ .cl-pltg svg{transition:none} }
 
-  /* --- two fronts --- */
-  .cl-fronts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0 6px}
-  .cl-front{background:linear-gradient(180deg,#fbfaff,#f5f2ff);border:1px solid var(--line);
-    border-radius:12px;padding:16px}
-  .cl-front .n{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--purple);margin-bottom:7px}
-  .cl-front h6{margin:0 0 7px;font-size:14px;font-weight:800;color:var(--purple-deep)}
-  .cl-front p{margin:0;font-size:13px;line-height:1.6;color:var(--ink)}
-  @media(max-width:640px){ .cl-fronts{grid-template-columns:1fr} }
+  /* --- two fronts as flip coins: heading on the face, detail on the reverse --- */
+  .cl-coins{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;margin:22px 0 10px}
+  .cl-coin{appearance:none;background:none;border:0;padding:0;cursor:pointer;
+    width:260px;height:260px;perspective:900px;flex:none}
+  .cl-coin:focus{outline:none}
+  /* a span is inline by default, and width/height would be ignored - the faces need a real box */
+  .cl-coininner{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;
+    transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+  .cl-coin:hover .cl-coininner,.cl-coin:focus-visible .cl-coininner{transform:rotateY(180deg)}
+  .cl-coin:focus-visible .cl-coininner{box-shadow:0 0 0 3px rgba(124,58,237,.5);border-radius:50%}
+
+  .cl-face{position:absolute;inset:0;border-radius:50%;backface-visibility:hidden;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:15% 14%}
+  /* the double inset ring is what reads as a milled coin rim */
+  .cl-face.f{background:linear-gradient(150deg,#7c5cf0 0%,#4c2c93 100%);color:#fff;
+    box-shadow:0 12px 28px rgba(60,20,120,.30),inset 0 0 0 2px rgba(255,255,255,.22),
+      inset 0 0 0 10px rgba(255,255,255,.08)}
+  .cl-face.b{transform:rotateY(180deg);background:linear-gradient(180deg,#fff,#faf7ff);
+    box-shadow:0 12px 28px rgba(60,20,120,.18),inset 0 0 0 2px var(--line),
+      inset 0 0 0 10px #f4efff}
+  .cl-cn{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:rgba(255,255,255,.75);margin-bottom:9px}
+  .cl-ch{margin:0;font-size:16px;font-weight:800;line-height:1.28;color:#fff;letter-spacing:-0.01em}
+  .cl-chint{display:flex;align-items:center;gap:5px;margin-top:13px;
+    font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    color:rgba(255,255,255,.62)}
+  .cl-chint svg{width:11px;height:11px}
+  .cl-cbl{font-size:9.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--purple);margin-bottom:9px}
+  .cl-cbt{font-size:12px;line-height:1.58;color:var(--ink)}
+
+  @media(max-width:560px){ .cl-coins{gap:26px} .cl-coin{width:232px;height:232px} }
+  @media(prefers-reduced-motion:reduce){
+    /* no rotation - swap the faces instead */
+    .cl-coininner,.cl-coin:hover .cl-coininner,.cl-coin:focus-visible .cl-coininner{transition:none;transform:none}
+    .cl-face{backface-visibility:visible}
+    .cl-face.b{transform:none;visibility:hidden}
+    .cl-coin:hover .cl-face.f,.cl-coin:focus-visible .cl-face.f{visibility:hidden}
+    .cl-coin:hover .cl-face.b,.cl-coin:focus-visible .cl-face.b{visibility:visible}
+  }
 
   /* --- economic case: the two paths --- */
   .cl-stat{margin:16px 0 4px}
@@ -1331,18 +1363,33 @@
         Taken together, these clinical and technological dynamics point to a market in which the addressable
         opportunity is expanding on two fronts simultaneously.
       </p>
-      <div class="cl-fronts reveal">
-        <div class="cl-front">
-          <div class="n">Front one</div>
-          <h6>A widening base of procedures</h6>
-          <p>More surgical procedures for which 3D imaging and navigation is considered standard of care.</p>
-        </div>
-        <div class="cl-front">
-          <div class="n">Front two</div>
-          <h6>Rising value per procedure</h6>
-          <p>A rising average platform value per procedure as imaging, navigation, robotics and AI-based analytics
-            are progressively bundled into unified, higher-value systems.</p>
-        </div>
+      <div class="cl-coins reveal">
+        <button type="button" class="cl-coin">
+          <span class="cl-coininner">
+            <span class="cl-face f">
+              <span class="cl-cn">Front one</span>
+              <span class="cl-ch">A widening base of procedures</span>
+              <span class="cl-chint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1"></path><polyline points="20.5 3.5 20.5 8 16 8"></polyline></svg> Flip</span>
+            </span>
+            <span class="cl-face b">
+              <span class="cl-cbl">Front one</span>
+              <span class="cl-cbt">More surgical procedures for which 3D imaging and navigation is considered standard of care.</span>
+            </span>
+          </span>
+        </button>
+        <button type="button" class="cl-coin">
+          <span class="cl-coininner">
+            <span class="cl-face f">
+              <span class="cl-cn">Front two</span>
+              <span class="cl-ch">Rising value per procedure</span>
+              <span class="cl-chint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1"></path><polyline points="20.5 3.5 20.5 8 16 8"></polyline></svg> Flip</span>
+            </span>
+            <span class="cl-face b">
+              <span class="cl-cbl">Front two</span>
+              <span class="cl-cbt">Imaging, navigation, robotics and AI-based analytics are progressively bundled into unified, higher-value systems.</span>
+            </span>
+          </span>
+        </button>
       </div>
 
       <div class="cl-note reveal">
