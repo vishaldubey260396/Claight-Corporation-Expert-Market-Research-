@@ -485,37 +485,62 @@
   }
 
 
-  /* --- emerging technologies, grouped by how far along they are --- */
-  .cl-lanes{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:16px;margin:16px 0 6px;
-    align-items:start}
-  .cl-lane{border-radius:12px;padding:14px 15px 15px;border:1px solid}
-  .cl-lane.now{background:linear-gradient(180deg,#f9fefb,#f1fbf6);border-color:#c3f0d7}
-  .cl-lane.soon{background:linear-gradient(180deg,#fffdf9,#fef7ec);border-color:#f7dcb3}
-  .cl-lanehd{display:flex;align-items:center;gap:9px;margin-bottom:12px}
-  .cl-lanehd .mk{width:9px;height:9px;border-radius:50%;flex:none}
-  .cl-lane.now .mk{background:#059669}
-  .cl-lane.soon .mk{background:#d97706}
-  .cl-lanehd .tx{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
-  .cl-lane.now .tx{color:#065f46}
-  .cl-lane.soon .tx{color:#92400e}
-  .cl-lanehd .ct{margin-left:auto;font-size:11px;font-weight:800;border-radius:20px;padding:2px 9px}
-  .cl-lane.now .ct{color:#065f46;background:#dcf6e9;border:1px solid #bbf0d3}
-  .cl-lane.soon .ct{color:#92400e;background:#fdefda;border:1px solid #f7dcb3}
+  /* --- emerging technologies: numbered editorial rows with a maturity meter --- */
+  .cl-tk{margin:16px 0 6px}
+  .cl-tkfilter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+  .cl-tkf{appearance:none;font:inherit;cursor:pointer;font-size:12px;font-weight:700;
+    color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:6px 13px;display:flex;align-items:center;gap:7px;
+    transition:color .15s ease,border-color .15s ease,background .15s ease}
+  .cl-tkf span{font-size:10.5px;font-weight:800;color:#a99fc4}
+  .cl-tkf:hover{color:var(--purple-deep);border-color:var(--purple-soft);background:var(--tint)}
+  .cl-tkf[aria-pressed="true"]{color:#fff;background:var(--purple-mid);border-color:var(--purple-mid)}
+  .cl-tkf[aria-pressed="true"] span{color:rgba(255,255,255,.72)}
+  .cl-tkf:focus{outline:none}
+  .cl-tkf:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+  .cl-tkcount{font-size:11.5px;color:var(--muted);margin:10px 0 0}
 
-  .cl-tech{background:#fff;border:1px solid var(--line);border-left:3px solid;border-radius:8px;
-    padding:11px 13px 12px;transition:transform .16s ease,box-shadow .16s ease,border-left-color .16s ease}
-  .cl-tech+.cl-tech{margin-top:9px}
-  .cl-lane.now .cl-tech{border-left-color:#6ee7b7}
-  .cl-lane.soon .cl-tech{border-left-color:#fcd34d}
-  .cl-lane.now .cl-tech:hover{border-left-color:#059669;transform:translateY(-2px);
-    box-shadow:0 8px 18px rgba(5,150,105,.16)}
-  .cl-lane.soon .cl-tech:hover{border-left-color:#d97706;transform:translateY(-2px);
-    box-shadow:0 8px 18px rgba(217,119,6,.16)}
-  .cl-techt{font-size:13.5px;font-weight:800;color:var(--navy);margin-bottom:5px;line-height:1.35}
-  .cl-tech p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink)}
-  .cl-tech p b{color:#141018;font-weight:800}
-  @media(max-width:760px){ .cl-lanes{grid-template-columns:1fr} }
-  @media(prefers-reduced-motion:reduce){ .cl-tech,.cl-tech:hover{transform:none} }
+  .cl-tklist{list-style:none;margin:6px 0 0;padding:0;counter-reset:tk}
+  .cl-tkrow{display:grid;grid-template-columns:56px minmax(0,1fr) 136px;gap:16px;align-items:start;
+    padding:16px 12px 16px 4px;border-top:1px solid var(--line);position:relative;
+    transition:background .16s ease}
+  .cl-tkrow:last-child{border-bottom:1px solid var(--line)}
+  .cl-tkrow::before{content:"";position:absolute;left:0;top:-1px;bottom:0;width:0;
+    background:var(--purple);transition:width .16s ease}
+  .cl-tkrow:hover{background:var(--tint)}
+  .cl-tkrow:hover::before{width:3px}
+  .cl-tkrow[hidden]{display:none}
+
+  .cl-tkn{counter-increment:tk;font-size:30px;font-weight:800;line-height:1;letter-spacing:-0.03em;
+    color:#ddd6fe;transition:color .16s ease}
+  .cl-tkn::before{content:"0" counter(tk)}
+  .cl-tkrow:hover .cl-tkn{color:var(--purple-mid)}
+  .cl-tkt{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:5px;line-height:1.35}
+  .cl-tkrow p{margin:0;font-size:13px;line-height:1.62;color:var(--ink)}
+  .cl-tkrow p b{color:#141018;font-weight:800}
+
+  /* two steps, research then commercial - the copy supports no finer reading than that */
+  .cl-tkm{padding-top:3px}
+  .cl-tkml{display:block;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+    margin-bottom:7px;white-space:nowrap}
+  .cl-tkrow[data-m="now"] .cl-tkml{color:#065f46}
+  .cl-tkrow[data-m="soon"] .cl-tkml{color:#92400e}
+  .cl-tkmb{display:flex;gap:3px}
+  .cl-tkmb i{height:5px;flex:1;border-radius:3px;background:#e9e2f7}
+  .cl-tkrow[data-m="soon"] .cl-tkmb i:nth-child(1){background:#f59e0b}
+  .cl-tkrow[data-m="now"] .cl-tkmb i{background:#059669}
+  .cl-tkms{display:block;font-size:10px;color:#a99fc4;margin-top:6px}
+
+  @media(max-width:720px){
+    .cl-tkrow{grid-template-columns:44px minmax(0,1fr);gap:12px}
+    .cl-tkn{font-size:24px}
+    .cl-tkm{grid-column:2;padding-top:10px}
+    .cl-tkmb{max-width:150px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .cl-tkrow,.cl-tkrow::before,.cl-tkn{transition:none}
+  }
+
 
 
   /* three columns of prose need more width than a phone has - let the table scroll itself */
@@ -1168,41 +1193,76 @@
         delivered - some already in commercial use, others still ahead of deployment.
       </p>
 
-      <div class="cl-lanes reveal">
-        <div class="cl-lane now">
-          <div class="cl-lanehd">
-            <span class="mk" aria-hidden="true"></span>
-            <span class="tx">In commercial use</span>
-            <span class="ct">3</span>
-          </div>
-          <div class="cl-tech">
-            <div class="cl-techt">Mixed-reality and holographic visualization</div>
-            <p>Emerging as a distinct product category in its own right, extending beyond <b>Brainlab's Spine
-              Mixed Reality Navigation</b> to include entrants such as <b>MediView</b>, whose XR90 Holographic
-              Surgical Navigation system overlays real-time imaging directly onto the surgeon's field of view for
-              percutaneous procedures.</p>
-          </div>
-          <div class="cl-tech">
-            <div class="cl-techt">Robotic-assisted platforms bundled with navigation</div>
-            <p>Robotic-assisted platforms are increasingly bundled with, rather than sold separately from, 3D
-              navigation - as illustrated by <b>Zimmer Biomet's</b> and <b>Globus Medical's</b> spine and
-              orthopedic robotics lines, both of which depend on intraoperative or preoperative 3D imaging for
-              registration accuracy.</p>
-          </div>
-          <div class="cl-tech">
-            <div class="cl-techt">Portable, point-of-care imaging</div>
-            <p>A further growth vector, with compact mobile C-arm and cone-beam systems extending advanced
-              visualization into <b>ambulatory surgical centers and smaller hospitals</b> that cannot justify a
-              fixed hybrid suite.</p>
-          </div>
+      <div class="cl-tk reveal" id="clTk">
+        <div class="cl-tkfilter" role="group" aria-label="Filter technologies by maturity">
+          <button type="button" class="cl-tkf" aria-pressed="true" data-f="all">All <span>5</span></button>
+          <button type="button" class="cl-tkf" aria-pressed="false" data-f="now">In commercial use <span>3</span></button>
+          <button type="button" class="cl-tkf" aria-pressed="false" data-f="soon">Forward-looking <span>2</span></button>
         </div>
-
-        <div class="cl-lane soon">
-          <div class="cl-lanehd">
-            <span class="mk" aria-hidden="true"></span>
-            <span class="tx">Forward-looking</span>
-            <span class="ct">2</span>
-          </div>
+        <p class="cl-tkcount" role="status" aria-live="polite" id="clTkCount">Showing all 5</p>
+        <ol class="cl-tklist">
+          <li class="cl-tkrow" data-m="now">
+            <div class="cl-tkn" aria-hidden="true"></div>
+            <div>
+              <div class="cl-tkt">Mixed-reality and holographic visualization</div>
+              <p>Emerging as a distinct product category in its own right, extending beyond <b>Brainlab's Spine Mixed Reality Navigation</b> to include entrants such as <b>MediView</b>, whose XR90 Holographic Surgical Navigation system overlays real-time imaging directly onto the surgeon's field of view for percutaneous procedures.</p>
+            </div>
+            <div class="cl-tkm">
+              <span class="cl-tkml">Commercial</span>
+              <span class="cl-tkmb" aria-hidden="true"><i></i><i></i></span>
+              <span class="cl-tkms">Deployed</span>
+            </div>
+          </li>
+          <li class="cl-tkrow" data-m="now">
+            <div class="cl-tkn" aria-hidden="true"></div>
+            <div>
+              <div class="cl-tkt">Robotic-assisted platforms bundled with navigation</div>
+              <p>Robotic-assisted platforms are increasingly bundled with, rather than sold separately from, 3D navigation - as illustrated by <b>Zimmer Biomet's</b> and <b>Globus Medical's</b> spine and orthopedic robotics lines, both of which depend on intraoperative or preoperative 3D imaging for registration accuracy.</p>
+            </div>
+            <div class="cl-tkm">
+              <span class="cl-tkml">Commercial</span>
+              <span class="cl-tkmb" aria-hidden="true"><i></i><i></i></span>
+              <span class="cl-tkms">Deployed</span>
+            </div>
+          </li>
+          <li class="cl-tkrow" data-m="now">
+            <div class="cl-tkn" aria-hidden="true"></div>
+            <div>
+              <div class="cl-tkt">Portable, point-of-care imaging</div>
+              <p>A further growth vector, with compact mobile C-arm and cone-beam systems extending advanced visualization into <b>ambulatory surgical centers and smaller hospitals</b> that cannot justify a fixed hybrid suite.</p>
+            </div>
+            <div class="cl-tkm">
+              <span class="cl-tkml">Commercial</span>
+              <span class="cl-tkmb" aria-hidden="true"><i></i><i></i></span>
+              <span class="cl-tkms">Deployed</span>
+            </div>
+          </li>
+          <li class="cl-tkrow" data-m="soon">
+            <div class="cl-tkn" aria-hidden="true"></div>
+            <div>
+              <div class="cl-tkt">3D-printed patient-specific guides and implants</div>
+              <p>Surgical guides and implants generated directly from preoperative imaging data - expected to move from research to commercial deployment over the forecast period.</p>
+            </div>
+            <div class="cl-tkm">
+              <span class="cl-tkml">Forward-looking</span>
+              <span class="cl-tkmb" aria-hidden="true"><i></i><i></i></span>
+              <span class="cl-tkms">Pre-deployment</span>
+            </div>
+          </li>
+          <li class="cl-tkrow" data-m="soon">
+            <div class="cl-tkn" aria-hidden="true"></div>
+            <div>
+              <div class="cl-tkt">Digital-twin procedure rehearsal</div>
+              <p>Early-stage digital-twin platforms allow surgeons to <b>rehearse a procedure virtually</b> before entering the operating room - also expected to move from research to commercial deployment over the forecast period.</p>
+            </div>
+            <div class="cl-tkm">
+              <span class="cl-tkml">Forward-looking</span>
+              <span class="cl-tkmb" aria-hidden="true"><i></i><i></i></span>
+              <span class="cl-tkms">Pre-deployment</span>
+            </div>
+          </li>
+        </ol>
+      </div>
           <div class="cl-tech">
             <div class="cl-techt">3D-printed patient-specific guides and implants</div>
             <p>Surgical guides and implants generated directly from preoperative imaging data - expected to move
@@ -1716,6 +1776,34 @@
     dots.forEach(function(d,i){ if(d.getAttribute('aria-current') === 'true') cur = i; });
     aim(dots[cur]);
   });
+})();
+
+/* ================= SECTION 4 - TECHNOLOGY MATURITY FILTER ================= */
+(function(){
+  var tk = document.getElementById('clTk');
+  if(!tk) return;
+  var btns = [].slice.call(tk.querySelectorAll('.cl-tkf'));
+  var rows = [].slice.call(tk.querySelectorAll('.cl-tkrow'));
+  var count = document.getElementById('clTkCount');
+  if(!btns.length || !rows.length) return;
+
+  function apply(f){
+    var shown = 0;
+    rows.forEach(function(r){
+      var on = f === 'all' || r.getAttribute('data-m') === f;
+      if(on){ r.removeAttribute('hidden'); shown++; } else { r.setAttribute('hidden',''); }
+    });
+    btns.forEach(function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-f') === f ? 'true' : 'false'); });
+    /* the numbers are a CSS counter, so they renumber themselves over whatever is left showing */
+    if(count) count.textContent = f === 'all'
+      ? 'Showing all ' + rows.length
+      : 'Showing ' + shown + ' of ' + rows.length;
+  }
+
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){ apply(b.getAttribute('data-f')); });
+  });
+  apply('all');
 })();
 </script>
 </body>
