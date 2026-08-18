@@ -1290,10 +1290,10 @@
           <button type="button" class="cl-pltg" data-cat="c1" aria-expanded="true"
             aria-controls="plc1v plc1r" aria-label="Collapse Workhorse intraoperative imaging"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 9 12 16 19 9"></polyline></svg></button>
         </div>
-        <div class="cl-plhd" data-cat="c2">
+        <div class="cl-plhd off" data-cat="c2">
           <span class="cl-plt">Imaging and endoscopic visualization hardware</span>
-          <button type="button" class="cl-pltg" data-cat="c2" aria-expanded="true"
-            aria-controls="plc2v plc2r" aria-label="Collapse Imaging and endoscopic visualization hardware"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 9 12 16 19 9"></polyline></svg></button>
+          <button type="button" class="cl-pltg" data-cat="c2" aria-expanded="false"
+            aria-controls="plc2v plc2r" aria-label="Expand Imaging and endoscopic visualization hardware"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 9 12 16 19 9"></polyline></svg></button>
         </div>
 
         <div class="cl-plbx lk" id="plc1v" data-cat="c1">
@@ -1303,7 +1303,7 @@
             <li><b>Siemens Healthineers</b> - Cios Spin</li>
           </ul>
         </div>
-        <div class="cl-plbx lk" id="plc2v" data-cat="c2">
+        <div class="cl-plbx lk off" id="plc2v" data-cat="c2" hidden>
           <div class="cl-pllb">Vendors and products</div>
           <ul>
             <li><b>Canon Medical Systems</b></li>
@@ -1316,7 +1316,7 @@
           <div class="cl-pllb">Role in the landscape</div>
           <p>Serve as the everyday intraoperative imaging systems across orthopedic and trauma settings.</p>
         </div>
-        <div class="cl-plbx" id="plc2r" data-cat="c2">
+        <div class="cl-plbx" id="plc2r" data-cat="c2" hidden>
           <div class="cl-pllb">Role in the landscape</div>
           <p>Each supplies hardware that increasingly integrates with third-party navigation software rather than operating as a closed, standalone system.</p>
         </div>
@@ -1828,20 +1828,28 @@
   var btns = [].slice.call(pl.querySelectorAll('.cl-pltg'));
   if(!btns.length) return;
 
-  btns.forEach(function(b){
-    var cat = b.getAttribute('data-cat');
+  function set(cat,open){
+    var b = pl.querySelector('.cl-pltg[data-cat="'+cat+'"]');
     var head = pl.querySelector('.cl-plhd[data-cat="'+cat+'"]');
     var boxes = [].slice.call(pl.querySelectorAll('.cl-plbx[data-cat="'+cat+'"]'));
     var title = head ? head.querySelector('.cl-plt').textContent.trim() : '';
+    if(b){
+      b.setAttribute('aria-expanded',open ? 'true' : 'false');
+      b.setAttribute('aria-label',(open ? 'Collapse ' : 'Expand ') + title);
+    }
+    boxes.forEach(function(x){ if(open){ x.removeAttribute('hidden'); } else { x.setAttribute('hidden',''); } });
+    /* the connectors hang off the boxes above them - drop them when there is nothing to point at */
+    if(head) head.classList.toggle('off',!open);
+    boxes.forEach(function(x){ x.classList.toggle('off',!open); });
+  }
 
+  /* one at a time: opening a category closes whichever other one was open */
+  btns.forEach(function(b){
     b.addEventListener('click',function(){
-      var open = b.getAttribute('aria-expanded') === 'true';
-      b.setAttribute('aria-expanded',open ? 'false' : 'true');
-      b.setAttribute('aria-label',(open ? 'Expand ' : 'Collapse ') + title);
-      boxes.forEach(function(x){ if(open){ x.setAttribute('hidden',''); } else { x.removeAttribute('hidden'); } });
-      /* the connectors hang off the boxes above them - drop them when there is nothing to point at */
-      if(head) head.classList.toggle('off',open);
-      boxes.forEach(function(x){ x.classList.toggle('off',open); });
+      var cat = b.getAttribute('data-cat');
+      var wasOpen = b.getAttribute('aria-expanded') === 'true';
+      btns.forEach(function(o){ set(o.getAttribute('data-cat'),false); });
+      if(!wasOpen) set(cat,true);
     });
   });
 })();
