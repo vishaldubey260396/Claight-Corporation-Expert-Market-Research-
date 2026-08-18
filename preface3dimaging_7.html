@@ -389,7 +389,10 @@
      nothing below shifts when you switch tabs. Inactive panels are visibility:hidden rather than
      display:none - that keeps them contributing height while staying out of the a11y tree and
      out of the tab order. */
-  .cl-panels{display:grid;padding:16px 0 0}
+  /* One static box: all three panels occupy the same grid cell, so its height is set by the tallest
+     and only the content inside swaps - the box itself never resizes or scrolls. */
+  .cl-panels{display:grid;margin-top:14px;padding:18px 20px;background:#fff;
+    border:1px solid var(--line);border-radius:10px;box-shadow:0 4px 14px rgba(76,29,149,.06)}
   .cl-panel{grid-area:1/1;visibility:hidden;display:flex;flex-direction:column}
   .cl-panel.cl-on{visibility:visible}
   .cl-panel p{margin:0 0 12px;font-size:14.5px}
@@ -406,7 +409,7 @@
     color:var(--muted);margin-bottom:9px}
   .cl-row{display:grid;gap:10px;grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}
   .cl-src{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-    font-size:12.5px;line-height:1.45;color:var(--ink);background:#fbfaff;
+    font-size:12.5px;line-height:1.45;color:var(--ink);background:#faf8ff;
     border:1px solid var(--line);border-top:3px solid var(--purple-soft);
     border-radius:7px;padding:10px 11px;
     transition:border-top-color .15s ease,background .15s ease,transform .15s ease,box-shadow .15s ease}
@@ -1156,8 +1159,8 @@
 
         <div class="cl-panels">
         <div class="cl-panel cl-on" role="tabpanel" id="clp1" aria-labelledby="clt1" tabindex="0">
-          <p>The market is undergoing a period of rapid convergence. Historically distinct product categories are
-            increasingly being integrated into single, unified platforms.</p>
+          <p>The market is converging: historically distinct product categories are increasingly being
+            integrated into single, unified platforms.</p>
           <div class="cl-flow">
             <div class="cl-cap">Historically distinct categories</div>
             <div class="cl-row" style="--n:4">
@@ -1173,27 +1176,21 @@
               <p>Planning, navigation, imaging and robotics delivered as one intelligent system rather than separately procured components.</p>
             </div>
           </div>
-          <p><b>Medtronic's Stealth AXiS</b> exemplifies this trend as the first platform to natively combine
-            planning, navigation and robotics for spine surgery within a single intelligent system, part of the
-            company's broader AiBLE smart ecosystem. <b>Brainlab</b> has pursued a parallel strategy, combining its
-            Loop-X mobile intraoperative imaging robot, developed with Salzburg-based partner medPhoton, with its
-            Cirq robotic alignment module, while also extending its digital surgery portfolio into mixed-reality
-            navigation.</p>
+          <p><b>Medtronic's Stealth AXiS</b> is the first platform to natively combine planning, navigation and
+            robotics for spine surgery, part of the company's AiBLE ecosystem. <b>Brainlab</b> pairs its Loop-X
+            mobile intraoperative imaging robot, built with Salzburg-based medPhoton, with its Cirq robotic
+            alignment module.</p>
         </div>
 
         <div class="cl-panel" role="tabpanel" id="clp2" aria-labelledby="clt2" tabindex="0">
-          <p>Artificial intelligence is the second major technological vector reshaping the category. AI-enabled
-            platforms now support automated anatomical segmentation, multi-modal image fusion - combining CT, MRI
-            and ultrasound data within a single surgical plan - and increasingly, predictive modelling of surgical
+          <p>Artificial intelligence is the second vector reshaping the category. Platforms now support
+            automated anatomical segmentation, multi-modal image fusion and predictive modelling of surgical
             outcomes.</p>
-          <p><b>Siemens Healthineers' Cinematic Rendering</b> technology, which can be paired with mixed-reality
-            headsets to deliver a photorealistic three-dimensional view of patient anatomy, illustrates how
-            visualization quality itself has become a competitive differentiator, alongside navigation accuracy and
-            workflow integration.</p>
-          <p>Cross-modality integration is a further emerging theme, illustrated by <b>GE HealthCare's</b> digital
-            integration of its bkActiv intraoperative ultrasound system with Medtronic's Stealth AXiS navigation
-            platform, allowing real-time ultrasound visualization to be layered directly into an existing
-            navigation workflow without disrupting established surgical protocols.</p>
+          <p><b>Siemens Healthineers' Cinematic Rendering</b>, paired with mixed-reality headsets for a
+            photorealistic 3D view of patient anatomy, shows how visualization quality itself has become a
+            differentiator alongside navigation accuracy. Cross-modality integration is the other emerging theme:
+            <b>GE HealthCare's</b> bkActiv intraoperative ultrasound now layers directly into Medtronic's Stealth
+            AXiS navigation workflow.</p>
           <div class="cl-flow">
             <div class="cl-cap">Modalities fused</div>
             <div class="cl-row" style="--n:3">
@@ -1211,12 +1208,9 @@
         </div>
 
         <div class="cl-panel" role="tabpanel" id="clp3" aria-labelledby="clt3" tabindex="0">
-          <p>A third, related technological vector concerns data interoperability and cloud connectivity. As
-            platforms increasingly generate and rely upon large volumes of imaging and analytics data, the ability
-            to securely store, share and act upon that data across a hospital system - or even across multiple
-            affiliated institutions - has become a meaningful competitive consideration in its own right.</p>
-          <p>This is driving continued investment in cloud-native platform architectures alongside the more visible
-            advances in imaging hardware and navigation accuracy.</p>
+          <p>The third vector is data interoperability and cloud connectivity. As platforms generate and rely on
+            ever larger volumes of imaging and analytics data, the ability to store, share and act upon it securely
+            has become a competitive consideration in its own right.</p>
           <div class="cl-flow">
             <div class="cl-cap">What the data layer must do</div>
             <div class="cl-row" style="--n:3">
