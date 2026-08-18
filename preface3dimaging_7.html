@@ -816,48 +816,42 @@
     .mo-li,.mo-detail>div{transition:none}
   }
 
-  /* --- 5.2 drivers / constraints as an up arrow and a down arrow --- */
-  .dc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:16px}
-  .dc{--head:58px;position:relative;padding:20px 22px;color:#fff;
-    filter:drop-shadow(0 8px 20px rgba(60,20,120,.16))}
-  .dc.up{padding-top:calc(var(--head) + 16px);
-    background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 48%,#4c1d95 100%);
-    clip-path:polygon(50% 0,100% var(--head),100% 100%,0 100%,0 var(--head))}
-  .dc.down{padding-bottom:calc(var(--head) + 16px);
-    background:linear-gradient(180deg,#b45309 0%,#9a3412 55%,#7c2d12 100%);
-    clip-path:polygon(0 0,100% 0,100% calc(100% - var(--head)),50% 100%,0 calc(100% - var(--head)))}
+  /* --- 5.2 drivers / constraints as up and down arrows on a shared baseline --- */
+  .dc-plot{margin-top:6px}
+  .dc-svg{display:block;width:100%;height:auto}
+  .dc-svg .dc-base{stroke:#cfc4ea;stroke-width:1.5}
+  .dc-svg .dc-mid{stroke:#e6e0f5;stroke-width:1;stroke-dasharray:3 5}
+  .dc-svg .dc-gh{font-size:11px;font-weight:800;letter-spacing:.07em}
+  .dc-svg .dc-gh.dr{fill:#6d28d9}
+  .dc-svg .dc-gh.co{fill:#b45309}
+  .dc-svg .dc-l{font-size:10px;font-weight:700;fill:var(--navy)}
+  .dc-svg .dc-hit{fill:transparent}
+  .dc-svg .dc-ar{stroke:#fff;stroke-width:1.5}
+  .dc-w .dc-c.dr .dc-ar{fill:url(#dcUp)}
+  .dc-w .dc-c.co .dc-ar{fill:url(#dcDn)}
+  .dc-n .dc-c.dr .dc-ar{fill:url(#dcUp2)}
+  .dc-n .dc-c.co .dc-ar{fill:url(#dcDn2)}
+  .dc-n{display:none}
 
-  .dc-hd{display:flex;align-items:baseline;gap:9px;margin:0 0 3px}
-  .dc-hd .g{font-size:15px;line-height:1}
-  .dc-hd h6{margin:0;font-size:14.5px;font-weight:800;letter-spacing:.01em;color:#fff}
-  .dc-sub{margin:0 0 14px;font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.93)}
-  .dc-scale{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-    color:rgba(255,255,255,.80);margin:0 0 8px}
+  /* grow out of the baseline, staggered */
+  .dc-svg .dc-c .dc-ar{transform:scaleY(.02);transform-box:fill-box;transition:none}
+  .dc-svg .dc-c.dr .dc-ar{transform-origin:center bottom}
+  .dc-svg .dc-c.co .dc-ar{transform-origin:center top}
+  .dc-fig.in .dc-c .dc-ar{transform:none;
+    transition:transform .6s cubic-bezier(.25,1.15,.45,1) var(--d),opacity .2s ease}
+  .dc-fig .dc-c{opacity:1;transition:opacity .18s ease}
+  .dc-fig:hover .dc-c{opacity:.42}
+  .dc-fig .dc-c:hover{opacity:1}
+  .dc-fig .dc-c:hover .dc-l{fill:#0f172a}
 
-  .dc-i{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:8px;
-    background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);
-    opacity:0;transform:translateY(10px);
-    transition:background .18s ease,border-color .18s ease,transform .18s ease}
-  .dc-i+.dc-i{margin-top:8px}
-  .reveal.in .dc-i{opacity:1;transform:none;
-    transition:opacity .45s ease var(--d),transform .5s cubic-bezier(.3,1.3,.5,1) var(--d),
-      background .18s ease,border-color .18s ease}
-  .dc-i:hover{background:rgba(255,255,255,.20);border-color:rgba(255,255,255,.42)}
-  .dc-t{flex:1 1 auto;font-size:12.5px;font-weight:700;line-height:1.4;color:#fff}
-  /* four dots = the item's rank on the ordinal impact scale */
-  .dc-m{flex:none;display:flex;gap:3px}
-  .dc-m i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.28)}
-  .dc-m i.on{background:#fff}
-
-  .dc-foot{margin-top:14px;padding-top:11px;border-top:1px dashed rgba(255,255,255,.34);
-    font-size:11.5px;font-weight:700;line-height:1.5;color:rgba(255,255,255,.94)}
-
-  @media(max-width:760px){
-    .dc-wrap{grid-template-columns:1fr;gap:18px}
-    .dc{--head:46px}
+  @media(max-width:780px){
+    .dc-w{display:none}
+    .dc-n{display:block;max-width:470px;margin:0 auto}
+    .dc-svg .dc-l{font-size:12px}
+    .dc-svg .dc-gh{font-size:13px}
   }
   @media(prefers-reduced-motion:reduce){
-    .dc-i,.reveal.in .dc-i{opacity:1;transform:none;transition:background .18s ease}
+    .dc-svg .dc-c .dc-ar,.dc-fig.in .dc-c .dc-ar{transform:none;transition:none}
   }
 
   /* --- numbered prose list (drivers, demand indicators) --- */
@@ -1824,60 +1818,138 @@
         <strong>outweigh cost and interoperability frictions</strong> over the forecast horizon.
       </p>
 
-      <figure class="md-fig reveal" style="margin:0">
+      <figure class="md-fig dc-fig reveal" style="margin:0">
         <h6>Drivers and Constraints, by Degree of Impact</h6>
         <p class="md-sub">3D Surgical Imaging Market - clinical precision and convergence outweigh cost and interoperability frictions</p>
-        <div class="dc-wrap">
-
-          <div class="dc up">
-            <div class="dc-hd"><span class="g" aria-hidden="true">&#9650;</span><h6>Drivers</h6></div>
-            <p class="dc-sub">Forces pushing the market up, ordered highest impact first</p>
-            <p class="dc-scale">Degree of impact</p>
-          <div class="dc-i" style="--d:0ms">
-            <span class="dc-t">Rising MIS procedure volumes</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
-          </div>
-          <div class="dc-i" style="--d:110ms">
-            <span class="dc-t">AI-enabled navigation accuracy</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
-          </div>
-          <div class="dc-i" style="--d:220ms">
-            <span class="dc-t">Imaging + robotics integration</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span>
-          </div>
-          <div class="dc-i" style="--d:330ms">
-            <span class="dc-t">Hybrid operating room growth</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span>
-          </div>
-            <p class="dc-foot">Net effect: sustained demand across every major surgical discipline</p>
-          </div>
-
-          <div class="dc down">
-            <div class="dc-hd"><span class="g" aria-hidden="true">&#9660;</span><h6>Constraints</h6></div>
-            <p class="dc-sub">Frictions holding the market back, ordered highest impact first</p>
-            <p class="dc-scale">Degree of impact</p>
-          <div class="dc-i" style="--d:60ms">
-            <span class="dc-t">High capital cost</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
-          </div>
-          <div class="dc-i" style="--d:170ms">
-            <span class="dc-t">Lack of interoperability</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
-          </div>
-          <div class="dc-i" style="--d:280ms">
-            <span class="dc-t">Long capital-budget cycles</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span>
-          </div>
-          <div class="dc-i" style="--d:390ms">
-            <span class="dc-t">Radiation / safety concerns</span>
-            <span class="dc-m" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span>
-          </div>
-            <p class="dc-foot">Net effect: adoption is paced, not prevented - the frictions delay rather than block</p>
-          </div>
-
+        <div class="dc-plot">
+          <svg class="dc-svg dc-w" viewBox="0 0 920 348" role="img"
+               aria-label="Four drivers shown as upward arrows above a baseline and four constraints as downward arrows below it, arrow length showing rank order of impact.">
+          <defs>
+            <linearGradient id="dcUp" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#5b21b6"/>
+            </linearGradient>
+            <linearGradient id="dcDn" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#b45309"/>
+            </linearGradient>
+          </defs>
+          <line class="dc-base" x1="22" y1="176.0" x2="898" y2="176.0"/>
+          <text class="dc-gh dr" x="241.0" y="26.0" text-anchor="middle">&#9650; DRIVERS &#183; push the market up</text>
+          <g class="dc-c dr" style="--d:0ms">
+            <title>Rising MIS procedure volumes</title>
+            <polygon class="dc-ar" points="76.8,64.0 116.8,84.0 87.8,84.0 87.8,176.0 65.8,176.0 65.8,84.0 36.8,84.0"/>
+            <text class="dc-l" x="76.8" y="192.0" text-anchor="middle">Rising MIS<tspan x="76.8" dy="12">procedure</tspan><tspan x="76.8" dy="12">volumes</tspan></text>
+            <rect class="dc-hit" x="22.0" y="38.0" width="109.5" height="142.0"/>
+          </g>
+          <g class="dc-c dr" style="--d:110ms">
+            <title>AI-enabled navigation accuracy</title>
+            <polygon class="dc-ar" points="186.2,77.4 226.2,97.4 197.2,97.4 197.2,176.0 175.2,176.0 175.2,97.4 146.2,97.4"/>
+            <text class="dc-l" x="186.2" y="192.0" text-anchor="middle">AI-enabled<tspan x="186.2" dy="12">navigation</tspan><tspan x="186.2" dy="12">accuracy</tspan></text>
+            <rect class="dc-hit" x="131.5" y="38.0" width="109.5" height="142.0"/>
+          </g>
+          <g class="dc-c dr" style="--d:220ms">
+            <title>Imaging and robotics integration</title>
+            <polygon class="dc-ar" points="295.8,86.4 335.8,106.4 306.8,106.4 306.8,176.0 284.8,176.0 284.8,106.4 255.8,106.4"/>
+            <text class="dc-l" x="295.8" y="192.0" text-anchor="middle">Imaging +<tspan x="295.8" dy="12">robotics</tspan><tspan x="295.8" dy="12">integration</tspan></text>
+            <rect class="dc-hit" x="241.0" y="38.0" width="109.5" height="142.0"/>
+          </g>
+          <g class="dc-c dr" style="--d:330ms">
+            <title>Hybrid operating room growth</title>
+            <polygon class="dc-ar" points="405.2,97.6 445.2,117.6 416.2,117.6 416.2,176.0 394.2,176.0 394.2,117.6 365.2,117.6"/>
+            <text class="dc-l" x="405.2" y="192.0" text-anchor="middle">Hybrid<tspan x="405.2" dy="12">operating room</tspan><tspan x="405.2" dy="12">growth</tspan></text>
+            <rect class="dc-hit" x="350.5" y="38.0" width="109.5" height="142.0"/>
+          </g>
+          <line class="dc-base" x1="22" y1="176.0" x2="898" y2="176.0"/>
+          <text class="dc-gh co" x="679.0" y="336.0" text-anchor="middle">&#9660; CONSTRAINTS &#183; hold the market back</text>
+          <g class="dc-c co" style="--d:60ms">
+            <title>High capital cost</title>
+            <polygon class="dc-ar" points="514.8,279.0 554.8,259.0 525.8,259.0 525.8,176.0 503.8,176.0 503.8,259.0 474.8,259.0"/>
+            <text class="dc-l" x="514.8" y="148.0" text-anchor="middle">High capital<tspan x="514.8" dy="12">cost</tspan></text>
+            <rect class="dc-hit" x="460.0" y="176.0" width="109.5" height="142.0"/>
+          </g>
+          <g class="dc-c co" style="--d:170ms">
+            <title>Lack of interoperability</title>
+            <polygon class="dc-ar" points="624.2,267.8 664.2,247.8 635.2,247.8 635.2,176.0 613.2,176.0 613.2,247.8 584.2,247.8"/>
+            <text class="dc-l" x="624.2" y="148.0" text-anchor="middle">Lack of<tspan x="624.2" dy="12">interoperability</tspan></text>
+            <rect class="dc-hit" x="569.5" y="176.0" width="109.5" height="142.0"/>
+          </g>
+          <g class="dc-c co" style="--d:280ms">
+            <title>Long capital-budget cycles</title>
+            <polygon class="dc-ar" points="733.8,258.9 773.8,238.9 744.8,238.9 744.8,176.0 722.8,176.0 722.8,238.9 693.8,238.9"/>
+            <text class="dc-l" x="733.8" y="148.0" text-anchor="middle">Long capital-<tspan x="733.8" dy="12">budget cycles</tspan></text>
+            <rect class="dc-hit" x="679.0" y="176.0" width="109.5" height="142.0"/>
+          </g>
+          <g class="dc-c co" style="--d:390ms">
+            <title>Radiation and safety concerns</title>
+            <polygon class="dc-ar" points="843.2,237.6 883.2,217.6 854.2,217.6 854.2,176.0 832.2,176.0 832.2,217.6 803.2,217.6"/>
+            <text class="dc-l" x="843.2" y="148.0" text-anchor="middle">Radiation /<tspan x="843.2" dy="12">safety concerns</tspan></text>
+            <rect class="dc-hit" x="788.5" y="176.0" width="109.5" height="142.0"/>
+          </g>
+          </svg>
+          <svg class="dc-svg dc-n" viewBox="0 0 470 566" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="dcUp2" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#5b21b6"/>
+            </linearGradient>
+            <linearGradient id="dcDn2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#b45309"/>
+            </linearGradient>
+          </defs>
+          <line class="dc-base" x1="14" y1="176.0" x2="456" y2="176.0"/>
+          <text class="dc-gh dr" x="235.0" y="26.0" text-anchor="middle">&#9650; DRIVERS &#183; push the market up</text>
+          <g class="dc-c dr" style="--d:0ms">
+            <title>Rising MIS procedure volumes</title>
+            <polygon class="dc-ar" points="69.2,76.0 103.2,94.0 79.2,94.0 79.2,176.0 59.2,176.0 59.2,94.0 35.2,94.0"/>
+            <text class="dc-l" x="69.2" y="192.0" text-anchor="middle">Rising MIS<tspan x="69.2" dy="13">procedure</tspan><tspan x="69.2" dy="13">volumes</tspan></text>
+            <rect class="dc-hit" x="14.0" y="52.0" width="110.5" height="128.0"/>
+          </g>
+          <g class="dc-c dr" style="--d:110ms">
+            <title>AI-enabled navigation accuracy</title>
+            <polygon class="dc-ar" points="179.8,88.0 213.8,106.0 189.8,106.0 189.8,176.0 169.8,176.0 169.8,106.0 145.8,106.0"/>
+            <text class="dc-l" x="179.8" y="192.0" text-anchor="middle">AI-enabled<tspan x="179.8" dy="13">navigation</tspan><tspan x="179.8" dy="13">accuracy</tspan></text>
+            <rect class="dc-hit" x="124.5" y="52.0" width="110.5" height="128.0"/>
+          </g>
+          <g class="dc-c dr" style="--d:220ms">
+            <title>Imaging and robotics integration</title>
+            <polygon class="dc-ar" points="290.2,96.0 324.2,114.0 300.2,114.0 300.2,176.0 280.2,176.0 280.2,114.0 256.2,114.0"/>
+            <text class="dc-l" x="290.2" y="192.0" text-anchor="middle">Imaging +<tspan x="290.2" dy="13">robotics</tspan><tspan x="290.2" dy="13">integration</tspan></text>
+            <rect class="dc-hit" x="235.0" y="52.0" width="110.5" height="128.0"/>
+          </g>
+          <g class="dc-c dr" style="--d:330ms">
+            <title>Hybrid operating room growth</title>
+            <polygon class="dc-ar" points="400.8,106.0 434.8,124.0 410.8,124.0 410.8,176.0 390.8,176.0 390.8,124.0 366.8,124.0"/>
+            <text class="dc-l" x="400.8" y="192.0" text-anchor="middle">Hybrid<tspan x="400.8" dy="13">operating room</tspan><tspan x="400.8" dy="13">growth</tspan></text>
+            <rect class="dc-hit" x="345.5" y="52.0" width="110.5" height="128.0"/>
+          </g>
+          <line class="dc-base" x1="14" y1="404.0" x2="456" y2="404.0"/>
+          <text class="dc-gh co" x="235.0" y="545.0" text-anchor="middle">&#9660; CONSTRAINTS &#183; hold the market back</text>
+          <g class="dc-c co" style="--d:60ms">
+            <title>High capital cost</title>
+            <polygon class="dc-ar" points="69.2,496.0 103.2,478.0 79.2,478.0 79.2,404.0 59.2,404.0 59.2,478.0 35.2,478.0"/>
+            <text class="dc-l" x="69.2" y="375.0" text-anchor="middle">High capital<tspan x="69.2" dy="13">cost</tspan></text>
+            <rect class="dc-hit" x="14.0" y="404.0" width="110.5" height="128.0"/>
+          </g>
+          <g class="dc-c co" style="--d:170ms">
+            <title>Lack of interoperability</title>
+            <polygon class="dc-ar" points="179.8,486.0 213.8,468.0 189.8,468.0 189.8,404.0 169.8,404.0 169.8,468.0 145.8,468.0"/>
+            <text class="dc-l" x="179.8" y="375.0" text-anchor="middle">Lack of<tspan x="179.8" dy="13">interoperability</tspan></text>
+            <rect class="dc-hit" x="124.5" y="404.0" width="110.5" height="128.0"/>
+          </g>
+          <g class="dc-c co" style="--d:280ms">
+            <title>Long capital-budget cycles</title>
+            <polygon class="dc-ar" points="290.2,478.0 324.2,460.0 300.2,460.0 300.2,404.0 280.2,404.0 280.2,460.0 256.2,460.0"/>
+            <text class="dc-l" x="290.2" y="375.0" text-anchor="middle">Long capital-<tspan x="290.2" dy="13">budget cycles</tspan></text>
+            <rect class="dc-hit" x="235.0" y="404.0" width="110.5" height="128.0"/>
+          </g>
+          <g class="dc-c co" style="--d:390ms">
+            <title>Radiation and safety concerns</title>
+            <polygon class="dc-ar" points="400.8,459.0 434.8,441.0 410.8,441.0 410.8,404.0 390.8,404.0 390.8,441.0 366.8,441.0"/>
+            <text class="dc-l" x="400.8" y="375.0" text-anchor="middle">Radiation /<tspan x="400.8" dy="13">safety concerns</tspan></text>
+            <rect class="dc-hit" x="345.5" y="404.0" width="110.5" height="128.0"/>
+          </g>
+          </svg>
         </div>
-        <figcaption class="md-cap">Dots show each item's rank on an ordinal impact scale (four dots = highest of
-          the four), not a measured quantity.</figcaption>
+        <figcaption class="md-cap">Arrow length shows each item's rank on an ordinal impact scale, not a measured
+          quantity. Upward arrows push the market up; downward arrows hold it back.</figcaption>
       </figure>
 
       <h3 class="subh nn reveal" style="margin-top:22px">Market Drivers</h3>
