@@ -528,9 +528,11 @@
     transition:transform .16s ease}
   .cl-tkic svg{width:22px;height:22px;display:block}
   .cl-tkrow:hover .cl-tkic{transform:scale(1.06)}
-  .cl-tkt{font-size:14.5px;font-weight:800;color:var(--navy);line-height:1.3;margin-bottom:7px}
+  /* grey rather than near-black, and the body's bold steps down from 800 to 600 so the names lift
+     off the sentence without shouting - 7.58:1 and 14.68:1 on the card's white */
+  .cl-tkt{font-size:14.5px;font-weight:800;color:#475569;line-height:1.3;margin-bottom:7px}
   .cl-tkrow p{margin:0 0 14px;font-size:12.5px;line-height:1.6;color:var(--ink)}
-  .cl-tkrow p b{color:#141018;font-weight:800}
+  .cl-tkrow p b{color:#1f2937;font-weight:600}
   .cl-tkpill{align-self:flex-start;margin-top:auto;font-size:11px;font-weight:800;
     border-radius:20px;padding:4px 11px;background:var(--tn);color:var(--ac)}
 
