@@ -566,10 +566,17 @@
   .cl-plbx{background:#fbfaff;padding:13px 15px 14px}
   .cl-pllb{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
     color:var(--purple);margin-bottom:8px}
-  .cl-plbx ul{margin:0;padding-left:17px}
-  .cl-plbx li{font-size:12.5px;line-height:1.55;color:var(--ink);margin:4px 0}
-  .cl-plbx li::marker{color:var(--purple-soft)}
-  .cl-plbx li b{color:#141018;font-weight:800}
+  .cl-plbx.lk .cl-pllb{margin-bottom:9px}
+  /* the vendors cell holds no box of its own - each vendor gets one, side by side */
+  .cl-plbx.lk{background:none;border-color:transparent;padding:0}
+  .cl-plv{display:grid;grid-template-columns:repeat(var(--v,2),minmax(0,1fr));gap:10px}
+  .cl-plvb{background:#fbfaff;border:1px solid var(--line);border-top:3px solid var(--purple-soft);
+    border-radius:9px;padding:11px 12px 12px;
+    transition:border-top-color .15s ease,transform .15s ease,box-shadow .15s ease}
+  .cl-plvb:hover{border-top-color:var(--purple);transform:translateY(-2px);
+    box-shadow:0 7px 16px rgba(76,29,149,.13)}
+  .cl-plvn{font-size:12.5px;font-weight:700;color:#334155;line-height:1.35}
+  .cl-plvp{font-size:11.5px;line-height:1.45;color:var(--muted);margin-top:4px}
   .cl-plbx p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink)}
   .cl-plbx[hidden]{display:none}
 
@@ -1357,18 +1364,30 @@
 
         <div class="cl-plbx lk" id="plc1v" data-cat="c1">
           <div class="cl-pllb">Vendors and products</div>
-          <ul>
-            <li><b>GE HealthCare</b> - OEC mobile C-arm range</li>
-            <li><b>Siemens Healthineers</b> - Cios Spin</li>
-          </ul>
+          <div class="cl-plv" style="--v:2">
+            <div class="cl-plvb">
+              <div class="cl-plvn">GE HealthCare</div>
+            <div class="cl-plvp">OEC mobile C-arm range</div>
+            </div>
+            <div class="cl-plvb">
+              <div class="cl-plvn">Siemens Healthineers</div>
+            <div class="cl-plvp">Cios Spin</div>
+            </div>
+          </div>
         </div>
         <div class="cl-plbx lk off" id="plc2v" data-cat="c2" hidden>
           <div class="cl-pllb">Vendors and products</div>
-          <ul>
-            <li><b>Canon Medical Systems</b></li>
-            <li><b>Fujifilm</b></li>
-            <li><b>Karl Storz</b></li>
-          </ul>
+          <div class="cl-plv" style="--v:3">
+            <div class="cl-plvb">
+              <div class="cl-plvn">Canon Medical Systems</div>
+            </div>
+            <div class="cl-plvb">
+              <div class="cl-plvn">Fujifilm</div>
+            </div>
+            <div class="cl-plvb">
+              <div class="cl-plvn">Karl Storz</div>
+            </div>
+          </div>
         </div>
 
         <div class="cl-plbx" id="plc1r" data-cat="c1">
