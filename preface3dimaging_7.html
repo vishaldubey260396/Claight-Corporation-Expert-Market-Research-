@@ -687,7 +687,9 @@
      and a short rule runs out from it to the text, so the arrow stays slim and the copy is read
      outside it. The silhouette is a clip-path, which rules out a border - a border is clipped with
      the box and leaves a broken outline - so the edge comes from a drop-shadow filter. */
-  .cl-paths{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:20px 0 8px;align-items:stretch}
+  /* the down arrow's tip reaches the very bottom edge, so the gap below has to be its own space -
+     8px collapsed against the paragraph's 12px and left the tip almost touching the text */
+  .cl-paths{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:20px 0 30px;align-items:stretch}
   .cl-path{--bar:64px;--head:34px;position:relative;padding-left:calc(var(--bar) + 26px)}
   .cl-arrow{position:absolute;left:0;top:0;bottom:0;width:var(--bar);
     filter:drop-shadow(0 3px 8px rgba(20,16,24,.14))}
