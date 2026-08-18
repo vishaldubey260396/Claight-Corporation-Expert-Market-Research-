@@ -405,8 +405,9 @@
   /* Surplus is split between the boxes and the connector, and both are capped - dumping it all into
      the boxes left them looking hollow. */
   .cl-row{flex:1 1 auto;max-height:120px}
+  /* #475569 rather than --muted: 7.58:1 on white against 4.76:1, which was only just over the floor */
   .cl-cap{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--muted);margin-bottom:9px}
+    color:#475569;margin-bottom:9px}
   .cl-row{display:grid;gap:10px;grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}
   .cl-src{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
     font-size:12.5px;line-height:1.45;color:var(--ink);background:#faf8ff;
