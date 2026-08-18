@@ -485,27 +485,38 @@
   }
 
 
-  /* --- accordion: current and emerging technologies --- */
-  .cl-acc{margin:14px 0 6px;border-top:1px solid var(--line)}
-  .cl-item{border-bottom:1px solid var(--line)}
-  .cl-item>summary{cursor:pointer;list-style:none;padding:13px 34px 13px 0;position:relative;
-    display:flex;align-items:center;gap:11px;flex-wrap:wrap;
-    font-size:14px;font-weight:800;color:var(--navy);transition:color .15s ease}
-  .cl-item>summary::-webkit-details-marker{display:none}
-  .cl-item>summary:hover{color:var(--purple-deep)}
-  .cl-item>summary:focus-visible{outline:2px solid var(--purple);outline-offset:2px;border-radius:5px}
-  .cl-item>summary::after{content:"";position:absolute;right:8px;top:50%;width:8px;height:8px;
-    border-right:2px solid var(--purple);border-bottom:2px solid var(--purple);
-    transform:translateY(-70%) rotate(45deg);transition:transform .2s ease}
-  .cl-item[open]>summary::after{transform:translateY(-30%) rotate(-135deg)}
-  .cl-item .cl-body{padding:0 34px 15px 0;font-size:13.5px;line-height:1.65;color:var(--ink)}
-  .cl-item .cl-body p{margin:0 0 9px}
-  .cl-item .cl-body p:last-child{margin:0}
-  .cl-item .cl-body b{color:#141018;font-weight:800}
-  .cl-badge{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
-    border-radius:5px;padding:3px 7px;flex:none}
-  .cl-badge.now{color:#065f46;background:#e7f9f0;border:1px solid #bbf0d3}
-  .cl-badge.soon{color:#92400e;background:#fef4e6;border:1px solid #fcd9a8}
+  /* --- emerging technologies, grouped by how far along they are --- */
+  .cl-lanes{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:16px;margin:16px 0 6px;
+    align-items:start}
+  .cl-lane{border-radius:12px;padding:14px 15px 15px;border:1px solid}
+  .cl-lane.now{background:linear-gradient(180deg,#f9fefb,#f1fbf6);border-color:#c3f0d7}
+  .cl-lane.soon{background:linear-gradient(180deg,#fffdf9,#fef7ec);border-color:#f7dcb3}
+  .cl-lanehd{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+  .cl-lanehd .mk{width:9px;height:9px;border-radius:50%;flex:none}
+  .cl-lane.now .mk{background:#059669}
+  .cl-lane.soon .mk{background:#d97706}
+  .cl-lanehd .tx{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+  .cl-lane.now .tx{color:#065f46}
+  .cl-lane.soon .tx{color:#92400e}
+  .cl-lanehd .ct{margin-left:auto;font-size:11px;font-weight:800;border-radius:20px;padding:2px 9px}
+  .cl-lane.now .ct{color:#065f46;background:#dcf6e9;border:1px solid #bbf0d3}
+  .cl-lane.soon .ct{color:#92400e;background:#fdefda;border:1px solid #f7dcb3}
+
+  .cl-tech{background:#fff;border:1px solid var(--line);border-left:3px solid;border-radius:8px;
+    padding:11px 13px 12px;transition:transform .16s ease,box-shadow .16s ease,border-left-color .16s ease}
+  .cl-tech+.cl-tech{margin-top:9px}
+  .cl-lane.now .cl-tech{border-left-color:#6ee7b7}
+  .cl-lane.soon .cl-tech{border-left-color:#fcd34d}
+  .cl-lane.now .cl-tech:hover{border-left-color:#059669;transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(5,150,105,.16)}
+  .cl-lane.soon .cl-tech:hover{border-left-color:#d97706;transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(217,119,6,.16)}
+  .cl-techt{font-size:13.5px;font-weight:800;color:var(--navy);margin-bottom:5px;line-height:1.35}
+  .cl-tech p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink)}
+  .cl-tech p b{color:#141018;font-weight:800}
+  @media(max-width:760px){ .cl-lanes{grid-template-columns:1fr} }
+  @media(prefers-reduced-motion:reduce){ .cl-tech,.cl-tech:hover{transform:none} }
+
 
   /* three columns of prose need more width than a phone has - let the table scroll itself */
   .cl-scroll{overflow-x:auto;margin:16px 0}
@@ -1154,52 +1165,56 @@
       <h3 class="subh reveal">Current and Emerging Technologies</h3>
       <p class="reveal">
         A further set of technologies is reshaping how, and where, three-dimensional imaging and navigation are
-        delivered. Expand any row for detail.
+        delivered - some already in commercial use, others still ahead of deployment.
       </p>
 
-      <div class="cl-acc reveal">
-        <details class="cl-item">
-          <summary>Mixed-reality and holographic visualization <span class="cl-badge now">Commercial</span></summary>
-          <div class="cl-body">
-            <p>Emerging as a distinct product category in its own right, extending beyond <b>Brainlab's Spine Mixed
-              Reality Navigation</b> to include entrants such as <b>MediView</b>, whose XR90 Holographic Surgical
-              Navigation system overlays real-time imaging directly onto the surgeon's field of view for
+      <div class="cl-lanes reveal">
+        <div class="cl-lane now">
+          <div class="cl-lanehd">
+            <span class="mk" aria-hidden="true"></span>
+            <span class="tx">In commercial use</span>
+            <span class="ct">3</span>
+          </div>
+          <div class="cl-tech">
+            <div class="cl-techt">Mixed-reality and holographic visualization</div>
+            <p>Emerging as a distinct product category in its own right, extending beyond <b>Brainlab's Spine
+              Mixed Reality Navigation</b> to include entrants such as <b>MediView</b>, whose XR90 Holographic
+              Surgical Navigation system overlays real-time imaging directly onto the surgeon's field of view for
               percutaneous procedures.</p>
           </div>
-        </details>
-        <details class="cl-item">
-          <summary>Robotic-assisted platforms bundled with navigation <span class="cl-badge now">Commercial</span></summary>
-          <div class="cl-body">
+          <div class="cl-tech">
+            <div class="cl-techt">Robotic-assisted platforms bundled with navigation</div>
             <p>Robotic-assisted platforms are increasingly bundled with, rather than sold separately from, 3D
-              navigation - as illustrated by <b>Zimmer Biomet's</b> and <b>Globus Medical's</b> spine and orthopedic
-              robotics lines, both of which depend on intraoperative or preoperative 3D imaging for registration
-              accuracy.</p>
+              navigation - as illustrated by <b>Zimmer Biomet's</b> and <b>Globus Medical's</b> spine and
+              orthopedic robotics lines, both of which depend on intraoperative or preoperative 3D imaging for
+              registration accuracy.</p>
           </div>
-        </details>
-        <details class="cl-item">
-          <summary>Portable, point-of-care imaging <span class="cl-badge now">Commercial</span></summary>
-          <div class="cl-body">
+          <div class="cl-tech">
+            <div class="cl-techt">Portable, point-of-care imaging</div>
             <p>A further growth vector, with compact mobile C-arm and cone-beam systems extending advanced
               visualization into <b>ambulatory surgical centers and smaller hospitals</b> that cannot justify a
               fixed hybrid suite.</p>
           </div>
-        </details>
-        <details class="cl-item">
-          <summary>3D-printed patient-specific guides and implants <span class="cl-badge soon">Forward-looking</span></summary>
-          <div class="cl-body">
-            <p>Surgical guides and implants generated directly from preoperative imaging data - one of the more
-              forward-looking technologies expected to move from research to commercial deployment over the
-              forecast period.</p>
+        </div>
+
+        <div class="cl-lane soon">
+          <div class="cl-lanehd">
+            <span class="mk" aria-hidden="true"></span>
+            <span class="tx">Forward-looking</span>
+            <span class="ct">2</span>
           </div>
-        </details>
-        <details class="cl-item">
-          <summary>Digital-twin procedure rehearsal <span class="cl-badge soon">Forward-looking</span></summary>
-          <div class="cl-body">
+          <div class="cl-tech">
+            <div class="cl-techt">3D-printed patient-specific guides and implants</div>
+            <p>Surgical guides and implants generated directly from preoperative imaging data - expected to move
+              from research to commercial deployment over the forecast period.</p>
+          </div>
+          <div class="cl-tech">
+            <div class="cl-techt">Digital-twin procedure rehearsal</div>
             <p>Early-stage digital-twin platforms allow surgeons to <b>rehearse a procedure virtually</b> before
               entering the operating room - also expected to move from research to commercial deployment over the
               forecast period.</p>
           </div>
-        </details>
+        </div>
       </div>
 
       <h3 class="subh reveal">Related Product Landscape</h3>
