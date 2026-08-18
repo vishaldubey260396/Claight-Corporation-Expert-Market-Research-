@@ -430,8 +430,16 @@
     color:rgba(255,255,255,.72);margin-bottom:6px}
   .cl-uni h6{margin:0 0 6px;font-size:13.5px;font-weight:800}
   .cl-uni p{margin:0;font-size:12px;line-height:1.55;color:rgba(255,255,255,.9)}
-  @media(max-width:820px){ .cl-row{grid-template-columns:repeat(2,minmax(0,1fr))} }
-  @media(max-width:480px){ .cl-row{grid-template-columns:1fr} }
+  /* No two-column stage: that is what put the boxes on two rows, and a fan cannot start below the
+     boxes it comes from, so it collapsed to one stem. The row stays whole down to 620px - only the
+     type and gaps tighten - and below that it goes fully vertical, where one stem is correct. */
+  @media(max-width:900px){ .cl-row{gap:7px} .cl-src{font-size:11.5px;padding:9px 8px} }
+  @media(max-width:620px){
+    /* stacked, the row is taller than the horizontal cap allows - leave it to size itself, or the
+       boxes overflow it and the connector is drawn across them */
+    .cl-row{grid-template-columns:1fr;flex:0 0 auto;max-height:none}
+    .cl-src{font-size:12.5px;padding:10px 11px}
+  }
 
 
   /* scope ladder - how far the data has to travel */
