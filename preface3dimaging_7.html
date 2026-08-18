@@ -114,16 +114,20 @@
   /* ---------- BODY SECTIONS ---------- */
   .body{padding:18px 22px 0;counter-reset:sec}
   h3.sub{font-size:17px;font-weight:800;color:var(--navy);margin:26px 0 10px;display:flex;align-items:center;gap:10px;counter-increment:sec;counter-reset:subsec}
-  h3.sub::before{content:counter(sec, decimal-leading-zero);
+  h3.sub::before{content:counter(sec);
     color:var(--brand);font-size:20px;font-weight:800;flex:none;letter-spacing:.02em}
   h3.subh{font-size:15.5px;font-weight:800;color:var(--navy);margin:18px 0 10px;display:flex;align-items:center;gap:10px;counter-increment:subsec;counter-reset:subsubsec}
-  h3.subh::before{content:counter(sec, decimal-leading-zero) "." counter(subsec);
+  h3.subh::before{content:counter(sec) "." counter(subsec);
     color:var(--brand);font-size:16px;font-weight:800;flex:none;letter-spacing:.02em}
+  /* .nn: a subheading the contents does not number - it must not increment either, or the next
+     numbered subheading would skip a number */
+  h3.subh.nn{counter-increment:none}
+  h3.subh.nn::before{content:none}
   h3.subh.green{color:#047857}
   h3.subh.green::before{background:linear-gradient(180deg,#34d399,#059669)}
   h3.plainh{font-size:15.5px;font-weight:800;color:#64748b;margin:18px 0 10px}
   h3.subhh{font-size:14.5px;font-weight:800;color:var(--navy);margin:16px 0 10px;display:flex;align-items:center;gap:10px;counter-increment:subsubsec}
-  h3.subhh::before{content:counter(sec, decimal-leading-zero) "." counter(subsec) "." counter(subsubsec);
+  h3.subhh::before{content:counter(sec) "." counter(subsec) "." counter(subsubsec);
     color:var(--brand);font-size:14px;font-weight:800;flex:none;letter-spacing:.02em}
   p{margin:12px 0}
 
@@ -1022,7 +1026,7 @@
 
       <h3 class="sub reveal" id="gmo-title">Global Market Overview</h3>
 
-      <h3 class="subh reveal">Market Snapshot</h3>
+      <h3 class="subh nn reveal">Market Snapshot</h3>
       <p class="mo-lede reveal">
         The global 3D medical and surgical imaging platform market grew from an estimated
         <strong>USD 4.00 billion in 2019</strong> to <strong>USD 6.85 billion in 2025</strong> - a historical
