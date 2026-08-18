@@ -816,36 +816,48 @@
     .mo-li,.mo-detail>div{transition:none}
   }
 
-  /* --- 5.2 diverging impact chart --- */
-  .md-div{margin-top:14px}
-  .md-divhd{display:flex;justify-content:space-between;font-size:11px;font-weight:800;
-    letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
-  .md-divhd .l{color:#b45309}
-  .md-divhd .r{color:#6d28d9}
-  .md-divrow{display:grid;grid-template-columns:1fr 1fr;align-items:center;
-    column-gap:0;margin:0 0 7px;min-height:22px}
-  .md-divbar{height:15px;border-radius:3px}
-  .md-divrow.dr .md-divlab{grid-column:1;text-align:right;padding-right:12px;
-    font-size:12px;font-weight:700;color:#5b21b6}
-  .md-divrow.dr .md-divtrk{grid-column:2;display:flex;justify-content:flex-start}
-  .md-divrow.dr .md-divbar{background:linear-gradient(90deg,#7c3aed,#6d28d9)}
-  .md-divrow.co .md-divtrk{grid-column:1;display:flex;justify-content:flex-end}
-  .md-divrow.co .md-divlab{grid-column:2;text-align:left;padding-left:12px;
-    font-size:12px;font-weight:700;color:#b45309}
-  .md-divrow.co .md-divbar{background:linear-gradient(270deg,#f59e0b,#d97706)}
-  .md-divaxis{position:relative;height:1px;background:var(--line);margin:12px 0 0}
-  .md-div .md-divmid{position:absolute;left:50%;top:-8px;bottom:0;width:1px;background:#cbc2e6}
-  .md-divwrap{position:relative}
-  @media(max-width:620px){
-    .md-divrow{display:flex;flex-direction:column;align-items:stretch;row-gap:3px;margin-bottom:11px}
-    .md-divrow.dr .md-divlab,.md-divrow.co .md-divlab{order:-1;text-align:left;padding:0}
-    .md-divrow.dr .md-divtrk,.md-divrow.co .md-divtrk{justify-content:flex-start}
-    .md-divwrap .md-divmid{display:none}
-    .md-divhd{display:none}
-    .md-divrow.f::before{
-      content:"Drivers";display:block;order:-2;font-size:11px;font-weight:800;letter-spacing:.06em;
-      text-transform:uppercase;color:#6d28d9;margin-bottom:6px}
-    .md-divrow.co.f::before{content:"Constraints";color:#b45309;margin-top:10px}
+  /* --- 5.2 drivers / constraints as an up arrow and a down arrow --- */
+  .dc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:16px}
+  .dc{--head:58px;position:relative;padding:20px 22px;color:#fff;
+    filter:drop-shadow(0 8px 20px rgba(60,20,120,.16))}
+  .dc.up{padding-top:calc(var(--head) + 16px);
+    background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 48%,#4c1d95 100%);
+    clip-path:polygon(50% 0,100% var(--head),100% 100%,0 100%,0 var(--head))}
+  .dc.down{padding-bottom:calc(var(--head) + 16px);
+    background:linear-gradient(180deg,#b45309 0%,#9a3412 55%,#7c2d12 100%);
+    clip-path:polygon(0 0,100% 0,100% calc(100% - var(--head)),50% 100%,0 calc(100% - var(--head)))}
+
+  .dc-hd{display:flex;align-items:baseline;gap:9px;margin:0 0 3px}
+  .dc-hd .g{font-size:15px;line-height:1}
+  .dc-hd h6{margin:0;font-size:14.5px;font-weight:800;letter-spacing:.01em;color:#fff}
+  .dc-sub{margin:0 0 14px;font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.93)}
+  .dc-scale{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    color:rgba(255,255,255,.80);margin:0 0 8px}
+
+  .dc-i{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:8px;
+    background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);
+    opacity:0;transform:translateY(10px);
+    transition:background .18s ease,border-color .18s ease,transform .18s ease}
+  .dc-i+.dc-i{margin-top:8px}
+  .reveal.in .dc-i{opacity:1;transform:none;
+    transition:opacity .45s ease var(--d),transform .5s cubic-bezier(.3,1.3,.5,1) var(--d),
+      background .18s ease,border-color .18s ease}
+  .dc-i:hover{background:rgba(255,255,255,.20);border-color:rgba(255,255,255,.42)}
+  .dc-t{flex:1 1 auto;font-size:12.5px;font-weight:700;line-height:1.4;color:#fff}
+  /* four dots = the item's rank on the ordinal impact scale */
+  .dc-m{flex:none;display:flex;gap:3px}
+  .dc-m i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.28)}
+  .dc-m i.on{background:#fff}
+
+  .dc-foot{margin-top:14px;padding-top:11px;border-top:1px dashed rgba(255,255,255,.34);
+    font-size:11.5px;font-weight:700;line-height:1.5;color:rgba(255,255,255,.94)}
+
+  @media(max-width:760px){
+    .dc-wrap{grid-template-columns:1fr;gap:18px}
+    .dc{--head:46px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .dc-i,.reveal.in .dc-i{opacity:1;transform:none;transition:background .18s ease}
   }
 
   /* --- numbered prose list (drivers, demand indicators) --- */
@@ -1815,44 +1827,57 @@
       <figure class="md-fig reveal" style="margin:0">
         <h6>Drivers and Constraints, by Degree of Impact</h6>
         <p class="md-sub">3D Surgical Imaging Market - clinical precision and convergence outweigh cost and interoperability frictions</p>
-        <div class="md-div md-divwrap">
-          <div class="md-divhd"><span class="l">Constraint impact</span><span class="r">Driver impact</span></div>
-          <span class="md-divmid" aria-hidden="true"></span>
-          <div class="md-divrow dr f">
-            <div class="md-divlab">Rising MIS procedure volumes</div>
-            <div class="md-divtrk"><span class="md-divbar" style="width:100%"></span></div>
+        <div class="dc-wrap">
+
+          <div class="dc up">
+            <div class="dc-hd"><span class="g" aria-hidden="true">&#9650;</span><h6>Drivers</h6></div>
+            <p class="dc-sub">Forces pushing the market up, ordered highest impact first</p>
+            <p class="dc-scale">Degree of impact</p>
+          <div class="dc-i" style="--d:0ms">
+            <span class="dc-t">Rising MIS procedure volumes</span>
+            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
           </div>
-          <div class="md-divrow dr">
-            <div class="md-divlab">AI-enabled navigation accuracy</div>
-            <div class="md-divtrk"><span class="md-divbar" style="width:88%"></span></div>
+          <div class="dc-i" style="--d:110ms">
+            <span class="dc-t">AI-enabled navigation accuracy</span>
+            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
           </div>
-          <div class="md-divrow dr">
-            <div class="md-divlab">Imaging + robotics integration</div>
-            <div class="md-divtrk"><span class="md-divbar" style="width:80%"></span></div>
+          <div class="dc-i" style="--d:220ms">
+            <span class="dc-t">Imaging + robotics integration</span>
+            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span>
           </div>
-          <div class="md-divrow dr">
-            <div class="md-divlab">Hybrid operating room growth</div>
-            <div class="md-divtrk"><span class="md-divbar" style="width:70%"></span></div>
+          <div class="dc-i" style="--d:330ms">
+            <span class="dc-t">Hybrid operating room growth</span>
+            <span class="dc-m" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span>
           </div>
-          <div class="md-divrow co f">
-            <div class="md-divtrk"><span class="md-divbar" style="width:92%"></span></div>
-            <div class="md-divlab">High capital cost</div>
+            <p class="dc-foot">Net effect: sustained demand across every major surgical discipline</p>
           </div>
-          <div class="md-divrow co">
-            <div class="md-divtrk"><span class="md-divbar" style="width:82%"></span></div>
-            <div class="md-divlab">Lack of interoperability</div>
+
+          <div class="dc down">
+            <div class="dc-hd"><span class="g" aria-hidden="true">&#9660;</span><h6>Constraints</h6></div>
+            <p class="dc-sub">Frictions holding the market back, ordered highest impact first</p>
+            <p class="dc-scale">Degree of impact</p>
+          <div class="dc-i" style="--d:60ms">
+            <span class="dc-t">High capital cost</span>
+            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
           </div>
-          <div class="md-divrow co">
-            <div class="md-divtrk"><span class="md-divbar" style="width:74%"></span></div>
-            <div class="md-divlab">Long capital-budget cycles</div>
+          <div class="dc-i" style="--d:170ms">
+            <span class="dc-t">Lack of interoperability</span>
+            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
           </div>
-          <div class="md-divrow co">
-            <div class="md-divtrk"><span class="md-divbar" style="width:55%"></span></div>
-            <div class="md-divlab">Radiation / safety concerns</div>
+          <div class="dc-i" style="--d:280ms">
+            <span class="dc-t">Long capital-budget cycles</span>
+            <span class="dc-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span>
           </div>
+          <div class="dc-i" style="--d:390ms">
+            <span class="dc-t">Radiation / safety concerns</span>
+            <span class="dc-m" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span>
+          </div>
+            <p class="dc-foot">Net effect: adoption is paced, not prevented - the frictions delay rather than block</p>
+          </div>
+
         </div>
-        <figcaption class="md-cap">Bar length shows relative degree of impact (rank order), not a measured
-          quantity. Drivers extend right, constraints left of the centre axis.</figcaption>
+        <figcaption class="md-cap">Dots show each item's rank on an ordinal impact scale (four dots = highest of
+          the four), not a measured quantity.</figcaption>
       </figure>
 
       <h3 class="subh nn reveal" style="margin-top:22px">Market Drivers</h3>
