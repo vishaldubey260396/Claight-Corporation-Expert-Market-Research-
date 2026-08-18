@@ -750,23 +750,71 @@
   .md-fig h6{margin:0;font-size:13px;font-weight:800;color:var(--navy)}
   .md-fig .md-sub{margin:4px 0 0;font-size:11.5px;color:var(--muted)}
 
-  /* --- 5.1 opportunity cards --- */
-  .md-opps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:16px 0 0}
-  .md-opp{position:relative;padding:16px 18px 16px 56px;background:#fff;
-    border:1px solid var(--line);border-radius:12px;
-    box-shadow:0 3px 10px rgba(76,29,149,.05);
-    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-  .md-opp:hover,.md-opp:focus-within{transform:translateY(-3px);
-    border-color:#d9cbff;box-shadow:0 10px 22px rgba(76,29,149,.13)}
-  .md-opp::before{content:counter(mdopp);counter-increment:mdopp;
-    position:absolute;left:16px;top:15px;width:28px;height:28px;border-radius:8px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:13px;font-weight:800;color:#fff;
-    background:linear-gradient(180deg,#8b5cf6,#6d28d9)}
-  .md-opps{counter-reset:mdopp}
-  .md-opp h6{margin:0 0 6px;font-size:13.5px;font-weight:800;color:var(--purple-deep);line-height:1.35}
-  .md-opp p{margin:0;font-size:12.5px;line-height:1.65;color:var(--ink)}
-  @media(max-width:760px){.md-opps{grid-template-columns:1fr}}
+  /* --- 5.1 opportunity positioning map --- */
+  .mo-grid2{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(210px,1fr);
+    gap:18px;align-items:center;margin-top:12px}
+  .mo-svg{display:block;width:100%;height:auto;overflow:visible}
+  .mo-svg .mo-grid{stroke:#efeafe;stroke-width:1;stroke-dasharray:3 4}
+  .mo-svg .mo-axis{stroke:#ddd4f2;stroke-width:1}
+  .mo-svg .mo-tick{font-size:10.5px;font-weight:700;fill:var(--muted)}
+  .mo-svg .mo-axlab{font-size:11px;font-weight:800;fill:#475569;letter-spacing:.02em}
+  .mo-svg .mo-plab{font-size:11.5px;font-weight:700;fill:var(--navy);pointer-events:none}
+  .mo-svg .mo-hit{fill:transparent;cursor:pointer}
+  .mo-svg .mo-disc{fill:var(--c);stroke:#fff;stroke-width:2;pointer-events:none}
+  .mo-svg .mo-halo{fill:var(--c);opacity:.14;pointer-events:none}
+
+  /* entry animation - staggered, keyed off the shared .reveal observer */
+  .mo-map .mo-pt{transform-box:fill-box;transform-origin:center;
+    opacity:0;transform:scale(.2);outline:none}
+  .mo-map.in .mo-pt{opacity:1;transform:none;
+    transition:opacity .5s ease var(--d),transform .6s cubic-bezier(.34,1.5,.5,1) var(--d)}
+  .mo-map .mo-pt .mo-disc,.mo-map .mo-pt .mo-halo{transition:r .25s ease,opacity .25s ease}
+  .mo-map .mo-pt .mo-plab{transition:opacity .25s ease}
+
+  /* selected / dimmed states */
+  .mo-map.pick .mo-pt{opacity:.32}
+  .mo-map.pick .mo-pt.on{opacity:1}
+  .mo-map .mo-pt.on .mo-disc{r:14}
+  .mo-map .mo-pt.on .mo-halo{r:32;opacity:.2;animation:mo-pulse 2.2s ease-in-out infinite}
+  .mo-map .mo-pt:focus-visible .mo-disc{stroke:var(--navy);stroke-width:2.5}
+  @keyframes mo-pulse{0%,100%{opacity:.2}50%{opacity:.36}}
+
+  /* side legend / picker */
+  .mo-side{display:flex;flex-direction:column;gap:7px}
+  .mo-li{display:flex;align-items:flex-start;gap:9px;width:100%;text-align:left;
+    padding:9px 11px;background:#fff;border:1px solid var(--line);border-radius:9px;
+    font:inherit;font-size:12.5px;line-height:1.4;color:var(--ink);cursor:pointer;
+    transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease,background .18s ease}
+  .mo-li:hover{border-color:var(--c);transform:translateX(2px)}
+  .mo-li[aria-pressed="true"]{border-color:var(--c);background:#fcfbff;
+    box-shadow:0 3px 12px rgba(76,29,149,.10)}
+  .mo-n{flex:none;width:20px;height:20px;border-radius:6px;background:var(--c);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;
+    margin-top:1px}
+  .mo-li[aria-pressed="true"] .mo-t{font-weight:700;color:var(--navy)}
+
+  /* detail box - grid-stacked so the height never jumps */
+  .mo-detail{display:grid;margin-top:14px;padding:13px 15px;background:#faf8ff;
+    border:1px solid var(--line);border-radius:9px}
+  .mo-detail>div{grid-area:1/1;font-size:12.5px;line-height:1.65;color:var(--ink);
+    visibility:hidden;opacity:0;transform:translateY(5px);
+    transition:opacity .3s ease,transform .3s ease}
+  .mo-detail>div.mo-on{visibility:visible;opacity:1;transform:none}
+
+  @media(max-width:820px){
+    .mo-grid2{grid-template-columns:1fr}
+    .mo-plot{overflow-x:auto;padding-bottom:4px}
+    .mo-svg{min-width:540px}
+    .mo-side{flex-direction:row;flex-wrap:wrap}
+    .mo-li{width:calc(50% - 4px)}
+  }
+  @media(max-width:520px){.mo-li{width:100%}}
+  @media(prefers-reduced-motion:reduce){
+    .mo-map .mo-pt{opacity:1;transform:none}
+    .mo-map.in .mo-pt{transition:none}
+    .mo-map .mo-pt.on .mo-halo{animation:none}
+    .mo-li,.mo-detail>div{transition:none}
+  }
 
   /* --- 5.2 diverging impact chart --- */
   .md-div{margin-top:14px}
@@ -1679,24 +1727,81 @@
         avenues offer <strong>additional upside for manufacturers and investors</strong> over the forecast period.
       </p>
 
-      <div class="md-opps reveal">
-        <article class="md-opp">
-          <h6>Under-Penetrated Emerging Markets</h6>
-          <p>Asia Pacific, Latin America and the Middle East and Africa currently show materially lower installed-base penetration of advanced 3D imaging and navigation platforms relative to North America and Europe, representing a substantial addressable opportunity as hospital capital budgets and domestic manufacturing capability continue to expand across these regions.</p>
-        </article>
-        <article class="md-opp">
-          <h6>Software-as-a-Service and Cloud-Based Analytics Expansion</h6>
-          <p>Subscription-based, cloud-hosted AI analytics and visualization software allow smaller hospitals and ambulatory surgical centers that cannot justify a full capital hardware purchase to access advanced navigation-adjacent capability, opening a materially larger addressable customer base than the hardware-only sales model.</p>
-        </article>
-        <article class="md-opp">
-          <h6>Mixed-Reality and Next-Generation Visualization</h6>
-          <p>Emerging mixed-reality and holographic navigation platforms, such as MediView's XR90 system, represent a nascent but fast-growing premium visualization category with the potential to redefine surgeon workflow beyond conventional screen-based navigation.</p>
-        </article>
-        <article class="md-opp">
-          <h6>Cross-Platform Digital Integration Partnerships</h6>
-          <p>The growing preference for cross-platform digital-integration partnerships, exemplified by the 2026 GE HealthCare and Medtronic alliance, over closed, single-vendor ecosystems opens new go-to-market and revenue-sharing opportunities for both established manufacturers and smaller, software-focused entrants.</p>
-        </article>
-      </div>
+      <figure class="md-fig mo-map reveal" style="margin-top:16px">
+        <h6>Opportunity Positioning Map</h6>
+        <p class="md-sub">Four less fully exploited avenues, positioned by time to impact and breadth of expansion</p>
+        <div class="mo-grid2">
+          <div class="mo-plot">
+          <svg class="mo-svg" viewBox="0 0 660 470" role="img"
+               aria-label="Positioning map of four market opportunities by time to material revenue impact and breadth of addressable-base expansion.">
+          <line class="mo-grid" x1="298.0" y1="26" x2="298.0" y2="390"/>
+          <line class="mo-grid" x1="132" y1="268.7" x2="630" y2="268.7"/>
+          <line class="mo-grid" x1="464.0" y1="26" x2="464.0" y2="390"/>
+          <line class="mo-grid" x1="132" y1="147.3" x2="630" y2="147.3"/>
+          <line class="mo-axis" x1="132" y1="390" x2="630" y2="390"/>
+          <line class="mo-axis" x1="132" y1="26" x2="132" y2="390"/>
+          <text class="mo-tick" x="215.0" y="410" text-anchor="middle">Near-term</text>
+          <text class="mo-tick" x="381.0" y="410" text-anchor="middle">Mid-term</text>
+          <text class="mo-tick" x="547.0" y="410" text-anchor="middle">Longer-term</text>
+          <text class="mo-tick" x="116" y="333.3" text-anchor="end">Incremental</text>
+          <text class="mo-tick" x="116" y="212.0" text-anchor="end">Substantial</text>
+          <text class="mo-tick" x="116" y="90.7" text-anchor="end">Transformative</text>
+          <text class="mo-axlab" x="381.0" y="438" text-anchor="middle">Time to material revenue impact &#8594;</text>
+          <text class="mo-axlab" x="12" y="208.0" text-anchor="middle" transform="rotate(-90 12 208.0)">Breadth of addressable-base expansion &#8594;</text>
+          <g class="mo-pt" data-i="1" style="--c:#6d28d9;--d:0ms" tabindex="0" role="button"
+             aria-label="Under-Penetrated Emerging Markets">
+            <circle class="mo-halo" cx="281.4" cy="164.3" r="26"/>
+            <circle class="mo-disc" cx="281.4" cy="164.3" r="11"/>
+            <text class="mo-plab" x="307.4" y="168.3" text-anchor="start">Emerging markets</text>
+            <circle class="mo-hit" cx="281.4" cy="164.3" r="30"/>
+          </g>
+          <g class="mo-pt" data-i="2" style="--c:#0891b2;--d:130ms" tabindex="0" role="button"
+             aria-label="Software-as-a-Service and Cloud-Based Analytics Expansion">
+            <circle class="mo-halo" cx="241.6" cy="77.0" r="26"/>
+            <circle class="mo-disc" cx="241.6" cy="77.0" r="11"/>
+            <text class="mo-plab" x="267.6" y="81.0" text-anchor="start">Cloud / SaaS analytics</text>
+            <circle class="mo-hit" cx="241.6" cy="77.0" r="30"/>
+          </g>
+          <g class="mo-pt" data-i="3" style="--c:#db2777;--d:260ms" tabindex="0" role="button"
+             aria-label="Mixed-Reality and Next-Generation Visualization">
+            <circle class="mo-halo" cx="550.3" cy="135.2" r="26"/>
+            <circle class="mo-disc" cx="550.3" cy="135.2" r="11"/>
+            <text class="mo-plab" x="524.3" y="139.2" text-anchor="end">Mixed reality</text>
+            <circle class="mo-hit" cx="550.3" cy="135.2" r="30"/>
+          </g>
+          <g class="mo-pt" data-i="4" style="--c:#a16207;--d:390ms" tabindex="0" role="button"
+             aria-label="Cross-Platform Digital Integration Partnerships">
+            <circle class="mo-halo" cx="405.9" cy="244.4" r="26"/>
+            <circle class="mo-disc" cx="405.9" cy="244.4" r="11"/>
+            <text class="mo-plab" x="431.9" y="248.4" text-anchor="start">Integration partnerships</text>
+            <circle class="mo-hit" cx="405.9" cy="244.4" r="30"/>
+          </g>
+          </svg>
+          </div>
+          <div class="mo-side">
+            <button class="mo-li" type="button" data-i="1" style="--c:#6d28d9" aria-pressed="true">
+              <span class="mo-n">1</span><span class="mo-t">Under-Penetrated Emerging Markets</span>
+            </button>
+            <button class="mo-li" type="button" data-i="2" style="--c:#0891b2" aria-pressed="false">
+              <span class="mo-n">2</span><span class="mo-t">Software-as-a-Service and Cloud-Based Analytics Expansion</span>
+            </button>
+            <button class="mo-li" type="button" data-i="3" style="--c:#db2777" aria-pressed="false">
+              <span class="mo-n">3</span><span class="mo-t">Mixed-Reality and Next-Generation Visualization</span>
+            </button>
+            <button class="mo-li" type="button" data-i="4" style="--c:#a16207" aria-pressed="false">
+              <span class="mo-n">4</span><span class="mo-t">Cross-Platform Digital Integration Partnerships</span>
+            </button>
+          </div>
+        </div>
+        <div class="mo-detail">
+            <div class="mo-d mo-on" data-i="1"><b style="color:#6d28d9">Under-Penetrated Emerging Markets.</b> Asia Pacific, Latin America and the Middle East and Africa currently show materially lower installed-base penetration of advanced 3D imaging and navigation platforms relative to North America and Europe, representing a substantial addressable opportunity as hospital capital budgets and domestic manufacturing capability continue to expand across these regions.</div>
+            <div class="mo-d" data-i="2"><b style="color:#0891b2">Software-as-a-Service and Cloud-Based Analytics Expansion.</b> Subscription-based, cloud-hosted AI analytics and visualization software allow smaller hospitals and ambulatory surgical centers that cannot justify a full capital hardware purchase to access advanced navigation-adjacent capability, opening a materially larger addressable customer base than the hardware-only sales model.</div>
+            <div class="mo-d" data-i="3"><b style="color:#db2777">Mixed-Reality and Next-Generation Visualization.</b> Emerging mixed-reality and holographic navigation platforms, such as MediView's XR90 system, represent a nascent but fast-growing premium visualization category with the potential to redefine surgeon workflow beyond conventional screen-based navigation.</div>
+            <div class="mo-d" data-i="4"><b style="color:#a16207">Cross-Platform Digital Integration Partnerships.</b> The growing preference for cross-platform digital-integration partnerships, exemplified by the 2026 GE HealthCare and Medtronic alliance, over closed, single-vendor ecosystems opens new go-to-market and revenue-sharing opportunities for both established manufacturers and smaller, software-focused entrants.</div>
+        </div>
+        <figcaption class="md-cap">Positioning is a qualitative assessment derived from the descriptions above;
+          both axes are ordinal, not measured quantities. Select a point or a label to read the full rationale.</figcaption>
+      </figure>
 
       <h3 class="subh reveal">Market Drivers and Constraints</h3>
 
@@ -2510,6 +2615,35 @@
     c.addEventListener('blur',rest);
   });
 })();
+
+  /* ---------- Section 5 - opportunity positioning map ---------- */
+  (function(){
+    var map=document.querySelector('.mo-map'); if(!map) return;
+    var pts=[].slice.call(map.querySelectorAll('.mo-pt'));
+    var lis=[].slice.call(map.querySelectorAll('.mo-li'));
+    var dts=[].slice.call(map.querySelectorAll('.mo-detail>div'));
+    var pinned=1, hover=0;
+    function paint(){
+      var i=hover||pinned;
+      map.classList.toggle('pick', !!hover);
+      pts.forEach(function(p){ p.classList.toggle('on', +p.dataset.i===i); });
+      lis.forEach(function(b){ b.setAttribute('aria-pressed', +b.dataset.i===pinned?'true':'false'); });
+      dts.forEach(function(d){ d.classList.toggle('mo-on', +d.dataset.i===i); });
+    }
+    function bind(el,i){
+      el.addEventListener('mouseenter',function(){ hover=i; paint(); });
+      el.addEventListener('mouseleave',function(){ hover=0; paint(); });
+      el.addEventListener('focus',function(){ hover=i; paint(); });
+      el.addEventListener('blur',function(){ hover=0; paint(); });
+      el.addEventListener('click',function(){ pinned=i; hover=0; paint(); });
+      el.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pinned=i; paint(); }
+      });
+    }
+    pts.forEach(function(p){ bind(p, +p.dataset.i); });
+    lis.forEach(function(b){ bind(b, +b.dataset.i); });
+    paint();
+  })();
 </script>
 </body>
 </html>
