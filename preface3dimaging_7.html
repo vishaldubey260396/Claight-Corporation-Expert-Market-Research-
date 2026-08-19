@@ -927,16 +927,24 @@
     transition:opacity .18s ease,background .18s ease}
   .pe-lab{font-size:12.5px;font-weight:700;color:var(--navy);text-align:right}
   .pe-trk{position:relative;height:22px}
-  .pe-bar{position:absolute;left:0;top:9px;height:5px;width:var(--p);border-radius:3px;
-    background:linear-gradient(90deg,#ddd0ff,var(--mc));
-    transform:scaleX(0);transform-origin:left}
-  .pe-dot{position:absolute;left:var(--p);top:4px;width:15px;height:15px;margin-left:-7.5px;
-    border-radius:50%;background:var(--mc);box-shadow:0 0 0 2.5px #fff,0 2px 6px rgba(60,20,120,.28);
-    opacity:0;transform:scale(.3)}
-  .reveal.in .pe-bar{transform:none;transition:transform .7s cubic-bezier(.25,1,.4,1) var(--d)}
-  .reveal.in .pe-dot{opacity:1;transform:none;
-    transition:opacity .3s ease calc(var(--d) + .42s),transform .45s cubic-bezier(.3,1.5,.5,1) calc(var(--d) + .42s)}
-  .pe-rate{font-size:12px;font-weight:800;color:var(--rc)}
+  .pe-link{position:absolute;left:var(--lo);top:10px;width:var(--w);height:3px;border-radius:2px;
+    background:#cfc0f5;transform:scaleX(0);transform-origin:left}
+  .pe-now,.pe-fut{position:absolute;top:4px;width:14px;height:14px;margin-left:-7px;
+    border-radius:50%;box-shadow:0 0 0 2.5px #fff;opacity:0;transform:scale(.3)}
+  .pe-now{left:var(--a);background:#8b5cf6}
+  .pe-fut{left:var(--b);background:#4c1d95;box-shadow:0 0 0 2.5px #fff,0 2px 6px rgba(60,20,120,.3)}
+  .reveal.in .pe-link{transform:none;transition:transform .55s cubic-bezier(.25,1,.4,1) calc(var(--d) + .18s)}
+  .reveal.in .pe-now{opacity:1;transform:none;
+    transition:opacity .3s ease var(--d),transform .4s cubic-bezier(.3,1.5,.5,1) var(--d)}
+  .reveal.in .pe-fut{opacity:1;transform:none;
+    transition:opacity .3s ease calc(var(--d) + .4s),transform .45s cubic-bezier(.3,1.5,.5,1) calc(var(--d) + .4s)}
+  .pe-rate{font-size:12px;font-weight:800;color:var(--purple-deep);white-space:nowrap}
+  .pe-arw{color:var(--purple);font-weight:800}
+  .pe-legend{display:flex;gap:18px;margin:14px 0 0;padding-left:calc(var(--lab) + 12px)}
+  .pe-legend span{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ink);font-weight:600}
+  .pe-legend i{width:11px;height:11px;border-radius:50%}
+  .pe-legend i.now{background:#8b5cf6}
+  .pe-legend i.fut{background:#4c1d95}
 
   .pe.pick .pe-row{opacity:.4}
   .pe.pick .pe-row.on{opacity:1;background:#faf8ff}
@@ -949,19 +957,20 @@
   ul.pe-notes>li{position:relative;padding:6px 0 6px 20px;font-size:12.5px;line-height:1.65;
     color:var(--ink);border-radius:8px;transition:opacity .18s ease,background .18s ease}
   ul.pe-notes>li::before{content:"";position:absolute;left:6px;top:14px;width:7px;height:7px;
-    border-radius:2px;background:var(--mc)}
-  ul.pe-notes>li b{color:var(--rc);font-weight:800}
+    border-radius:2px;background:#6d28d9}
+  ul.pe-notes>li b{color:var(--purple-deep);font-weight:800}
   .pe-wrap.pick ul.pe-notes>li{opacity:.42}
   .pe-wrap.pick ul.pe-notes>li.on{opacity:1;background:#faf8ff}
 
   @media(max-width:640px){
     .pe{--lab:96px;--rate:66px}
     .pe-lab{font-size:11.5px}
-    .pe-rate{font-size:11px}
+    .pe-rate{font-size:10.5px}
+    .pe-legend{padding-left:0}
   }
   @media(prefers-reduced-motion:reduce){
-    .pe-bar{transform:none}.pe-dot{opacity:1;transform:none}
-    .reveal.in .pe-bar,.reveal.in .pe-dot{transition:none}
+    .pe-link{transform:none}.pe-now,.pe-fut{opacity:1;transform:none}
+    .reveal.in .pe-link,.reveal.in .pe-now,.reveal.in .pe-fut{transition:none}
   }
 
   /* --- 5.5 Porter radar --- */
@@ -2025,8 +2034,8 @@
       <div class="pe-wrap" id="pestel">
       <figure class="md-fig pe reveal" style="margin-top:14px">
         <div class="pe-eyebrow">Exhibit 2</div>
-        <h6>Technological, legal and economic factors dominate the macro picture</h6>
-        <p class="md-sub">PESTEL impact on the 3D surgical imaging market, by dimension - hover a row to read its note</p>
+        <h6>Technological, legal and economic factors dominate - and the pressure keeps shifting to 2035</h6>
+        <p class="md-sub">PESTEL impact on the 3D surgical imaging market, now and toward 2035 - hover a row to read its note</p>
         <div class="pe-plot">
           <div class="pe-head">
             <span></span>
@@ -2036,59 +2045,88 @@
           <div class="pe-body">
             <div class="pe-lines" aria-hidden="true"><i style="left:25%"></i><i style="left:60%"></i><i style="left:92%"></i></div>
             <div class="pe-row" data-i="1" tabindex="0"
-                 style="--p:92%;--mc:#4c1d95;--rc:#4c1d95;--d:0ms"
-                 aria-label="Technological: high impact">
-              <div class="pe-lab">Technological</div>
-              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
-              <div class="pe-rate">High</div>
+                 style="--a:60%;--b:60%;--lo:60%;--w:0%;--d:0ms"
+                 aria-label="Political: medium impact now, steady toward 2035">
+              <div class="pe-lab">Political</div>
+              <div class="pe-trk">
+                <span class="pe-link"></span>
+                <span class="pe-now"></span>
+                <span class="pe-fut"></span>
+              </div>
+              <div class="pe-rate">Medium <span class="pe-arw" aria-hidden="true">&#8594;</span></div>
             </div>
             <div class="pe-row" data-i="2" tabindex="0"
-                 style="--p:92%;--mc:#4c1d95;--rc:#4c1d95;--d:110ms"
-                 aria-label="Legal: high impact">
-              <div class="pe-lab">Legal</div>
-              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
-              <div class="pe-rate">High</div>
+                 style="--a:88%;--b:72%;--lo:72%;--w:16%;--d:110ms"
+                 aria-label="Economic: high impact now, easing toward 2035">
+              <div class="pe-lab">Economic</div>
+              <div class="pe-trk">
+                <span class="pe-link"></span>
+                <span class="pe-now"></span>
+                <span class="pe-fut"></span>
+              </div>
+              <div class="pe-rate">High <span class="pe-arw" aria-hidden="true">&#8595;</span></div>
             </div>
             <div class="pe-row" data-i="3" tabindex="0"
-                 style="--p:88%;--mc:#4c1d95;--rc:#4c1d95;--d:220ms"
-                 aria-label="Economic: high impact">
-              <div class="pe-lab">Economic</div>
-              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
-              <div class="pe-rate">High</div>
+                 style="--a:60%;--b:76%;--lo:60%;--w:16%;--d:220ms"
+                 aria-label="Social: medium impact now, rising toward 2035">
+              <div class="pe-lab">Social</div>
+              <div class="pe-trk">
+                <span class="pe-link"></span>
+                <span class="pe-now"></span>
+                <span class="pe-fut"></span>
+              </div>
+              <div class="pe-rate">Medium <span class="pe-arw" aria-hidden="true">&#8593;</span></div>
             </div>
             <div class="pe-row" data-i="4" tabindex="0"
-                 style="--p:60%;--mc:#8b5cf6;--rc:#6d28d9;--d:330ms"
-                 aria-label="Political: medium impact">
-              <div class="pe-lab">Political</div>
-              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
-              <div class="pe-rate">Medium</div>
+                 style="--a:88%;--b:96%;--lo:88%;--w:8%;--d:330ms"
+                 aria-label="Technological: high impact now, rising toward 2035">
+              <div class="pe-lab">Technological</div>
+              <div class="pe-trk">
+                <span class="pe-link"></span>
+                <span class="pe-now"></span>
+                <span class="pe-fut"></span>
+              </div>
+              <div class="pe-rate">High <span class="pe-arw" aria-hidden="true">&#8593;</span></div>
             </div>
             <div class="pe-row" data-i="5" tabindex="0"
-                 style="--p:60%;--mc:#8b5cf6;--rc:#6d28d9;--d:440ms"
-                 aria-label="Social: medium impact">
-              <div class="pe-lab">Social</div>
-              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
-              <div class="pe-rate">Medium</div>
+                 style="--a:56%;--b:56%;--lo:56%;--w:0%;--d:440ms"
+                 aria-label="Environmental: medium impact now, steady toward 2035">
+              <div class="pe-lab">Environmental</div>
+              <div class="pe-trk">
+                <span class="pe-link"></span>
+                <span class="pe-now"></span>
+                <span class="pe-fut"></span>
+              </div>
+              <div class="pe-rate">Medium <span class="pe-arw" aria-hidden="true">&#8594;</span></div>
             </div>
             <div class="pe-row" data-i="6" tabindex="0"
-                 style="--p:56%;--mc:#8b5cf6;--rc:#6d28d9;--d:550ms"
-                 aria-label="Environmental: medium impact">
-              <div class="pe-lab">Environmental</div>
-              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
-              <div class="pe-rate">Medium</div>
+                 style="--a:88%;--b:96%;--lo:88%;--w:8%;--d:550ms"
+                 aria-label="Legal: high impact now, rising toward 2035">
+              <div class="pe-lab">Legal</div>
+              <div class="pe-trk">
+                <span class="pe-link"></span>
+                <span class="pe-now"></span>
+                <span class="pe-fut"></span>
+              </div>
+              <div class="pe-rate">High <span class="pe-arw" aria-hidden="true">&#8593;</span></div>
             </div>
           </div>
+          <div class="pe-legend">
+            <span><i class="now"></i>Now</span><span><i class="fut"></i>Toward 2035</span>
+          </div>
         </div>
-        <p class="pe-src">Impact rating is an ordinal assessment drawn from the dimension notes below, not a measured score.</p>
+        <p class="pe-src">Bands are ordinal (Low / Medium / High), not measured scores. The 2035 marker moves only
+          where the dimension notes below point to that force intensifying or easing; where the report states no
+          direction, the two markers sit together.</p>
       </figure>
 
       <ul class="pe-notes reveal">
-          <li data-i="1" style="--mc:#4c1d95;--rc:#4c1d95"><b>Technological - High.</b> Imaging, navigation and robotics are converging into unified platforms, with AI-based segmentation and image fusion and mixed-reality, cloud-native architectures reshaping product roadmaps.</li>
-          <li data-i="2" style="--mc:#4c1d95;--rc:#4c1d95"><b>Legal - High.</b> Dense, overlapping patent filings around navigation and imaging methods create freedom-to-operate risk; device clearance pathways and cloud data-privacy rules add further gating.</li>
-          <li data-i="3" style="--mc:#4c1d95;--rc:#4c1d95"><b>Economic - High.</b> High per-system capital cost relative to hospital capital budgets, group purchasing bargaining power and FX-driven emerging-market affordability set the pace of adoption.</li>
-          <li data-i="4" style="--mc:#8b5cf6;--rc:#6d28d9"><b>Political - Medium.</b> Hospital capital-expenditure policy and public health-system procurement cycles, component trade and tariff policy, and national digital-health and AI policy frameworks.</li>
-          <li data-i="5" style="--mc:#8b5cf6;--rc:#6d28d9"><b>Social - Medium.</b> Rising surgeon and patient expectation of precision, minimally invasive care; growing acceptance of AI-assisted decision support; ageing populations lifting procedure volumes.</li>
-          <li data-i="6" style="--mc:#8b5cf6;--rc:#6d28d9"><b>Environmental - Medium.</b> Radiation-dose reduction as a design priority, plus sustainability of hardware manufacturing and electronic waste from retired imaging systems.</li>
+          <li data-i="1"><b>Political - Medium.</b> Hospital capital-expenditure policy and public health-system procurement cycles, component trade and tariff policy, and national digital-health and AI policy frameworks.</li>
+          <li data-i="2"><b>Economic - High.</b> High per-system capital cost relative to hospital capital budgets and GPO bargaining power gate adoption today, but subscription and cloud-based models are opening access to buyers who cannot fund a capital purchase.</li>
+          <li data-i="3"><b>Social - Medium.</b> Rising surgeon and patient expectation of precision, minimally invasive care; growing acceptance of AI-assisted decision support; ageing populations lifting procedure volumes.</li>
+          <li data-i="4"><b>Technological - High.</b> Imaging, navigation and robotics are converging into unified platforms, with AI-based segmentation, image fusion and mixed-reality, cloud-native architectures reshaping product roadmaps.</li>
+          <li data-i="5"><b>Environmental - Medium.</b> Radiation-dose reduction as a design priority, plus sustainability of hardware manufacturing and electronic waste from retired imaging systems.</li>
+          <li data-i="6"><b>Legal - High.</b> Dense, overlapping patent filings around navigation and imaging methods create freedom-to-operate risk, and cloud data-privacy rules bite harder as subscription platforms grow.</li>
       </ul>
       </div>
 
