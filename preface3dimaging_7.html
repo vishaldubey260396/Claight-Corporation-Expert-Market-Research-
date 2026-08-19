@@ -1098,6 +1098,69 @@
     .kd-b.on{transform:none}
   }
 
+  /* --- 5.8 Value chain - six linked stages, with the risk and the payoff marked --- */
+  .vc{margin-top:16px}
+  .vc-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:26px}
+  .vc-s{position:relative;padding:13px 13px 14px;border-radius:11px;background:var(--t);
+    border:1px solid rgba(76,29,149,.10);border-top:3px solid var(--c);outline:none;
+    opacity:0;transform:translateY(16px);
+    transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease}
+  /* the connector that makes the six read as one chain */
+  .vc-s+.vc-s::before{content:"";position:absolute;left:-19px;top:34px;
+    width:0;height:0;border:6px solid transparent;border-left-color:#cbbcf2}
+  .vc-s+.vc-s::after{content:"";position:absolute;left:-26px;top:39px;width:14px;height:2px;
+    background:#e3d9f7}
+  .vc-n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+    border-radius:7px;background:#fff;border:1px solid var(--c);
+    font-size:11.5px;font-weight:800;color:var(--tx);margin-bottom:8px}
+  .vc-s h6{margin:0 0 5px;font-size:12px;font-weight:800;color:var(--navy);line-height:1.3}
+  .vc-s p{margin:0;font-size:11px;line-height:1.55;color:#475569}
+
+  .vc-notes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  .vc-note{padding:14px 16px;border-radius:11px;background:#fff;
+    border:1px solid var(--line);border-left:4px solid var(--nc);
+    opacity:0;transform:translateY(16px);
+    transition:box-shadow .2s ease,opacity .2s ease,transform .2s ease}
+  .vc-note.risk{--nc:#b45309}
+  .vc-note.gain{--nc:#4c1d95}
+  .vc-nh{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .vc-tag{flex:none;font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+    padding:3px 8px;border-radius:999px;background:var(--nc);color:#fff}
+  .vc-note h6{margin:0;font-size:12.5px;font-weight:800;color:var(--nc)}
+  .vc-note p{margin:0;font-size:12px;line-height:1.6;color:var(--ink)}
+
+  /* the chain lights up left to right, then the two notes land.
+     a keyframe animation (not a delayed transition) does the entry, so the
+     hover dim/lift stays instant instead of inheriting the per-stage delay */
+  @keyframes vcIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .vc.in .vc-s{opacity:1;transform:none;
+    animation:vcIn .6s cubic-bezier(.3,1.25,.5,1) var(--d) backwards}
+  .vc.in .vc-note{opacity:1;transform:none;
+    animation:vcIn .6s cubic-bezier(.3,1.2,.5,1) .74s backwards}
+  .vc.in .vc-note.gain{animation-delay:.86s}
+
+  /* hovering a stage also pulls up the note that refers to it */
+  .vc.pick .vc-s,.vc.pick .vc-note{opacity:.42}
+  .vc.pick .vc-s.on,.vc.pick .vc-note.on{opacity:1}
+  .vc-s.on{transform:translateY(-3px);box-shadow:0 10px 22px rgba(76,29,149,.16)}
+  .vc-note.on{box-shadow:0 10px 22px rgba(76,29,149,.14)}
+  .vc-s:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.35)}
+
+  @media(max-width:1000px){
+    .vc-flow{grid-template-columns:repeat(3,1fr);gap:14px}
+    .vc-s+.vc-s::before,.vc-s+.vc-s::after{display:none}
+  }
+  @media(max-width:640px){
+    .vc-flow{grid-template-columns:1fr 1fr}
+    .vc-notes{grid-template-columns:1fr}
+  }
+  @media(max-width:420px){.vc-flow{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){
+    .vc-s,.vc-note{opacity:1;transform:none}
+    .vc.in .vc-s,.vc.in .vc-note{transition:none}
+    .vc-s.on{transform:none}
+  }
+
   /* --- 5.7 price ranges (log scale) --- */
   .md-pr{margin-top:14px}
   .md-prrow{display:grid;grid-template-columns:minmax(190px,290px) 1fr auto;
@@ -2393,29 +2456,55 @@
         operational risk</strong>, is concentrated within this market.
       </p>
 
-      <p class="reveal">
-        The value chain for 3D medical and surgical imaging platforms begins with precision component
-        manufacturing, spanning optical sensors, semiconductor detectors and imaging-grade displays, followed by
-        system integration and software development, where platform manufacturers combine hardware with
-        proprietary navigation, visualization and increasingly AI-based analytics software. This is followed by
-        regulatory clearance and quality certification, hospital sales and capital-equipment procurement
-        (frequently mediated by group purchasing organisations), installation and clinical integration (often
-        requiring hybrid operating room construction or retrofit), and finally ongoing service, software updates
-        and, increasingly, subscription-based analytics revenue. Component supply concentration, particularly for
-        precision optical tracking hardware and medical-grade semiconductor sensors, has emerged as an important
-        operational risk factor for platform manufacturers, prompting several major players to deepen direct
-        relationships with specialised component suppliers and, in some cases, pursue vertical integration
-        through acquisition.
-      </p>
-
-      <p class="reveal">
-        Supply-chain resilience has become an increasingly important strategic consideration for platform
-        manufacturers. Precision optical tracking components and medical-grade semiconductor sensors are sourced
-        from a relatively concentrated supplier base, and geopolitical or trade-policy disruption to
-        semiconductor and specialty-electronics supply chains represents a material operational risk that
-        manufacturers are increasingly building explicit contingency and dual-sourcing plans around, mirroring
-        practices already well established across the broader medical-device and electronics industries.
-      </p>
+      <div class="vc" id="vchain">
+        <div class="vc-flow">
+          <div class="vc-s" data-i="1" tabindex="0" style="--c:#a78bfa;--t:#f5f3ff;--tx:#5b21b6;--d:0ms">
+            <span class="vc-n">1</span>
+            <h6>Components</h6>
+            <p>Optical sensors, semiconductor detectors and imaging-grade displays.</p>
+          </div>
+          <div class="vc-s" data-i="2" tabindex="0" style="--c:#8b5cf6;--t:#f3f0ff;--tx:#5b21b6;--d:120ms">
+            <span class="vc-n">2</span>
+            <h6>Integration &amp; software</h6>
+            <p>Hardware combined with proprietary navigation, visualization and AI analytics.</p>
+          </div>
+          <div class="vc-s" data-i="3" tabindex="0" style="--c:#7c3aed;--t:#f1ecff;--tx:#4c1d95;--d:240ms">
+            <span class="vc-n">3</span>
+            <h6>Clearance</h6>
+            <p>Device regulatory clearance and quality certification.</p>
+          </div>
+          <div class="vc-s" data-i="4" tabindex="0" style="--c:#6d28d9;--t:#efe9ff;--tx:#4c1d95;--d:360ms">
+            <span class="vc-n">4</span>
+            <h6>Sales &amp; procurement</h6>
+            <p>Hospital capital purchase, frequently mediated by group purchasing organisations.</p>
+          </div>
+          <div class="vc-s" data-i="5" tabindex="0" style="--c:#5b21b6;--t:#ede6ff;--tx:#4c1d95;--d:480ms">
+            <span class="vc-n">5</span>
+            <h6>Install &amp; integrate</h6>
+            <p>Commissioning and clinical integration, often with hybrid OR construction or retrofit.</p>
+          </div>
+          <div class="vc-s" data-i="6" tabindex="0" style="--c:#4c1d95;--t:#eae2ff;--tx:#3b1178;--d:600ms">
+            <span class="vc-n">6</span>
+            <h6>Service &amp; subscription</h6>
+            <p>Ongoing service, software updates and subscription-based analytics revenue.</p>
+          </div>
+        </div>
+        <div class="vc-notes">
+          <div class="vc-note risk" data-s="1">
+            <div class="vc-nh"><span class="vc-tag">Stage 1</span><h6>Where the operational risk sits</h6></div>
+            <p>Precision optical tracking hardware and medical-grade semiconductor sensors come from a
+              concentrated supplier base, so trade-policy or geopolitical disruption is a material risk.
+              Manufacturers are answering with dual-sourcing plans, deeper direct supplier relationships and,
+              in some cases, vertical integration by acquisition.</p>
+          </div>
+          <div class="vc-note gain" data-s="6">
+            <div class="vc-nh"><span class="vc-tag">Stage 6</span><h6>Where the value compounds</h6></div>
+            <p>Service, software updates and subscription analytics convert a one-off capital sale into
+              recurring revenue, which is why platform strategy increasingly decides lifetime value per
+              installed system rather than the initial hardware margin.</p>
+          </div>
+        </div>
+      </div>
 
       <h3 class="subh reveal">Industry Events, Initiatives and Trends</h3>
 
@@ -3243,6 +3332,46 @@
       });
     },{threshold:[0,.25]});
     io.observe(fig);
+  })();
+
+  /* ---------- Section 5 - value chain ---------- */
+  (function(){
+    var vc=document.getElementById('vchain'); if(!vc) return;
+    var steps=[].slice.call(vc.querySelectorAll('.vc-s'));
+    var notes=[].slice.call(vc.querySelectorAll('.vc-note'));
+    function set(i){
+      vc.classList.toggle('pick', !!i);
+      steps.forEach(function(x){ x.classList.toggle('on', +x.dataset.i===i); });
+      /* a note lights up with the stage it annotates */
+      notes.forEach(function(n){ n.classList.toggle('on', !!i && +n.dataset.s===i); });
+    }
+    steps.forEach(function(x){
+      var i=+x.dataset.i;
+      x.addEventListener('mouseenter',function(){ set(i); });
+      x.addEventListener('mouseleave',function(){ set(0); });
+      x.addEventListener('focus',function(){ set(i); });
+      x.addEventListener('blur',function(){ set(0); });
+    });
+    notes.forEach(function(n){
+      var i=+n.dataset.s;
+      n.addEventListener('mouseenter',function(){ set(i); });
+      n.addEventListener('mouseleave',function(){ set(0); });
+    });
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce || !('IntersectionObserver' in window)){ vc.classList.add('in'); return; }
+    var shown=false;
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting && e.intersectionRatio>=.2){
+          if(shown) return; shown=true;
+          vc.classList.remove('in'); void vc.offsetWidth; vc.classList.add('in');
+        } else if(!e.isIntersecting){
+          if(!shown) return; shown=false;
+          vc.classList.remove('in');
+        }
+      });
+    },{threshold:[0,.2]});
+    io.observe(vc);
   })();
 </script>
 </body>
