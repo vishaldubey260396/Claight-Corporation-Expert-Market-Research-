@@ -45,16 +45,16 @@
 
   /* ---------- STAT MOSAIC (Cotton/ProcureHub split-cell style) ---------- */
   .mosaic{padding:18px 22px 18px;background:#f4f4f8;display:grid;gap:12px;
-    grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(96px,auto)}
+    grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(152px,auto)}
   .cell{
-    position:relative;border-radius:10px;color:#fff;overflow:hidden;outline:none;
+    position:relative;border-radius:15px;color:#fff;overflow:hidden;outline:none;
     box-shadow:0 5px 14px rgba(60,20,120,.15);
     transition:transform .16s ease,box-shadow .16s ease;
     display:grid;grid-template-columns:1fr;
   }
   /* split cells keep the same wide/landscape footprint; detail hidden until hover */
   .cell.split{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
-  .cell .pane{position:relative;z-index:2;padding:11px 14px;display:flex;flex-direction:column;justify-content:center}
+  .cell .pane{position:relative;z-index:2;padding:17px 19px;display:flex;flex-direction:column;justify-content:center}
   /* detail pane becomes a hover text box: reserves its column (layout unchanged) but content hidden */
   .cell .detail{position:relative;z-index:4;justify-content:center;
     font-size:11px;line-height:1.38;color:#f2eefc;font-weight:500;
@@ -62,7 +62,7 @@
   .cell .detail .dbox{
     position:absolute;inset:6px;display:flex;align-items:center;overflow:hidden;
     background:rgba(20,14,32,.92);backdrop-filter:blur(3px);
-    border:1px solid rgba(255,255,255,.14);border-radius:10px;
+    border:1px solid rgba(255,255,255,.14);border-radius:12px;
     padding:8px 10px;box-shadow:0 10px 26px rgba(0,0,0,.34);
     opacity:0;transform:translateX(10px);pointer-events:none;
     transition:opacity .2s ease,transform .2s ease;}
@@ -1334,7 +1334,7 @@
         <div class="lab">Market Size 2025</div>
         <div class="big xl">$6.85<span class="u">B</span></div>
         <div class="glyph"><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="foot">lint-equivalent · global, USD</div>
+        <div class="foot">global platform revenue, USD</div>
       </div>
     </div>
 
@@ -1366,6 +1366,15 @@
     </div>
 
     <!-- Row 2 -->
+    <!-- Coverage (value-only) -->
+    <div class="cell g-plum p-prod" tabindex="0">
+      <div class="pane">
+        <div class="lab">Coverage</div>
+        <div class="big md">7 Lenses</div>
+        <div class="foot">type · tech · application · end user · region · patent · competitive</div>
+      </div>
+    </div>
+
     <!-- Historical base (split) -->
     <div class="cell g-blue split p-trade" tabindex="0">
       <div class="pane">
@@ -1377,15 +1386,6 @@
         Actuals span 2019-2025; the 2025 base year anchors the model, with the forecast running
         2026-2035.
       </div></div>
-    </div>
-
-    <!-- Coverage (value-only) -->
-    <div class="cell g-plum p-prod" tabindex="0">
-      <div class="pane">
-        <div class="lab">Coverage</div>
-        <div class="big md">7 Lenses</div>
-        <div class="foot">type · tech · application · end user · region · patent · competitive</div>
-      </div>
     </div>
 
     <!-- Companies / signals (split) -->
