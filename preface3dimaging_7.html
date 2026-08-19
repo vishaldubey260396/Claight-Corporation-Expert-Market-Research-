@@ -1085,8 +1085,7 @@
   .kd.in .kd-sum{transition:opacity .45s ease .7s,transform .55s cubic-bezier(.3,1.2,.5,1) .7s}
 
   /* hover links the block and its line */
-  .kd.pick .kd-b,.kd.pick .kd-t{opacity:.42}
-  .kd.pick .kd-b.on,.kd.pick .kd-t.on{opacity:1}
+  /* no dimming - the hovered block just steps out and its line picks up a tint */
   .kd-b.on{transform:translateX(5px);box-shadow:0 10px 24px rgba(60,20,120,.3);z-index:2}
   .kd-t.on{background:#faf8ff}
   .kd-b:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.55)}
