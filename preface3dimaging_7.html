@@ -1138,67 +1138,103 @@
     .tr-c.on{transform:none}
   }
 
-  /* --- 5.8 Value chain - six linked stages, with the risk and the payoff marked --- */
-  .vc{margin-top:16px}
-  .vc-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:26px}
-  .vc-s{position:relative;padding:13px 13px 14px;border-radius:11px;background:var(--t);
-    border:1px solid rgba(76,29,149,.10);border-top:3px solid var(--c);outline:none;
-    opacity:0;transform:translateY(16px);
-    transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease}
-  /* the connector that makes the six read as one chain */
-  .vc-s+.vc-s::before{content:"";position:absolute;left:-19px;top:34px;
-    width:0;height:0;border:6px solid transparent;border-left-color:#cbbcf2}
-  .vc-s+.vc-s::after{content:"";position:absolute;left:-26px;top:39px;width:14px;height:2px;
-    background:#e3d9f7}
-  .vc-n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
-    border-radius:7px;background:#fff;border:1px solid var(--c);
-    font-size:11.5px;font-weight:800;color:var(--tx);margin-bottom:8px}
-  .vc-s h6{margin:0 0 5px;font-size:12px;font-weight:800;color:var(--navy);line-height:1.3}
-  .vc-s p{margin:0;font-size:11px;line-height:1.55;color:#475569}
+  /* --- 5.8 Value chain - an interlocking chevron ribbon --- */
+  .vc{margin-top:16px;--notch:20px}
+  .vc-band{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}
+  .vc-ttl{font-size:13px;font-weight:800;color:var(--navy)}
+  .vc-up,.vc-down{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted)}
+  .vc-flow,.vc-caps{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+  .vc-caps{gap:4px;margin-top:9px}
+
+  .vc-ch{display:flex;align-items:center;justify-content:center;text-align:center;
+    min-height:66px;padding:10px calc(var(--notch) + 6px) 10px calc(var(--notch) + 10px);
+    background:var(--c);color:#fff;outline:none;opacity:0;transform:translateX(-16px);
+    clip-path:polygon(0 0,calc(100% - var(--notch)) 0,100% 50%,calc(100% - var(--notch)) 100%,
+      0 100%,var(--notch) 50%);
+    transition:filter .2s ease,transform .2s ease}
+  .vc-ch.first{padding-left:14px;border-radius:10px 0 0 10px;
+    clip-path:polygon(0 0,calc(100% - var(--notch)) 0,100% 50%,calc(100% - var(--notch)) 100%,0 100%)}
+  .vc-ch span{font-size:12px;font-weight:800;line-height:1.3}
+  .vc-cap{margin:0;font-size:11px;line-height:1.5;color:#475569;padding:0 6px;
+    opacity:0;transform:translateY(8px);border-radius:8px;transition:background .18s ease}
+
+  /* the chevrons slide in along the chain, then the captions settle underneath */
+  @keyframes vcSlide{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:none}}
+  @keyframes vcFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .vc.in .vc-ch{opacity:1;transform:none;
+    animation:vcSlide .5s cubic-bezier(.3,1.15,.5,1) var(--d) backwards}
+  .vc.in .vc-cap{opacity:1;transform:none;animation:vcFade .45s ease var(--d) backwards}
+
+  /* hover: brighten the stage, tint its caption, raise the note that annotates it. no dimming */
+  .vc-ch.on{filter:brightness(1.18) saturate(1.1);transform:translateY(-2px)}
+  .vc-cap.on{background:#faf8ff;color:var(--ink)}
+  .vc-ch:focus-visible{outline:2px solid #7c3aed;outline-offset:2px}
 
   .vc-notes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
   .vc-note{padding:14px 16px;border-radius:11px;background:#fff;
-    border:1px solid var(--line);border-left:4px solid var(--nc);
-    opacity:0;transform:translateY(16px);
-    transition:box-shadow .2s ease,opacity .2s ease,transform .2s ease}
+    border:1px solid var(--line);border-left:4px solid var(--nc);opacity:0;
+    transition:box-shadow .2s ease}
   .vc-note.risk{--nc:#b45309}
   .vc-note.gain{--nc:#4c1d95}
+  .vc.in .vc-note{opacity:1;animation:vcFade .55s ease .78s backwards}
+  .vc.in .vc-note.gain{animation-delay:.9s}
   .vc-nh{display:flex;align-items:center;gap:9px;margin-bottom:6px}
   .vc-tag{flex:none;font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
     padding:3px 8px;border-radius:999px;background:var(--nc);color:#fff}
   .vc-note h6{margin:0;font-size:12.5px;font-weight:800;color:var(--nc)}
   .vc-note p{margin:0;font-size:12px;line-height:1.6;color:var(--ink)}
+  .vc-note.on{box-shadow:0 10px 22px rgba(76,29,149,.16)}
 
-  /* the chain lights up left to right, then the two notes land.
-     a keyframe animation (not a delayed transition) does the entry, so the
-     hover dim/lift stays instant instead of inheriting the per-stage delay */
-  @keyframes vcIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-  .vc.in .vc-s{opacity:1;transform:none;
-    animation:vcIn .6s cubic-bezier(.3,1.25,.5,1) var(--d) backwards}
-  .vc.in .vc-note{opacity:1;transform:none;
-    animation:vcIn .6s cubic-bezier(.3,1.2,.5,1) .74s backwards}
-  .vc.in .vc-note.gain{animation-delay:.86s}
-
-  /* hovering a stage also pulls up the note that refers to it */
-  .vc.pick .vc-s,.vc.pick .vc-note{opacity:.42}
-  .vc.pick .vc-s.on,.vc.pick .vc-note.on{opacity:1}
-  .vc-s.on{transform:translateY(-3px);box-shadow:0 10px 22px rgba(76,29,149,.16)}
-  .vc-note.on{box-shadow:0 10px 22px rgba(76,29,149,.14)}
-  .vc-s:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.35)}
-
-  @media(max-width:1000px){
-    .vc-flow{grid-template-columns:repeat(3,1fr);gap:14px}
-    .vc-s+.vc-s::before,.vc-s+.vc-s::after{display:none}
+  @media(max-width:900px){
+    .vc-flow,.vc-caps{grid-template-columns:repeat(3,1fr)}
+    .vc-flow{row-gap:8px}
+    .vc-caps{display:none}
+    .vc-ch{min-height:58px}
   }
-  @media(max-width:640px){
-    .vc-flow{grid-template-columns:1fr 1fr}
+  @media(max-width:620px){
+    .vc-flow{grid-template-columns:1fr;row-gap:5px}
+    .vc-ch,.vc-ch.first{clip-path:none;border-radius:9px;padding:11px 14px;min-height:0}
     .vc-notes{grid-template-columns:1fr}
+    .vc-band{flex-wrap:wrap}
   }
-  @media(max-width:420px){.vc-flow{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){
-    .vc-s,.vc-note{opacity:1;transform:none}
-    .vc.in .vc-s,.vc.in .vc-note{transition:none}
-    .vc-s.on{transform:none}
+    .vc-ch,.vc-cap,.vc-note{opacity:1;transform:none}
+    .vc.in .vc-ch,.vc.in .vc-cap,.vc.in .vc-note{animation:none}
+    .vc-ch.on{transform:none}
+  }
+
+  /* --- 5.9 Industry trends - three from/to shifts --- */
+  .tr{margin-top:16px}
+  .tr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tr-c{position:relative;padding:16px 17px 17px;border-radius:12px;background:var(--t);
+    border:1px solid var(--bd);border-top:3px solid var(--c);outline:none;opacity:0;
+    transition:transform .2s ease,box-shadow .2s ease,opacity .18s ease}
+  .tr-n{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--c)}
+  .tr-c h6{margin:5px 0 12px;font-size:13.5px;font-weight:800;color:var(--navy);line-height:1.3}
+  /* the shift itself: what this used to be, and what it is becoming */
+  .tr-shift{display:flex;flex-direction:column;justify-content:center;gap:6px;
+    min-height:98px;padding:11px 12px;margin-bottom:11px;
+    background:#fff;border:1px solid var(--bd);border-radius:9px}
+  .tr-from,.tr-to{font-size:11.5px;line-height:1.45}
+  .tr-from{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--bd)}
+  .tr-to{font-weight:700;color:var(--tx)}
+  .tr-arw{font-size:13px;font-weight:800;color:var(--c);line-height:1}
+  .tr-c p{margin:0;font-size:11.5px;line-height:1.6;color:#475569}
+
+  @keyframes trIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+  .tr.in .tr-c{opacity:1;transform:none;
+    animation:trIn .65s cubic-bezier(.28,1.2,.45,1) var(--d) backwards}
+  .tr.pick .tr-c{opacity:.42}
+  .tr.pick .tr-c.on{opacity:1}
+  .tr-c.on{transform:translateY(-3px);box-shadow:0 12px 26px rgba(76,29,149,.15);border-color:var(--c)}
+  .tr-c:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.32)}
+
+  @media(max-width:860px){.tr-grid{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){
+    .tr-c{opacity:1}
+    .tr.in .tr-c{animation:none}
+    .tr-c.on{transform:none}
   }
 
   /* --- 5.7 price ranges (log scale) --- */
@@ -2497,37 +2533,38 @@
       </p>
 
       <div class="vc" id="vchain">
+        <div class="vc-band">
+          <span class="vc-up">Upstream</span>
+          <span class="vc-ttl">Industry value chain</span>
+          <span class="vc-down">Downstream</span>
+        </div>
         <div class="vc-flow">
-          <div class="vc-s" data-i="1" tabindex="0" style="--c:#a78bfa;--t:#f5f3ff;--tx:#5b21b6;--d:0ms">
-            <span class="vc-n">1</span>
-            <h6>Components</h6>
-            <p>Optical sensors, semiconductor detectors and imaging-grade displays.</p>
-          </div>
-          <div class="vc-s" data-i="2" tabindex="0" style="--c:#8b5cf6;--t:#f3f0ff;--tx:#5b21b6;--d:120ms">
-            <span class="vc-n">2</span>
-            <h6>Integration &amp; software</h6>
-            <p>Hardware combined with proprietary navigation, visualization and AI analytics.</p>
-          </div>
-          <div class="vc-s" data-i="3" tabindex="0" style="--c:#7c3aed;--t:#f1ecff;--tx:#4c1d95;--d:240ms">
-            <span class="vc-n">3</span>
-            <h6>Clearance</h6>
-            <p>Device regulatory clearance and quality certification.</p>
-          </div>
-          <div class="vc-s" data-i="4" tabindex="0" style="--c:#6d28d9;--t:#efe9ff;--tx:#4c1d95;--d:360ms">
-            <span class="vc-n">4</span>
-            <h6>Sales &amp; procurement</h6>
-            <p>Hospital capital purchase, frequently mediated by group purchasing organisations.</p>
-          </div>
-          <div class="vc-s" data-i="5" tabindex="0" style="--c:#5b21b6;--t:#ede6ff;--tx:#4c1d95;--d:480ms">
-            <span class="vc-n">5</span>
-            <h6>Install &amp; integrate</h6>
-            <p>Commissioning and clinical integration, often with hybrid OR construction or retrofit.</p>
-          </div>
-          <div class="vc-s" data-i="6" tabindex="0" style="--c:#4c1d95;--t:#eae2ff;--tx:#3b1178;--d:600ms">
-            <span class="vc-n">6</span>
-            <h6>Service &amp; subscription</h6>
-            <p>Ongoing service, software updates and subscription-based analytics revenue.</p>
-          </div>
+            <div class="vc-ch first" data-i="1" tabindex="0" style="--c:#3b1178;--d:0ms">
+              <span>Components</span>
+            </div>
+            <div class="vc-ch" data-i="2" tabindex="0" style="--c:#47178f;--d:110ms">
+              <span>Integration &amp; software</span>
+            </div>
+            <div class="vc-ch" data-i="3" tabindex="0" style="--c:#5219a6;--d:220ms">
+              <span>Clearance</span>
+            </div>
+            <div class="vc-ch" data-i="4" tabindex="0" style="--c:#5b21b6;--d:330ms">
+              <span>Sales &amp; procurement</span>
+            </div>
+            <div class="vc-ch" data-i="5" tabindex="0" style="--c:#6d28d9;--d:440ms">
+              <span>Install &amp; integrate</span>
+            </div>
+            <div class="vc-ch" data-i="6" tabindex="0" style="--c:#7c3aed;--d:550ms">
+              <span>Service &amp; subscription</span>
+            </div>
+        </div>
+        <div class="vc-caps">
+            <p class="vc-cap" data-i="1" style="--d:90ms">Optical sensors, semiconductor detectors and imaging-grade displays.</p>
+            <p class="vc-cap" data-i="2" style="--d:200ms">Hardware combined with proprietary navigation, visualization and AI analytics.</p>
+            <p class="vc-cap" data-i="3" style="--d:310ms">Device regulatory clearance and quality certification.</p>
+            <p class="vc-cap" data-i="4" style="--d:420ms">Hospital capital purchase, frequently mediated by group purchasing organisations.</p>
+            <p class="vc-cap" data-i="5" style="--d:530ms">Commissioning and clinical integration, often with hybrid OR construction or retrofit.</p>
+            <p class="vc-cap" data-i="6" style="--d:640ms">Ongoing service, software updates and subscription-based analytics revenue.</p>
         </div>
         <div class="vc-notes">
           <div class="vc-note risk" data-s="1">
@@ -3413,11 +3450,12 @@
   /* ---------- Section 5 - value chain ---------- */
   (function(){
     var vc=document.getElementById('vchain'); if(!vc) return;
-    var steps=[].slice.call(vc.querySelectorAll('.vc-s'));
+    var steps=[].slice.call(vc.querySelectorAll('.vc-ch'));
+    var caps=[].slice.call(vc.querySelectorAll('.vc-cap'));
     var notes=[].slice.call(vc.querySelectorAll('.vc-note'));
     function set(i){
-      vc.classList.toggle('pick', !!i);
       steps.forEach(function(x){ x.classList.toggle('on', +x.dataset.i===i); });
+      caps.forEach(function(c){ c.classList.toggle('on', +c.dataset.i===i); });
       /* a note lights up with the stage it annotates */
       notes.forEach(function(n){ n.classList.toggle('on', !!i && +n.dataset.s===i); });
     }
