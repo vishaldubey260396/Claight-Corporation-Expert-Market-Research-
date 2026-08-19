@@ -877,6 +877,51 @@
     border-radius:50%;background:var(--qc)}
   @media(max-width:700px){.md-swot{grid-template-columns:1fr}}
 
+  /* --- 5.3 SWOT quadrants --- */
+  .sw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+  .sw-q{position:relative;padding:15px 16px 16px;border-radius:12px;
+    background:var(--tn);border:1px solid var(--bd);border-top:3px solid var(--c);
+    outline:none;cursor:default;
+    opacity:0;transform:translateY(12px) scale(.98);
+    transition:opacity .5s ease var(--d),transform .5s cubic-bezier(.3,1.2,.5,1) var(--d),
+      box-shadow .2s ease,border-color .2s ease}
+  .reveal.in .sw-q{opacity:1;transform:none}
+  .sw-hd{display:flex;align-items:center;gap:9px;margin:0 0 10px}
+  .sw-badge{flex:none;width:24px;height:24px;border-radius:7px;background:var(--c);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800}
+  .sw-q h6{margin:0;font-size:13.5px;font-weight:800;color:var(--c);letter-spacing:.01em}
+  .sw-q ul{margin:0;padding:0;list-style:none}
+  .sw-q li{position:relative;padding-left:16px;font-size:12.5px;line-height:1.6;
+    color:var(--ink);margin-bottom:6px}
+  .sw-q li:last-child{margin-bottom:0}
+  .sw-q li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;
+    border-radius:50%;background:var(--c)}
+
+  /* pointer / keyboard emphasis - the picked quadrant leads, the rest recede */
+  .sw.pick .sw-q{opacity:.45}
+  .sw.pick .sw-q.on{opacity:1}
+  .sw-q.on{box-shadow:0 10px 24px rgba(76,29,149,.13);border-color:var(--c)}
+  .sw-q:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.35)}
+
+  /* reading strip - grid-stacked so switching never moves the page */
+  .sw-read{display:grid;margin-top:14px;padding:13px 16px 13px 15px;border-radius:10px;
+    background:var(--rt,#f7f5ff);border:1px solid var(--rb,#e9e2f7);
+    border-left:4px solid var(--rc,#6d28d9);
+    transition:background .25s ease,border-color .25s ease}
+  .sw-read>div{grid-area:1/1;font-size:12.5px;line-height:1.65;color:var(--ink);
+    visibility:hidden;opacity:0;transform:translateY(4px);
+    transition:opacity .28s ease,transform .28s ease}
+  .sw-read>div.on{visibility:visible;opacity:1;transform:none}
+  .sw-read b{font-weight:800}
+
+  @media(max-width:700px){.sw-grid{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){
+    .sw-q,.reveal.in .sw-q{opacity:1;transform:none;transition:box-shadow .2s ease}
+    .sw.pick .sw-q{opacity:.45}
+    .sw.pick .sw-q.on{opacity:1}
+    .sw-read>div{transition:none}
+  }
+
   /* --- 5.4 PESTEL --- */
   .md-pest{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
   table.md-tbl{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px}
@@ -1899,42 +1944,45 @@
 
       <h3 class="subh reveal">SWOT Analysis</h3>
 
-      <figure class="md-fig reveal" style="margin-top:14px">
+      <figure class="md-fig sw reveal" id="swot" style="margin-top:14px">
         <h6>SWOT Analysis</h6>
-        <p class="md-sub">3D Surgical Imaging Market</p>
-        <div class="md-swot">
-          <div class="md-q" style="--qc:#6d28d9">
-            <h6>Strengths</h6>
+        <p class="md-sub">3D Surgical Imaging Market - hover or select a quadrant to read what it means</p>
+        <div class="sw-grid">
+          <article class="sw-q" data-i="1" tabindex="0" role="button" aria-pressed="true"
+             style="--c:#6d28d9;--tn:#f6f3ff;--bd:#e4dbff;--d:0ms">
+            <div class="sw-hd"><span class="sw-badge" aria-hidden="true">S</span><h6>Strengths</h6></div>
             <ul><li>Clear clinical precision and revision-avoidance benefit</li><li>Deep bench of established medtech majors</li><li>Broad, defensible surgical-relationship base</li></ul>
-          </div>
-          <div class="md-q" style="--qc:#b45309">
-            <h6>Weaknesses</h6>
+          </article>
+          <article class="sw-q" data-i="2" tabindex="0" role="button" aria-pressed="false"
+             style="--c:#a16207;--tn:#fdf6e8;--bd:#f0e0be;--d:110ms">
+            <div class="sw-hd"><span class="sw-badge" aria-hidden="true">W</span><h6>Weaknesses</h6></div>
             <ul><li>High capital cost limits smaller-hospital adoption</li><li>Poor cross-vendor interoperability</li><li>Long, committee-gated purchasing cycles</li></ul>
-          </div>
-          <div class="md-q" style="--qc:#047857">
-            <h6>Opportunities</h6>
+          </article>
+          <article class="sw-q" data-i="3" tabindex="0" role="button" aria-pressed="false"
+             style="--c:#047857;--tn:#ebf7f1;--bd:#c7e8d8;--d:220ms">
+            <div class="sw-hd"><span class="sw-badge" aria-hidden="true">O</span><h6>Opportunities</h6></div>
             <ul><li>Cloud / AI SaaS expands addressable base</li><li>Under-penetrated emerging markets</li><li>Mixed-reality &amp; next-gen visualization</li></ul>
-          </div>
-          <div class="md-q" style="--qc:#be123c">
-            <h6>Threats</h6>
+          </article>
+          <article class="sw-q" data-i="4" tabindex="0" role="button" aria-pressed="false"
+             style="--c:#db2777;--tn:#fdf1f6;--bd:#f8d4e5;--d:330ms">
+            <div class="sw-hd"><span class="sw-badge" aria-hidden="true">T</span><h6>Threats</h6></div>
             <ul><li>Pricing competition from Asian hardware</li><li>Slow-moving regulatory pathways</li><li>Software-native entrants eroding leadership</li></ul>
-          </div>
+          </article>
+        </div>
+        <div class="sw-read">
+          <div data-i="1" class="on" style="--c:#6d28d9;--tn:#f6f3ff;--bd:#e4dbff"><b style="color:#6d28d9">Strengths:</b> Clinical precision and a deep bench of established medical technology companies make the core position structurally durable.</div>
+          <div data-i="2" class="" style="--c:#a16207;--tn:#fdf6e8;--bd:#f0e0be"><b style="color:#a16207">Weaknesses:</b> The principal vulnerabilities cluster around cost and interoperability, not around clinical efficacy.</div>
+          <div data-i="3" class="" style="--c:#047857;--tn:#ebf7f1;--bd:#c7e8d8"><b style="color:#047857">Opportunities:</b> Cloud and AI platform expansion, not hardware innovation, is the clearest route to growth.</div>
+          <div data-i="4" class="" style="--c:#db2777;--tn:#fdf1f6;--bd:#f8d4e5"><b style="color:#db2777">Threats:</b> Pricing competition and slow-moving regulatory pathways are the most material threats to incumbent economics.</div>
         </div>
       </figure>
 
       <p class="reveal" style="margin-top:16px">
-        Read together, the SWOT framework points to a market whose core strengths, clinical precision and a deep
-        bench of established medical technology companies, are structurally durable, while its principal
-        vulnerabilities cluster around cost and interoperability rather than clinical efficacy. The most
-        consequential opportunities and threats are increasingly linked to software and platform strategy rather
-        than hardware innovation alone: cloud-based and AI-enabled platform expansion represents the clearest
-        growth opportunity, while pricing competition and slow-moving regulatory pathways represent the most
-        material threats to incumbent economics. Notably, several of the strengths and opportunities identified
-        above are mutually reinforcing: the same AI-based segmentation and robotics-integration capability that
-        constitutes a strength for today's market leaders is also the mechanism by which smaller, more agile
-        competitors could most plausibly erode that leadership over the coming decade, underscoring why continued
-        R&amp;D investment intensity, rather than installed-base scale alone, is likely to determine long-run
-        competitive outcomes in this category.
+        Strengths and opportunities here are mutually reinforcing: the same AI-based segmentation and
+        robotics-integration capability that anchors today's market leaders is also the most plausible route by
+        which smaller, more agile competitors could erode that lead. That is why continued R&amp;D investment
+        intensity, rather than installed-base scale alone, is likely to decide long-run competitive outcomes in
+        this category.
       </p>
 
       <h3 class="subh reveal">PESTEL Analysis</h3>
@@ -2675,6 +2723,46 @@
     }
     pts.forEach(function(p){ bind(p, +p.dataset.i); });
     lis.forEach(function(b){ bind(b, +b.dataset.i); });
+    paint();
+  })();
+
+  /* ---------- Section 5 - SWOT quadrants ---------- */
+  (function(){
+    var sw=document.getElementById('swot'); if(!sw) return;
+    var qs=[].slice.call(sw.querySelectorAll('.sw-q'));
+    var rd=sw.querySelector('.sw-read');
+    var rs=[].slice.call(rd.querySelectorAll('div'));
+    var pinned=1, hover=0;
+    function paint(){
+      var i=hover||pinned;
+      sw.classList.toggle('pick', !!hover);
+      qs.forEach(function(q){
+        var on=+q.dataset.i===i;
+        q.classList.toggle('on', on);
+        q.setAttribute('aria-pressed', +q.dataset.i===pinned?'true':'false');
+      });
+      rs.forEach(function(r){
+        var on=+r.dataset.i===i;
+        r.classList.toggle('on', on);
+        /* the strip takes the active quadrant's own colours */
+        if(on){
+          rd.style.setProperty('--rc', r.style.getPropertyValue('--c'));
+          rd.style.setProperty('--rt', r.style.getPropertyValue('--tn'));
+          rd.style.setProperty('--rb', r.style.getPropertyValue('--bd'));
+        }
+      });
+    }
+    qs.forEach(function(q){
+      var i=+q.dataset.i;
+      q.addEventListener('mouseenter',function(){ hover=i; paint(); });
+      q.addEventListener('mouseleave',function(){ hover=0; paint(); });
+      q.addEventListener('focus',function(){ hover=i; paint(); });
+      q.addEventListener('blur',function(){ hover=0; paint(); });
+      q.addEventListener('click',function(){ pinned=i; hover=0; paint(); });
+      q.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pinned=i; paint(); }
+      });
+    });
     paint();
   })();
 </script>
