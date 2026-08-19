@@ -1100,9 +1100,11 @@
 
   /* --- 5.7 price ranges (log scale) --- */
   .md-pr{margin-top:14px}
-  .md-prrow{display:grid;grid-template-columns:minmax(120px,200px) 1fr auto;
-    align-items:center;column-gap:14px;margin-bottom:14px}
-  .md-prlab{font-size:12px;font-weight:700;color:#b45309;text-align:right;line-height:1.4}
+  .md-prrow{display:grid;grid-template-columns:minmax(190px,290px) 1fr auto;
+    align-items:center;column-gap:16px;margin-bottom:6px;padding:9px 10px}
+  .md-prlab{text-align:right;line-height:1.35}
+  .md-prlab b{display:block;font-size:12.5px;font-weight:800;color:var(--navy)}
+  .md-prwhy{display:block;margin-top:3px;font-size:11.5px;font-weight:400;line-height:1.5;color:#475569}
   .md-prtrk{position:relative;height:22px}
   .md-prbar{position:absolute;top:7px;height:9px;border-radius:5px;
     background:linear-gradient(90deg,#a78bfa,#5b21b6);
@@ -1125,15 +1127,15 @@
     .pri.in .md-prbar,.pri.in .md-prlab,.pri.in .md-prval{transition:none}
   }
   .md-prval{font-size:11.5px;font-weight:800;color:var(--purple-deep);white-space:nowrap}
-  .md-prax{display:grid;grid-template-columns:minmax(120px,200px) 1fr auto;column-gap:14px;
-    font-size:10.5px;color:var(--muted);font-weight:600}
+  .md-prax{display:grid;grid-template-columns:minmax(190px,290px) 1fr auto;column-gap:16px;
+    margin:6px 0 0;padding:0 10px;font-size:10.5px;color:var(--muted);font-weight:600}
   .md-praxin{grid-column:2;position:relative;height:16px;border-top:1px solid var(--line);
     padding-top:4px}
   .md-praxin span{position:absolute;top:4px;transform:translateX(-50%);white-space:nowrap}
   .md-praxin span:first-child{transform:none}
   .md-praxin span:last-child{transform:translateX(-100%)}
-  @media(max-width:600px){
-    .md-prrow{grid-template-columns:1fr auto;row-gap:4px}
+  @media(max-width:700px){
+    .md-prrow{grid-template-columns:1fr auto;row-gap:6px;margin-bottom:12px}
     .md-prlab{text-align:left;grid-column:1/-1}
     .md-prax{grid-template-columns:1fr auto}
     .md-praxin{grid-column:1}
@@ -2351,38 +2353,31 @@
 
       <figure class="md-fig pri" id="price">
         <h6>System Price by Platform Category</h6>
-        <p class="md-sub">3D Surgical Imaging Platforms - capital cost range by architecture (log scale)</p>
+        <p class="md-sub">3D Surgical Imaging Platforms - price spans two orders of magnitude across four tiers (log scale)</p>
         <div class="md-pr">
             <div class="md-prrow" data-i="1" tabindex="0" style="--d:0ms">
-              <div class="md-prlab">Fixed intraoperative CT / MRI</div>
+              <div class="md-prlab"><b>Fixed intraoperative CT / MRI</b><span class="md-prwhy">Tops the range - a hybrid room has to be built around the scanner.</span></div>
               <div class="md-prtrk"><span class="md-prbar" style="left:84.93%;width:13.08%"></span></div>
               <div class="md-prval">$0.9-1.8M</div>
             </div>
             <div class="md-prrow" data-i="2" tabindex="0" style="--d:140ms">
-              <div class="md-prlab">Integrated navigation + robotics</div>
+              <div class="md-prlab"><b>Integrated navigation + robotics</b><span class="md-prwhy">Hardware, software and installation bundled into one premium platform.</span></div>
               <div class="md-prtrk"><span class="md-prbar" style="left:60.75%;width:14.88%"></span></div>
               <div class="md-prval">$250-550k</div>
             </div>
             <div class="md-prrow" data-i="3" tabindex="0" style="--d:280ms">
-              <div class="md-prlab">Mobile intraoperative 3D imaging</div>
+              <div class="md-prlab"><b>Mobile intraoperative 3D imaging</b><span class="md-prwhy">Modular, single-function design puts it in the mid-tier.</span></div>
               <div class="md-prtrk"><span class="md-prbar" style="left:54.55%;width:15.07%"></span></div>
               <div class="md-prval">$180-400k</div>
             </div>
             <div class="md-prrow" data-i="4" tabindex="0" style="--d:420ms">
-              <div class="md-prlab">Software-only / cloud (per year)</div>
+              <div class="md-prlab"><b>Software-only / cloud</b><span class="md-prwhy">Annual subscription, not capital - opens the category to buyers who cannot fund a purchase.</span></div>
               <div class="md-prtrk"><span class="md-prbar" style="left:7.65%;width:33.82%"></span></div>
               <div class="md-prval">$15-90k/yr</div>
             </div>
           <div class="md-prax"><div class="md-praxin"><span style="left:0.00%">$10k</span><span style="left:43.46%">$100k</span><span style="left:86.92%">$1M</span><span style="left:100.00%">$2M</span></div></div>
         </div>
       </figure>
-
-      <p class="reveal" style="margin-top:16px">
-        Price spans two orders of magnitude across four tiers. Fixed intraoperative CT and MRI suites top the
-        range because a hybrid room has to be built around them, with integrated navigation-and-robotics next and
-        modular mobile systems in the mid-tier. Software-only and cloud platforms sit at the accessible end on an
-        annual subscription - the tier that opens the category to buyers who cannot fund a capital purchase.
-      </p>
 
       <h3 class="subh reveal">Value Chain Analysis</h3>
 
