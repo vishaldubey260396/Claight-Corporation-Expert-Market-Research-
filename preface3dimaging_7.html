@@ -823,7 +823,9 @@
   .dc.up{padding-top:calc(var(--head) + 16px);
     background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 48%,#4c1d95 100%);
     clip-path:polygon(50% 0,100% var(--head),100% 100%,0 100%,0 var(--head))}
-  .dc.down{padding-bottom:calc(var(--head) + 16px);
+  /* the down arrow carries the same top inset as the up arrow, so the two
+     columns' headings and items line up straight across instead of stepping */
+  .dc.down{padding-top:calc(var(--head) + 16px);padding-bottom:calc(var(--head) + 16px);
     background:linear-gradient(180deg,#b45309 0%,#9a3412 55%,#7c2d12 100%);
     clip-path:polygon(0 0,100% 0,100% calc(100% - var(--head)),50% 100%,0 calc(100% - var(--head)))}
 
