@@ -988,8 +988,15 @@
   .pfr-svg{display:block;width:100%;height:auto;overflow:visible}
 
   .pfr-c{padding:12px 14px;border-radius:11px;background:#fff;border:1px solid var(--line);
-    box-shadow:0 3px 12px rgba(76,29,149,.06);outline:none;
+    box-shadow:0 3px 12px rgba(76,29,149,.06);outline:none;opacity:0;
     transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,opacity .2s ease}
+  /* the cards ride up with the slab as the exhibit scrolls in.
+     `backwards` fill holds them hidden through the delay and then hands control
+     back to the base rule, so the hover lift still transitions normally. */
+  .pfr.in .pfr-c{opacity:1;animation:pfrRise .72s cubic-bezier(.22,1.05,.36,1) var(--d,0ms) backwards}
+  .pfr-c.ra{--d:80ms}.pfr-c.rb{--d:200ms}.pfr-c.rc{--d:320ms}
+  .pfr-c.rd{--d:440ms}.pfr-c.re{--d:560ms}
+  @keyframes pfrRise{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
   .pfr-ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
   .pfr-c h6{margin:0;font-size:12.5px;font-weight:800;color:var(--navy);line-height:1.25}
   .pfr-r{flex:none;font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
@@ -1013,6 +1020,11 @@
   .pfr-svg .hit{fill:transparent;cursor:pointer}
   .pfr-svg .lv{font-size:11px;font-weight:800;fill:#6d28d9}
   .pfr-svg .dim{opacity:.3;transition:opacity .2s ease}
+
+  @media(prefers-reduced-motion:reduce){
+    .pfr-c{opacity:1}
+    .pfr.in .pfr-c{animation:none}
+  }
 
   @media(max-width:820px){
     .pfr-grid{grid-template-columns:1fr 1fr;
