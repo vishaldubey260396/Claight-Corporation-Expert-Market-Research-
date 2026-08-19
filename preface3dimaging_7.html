@@ -1217,16 +1217,15 @@
     background:linear-gradient(90deg,var(--cl),var(--c));
     box-shadow:0 2px 8px rgba(60,20,120,.16);
     transform:scaleX(0);transform-origin:left}
-  .md-prrow{outline:none;transition:opacity .18s ease,box-shadow .2s ease,border-color .2s ease}
-  .md-prlab,.md-prval{transition:opacity .18s ease,color .18s ease}
+  .md-prrow{outline:none;transition:box-shadow .2s ease,border-color .2s ease}
+  .md-prlab,.md-prval{transition:opacity .18s ease}
   .md-prrow .md-prlab,.md-prrow .md-prval{opacity:0}
   /* bars sweep out from the axis, one tier at a time, each time the exhibit scrolls in */
   .pri.in .md-prbar{transform:none;
     transition:transform .8s cubic-bezier(.22,1,.36,1) var(--d)}
   .pri.in .md-prlab{opacity:1;transition:opacity .4s ease var(--d)}
   .pri.in .md-prval{opacity:1;transition:opacity .4s ease calc(var(--d) + .45s)}
-  .pri.pick .md-prrow{opacity:.4}
-  .pri.pick .md-prrow.on{opacity:1}
+  /* no dimming - the hovered tier just picks up its own accent border and a lift */
   .md-prrow.on{box-shadow:0 8px 20px rgba(60,20,120,.14);border-color:var(--c)}
   .md-prrow:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.32)}
   @media(prefers-reduced-motion:reduce){
