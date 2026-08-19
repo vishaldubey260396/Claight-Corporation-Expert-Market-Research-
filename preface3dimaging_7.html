@@ -973,15 +973,82 @@
     .reveal.in .pe-link,.reveal.in .pe-now,.reveal.in .pe-fut{transition:none}
   }
 
-  /* --- 5.5 Porter radar --- */
-  .md-radar{display:block;width:100%;height:auto;max-width:520px;margin:10px auto 0}
-  .md-radar .ring{fill:none;stroke:#e6e0f5;stroke-width:1}
-  .md-radar .spoke{stroke:#e6e0f5;stroke-width:1}
-  .md-radar .area{fill:rgba(124,58,237,.20);stroke:#6d28d9;stroke-width:2;
-    stroke-linejoin:round}
-  .md-radar .pt{fill:#6d28d9}
-  .md-radar .ax{font-size:11.5px;font-weight:700;fill:var(--navy)}
-  .md-radar .lv{font-size:11px;font-weight:700;fill:#7c3aed}
+  /* --- 5.5 Porter's Five Forces as a tilted plate with lifting pillars --- */
+  .pf{--tilt:56deg;--ls:1}
+  .pf-scene{max-width:620px;margin:6px auto 0;padding:112px 0 6px;perspective:1100px;
+    perspective-origin:50% 40%}
+  .pf-stage{position:relative;transform-style:preserve-3d;margin-bottom:-9%;
+    transform:rotateX(var(--tilt)) translateZ(0)}
+  .pf-svg{display:block;width:100%;height:auto}
+  .pf-svg .ring{fill:none;stroke:#e6e0f5;stroke-width:1}
+  .pf-svg .spoke{stroke:#e6e0f5;stroke-width:1}
+  .pf-svg .area{fill:rgba(124,58,237,.16);stroke:#6d28d9;stroke-width:2;stroke-linejoin:round}
+  .pf-pts{position:absolute;inset:0;transform-style:preserve-3d}
+
+  .pf-p{position:absolute;width:0;height:0;transform-style:preserve-3d;outline:none}
+  /* the chunk of ground that lifts out */
+  .pf-tile{position:absolute;left:-25px;top:-25px;width:50px;height:50px;
+    transform-style:preserve-3d;transform:translateZ(0);
+    transition:transform .25s ease}
+  .pf-tile i{position:absolute;inset:0;border-radius:14px;
+    background:linear-gradient(145deg,#a78bfa,#6d28d9 55%,#4c1d95);
+    box-shadow:0 0 0 2px #fff,0 10px 22px rgba(60,20,120,.28);
+    transition:box-shadow .25s ease,filter .25s ease}
+  /* soft contact shadow left behind on the plate */
+  .pf-sh{position:absolute;left:-26px;top:-26px;width:52px;height:52px;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(76,29,149,.30),rgba(76,29,149,0));
+    opacity:0;transition:opacity .3s ease,transform .3s ease}
+  /* billboarded label - counter-rotates so it faces the reader */
+  .pf-lab{position:absolute;left:-80px;width:160px;text-align:center;top:-26px;
+    transform:translate3d(calc(var(--lx) * var(--ls)),calc(var(--ly) * var(--ls)),0) rotateX(calc(-1 * var(--tilt)));
+    transform-origin:center bottom;
+    opacity:0;transition:transform .25s ease,opacity .3s ease}
+  .pf-lab b{display:block;font-size:12px;font-weight:800;color:var(--navy);line-height:1.25}
+  .pf-lab em{display:block;font-style:normal;font-size:11px;font-weight:800;color:#6d28d9}
+
+  /* lift out of the plate once the exhibit scrolls in */
+  .pf.in .pf-tile{transform:translateZ(var(--h));
+    transition:transform .95s cubic-bezier(.22,1.1,.36,1) var(--d)}
+  .pf.in .pf-sh{opacity:1;transform:scale(1.25);
+    transition:opacity .6s ease var(--d),transform .9s ease var(--d)}
+  .pf.in .pf-lab{opacity:1;
+    transform:translate3d(calc(var(--lx) * var(--ls)),calc(var(--ly) * var(--ls)),calc(var(--h) + var(--lz))) rotateX(calc(-1 * var(--tilt)));
+    transition:transform .95s cubic-bezier(.22,1.1,.36,1) var(--d),opacity .5s ease var(--d)}
+
+  /* hover / focus - that pillar rises further, the rest settle back */
+  /* dim the leaves, never .pf-p itself - opacity on a preserve-3d box flattens it */
+  .pf.pick .pf-p:not(.on) .pf-tile i,
+  .pf.pick .pf-p:not(.on) .pf-sh{opacity:.4}
+  .pf.pick .pf-p:not(.on) .pf-lab{opacity:.35}
+  .pf-tile i,.pf-lab{transition:opacity .2s ease}
+  .pf.in .pf-p.on .pf-tile{transform:translateZ(calc(var(--h) + 30px)) scale(1.12)}
+  .pf.in .pf-p.on .pf-lab{transform:translate3d(calc(var(--lx) * var(--ls)),calc(var(--ly) * var(--ls)),calc(var(--h) + var(--lz) + 32px)) rotateX(calc(-1 * var(--tilt)))}
+  .pf-p.on .pf-tile i{box-shadow:0 0 0 2px #fff,0 18px 34px rgba(60,20,120,.42);filter:saturate(1.15)}
+  .pf-p:focus-visible .pf-tile i{box-shadow:0 0 0 3px #7c3aed,0 14px 28px rgba(60,20,120,.36)}
+
+  .pf-read{display:grid;margin-top:6px;padding:13px 16px;border-radius:10px;
+    background:#faf8ff;border:1px solid var(--line);border-left:4px solid #6d28d9}
+  .pf-read>div{grid-area:1/1;font-size:12.5px;line-height:1.65;color:var(--ink);
+    visibility:hidden;opacity:0;transform:translateY(4px);
+    transition:opacity .28s ease,transform .28s ease}
+  .pf-read>div.on{visibility:visible;opacity:1;transform:none}
+  .pf-read b{color:var(--purple-deep);font-weight:800}
+
+  @media(max-width:860px){.pf{--ls:.62}.pf-lab{left:-70px;width:140px}
+    .pf-scene{max-width:460px;padding-top:96px}}
+  @media(max-width:640px){
+    .pf{--tilt:46deg;--ls:.56}
+    .pf-scene{max-width:310px;padding:120px 0 10px;perspective:1900px}
+    .pf-lab{left:-58px;width:116px}
+    .pf-lab b{font-size:11px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .pf{--tilt:0deg}
+    .pf-scene{padding:34px 0 24px;perspective:none}
+    .pf-tile,.pf.in .pf-tile,.pf.in .pf-p.on .pf-tile{transform:none;transition:none}
+    .pf-lab,.pf.in .pf-lab,.pf.in .pf-p.on .pf-lab{transform:none;opacity:1;transition:none}
+    .pf-sh{display:none}
+  }
 
   /* --- 5.6 demand tiles --- */
   .md-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
@@ -2139,36 +2206,63 @@
 
       <h3 class="subh reveal">Porter's Five Forces Analysis</h3>
 
-      <figure class="md-fig reveal" style="margin-top:14px">
+      <figure class="md-fig pf reveal" id="porter" style="margin-top:14px">
         <h6>Porter's Five Forces Analysis</h6>
-        <p class="md-sub">3D Surgical Imaging Market - intensity of each competitive force</p>
-        <svg class="md-radar" viewBox="0 0 520 340" role="img"
-             aria-label="Radar chart of Porter's Five Forces: competitive rivalry high, buyer power high, supplier power moderate, threat of new entrants moderate, threat of substitutes moderate.">
-        <polygon class="ring" points="260.0,140.7 295.5,166.5 281.9,208.2 238.1,208.2 224.5,166.5"/>
-        <polygon class="ring" points="260.0,103.3 331.0,154.9 303.9,238.4 216.1,238.4 189.0,154.9"/>
-        <polygon class="ring" points="260.0,66.0 366.5,143.4 325.8,268.6 194.2,268.6 153.5,143.4"/>
-        <line class="spoke" x1="260" y1="178" x2="260.0" y2="66.0"/>
-        <line class="spoke" x1="260" y1="178" x2="366.5" y2="143.4"/>
-        <line class="spoke" x1="260" y1="178" x2="325.8" y2="268.6"/>
-        <line class="spoke" x1="260" y1="178" x2="194.2" y2="268.6"/>
-        <line class="spoke" x1="260" y1="178" x2="153.5" y2="143.4"/>
-        <polygon class="area" points="260.0,66.0 366.5,143.4 303.9,238.4 216.1,238.4 189.0,154.9"/>
-        <circle class="pt" cx="260.0" cy="66.0" r="3.5"/>
-        <circle class="pt" cx="366.5" cy="143.4" r="3.5"/>
-        <circle class="pt" cx="303.9" cy="238.4" r="3.5"/>
-        <circle class="pt" cx="216.1" cy="238.4" r="3.5"/>
-        <circle class="pt" cx="189.0" cy="154.9" r="3.5"/>
-        <text class="ax" x="260.0" y="38.0" text-anchor="middle">Competitive rivalry</text>
-        <text class="lv" x="260.0" y="52.0" text-anchor="middle">High</text>
-        <text class="ax" x="391.2" y="133.4" text-anchor="start">Buyer power</text>
-        <text class="lv" x="391.2" y="147.4" text-anchor="start">High</text>
-        <text class="ax" x="341.1" y="301.6" text-anchor="start">Supplier power</text>
-        <text class="lv" x="341.1" y="315.6" text-anchor="start">Moderate</text>
-        <text class="ax" x="178.9" y="301.6" text-anchor="end">New entrants</text>
-        <text class="lv" x="178.9" y="315.6" text-anchor="end">Moderate</text>
-        <text class="ax" x="128.8" y="133.4" text-anchor="end">Substitutes</text>
-        <text class="lv" x="128.8" y="147.4" text-anchor="end">Moderate</text>
-        </svg>
+        <p class="md-sub">3D Surgical Imaging Market - intensity of each competitive force. Hover a pillar to read it</p>
+        <div class="pf-scene">
+          <div class="pf-stage">
+            <svg class="pf-svg" viewBox="0 0 520 340" aria-hidden="true" focusable="false">
+            <polygon class="ring" points="260.0,140.7 295.5,166.5 281.9,208.2 238.1,208.2 224.5,166.5"/>
+            <polygon class="ring" points="260.0,103.3 331.0,154.9 303.9,238.4 216.1,238.4 189.0,154.9"/>
+            <polygon class="ring" points="260.0,66.0 366.5,143.4 325.8,268.6 194.2,268.6 153.5,143.4"/>
+            <line class="spoke" x1="260" y1="178" x2="260.0" y2="66.0"/>
+            <line class="spoke" x1="260" y1="178" x2="366.5" y2="143.4"/>
+            <line class="spoke" x1="260" y1="178" x2="325.8" y2="268.6"/>
+            <line class="spoke" x1="260" y1="178" x2="194.2" y2="268.6"/>
+            <line class="spoke" x1="260" y1="178" x2="153.5" y2="143.4"/>
+            <polygon class="area" points="260.0,66.0 366.5,143.4 303.9,238.4 216.1,238.4 189.0,154.9"/>
+            </svg>
+            <div class="pf-pts">
+            <div class="pf-p" data-i="1" tabindex="0" role="button"
+                 style="left:50.000%;top:19.412%;--h:86px;--d:0ms;--lx:0px;--ly:-40px;--lz:46px" aria-label="Competitive rivalry: High">
+              <span class="pf-sh" aria-hidden="true"></span>
+              <span class="pf-tile" aria-hidden="true"><i></i></span>
+              <span class="pf-lab"><b>Competitive rivalry</b><em>High</em></span>
+            </div>
+            <div class="pf-p" data-i="2" tabindex="0" role="button"
+                 style="left:70.484%;top:42.174%;--h:86px;--d:130ms;--lx:118px;--ly:-6px;--lz:46px" aria-label="Buyer power: High">
+              <span class="pf-sh" aria-hidden="true"></span>
+              <span class="pf-tile" aria-hidden="true"><i></i></span>
+              <span class="pf-lab"><b>Buyer power</b><em>High</em></span>
+            </div>
+            <div class="pf-p" data-i="3" tabindex="0" role="button"
+                 style="left:58.440%;top:70.120%;--h:50px;--d:260ms;--lx:66px;--ly:140px;--lz:18px" aria-label="Supplier power: Moderate">
+              <span class="pf-sh" aria-hidden="true"></span>
+              <span class="pf-tile" aria-hidden="true"><i></i></span>
+              <span class="pf-lab"><b>Supplier power</b><em>Moderate</em></span>
+            </div>
+            <div class="pf-p" data-i="4" tabindex="0" role="button"
+                 style="left:41.560%;top:70.120%;--h:50px;--d:390ms;--lx:-66px;--ly:140px;--lz:18px" aria-label="New entrants: Moderate">
+              <span class="pf-sh" aria-hidden="true"></span>
+              <span class="pf-tile" aria-hidden="true"><i></i></span>
+              <span class="pf-lab"><b>New entrants</b><em>Moderate</em></span>
+            </div>
+            <div class="pf-p" data-i="5" tabindex="0" role="button"
+                 style="left:36.344%;top:45.567%;--h:50px;--d:520ms;--lx:-118px;--ly:-6px;--lz:46px" aria-label="Substitutes: Moderate">
+              <span class="pf-sh" aria-hidden="true"></span>
+              <span class="pf-tile" aria-hidden="true"><i></i></span>
+              <span class="pf-lab"><b>Substitutes</b><em>Moderate</em></span>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="pf-read">
+          <div data-i="1" class="on"><b>Competitive rivalry - High.</b> Concentrated among a few diversified medtech majors - Medtronic, Stryker, Siemens Healthineers, Brainlab and GE HealthCare - competing on navigation accuracy, workflow integration and platform breadth.</div>
+          <div data-i="2" class=""><b>Buyer power - High.</b> Large hospital systems and group purchasing organisations hold concentrated purchasing influence and negotiate aggressively on capital equipment pricing.</div>
+          <div data-i="3" class=""><b>Supplier power - Moderate.</b> A reasonably concentrated base of precision optics, sensor and semiconductor component suppliers feeds navigation hardware, giving suppliers some leverage.</div>
+          <div data-i="4" class=""><b>New entrants - Moderate.</b> Regulatory and capital intensity tempers entry for full integrated platforms, though software-only entrants face a meaningfully lower barrier.</div>
+          <div data-i="5" class=""><b>Substitutes - Moderate.</b> Conventional 2D imaging and freehand surgical technique remain entrenched but are gradually eroding in lower-acuity procedures.</div>
+        </div>
       </figure>
 
       <p class="reveal" style="margin-top:16px">
@@ -2880,6 +2974,32 @@
       el.addEventListener('blur',function(){ set(0); });
     }
     rows.forEach(bind); notes.forEach(bind);
+  })();
+
+  /* ---------- Section 5 - Porter's five forces, lifting pillars ---------- */
+  (function(){
+    var fig=document.getElementById('porter'); if(!fig) return;
+    var pts=[].slice.call(fig.querySelectorAll('.pf-p'));
+    var rds=[].slice.call(fig.querySelectorAll('.pf-read>div'));
+    var pinned=1, hover=0;
+    function paint(){
+      var i=hover||pinned;
+      fig.classList.toggle('pick', !!hover);
+      pts.forEach(function(p){ p.classList.toggle('on', +p.dataset.i===i); });
+      rds.forEach(function(r){ r.classList.toggle('on', +r.dataset.i===i); });
+    }
+    pts.forEach(function(p){
+      var i=+p.dataset.i;
+      p.addEventListener('mouseenter',function(){ hover=i; paint(); });
+      p.addEventListener('mouseleave',function(){ hover=0; paint(); });
+      p.addEventListener('focus',function(){ hover=i; paint(); });
+      p.addEventListener('blur',function(){ hover=0; paint(); });
+      p.addEventListener('click',function(){ pinned=i; hover=0; paint(); });
+      p.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pinned=i; paint(); }
+      });
+    });
+    paint();
   })();
 </script>
 </body>
