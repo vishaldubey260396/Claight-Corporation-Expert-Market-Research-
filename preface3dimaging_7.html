@@ -2981,7 +2981,7 @@
     }
     var hits=[];
     for(i=0;i<5;i++){
-      var h=el('circle',{'class':'hit',r:30}); h.setAttribute('data-i',i+1);
+      var h=el('circle',{'class':'hit',r:38}); h.setAttribute('data-i',i+1);
       var ttl=el('title',{}); ttl.textContent=NAME[i]+' - '+(V[i]===1?'High':'Moderate');
       h.appendChild(ttl); hits.push(h); gHit.appendChild(h);
     }
@@ -3006,7 +3006,10 @@
         labels[i].setAttribute('x',tp[i][0]+lox*34);
         labels[i].setAttribute('y',tp[i][1]+loy*22+(loy<-0.5?-6:(loy>0.5?14:4)));
         labels[i].setAttribute('text-anchor', Math.abs(lox)<0.3?'middle':(lox>0?'start':'end'));
-        hits[i].setAttribute('cx',tp[i][0]);   hits[i].setAttribute('cy',tp[i][1]);
+        /* the hit target never follows the hover lift - if it moved with the vertex it would
+           slide out from under the pointer, fire mouseleave, drop back, and oscillate */
+        hits[i].setAttribute('cx',gx(i,V[i]));
+        hits[i].setAttribute('cy',gy(i,V[i]) - LIFT[i]*prog - 13);
         labels[i].style.opacity = prog>.6 ? 1 : 0;
       }
     }
