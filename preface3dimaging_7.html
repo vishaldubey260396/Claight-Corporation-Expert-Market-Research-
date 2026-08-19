@@ -340,8 +340,7 @@
   .ex-row+.ex-row{margin-top:2px}          /* 2px surface gap between adjacent bars */
   .ex-yr{font-size:11px;color:var(--muted);font-weight:600;flex:none;width:26px}
   .ex-track{display:block;position:relative;flex:1;min-width:0;height:17px;background:var(--ex-track);border-radius:4px}
-  .ex-fillbar{display:block;height:100%;border-radius:4px;background:var(--ex-a);
-    transition:width .9s cubic-bezier(.22,1,.36,1);width:0}
+  .ex-fillbar{display:block;height:100%;border-radius:4px;background:var(--ex-a);width:0}
   .ex-row.y35 .ex-fillbar{background:var(--ex-value)}
   .reveal.in .ex-fillbar{width:var(--w)}
   .ex-bv{position:absolute;top:50%;transform:translateY(-50%);font-size:11.5px;font-weight:700;
@@ -3508,6 +3507,58 @@
       });
     },{threshold:[0,.2]});
     io.observe(sh);
+  })();
+
+  /* ---------- EXHIBIT 1 - segment bars grow while their values count up ---------- */
+  (function(){
+    var panel=document.querySelector('.ex-bars'); if(!panel) return;
+    var fig=panel.closest('.reveal') || panel;
+    var rows=[].slice.call(panel.querySelectorAll('.ex-row')).map(function(r,i){
+      var fill=r.querySelector('.ex-fillbar'), bv=r.querySelector('.ex-bv');
+      var w=parseFloat((fill.getAttribute('style')||'').replace(/.*--w:\s*([\d.]+)%.*/, '$1'));
+      var v=parseFloat((bv.textContent||'').replace(/[^0-9.]/g,''));
+      return {fill:fill, bv:bv, w:isNaN(w)?0:w, v:isNaN(v)?0:v, d:i*110};
+    });
+    function paint(row,p){
+      var w=row.w*p;
+      row.fill.style.width=w.toFixed(2)+'%';
+      row.bv.style.left='calc('+w.toFixed(2)+'% + 8px)';
+      row.bv.textContent='$'+(row.v*p).toFixed(2);
+    }
+    function rest(){ rows.forEach(function(r){ paint(r,0); }); }
+    function done(){ rows.forEach(function(r){ paint(r,1); }); }
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce || !('IntersectionObserver' in window)){ done(); return; }
+
+    rest();
+    var raf=null;
+    function run(){
+      cancelAnimationFrame(raf);
+      var t0=null, DUR=780;
+      raf=requestAnimationFrame(function step(ts){
+        if(t0===null) t0=ts;
+        var t=ts-t0, live=false;
+        rows.forEach(function(r){
+          var k=Math.min(1,Math.max(0,(t-r.d)/DUR));
+          paint(r, 1-Math.pow(1-k,3));
+          if(k<1) live=true;
+        });
+        if(live) raf=requestAnimationFrame(step);
+      });
+    }
+    var shown=false;
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting && e.intersectionRatio>=.2){
+          if(shown) return; shown=true; run();
+        } else if(!e.isIntersecting){
+          if(!shown) return; shown=false;
+          cancelAnimationFrame(raf); rest();
+        }
+      });
+    },{threshold:[0,.2]});
+    io.observe(panel);
   })();
 </script>
 </body>
