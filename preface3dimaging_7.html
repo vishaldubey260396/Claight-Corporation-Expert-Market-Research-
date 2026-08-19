@@ -1148,6 +1148,112 @@
     .sh.in .sh-track::after,.sh.in .sh-knob,.sh.in .sh-to{transition:none}
   }
 
+  /* --- 5.8 Value chain - an interlocking chevron ribbon --- */
+  .vc{margin-top:16px;--notch:20px}
+  .vc-band{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}
+  .vc-ttl{font-size:13px;font-weight:800;color:var(--navy)}
+  .vc-up,.vc-down{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted)}
+  .vc-flow,.vc-caps{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+  .vc-caps{gap:4px;margin-top:9px}
+
+  .vc-ch{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;
+    min-height:66px;padding:10px calc(var(--notch) + 6px) 10px calc(var(--notch) + 10px);
+    background:var(--c);color:#fff;outline:none;opacity:0;transform:translateX(-16px);overflow:hidden;
+    clip-path:polygon(0 0,calc(100% - var(--notch)) 0,100% 50%,calc(100% - var(--notch)) 100%,
+      0 100%,var(--notch) 50%);
+    transition:filter .2s ease,transform .2s ease}
+  /* a conveyor of faint chevrons keeps sliding downstream inside every stage */
+  .vc-ch::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:repeating-linear-gradient(115deg,
+      rgba(255,255,255,.075) 0 5px,rgba(255,255,255,0) 5px 34px);
+    background-size:44px 100%;
+    animation:vcConveyor 2.6s linear infinite}
+  /* and a light pulse runs the length of the chain, stage after stage */
+  .vc-ch::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(100deg,rgba(255,255,255,0) 38%,rgba(255,255,255,.30) 50%,
+      rgba(255,255,255,0) 62%);
+    transform:translateX(-130%);
+    animation:vcPulse 3.8s ease-in-out infinite;animation-delay:var(--d)}
+  @keyframes vcConveyor{to{background-position:44px 0}}
+  @keyframes vcPulse{0%{transform:translateX(-130%)}
+    38%,100%{transform:translateX(130%)}}
+  .vc-ch span{position:relative;z-index:1}
+  .vc-ch.first{padding-left:14px;border-radius:10px 0 0 10px;
+    clip-path:polygon(0 0,calc(100% - var(--notch)) 0,100% 50%,calc(100% - var(--notch)) 100%,0 100%)}
+  .vc-ch span{font-size:12px;font-weight:800;line-height:1.3}
+  .vc-ch.on::before{animation-duration:1.2s}
+  .vc-cap{margin:0;font-size:11px;line-height:1.5;color:#475569;padding:0 6px;
+    opacity:0;transform:translateY(8px);border-radius:8px;transition:background .18s ease}
+
+  /* the chevrons slide in along the chain, then the captions settle underneath */
+  @keyframes vcSlide{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:none}}
+  @keyframes vcFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .vc.in .vc-ch{opacity:1;transform:none;
+    animation:vcSlide .5s cubic-bezier(.3,1.15,.5,1) var(--d) backwards}
+  .vc.in .vc-cap{opacity:1;transform:none;animation:vcFade .45s ease var(--d) backwards}
+
+  /* hover: brighten the stage, tint its caption, raise the note that annotates it. no dimming */
+  .vc-ch.on{filter:brightness(1.18) saturate(1.1);transform:translateY(-2px)}
+  .vc-cap.on{background:#faf8ff;color:var(--ink)}
+  .vc-ch:focus-visible{outline:2px solid #7c3aed;outline-offset:2px}
+
+  .vc-sum{margin:18px 0 0;padding:13px 16px;border-radius:10px;background:#faf8ff;
+    border:1px solid var(--line);border-left:4px solid #6d28d9;
+    font-size:12.5px;line-height:1.65;color:var(--ink);opacity:0}
+  .vc.in .vc-sum{opacity:1;animation:vcFade .55s ease .8s backwards}
+
+  @media(max-width:900px){
+    .vc-flow,.vc-caps{grid-template-columns:repeat(3,1fr)}
+    .vc-flow{row-gap:8px}
+    .vc-caps{display:none}
+    .vc-ch{min-height:58px}
+  }
+  @media(max-width:620px){
+    .vc-flow{grid-template-columns:1fr;row-gap:5px}
+    .vc-ch,.vc-ch.first{clip-path:none;border-radius:9px;padding:11px 14px;min-height:0}
+    .vc-band{flex-wrap:wrap}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .vc-ch,.vc-cap,.vc-sum{opacity:1;transform:none}
+    .vc.in .vc-ch,.vc.in .vc-cap,.vc.in .vc-sum{animation:none}
+    .vc-ch::before,.vc-ch::after{animation:none;display:none}
+    .vc-ch.on{transform:none}
+  }
+
+  /* --- 5.9 Industry trends - three from/to shifts --- */
+  .tr{margin-top:16px}
+  .tr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tr-c{position:relative;padding:16px 17px 17px;border-radius:12px;background:var(--t);
+    border:1px solid var(--bd);border-top:3px solid var(--c);outline:none;opacity:0;
+    transition:transform .2s ease,box-shadow .2s ease,opacity .18s ease}
+  .tr-n{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--c)}
+  .tr-c h6{margin:5px 0 12px;font-size:13.5px;font-weight:800;color:var(--navy);line-height:1.3}
+  /* the shift itself: what this used to be, and what it is becoming */
+  .tr-shift{display:flex;flex-direction:column;justify-content:center;gap:6px;
+    min-height:98px;padding:11px 12px;margin-bottom:11px;
+    background:#fff;border:1px solid var(--bd);border-radius:9px}
+  .tr-from,.tr-to{font-size:11.5px;line-height:1.45}
+  .tr-from{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--bd)}
+  .tr-to{font-weight:700;color:var(--tx)}
+  .tr-arw{font-size:13px;font-weight:800;color:var(--c);line-height:1}
+  .tr-c p{margin:0;font-size:11.5px;line-height:1.6;color:#475569}
+
+  @keyframes trIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+  .tr.in .tr-c{opacity:1;transform:none;
+    animation:trIn .65s cubic-bezier(.28,1.2,.45,1) var(--d) backwards}
+  .tr.pick .tr-c{opacity:.42}
+  .tr.pick .tr-c.on{opacity:1}
+  .tr-c.on{transform:translateY(-3px);box-shadow:0 12px 26px rgba(76,29,149,.15);border-color:var(--c)}
+  .tr-c:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.32)}
+
+  @media(max-width:860px){.tr-grid{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){
+    .tr-c{opacity:1}
+    .tr.in .tr-c{animation:none}
+    .tr-c.on{transform:none}
+  }
+
   /* --- 5.7 price ranges (log scale) --- */
   .md-pr{margin-top:14px}
   .md-prrow{display:grid;grid-template-columns:minmax(190px,290px) 1fr auto;
