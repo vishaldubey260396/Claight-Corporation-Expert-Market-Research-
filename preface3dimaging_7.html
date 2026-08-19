@@ -112,22 +112,20 @@
   .sig i:nth-child(odd){height:60%}.sig i:nth-child(even){height:95%}
 
   /* ---------- BODY SECTIONS ---------- */
-  .body{padding:18px 22px 0;counter-reset:sec}
-  h3.sub{font-size:17px;font-weight:800;color:var(--navy);margin:26px 0 10px;display:flex;align-items:center;gap:10px;counter-increment:sec;counter-reset:subsec}
-  h3.sub::before{content:counter(sec);
+  .body{padding:18px 22px 0}
+  h3.sub{font-size:17px;font-weight:800;color:var(--navy);margin:26px 0 10px;display:flex;align-items:center;gap:10px}
+  h3.sub::before{content:attr(data-n);
     color:var(--brand);font-size:20px;font-weight:800;flex:none;letter-spacing:.02em}
-  h3.subh{font-size:15.5px;font-weight:800;color:var(--navy);margin:18px 0 10px;display:flex;align-items:center;gap:10px;counter-increment:subsec;counter-reset:subsubsec}
-  h3.subh::before{content:counter(sec) "." counter(subsec);
+  h3.subh{font-size:15.5px;font-weight:800;color:var(--navy);margin:18px 0 10px;display:flex;align-items:center;gap:10px}
+  h3.subh::before{content:attr(data-n);
     color:var(--brand);font-size:16px;font-weight:800;flex:none;letter-spacing:.02em}
-  /* .nn: a subheading the contents does not number - it must not increment either, or the next
-     numbered subheading would skip a number */
-  h3.subh.nn{counter-increment:none}
+  /* Numbers are stamped into the markup as data-n rather than produced by CSS counters,
+     so nothing can drift if a heading is added, removed or left unnumbered. */
+  h3.sub:not([data-n])::before,h3.subh:not([data-n])::before,h3.subhh:not([data-n])::before{content:none}
   h3.subh.nn::before{content:none}
-  h3.subh.green{color:#047857}
-  h3.subh.green::before{background:linear-gradient(180deg,#34d399,#059669)}
   h3.plainh{font-size:15.5px;font-weight:800;color:#64748b;margin:18px 0 10px}
-  h3.subhh{font-size:14.5px;font-weight:800;color:var(--navy);margin:16px 0 10px;display:flex;align-items:center;gap:10px;counter-increment:subsubsec}
-  h3.subhh::before{content:counter(sec) "." counter(subsec) "." counter(subsubsec);
+  h3.subhh{font-size:14.5px;font-weight:800;color:var(--navy);margin:16px 0 10px;display:flex;align-items:center;gap:10px}
+  h3.subhh::before{content:attr(data-n);
     color:var(--brand);font-size:14px;font-weight:800;flex:none;letter-spacing:.02em}
   p{margin:12px 0}
 
@@ -1348,7 +1346,7 @@
   <!-- ================= BODY ================= -->
   <div class="body">
 
-    <h3 class="sub reveal">Preface</h3>
+    <h3 class="sub reveal" data-n="1">Preface</h3>
     <p class="reveal" style="font-size:16px;color:#3a3f52">
       This report presents a comprehensive, data-driven assessment of the global
       <strong>3D Medical and Surgical Imaging Platform</strong> market. It is prepared for medical-device
@@ -1361,7 +1359,7 @@
       <strong>11.5% over the 2026-2035 forecast period</strong>.
     </p>
 
-    <h3 class="subh reveal">Objective of the Study</h3>
+    <h3 class="subh reveal" data-n="1.1">Objective of the Study</h3>
     <ul class="dyn reveal">
       <li><b>Size and forecast</b> the global market and each segment across the 2026-2035 window, with 2025 as the base year.</li>
       <li><b>Map the competitive landscape</b>, profiling leading platform and modality vendors and assessing concentration and consolidation.</li>
@@ -1370,7 +1368,7 @@
       <li><b>Assess the patent and technology landscape</b> - AI-assisted reconstruction, cloud deployment, and surgical navigation integration - shaping innovation and market re-rating.</li>
     </ul>
 
-    <h3 class="subhh reveal">Key Assumptions</h3>
+    <h3 class="subhh reveal" data-n="1.1.1">Key Assumptions</h3>
     <p class="reveal">
       The market model rests on a defined set of assumptions. These are stated explicitly so readers can
       assess the estimates against their own view and adjust the outlook where their assumptions differ.
@@ -1388,7 +1386,7 @@
       </tbody>
     </table>
 
-    <h3 class="subh reveal">Report Coverage - Key Segmentation and Scope</h3>
+    <h3 class="subh reveal" data-n="1.2">Report Coverage - Key Segmentation and Scope</h3>
 
     <h3 class="plainh reveal">Scope</h3>
     <p class="reveal">
@@ -1466,7 +1464,7 @@
       view, the patent landscape, and the competitive positioning of leading vendors.
     </p>
 
-    <h3 class="subh reveal">Research Methodology</h3>
+    <h3 class="subh reveal" data-n="1.3">Research Methodology</h3>
     <p class="reveal">
       Estimates are built through a triangulated top-down and bottom-up approach. Every headline figure is
       reconciled across at least two independent source classes, and any value that could not be verified is
@@ -1496,7 +1494,7 @@
       <li><b>Triangulation</b> - reconciliation of the model against published market valuations and vendor-reported revenue for convergence within a stated tolerance.</li>
     </ul>
 
-    <h3 class="sub reveal">Executive Summary</h3>
+    <h3 class="sub reveal" data-n="2">Executive Summary</h3>
     <p class="reveal">
       The global 3D medical and surgical imaging platform market is set to grow from <strong>USD 6.85 billion</strong>
       in <strong>2025</strong> to <strong>USD 20.34 billion</strong> by <strong>2035</strong>, an <strong>11.50%</strong> CAGR, driven by minimally invasive
@@ -1528,7 +1526,7 @@
     <!-- ================= SECTION 3 - GLOBAL MARKET OVERVIEW ================= -->
     <section id="global-market-overview" aria-labelledby="gmo-title">
 
-      <h3 class="sub reveal" id="gmo-title">Global Market Overview</h3>
+      <h3 class="sub reveal" id="gmo-title" data-n="3">Global Market Overview</h3>
 
       <h3 class="subh nn reveal">Market Snapshot</h3>
       <p class="mo-lede reveal">
@@ -1569,7 +1567,7 @@
         </div>
       </div>
 
-      <h3 class="subh reveal">Market Size and Growth Trend, 2019-2035</h3>
+      <h3 class="subh reveal" data-n="3.1">Market Size and Growth Trend, 2019-2035</h3>
       <p class="reveal">
         The historical curve is typical of capital-intensive hospital equipment categories: steady, if
         unspectacular, adoption punctuated by a modest slowdown around 2020, as elective and non-urgent
@@ -1682,7 +1680,7 @@
     <!-- ================= SECTION 4 - CLINICAL AND TECHNOLOGY LANDSCAPE ================= -->
     <section id="clinical-technology-landscape" aria-labelledby="ctl-title">
 
-      <h3 class="sub reveal" id="ctl-title">Clinical and Technology Landscape</h3>
+      <h3 class="sub reveal" id="ctl-title" data-n="4">Clinical and Technology Landscape</h3>
 
       <p class="cl-lede reveal">
         3D medical and surgical imaging platforms have moved from a niche, specialist tool to a
@@ -2029,7 +2027,7 @@
     <!-- ================= SECTION 5 - MARKET DYNAMICS ================= -->
     <section id="market-dynamics" aria-labelledby="mdy-title">
 
-      <h3 class="sub reveal" id="mdy-title">Market Dynamics</h3>
+      <h3 class="sub reveal" id="mdy-title" data-n="5">Market Dynamics</h3>
 
       <p class="md-lede reveal">
         This section sets out the forces that will determine how far and how fast the category grows, spanning the
@@ -2037,7 +2035,7 @@
         macro-environmental and pricing conditions in which manufacturers must operate.
       </p>
 
-      <h3 class="subh reveal">Market Opportunities</h3>
+      <h3 class="subh reveal" data-n="5.1">Market Opportunities</h3>
 
       <p class="md-lede reveal">
         Beyond the structural drivers already sustaining category growth, several distinct, less fully exploited
@@ -2120,7 +2118,7 @@
           both axes are ordinal, not measured quantities. Select a point or a label to read the full rationale.</figcaption>
       </figure>
 
-      <h3 class="subh reveal">Market Drivers and Constraints</h3>
+      <h3 class="subh reveal" data-n="5.2">Market Drivers and Constraints</h3>
 
       <p class="md-lede reveal">
         The dynamics shaping this market's growth trajectory can be organised into four principal drivers and
@@ -2209,7 +2207,7 @@
             scrutiny in clinical and regulatory evaluation of new platforms.</li>
       </ol>
 
-      <h3 class="subh reveal">SWOT Analysis</h3>
+      <h3 class="subh reveal" data-n="5.3">SWOT Analysis</h3>
 
       <figure class="md-fig sw reveal" id="swot" style="margin-top:14px">
         <h6>SWOT Analysis</h6>
@@ -2252,7 +2250,7 @@
         this category.
       </p>
 
-      <h3 class="subh reveal">PESTEL Analysis</h3>
+      <h3 class="subh reveal" data-n="5.4">PESTEL Analysis</h3>
 
       <p class="md-lede reveal">
         A PESTEL framework provides a structured view of the broader <strong>macro-environmental factors</strong>
@@ -2365,7 +2363,7 @@
         remain the most significant near-term gating factor on the pace of adoption across price-sensitive regions.
       </p>
 
-      <h3 class="subh reveal">Porter's Five Forces Analysis</h3>
+      <h3 class="subh reveal" data-n="5.5">Porter's Five Forces Analysis</h3>
 
       <figure class="md-fig pfr" id="porter">
         <h6>Porter's Five Forces Analysis</h6>
@@ -2406,7 +2404,7 @@
         capability rather than on defending the category itself.
       </p>
 
-      <h3 class="subh reveal">Key Demand Indicators</h3>
+      <h3 class="subh reveal" data-n="5.6">Key Demand Indicators</h3>
 
       <div class="kd" id="demand">
         <div class="kd-grid">
@@ -2451,7 +2449,7 @@
         </div>
       </div>
 
-      <h3 class="subh reveal">Key Price Indicators</h3>
+      <h3 class="subh reveal" data-n="5.7">Key Price Indicators</h3>
 
       <figure class="md-fig pri" id="price">
         <h6>System Price by Platform Category</h6>
@@ -2481,7 +2479,7 @@
         </div>
       </figure>
 
-      <h3 class="subh reveal">Value Chain Analysis</h3>
+      <h3 class="subh reveal" data-n="5.8">Value Chain Analysis</h3>
 
       <p class="md-lede reveal">
         Understanding the full value chain, from component manufacturing through to ongoing clinical service and
@@ -2539,7 +2537,7 @@
         </div>
       </div>
 
-      <h3 class="subh reveal">Industry Events, Initiatives and Trends</h3>
+      <h3 class="subh reveal" data-n="5.9">Industry Events, Initiatives and Trends</h3>
 
       <div class="tr" id="trends">
         <p class="md-lede" style="margin-bottom:14px">
