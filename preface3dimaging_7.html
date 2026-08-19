@@ -864,19 +864,6 @@
   ol.md-list.co>li::before{color:#9a3412;background:#fdf1e0;border-color:#f2d3a3}
   ol.md-list.co>li b{color:#9a3412}
 
-  /* --- 5.3 SWOT --- */
-  .md-swot{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
-  .md-q{padding:14px 16px 15px;border:1px solid var(--line);border-radius:10px;
-    border-top:3px solid var(--qc);background:#fff}
-  .md-q h6{margin:0 0 9px;font-size:13px;font-weight:800;color:var(--qc)}
-  .md-q ul{margin:0;padding:0;list-style:none}
-  .md-q li{position:relative;padding-left:15px;font-size:12.5px;line-height:1.6;
-    color:var(--ink);margin-bottom:6px}
-  .md-q li:last-child{margin-bottom:0}
-  .md-q li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;
-    border-radius:50%;background:var(--qc)}
-  @media(max-width:700px){.md-swot{grid-template-columns:1fr}}
-
   /* --- 5.3 SWOT quadrants --- */
   .sw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
   .sw-q{position:relative;padding:15px 16px 16px;border-radius:12px;
@@ -922,17 +909,60 @@
     .sw-read>div{transition:none}
   }
 
-  /* --- 5.4 PESTEL --- */
-  .md-pest{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
-  table.md-tbl{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px}
-  table.md-tbl th{background:#f3eeff;color:var(--purple-deep);font-size:11px;
-    letter-spacing:.07em;text-transform:uppercase;text-align:left;
-    padding:9px 12px;border:1px solid var(--line);font-weight:800}
-  table.md-tbl td{padding:10px 12px;border:1px solid var(--line);
-    color:var(--ink);vertical-align:top;line-height:1.6}
-  table.md-tbl td:first-child{font-weight:700;color:var(--pc,var(--purple-deep));white-space:nowrap}
-  table.md-tbl tbody tr:nth-child(even){background:#fbfaff}
-  .md-scroll{overflow-x:auto}
+  /* --- 5.4 PESTEL impact dot plot --- */
+  .pe{--lab:132px;--rate:86px}
+  .pe-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--purple);margin-bottom:7px}
+  .pe-plot{margin-top:16px}
+  .pe-head,.pe-row{display:grid;grid-template-columns:var(--lab) minmax(0,1fr) var(--rate);
+    align-items:center;column-gap:12px}
+  .pe-ticks{position:relative;height:16px}
+  .pe-ticks i{position:absolute;top:0;transform:translateX(-50%);font-style:normal;
+    font-size:10.5px;font-weight:700;color:var(--muted);white-space:nowrap}
+  .pe-body{position:relative;margin-top:2px}
+  .pe-lines{position:absolute;left:calc(var(--lab) + 12px);right:calc(var(--rate) + 12px);
+    top:0;bottom:0;pointer-events:none}
+  .pe-lines i{position:absolute;top:0;bottom:0;width:1px;background:#efeafe}
+  .pe-row{padding:7px 0;border-radius:8px;outline:none;
+    transition:opacity .18s ease,background .18s ease}
+  .pe-lab{font-size:12.5px;font-weight:700;color:var(--navy);text-align:right}
+  .pe-trk{position:relative;height:22px}
+  .pe-bar{position:absolute;left:0;top:9px;height:5px;width:var(--p);border-radius:3px;
+    background:linear-gradient(90deg,#ddd0ff,var(--mc));
+    transform:scaleX(0);transform-origin:left}
+  .pe-dot{position:absolute;left:var(--p);top:4px;width:15px;height:15px;margin-left:-7.5px;
+    border-radius:50%;background:var(--mc);box-shadow:0 0 0 2.5px #fff,0 2px 6px rgba(60,20,120,.28);
+    opacity:0;transform:scale(.3)}
+  .reveal.in .pe-bar{transform:none;transition:transform .7s cubic-bezier(.25,1,.4,1) var(--d)}
+  .reveal.in .pe-dot{opacity:1;transform:none;
+    transition:opacity .3s ease calc(var(--d) + .42s),transform .45s cubic-bezier(.3,1.5,.5,1) calc(var(--d) + .42s)}
+  .pe-rate{font-size:12px;font-weight:800;color:var(--rc)}
+
+  .pe.pick .pe-row{opacity:.4}
+  .pe.pick .pe-row.on{opacity:1;background:#faf8ff}
+  .pe-row:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.32)}
+  .pe-src{margin:14px 0 0;padding-top:11px;border-top:1px solid var(--line);
+    font-size:11px;color:var(--muted);font-style:italic}
+
+  /* dimension notes below the exhibit */
+  ul.pe-notes{margin:16px 0 0;padding:0;list-style:none}
+  ul.pe-notes>li{position:relative;padding:6px 0 6px 20px;font-size:12.5px;line-height:1.65;
+    color:var(--ink);border-radius:8px;transition:opacity .18s ease,background .18s ease}
+  ul.pe-notes>li::before{content:"";position:absolute;left:6px;top:14px;width:7px;height:7px;
+    border-radius:2px;background:var(--mc)}
+  ul.pe-notes>li b{color:var(--rc);font-weight:800}
+  .pe-wrap.pick ul.pe-notes>li{opacity:.42}
+  .pe-wrap.pick ul.pe-notes>li.on{opacity:1;background:#faf8ff}
+
+  @media(max-width:640px){
+    .pe{--lab:96px;--rate:66px}
+    .pe-lab{font-size:11.5px}
+    .pe-rate{font-size:11px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .pe-bar{transform:none}.pe-dot{opacity:1;transform:none}
+    .reveal.in .pe-bar,.reveal.in .pe-dot{transition:none}
+  }
 
   /* --- 5.5 Porter radar --- */
   .md-radar{display:block;width:100%;height:auto;max-width:520px;margin:10px auto 0}
@@ -1992,49 +2022,75 @@
         shaping the market beyond the direct commercial drivers and constraints discussed above.
       </p>
 
-      <figure class="md-fig reveal" style="margin-top:14px">
-        <h6>PESTEL Analysis</h6>
-        <p class="md-sub">3D Surgical Imaging Market - macro-environmental factors shaping the market</p>
-        <div class="md-pest">
-          <div class="md-q" style="--qc:#6d28d9">
-            <h6>Political</h6>
-            <ul><li>Political capex &amp; public procurement cycles</li><li>Trade / tariff policy on components</li><li>National digital-health &amp; AI policy</li></ul>
+      <div class="pe-wrap" id="pestel">
+      <figure class="md-fig pe reveal" style="margin-top:14px">
+        <div class="pe-eyebrow">Exhibit 2</div>
+        <h6>Technological, legal and economic factors dominate the macro picture</h6>
+        <p class="md-sub">PESTEL impact on the 3D surgical imaging market, by dimension - hover a row to read its note</p>
+        <div class="pe-plot">
+          <div class="pe-head">
+            <span></span>
+            <div class="pe-ticks"><i style="left:25%">Low</i><i style="left:60%">Medium</i><i style="left:92%">High</i></div>
+            <span></span>
           </div>
-          <div class="md-q" style="--qc:#0369a1">
-            <h6>Economic</h6>
-            <ul><li>High per-system capital cost</li><li>Emerging-market affordability &amp; FX</li><li>GPO bargaining power</li></ul>
-          </div>
-          <div class="md-q" style="--qc:#047857">
-            <h6>Social</h6>
-            <ul><li>Expectation of precise, minimally invasive care</li><li>Acceptance of AI decision support</li><li>Ageing populations lifting procedure volumes</li></ul>
-          </div>
-          <div class="md-q" style="--qc:#7c3aed">
-            <h6>Technological</h6>
-            <ul><li>Imaging-navigation-robotics convergence</li><li>AI segmentation &amp; image fusion</li><li>Mixed-reality &amp; cloud-native architectures</li></ul>
-          </div>
-          <div class="md-q" style="--qc:#b45309">
-            <h6>Environmental</h6>
-            <ul><li>Radiation-dose reduction priority</li><li>Sustainability of hardware manufacturing</li><li>E-waste from retired imaging systems</li></ul>
-          </div>
-          <div class="md-q" style="--qc:#be123c">
-            <h6>Legal</h6>
-            <ul><li>Dense, overlapping patent filings</li><li>Device regulatory clearance pathways</li><li>Data-privacy rules for cloud platforms</li></ul>
+          <div class="pe-body">
+            <div class="pe-lines" aria-hidden="true"><i style="left:25%"></i><i style="left:60%"></i><i style="left:92%"></i></div>
+            <div class="pe-row" data-i="1" tabindex="0"
+                 style="--p:92%;--mc:#4c1d95;--rc:#4c1d95;--d:0ms"
+                 aria-label="Technological: high impact">
+              <div class="pe-lab">Technological</div>
+              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
+              <div class="pe-rate">High</div>
+            </div>
+            <div class="pe-row" data-i="2" tabindex="0"
+                 style="--p:92%;--mc:#4c1d95;--rc:#4c1d95;--d:110ms"
+                 aria-label="Legal: high impact">
+              <div class="pe-lab">Legal</div>
+              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
+              <div class="pe-rate">High</div>
+            </div>
+            <div class="pe-row" data-i="3" tabindex="0"
+                 style="--p:88%;--mc:#4c1d95;--rc:#4c1d95;--d:220ms"
+                 aria-label="Economic: high impact">
+              <div class="pe-lab">Economic</div>
+              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
+              <div class="pe-rate">High</div>
+            </div>
+            <div class="pe-row" data-i="4" tabindex="0"
+                 style="--p:60%;--mc:#8b5cf6;--rc:#6d28d9;--d:330ms"
+                 aria-label="Political: medium impact">
+              <div class="pe-lab">Political</div>
+              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
+              <div class="pe-rate">Medium</div>
+            </div>
+            <div class="pe-row" data-i="5" tabindex="0"
+                 style="--p:60%;--mc:#8b5cf6;--rc:#6d28d9;--d:440ms"
+                 aria-label="Social: medium impact">
+              <div class="pe-lab">Social</div>
+              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
+              <div class="pe-rate">Medium</div>
+            </div>
+            <div class="pe-row" data-i="6" tabindex="0"
+                 style="--p:56%;--mc:#8b5cf6;--rc:#6d28d9;--d:550ms"
+                 aria-label="Environmental: medium impact">
+              <div class="pe-lab">Environmental</div>
+              <div class="pe-trk"><span class="pe-bar"></span><span class="pe-dot"></span></div>
+              <div class="pe-rate">Medium</div>
+            </div>
           </div>
         </div>
-        <div class="md-scroll">
-          <table class="md-tbl">
-            <thead><tr><th>Dimension</th><th>Key considerations</th></tr></thead>
-            <tbody>
-              <tr><td style="--pc:#6d28d9">Political</td><td>Hospital capital-expenditure policy and public health-system procurement cycles; trade and tariff policy affecting medical device component sourcing; national digital-health and AI-in-healthcare policy frameworks.</td></tr>
-              <tr><td style="--pc:#0369a1">Economic</td><td>High per-system capital cost relative to hospital capital budgets; currency and macroeconomic conditions affecting emerging-market affordability; group purchasing organisation bargaining power.</td></tr>
-              <tr><td style="--pc:#047857">Social</td><td>Rising surgeon and patient expectation of precision, minimally invasive care; growing acceptance of AI-assisted clinical decision support; ageing populations driving orthopedic and cardiovascular procedure volumes.</td></tr>
-              <tr><td style="--pc:#7c3aed">Technological</td><td>Convergence of imaging, navigation and robotics into unified platforms; advances in AI-based segmentation and image fusion; mixed-reality and cloud-native visualization architectures.</td></tr>
-              <tr><td style="--pc:#b45309">Environmental</td><td>Radiation-dose reduction as a design priority; sustainability of hardware manufacturing and electronic-waste considerations for retired imaging systems.</td></tr>
-              <tr><td style="--pc:#be123c">Legal</td><td>Patent protection and freedom-to-operate risk given dense, overlapping patent filings around navigation and imaging methods; medical device regulatory clearance pathways; data-privacy regulation applicable to cloud-connected platforms.</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <p class="pe-src">Impact rating is an ordinal assessment drawn from the dimension notes below, not a measured score.</p>
       </figure>
+
+      <ul class="pe-notes reveal">
+          <li data-i="1" style="--mc:#4c1d95;--rc:#4c1d95"><b>Technological - High.</b> Imaging, navigation and robotics are converging into unified platforms, with AI-based segmentation and image fusion and mixed-reality, cloud-native architectures reshaping product roadmaps.</li>
+          <li data-i="2" style="--mc:#4c1d95;--rc:#4c1d95"><b>Legal - High.</b> Dense, overlapping patent filings around navigation and imaging methods create freedom-to-operate risk; device clearance pathways and cloud data-privacy rules add further gating.</li>
+          <li data-i="3" style="--mc:#4c1d95;--rc:#4c1d95"><b>Economic - High.</b> High per-system capital cost relative to hospital capital budgets, group purchasing bargaining power and FX-driven emerging-market affordability set the pace of adoption.</li>
+          <li data-i="4" style="--mc:#8b5cf6;--rc:#6d28d9"><b>Political - Medium.</b> Hospital capital-expenditure policy and public health-system procurement cycles, component trade and tariff policy, and national digital-health and AI policy frameworks.</li>
+          <li data-i="5" style="--mc:#8b5cf6;--rc:#6d28d9"><b>Social - Medium.</b> Rising surgeon and patient expectation of precision, minimally invasive care; growing acceptance of AI-assisted decision support; ageing populations lifting procedure volumes.</li>
+          <li data-i="6" style="--mc:#8b5cf6;--rc:#6d28d9"><b>Environmental - Medium.</b> Radiation-dose reduction as a design priority, plus sustainability of hardware manufacturing and electronic waste from retired imaging systems.</li>
+      </ul>
+      </div>
 
       <p class="reveal" style="margin-top:16px">
         Of the six PESTEL dimensions, technological and legal factors are currently exerting the most direct
@@ -2764,6 +2820,28 @@
       });
     });
     paint();
+  })();
+
+  /* ---------- Section 5 - PESTEL dot plot ---------- */
+  (function(){
+    var w=document.getElementById('pestel'); if(!w) return;
+    var fig=w.querySelector('.pe');
+    var rows=[].slice.call(w.querySelectorAll('.pe-row'));
+    var notes=[].slice.call(w.querySelectorAll('.pe-notes>li'));
+    function set(i){
+      fig.classList.toggle('pick', !!i);
+      w.classList.toggle('pick', !!i);
+      rows.forEach(function(r){ r.classList.toggle('on', +r.dataset.i===i); });
+      notes.forEach(function(n){ n.classList.toggle('on', +n.dataset.i===i); });
+    }
+    function bind(el){
+      var i=+el.dataset.i;
+      el.addEventListener('mouseenter',function(){ set(i); });
+      el.addEventListener('mouseleave',function(){ set(0); });
+      el.addEventListener('focus',function(){ set(i); });
+      el.addEventListener('blur',function(){ set(0); });
+    }
+    rows.forEach(bind); notes.forEach(bind);
   })();
 </script>
 </body>
