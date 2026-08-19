@@ -986,14 +986,19 @@
   .pfr-svg{display:block;width:100%;height:auto;overflow:visible}
 
   .pfr-c{padding:12px 14px;border-radius:11px;background:#fff;border:1px solid var(--line);
-    box-shadow:0 3px 12px rgba(76,29,149,.06);outline:none;opacity:0;
+    box-shadow:0 3px 12px rgba(76,29,149,.06);outline:none;
+    opacity:0;visibility:hidden;pointer-events:none;
     transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,opacity .2s ease}
-  /* the cards ride up with the slab as the exhibit scrolls in.
-     `backwards` fill holds them hidden through the delay and then hands control
-     back to the base rule, so the hover lift still transitions normally. */
-  .pfr.in .pfr-c{opacity:1;animation:pfrRise .72s cubic-bezier(.22,1.05,.36,1) var(--d,0ms) backwards}
-  .pfr-c.ra{--d:80ms}.pfr-c.rb{--d:200ms}.pfr-c.rc{--d:320ms}
-  .pfr-c.rd{--d:440ms}.pfr-c.re{--d:560ms}
+  /* they open one by one only once the reader puts the cursor on the web.
+     `backwards` fill holds each card hidden through its delay and then hands
+     control back to the base rule, so the hover lift still transitions normally. */
+  .pfr.show .pfr-c{opacity:1;visibility:visible;pointer-events:auto;
+    animation:pfrRise .6s cubic-bezier(.22,1.05,.36,1) var(--d,0ms) backwards}
+  .pfr-hint{margin:0;padding-top:4px;font-size:11.5px;font-style:italic;color:var(--muted);
+    text-align:center;transition:opacity .25s ease}
+  .pfr.show .pfr-hint{opacity:0}
+  .pfr-c.ra{--d:0ms}.pfr-c.rb{--d:130ms}.pfr-c.rc{--d:260ms}
+  .pfr-c.rd{--d:390ms}.pfr-c.re{--d:520ms}
   @keyframes pfrRise{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
   .pfr-ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
   .pfr-c h6{margin:0;font-size:12.5px;font-weight:800;color:var(--navy);line-height:1.25}
@@ -1008,8 +1013,9 @@
   .pfr-c:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.35)}
 
   /* svg pieces */
-  .pfr-svg .g-ring{fill:none;stroke:#ece6fb;stroke-width:1}
-  .pfr-svg .g-spoke{stroke:#ece6fb;stroke-width:1}
+  .pfr-svg .g-ring{fill:none;stroke:#b9a4ea;stroke-width:1.1}
+  .pfr-svg .g-out{stroke:#9b7fdf;stroke-width:1.6}
+  .pfr-svg .g-spoke{stroke:#ab92e6;stroke-width:1.1}
   .pfr-svg .g-base{fill:rgba(124,58,237,.09);stroke:#d9cbff;stroke-width:1}
   .pfr-svg .side{stroke:none}
   .pfr-svg .top{fill:rgba(167,139,250,.42);stroke:#5b21b6;stroke-width:2;stroke-linejoin:round}
@@ -1019,9 +1025,14 @@
   .pfr-svg .lv{font-size:11px;font-weight:800;fill:#6d28d9}
   .pfr-svg .dim{opacity:.3;transition:opacity .2s ease}
 
+  /* no hover on touch, and the stacked layout has room anyway - show them outright */
+  @media(max-width:820px),(hover:none){
+    .pfr-c{opacity:1;visibility:visible;pointer-events:auto}
+    .pfr-hint{display:none}
+  }
   @media(prefers-reduced-motion:reduce){
-    .pfr-c{opacity:1}
-    .pfr.in .pfr-c{animation:none}
+    .pfr-c{opacity:1;visibility:visible;pointer-events:auto}
+    .pfr.show .pfr-c{animation:none}
   }
 
   @media(max-width:820px){
@@ -2370,8 +2381,9 @@
         <p class="md-sub">3D Surgical Imaging Market - intensity of each competitive force. Hover a force to raise it</p>
         <div class="pfr-grid">
           <div class="pfr-plot ra-chart">
-            <svg class="pfr-svg" viewBox="0 0 480 420" role="img"
+            <svg class="pfr-svg" viewBox="0 0 500 440" role="img"
                  aria-label="Three-dimensional radar of Porter's five forces: competitive rivalry high, buyer power high, supplier power moderate, threat of new entrants moderate, threat of substitutes moderate."></svg>
+            <p class="pfr-hint">Hover the web to open each force</p>
           </div>
           <article class="pfr-c ra" data-i="1" tabindex="0">
             <div class="pfr-ch"><h6>Competitive rivalry</h6><span class="pfr-r hi">High</span></div>
@@ -3165,7 +3177,7 @@
     var fig=document.getElementById('porter'); if(!fig) return;
     var svg=fig.querySelector('.pfr-svg'); if(!svg) return;
     var NS='http://www.w3.org/2000/svg';
-    var CX=240, CY=268, R=134, LIFT=[64,64,46,46,46];
+    var CX=250, CY=258, R=150, LIFT=[64,64,46,46,46];
     /* radius carries the same ordinal intensity the pillar height does */
     var V=[1,1,2/3,2/3,2/3];
     var NAME=['Competitive rivalry','Buyer power','Supplier power','New entrants','Substitutes'];
@@ -3187,12 +3199,13 @@
     svg.appendChild(defs);
     [gGround,gSide,gTop,gCap,gHit].forEach(function(g){ svg.appendChild(g); });
 
-    /* static ground: rings + spokes + the footprint of the slab */
-    [1/3,2/3,1].forEach(function(f){
+    /* static ground: the web reaches past the data ring so it reads as a spider web */
+    var WEB=1.22;
+    [.28,.505,.73,.955,WEB].forEach(function(f,k){
       var p=[]; for(var i=0;i<5;i++) p.push([gx(i,f),gy(i,f)]);
-      gGround.appendChild(el('polygon',{'class':'g-ring',points:poly(p)}));
+      gGround.appendChild(el('polygon',{'class':k===4?'g-ring g-out':'g-ring',points:poly(p)}));
     });
-    for(var i=0;i<5;i++) gGround.appendChild(el('line',{'class':'g-spoke',x1:CX,y1:CY,x2:gx(i,1),y2:gy(i,1)}));
+    for(var i=0;i<5;i++) gGround.appendChild(el('line',{'class':'g-spoke',x1:CX,y1:CY,x2:gx(i,WEB),y2:gy(i,WEB)}));
     var foot=[]; for(i=0;i<5;i++) foot.push([gx(i,V[i]),gy(i,V[i])]);
     gGround.appendChild(el('polygon',{'class':'g-base',points:poly(foot)}));
 
@@ -3282,6 +3295,7 @@
             if(!shown) return;
             shown=false;
             fig.classList.remove('in');
+            fig.classList.remove('show');
             sink();
           }
         });
@@ -3291,6 +3305,13 @@
 
     /* hover: that pillar pushes further up, everything else recedes */
     var cards=[].slice.call(fig.querySelectorAll('.pfr-c'));
+    var plot=fig.querySelector('.pfr-plot');
+    function open(){ fig.classList.add('show'); }
+    if(plot){
+      plot.addEventListener('mouseenter',open);
+      plot.addEventListener('pointerdown',open);
+      plot.addEventListener('focusin',open);
+    }
     var tweenId=null;
     function target(i){
       var want=[0,0,0,0,0];
