@@ -1107,143 +1107,45 @@
     .kd-b.on{transform:none}
   }
 
-  /* --- 5.9 Industry trends - three from/to shifts --- */
-  .tr{margin-top:16px}
-  .tr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .tr-c{position:relative;padding:16px 17px 17px;border-radius:12px;background:var(--t);
-    border:1px solid var(--bd);border-top:3px solid var(--c);outline:none;opacity:0;
-    transition:transform .2s ease,box-shadow .2s ease,opacity .18s ease}
-  .tr-n{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--c)}
-  .tr-c h6{margin:5px 0 12px;font-size:13.5px;font-weight:800;color:var(--navy);line-height:1.3}
-  /* the shift itself: what this used to be, and what it is becoming */
-  .tr-shift{display:flex;flex-direction:column;justify-content:center;gap:6px;
-    min-height:98px;padding:11px 12px;margin-bottom:11px;
-    background:#fff;border:1px solid var(--bd);border-radius:9px}
-  .tr-from,.tr-to{font-size:11.5px;line-height:1.45}
-  .tr-from{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--bd)}
-  .tr-to{font-weight:700;color:var(--tx)}
-  .tr-arw{font-size:13px;font-weight:800;color:var(--c);line-height:1}
-  .tr-c p{margin:0;font-size:11.5px;line-height:1.6;color:#475569}
+  /* --- 5.9 Industry trends - each shift slides from the old state to the new one --- */
+  .sh{margin-top:6px}
+  .sh-row{padding:16px 2px;border-top:1px solid var(--line);border-radius:10px;outline:none;
+    transition:background .18s ease}
+  .sh-row:first-child{border-top:0}
+  .sh-row.on{background:#faf8ff}
+  .sh-row:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.3)}
+  .sh-hd{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+  .sh-n{flex:none;font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--c)}
+  .sh-row h6{margin:0;font-size:13.5px;font-weight:800;color:var(--navy)}
 
-  @keyframes trIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
-  .tr.in .tr-c{opacity:1;transform:none;
-    animation:trIn .65s cubic-bezier(.28,1.2,.45,1) var(--d) backwards}
-  .tr.pick .tr-c{opacity:.42}
-  .tr.pick .tr-c.on{opacity:1}
-  .tr-c.on{transform:translateY(-3px);box-shadow:0 12px 26px rgba(76,29,149,.15);border-color:var(--c)}
-  .tr-c:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.32)}
+  .sh-move{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,210px) minmax(0,1.25fr);
+    align-items:center;gap:16px}
+  .sh-from{text-align:right;font-size:12.5px;line-height:1.45;color:var(--muted);
+    text-decoration:line-through;text-decoration-color:#cdbcf0}
+  .sh-to{font-size:12.5px;line-height:1.45;font-weight:800;color:var(--tx);opacity:.32}
+  .sh-track{position:relative;height:6px;border-radius:3px;background:#ede8fa}
+  .sh-track::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;
+    background:linear-gradient(90deg,#ded2ff,var(--c))}
+  .sh-knob{position:absolute;top:50%;left:0;width:17px;height:17px;border-radius:50%;
+    background:var(--c);transform:translate(-50%,-50%);
+    box-shadow:0 0 0 3px #fff,0 3px 9px rgba(60,20,120,.32)}
+  .sh-note{margin:12px 0 0;font-size:11.5px;line-height:1.6;color:#475569}
 
-  @media(max-width:860px){.tr-grid{grid-template-columns:1fr}}
-  @media(prefers-reduced-motion:reduce){
-    .tr-c{opacity:1}
-    .tr.in .tr-c{animation:none}
-    .tr-c.on{transform:none}
-  }
+  /* the knob travels the rail, the fill follows it, and the new state lights up on arrival */
+  .sh.in .sh-track::after{width:100%;transition:width 1s cubic-bezier(.5,0,.2,1) var(--d)}
+  .sh.in .sh-knob{left:100%;transition:left 1s cubic-bezier(.5,0,.2,1) var(--d)}
+  .sh.in .sh-to{opacity:1;transition:opacity .45s ease calc(var(--d) + .78s)}
 
-  /* --- 5.8 Value chain - an interlocking chevron ribbon --- */
-  .vc{margin-top:16px;--notch:20px}
-  .vc-band{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}
-  .vc-ttl{font-size:13px;font-weight:800;color:var(--navy)}
-  .vc-up,.vc-down{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--muted)}
-  .vc-flow,.vc-caps{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
-  .vc-caps{gap:4px;margin-top:9px}
-
-  .vc-ch{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;
-    min-height:66px;padding:10px calc(var(--notch) + 6px) 10px calc(var(--notch) + 10px);
-    background:var(--c);color:#fff;outline:none;opacity:0;transform:translateX(-16px);overflow:hidden;
-    clip-path:polygon(0 0,calc(100% - var(--notch)) 0,100% 50%,calc(100% - var(--notch)) 100%,
-      0 100%,var(--notch) 50%);
-    transition:filter .2s ease,transform .2s ease}
-  /* a conveyor of faint chevrons keeps sliding downstream inside every stage */
-  .vc-ch::before{content:"";position:absolute;inset:0;pointer-events:none;
-    background-image:repeating-linear-gradient(115deg,
-      rgba(255,255,255,.075) 0 5px,rgba(255,255,255,0) 5px 34px);
-    background-size:44px 100%;
-    animation:vcConveyor 2.6s linear infinite}
-  /* and a light pulse runs the length of the chain, stage after stage */
-  .vc-ch::after{content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(100deg,rgba(255,255,255,0) 38%,rgba(255,255,255,.30) 50%,
-      rgba(255,255,255,0) 62%);
-    transform:translateX(-130%);
-    animation:vcPulse 3.8s ease-in-out infinite;animation-delay:var(--d)}
-  @keyframes vcConveyor{to{background-position:44px 0}}
-  @keyframes vcPulse{0%{transform:translateX(-130%)}
-    38%,100%{transform:translateX(130%)}}
-  .vc-ch span{position:relative;z-index:1}
-  .vc-ch.first{padding-left:14px;border-radius:10px 0 0 10px;
-    clip-path:polygon(0 0,calc(100% - var(--notch)) 0,100% 50%,calc(100% - var(--notch)) 100%,0 100%)}
-  .vc-ch span{font-size:12px;font-weight:800;line-height:1.3}
-  .vc-ch.on::before{animation-duration:1.2s}
-  .vc-cap{margin:0;font-size:11px;line-height:1.5;color:#475569;padding:0 6px;
-    opacity:0;transform:translateY(8px);border-radius:8px;transition:background .18s ease}
-
-  /* the chevrons slide in along the chain, then the captions settle underneath */
-  @keyframes vcSlide{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:none}}
-  @keyframes vcFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  .vc.in .vc-ch{opacity:1;transform:none;
-    animation:vcSlide .5s cubic-bezier(.3,1.15,.5,1) var(--d) backwards}
-  .vc.in .vc-cap{opacity:1;transform:none;animation:vcFade .45s ease var(--d) backwards}
-
-  /* hover: brighten the stage, tint its caption, raise the note that annotates it. no dimming */
-  .vc-ch.on{filter:brightness(1.18) saturate(1.1);transform:translateY(-2px)}
-  .vc-cap.on{background:#faf8ff;color:var(--ink)}
-  .vc-ch:focus-visible{outline:2px solid #7c3aed;outline-offset:2px}
-
-  .vc-sum{margin:18px 0 0;padding:13px 16px;border-radius:10px;background:#faf8ff;
-    border:1px solid var(--line);border-left:4px solid #6d28d9;
-    font-size:12.5px;line-height:1.65;color:var(--ink);opacity:0}
-  .vc.in .vc-sum{opacity:1;animation:vcFade .55s ease .8s backwards}
-
-  @media(max-width:900px){
-    .vc-flow,.vc-caps{grid-template-columns:repeat(3,1fr)}
-    .vc-flow{row-gap:8px}
-    .vc-caps{display:none}
-    .vc-ch{min-height:58px}
-  }
-  @media(max-width:620px){
-    .vc-flow{grid-template-columns:1fr;row-gap:5px}
-    .vc-ch,.vc-ch.first{clip-path:none;border-radius:9px;padding:11px 14px;min-height:0}
-    .vc-band{flex-wrap:wrap}
+  @media(max-width:760px){
+    .sh-move{grid-template-columns:1fr;gap:9px}
+    .sh-from{text-align:left}
+    .sh-track{margin:2px 9px}
   }
   @media(prefers-reduced-motion:reduce){
-    .vc-ch,.vc-cap,.vc-sum{opacity:1;transform:none}
-    .vc.in .vc-ch,.vc.in .vc-cap,.vc.in .vc-sum{animation:none}
-    .vc-ch::before,.vc-ch::after{animation:none;display:none}
-    .vc-ch.on{transform:none}
-  }
-
-  /* --- 5.9 Industry trends - three from/to shifts --- */
-  .tr{margin-top:16px}
-  .tr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .tr-c{position:relative;padding:16px 17px 17px;border-radius:12px;background:var(--t);
-    border:1px solid var(--bd);border-top:3px solid var(--c);outline:none;opacity:0;
-    transition:transform .2s ease,box-shadow .2s ease,opacity .18s ease}
-  .tr-n{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--c)}
-  .tr-c h6{margin:5px 0 12px;font-size:13.5px;font-weight:800;color:var(--navy);line-height:1.3}
-  /* the shift itself: what this used to be, and what it is becoming */
-  .tr-shift{display:flex;flex-direction:column;justify-content:center;gap:6px;
-    min-height:98px;padding:11px 12px;margin-bottom:11px;
-    background:#fff;border:1px solid var(--bd);border-radius:9px}
-  .tr-from,.tr-to{font-size:11.5px;line-height:1.45}
-  .tr-from{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--bd)}
-  .tr-to{font-weight:700;color:var(--tx)}
-  .tr-arw{font-size:13px;font-weight:800;color:var(--c);line-height:1}
-  .tr-c p{margin:0;font-size:11.5px;line-height:1.6;color:#475569}
-
-  @keyframes trIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
-  .tr.in .tr-c{opacity:1;transform:none;
-    animation:trIn .65s cubic-bezier(.28,1.2,.45,1) var(--d) backwards}
-  .tr.pick .tr-c{opacity:.42}
-  .tr.pick .tr-c.on{opacity:1}
-  .tr-c.on{transform:translateY(-3px);box-shadow:0 12px 26px rgba(76,29,149,.15);border-color:var(--c)}
-  .tr-c:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.32)}
-
-  @media(max-width:860px){.tr-grid{grid-template-columns:1fr}}
-  @media(prefers-reduced-motion:reduce){
-    .tr-c{opacity:1}
-    .tr.in .tr-c{animation:none}
-    .tr-c.on{transform:none}
+    .sh-track::after{width:100%}
+    .sh-knob{left:100%}
+    .sh-to{opacity:1}
+    .sh.in .sh-track::after,.sh.in .sh-knob,.sh.in .sh-to{transition:none}
   }
 
   /* --- 5.7 price ranges (log scale) --- */
@@ -2585,45 +2487,39 @@
 
       <h3 class="subh reveal" data-n="5.9">Industry Events, Initiatives and Trends</h3>
 
-      <div class="tr" id="trends">
-        <p class="md-lede" style="margin-bottom:14px">
+      <div class="sh" id="trends">
+        <p class="md-lede" style="margin-bottom:6px">
           Beyond individual company announcements, three industry-level shifts are
           <strong>reshaping how platforms are launched, built and sold</strong>.
         </p>
-        <div class="tr-grid">
-          <article class="tr-c" data-i="1" tabindex="0"
-                   style="--c:#6d28d9;--t:#f6f3ff;--bd:#e4dbff;--tx:#4c1d95;--d:0ms">
-            <span class="tr-n">01</span>
-            <h6>Conferences as the proving ground</h6>
-            <div class="tr-shift">
-              <span class="tr-from">A launch stage</span>
-              <span class="tr-arw" aria-hidden="true">&#8594;</span>
-              <span class="tr-to">An evidence venue purchasing committees cite</span>
+        <div class="sh-list">
+          <div class="sh-row" data-i="1" tabindex="0" style="--c:#6d28d9;--tx:#4c1d95;--d:0ms">
+            <div class="sh-hd"><span class="sh-n">01</span><h6>Conferences as the proving ground</h6></div>
+            <div class="sh-move">
+              <span class="sh-from">A launch stage</span>
+              <span class="sh-track"><i class="sh-knob"></i></span>
+              <span class="sh-to">An evidence venue purchasing committees cite</span>
             </div>
-            <p>The American Association of Neurological Surgeons and Radiological Society of North America annual meetings now host platform launches and head-to-head clinical-evidence presentations.</p>
-          </article>
-          <article class="tr-c" data-i="2" tabindex="0"
-                   style="--c:#0891b2;--t:#e8f7fb;--bd:#c2e9f4;--tx:#155e75;--d:150ms">
-            <span class="tr-n">02</span>
-            <h6>Cross-industry convergence</h6>
-            <div class="tr-shift">
-              <span class="tr-from">Separate product categories</span>
-              <span class="tr-arw" aria-hidden="true">&#8594;</span>
-              <span class="tr-to">Integrated cross-vendor platforms</span>
+            <p class="sh-note">The American Association of Neurological Surgeons and Radiological Society of North America annual meetings now host platform launches and head-to-head clinical-evidence presentations.</p>
+          </div>
+          <div class="sh-row" data-i="2" tabindex="0" style="--c:#0891b2;--tx:#155e75;--d:260ms">
+            <div class="sh-hd"><span class="sh-n">02</span><h6>Cross-industry convergence</h6></div>
+            <div class="sh-move">
+              <span class="sh-from">Separate product categories</span>
+              <span class="sh-track"><i class="sh-knob"></i></span>
+              <span class="sh-to">Integrated cross-vendor platforms</span>
             </div>
-            <p>Imaging, navigation, robotics and AI analytics keep converging, with digital-integration partnerships such as the 2026 GE HealthCare and Medtronic collaboration growing more frequent.</p>
-          </article>
-          <article class="tr-c" data-i="3" tabindex="0"
-                   style="--c:#a16207;--t:#fdf6e8;--bd:#f0e0be;--tx:#92400e;--d:300ms">
-            <span class="tr-n">03</span>
-            <h6>Shift to subscription models</h6>
-            <div class="tr-shift">
-              <span class="tr-from">One-time licence with hardware</span>
-              <span class="tr-arw" aria-hidden="true">&#8594;</span>
-              <span class="tr-to">Annual software and analytics subscription</span>
+            <p class="sh-note">Imaging, navigation, robotics and AI analytics keep converging, with digital-integration partnerships such as the 2026 GE HealthCare and Medtronic collaboration growing more frequent.</p>
+          </div>
+          <div class="sh-row" data-i="3" tabindex="0" style="--c:#a16207;--tx:#92400e;--d:520ms">
+            <div class="sh-hd"><span class="sh-n">03</span><h6>Shift to subscription models</h6></div>
+            <div class="sh-move">
+              <span class="sh-from">One-time licence with hardware</span>
+              <span class="sh-track"><i class="sh-knob"></i></span>
+              <span class="sh-to">Annual software and analytics subscription</span>
             </div>
-            <p>The move reshapes both pricing and long-term customer relationships, and is expected to stay a defining structural theme through the remainder of this decade.</p>
-          </article>
+            <p class="sh-note">The move reshapes both pricing and long-term customer relationships, and is expected to stay a defining structural theme through the remainder of this decade.</p>
+          </div>
         </div>
       </div>
 
@@ -3482,34 +3378,31 @@
 
   /* ---------- Section 5 - industry trends ---------- */
   (function(){
-    var tr=document.getElementById('trends'); if(!tr) return;
-    var cards=[].slice.call(tr.querySelectorAll('.tr-c'));
-    cards.forEach(function(c){
-      var i=+c.dataset.i;
-      function set(on){
-        tr.classList.toggle('pick', on);
-        cards.forEach(function(x){ x.classList.toggle('on', on && +x.dataset.i===i); });
-      }
-      c.addEventListener('mouseenter',function(){ set(true); });
-      c.addEventListener('mouseleave',function(){ set(false); });
-      c.addEventListener('focus',function(){ set(true); });
-      c.addEventListener('blur',function(){ set(false); });
+    var sh=document.getElementById('trends'); if(!sh) return;
+    var rows=[].slice.call(sh.querySelectorAll('.sh-row'));
+    rows.forEach(function(r){
+      var i=+r.dataset.i;
+      function set(on){ rows.forEach(function(x){ x.classList.toggle('on', on && +x.dataset.i===i); }); }
+      r.addEventListener('mouseenter',function(){ set(true); });
+      r.addEventListener('mouseleave',function(){ set(false); });
+      r.addEventListener('focus',function(){ set(true); });
+      r.addEventListener('blur',function(){ set(false); });
     });
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduce || !('IntersectionObserver' in window)){ tr.classList.add('in'); return; }
+    if(reduce || !('IntersectionObserver' in window)){ sh.classList.add('in'); return; }
     var shown=false;
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){
         if(e.isIntersecting && e.intersectionRatio>=.2){
           if(shown) return; shown=true;
-          tr.classList.remove('in'); void tr.offsetWidth; tr.classList.add('in');
+          sh.classList.remove('in'); void sh.offsetWidth; sh.classList.add('in');
         } else if(!e.isIntersecting){
           if(!shown) return; shown=false;
-          tr.classList.remove('in');
+          sh.classList.remove('in');
         }
       });
     },{threshold:[0,.2]});
-    io.observe(tr);
+    io.observe(sh);
   })();
 </script>
 </body>
