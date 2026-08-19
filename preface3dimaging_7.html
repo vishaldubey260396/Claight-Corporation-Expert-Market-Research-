@@ -1171,20 +1171,10 @@
   .vc-cap.on{background:#faf8ff;color:var(--ink)}
   .vc-ch:focus-visible{outline:2px solid #7c3aed;outline-offset:2px}
 
-  .vc-notes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
-  .vc-note{padding:14px 16px;border-radius:11px;background:#fff;
-    border:1px solid var(--line);border-left:4px solid var(--nc);opacity:0;
-    transition:box-shadow .2s ease}
-  .vc-note.risk{--nc:#b45309}
-  .vc-note.gain{--nc:#4c1d95}
-  .vc.in .vc-note{opacity:1;animation:vcFade .55s ease .78s backwards}
-  .vc.in .vc-note.gain{animation-delay:.9s}
-  .vc-nh{display:flex;align-items:center;gap:9px;margin-bottom:6px}
-  .vc-tag{flex:none;font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
-    padding:3px 8px;border-radius:999px;background:var(--nc);color:#fff}
-  .vc-note h6{margin:0;font-size:12.5px;font-weight:800;color:var(--nc)}
-  .vc-note p{margin:0;font-size:12px;line-height:1.6;color:var(--ink)}
-  .vc-note.on{box-shadow:0 10px 22px rgba(76,29,149,.16)}
+  .vc-sum{margin:18px 0 0;padding:13px 16px;border-radius:10px;background:#faf8ff;
+    border:1px solid var(--line);border-left:4px solid #6d28d9;
+    font-size:12.5px;line-height:1.65;color:var(--ink);opacity:0}
+  .vc.in .vc-sum{opacity:1;animation:vcFade .55s ease .8s backwards}
 
   @media(max-width:900px){
     .vc-flow,.vc-caps{grid-template-columns:repeat(3,1fr)}
@@ -1195,12 +1185,11 @@
   @media(max-width:620px){
     .vc-flow{grid-template-columns:1fr;row-gap:5px}
     .vc-ch,.vc-ch.first{clip-path:none;border-radius:9px;padding:11px 14px;min-height:0}
-    .vc-notes{grid-template-columns:1fr}
     .vc-band{flex-wrap:wrap}
   }
   @media(prefers-reduced-motion:reduce){
-    .vc-ch,.vc-cap,.vc-note{opacity:1;transform:none}
-    .vc.in .vc-ch,.vc.in .vc-cap,.vc.in .vc-note{animation:none}
+    .vc-ch,.vc-cap,.vc-sum{opacity:1;transform:none}
+    .vc.in .vc-ch,.vc.in .vc-cap,.vc.in .vc-sum{animation:none}
     .vc-ch.on{transform:none}
   }
 
@@ -2566,21 +2555,12 @@
             <p class="vc-cap" data-i="5" style="--d:530ms">Commissioning and clinical integration, often with hybrid OR construction or retrofit.</p>
             <p class="vc-cap" data-i="6" style="--d:640ms">Ongoing service, software updates and subscription-based analytics revenue.</p>
         </div>
-        <div class="vc-notes">
-          <div class="vc-note risk" data-s="1">
-            <div class="vc-nh"><span class="vc-tag">Stage 1</span><h6>Where the operational risk sits</h6></div>
-            <p>Precision optical tracking hardware and medical-grade semiconductor sensors come from a
-              concentrated supplier base, so trade-policy or geopolitical disruption is a material risk.
-              Manufacturers are answering with dual-sourcing plans, deeper direct supplier relationships and,
-              in some cases, vertical integration by acquisition.</p>
-          </div>
-          <div class="vc-note gain" data-s="6">
-            <div class="vc-nh"><span class="vc-tag">Stage 6</span><h6>Where the value compounds</h6></div>
-            <p>Service, software updates and subscription analytics convert a one-off capital sale into
-              recurring revenue, which is why platform strategy increasingly decides lifetime value per
-              installed system rather than the initial hardware margin.</p>
-          </div>
-        </div>
+        <p class="vc-sum">
+          Risk and reward sit at opposite ends of this chain. Component supply is concentrated enough that
+          trade-policy or geopolitical disruption is a material operational risk, which is why manufacturers are
+          dual-sourcing and, in some cases, buying suppliers outright; at the other end, service, updates and
+          subscription analytics turn a one-off capital sale into recurring revenue.
+        </p>
       </div>
 
       <h3 class="subh reveal" data-n="5.9">Industry Events, Initiatives and Trends</h3>
@@ -3452,12 +3432,9 @@
     var vc=document.getElementById('vchain'); if(!vc) return;
     var steps=[].slice.call(vc.querySelectorAll('.vc-ch'));
     var caps=[].slice.call(vc.querySelectorAll('.vc-cap'));
-    var notes=[].slice.call(vc.querySelectorAll('.vc-note'));
     function set(i){
       steps.forEach(function(x){ x.classList.toggle('on', +x.dataset.i===i); });
       caps.forEach(function(c){ c.classList.toggle('on', +c.dataset.i===i); });
-      /* a note lights up with the stage it annotates */
-      notes.forEach(function(n){ n.classList.toggle('on', !!i && +n.dataset.s===i); });
     }
     steps.forEach(function(x){
       var i=+x.dataset.i;
@@ -3465,11 +3442,6 @@
       x.addEventListener('mouseleave',function(){ set(0); });
       x.addEventListener('focus',function(){ set(i); });
       x.addEventListener('blur',function(){ set(0); });
-    });
-    notes.forEach(function(n){
-      var i=+n.dataset.s;
-      n.addEventListener('mouseenter',function(){ set(i); });
-      n.addEventListener('mouseleave',function(){ set(0); });
     });
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(reduce || !('IntersectionObserver' in window)){ vc.classList.add('in'); return; }
