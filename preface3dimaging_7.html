@@ -973,74 +973,59 @@
     .reveal.in .pe-link,.reveal.in .pe-now,.reveal.in .pe-fut{transition:none}
   }
 
-  /* --- 5.5 Porter's Five Forces as a 3D panel wall --- */
-  .pf{--rs:1;padding:0;background:none;border:0;border-radius:0;box-shadow:none;margin-top:14px}
-  .pf-scene{position:relative;margin:22px 0 0;padding:26px 0 86px;
-    perspective:980px;perspective-origin:50% 40%}
-  /* a receding grid floor so the space behind the panels reads as depth, not emptiness */
-  .pf-floorwrap{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-  .pf-floorwrap::before{content:"";position:absolute;left:50%;top:6%;width:88%;height:78%;
-    transform:translateX(-50%);border-radius:50%;
-    background:radial-gradient(ellipse at 50% 45%,rgba(124,58,237,.13),rgba(124,58,237,0) 68%)}
-  .pf-floor{position:absolute;left:-30%;right:-30%;top:24%;bottom:0;
-    transform:rotateX(66deg) scale(1.7);transform-origin:50% 100%;
-    background:
-      repeating-linear-gradient(90deg,rgba(109,40,217,.26) 0 1px,transparent 1px 58px),
-      repeating-linear-gradient(0deg,rgba(109,40,217,.26) 0 1px,transparent 1px 40px);
-    -webkit-mask-image:linear-gradient(0deg,#000 0%,rgba(0,0,0,.45) 45%,transparent 82%);
-    mask-image:linear-gradient(0deg,#000 0%,rgba(0,0,0,.45) 45%,transparent 82%);
-    opacity:0;transition:opacity .9s ease .15s}
-  .pf.in .pf-floor{opacity:1}
+  /* --- 5.5 Porter's Five Forces - extruded 3D radar with detail cards around it --- */
+  .pfr{padding:0;background:none;border:0;border-radius:0;box-shadow:none;margin-top:14px}
+  .pfr-grid{display:grid;gap:14px 22px;margin-top:14px;align-items:center;
+    grid-template-columns:minmax(150px,1fr) minmax(300px,460px) minmax(150px,1fr);
+    grid-template-areas:
+      ".  ra ."
+      "re pl rb"
+      "rd pl rc"}
+  .ra-chart{grid-area:pl}
+  .pfr-c.ra{grid-area:ra}.pfr-c.rb{grid-area:rb}.pfr-c.rc{grid-area:rc}
+  .pfr-c.rd{grid-area:rd}.pfr-c.re{grid-area:re}
+  .pfr-plot{position:relative}
+  .pfr-svg{display:block;width:100%;height:auto;overflow:visible}
 
-  .pf-deck{position:relative;display:flex;gap:13px;justify-content:center;
-    transform-style:preserve-3d}
-  .pf-card{flex:1 1 0;min-width:0;padding:15px 15px 16px;border-radius:14px;color:#fff;
-    background:linear-gradient(160deg,var(--g1),var(--g2));
-    box-shadow:0 16px 34px rgba(60,20,120,.26),inset 0 1px 0 rgba(255,255,255,.22);
-    transform-style:preserve-3d;transform-origin:50% 100%;outline:none;
-    transform:rotateY(calc(var(--ry) * var(--rs))) translateZ(calc(var(--tz) * var(--rs))) rotateX(64deg);
-    opacity:0}
-  .pf.in .pf-card{opacity:1;transform:rotateY(calc(var(--ry) * var(--rs))) translateZ(calc(var(--tz) * var(--rs))) rotateX(0deg);
-    transition:transform .85s cubic-bezier(.22,1.05,.36,1) var(--d),opacity .5s ease var(--d),
-      box-shadow .28s ease,filter .28s ease}
+  .pfr-c{padding:12px 14px;border-radius:11px;background:#fff;border:1px solid var(--line);
+    box-shadow:0 3px 12px rgba(76,29,149,.06);outline:none;
+    transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,opacity .2s ease}
+  .pfr-ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+  .pfr-c h6{margin:0;font-size:12.5px;font-weight:800;color:var(--navy);line-height:1.25}
+  .pfr-r{flex:none;font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    padding:2px 7px;border-radius:999px;color:#fff}
+  .pfr-r.hi{background:#4c1d95}
+  .pfr-r.mo{background:#8b5cf6}
+  .pfr-c p{margin:0;font-size:11.5px;line-height:1.55;color:var(--ink)}
+  .pfr.pick .pfr-c{opacity:.45}
+  .pfr.pick .pfr-c.on{opacity:1}
+  .pfr-c.on{transform:translateY(-2px);border-color:#c4b5fd;box-shadow:0 10px 24px rgba(76,29,149,.16)}
+  .pfr-c:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.35)}
 
-  .pf-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
-  .pf-num{font-size:11px;font-weight:800;letter-spacing:.12em;color:rgba(255,255,255,.62)}
-  .pf-rate{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-    padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.18);
-    border:1px solid rgba(255,255,255,.3)}
-  .pf-card h6{margin:0 0 10px;font-size:14px;font-weight:800;line-height:1.25;color:#fff}
-  .pf-meter{display:flex;gap:4px;margin-bottom:11px}
-  .pf-meter i{flex:1 1 0;height:4px;border-radius:2px;background:rgba(255,255,255,.24)}
-  .pf-meter i.on{background:#fff}
-  .pf-card ul{margin:0;padding:0;list-style:none}
-  .pf-card li{position:relative;padding-left:13px;font-size:11.5px;line-height:1.55;
-    color:rgba(255,255,255,.94);margin-bottom:7px}
-  .pf-card li:last-child{margin-bottom:0}
-  .pf-card li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;
-    border-radius:50%;background:rgba(255,255,255,.7)}
+  /* svg pieces */
+  .pfr-svg .g-ring{fill:none;stroke:#ece6fb;stroke-width:1}
+  .pfr-svg .g-spoke{stroke:#ece6fb;stroke-width:1}
+  .pfr-svg .g-base{fill:rgba(124,58,237,.09);stroke:#d9cbff;stroke-width:1}
+  .pfr-svg .side{stroke:none}
+  .pfr-svg .top{fill:rgba(167,139,250,.42);stroke:#5b21b6;stroke-width:2;stroke-linejoin:round}
+  .pfr-svg .cap{fill:#4c1d95;stroke:#fff;stroke-width:2}
+  .pfr-svg .stem{stroke:#6d28d9;stroke-width:2;opacity:.45}
+  .pfr-svg .hit{fill:transparent;cursor:pointer}
+  .pfr-svg .lv{font-size:11px;font-weight:800;fill:#6d28d9}
+  .pfr-svg .dim{opacity:.3;transition:opacity .2s ease}
 
-  /* hover / focus - the panel swings square to the reader and steps forward */
-  .pf.in .pf-deck:hover .pf-card{filter:saturate(.75) brightness(.94)}
-  .pf.in .pf-card:hover,.pf.in .pf-card:focus-visible{
-    transform:rotateY(0deg) translateZ(72px) rotateX(0deg);
-    box-shadow:0 30px 56px rgba(60,20,120,.4),inset 0 1px 0 rgba(255,255,255,.3);
-    filter:none;z-index:2}
-  .pf-card:focus-visible{box-shadow:0 0 0 3px #7c3aed,0 30px 56px rgba(60,20,120,.4)}
-
-  @media(max-width:900px){
-    .pf{--rs:0}
-    .pf-deck{flex-wrap:wrap}
-    .pf-card{flex:1 1 calc(33.333% - 9px)}
-    .pf-scene{padding:14px 0 24px}
+  @media(max-width:820px){
+    .pfr-grid{grid-template-columns:1fr 1fr;
+      grid-template-areas:
+        "pl pl"
+        "ra rb"
+        "rc rd"
+        "re re"}
+    .ra-chart{max-width:440px;margin:0 auto}
   }
-  @media(max-width:620px){.pf-card{flex:1 1 100%}}
-  @media(prefers-reduced-motion:reduce){
-    .pf-scene{perspective:none;padding:6px 0 0}
-    .pf-floor{display:none}
-    .pf-card,.pf.in .pf-card{transform:none;opacity:1;transition:box-shadow .2s ease}
-    .pf.in .pf-card:hover,.pf.in .pf-card:focus-visible{transform:none}
-    .pf.in .pf-deck:hover .pf-card{filter:none}
+  @media(max-width:520px){
+    .pfr-grid{grid-template-columns:1fr;
+      grid-template-areas:"pl" "ra" "rb" "rc" "rd" "re"}
   }
 
   /* --- 5.6 demand tiles --- */
@@ -2199,50 +2184,36 @@
 
       <h3 class="subh reveal">Porter's Five Forces Analysis</h3>
 
-      <figure class="md-fig pf reveal" id="porter">
+      <figure class="md-fig pfr reveal" id="porter">
         <h6>Porter's Five Forces Analysis</h6>
-        <p class="md-sub">3D Surgical Imaging Market - intensity of each competitive force. Hover a panel to bring it forward</p>
-        <div class="pf-scene">
-          <div class="pf-floorwrap" aria-hidden="true"><div class="pf-floor"></div></div>
-          <div class="pf-deck">
-          <article class="pf-card" data-i="1" tabindex="0"
-                   style="--ry:17deg;--tz:-78px;--d:0ms;--g1:#7c3aed;--g2:#4c1d95">
-            <div class="pf-top"><span class="pf-num">01</span><span class="pf-rate">High</span></div>
-            <h6>Competitive rivalry</h6>
-            <div class="pf-meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div>
-            <ul><li>Concentrated among Medtronic, Stryker, Siemens Healthineers, Brainlab and GE HealthCare</li><li>Fought on navigation accuracy, workflow integration and total platform breadth</li></ul>
-          </article>
-          <article class="pf-card" data-i="2" tabindex="0"
-                   style="--ry:8.5deg;--tz:-24px;--d:120ms;--g1:#7c3aed;--g2:#4c1d95">
-            <div class="pf-top"><span class="pf-num">02</span><span class="pf-rate">High</span></div>
-            <h6>Buyer power</h6>
-            <div class="pf-meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div>
-            <ul><li>Large hospital systems and group purchasing organisations concentrate demand</li><li>Able to negotiate aggressively on capital equipment pricing</li></ul>
-          </article>
-          <article class="pf-card" data-i="3" tabindex="0"
-                   style="--ry:0deg;--tz:0px;--d:240ms;--g1:#a78bfa;--g2:#6d28d9">
-            <div class="pf-top"><span class="pf-num">03</span><span class="pf-rate">Moderate</span></div>
-            <h6>Supplier power</h6>
-            <div class="pf-meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></div>
-            <ul><li>A reasonably concentrated base of precision optics, sensor and semiconductor suppliers</li><li>Component supply feeds navigation hardware, giving suppliers real leverage</li></ul>
-          </article>
-          <article class="pf-card" data-i="4" tabindex="0"
-                   style="--ry:-8.5deg;--tz:-24px;--d:360ms;--g1:#a78bfa;--g2:#6d28d9">
-            <div class="pf-top"><span class="pf-num">04</span><span class="pf-rate">Moderate</span></div>
-            <h6>New entrants</h6>
-            <div class="pf-meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></div>
-            <ul><li>Regulatory and capital intensity tempers entry for full integrated platforms</li><li>Software-only entrants face a meaningfully lower barrier</li></ul>
-          </article>
-          <article class="pf-card" data-i="5" tabindex="0"
-                   style="--ry:-17deg;--tz:-78px;--d:480ms;--g1:#a78bfa;--g2:#6d28d9">
-            <div class="pf-top"><span class="pf-num">05</span><span class="pf-rate">Moderate</span></div>
-            <h6>Substitutes</h6>
-            <div class="pf-meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></div>
-            <ul><li>Conventional 2D imaging and freehand surgical technique remain in use</li><li>Entrenched but gradually eroding in lower-acuity procedures</li></ul>
-          </article>
+        <p class="md-sub">3D Surgical Imaging Market - intensity of each competitive force. Hover a force to raise it</p>
+        <div class="pfr-grid">
+          <div class="pfr-plot ra-chart">
+            <svg class="pfr-svg" viewBox="0 0 480 420" role="img"
+                 aria-label="Three-dimensional radar of Porter's five forces: competitive rivalry high, buyer power high, supplier power moderate, threat of new entrants moderate, threat of substitutes moderate."></svg>
           </div>
+          <article class="pfr-c ra" data-i="1" tabindex="0">
+            <div class="pfr-ch"><h6>Competitive rivalry</h6><span class="pfr-r hi">High</span></div>
+            <p>Concentrated among Medtronic, Stryker, Siemens Healthineers, Brainlab and GE HealthCare, competing on navigation accuracy and platform breadth.</p>
+          </article>
+          <article class="pfr-c rb" data-i="2" tabindex="0">
+            <div class="pfr-ch"><h6>Buyer power</h6><span class="pfr-r hi">High</span></div>
+            <p>Large hospital systems and group purchasing organisations concentrate demand and negotiate hard on capital equipment pricing.</p>
+          </article>
+          <article class="pfr-c rc" data-i="3" tabindex="0">
+            <div class="pfr-ch"><h6>Supplier power</h6><span class="pfr-r mo">Moderate</span></div>
+            <p>A reasonably concentrated base of precision optics, sensor and semiconductor suppliers feeds navigation hardware.</p>
+          </article>
+          <article class="pfr-c rd" data-i="4" tabindex="0">
+            <div class="pfr-ch"><h6>New entrants</h6><span class="pfr-r mo">Moderate</span></div>
+            <p>Regulatory and capital intensity tempers entry for full platforms; software-only entrants face a lower barrier.</p>
+          </article>
+          <article class="pfr-c re" data-i="5" tabindex="0">
+            <div class="pfr-ch"><h6>Substitutes</h6><span class="pfr-r mo">Moderate</span></div>
+            <p>Conventional 2D imaging and freehand technique remain in use, but are gradually eroding in lower-acuity procedures.</p>
+          </article>
         </div>
-        <p class="pe-src">Intensity is an ordinal assessment (Moderate / High) drawn from the analysis below, not a measured score.</p>
+        <p class="pe-src">Radius and pillar height both show the same ordinal intensity (Moderate / High); it is an assessment, not a measured score.</p>
       </figure>
 
       <p class="reveal" style="margin-top:16px">
@@ -2956,6 +2927,143 @@
     rows.forEach(bind); notes.forEach(bind);
   })();
 
+
+  /* ---------- Section 5 - Porter's five forces, extruded 3D radar ---------- */
+  (function(){
+    var fig=document.getElementById('porter'); if(!fig) return;
+    var svg=fig.querySelector('.pfr-svg'); if(!svg) return;
+    var NS='http://www.w3.org/2000/svg';
+    var CX=240, CY=268, R=134, LIFT=[64,64,46,46,46];
+    /* radius carries the same ordinal intensity the pillar height does */
+    var V=[1,1,2/3,2/3,2/3];
+    var NAME=['Competitive rivalry','Buyer power','Supplier power','New entrants','Substitutes'];
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function ang(i){ return -Math.PI/2 + i*2*Math.PI/5; }
+    function gx(i,f){ return CX + R*f*Math.cos(ang(i)); }
+    function gy(i,f){ return CY + R*f*Math.sin(ang(i)); }
+    function el(n,a){ var e=document.createElementNS(NS,n); for(var k in a) e.setAttribute(k,a[k]); return e; }
+    function poly(pts){ return pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' '); }
+
+    var gGround=el('g',{}), gSide=el('g',{}), gTop=el('g',{}), gCap=el('g',{}), gHit=el('g',{});
+    var defs=el('defs',{});
+    /* one gradient per side face keeps the extrusion reading as a solid */
+    var grad=el('linearGradient',{id:'pfrSide',x1:'0',y1:'0',x2:'0',y2:'1'});
+    grad.appendChild(el('stop',{offset:'0','stop-color':'#7c3aed'}));
+    grad.appendChild(el('stop',{offset:'1','stop-color':'#4c1d95'}));
+    defs.appendChild(grad);
+    svg.appendChild(defs);
+    [gGround,gSide,gTop,gCap,gHit].forEach(function(g){ svg.appendChild(g); });
+
+    /* static ground: rings + spokes + the footprint of the slab */
+    [1/3,2/3,1].forEach(function(f){
+      var p=[]; for(var i=0;i<5;i++) p.push([gx(i,f),gy(i,f)]);
+      gGround.appendChild(el('polygon',{'class':'g-ring',points:poly(p)}));
+    });
+    for(var i=0;i<5;i++) gGround.appendChild(el('line',{'class':'g-spoke',x1:CX,y1:CY,x2:gx(i,1),y2:gy(i,1)}));
+    var foot=[]; for(i=0;i<5;i++) foot.push([gx(i,V[i]),gy(i,V[i])]);
+    gGround.appendChild(el('polygon',{'class':'g-base',points:poly(foot)}));
+
+    var sides=[], topPoly=el('polygon',{'class':'top'}), caps=[], stems=[];
+    for(i=0;i<5;i++){
+      var s=el('polygon',{'class':'side',fill:'url(#pfrSide)'}); sides.push(s); gSide.appendChild(s);
+    }
+    gTop.appendChild(topPoly);
+    for(i=0;i<5;i++){
+      var st=el('line',{'class':'stem'}); stems.push(st); gCap.appendChild(st);
+      var c=el('circle',{'class':'cap',r:5}); caps.push(c); gCap.appendChild(c);
+    }
+    var labels=[];
+    for(i=0;i<5;i++){
+      var t=el('text',{'class':'lv','text-anchor':'middle'});
+      t.textContent = V[i]===1 ? 'High' : 'Moderate';
+      labels.push(t); gCap.appendChild(t);
+    }
+    var hits=[];
+    for(i=0;i<5;i++){
+      var h=el('circle',{'class':'hit',r:30}); h.setAttribute('data-i',i+1);
+      var ttl=el('title',{}); ttl.textContent=NAME[i]+' - '+(V[i]===1?'High':'Moderate');
+      h.appendChild(ttl); hits.push(h); gHit.appendChild(h);
+    }
+
+    var prog=0, extra=[0,0,0,0,0];
+    function draw(){
+      var tp=[];
+      for(var i=0;i<5;i++){
+        var h=(LIFT[i]*prog)+extra[i];
+        tp.push([gx(i,V[i]), gy(i,V[i])-h]);
+      }
+      topPoly.setAttribute('points',poly(tp));
+      for(i=0;i<5;i++){
+        var j=(i+1)%5;
+        sides[i].setAttribute('points',poly([
+          [gx(i,V[i]),gy(i,V[i])], [gx(j,V[j]),gy(j,V[j])], tp[j], tp[i]
+        ]));
+        stems[i].setAttribute('x1',gx(i,V[i])); stems[i].setAttribute('y1',gy(i,V[i]));
+        stems[i].setAttribute('x2',tp[i][0]);  stems[i].setAttribute('y2',tp[i][1]);
+        caps[i].setAttribute('cx',tp[i][0]);   caps[i].setAttribute('cy',tp[i][1]);
+        var la=ang(i), lox=Math.cos(la), loy=Math.sin(la);
+        labels[i].setAttribute('x',tp[i][0]+lox*34);
+        labels[i].setAttribute('y',tp[i][1]+loy*22+(loy<-0.5?-6:(loy>0.5?14:4)));
+        labels[i].setAttribute('text-anchor', Math.abs(lox)<0.3?'middle':(lox>0?'start':'end'));
+        hits[i].setAttribute('cx',tp[i][0]);   hits[i].setAttribute('cy',tp[i][1]);
+        labels[i].style.opacity = prog>.6 ? 1 : 0;
+      }
+    }
+
+    /* rise out of the ground once the exhibit scrolls into view */
+    function rise(){
+      if(reduce){ prog=1; draw(); return; }
+      var t0=null, DUR=1100;
+      (function step(ts){
+        if(t0===null) t0=ts;
+        var k=Math.min(1,(ts-t0)/DUR);
+        prog = 1-Math.pow(1-k,3);
+        draw();
+        if(k<1) requestAnimationFrame(step);
+      })(performance.now());
+    }
+    draw();
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); rise(); } });
+      },{threshold:.25});
+      io.observe(fig);
+    } else { prog=1; draw(); }
+
+    /* hover: that pillar pushes further up, everything else recedes */
+    var cards=[].slice.call(fig.querySelectorAll('.pfr-c'));
+    var tweenId=null;
+    function target(i){
+      var want=[0,0,0,0,0];
+      if(i) want[i-1]=26;
+      cancelAnimationFrame(tweenId);
+      (function tween(){
+        var moving=false;
+        for(var k=0;k<5;k++){
+          var d=want[k]-extra[k];
+          if(Math.abs(d)>0.4){ extra[k]+=d*0.22; moving=true; } else extra[k]=want[k];
+        }
+        draw();
+        if(moving) tweenId=requestAnimationFrame(tween);
+      })();
+    }
+    function set(i){
+      fig.classList.toggle('pick', !!i);
+      cards.forEach(function(c){ c.classList.toggle('on', +c.dataset.i===i); });
+      caps.forEach(function(c,k){ c.classList.toggle('dim', !!i && k!==i-1); });
+      labels.forEach(function(l,k){ l.classList.toggle('dim', !!i && k!==i-1); });
+      target(i);
+    }
+    function bind(el2,i){
+      el2.addEventListener('mouseenter',function(){ set(i); });
+      el2.addEventListener('mouseleave',function(){ set(0); });
+      el2.addEventListener('focus',function(){ set(i); });
+      el2.addEventListener('blur',function(){ set(0); });
+    }
+    cards.forEach(function(c){ bind(c,+c.dataset.i); });
+    hits.forEach(function(h,k){ h.setAttribute('tabindex','0'); bind(h,k+1); });
+  })();
 </script>
 </body>
 </html>
