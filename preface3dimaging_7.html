@@ -2196,7 +2196,7 @@
 
       <h3 class="subh reveal">Porter's Five Forces Analysis</h3>
 
-      <figure class="md-fig pfr reveal" id="porter">
+      <figure class="md-fig pfr" id="porter">
         <h6>Porter's Five Forces Analysis</h6>
         <p class="md-sub">3D Surgical Imaging Market - intensity of each competitive force. Hover a force to raise it</p>
         <div class="pfr-grid">
@@ -3026,25 +3026,48 @@
       }
     }
 
-    /* rise out of the ground once the exhibit scrolls into view */
+    /* rise out of the ground every time the exhibit scrolls into view */
+    var riseId=null;
     function rise(){
+      cancelAnimationFrame(riseId);
       if(reduce){ prog=1; draw(); return; }
       var t0=null, DUR=1100;
-      (function step(ts){
+      riseId=requestAnimationFrame(function step(ts){
         if(t0===null) t0=ts;
         var k=Math.min(1,(ts-t0)/DUR);
         prog = 1-Math.pow(1-k,3);
         draw();
-        if(k<1) requestAnimationFrame(step);
-      })(performance.now());
+        if(k<1) riseId=requestAnimationFrame(step);
+      });
+    }
+    function sink(){
+      cancelAnimationFrame(riseId);
+      prog=0; extra=[0,0,0,0,0];
+      draw();
     }
     draw();
-    if('IntersectionObserver' in window){
+    if('IntersectionObserver' in window && !reduce){
+      var shown=false;
       var io=new IntersectionObserver(function(es){
-        es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); rise(); } });
-      },{threshold:.25});
+        es.forEach(function(e){
+          if(e.isIntersecting && e.intersectionRatio>=.22){
+            if(shown) return;
+            shown=true;
+            /* re-adding the class restarts the cards' CSS animation too */
+            fig.classList.remove('in');
+            void fig.offsetWidth;
+            fig.classList.add('in');
+            rise();
+          } else if(!e.isIntersecting){
+            if(!shown) return;
+            shown=false;
+            fig.classList.remove('in');
+            sink();
+          }
+        });
+      },{threshold:[0,.22]});
       io.observe(fig);
-    } else { prog=1; draw(); }
+    } else { fig.classList.add('in'); prog=1; draw(); }
 
     /* hover: that pillar pushes further up, everything else recedes */
     var cards=[].slice.call(fig.querySelectorAll('.pfr-c'));
