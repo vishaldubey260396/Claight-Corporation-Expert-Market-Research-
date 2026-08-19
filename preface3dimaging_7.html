@@ -1098,6 +1098,39 @@
     .kd-b.on{transform:none}
   }
 
+  /* --- 5.9 Industry trends - three from/to shifts --- */
+  .tr{margin-top:16px}
+  .tr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tr-c{position:relative;padding:16px 17px 17px;border-radius:12px;background:var(--t);
+    border:1px solid var(--bd);border-top:3px solid var(--c);outline:none;opacity:0;
+    transition:transform .2s ease,box-shadow .2s ease,opacity .18s ease}
+  .tr-n{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--c)}
+  .tr-c h6{margin:5px 0 12px;font-size:13.5px;font-weight:800;color:var(--navy);line-height:1.3}
+  /* the shift itself: what this used to be, and what it is becoming */
+  .tr-shift{display:flex;flex-direction:column;justify-content:center;gap:6px;
+    min-height:98px;padding:11px 12px;margin-bottom:11px;
+    background:#fff;border:1px solid var(--bd);border-radius:9px}
+  .tr-from,.tr-to{font-size:11.5px;line-height:1.45}
+  .tr-from{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--bd)}
+  .tr-to{font-weight:700;color:var(--tx)}
+  .tr-arw{font-size:13px;font-weight:800;color:var(--c);line-height:1}
+  .tr-c p{margin:0;font-size:11.5px;line-height:1.6;color:#475569}
+
+  @keyframes trIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+  .tr.in .tr-c{opacity:1;transform:none;
+    animation:trIn .65s cubic-bezier(.28,1.2,.45,1) var(--d) backwards}
+  .tr.pick .tr-c{opacity:.42}
+  .tr.pick .tr-c.on{opacity:1}
+  .tr-c.on{transform:translateY(-3px);box-shadow:0 12px 26px rgba(76,29,149,.15);border-color:var(--c)}
+  .tr-c:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.32)}
+
+  @media(max-width:860px){.tr-grid{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){
+    .tr-c{opacity:1}
+    .tr.in .tr-c{animation:none}
+    .tr-c.on{transform:none}
+  }
+
   /* --- 5.8 Value chain - six linked stages, with the risk and the payoff marked --- */
   .vc{margin-top:16px}
   .vc-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:26px}
@@ -2508,20 +2541,47 @@
 
       <h3 class="subh reveal">Industry Events, Initiatives and Trends</h3>
 
-      <p class="reveal">
-        Beyond individual company announcements, several broader industry-level trends are shaping the trajectory
-        of this market. Major clinical and industry conferences, including the American Association of
-        Neurological Surgeons annual meeting and the Radiological Society of North America's annual meeting, have
-        become key venues for platform launches and head-to-head clinical-evidence presentations, with hospital
-        purchasing committees increasingly citing conference-presented data in their internal evaluation
-        processes. Cross-industry convergence between imaging, navigation, robotics and AI-based analytics
-        companies continues to accelerate, as illustrated by the growing frequency of digital-integration
-        partnerships between historically separate product categories, such as the 2026 GE HealthCare and
-        Medtronic collaboration. Finally, the gradual shift of software and analytics revenue toward
-        subscription-based commercial models, rather than one-time licence sales bundled with hardware, is
-        reshaping how manufacturers structure both pricing and long-term customer relationships, a trend expected
-        to remain one of the defining structural themes of the market through the remainder of this decade.
-      </p>
+      <div class="tr" id="trends">
+        <p class="md-lede" style="margin-bottom:14px">
+          Beyond individual company announcements, three industry-level shifts are
+          <strong>reshaping how platforms are launched, built and sold</strong>.
+        </p>
+        <div class="tr-grid">
+          <article class="tr-c" data-i="1" tabindex="0"
+                   style="--c:#6d28d9;--t:#f6f3ff;--bd:#e4dbff;--tx:#4c1d95;--d:0ms">
+            <span class="tr-n">01</span>
+            <h6>Conferences as the proving ground</h6>
+            <div class="tr-shift">
+              <span class="tr-from">A launch stage</span>
+              <span class="tr-arw" aria-hidden="true">&#8594;</span>
+              <span class="tr-to">An evidence venue purchasing committees cite</span>
+            </div>
+            <p>The American Association of Neurological Surgeons and Radiological Society of North America annual meetings now host platform launches and head-to-head clinical-evidence presentations.</p>
+          </article>
+          <article class="tr-c" data-i="2" tabindex="0"
+                   style="--c:#0891b2;--t:#e8f7fb;--bd:#c2e9f4;--tx:#155e75;--d:150ms">
+            <span class="tr-n">02</span>
+            <h6>Cross-industry convergence</h6>
+            <div class="tr-shift">
+              <span class="tr-from">Separate product categories</span>
+              <span class="tr-arw" aria-hidden="true">&#8594;</span>
+              <span class="tr-to">Integrated cross-vendor platforms</span>
+            </div>
+            <p>Imaging, navigation, robotics and AI analytics keep converging, with digital-integration partnerships such as the 2026 GE HealthCare and Medtronic collaboration growing more frequent.</p>
+          </article>
+          <article class="tr-c" data-i="3" tabindex="0"
+                   style="--c:#a16207;--t:#fdf6e8;--bd:#f0e0be;--tx:#92400e;--d:300ms">
+            <span class="tr-n">03</span>
+            <h6>Shift to subscription models</h6>
+            <div class="tr-shift">
+              <span class="tr-from">One-time licence with hardware</span>
+              <span class="tr-arw" aria-hidden="true">&#8594;</span>
+              <span class="tr-to">Annual software and analytics subscription</span>
+            </div>
+            <p>The move reshapes both pricing and long-term customer relationships, and is expected to stay a defining structural theme through the remainder of this decade.</p>
+          </article>
+        </div>
+      </div>
 
     </section>
 
@@ -3372,6 +3432,38 @@
       });
     },{threshold:[0,.2]});
     io.observe(vc);
+  })();
+
+  /* ---------- Section 5 - industry trends ---------- */
+  (function(){
+    var tr=document.getElementById('trends'); if(!tr) return;
+    var cards=[].slice.call(tr.querySelectorAll('.tr-c'));
+    cards.forEach(function(c){
+      var i=+c.dataset.i;
+      function set(on){
+        tr.classList.toggle('pick', on);
+        cards.forEach(function(x){ x.classList.toggle('on', on && +x.dataset.i===i); });
+      }
+      c.addEventListener('mouseenter',function(){ set(true); });
+      c.addEventListener('mouseleave',function(){ set(false); });
+      c.addEventListener('focus',function(){ set(true); });
+      c.addEventListener('blur',function(){ set(false); });
+    });
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce || !('IntersectionObserver' in window)){ tr.classList.add('in'); return; }
+    var shown=false;
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting && e.intersectionRatio>=.2){
+          if(shown) return; shown=true;
+          tr.classList.remove('in'); void tr.offsetWidth; tr.classList.add('in');
+        } else if(!e.isIntersecting){
+          if(!shown) return; shown=false;
+          tr.classList.remove('in');
+        }
+      });
+    },{threshold:[0,.2]});
+    io.observe(tr);
   })();
 </script>
 </body>
