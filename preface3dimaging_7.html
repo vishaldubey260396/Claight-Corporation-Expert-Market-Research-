@@ -562,8 +562,11 @@
   .cl-pltg:hover{background:rgba(255,255,255,.26)}
   .cl-pltg:focus{outline:none}
   .cl-pltg:focus-visible{outline:2px solid #fff;outline-offset:2px}
-  .cl-pltg svg{width:14px;height:14px;transition:transform .2s ease}
-  .cl-pltg[aria-expanded="false"] svg{transform:rotate(-90deg)}
+  .cl-pltg svg{width:14px;height:14px}
+  /* plus when collapsed, minus when open - the stem just folds away */
+  .cl-pltg svg .v{transform-box:fill-box;transform-origin:center;
+    transition:transform .2s ease,opacity .2s ease}
+  .cl-pltg[aria-expanded="true"] svg .v{transform:scaleY(0);opacity:0}
 
   .cl-plbx{background:#fbfaff;padding:13px 15px 14px}
   .cl-pllb{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
@@ -614,7 +617,7 @@
     .cl-plhd::after,.cl-plbx.lk::after{height:18px}
     .cl-plhd::before,.cl-plbx.lk::before{top:calc(100% + 17px)}
   }
-  @media(prefers-reduced-motion:reduce){ .cl-pltg svg{transition:none} }
+  @media(prefers-reduced-motion:reduce){ .cl-pltg svg .v{transition:none} }
 
   /* --- two fronts as flip coins: heading on the face, detail on the reverse --- */
   .cl-coins{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;margin:22px 0 10px}
@@ -1941,12 +1944,12 @@
         <div class="cl-plhd" data-cat="c1">
           <span class="cl-plt">Workhorse intraoperative imaging</span>
           <button type="button" class="cl-pltg" data-cat="c1" aria-expanded="true"
-            aria-controls="plc1v plc1r" aria-label="Collapse Workhorse intraoperative imaging"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 9 12 16 19 9"></polyline></svg></button>
+            aria-controls="plc1v plc1r" aria-label="Collapse Workhorse intraoperative imaging"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><line class="v" x1="12" y1="5" x2="12" y2="19"></line></svg></button>
         </div>
-        <div class="cl-plhd off" data-cat="c2">
+        <div class="cl-plhd" data-cat="c2">
           <span class="cl-plt">Imaging and endoscopic visualization hardware</span>
-          <button type="button" class="cl-pltg" data-cat="c2" aria-expanded="false"
-            aria-controls="plc2v plc2r" aria-label="Expand Imaging and endoscopic visualization hardware"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 9 12 16 19 9"></polyline></svg></button>
+          <button type="button" class="cl-pltg" data-cat="c2" aria-expanded="true"
+            aria-controls="plc2v plc2r" aria-label="Collapse Imaging and endoscopic visualization hardware"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><line class="v" x1="12" y1="5" x2="12" y2="19"></line></svg></button>
         </div>
 
         <div class="cl-plbx lk" id="plc1v" data-cat="c1">
@@ -1962,7 +1965,7 @@
             </div>
           </div>
         </div>
-        <div class="cl-plbx lk off" id="plc2v" data-cat="c2" hidden>
+        <div class="cl-plbx lk" id="plc2v" data-cat="c2">
           <div class="cl-pllb">Vendors and products</div>
           <div class="cl-plv" style="--v:3">
             <div class="cl-plvb">
@@ -1981,7 +1984,7 @@
           <div class="cl-pllb">Role in the landscape</div>
           <p>Serve as the everyday intraoperative imaging systems across orthopedic and trauma settings.</p>
         </div>
-        <div class="cl-plbx" id="plc2r" data-cat="c2" hidden>
+        <div class="cl-plbx" id="plc2r" data-cat="c2">
           <div class="cl-pllb">Role in the landscape</div>
           <p>Each supplies hardware that increasingly integrates with third-party navigation software rather than operating as a closed, standalone system.</p>
         </div>
@@ -3069,13 +3072,11 @@
     boxes.forEach(function(x){ x.classList.toggle('off',!open); });
   }
 
-  /* one at a time: opening a category closes whichever other one was open */
+  /* every category opens and closes independently - both start open */
   btns.forEach(function(b){
     b.addEventListener('click',function(){
       var cat = b.getAttribute('data-cat');
-      var wasOpen = b.getAttribute('aria-expanded') === 'true';
-      btns.forEach(function(o){ set(o.getAttribute('data-cat'),false); });
-      if(!wasOpen) set(cat,true);
+      set(cat, b.getAttribute('aria-expanded') !== 'true');
     });
   });
 })();
