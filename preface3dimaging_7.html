@@ -1105,7 +1105,25 @@
   .md-prlab{font-size:12px;font-weight:700;color:#b45309;text-align:right;line-height:1.4}
   .md-prtrk{position:relative;height:22px}
   .md-prbar{position:absolute;top:7px;height:9px;border-radius:5px;
-    background:linear-gradient(90deg,#a78bfa,#5b21b6)}
+    background:linear-gradient(90deg,#a78bfa,#5b21b6);
+    transform:scaleX(0);transform-origin:left}
+  .md-prrow{outline:none;border-radius:8px;transition:opacity .18s ease,background .18s ease}
+  .md-prlab,.md-prval{transition:opacity .18s ease,color .18s ease}
+  .md-prrow .md-prlab,.md-prrow .md-prval{opacity:0}
+  /* bars sweep out from the axis, one tier at a time, each time the exhibit scrolls in */
+  .pri.in .md-prbar{transform:none;
+    transition:transform .8s cubic-bezier(.22,1,.36,1) var(--d)}
+  .pri.in .md-prlab{opacity:1;transition:opacity .4s ease var(--d)}
+  .pri.in .md-prval{opacity:1;transition:opacity .4s ease calc(var(--d) + .45s)}
+  .pri.pick .md-prrow{opacity:.4}
+  .pri.pick .md-prrow.on{opacity:1}
+  .md-prrow.on{background:#faf8ff}
+  .md-prrow:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.32)}
+  @media(prefers-reduced-motion:reduce){
+    .md-prbar{transform:none}
+    .md-prrow .md-prlab,.md-prrow .md-prval{opacity:1}
+    .pri.in .md-prbar,.pri.in .md-prlab,.pri.in .md-prval{transition:none}
+  }
   .md-prval{font-size:11.5px;font-weight:800;color:var(--purple-deep);white-space:nowrap}
   .md-prax{display:grid;grid-template-columns:minmax(120px,200px) 1fr auto;column-gap:14px;
     font-size:10.5px;color:var(--muted);font-weight:600}
@@ -2331,26 +2349,26 @@
 
       <h3 class="subh reveal">Key Price Indicators</h3>
 
-      <figure class="md-fig reveal" style="margin-top:14px">
+      <figure class="md-fig pri" id="price">
         <h6>System Price by Platform Category</h6>
         <p class="md-sub">3D Surgical Imaging Platforms - capital cost range by architecture (log scale)</p>
         <div class="md-pr">
-            <div class="md-prrow">
+            <div class="md-prrow" data-i="1" tabindex="0" style="--d:0ms">
               <div class="md-prlab">Fixed intraoperative CT / MRI</div>
               <div class="md-prtrk"><span class="md-prbar" style="left:84.93%;width:13.08%"></span></div>
               <div class="md-prval">$0.9-1.8M</div>
             </div>
-            <div class="md-prrow">
+            <div class="md-prrow" data-i="2" tabindex="0" style="--d:140ms">
               <div class="md-prlab">Integrated navigation + robotics</div>
               <div class="md-prtrk"><span class="md-prbar" style="left:60.75%;width:14.88%"></span></div>
               <div class="md-prval">$250-550k</div>
             </div>
-            <div class="md-prrow">
+            <div class="md-prrow" data-i="3" tabindex="0" style="--d:280ms">
               <div class="md-prlab">Mobile intraoperative 3D imaging</div>
               <div class="md-prtrk"><span class="md-prbar" style="left:54.55%;width:15.07%"></span></div>
               <div class="md-prval">$180-400k</div>
             </div>
-            <div class="md-prrow">
+            <div class="md-prrow" data-i="4" tabindex="0" style="--d:420ms">
               <div class="md-prlab">Software-only / cloud (per year)</div>
               <div class="md-prtrk"><span class="md-prbar" style="left:7.65%;width:33.82%"></span></div>
               <div class="md-prval">$15-90k/yr</div>
@@ -2360,15 +2378,10 @@
       </figure>
 
       <p class="reveal" style="margin-top:16px">
-        Pricing across the category varies enormously by platform architecture, spanning four broad tiers.
-        Integrated navigation-and-robotics platforms sit at the premium end, reflecting the combined hardware,
-        software and installation complexity involved in a fully bundled system. Mobile intraoperative 3D imaging
-        systems occupy a mid-tier position, given their comparatively more modular, single-function design. Fixed
-        intraoperative CT or MRI suites represent the highest capital tier of the category, given the
-        hybrid-room construction and integration typically required alongside the imaging hardware itself.
-        Software-only and cloud-based platforms sit at the most accessible end, priced on an annual subscription
-        basis rather than as a capital purchase, a model that is expanding access for smaller hospitals and
-        ambulatory surgical centers that cannot justify a full capital hardware purchase.
+        Price spans two orders of magnitude across four tiers. Fixed intraoperative CT and MRI suites top the
+        range because a hybrid room has to be built around them, with integrated navigation-and-robotics next and
+        modular mobile systems in the mid-tier. Software-only and cloud platforms sit at the accessible end on an
+        annual subscription - the tier that opens the category to buyers who cannot fund a capital purchase.
       </p>
 
       <h3 class="subh reveal">Value Chain Analysis</h3>
@@ -3197,6 +3210,38 @@
       });
     },{threshold:[0,.2]});
     io.observe(kd);
+  })();
+
+  /* ---------- Section 5 - price tiers ---------- */
+  (function(){
+    var fig=document.getElementById('price'); if(!fig) return;
+    var rows=[].slice.call(fig.querySelectorAll('.md-prrow'));
+    rows.forEach(function(r){
+      var i=+r.dataset.i;
+      function set(on){
+        fig.classList.toggle('pick', on);
+        rows.forEach(function(x){ x.classList.toggle('on', on && +x.dataset.i===i); });
+      }
+      r.addEventListener('mouseenter',function(){ set(true); });
+      r.addEventListener('mouseleave',function(){ set(false); });
+      r.addEventListener('focus',function(){ set(true); });
+      r.addEventListener('blur',function(){ set(false); });
+    });
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce || !('IntersectionObserver' in window)){ fig.classList.add('in'); return; }
+    var shown=false;
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting && e.intersectionRatio>=.25){
+          if(shown) return; shown=true;
+          fig.classList.remove('in'); void fig.offsetWidth; fig.classList.add('in');
+        } else if(!e.isIntersecting){
+          if(!shown) return; shown=false;
+          fig.classList.remove('in');
+        }
+      });
+    },{threshold:[0,.25]});
+    io.observe(fig);
   })();
 </script>
 </body>
