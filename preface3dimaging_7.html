@@ -3432,7 +3432,7 @@
         <p class="md-sub">Position is 2025 share against 2026-2035 growth; bubble size is 2035 forecast revenue</p>
         <div class="bb-wrap">
           <div class="bb-plotwrap">
-            <svg class="bb-svg" viewBox="16 0 616 302" role="list"
+            <svg class="bb-svg" viewBox="19 1 556 298" role="list"
                  aria-label="Bubble chart of five regions: 2025 revenue share against 2026-2035 CAGR, sized by 2035 forecast revenue.">
               <defs>
                 <radialGradient id="bbShine" cx="50%" cy="50%" r="50%">
@@ -3510,9 +3510,9 @@
                            transform="rotate(-32 472.6 168.7)" fill="url(#bbShine)"/>
                   <circle class="bb-hi2" cx="486.6" cy="184.7" r="2.2" fill="#fff"/>
                 </g>
-                <text class="bb-l n" x="510.4" y="164.7" text-anchor="start" fill="#3b1178">North America</text>
-                <text class="bb-l m" x="510.4" y="178.7" text-anchor="start">42%, 10.8%</text>
-                <text class="bb-l v" x="510.4" y="192.7" text-anchor="start">$8.0B</text>
+                <text class="bb-l n" x="448.4" y="164.7" text-anchor="end" fill="#3b1178">North America</text>
+                <text class="bb-l m" x="448.4" y="178.7" text-anchor="end">42%, 10.8%</text>
+                <text class="bb-l v" x="448.4" y="192.7" text-anchor="end">$8.0B</text>
               </g>
               <g class="bb-g" data-i="1" tabindex="0" role="listitem"
                  aria-label="Europe: 26 percent of 2025 revenue, CAGR 11.6 percent, USD 5.3 billion in 2035">
@@ -5015,7 +5015,7 @@
     function say(s){
       if(!s){ read.innerHTML='Hover a band to read its share'; return; }
       var v=+s.getAttribute(yi?'data-b':'data-a');
-      read.innerHTML=s.getAttribute('data-dim')+' &middot; <b>'+s.getAttribute('data-n')+'</b> &mdash; '+v+'% of '+labels[yi]+' revenue';
+      read.innerHTML=s.getAttribute('data-dim')+' &middot; <b>'+s.getAttribute('data-n')+'</b> - '+v+'% of '+labels[yi]+' revenue';
     }
     segs.forEach(function(s){
       function on(){ s.classList.add('on'); say(s); }
