@@ -1626,6 +1626,47 @@
     .pz-fig.in .pz-f{width:var(--w)}
   }
 
+
+  /* --- 8 - regional bubble chart --- */
+  .bb-fig{margin-top:16px}
+  .bb-wrap{margin-top:14px}
+  .bb-svg{width:100%;height:auto;display:block}
+  .bb-gl,.bb-gv{stroke:#ece6f9;stroke-width:1}
+  .bb-ax0{stroke:#d9cff5;stroke-width:1.2}
+  .bb-ax,.bb-ay{fill:var(--muted);font-size:10.5px}
+  .bb-ax{text-anchor:middle}
+  .bb-ay{text-anchor:end}
+  .bb-t1{fill:var(--muted);font-size:11px;font-weight:600;text-anchor:middle}
+  .bb-ld{fill:none;stroke:#b9a7e8;stroke-width:1}
+  .bb-g{cursor:pointer;outline:none}
+  .bb-c{transform:scale(0);transform-box:fill-box;transform-origin:center;
+    transition:transform .62s cubic-bezier(.34,1.5,.64,1) var(--d),filter .22s ease}
+  .bb-fig.in .bb-c{transform:scale(1)}
+  .bb-fig.in .bb-g.on .bb-c{transform:scale(1.09);
+    filter:drop-shadow(0 8px 12px rgba(59,17,120,.34))}
+  .bb-g:focus-visible .bb-c{stroke:#1e1b4b;stroke-width:2.5}
+  .bb-l{pointer-events:none;opacity:0;transition:opacity .4s ease var(--ld,700ms)}
+  .bb-fig.in .bb-l{opacity:1}
+  .bb-l.in1{fill:#fff;font-size:11px;font-weight:600;text-anchor:middle}
+  .bb-l.in2{fill:#fff;font-size:12.5px;font-weight:700;text-anchor:middle}
+  .bb-l.out1{fill:var(--navy);font-size:11.5px;font-weight:600;text-anchor:start}
+  .bb-l.out1 tspan{fill:var(--purple-deep);font-weight:700}
+  .bb-ld{opacity:0;transition:opacity .4s ease .7s}
+  .bb-fig.in .bb-ld{opacity:1}
+
+  .bb-read{margin-top:12px;border-left:3px solid var(--purple-mid);padding:2px 0 2px 12px}
+  .bb-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
+  .bb-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
+
+  @media(max-width:640px){
+    .bb-plotwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .bb-svg{min-width:520px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .bb-c{transform:scale(1);transition:filter .2s ease}
+    .bb-l,.bb-ld{opacity:1;transition:none}
+  }
+
 </style>
 </head>
 <body>
@@ -3351,48 +3392,75 @@
       <h3 class="sub reveal" data-n="8" id="rg-title">Regional Analysis</h3>
 
       <p class="reveal">
-        This report covers five major regions: North America, Europe, Asia Pacific, Latin America and the Middle
-        East and Africa. Regionally, North America is expected to continue leading the global market throughout
-        the forecast period, owing to its dense concentration of advanced hospital infrastructure, a steady
-        cadence of FDA clearances for next-generation platforms, and the world's largest base of hybrid operating
-        rooms. Asia Pacific represents the fastest-growing region, driven by rapidly expanding hospital capital
-        expenditure across China, India and South Korea, while Europe remains the second-largest market, anchored
-        by Germany's dense medtech manufacturing base and the United Kingdom's large public hospital system.
+        Five regions are covered. North America leads throughout the forecast period on its dense hospital
+        infrastructure, a steady cadence of FDA clearances and the world's largest base of hybrid operating rooms.
+        Asia Pacific grows fastest, on hospital capital expenditure across China, India and South Korea, while
+        Europe remains second-largest, anchored by Germany's medtech base and the UK's public hospital system.
       </p>
 
-      <figure class="md-fig dn-fig" id="regShare">
-        <h6>Global 3D Medical and Surgical Imaging Platform Market - Regional Revenue Share, 2025</h6>
-        <p class="md-sub">North America leads; Asia Pacific grows fastest</p>
-        <div class="dn-wrap">
-          <div class="dn-plot">
-            <svg class="dn-svg" viewBox="0 0 180 180" role="img" aria-label="Global 3D Medical and Surgical Imaging Platform Market - Regional Revenue Share, 2025: North America 42 percent, Europe 26 percent, Asia Pacific 22 percent, Latin America 6 percent, Middle East &amp; Africa 4 percent">
-              <circle class="dn-track" cx="90" cy="90" r="64"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#4c1d95"
-                stroke-dasharray="168.89 233.23" stroke-dashoffset="0.00"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#6d28d9"
-                stroke-dasharray="104.55 297.57" stroke-dashoffset="-168.89"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#8b5cf6"
-                stroke-dasharray="88.47 313.66" stroke-dashoffset="-273.44"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#a78bfa"
-                stroke-dasharray="24.13 378.00" stroke-dashoffset="-361.91"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#c4b5fd"
-                stroke-dasharray="16.08 386.04" stroke-dashoffset="-386.04"/>
+      <figure class="md-fig bb-fig autoin" id="regBubble" data-reg='[{"n": "North America", "p": 42, "c": 10.8, "a": 2.88, "b": 8.0, "t": "Largest share of any region. The United States dominates on well-capitalised hospital systems and a steady cadence of FDA clearances - Medtronic&#39;s Stealth AXIS in February 2026 and six Siemens Healthineers Artis and Optiq AI clearances in May 2026 - alongside ten-year Value Partnerships with systems such as Tower Health and Onvida Health. Canada tracks provincial capital-budget cycles."}, {"n": "Europe", "p": 26, "c": 11.6, "a": 1.78, "b": 5.3, "t": "Second-largest market, led by Germany&#39;s dense medtech manufacturing base, then the UK, France, Italy and Spain. Harmonised CE-mark clearance gives broad regional access, though reimbursement and hospital capital budgets still vary by country. Spain hosted the world&#39;s first navigated spine surgery using Brainlab&#39;s Loop-X."}, {"n": "Asia Pacific", "p": 22, "c": 13.6, "a": 1.51, "b": 5.4, "t": "Fastest CAGR of any region, on expanding hospital capital expenditure, rising surgical volumes and maturing domestic manufacturing across China, Japan, India and South Korea. Japan grows more slowly because the PMDA requires Japan-specific clinical data even after FDA or CE clearance."}, {"n": "Latin America", "p": 6, "c": 10.4, "a": 0.41, "b": 1.1, "t": "Small but steadily growing, led by Brazil, Argentina and Mexico. Adoption is concentrated in large private hospital networks and leading academic centers; affordability and access to equipment financing set the pace."}, {"n": "Middle East &amp;amp; Africa", "p": 4, "c": 10.0, "a": 0.27, "b": 0.7, "t": "Smallest of the five regions, led by Saudi Arabia, the United Arab Emirates and South Africa. Growth is concentrated in flagship hospital systems and government healthcare-modernisation programmes across the Gulf Cooperation Council states."}]'>
+        <h6>Regional Analysis - Size Today, Growth Ahead</h6>
+        <p class="md-sub">Bubble area is 2035F revenue; up the axis is a bigger market today, right along it is faster growth</p>
+        <div class="bb-wrap">
+          <div class="bb-plotwrap">
+            <svg class="bb-svg" viewBox="0 0 640 360" role="list"
+                 aria-label="Bubble chart of five regions: 2025 revenue against 2026-2035 CAGR, sized by 2035 forecast revenue.">
+              <line class="bb-gl" x1="58.0" y1="314.0" x2="614.0" y2="314.0"/>
+              <text class="bb-ay" x="48.0" y="318.0">0</text>
+              <line class="bb-gl" x1="58.0" y1="232.3" x2="614.0" y2="232.3"/>
+              <text class="bb-ay" x="48.0" y="236.3">1</text>
+              <line class="bb-gl" x1="58.0" y1="150.7" x2="614.0" y2="150.7"/>
+              <text class="bb-ay" x="48.0" y="154.7">2</text>
+              <line class="bb-gl" x1="58.0" y1="69.0" x2="614.0" y2="69.0"/>
+              <text class="bb-ay" x="48.0" y="73.0">3</text>
+              <line class="bb-gv" x1="113.6" y1="20.0" x2="113.6" y2="314.0"/>
+              <text class="bb-ax" x="113.6" y="334.0">10%</text>
+              <line class="bb-gv" x1="224.8" y1="20.0" x2="224.8" y2="314.0"/>
+              <text class="bb-ax" x="224.8" y="334.0">11%</text>
+              <line class="bb-gv" x1="336.0" y1="20.0" x2="336.0" y2="314.0"/>
+              <text class="bb-ax" x="336.0" y="334.0">12%</text>
+              <line class="bb-gv" x1="447.2" y1="20.0" x2="447.2" y2="314.0"/>
+              <text class="bb-ax" x="447.2" y="334.0">13%</text>
+              <line class="bb-gv" x1="558.4" y1="20.0" x2="558.4" y2="314.0"/>
+              <text class="bb-ax" x="558.4" y="334.0">14%</text>
+              <line class="bb-ax0" x1="58.0" y1="314.0" x2="614.0" y2="314.0"/>
+              <text class="bb-t1" x="336.0" y="352.0">CAGR 2026-2035</text>
+              <text class="bb-t1 bb-ty" transform="translate(14,167.0) rotate(-90)">2025 revenue, USD bn</text>
+              <g class="bb-g" data-i="0" tabindex="0" role="listitem"
+                 aria-label="North America: 42 percent of 2025 revenue, USD 2.88 billion in 2025, CAGR 10.8 percent">
+                <circle class="bb-c" cx="202.6" cy="78.8" r="46.0" fill="#3b1178" style="--d:0ms"/>
+                <text class="bb-l in1" x="202.6" y="77.8">North America</text>
+                <text class="bb-l in2" x="202.6" y="91.8">42%</text>
+              </g>
+              <g class="bb-g" data-i="1" tabindex="0" role="listitem"
+                 aria-label="Europe: 26 percent of 2025 revenue, USD 1.78 billion in 2025, CAGR 11.6 percent">
+                <circle class="bb-c" cx="291.5" cy="168.6" r="37.4" fill="#5b21b6" style="--d:110ms"/>
+                <text class="bb-l in1" x="291.5" y="167.6">Europe</text>
+                <text class="bb-l in2" x="291.5" y="181.6">26%</text>
+              </g>
+              <g class="bb-g" data-i="2" tabindex="0" role="listitem"
+                 aria-label="Asia Pacific: 22 percent of 2025 revenue, USD 1.51 billion in 2025, CAGR 13.6 percent">
+                <circle class="bb-c" cx="513.9" cy="190.7" r="37.8" fill="#7c3aed" style="--d:220ms"/>
+                <text class="bb-l in1" x="513.9" y="189.7">Asia Pacific</text>
+                <text class="bb-l in2" x="513.9" y="203.7">22%</text>
+              </g>
+              <g class="bb-g" data-i="3" tabindex="0" role="listitem"
+                 aria-label="Latin America: 6 percent of 2025 revenue, USD 0.41 billion in 2025, CAGR 10.4 percent">
+                <circle class="bb-c" cx="158.1" cy="280.5" r="17.1" fill="#a78bfa" style="--d:330ms"/>
+                <polyline class="bb-ld" points="175.5,279 190,276 198,275"/>
+                <text class="bb-l out1" x="202.0" y="275.0">Latin America <tspan>6%</tspan></text>
+              </g>
+              <g class="bb-g" data-i="4" tabindex="0" role="listitem"
+                 aria-label="Middle East and Africa: 4 percent of 2025 revenue, USD 0.27 billion in 2025, CAGR 10.0 percent">
+                <circle class="bb-c" cx="113.6" cy="291.9" r="13.6" fill="#c4b5fd" style="--d:440ms"/>
+                <polyline class="bb-ld" points="124,300 190,305 198,306"/>
+                <text class="bb-l out1" x="202.0" y="307.0">Middle East &amp; Africa <tspan>4%</tspan></text>
+              </g>
             </svg>
-            <div class="dn-mid"><b>5</b><span>segments</span></div>
           </div>
-          <div class="dn-legend">
-              <div class="dn-row"><span class="dn-sw" style="background:#4c1d95"></span>
-                <span class="dn-nm">North America</span><span class="dn-pc">42%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#6d28d9"></span>
-                <span class="dn-nm">Europe</span><span class="dn-pc">26%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#8b5cf6"></span>
-                <span class="dn-nm">Asia Pacific</span><span class="dn-pc">22%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#a78bfa"></span>
-                <span class="dn-nm">Latin America</span><span class="dn-pc">6%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#c4b5fd"></span>
-                <span class="dn-nm">Middle East &amp; Africa</span><span class="dn-pc">4%</span></div>
-          </div>
+          <div class="bb-read"><b>Five regions, one view</b><span>Hover or focus a bubble for its full profile</span></div>
         </div>
+        <figcaption class="md-cap">Every value plotted - 2025 revenue, 2035F revenue, share and CAGR - is taken from the regional table below.</figcaption>
       </figure>
 
       <div class="md-scroll reveal">
@@ -3416,332 +3484,6 @@
         Korea. North America, while growing more slowly in percentage terms, will continue to contribute the
         largest absolute increase in market value given its dominant revenue base and the concentration of
         premium, fully integrated platform deployments within the region.
-      </p>
-
-      <h3 class="subh reveal" data-n="8.1">North America</h3>
-
-      <p class="reveal">
-        North America is estimated to account for approximately <strong>42% of global market revenue in 2025</strong>,
-        the largest share of any region covered in this report. The United States dominates within the region,
-        reflecting the concentration of large, well-capitalised hospital systems, a steady cadence of FDA
-        clearances (including Medtronic's Stealth AXIS in February 2026 and Siemens Healthineers' six-system Artis
-        and Optiq AI clearances in May 2026), and deepening strategic partnerships such as Siemens Healthineers'
-        successive ten-year Value Partnerships with U.S. health systems including Tower Health and Onvida Health.
-        Canada represents a smaller but steadily growing market, shaped by provincial healthcare capital-budget
-        cycles.
-      </p>
-
-      <figure class="md-fig gb-fig gb-one autoin" id="trajNA">
-        <h6>North America - Market Size Trajectory</h6>
-        <p class="md-sub">2026-35 CAGR 10.8%</p>
-        <div class="gb">
-          <div class="gb-plot">
-            <div class="gb-grid" aria-hidden="true">
-              <div class="gb-t" style="bottom:0.00%"><span>0</span></div>
-              <div class="gb-t" style="bottom:25.00%"><span>2.4</span></div>
-              <div class="gb-t" style="bottom:50.00%"><span>4.8</span></div>
-              <div class="gb-t" style="bottom:75.00%"><span>7.2</span></div>
-              <div class="gb-t" style="bottom:100.00%"><span>9.6</span></div>
-            </div>
-            <div class="gb-bars">
-              <div class="gb-g" style="--d:0ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:17.9%" title="2019: USD 1.72 bn"></span>
-                </div>
-                <div class="gb-x">2019</div>
-              </div>
-              <div class="gb-g" style="--d:110ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:30.0%" title="2025: USD 2.88 bn"></span>
-                </div>
-                <div class="gb-x">2025</div>
-              </div>
-              <div class="gb-g" style="--d:220ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:52.1%" title="2030F: USD 5.0 bn"></span>
-                </div>
-                <div class="gb-x">2030F</div>
-              </div>
-              <div class="gb-g" style="--d:330ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:83.3%" title="2035F: USD 8.0 bn"></span>
-                </div>
-                <div class="gb-x">2035F</div>
-              </div>
-            </div>
-          </div>
-          <div class="gb-key"><span><i class="a"></i>North America (USD bn)</span></div>
-        </div>
-      </figure>
-
-      <p class="reveal">
-        The United States benefits from a uniquely deep base of academic medical centers and large integrated
-        delivery networks with both the capital resources and the clinical research infrastructure to adopt
-        next-generation imaging and navigation platforms early, often as part of formal clinical-evaluation
-        partnerships with manufacturers. Group purchasing organisations play an increasingly influential role in
-        shaping which platforms achieve broad-based hospital adoption, often negotiating multi-year,
-        multi-facility agreements that can materially accelerate or constrain a given manufacturer's market access
-        depending on contract terms.
-      </p>
-
-      <h3 class="subh reveal" data-n="8.2">Europe</h3>
-
-      <p class="reveal">
-        Europe represents the second-largest regional market, led by Germany, home to Siemens Healthineers and a
-        dense base of precision medical-device manufacturing, followed by the United Kingdom, France, Italy and
-        Spain. The region benefits from harmonised CE-mark regulatory clearance across the European Union,
-        allowing manufacturers to achieve broad regional market access more efficiently than the
-        country-by-country clearance processes required in some other regions, though national reimbursement and
-        hospital capital-budget policy continue to vary meaningfully by country.
-      </p>
-
-      <figure class="md-fig gb-fig gb-one autoin" id="trajEU">
-        <h6>Europe - Market Size Trajectory</h6>
-        <p class="md-sub">2026-35 CAGR 11.6%</p>
-        <div class="gb">
-          <div class="gb-plot">
-            <div class="gb-grid" aria-hidden="true">
-              <div class="gb-t" style="bottom:0.00%"><span>0</span></div>
-              <div class="gb-t" style="bottom:25.00%"><span>1.59</span></div>
-              <div class="gb-t" style="bottom:50.00%"><span>3.18</span></div>
-              <div class="gb-t" style="bottom:75.00%"><span>4.77</span></div>
-              <div class="gb-t" style="bottom:100.00%"><span>6.36</span></div>
-            </div>
-            <div class="gb-bars">
-              <div class="gb-g" style="--d:0ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:16.0%" title="2019: USD 1.02 bn"></span>
-                </div>
-                <div class="gb-x">2019</div>
-              </div>
-              <div class="gb-g" style="--d:110ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:28.0%" title="2025: USD 1.78 bn"></span>
-                </div>
-                <div class="gb-x">2025</div>
-              </div>
-              <div class="gb-g" style="--d:220ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:50.3%" title="2030F: USD 3.2 bn"></span>
-                </div>
-                <div class="gb-x">2030F</div>
-              </div>
-              <div class="gb-g" style="--d:330ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:83.3%" title="2035F: USD 5.3 bn"></span>
-                </div>
-                <div class="gb-x">2035F</div>
-              </div>
-            </div>
-          </div>
-          <div class="gb-key"><span><i class="a"></i>Europe (USD bn)</span></div>
-        </div>
-      </figure>
-
-      <p class="reveal">
-        The United Kingdom's large, centrally funded National Health Service represents a distinct procurement
-        environment relative to Germany's more decentralised, insurance-funded hospital system, with
-        capital-equipment purchasing decisions in the UK often made at a regional or trust level rather than
-        centrally, a factor that continues to shape how manufacturers structure their national sales and
-        clinical-support organisations. Germany, France and Italy each maintain well-established domestic
-        medical-device manufacturing and clinical-research ecosystems that continue to support early adoption of
-        next-generation imaging and navigation platforms.
-      </p>
-
-      <p class="reveal">
-        Spain and the broader Nordic markets, while individually smaller than the region's largest economies, have
-        each developed reputations as early-adopter markets for specific technology niches, Spain notably hosting
-        the world's first navigated spine surgery performed using Brainlab's Loop-X mobile imaging robot,
-        illustrating how clinical-innovation leadership within Europe is not always concentrated solely in the
-        region's largest national markets.
-      </p>
-
-      <h3 class="subh reveal" data-n="8.3">Asia Pacific</h3>
-
-      <p class="reveal">
-        Asia Pacific is projected to record the fastest regional CAGR over the forecast period, reflecting rapidly
-        expanding hospital capital expenditure, rising surgical procedure volumes, and increasing domestic
-        manufacturing capability across China, Japan, India and South Korea. China in particular is emerging as a
-        market of growing strategic importance, both as a large end-market for imported platforms and as an
-        increasingly credible source of domestically developed imaging and navigation technology as the country's
-        medical-device manufacturing base matures.
-      </p>
-
-      <figure class="md-fig gb-fig gb-one autoin" id="trajAP">
-        <h6>Asia Pacific - Market Size Trajectory</h6>
-        <p class="md-sub">2026-35 CAGR 13.6%</p>
-        <div class="gb">
-          <div class="gb-plot">
-            <div class="gb-grid" aria-hidden="true">
-              <div class="gb-t" style="bottom:0.00%"><span>0</span></div>
-              <div class="gb-t" style="bottom:25.00%"><span>1.62</span></div>
-              <div class="gb-t" style="bottom:50.00%"><span>3.24</span></div>
-              <div class="gb-t" style="bottom:75.00%"><span>4.86</span></div>
-              <div class="gb-t" style="bottom:100.00%"><span>6.48</span></div>
-            </div>
-            <div class="gb-bars">
-              <div class="gb-g" style="--d:0ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:12.7%" title="2019: USD 0.82 bn"></span>
-                </div>
-                <div class="gb-x">2019</div>
-              </div>
-              <div class="gb-g" style="--d:110ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:23.3%" title="2025: USD 1.51 bn"></span>
-                </div>
-                <div class="gb-x">2025</div>
-              </div>
-              <div class="gb-g" style="--d:220ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:46.3%" title="2030F: USD 3.0 bn"></span>
-                </div>
-                <div class="gb-x">2030F</div>
-              </div>
-              <div class="gb-g" style="--d:330ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:83.3%" title="2035F: USD 5.4 bn"></span>
-                </div>
-                <div class="gb-x">2035F</div>
-              </div>
-            </div>
-          </div>
-          <div class="gb-key"><span><i class="a"></i>Asia Pacific (USD bn)</span></div>
-        </div>
-      </figure>
-
-      <p class="reveal">
-        Japan represents a mature but comparatively slower-growing market within the region, shaped by the PMDA's
-        requirement for Japan-specific clinical data even where a platform has already achieved FDA or CE
-        clearance elsewhere, a factor that has historically lengthened time to market for foreign manufacturers
-        relative to domestic Japanese competitors. India and South Korea, by contrast, are advancing rapidly on
-        the back of large-scale hospital capital-expenditure programmes and, in South Korea's case, a fast-growing
-        domestic medical-device export industry increasingly competing on both cost and technological
-        sophistication.
-      </p>
-
-      <h3 class="subh reveal" data-n="8.4">Latin America</h3>
-
-      <p class="reveal">
-        Latin America remains a comparatively small but steadily growing market, led by Brazil, Argentina and
-        Mexico. Adoption is concentrated among large private hospital networks and leading academic medical
-        centers, with affordability and access to financing for capital equipment purchases remaining the
-        principal determinants of the pace of broader regional adoption.
-      </p>
-
-      <figure class="md-fig gb-fig gb-one autoin" id="trajLA">
-        <h6>Latin America - Market Size Trajectory</h6>
-        <p class="md-sub">2026-35 CAGR 10.4%</p>
-        <div class="gb">
-          <div class="gb-plot">
-            <div class="gb-grid" aria-hidden="true">
-              <div class="gb-t" style="bottom:0.00%"><span>0</span></div>
-              <div class="gb-t" style="bottom:25.00%"><span>0.33</span></div>
-              <div class="gb-t" style="bottom:50.00%"><span>0.66</span></div>
-              <div class="gb-t" style="bottom:75.00%"><span>0.99</span></div>
-              <div class="gb-t" style="bottom:100.00%"><span>1.32</span></div>
-            </div>
-            <div class="gb-bars">
-              <div class="gb-g" style="--d:0ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:18.2%" title="2019: USD 0.24 bn"></span>
-                </div>
-                <div class="gb-x">2019</div>
-              </div>
-              <div class="gb-g" style="--d:110ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:31.1%" title="2025: USD 0.41 bn"></span>
-                </div>
-                <div class="gb-x">2025</div>
-              </div>
-              <div class="gb-g" style="--d:220ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:53.0%" title="2030F: USD 0.7 bn"></span>
-                </div>
-                <div class="gb-x">2030F</div>
-              </div>
-              <div class="gb-g" style="--d:330ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:83.3%" title="2035F: USD 1.1 bn"></span>
-                </div>
-                <div class="gb-x">2035F</div>
-              </div>
-            </div>
-          </div>
-          <div class="gb-key"><span><i class="a"></i>Latin America (USD bn)</span></div>
-        </div>
-      </figure>
-
-      <p class="reveal">
-        Brazil's large, well-established private hospital sector continues to represent the region's primary
-        growth engine, with leading private hospital groups increasingly competing on the sophistication of their
-        surgical technology as a point of differentiation for both domestic and medical-tourism patients. Mexico
-        and Argentina follow a broadly similar adoption pattern, concentrated among flagship private and academic
-        institutions in major metropolitan centers, with public-sector adoption progressing more slowly given
-        budget constraints across the region's public health systems.
-      </p>
-
-
-      <h3 class="subh reveal" data-n="8.5">Middle East and Africa</h3>
-
-      <p class="reveal">
-        The Middle East and Africa region represents the smallest of the five regions covered in this report, led
-        by Saudi Arabia, the United Arab Emirates and South Africa. Growth is concentrated in a small number of
-        flagship hospital systems and government-funded healthcare modernisation programmes, particularly across
-        the Gulf Cooperation Council states, where substantial sovereign investment in advanced healthcare
-        infrastructure continues to support demand for premium imaging and navigation platforms.
-      </p>
-
-      <figure class="md-fig gb-fig gb-one autoin" id="trajMEA">
-        <h6>Middle East &amp; Africa - Market Size Trajectory</h6>
-        <p class="md-sub">2026-35 CAGR 10.0%</p>
-        <div class="gb">
-          <div class="gb-plot">
-            <div class="gb-grid" aria-hidden="true">
-              <div class="gb-t" style="bottom:0.00%"><span>0</span></div>
-              <div class="gb-t" style="bottom:25.00%"><span>0.21</span></div>
-              <div class="gb-t" style="bottom:50.00%"><span>0.42</span></div>
-              <div class="gb-t" style="bottom:75.00%"><span>0.63</span></div>
-              <div class="gb-t" style="bottom:100.00%"><span>0.84</span></div>
-            </div>
-            <div class="gb-bars">
-              <div class="gb-g" style="--d:0ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:23.8%" title="2019: USD 0.2 bn"></span>
-                </div>
-                <div class="gb-x">2019</div>
-              </div>
-              <div class="gb-g" style="--d:110ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:32.1%" title="2025: USD 0.27 bn"></span>
-                </div>
-                <div class="gb-x">2025</div>
-              </div>
-              <div class="gb-g" style="--d:220ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:47.6%" title="2030F: USD 0.4 bn"></span>
-                </div>
-                <div class="gb-x">2030F</div>
-              </div>
-              <div class="gb-g" style="--d:330ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:83.3%" title="2035F: USD 0.7 bn"></span>
-                </div>
-                <div class="gb-x">2035F</div>
-              </div>
-            </div>
-          </div>
-          <div class="gb-key"><span><i class="a"></i>Middle East &amp; Africa (USD bn)</span></div>
-        </div>
-      </figure>
-
-      <p class="reveal">
-        Saudi Arabia and the United Arab Emirates continue to invest heavily in flagship academic medical centers
-        explicitly designed to rival leading Western institutions, creating a natural early-adoption environment
-        for the most advanced imaging and navigation platforms available. South Africa, by contrast, represents a
-        more gradually developing market, with adoption concentrated among leading private hospital groups serving
-        both domestic patients and a meaningful regional medical-tourism base drawn from across the broader
-        African continent.
       </p>
 
     </section>
@@ -5224,6 +4966,35 @@
       }
       order.forEach(function(g){ wire(g,+g.getAttribute('data-i')); });
       items.forEach(function(t){ wire(t,+t.getAttribute('data-i')); });
+    });
+  })();
+
+  /* ---- 8 regional bubble chart ---- */
+  (function(){
+    var fig=document.getElementById('regBubble'); if(!fig) return;
+    var data; try{ data=JSON.parse(fig.getAttribute('data-reg')); }catch(e){ return; }
+    var gs=[].slice.call(fig.querySelectorAll('.bb-g'));
+    var read=fig.querySelector('.bb-read');
+    var rb=read.querySelector('b'), rs=read.querySelector('span');
+    var svg=fig.querySelector('.bb-svg');
+    var order=gs.slice();
+    function show(i){
+      gs.forEach(function(g){ g.classList.remove('on'); });
+      if(i<0){ order.forEach(function(g){ svg.appendChild(g); });
+        rb.textContent='Five regions, one view';
+        rs.textContent='Hover or focus a bubble for its full profile'; return; }
+      var d=data[i], g=gs[i];
+      order.forEach(function(x){ svg.appendChild(x); });
+      svg.appendChild(g); g.classList.add('on');
+      rb.innerHTML=d.n+' &middot; '+d.p+'% of 2025 revenue';
+      rs.innerHTML='USD '+d.a.toFixed(2)+'bn in 2025 &rarr; USD '+d.b.toFixed(2)+
+        'bn in 2035F, a '+d.c.toFixed(1)+'% CAGR. '+d.t;
+    }
+    gs.forEach(function(g,i){
+      g.addEventListener('mouseenter',function(){ show(i); });
+      g.addEventListener('mouseleave',function(){ show(-1); });
+      g.addEventListener('focus',function(){ show(i); });
+      g.addEventListener('blur',function(){ show(-1); });
     });
   })();
 </script>
