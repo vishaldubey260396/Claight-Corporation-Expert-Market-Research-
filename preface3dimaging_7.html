@@ -1442,6 +1442,29 @@
     .pt-fig.in .pt-line,.pt-fig.in .pt-area,.pt-fig.in .pt-dot,
     .pt-fig.in .pt-base,.pt-fig.in .pt-note,.pt-fig.in .pt-end{transition:none}
   }
+
+  /* --- 12 - recent developments as a dated rail --- */
+  ul.dv{list-style:none;margin:16px 0 0;padding:0 0 0 4px;position:relative}
+  ul.dv::before{content:"";position:absolute;left:117px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(180deg,#ddd0ff,#a78bfa,#ddd0ff)}
+  .dv-i{position:relative;display:grid;grid-template-columns:106px minmax(0,1fr);
+    column-gap:32px;padding:9px 0;opacity:0;transform:translateY(10px)}
+  .dv-i::before{content:"";position:absolute;left:112px;top:17px;width:12px;height:12px;
+    border-radius:50%;background:#6d28d9;box-shadow:0 0 0 3px #fff}
+  .dv-d{text-align:right;font-size:11.5px;font-weight:700;color:var(--purple-deep);line-height:1.4}
+  .dv-t{font-size:12.5px;line-height:1.65;color:var(--ink)}
+  .dv.in .dv-i{opacity:1;transform:none;
+    transition:opacity .4s ease var(--d),transform .5s cubic-bezier(.3,1.2,.5,1) var(--d)}
+  @media(max-width:640px){
+    ul.dv::before{left:5px}
+    .dv-i{grid-template-columns:1fr;row-gap:3px;padding-left:24px}
+    .dv-i::before{left:0;top:14px}
+    .dv-d{text-align:left}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .dv-i{opacity:1;transform:none}
+    .dv.in .dv-i{transition:none}
+  }
 </style>
 </head>
 <body>
@@ -3668,6 +3691,189 @@
         convergence continues, particularly for smaller software-native entrants seeking to license or partner
         their way into established hardware ecosystems.
       </p>
+
+    </section>
+
+    <!-- ================= SECTION 10 - PARTNERSHIPS ================= -->
+    <section id="partnerships" aria-labelledby="pn-title">
+
+      <h3 class="sub reveal" data-n="10" id="pn-title">Partnership and Collaborations Analysis</h3>
+
+      <p class="reveal">
+        Strategic partnership activity in the 3D surgical imaging category has accelerated markedly since 2023, as
+        established platform developers increasingly pursue cross-company integration, distribution and
+        technology-sharing agreements in place of, or alongside, outright acquisition.
+      </p>
+
+      <figure class="md-fig gb-fig gb-one autoin" id="partMom">
+        <h6>3D Surgical Imaging Market - Partnership and Collaboration Momentum, 2022-2026</h6>
+        <p class="md-sub">Cross-platform digital integrations are accelerating</p>
+        <div class="gb">
+          <div class="gb-plot">
+            <div class="gb-grid" aria-hidden="true">
+              <div class="gb-t" style="bottom:0.00%"><span>0</span></div>
+              <div class="gb-t" style="bottom:25.00%"><span>3.3</span></div>
+              <div class="gb-t" style="bottom:50.00%"><span>6.6</span></div>
+              <div class="gb-t" style="bottom:75.00%"><span>9.9</span></div>
+              <div class="gb-t" style="bottom:100.00%"><span>13.2</span></div>
+            </div>
+            <div class="gb-bars">
+              <div class="gb-g" style="--d:0ms">
+                <div class="gb-pair">
+                  <span class="gb-b a" style="--h:22.7%" title="2022: 3"></span>
+                </div>
+                <div class="gb-x">2022</div>
+              </div>
+              <div class="gb-g" style="--d:110ms">
+                <div class="gb-pair">
+                  <span class="gb-b a" style="--h:37.9%" title="2023: 5"></span>
+                </div>
+                <div class="gb-x">2023</div>
+              </div>
+              <div class="gb-g" style="--d:220ms">
+                <div class="gb-pair">
+                  <span class="gb-b a" style="--h:53.0%" title="2024: 7"></span>
+                </div>
+                <div class="gb-x">2024</div>
+              </div>
+              <div class="gb-g" style="--d:330ms">
+                <div class="gb-pair">
+                  <span class="gb-b a" style="--h:68.2%" title="2025: 9"></span>
+                </div>
+                <div class="gb-x">2025</div>
+              </div>
+              <div class="gb-g" style="--d:440ms">
+                <div class="gb-pair">
+                  <span class="gb-b a" style="--h:83.3%" title="2026: 11"></span>
+                </div>
+                <div class="gb-x">2026</div>
+              </div>
+            </div>
+          </div>
+          <div class="gb-key"><span><i class="a"></i>Disclosed partnerships &amp; integrations</span></div>
+        </div>
+        <figcaption class="md-cap">Bar heights show the relative pace of disclosed partnership and integration
+          announcements; the underlying counts are indicative rather than an exhaustive census.</figcaption>
+      </figure>
+
+      <h3 class="subh reveal" data-n="10.1">Key Partnerships and Collaborations</h3>
+
+      <div class="md-scroll reveal">
+        <table class="rd">
+          <thead><tr><th>Date</th><th>Companies</th><th>Nature of collaboration</th></tr></thead>
+          <tbody>
+        <tr><td>April 2026</td><td>GE HealthCare / Medtronic</td><td>Digital integration of GE's bkActiv intraoperative ultrasound system with Medtronic's Stealth AXiS surgical navigation platform</td></tr>
+        <tr><td>April 2026</td><td>Siemens Healthineers / Onvida Health</td><td>Ten-year Value Partnership covering imaging equipment enhancement and technology modernisation</td></tr>
+        <tr><td>April 2025</td><td>Siemens Healthineers / Tower Health</td><td>Ten-year Value Partnership across radiology, oncology and cardiology imaging infrastructure</td></tr>
+        <tr><td>2024 (available mid-2024)</td><td>Brainlab / Fujifilm</td><td>Integration of Fujifilm's ARIETTA Precision intraoperative ultrasound with Brainlab's navigation software for neurosurgery</td></tr>
+        <tr><td>June 2025</td><td>ChoiceSpine / eCential Robotics</td><td>Partnership to launch the ChoiceSpine app on the eCential Op.n robotic and navigation platform</td></tr>
+        <tr><td><b>Ongoing</b></td><td><b>Brainlab / medPhoton</b></td><td><b>Co-development partnership underpinning the Loop-X mobile intraoperative imaging robot</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="reveal">
+        The clustering of partnership announcements around digital integration, rather than equity investment or
+        outright acquisition, is itself a notable structural signal: it suggests that established platform
+        manufacturers increasingly view interoperability as a competitive necessity rather than a threat to be
+        resisted, a meaningful shift from the more closed, proprietary ecosystem strategies that characterised the
+        category as recently as five years ago.
+      </p>
+
+      <h3 class="subh reveal" data-n="10.2">Analysis by Type of Partnership</h3>
+
+      <ul class="dyn reveal">
+        <li><b>Cross-Platform Digital Integration:</b> Agreements that digitally connect two companies' existing platforms without requiring hospitals to replace established hardware, exemplified by the GE HealthCare-Medtronic bkActiv integration, represent the fastest-growing category of collaboration, reflecting a broader industry preference for interoperability partnerships over costly, disruptive rip-and-replace hardware sales.</li>
+        <li><b>Long-Term Value and Service Partnerships:</b> Multi-year agreements bundling equipment upgrades, service and digital-tools access, exemplified by Siemens Healthineers' Value Partnership model, are becoming an increasingly important go-to-market structure for large capital-equipment sales, providing manufacturers with recurring, annuity-like revenue visibility.</li>
+        <li><b>Software and Instrumentation Distribution Partnerships:</b> Smaller specialist companies increasingly partner with larger navigation or robotics platform providers to distribute complementary software or instrumentation, exemplified by ChoiceSpine's partnership with eCential Robotics, allowing both parties to expand addressable use cases without the cost of independent platform development.</li>
+      </ul>
+
+      <h3 class="subh reveal" data-n="10.3">Investment Outlook</h3>
+
+      <p class="reveal">
+        Capital continues to flow into the category at both the large-cap and emerging-company level. Established
+        platform developers continue to fund internal R&amp;D at scale while simultaneously pursuing external
+        partnerships to accelerate specific capability gaps, such as GE HealthCare's alliance with Medtronic for
+        ultrasound integration, rather than attempting to build every adjacent capability internally. Emerging
+        companies such as MediView continue to advance clinical-validation studies as a precursor to broader
+        commercial partnership or acquisition, a pattern well established in the broader medical-device industry,
+        where early-stage clinical evidence generation frequently precedes a strategic partnership or buyout by an
+        established platform manufacturer seeking to fill a specific technology gap.
+      </p>
+
+    </section>
+
+    <!-- ================= SECTION 11 - REGULATORY FRAMEWORK ================= -->
+    <section id="regulatory" aria-labelledby="rf-title">
+
+      <h3 class="sub reveal" data-n="11" id="rf-title">Regulatory Framework</h3>
+
+      <p class="reveal">
+        Regulatory oversight of 3D medical and surgical imaging platforms operates at two distinct levels:
+        market-authorisation agencies that determine whether a device may be sold at all, and, in most markets, a
+        separate hospital procurement and capital-budget approval process that determines the actual pace of
+        clinical adoption once regulatory clearance has been achieved. This report's regional analysis illustrates
+        how material a factor the second layer has become in determining real-world platform penetration, often
+        mattering as much as the underlying speed of regulatory clearance itself.
+      </p>
+
+      <p class="reveal">
+        Regulatory oversight operates primarily through medical device clearance and approval pathways, given that
+        most platforms are classified as <strong>Class II or Class III medical devices</strong> depending on their
+        intended use and risk profile.
+      </p>
+
+      <h3 class="subh reveal" data-n="11.1">Regulatory Overview by Geography</h3>
+
+      <ul class="dyn reveal">
+        <li><b>United States - FDA:</b> Most 3D surgical imaging and navigation platforms are cleared through the agency's 510(k) premarket notification pathway, on the basis of substantial equivalence to a predicate device, as illustrated by Medtronic's Stealth AXiS clearance in February 2026, Siemens Healthineers' six-system Artis and Optiq AI clearances in May 2026, and Brainlab's Spine Mixed Reality Navigation clearance in September 2025.</li>
+        <li><b>Europe - EU EMA / MDR Framework:</b> Under the EU Medical Device Regulation (MDR), platforms require CE marking following conformity assessment by a notified body, with most navigation and imaging platforms classified as Class IIb or Class III devices given their surgical-guidance function; harmonised CE clearance allows manufacturers efficient access across all EU member states once obtained.</li>
+        <li><b>India - CDSCO:</b> The Central Drugs Standard Control Organisation regulates market authorisation for imported and domestically manufactured imaging and navigation devices, with India's growing domestic medical-device manufacturing base increasingly seeking indigenous regulatory pathways to support the government's broader medical-device self-reliance initiatives.</li>
+        <li><b>Japan - PMDA:</b> The Pharmaceuticals and Medical Devices Agency oversees approval, typically requiring Japan-specific clinical data even where a device has already achieved FDA or CE clearance, a factor that has historically lengthened time to market for foreign-developed platforms relative to Japan's own domestic manufacturers.</li>
+        <li><b>Other Markets:</b> Other major markets, including China's National Medical Products Administration and Health Canada, maintain their own distinct clearance pathways, with China in particular continuing to strengthen domestic clinical-data requirements as part of its broader push to build domestic medical-device manufacturing capability.</li>
+      </ul>
+
+      <p class="reveal">
+        Across all markets, a common regulatory theme is the growing use of digital-integration and
+        software-update pathways, rather than full device re-clearance, as manufacturers seek to accelerate the
+        incremental improvement cycle for AI-based analytics components without triggering the lengthier review
+        processes typically associated with hardware changes. Regulators in the United States, the European Union
+        and Japan have each begun developing more explicit frameworks for evaluating adaptive, AI-based software
+        as a medical device, a regulatory evolution that is likely to shape how quickly future analytics upgrades
+        can reach clinical use relative to the hardware platforms they run on.
+      </p>
+
+    </section>
+
+    <!-- ================= SECTION 12 - RECENT DEVELOPMENTS ================= -->
+    <section id="developments" aria-labelledby="rd-title">
+
+      <h3 class="sub reveal" data-n="12" id="rd-title">Recent Industry Developments</h3>
+
+      <ul class="dv autoin" id="devList">
+          <li class="dv-i" style="--d:0ms"><span class="dv-d">April 2026</span>
+            <span class="dv-t">GE HealthCare announced a digital integration between its bkActiv intraoperative ultrasound system and Medtronic's Stealth AXiS surgical navigation system, providing real-time advanced imaging during cranial procedures without disrupting established navigation workflows.</span></li>
+          <li class="dv-i" style="--d:70ms"><span class="dv-d">April-May 2026</span>
+            <span class="dv-t">Siemens Healthineers entered a ten-year Value Partnership with Onvida Health, and separately received FDA clearance for six interventional imaging systems across its Artis vision platform, including the AI-enabled Optiq system.</span></li>
+          <li class="dv-i" style="--d:140ms"><span class="dv-d">February 2026</span>
+            <span class="dv-t">Medtronic received FDA clearance for the Stealth AXiS surgical system, the first platform to natively integrate planning, navigation and robotics for spine surgery within its AiBLE smart ecosystem.</span></li>
+          <li class="dv-i" style="--d:210ms"><span class="dv-d">September 2025</span>
+            <span class="dv-t">Brainlab announced FDA 510(k) clearance and U.S. launch of its Spine Mixed Reality Navigation system, combining its established optical navigation platform with mixed-reality headset visualization for pedicle screw placement.</span></li>
+          <li class="dv-i" style="--d:280ms"><span class="dv-d">April 2025</span>
+            <span class="dv-t">Siemens Healthineers entered a ten-year Value Partnership with Tower Health, covering imaging equipment enhancement and digital-tools modernisation across radiology, oncology and cardiology.</span></li>
+          <li class="dv-i" style="--d:350ms"><span class="dv-d">June 2025</span>
+            <span class="dv-t">ChoiceSpine LLC partnered with eCential Robotics to launch a dedicated spine-surgery application on the eCential Op.n robotic and navigation platform.</span></li>
+          <li class="dv-i" style="--d:420ms"><span class="dv-d">July 2025</span>
+            <span class="dv-t">MediView launched a multicenter study to validate its XR90 Holographic Surgical Navigation system as an adjunct to standard ultrasound and CT imaging in percutaneous tumor biopsies.</span></li>
+          <li class="dv-i" style="--d:490ms"><span class="dv-d">Mid-2024</span>
+            <span class="dv-t">Fujifilm and Brainlab confirmed the availability of their combined ARIETTA Precision intraoperative ultrasound and navigation software solution for neurosurgery clinicians, extending real-time intraoperative ultrasound insight to Brainlab's broader digital surgery portfolio.</span></li>
+          <li class="dv-i" style="--d:560ms"><span class="dv-d">Prior Milestone</span>
+            <span class="dv-t">Brainlab received FDA clearance for its Loop-X mobile intraoperative imaging robot and Cirq robotic alignment module, extending earlier CE Mark approval, extending the company's robotics-integrated digital surgery portfolio into the U.S. market.</span></li>
+          <li class="dv-i" style="--d:630ms"><span class="dv-d">April 2026</span>
+            <span class="dv-t">Premier Radiology Services acquired Global Imaging Solutions (GLOBIS), a teleradiology group, reflecting continued consolidation in the broader imaging-services ecosystem adjacent to the surgical-platform market covered in this report.</span></li>
+          <li class="dv-i" style="--d:700ms"><span class="dv-d">March 2026</span>
+            <span class="dv-t">Catalyst MedTech announced a Full Access Neurology Solution supporting brain PET implementation in the United States, illustrating continued expansion of advanced imaging capability into nuclear medicine and molecular imaging adjacent to the core surgical-imaging category.</span></li>
+      </ul>
 
     </section>
 
