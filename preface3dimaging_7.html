@@ -1465,6 +1465,69 @@
     .dv-i{opacity:1;transform:none}
     .dv.in .dv-i{transition:none}
   }
+
+  /* --- 6 - cost model: capital outlay against five-year total cost --- */
+  .cm-fig{margin-top:16px}
+  .cm{margin-top:16px}
+  .cm-row{padding:13px 14px;border-radius:11px;border:1px solid var(--line);background:#fff;
+    margin-bottom:10px;outline:none;
+    transition:box-shadow .2s ease,border-color .2s ease}
+  .cm-row.on{border-color:#c4b5fd;box-shadow:0 8px 20px rgba(76,29,149,.13)}
+  .cm-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .cm-n{flex:none;width:22px;height:22px;border-radius:7px;background:#efe9ff;border:1px solid #ddd0ff;
+    display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
+    color:var(--purple-deep)}
+  .cm-row h6{margin:0;flex:1 1 auto;font-size:13px;font-weight:700;color:var(--navy)}
+  .cm-fee{flex:none;font-size:10.5px;font-weight:700;color:#92400e;background:#fdf6e8;
+    border:1px solid #f0e0be;border-radius:999px;padding:3px 9px;white-space:nowrap}
+  .cm-l{display:grid;grid-template-columns:minmax(90px,116px) minmax(0,1fr) minmax(96px,128px);
+    align-items:center;column-gap:12px}
+  .cm-l+.cm-l{margin-top:7px}
+  .cm-k{font-size:11px;font-weight:600;color:var(--muted);text-align:right}
+  .cm-trk{position:relative;height:16px;border-radius:4px;background:#f4f0fd}
+  .cm-bar{position:absolute;top:3px;height:10px;border-radius:5px;
+    transform:scaleX(0);transform-origin:left}
+  .cm-bar.cap{background:linear-gradient(90deg,#c4b5fd,#8b5cf6)}
+  .cm-bar.tco{background:linear-gradient(90deg,#7c3aed,#4c1d95)}
+  .cm-none{position:absolute;left:0;top:1px;font-size:10.5px;font-weight:600;color:var(--muted);
+    font-style:italic;opacity:0;transition:opacity .4s ease var(--d)}
+  .cm-v{font-size:11.5px;font-weight:600;color:var(--ink);white-space:nowrap;opacity:0;
+    transition:opacity .35s ease}
+  .cm-v.strong{font-weight:700;color:var(--purple-deep)}
+  /* the capital bar lands first, then the five-year bar extends past it */
+  .cm-fig.in .cm-bar.cap{transform:none;transition:transform .7s cubic-bezier(.22,1,.36,1) var(--d)}
+  .cm-fig.in .cm-bar.tco{transform:none;transition:transform .8s cubic-bezier(.22,1,.36,1) calc(var(--d) + .28s)}
+  .cm-fig.in .cm-none{opacity:1}
+  .cm-fig.in .cm-l:first-child .cm-v{opacity:1;transition-delay:calc(var(--d) + .45s)}
+  .cm-fig.in .cm-l+.cm-l .cm-v{opacity:1;transition-delay:calc(var(--d) + .8s)}
+  .cm-axis{display:grid;grid-template-columns:minmax(90px,116px) minmax(0,1fr) minmax(96px,128px);
+    column-gap:12px;margin-top:4px;padding:0 14px}
+  .cm-axin{grid-column:2;position:relative;height:16px;border-top:1px solid var(--line);padding-top:4px;
+    font-size:10.5px;font-weight:600;color:var(--muted)}
+  .cm-axin span{position:absolute;top:4px;transform:translateX(-50%);white-space:nowrap}
+  .cm-axin span:first-child{transform:none}
+  .cm-axin span:last-child{transform:translateX(-100%)}
+
+  .cm-notes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  .cm-note{padding:14px 16px;border-radius:11px;border:1px solid var(--line);
+    border-left:4px solid var(--nc)}
+  .cm-note.a{--nc:#4c1d95;background:#faf8ff}
+  .cm-note.b{--nc:#0891b2;background:#f2fbfe}
+  .cm-note h6{margin:0 0 6px;font-size:12.5px;font-weight:700;color:var(--nc)}
+  .cm-note p{margin:0;font-size:12px;line-height:1.65;color:var(--ink)}
+
+  @media(max-width:700px){
+    .cm-l,.cm-axis{grid-template-columns:1fr;row-gap:3px}
+    .cm-k{text-align:left}
+    .cm-axin{grid-column:1}
+    .cm-notes{grid-template-columns:1fr}
+    .cm-hd{flex-wrap:wrap}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .cm-bar{transform:none}
+    .cm-v,.cm-none{opacity:1}
+    .cm-fig.in .cm-bar.cap,.cm-fig.in .cm-bar.tco{transition:none}
+  }
 </style>
 </head>
 <body>
@@ -2763,55 +2826,76 @@
       <h3 class="sub reveal" data-n="6" id="cm-title">Cost Model</h3>
 
       <p class="reveal">
-        Because this market spans both capital hardware and recurring software and solutions revenue, total cost
-        of ownership rather than upfront purchase price alone is the more meaningful basis on which hospitals
-        evaluate competing platforms, and on which manufacturers increasingly structure their commercial
-        offerings.
+        This market spans capital hardware and recurring software revenue, so
+        <strong>total cost of ownership, not the purchase price</strong>, is how hospitals actually compare
+        platforms - and increasingly how manufacturers structure what they sell.
       </p>
 
-      <h3 class="subh nn reveal">Total Cost of Ownership by Platform Tier</h3>
+      <figure class="md-fig cm-fig autoin" id="costModel">
+        <h6>Total Cost of Ownership by Platform Tier</h6>
+        <p class="md-sub">Capital outlay against five-year total cost - the gap between the two bars is the recurring charge (log scale)</p>
+        <div class="cm">
+            <article class="cm-row" data-i="1" tabindex="0" style="--d:0ms">
+              <header class="cm-hd"><span class="cm-n">01</span><h6>Integrated navigation + robotics</h6>
+                <span class="cm-fee">~12-15% of capital cost / yr</span></header>
+              <div class="cm-lines">
+                <div class="cm-l"><span class="cm-k">Capital, one-time</span>
+                  <span class="cm-trk"><span class="cm-bar cap" style="left:56.43%;width:13.82%"></span></span><span class="cm-v">USD 250-550k</span></div>
+                <div class="cm-l"><span class="cm-k">5-year total cost</span>
+                  <span class="cm-trk"><span class="cm-bar tco" style="left:64.67%;width:14.22%"></span></span>
+                  <span class="cm-v strong">USD 400-900k</span></div>
+              </div>
+            </article>
+            <article class="cm-row" data-i="2" tabindex="0" style="--d:130ms">
+              <header class="cm-hd"><span class="cm-n">02</span><h6>Mobile intraoperative 3D imaging</h6>
+                <span class="cm-fee">~10-12% of capital cost / yr</span></header>
+              <div class="cm-lines">
+                <div class="cm-l"><span class="cm-k">Capital, one-time</span>
+                  <span class="cm-trk"><span class="cm-bar cap" style="left:50.67%;width:14.00%"></span></span><span class="cm-v">USD 180-400k</span></div>
+                <div class="cm-l"><span class="cm-k">5-year total cost</span>
+                  <span class="cm-trk"><span class="cm-bar tco" style="left:58.42%;width:13.94%"></span></span>
+                  <span class="cm-v strong">USD 280-620k</span></div>
+              </div>
+            </article>
+            <article class="cm-row" data-i="3" tabindex="0" style="--d:260ms">
+              <header class="cm-hd"><span class="cm-n">03</span><h6>Fixed intraoperative CT / MRI</h6>
+                <span class="cm-fee">~10-12% of capital cost / yr</span></header>
+              <div class="cm-lines">
+                <div class="cm-l"><span class="cm-k">Capital, one-time</span>
+                  <span class="cm-trk"><span class="cm-bar cap" style="left:78.89%;width:12.15%"></span></span><span class="cm-v">USD 0.9-1.8m</span></div>
+                <div class="cm-l"><span class="cm-k">5-year total cost</span>
+                  <span class="cm-trk"><span class="cm-bar tco" style="left:86.64%;width:12.15%"></span></span>
+                  <span class="cm-v strong">USD 1.4-2.8m</span></div>
+              </div>
+            </article>
+            <article class="cm-row" data-i="4" tabindex="0" style="--d:390ms">
+              <header class="cm-hd"><span class="cm-n">04</span><h6>Software-only / cloud</h6>
+                <span class="cm-fee">USD 15-90k per year</span></header>
+              <div class="cm-lines">
+                <div class="cm-l"><span class="cm-k">Capital, one-time</span>
+                  <span class="cm-trk"><span class="cm-none">No capital outlay</span></span><span class="cm-v">No capital outlay</span></div>
+                <div class="cm-l"><span class="cm-k">5-year total cost</span>
+                  <span class="cm-trk"><span class="cm-bar tco" style="left:35.33%;width:31.41%"></span></span>
+                  <span class="cm-v strong">USD 75-450k</span></div>
+              </div>
+            </article>
+          <div class="cm-axis"><div class="cm-axin"><span style="left:0.00%">$10k</span><span style="left:40.37%">$100k</span><span style="left:80.74%">$1M</span><span style="left:100.00%">$3M</span></div></div>
+        </div>
+      </figure>
 
-      <p class="reveal">
-        Each platform tier combines a one-time hardware and installation cost with an ongoing annual charge for
-        software licensing, maintenance and technical support, typically structured as a percentage of the
-        original hardware cost for capital-equipment tiers, or as a standalone subscription fee for software-only
-        platforms.
-      </p>
-
-      <div class="md-scroll reveal">
-        <table class="rd">
-          <thead><tr><th>Platform tier</th><th>Hardware / capital cost (one-time)</th>
-            <th>Annual software, service and maintenance</th><th>Approx. 5-year total cost of ownership</th></tr></thead>
-          <tbody>
-        <tr><td><b>Integrated Navigation + Robotics Platforms</b></td><td>USD 250,000-550,000</td><td>~12-15% of capital cost per year</td><td>USD 400,000-900,000</td></tr>
-        <tr><td><b>Mobile Intraoperative 3D Imaging Systems</b></td><td>USD 180,000-400,000</td><td>~10-12% of capital cost per year</td><td>USD 280,000-620,000</td></tr>
-        <tr><td><b>Fixed Intraoperative CT / MRI Suites</b></td><td>USD 0.9 million-1.8 million</td><td>~10-12% of capital cost per year</td><td>USD 1.4 million-2.8 million</td></tr>
-        <tr><td><b>Software-Only / Cloud Platforms</b></td><td>None</td><td>USD 15,000-90,000 per year (full cost)</td><td>USD 75,000-450,000</td></tr>
-          </tbody>
-        </table>
+      <div class="cm-notes reveal">
+        <div class="cm-note a">
+          <h6>Hardware tiers: the annual fee is not optional</h6>
+          <p>Updated AI segmentation, navigation revisions and vendor support are bundled into it, so the real
+            running cost sits well above the headline price. Several manufacturers now fold it into
+            subscription-style multi-year contracts to smooth the upfront outlay.</p>
+        </div>
+        <div class="cm-note b">
+          <h6>Software-only: no capital, all recurring</h6>
+          <p>With no hardware to buy, the whole cost is subscription from day one - which is what opens the
+            category to smaller hospitals and ambulatory surgical centers that cannot justify a capital purchase.</p>
+        </div>
       </div>
-
-      <h3 class="subh nn reveal">Hardware and Software Cost Interdependence</h3>
-
-      <p class="reveal">
-        For the three hardware-anchored tiers, the annual software, service and maintenance charge is not optional
-        in practice: continued access to updated AI-based segmentation algorithms, navigation software revisions
-        and vendor technical support is typically bundled into this recurring fee, meaning a hospital's effective
-        ongoing cost of operating the platform is materially higher than the headline hardware price alone would
-        suggest. This dynamic is increasingly shaping vendor commercial strategy, with several manufacturers
-        exploring subscription-inclusive bundled pricing models that smooth the traditionally large upfront
-        capital outlay into a more predictable multi-year contract structure, similar to the software-only tier's
-        existing commercial model.
-      </p>
-
-      <p class="reveal">
-        For software-only and cloud-based platforms, by contrast, the absence of any hardware capital outlay makes
-        the full cost of ownership recurring and subscription-based from the outset, a structural difference that
-        is expanding this tier's addressable customer base to smaller hospitals and ambulatory surgical centers
-        that would not otherwise be able to justify a large capital purchase, and is expected to make this tier
-        one of the more closely watched commercial models over the forecast period as larger vendors increasingly
-        layer their own software offerings on top of, or independent of, proprietary hardware.
-      </p>
 
     </section>
 
@@ -4870,6 +4954,20 @@
       });
     },{threshold:[0,.2]});
     els.forEach(function(e){ io.observe(e); });
+  })();
+
+  /* ---------- Section 6 - cost model rows ---------- */
+  (function(){
+    var fig=document.getElementById('costModel'); if(!fig) return;
+    var rows=[].slice.call(fig.querySelectorAll('.cm-row'));
+    rows.forEach(function(r){
+      var i=+r.dataset.i;
+      function set(on){ rows.forEach(function(x){ x.classList.toggle('on', on && +x.dataset.i===i); }); }
+      r.addEventListener('mouseenter',function(){ set(true); });
+      r.addEventListener('mouseleave',function(){ set(false); });
+      r.addEventListener('focus',function(){ set(true); });
+      r.addEventListener('blur',function(){ set(false); });
+    });
   })();
 </script>
 </body>
