@@ -1415,6 +1415,33 @@
   @media(prefers-reduced-motion:reduce){
     .hb-fill,.hb-val,.gb-b{transition:none}
   }
+
+  /* --- 9 - patent filing index line --- */
+  .pt-fig{margin-top:16px}
+  .pt-svg{display:block;width:100%;height:auto;margin-top:12px}
+  .pt-grid{stroke:#eee8fb;stroke-width:1}
+  .pt-yt,.pt-xt{font-size:10.5px;font-weight:600;fill:var(--muted)}
+  .pt-ax{font-size:10.5px;font-weight:600;fill:var(--muted)}
+  .pt-area{fill:rgba(124,58,237,.12)}
+  .pt-line{fill:none;stroke:#7c3aed;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+  .pt-dot{fill:#5b21b6;stroke:#fff;stroke-width:1.6}
+  .pt-base{stroke:#94a3b8;stroke-width:1;stroke-dasharray:4 4}
+  .pt-note{font-size:10.5px;font-weight:600;fill:var(--muted)}
+  .pt-end{font-size:13px;font-weight:700;fill:var(--purple-deep)}
+  /* the line draws itself in, the area and markers follow */
+  .pt-line{stroke-dasharray:1400;stroke-dashoffset:1400}
+  .pt-fig.in .pt-line{stroke-dashoffset:0;transition:stroke-dashoffset 1.2s ease}
+  .pt-area,.pt-dot,.pt-end,.pt-base,.pt-note{opacity:0}
+  .pt-fig.in .pt-area{opacity:1;transition:opacity .7s ease .35s}
+  .pt-fig.in .pt-dot{opacity:1;transition:opacity .5s ease .7s}
+  .pt-fig.in .pt-base,.pt-fig.in .pt-note{opacity:1;transition:opacity .5s ease 1s}
+  .pt-fig.in .pt-end{opacity:1;transition:opacity .5s ease 1.15s}
+  @media(prefers-reduced-motion:reduce){
+    .pt-line{stroke-dasharray:none;stroke-dashoffset:0}
+    .pt-area,.pt-dot,.pt-end,.pt-base,.pt-note{opacity:1}
+    .pt-fig.in .pt-line,.pt-fig.in .pt-area,.pt-fig.in .pt-dot,
+    .pt-fig.in .pt-base,.pt-fig.in .pt-note,.pt-fig.in .pt-end{transition:none}
+  }
 </style>
 </head>
 <body>
@@ -3441,6 +3468,205 @@
         and Argentina follow a broadly similar adoption pattern, concentrated among flagship private and academic
         institutions in major metropolitan centers, with public-sector adoption progressing more slowly given
         budget constraints across the region's public health systems.
+      </p>
+
+
+      <h3 class="subh reveal" data-n="8.5">Middle East and Africa</h3>
+
+      <p class="reveal">
+        The Middle East and Africa region represents the smallest of the five regions covered in this report, led
+        by Saudi Arabia, the United Arab Emirates and South Africa. Growth is concentrated in a small number of
+        flagship hospital systems and government-funded healthcare modernisation programmes, particularly across
+        the Gulf Cooperation Council states, where substantial sovereign investment in advanced healthcare
+        infrastructure continues to support demand for premium imaging and navigation platforms.
+      </p>
+
+      <figure class="md-fig gb-fig gb-one autoin" id="trajMEA">
+        <h6>Middle East &amp; Africa - Market Size Trajectory</h6>
+        <p class="md-sub">2026-35 CAGR 10.0%</p>
+        <div class="gb">
+          <div class="gb-plot">
+            <div class="gb-grid" aria-hidden="true">
+              <div class="gb-t" style="bottom:0.00%"><span>0</span></div>
+              <div class="gb-t" style="bottom:25.00%"><span>0.21</span></div>
+              <div class="gb-t" style="bottom:50.00%"><span>0.42</span></div>
+              <div class="gb-t" style="bottom:75.00%"><span>0.63</span></div>
+              <div class="gb-t" style="bottom:100.00%"><span>0.84</span></div>
+            </div>
+            <div class="gb-bars">
+              <div class="gb-g" style="--d:0ms">
+                <div class="gb-pair">
+                  <span class="gb-b a" style="--h:23.8%" title="2019: USD 0.2 bn"></span>
+                </div>
+                <div class="gb-x">2019</div>
+              </div>
+              <div class="gb-g" style="--d:110ms">
+                <div class="gb-pair">
+                  <span class="gb-b a" style="--h:32.1%" title="2025: USD 0.27 bn"></span>
+                </div>
+                <div class="gb-x">2025</div>
+              </div>
+              <div class="gb-g" style="--d:220ms">
+                <div class="gb-pair">
+                  <span class="gb-b a" style="--h:47.6%" title="2030F: USD 0.4 bn"></span>
+                </div>
+                <div class="gb-x">2030F</div>
+              </div>
+              <div class="gb-g" style="--d:330ms">
+                <div class="gb-pair">
+                  <span class="gb-b a" style="--h:83.3%" title="2035F: USD 0.7 bn"></span>
+                </div>
+                <div class="gb-x">2035F</div>
+              </div>
+            </div>
+          </div>
+          <div class="gb-key"><span><i class="a"></i>Middle East &amp; Africa (USD bn)</span></div>
+        </div>
+      </figure>
+
+      <p class="reveal">
+        Saudi Arabia and the United Arab Emirates continue to invest heavily in flagship academic medical centers
+        explicitly designed to rival leading Western institutions, creating a natural early-adoption environment
+        for the most advanced imaging and navigation platforms available. South Africa, by contrast, represents a
+        more gradually developing market, with adoption concentrated among leading private hospital groups serving
+        both domestic patients and a meaningful regional medical-tourism base drawn from across the broader
+        African continent.
+      </p>
+
+    </section>
+
+    <!-- ================= SECTION 9 - PATENT ANALYSIS ================= -->
+    <section id="patents" aria-labelledby="pa-title">
+
+      <h3 class="sub reveal" data-n="9" id="pa-title">Patent Analysis</h3>
+
+      <p class="reveal">
+        Patent activity in 3D medical and surgical imaging has accelerated markedly over the past decade, tracking
+        the pace of technological convergence between imaging, navigation, robotics and artificial intelligence.
+        Patent filings specific to 3D surgical imaging and navigation have <strong>more than tripled since
+        2018</strong>, as originators seek to protect an expanding perimeter of imaging-reconstruction methods,
+        navigation algorithms, mixed-reality visualization techniques and robotics-integration approaches.
+      </p>
+
+      <figure class="md-fig pt-fig autoin" id="patFile">
+        <h6>3D Surgical Imaging Market - Patent Filing Activity, 2018-2025 (Indexed, 2018=100)</h6>
+        <p class="md-sub">Filing activity has accelerated sharply as imaging, navigation and AI-based analytics converge</p>
+        <svg class="pt-svg" viewBox="0 0 760 300" role="img"
+             aria-label="Patent filing activity indexed to 2018 equals 100, rising to 325 by 2025.">
+          <text class="pt-ax" x="54" y="12">index</text>
+          <g><line class="pt-grid" x1="54" y1="256.0" x2="740" y2="256.0"/><text class="pt-yt" x="46" y="259.5" text-anchor="end">0</text></g>
+          <g><line class="pt-grid" x1="54" y1="208.4" x2="740" y2="208.4"/><text class="pt-yt" x="46" y="211.9" text-anchor="end">72.8</text></g>
+          <g><line class="pt-grid" x1="54" y1="160.8" x2="740" y2="160.8"/><text class="pt-yt" x="46" y="164.3" text-anchor="end">145.6</text></g>
+          <g><line class="pt-grid" x1="54" y1="113.2" x2="740" y2="113.2"/><text class="pt-yt" x="46" y="116.7" text-anchor="end">218.4</text></g>
+          <g><line class="pt-grid" x1="54" y1="65.6" x2="740" y2="65.6"/><text class="pt-yt" x="46" y="69.1" text-anchor="end">291.2</text></g>
+          <g><line class="pt-grid" x1="54" y1="18.0" x2="740" y2="18.0"/><text class="pt-yt" x="46" y="21.5" text-anchor="end">364</text></g>
+          <polygon class="pt-area" points="54.0,256.0 54.0,190.6 152.0,169.6 250.0,148.6 348.0,127.6 446.0,106.5 544.0,85.5 642.0,64.5 740.0,43.5 740.0,256.0"/>
+          <polyline class="pt-line" points="54.0,190.6 152.0,169.6 250.0,148.6 348.0,127.6 446.0,106.5 544.0,85.5 642.0,64.5 740.0,43.5"/>
+          <text class="pt-xt" x="54.0" y="278" text-anchor="middle">2018</text>
+          <text class="pt-xt" x="250.0" y="278" text-anchor="middle">2020</text>
+          <text class="pt-xt" x="446.0" y="278" text-anchor="middle">2022</text>
+          <text class="pt-xt" x="642.0" y="278" text-anchor="middle">2024</text>
+          <text class="pt-xt" x="740.0" y="278" text-anchor="middle">2025</text>
+          <line class="pt-base" x1="740.0" y1="18" x2="740.0" y2="256"/>
+          <text class="pt-note" x="734.0" y="248" text-anchor="end">Base year 2025</text>
+          <text class="pt-end" x="732.0" y="32.5" text-anchor="end">325</text>
+          <circle class="pt-dot" cx="54.0" cy="190.6" r="3.2"/>
+          <circle class="pt-dot" cx="152.0" cy="169.6" r="3.2"/>
+          <circle class="pt-dot" cx="250.0" cy="148.6" r="3.2"/>
+          <circle class="pt-dot" cx="348.0" cy="127.6" r="3.2"/>
+          <circle class="pt-dot" cx="446.0" cy="106.5" r="3.2"/>
+          <circle class="pt-dot" cx="544.0" cy="85.5" r="3.2"/>
+          <circle class="pt-dot" cx="642.0" cy="64.5" r="3.2"/>
+          <circle class="pt-dot" cx="740.0" cy="43.5" r="3.2"/>
+        </svg>
+        <figcaption class="md-cap">Only the 2018 base (=100) and the 2025 index (325) are stated; the years
+          between are drawn on a straight line joining them.</figcaption>
+      </figure>
+
+      <h3 class="subh reveal" data-n="9.1">Analysis by Type of Technology</h3>
+
+      <p class="reveal">
+        Patent activity within this category can be grouped into four broad technology clusters, each reflecting a
+        distinct facet of the imaging-navigation-robotics convergence trend described earlier in this report.
+      </p>
+
+      <ul class="dyn reveal">
+        <li><b>Imaging and Reconstruction Algorithms:</b> Filings covering three-dimensional image reconstruction algorithms, multi-modal image fusion (combining CT, MRI and ultrasound data) and AI-based anatomical segmentation represent the largest and fastest-growing category of new patent activity.</li>
+        <li><b>Navigation and Tracking Methods:</b> Patents covering optical, electromagnetic and mixed-reality navigation methods, including headset-based visualization approaches such as Brainlab's Spine Mixed Reality Navigation, form a substantial and mature filing category.</li>
+        <li><b>Robotics Integration:</b> As imaging and navigation platforms increasingly integrate with robotic instrument guidance, exemplified by Medtronic's Stealth AXiS and Brainlab's Cirq, filings covering robotics-navigation integration methods represent the fastest-growing sub-category of patent activity.</li>
+        <li><b>Mobile and Compact Imaging Hardware:</b> Compact, mobile intraoperative imaging systems such as Brainlab's Loop-X, developed in partnership with medPhoton, have generated a growing body of patents covering non-isocentric imaging geometry and wireless mobile-imaging control systems.</li>
+      </ul>
+
+      <p class="reveal">
+        Classified by Cooperative Patent Classification (CPC) codes, the largest concentration of filings falls
+        within surgical instrument and image-guided intervention classifications, followed closely by
+        medical-imaging data-processing and diagnosis-assistance classifications, reflecting the category's
+        position at the intersection of traditional medical-device engineering and computational image analysis.
+        This CPC distribution is itself a useful proxy for tracking the pace at which software and AI-based methods
+        are displacing purely mechanical or optical navigation approaches as the primary locus of patentable
+        innovation in the category.
+      </p>
+
+      <h3 class="subh reveal" data-n="9.2">Analysis by Issuing Authority and Patent Age</h3>
+
+      <figure class="md-fig hb-fig autoin" id="patAuth">
+        <h6>Patent Filings by Issuing Authority</h6>
+        <p class="md-sub">Indicative share of global filings</p>
+        <div class="hb">
+            <div class="hb-row" style="--w:88.0%;--d:0ms">
+              <span class="hb-lab">USPTO (United States)</span>
+              <span class="hb-trk"><span class="hb-fill"></span><span class="hb-val">45%</span></span>
+            </div>
+            <div class="hb-row" style="--w:43.0%;--d:110ms">
+              <span class="hb-lab">EPO (Europe)</span>
+              <span class="hb-trk"><span class="hb-fill"></span><span class="hb-val">22%</span></span>
+            </div>
+            <div class="hb-row" style="--w:35.2%;--d:220ms">
+              <span class="hb-lab">CNIPA (China)</span>
+              <span class="hb-trk"><span class="hb-fill"></span><span class="hb-val">18%</span></span>
+            </div>
+            <div class="hb-row" style="--w:15.6%;--d:330ms">
+              <span class="hb-lab">JPO (Japan)</span>
+              <span class="hb-trk"><span class="hb-fill"></span><span class="hb-val">8%</span></span>
+            </div>
+            <div class="hb-row" style="--w:13.7%;--d:440ms">
+              <span class="hb-lab">Others</span>
+              <span class="hb-trk"><span class="hb-fill"></span><span class="hb-val">7%</span></span>
+            </div>
+        </div>
+      </figure>
+
+      <p class="reveal">
+        The United States Patent and Trademark Office accounts for the largest share of global filings, consistent
+        with the concentration of major platform developers, Medtronic, Stryker and GE HealthCare among them,
+        headquartered in or with substantial research operations in the United States. The European Patent Office
+        and China's CNIPA together account for a further substantial share, reflecting Siemens Healthineers' and
+        Brainlab's German research base and China's rapidly maturing domestic medical-device patent activity
+        respectively. By patent age, a substantial share of the active patent base has been filed within the past
+        seven years, reflecting the recency of the imaging-navigation-robotics convergence trend that now defines
+        the category's innovation frontier.
+      </p>
+
+      <h3 class="subh reveal" data-n="9.3">Analysis by Patent Valuation and Key Players</h3>
+
+      <p class="reveal">
+        Patent valuation within this category is concentrated among a small number of foundational navigation and
+        imaging-fusion patents held by the largest platform developers, reflecting both the breadth of clinical
+        application these patents cover and the defensive value they provide against competitor entry. Medtronic,
+        Stryker, Siemens Healthineers and Brainlab collectively hold the largest and most valuable patent
+        portfolios in the category, while a growing number of AI-focused entrants are building differentiated,
+        software-specific patent positions around segmentation and predictive-analytics methods rather than
+        competing directly on hardware or navigation-method patents.
+      </p>
+
+      <p class="reveal">
+        Patent litigation activity in this category, while historically less intense than in pharmaceuticals, has
+        begun to increase as the imaging-navigation-robotics convergence trend narrows the technical distance
+        between competing platforms and raises the stakes of overlapping claims around registration algorithms and
+        robotics-navigation integration methods. Market participants using this analysis for competitive-strategy
+        purposes should expect freedom-to-operate diligence to become a more prominent consideration as platform
+        convergence continues, particularly for smaller software-native entrants seeking to license or partner
+        their way into established hardware ecosystems.
       </p>
 
     </section>
