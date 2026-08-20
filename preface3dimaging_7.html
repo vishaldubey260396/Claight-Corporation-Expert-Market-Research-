@@ -1303,6 +1303,54 @@
     .md-prax{grid-template-columns:1fr auto}
     .md-praxin{grid-column:1}
   }
+
+  /* --- 6/7 - shared table tweaks, share doughnut and split bar --- */
+  .md-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .md-scroll table.rd{min-width:560px}
+  table.rd.sg td:not(:first-child),table.rd.sg th:not(:first-child){text-align:right;white-space:nowrap}
+  table.rd.sg tr.tot td{background:#efeafe;border-top:2px solid var(--purple-mid)}
+
+  /* doughnut: share of 2025 revenue by type */
+  .dn-fig{margin-top:16px}
+  .dn-wrap{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px 28px;align-items:center;margin-top:14px}
+  .dn-plot{position:relative;width:180px;justify-self:center}
+  .dn-svg{display:block;width:180px;height:180px;transform:rotate(-90deg)}
+  .dn-track{fill:none;stroke:#f1ecfd;stroke-width:26}
+  .dn-seg{fill:none;stroke-width:26;stroke-linecap:butt;
+    /* drawn from nothing so the ring sweeps in when the exhibit scrolls up */
+    stroke-dasharray:0 10000}
+  .dn-mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;pointer-events:none}
+  .dn-mid b{font-size:26px;font-weight:700;color:var(--navy);line-height:1}
+  .dn-mid span{margin-top:2px;font-size:11px;color:var(--muted)}
+  .dn-legend{display:flex;flex-direction:column;gap:10px;max-width:340px}
+  .dn-row{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink)}
+  .dn-sw{flex:none;width:13px;height:13px;border-radius:3px}
+  .dn-nm{flex:1 1 auto}
+  .dn-pc{font-weight:700;color:var(--purple-deep);font-variant-numeric:tabular-nums}
+
+  /* one bar, two shares */
+  .sp-fig{margin-top:16px}
+  .sp-bar{display:flex;gap:3px;margin-top:14px}
+  .sp-seg{display:flex;align-items:center;justify-content:center;height:44px;border-radius:6px;
+    width:0;transition:width .9s cubic-bezier(.22,1,.36,1)}
+  .sp-seg b{font-size:13px;font-weight:700;color:#fff}
+  .sp-seg.a{background:linear-gradient(90deg,#7c3aed,#5b21b6)}
+  .sp-seg.b{background:linear-gradient(90deg,#a78bfa,#8b5cf6)}
+  .reveal.in .sp-seg,.sp-fig.in .sp-seg{width:var(--w)}
+  .sp-key{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:11px}
+  .sp-key span{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink)}
+  .sp-key i{width:12px;height:12px;border-radius:3px}
+  .sp-key i.a{background:#5b21b6}
+  .sp-key i.b{background:#8b5cf6}
+
+  @media(max-width:640px){
+    .dn-wrap{grid-template-columns:1fr}
+    .sp-seg b{font-size:12px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .sp-seg{transition:none}
+  }
 </style>
 </head>
 <body>
@@ -2595,6 +2643,156 @@
 
     </section>
 
+    <!-- ================= SECTION 6 - COST MODEL ================= -->
+    <section id="cost-model" aria-labelledby="cm-title">
+
+      <h3 class="sub reveal" data-n="6" id="cm-title">Cost Model</h3>
+
+      <p class="reveal">
+        Because this market spans both capital hardware and recurring software and solutions revenue, total cost
+        of ownership rather than upfront purchase price alone is the more meaningful basis on which hospitals
+        evaluate competing platforms, and on which manufacturers increasingly structure their commercial
+        offerings.
+      </p>
+
+      <h3 class="subh nn reveal">Total Cost of Ownership by Platform Tier</h3>
+
+      <p class="reveal">
+        Each platform tier combines a one-time hardware and installation cost with an ongoing annual charge for
+        software licensing, maintenance and technical support, typically structured as a percentage of the
+        original hardware cost for capital-equipment tiers, or as a standalone subscription fee for software-only
+        platforms.
+      </p>
+
+      <div class="md-scroll reveal">
+        <table class="rd">
+          <thead><tr><th>Platform tier</th><th>Hardware / capital cost (one-time)</th>
+            <th>Annual software, service and maintenance</th><th>Approx. 5-year total cost of ownership</th></tr></thead>
+          <tbody>
+        <tr><td><b>Integrated Navigation + Robotics Platforms</b></td><td>USD 250,000-550,000</td><td>~12-15% of capital cost per year</td><td>USD 400,000-900,000</td></tr>
+        <tr><td><b>Mobile Intraoperative 3D Imaging Systems</b></td><td>USD 180,000-400,000</td><td>~10-12% of capital cost per year</td><td>USD 280,000-620,000</td></tr>
+        <tr><td><b>Fixed Intraoperative CT / MRI Suites</b></td><td>USD 0.9 million-1.8 million</td><td>~10-12% of capital cost per year</td><td>USD 1.4 million-2.8 million</td></tr>
+        <tr><td><b>Software-Only / Cloud Platforms</b></td><td>None</td><td>USD 15,000-90,000 per year (full cost)</td><td>USD 75,000-450,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subh nn reveal">Hardware and Software Cost Interdependence</h3>
+
+      <p class="reveal">
+        For the three hardware-anchored tiers, the annual software, service and maintenance charge is not optional
+        in practice: continued access to updated AI-based segmentation algorithms, navigation software revisions
+        and vendor technical support is typically bundled into this recurring fee, meaning a hospital's effective
+        ongoing cost of operating the platform is materially higher than the headline hardware price alone would
+        suggest. This dynamic is increasingly shaping vendor commercial strategy, with several manufacturers
+        exploring subscription-inclusive bundled pricing models that smooth the traditionally large upfront
+        capital outlay into a more predictable multi-year contract structure, similar to the software-only tier's
+        existing commercial model.
+      </p>
+
+      <p class="reveal">
+        For software-only and cloud-based platforms, by contrast, the absence of any hardware capital outlay makes
+        the full cost of ownership recurring and subscription-based from the outset, a structural difference that
+        is expanding this tier's addressable customer base to smaller hospitals and ambulatory surgical centers
+        that would not otherwise be able to justify a large capital purchase, and is expected to make this tier
+        one of the more closely watched commercial models over the forecast period as larger vendors increasingly
+        layer their own software offerings on top of, or independent of, proprietary hardware.
+      </p>
+
+    </section>
+
+    <!-- ================= SECTION 7 - GLOBAL MARKET SEGMENTATION ================= -->
+    <section id="segmentation" aria-labelledby="sg-title">
+
+      <h3 class="sub reveal" data-n="7" id="sg-title">Global Market Segmentation (2019-2035)</h3>
+
+      <p class="reveal">
+        This section presents a detailed, segment-wise historical and forecast analysis of the global 3D medical
+        and surgical imaging platform market. Each segmentation dimension, type, technology, application and end
+        user, is analysed independently, since a given installed platform typically represents a distinct
+        combination across all four dimensions; a mobile intraoperative imaging robot deployed in a neurosurgery
+        suite, for example, represents a materially different commercial profile from a cloud-based planning
+        software subscription used in an ambulatory orthopedic clinic.
+      </p>
+
+      <h3 class="subh reveal" data-n="7.1">Market by Type</h3>
+
+      <p class="reveal">
+        By type, the market is segmented into hardware and software and solutions. Hardware, comprising imaging
+        systems and scanners alongside navigation and display hardware, is estimated to account for approximately
+        <strong>61% of total market revenue in 2025</strong>, reflecting the still-dominant role of capital
+        equipment sales in the category. Within hardware specifically, imaging systems and scanners represent
+        approximately <strong>68% of hardware revenue</strong>, with navigation and display hardware comprising
+        the balance.
+      </p>
+
+      <figure class="md-fig dn-fig" id="typeMix">
+        <h6>Global 3D Medical and Surgical Imaging Platform Market by Type, 2025</h6>
+        <p class="md-sub">Hardware leads on capital equipment sales; software and solutions is the faster-growing category</p>
+        <div class="dn-wrap">
+          <div class="dn-plot">
+            <svg class="dn-svg" viewBox="0 0 180 180" role="img"
+                 aria-label="Doughnut chart: hardware 61 percent, software and solutions 39 percent of 2025 market revenue.">
+              <circle class="dn-track" cx="90" cy="90" r="64"/>
+              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#6d28d9"
+                stroke-dasharray="245.30 156.83" stroke-dashoffset="0.00"/>
+              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#a78bfa"
+                stroke-dasharray="156.83 245.30" stroke-dashoffset="-245.30"/>
+            </svg>
+            <div class="dn-mid"><b>2</b><span>segments</span></div>
+          </div>
+          <div class="dn-legend">
+              <div class="dn-row"><span class="dn-sw" style="background:#6d28d9"></span>
+                <span class="dn-nm">Hardware</span><span class="dn-pc">61%</span></div>
+              <div class="dn-row"><span class="dn-sw" style="background:#a78bfa"></span>
+                <span class="dn-nm">Software &amp; Solutions</span><span class="dn-pc">39%</span></div>
+          </div>
+        </div>
+      </figure>
+
+      <div class="md-scroll reveal">
+        <table class="rd sg">
+          <thead><tr><th>Segment</th><th>2019</th><th>2025</th><th>2030F</th><th>2035F</th><th>CAGR 2026-35</th></tr></thead>
+          <tbody>
+        <tr><td>Hardware</td><td>2.6</td><td>4.18</td><td>6.9</td><td>10.9</td><td>10.0%</td></tr>
+        <tr><td>Software and Solutions</td><td>1.4</td><td>2.67</td><td>5.4</td><td>9.4</td><td>13.5%</td></tr>
+        <tr class="tot"><td><b>Total</b></td><td><b>4.0</b></td><td><b>6.85</b></td><td><b>12.3</b></td><td><b>20.34</b></td><td><b>11.50%</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="reveal">
+        Software and solutions is growing at a materially faster rate than hardware, consistent with the broader
+        medical-device industry shift toward recurring, subscription-based revenue models; by 2035, software and
+        solutions is projected to account for approximately <strong>46% of total market revenue</strong>, up from
+        around 39% in 2025, as AI-based analytics, cloud connectivity and platform-agnostic visualization software
+        increasingly become standalone revenue lines rather than bundled hardware features.
+      </p>
+
+      <p class="reveal">
+        Historically, hardware accounted for an even larger majority of market revenue, approaching 65% as
+        recently as 2019, before the current wave of AI-based analytics and cloud-platform investment began
+        meaningfully expanding the software category's share. This shift mirrors the broader trajectory of the
+        medical-imaging industry as a whole, in which imaging hardware has progressively matured into a more
+        commoditised category even as the software layer that interprets, analyses and acts upon the resulting
+        images has become an increasingly important and differentiated source of both clinical value and
+        commercial margin.
+      </p>
+
+      <figure class="md-fig sp-fig" id="hwSplit">
+        <h6>Hardware - Sub-Segment Share, 2025</h6>
+        <p class="md-sub">Share of hardware revenue</p>
+        <div class="sp-bar">
+          <span class="sp-seg a" style="--w:68%"><b>68%</b></span>
+          <span class="sp-seg b" style="--w:32%"><b>32%</b></span>
+        </div>
+        <div class="sp-key">
+          <span><i class="a"></i>Imaging Systems and Scanners</span>
+          <span><i class="b"></i>Navigation and Display Hardware</span>
+        </div>
+      </figure>
+
+    </section>
 
   </div>
 </div>
@@ -3523,6 +3721,57 @@
       });
     },{threshold:[0,.2]});
     io.observe(panel);
+  })();
+
+  /* ---------- Section 7 - type-mix doughnut and hardware split ---------- */
+  (function(){
+    var fig=document.getElementById('typeMix');
+    var split=document.getElementById('hwSplit');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if(fig){
+      var segs=[].slice.call(fig.querySelectorAll('.dn-seg')).map(function(c){
+        var d=(c.getAttribute('stroke-dasharray')||'').split(' ');
+        return {el:c, len:parseFloat(d[0])||0, gap:parseFloat(d[1])||0};
+      });
+      /* the markup carries the final arcs; hold them at zero until the ring sweeps in */
+      /* the stylesheet sets stroke-dasharray, which outranks the presentation
+         attribute - so drive the sweep through inline style instead */
+      function rest(){ segs.forEach(function(s){ s.el.style.strokeDasharray='0 10000'; }); }
+      function done(){ segs.forEach(function(s){ s.el.style.strokeDasharray=s.len+' '+s.gap; }); }
+      function sweep(){
+        if(reduce){ done(); return; }
+        var t0=null, DUR=900;
+        requestAnimationFrame(function step(ts){
+          if(t0===null) t0=ts;
+          var k=Math.min(1,(ts-t0)/DUR), e=1-Math.pow(1-k,3);
+          segs.forEach(function(s){ s.el.style.strokeDasharray=(s.len*e)+' 10000'; });
+          if(k<1) requestAnimationFrame(step); else done();
+        });
+      }
+      if(reduce || !('IntersectionObserver' in window)){ done(); }
+      else {
+        rest();
+        var shown=false;
+        new IntersectionObserver(function(es){
+          es.forEach(function(e){
+            if(e.isIntersecting && e.intersectionRatio>=.25){ if(!shown){ shown=true; sweep(); } }
+            else if(!e.isIntersecting){ if(shown){ shown=false; rest(); } }
+          });
+        },{threshold:[0,.25]}).observe(fig);
+      }
+    }
+
+    if(split){
+      if(reduce || !('IntersectionObserver' in window)){ split.classList.add('in'); return; }
+      var on=false;
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting && e.intersectionRatio>=.25){ if(!on){ on=true; split.classList.add('in'); } }
+          else if(!e.isIntersecting){ if(on){ on=false; split.classList.remove('in'); } }
+        });
+      },{threshold:[0,.25]}).observe(split);
+    }
   })();
 </script>
 </body>
