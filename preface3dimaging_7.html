@@ -1638,12 +1638,15 @@
   .bb-ay{text-anchor:end}
   .bb-t1{fill:var(--navy);font-size:10px;font-weight:600}
   .bb-g{cursor:pointer;outline:none}
-  .bb-w,.bb-c{transform:scale(0);transform-box:fill-box;transform-origin:center;
-    transition:transform .66s cubic-bezier(.34,1.5,.64,1) var(--d),opacity .24s ease}
-  .bb-fig.in .bb-w,.bb-fig.in .bb-c{transform:scale(1)}
-  .bb-w{opacity:.9}
-  .bb-fig.in .bb-g.on .bb-c{transform:scale(1.08)}
-  .bb-fig.in .bb-g.on .bb-w{transform:scale(1.22);opacity:1}
+  .bb-ball{transform:scale(0);
+    transition:transform .68s cubic-bezier(.34,1.5,.64,1) var(--d)}
+  .bb-fig.in .bb-ball{transform:scale(1)}
+  .bb-fig.in .bb-g.on .bb-ball{transform:scale(1.14)}
+  .bb-c{stroke-width:1.4}
+  .bb-w{opacity:.85;transition:opacity .24s ease}
+  .bb-fig.in .bb-g.on .bb-w{opacity:1}
+  .bb-hi{opacity:.92}
+  .bb-hi2{opacity:.42}
   .bb-g:focus-visible .bb-c{stroke:#1e1b4b;stroke-width:2.5}
   .bb-l{pointer-events:none;opacity:0;transition:opacity .45s ease .78s}
   .bb-fig.in .bb-l{opacity:1}
@@ -1664,7 +1667,7 @@
     .bb-svg{min-width:530px}
   }
   @media(prefers-reduced-motion:reduce){
-    .bb-w,.bb-c{transform:scale(1);transition:opacity .2s ease}
+    .bb-ball{transform:scale(1);transition:none}
     .bb-l{opacity:1;transition:none}
   }
 
@@ -3404,42 +3407,67 @@
         <p class="md-sub">Position is 2025 share against 2026-2035 growth; bubble size is 2035 forecast revenue</p>
         <div class="bb-wrap">
           <div class="bb-plotwrap">
-            <svg class="bb-svg" viewBox="19 1 599 298" role="list"
+            <svg class="bb-svg" viewBox="16 0 616 302" role="list"
                  aria-label="Bubble chart of five regions: 2025 revenue share against 2026-2035 CAGR, sized by 2035 forecast revenue.">
               <defs>
-                <radialGradient id="bbf-na" cx="32%" cy="26%" r="82%">
-                  <stop offset="0" stop-color="#9f7ed4"/><stop offset="1" stop-color="#4e1c9c"/>
+                <radialGradient id="bbShine" cx="50%" cy="50%" r="50%">
+                  <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+                  <stop offset=".55" stop-color="#fff" stop-opacity=".45"/>
+                  <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="bbf-na" cx="34%" cy="30%" r="76%">
+                  <stop offset="0" stop-color="#d1c0ea" stop-opacity=".92"/>
+                  <stop offset=".46" stop-color="#8c63cb" stop-opacity=".88"/>
+                  <stop offset=".84" stop-color="#501da0"/>
+                  <stop offset=".95" stop-color="#b59bde"/>
+                  <stop offset="1" stop-color="#5b21b6" stop-opacity=".9"/>
                 </radialGradient>
                 <radialGradient id="bbg-na">
-                  <stop offset="52%" stop-color="#5b21b6" stop-opacity=".34"/>
+                  <stop offset="50%" stop-color="#5b21b6" stop-opacity=".3"/>
                   <stop offset="1" stop-color="#5b21b6" stop-opacity="0"/>
                 </radialGradient>
-                <radialGradient id="bbf-eu" cx="32%" cy="26%" r="82%">
-                  <stop offset="0" stop-color="#aa82e8"/><stop offset="1" stop-color="#5d22ba"/>
+                <radialGradient id="bbf-eu" cx="34%" cy="30%" r="76%">
+                  <stop offset="0" stop-color="#d6c2f4" stop-opacity=".92"/>
+                  <stop offset=".46" stop-color="#9868e4" stop-opacity=".88"/>
+                  <stop offset=".84" stop-color="#5f23be"/>
+                  <stop offset=".95" stop-color="#bd9eed"/>
+                  <stop offset="1" stop-color="#6d28d9" stop-opacity=".9"/>
                 </radialGradient>
                 <radialGradient id="bbg-eu">
-                  <stop offset="52%" stop-color="#6d28d9" stop-opacity=".34"/>
+                  <stop offset="50%" stop-color="#6d28d9" stop-opacity=".3"/>
                   <stop offset="1" stop-color="#6d28d9" stop-opacity="0"/>
                 </radialGradient>
-                <radialGradient id="bbf-ap" cx="32%" cy="26%" r="82%">
-                  <stop offset="0" stop-color="#b38cf4"/><stop offset="1" stop-color="#6a31cb"/>
+                <radialGradient id="bbf-ap" cx="34%" cy="30%" r="76%">
+                  <stop offset="0" stop-color="#dac7f9" stop-opacity=".92"/>
+                  <stop offset=".46" stop-color="#a375f2" stop-opacity=".88"/>
+                  <stop offset=".84" stop-color="#6d33d0"/>
+                  <stop offset=".95" stop-color="#c4a6f6"/>
+                  <stop offset="1" stop-color="#7c3aed" stop-opacity=".9"/>
                 </radialGradient>
                 <radialGradient id="bbg-ap">
-                  <stop offset="52%" stop-color="#7c3aed" stop-opacity=".34"/>
+                  <stop offset="50%" stop-color="#7c3aed" stop-opacity=".3"/>
                   <stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>
                 </radialGradient>
-                <radialGradient id="bbf-la" cx="32%" cy="26%" r="82%">
-                  <stop offset="0" stop-color="#cbbbfc"/><stop offset="1" stop-color="#8f77d7"/>
+                <radialGradient id="bbf-la" cx="34%" cy="30%" r="76%">
+                  <stop offset="0" stop-color="#e6defd" stop-opacity=".92"/>
+                  <stop offset=".46" stop-color="#c1adfb" stop-opacity=".88"/>
+                  <stop offset=".84" stop-color="#927adc"/>
+                  <stop offset=".95" stop-color="#d7cafc"/>
+                  <stop offset="1" stop-color="#a78bfa" stop-opacity=".9"/>
                 </radialGradient>
                 <radialGradient id="bbg-la">
-                  <stop offset="52%" stop-color="#a78bfa" stop-opacity=".34"/>
+                  <stop offset="50%" stop-color="#a78bfa" stop-opacity=".3"/>
                   <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
                 </radialGradient>
-                <radialGradient id="bbf-me" cx="32%" cy="26%" r="82%">
-                  <stop offset="0" stop-color="#dcd4fd"/><stop offset="1" stop-color="#a89bd9"/>
+                <radialGradient id="bbf-me" cx="34%" cy="30%" r="76%">
+                  <stop offset="0" stop-color="#eeeafe" stop-opacity=".92"/>
+                  <stop offset=".46" stop-color="#d5cbfd" stop-opacity=".88"/>
+                  <stop offset=".84" stop-color="#ac9fde"/>
+                  <stop offset=".95" stop-color="#e4ddfe"/>
+                  <stop offset="1" stop-color="#c4b5fd" stop-opacity=".9"/>
                 </radialGradient>
                 <radialGradient id="bbg-me">
-                  <stop offset="52%" stop-color="#c4b5fd" stop-opacity=".34"/>
+                  <stop offset="50%" stop-color="#c4b5fd" stop-opacity=".3"/>
                   <stop offset="1" stop-color="#c4b5fd" stop-opacity="0"/>
                 </radialGradient>
               </defs>
@@ -3471,41 +3499,66 @@
               <text class="bb-t1" x="560.0" y="294.0" text-anchor="end">Market share of 2025 revenue (%)</text>
               <g class="bb-g" data-i="0" tabindex="0" role="listitem"
                  aria-label="North America: 42 percent of 2025 revenue, CAGR 10.8 percent, USD 8.0 billion in 2035">
-                <circle class="bb-w" cx="479.4" cy="176.7" r="61.6" fill="url(#bbg-na)" style="--d:0ms"/>
-                <circle class="bb-c" cx="479.4" cy="176.7" r="38.0" fill="url(#bbf-na)" style="--d:0ms"/>
-                <text class="bb-l n" x="528.4" y="164.7" text-anchor="start" fill="#3b1178">North America</text>
-                <text class="bb-l m" x="528.4" y="178.7" text-anchor="start">42%, 10.8%</text>
-                <text class="bb-l v" x="528.4" y="192.7" text-anchor="start">$8.0B</text>
+                <g class="bb-ball" style="--d:0ms;transform-box:view-box;transform-origin:479.4px 176.7px">
+                  <circle class="bb-w" cx="479.4" cy="176.7" r="48.2" fill="url(#bbg-na)"/>
+                  <circle class="bb-c" cx="479.4" cy="176.7" r="28.0" fill="url(#bbf-na)" stroke="#c0aae3"/>
+                  <ellipse class="bb-hi" cx="469.8" cy="165.5" rx="9.2" ry="5.9"
+                           transform="rotate(-32 469.8 165.5)" fill="url(#bbShine)"/>
+                  <circle class="bb-hi2" cx="489.4" cy="187.9" r="3.1" fill="#fff"/>
+                </g>
+                <text class="bb-l n" x="518.4" y="164.7" text-anchor="start" fill="#3b1178">North America</text>
+                <text class="bb-l m" x="518.4" y="178.7" text-anchor="start">42%, 10.8%</text>
+                <text class="bb-l v" x="518.4" y="192.7" text-anchor="start">$8.0B</text>
               </g>
               <g class="bb-g" data-i="1" tabindex="0" role="listitem"
                  aria-label="Europe: 26 percent of 2025 revenue, CAGR 11.6 percent, USD 5.3 billion in 2035">
-                <circle class="bb-w" cx="318.1" cy="144.1" r="50.1" fill="url(#bbg-eu)" style="--d:110ms"/>
-                <circle class="bb-c" cx="318.1" cy="144.1" r="30.9" fill="url(#bbf-eu)" style="--d:110ms"/>
-                <text class="bb-l n" x="276.2" y="132.1" text-anchor="end" fill="#4c1d95">Europe</text>
-                <text class="bb-l m" x="276.2" y="146.1" text-anchor="end">26%, 11.6%</text>
-                <text class="bb-l v" x="276.2" y="160.1" text-anchor="end">$5.3B</text>
+                <g class="bb-ball" style="--d:110ms;transform-box:view-box;transform-origin:318.1px 144.1px">
+                  <circle class="bb-w" cx="318.1" cy="144.1" r="39.2" fill="url(#bbg-eu)"/>
+                  <circle class="bb-c" cx="318.1" cy="144.1" r="22.8" fill="url(#bbf-eu)" stroke="#c7adf0"/>
+                  <ellipse class="bb-hi" cx="310.3" cy="135.0" rx="7.5" ry="4.8"
+                           transform="rotate(-32 310.3 135.0)" fill="url(#bbShine)"/>
+                  <circle class="bb-hi2" cx="326.3" cy="153.2" r="2.5" fill="#fff"/>
+                </g>
+                <text class="bb-l n" x="284.3" y="132.1" text-anchor="end" fill="#4c1d95">Europe</text>
+                <text class="bb-l m" x="284.3" y="146.1" text-anchor="end">26%, 11.6%</text>
+                <text class="bb-l v" x="284.3" y="160.1" text-anchor="end">$5.3B</text>
               </g>
               <g class="bb-g" data-i="2" tabindex="0" role="listitem"
                  aria-label="Asia Pacific: 22 percent of 2025 revenue, CAGR 13.6 percent, USD 5.4 billion in 2035">
-                <circle class="bb-w" cx="277.8" cy="62.7" r="50.6" fill="url(#bbg-ap)" style="--d:220ms"/>
-                <circle class="bb-c" cx="277.8" cy="62.7" r="31.2" fill="url(#bbf-ap)" style="--d:220ms"/>
-                <text class="bb-l n" x="320.0" y="50.7" text-anchor="start" fill="#6d28d9">Asia Pacific</text>
-                <text class="bb-l m" x="320.0" y="64.7" text-anchor="start">22%, 13.6%</text>
-                <text class="bb-l v" x="320.0" y="78.7" text-anchor="start">$5.4B</text>
+                <g class="bb-ball" style="--d:220ms;transform-box:view-box;transform-origin:277.8px 62.7px">
+                  <circle class="bb-w" cx="277.8" cy="62.7" r="39.6" fill="url(#bbg-ap)"/>
+                  <circle class="bb-c" cx="277.8" cy="62.7" r="23.0" fill="url(#bbf-ap)" stroke="#cdb4f8"/>
+                  <ellipse class="bb-hi" cx="269.9" cy="53.5" rx="7.6" ry="4.8"
+                           transform="rotate(-32 269.9 53.5)" fill="url(#bbShine)"/>
+                  <circle class="bb-hi2" cx="286.0" cy="71.9" r="2.5" fill="#fff"/>
+                </g>
+                <text class="bb-l n" x="311.8" y="50.7" text-anchor="start" fill="#6d28d9">Asia Pacific</text>
+                <text class="bb-l m" x="311.8" y="64.7" text-anchor="start">22%, 13.6%</text>
+                <text class="bb-l v" x="311.8" y="78.7" text-anchor="start">$5.4B</text>
               </g>
               <g class="bb-g" data-i="3" tabindex="0" role="listitem"
                  aria-label="Latin America: 6 percent of 2025 revenue, CAGR 10.4 percent, USD 1.1 billion in 2035">
-                <circle class="bb-w" cx="116.5" cy="193.0" r="22.8" fill="url(#bbg-la)" style="--d:330ms"/>
-                <circle class="bb-c" cx="116.5" cy="193.0" r="14.1" fill="url(#bbf-la)" style="--d:330ms"/>
-                <text class="bb-l n" x="141.6" y="173.0" text-anchor="start" fill="#6d28d9">Latin America</text>
-                <text class="bb-l m" x="141.6" y="187.0" text-anchor="start">6%, 10.4% &#183; <tspan class="bb-vv">$1.1B</tspan></text>
+                <g class="bb-ball" style="--d:330ms;transform-box:view-box;transform-origin:116.5px 193.0px">
+                  <circle class="bb-w" cx="116.5" cy="193.0" r="17.9" fill="url(#bbg-la)"/>
+                  <circle class="bb-c" cx="116.5" cy="193.0" r="10.4" fill="url(#bbf-la)" stroke="#ddd2fd"/>
+                  <ellipse class="bb-hi" cx="112.9" cy="188.8" rx="3.4" ry="2.2"
+                           transform="rotate(-32 112.9 188.8)" fill="url(#bbShine)"/>
+                  <circle class="bb-hi2" cx="120.2" cy="197.1" r="1.5" fill="#fff"/>
+                </g>
+                <text class="bb-l n" x="137.9" y="173.0" text-anchor="start" fill="#6d28d9">Latin America</text>
+                <text class="bb-l m" x="137.9" y="187.0" text-anchor="start">6%, 10.4% &#183; <tspan class="bb-vv">$1.1B</tspan></text>
               </g>
               <g class="bb-g" data-i="4" tabindex="0" role="listitem"
                  aria-label="Middle East and Africa: 4 percent of 2025 revenue, CAGR 10.0 percent, USD 0.7 billion in 2035">
-                <circle class="bb-w" cx="96.3" cy="209.3" r="18.2" fill="url(#bbg-me)" style="--d:440ms"/>
-                <circle class="bb-c" cx="96.3" cy="209.3" r="11.2" fill="url(#bbf-me)" style="--d:440ms"/>
-                <text class="bb-l n" x="118.6" y="225.3" text-anchor="start" fill="#7c3aed">Middle East &amp; Africa</text>
-                <text class="bb-l m" x="118.6" y="239.3" text-anchor="start">4%, 10.0% &#183; <tspan class="bb-vv">$0.7B</tspan></text>
+                <g class="bb-ball" style="--d:440ms;transform-box:view-box;transform-origin:96.3px 209.3px">
+                  <circle class="bb-w" cx="96.3" cy="209.3" r="14.2" fill="url(#bbg-me)"/>
+                  <circle class="bb-c" cx="96.3" cy="209.3" r="8.3" fill="url(#bbf-me)" stroke="#e8e2fe"/>
+                  <ellipse class="bb-hi" cx="93.5" cy="206.0" rx="2.7" ry="1.7"
+                           transform="rotate(-32 93.5 206.0)" fill="url(#bbShine)"/>
+                  <circle class="bb-hi2" cx="99.3" cy="212.6" r="1.5" fill="#fff"/>
+                </g>
+                <text class="bb-l n" x="115.6" y="225.3" text-anchor="start" fill="#7c3aed">Middle East &amp; Africa</text>
+                <text class="bb-l m" x="115.6" y="239.3" text-anchor="start">4%, 10.0% &#183; <tspan class="bb-vv">$0.7B</tspan></text>
               </g>
             </svg>
           </div>
