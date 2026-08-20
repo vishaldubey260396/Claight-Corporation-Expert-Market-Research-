@@ -1341,16 +1341,12 @@
   .hb-lab{text-align:right;font-size:12.5px;color:var(--navy);font-weight:600}
   .hb-trk{position:relative;display:flex;align-items:center;height:22px;border-radius:5px;
     background:#f1ecfd}
-  .hb-fill{display:block;height:100%;width:0;border-radius:5px;
-    background:linear-gradient(90deg,#8b5cf6,#6d28d9);
-    transition:width .85s cubic-bezier(.22,1,.36,1) var(--d)}
+  .hb-fill{display:block;height:100%;width:var(--w);border-radius:5px;
+    background:linear-gradient(90deg,#8b5cf6,#6d28d9)}
   .hb-row.hot .hb-fill{background:linear-gradient(90deg,#10b981,#047857)}
-  .hb-fig.in .hb-fill{width:var(--w)}
   .hb-val{position:absolute;left:var(--w);margin-left:9px;font-size:11.5px;font-weight:700;
-    color:var(--purple-deep);white-space:nowrap;opacity:0;
-    transition:opacity .35s ease calc(var(--d) + .5s)}
+    color:var(--purple-deep);white-space:nowrap}
   .hb-row.hot .hb-val{color:#065f46}
-  .hb-fig.in .hb-val{opacity:1}
 
   .gb{margin-top:14px}
   .gb-plot{position:relative;height:230px;padding:0 6px 26px 34px}
@@ -1394,7 +1390,7 @@
     .gb-x{font-size:10px}
   }
   @media(prefers-reduced-motion:reduce){
-    .hb-fill,.hb-val,.gb-b{transition:none}
+    .gb-b{transition:none}
   }
 
   /* --- 12 - recent developments as a dated rail --- */
@@ -3745,17 +3741,6 @@
             </div>
         </div>
       </figure>
-
-      <p class="reveal">
-        The United States Patent and Trademark Office accounts for the largest share of global filings, consistent
-        with the concentration of major platform developers, Medtronic, Stryker and GE HealthCare among them,
-        headquartered in or with substantial research operations in the United States. The European Patent Office
-        and China's CNIPA together account for a further substantial share, reflecting Siemens Healthineers' and
-        Brainlab's German research base and China's rapidly maturing domestic medical-device patent activity
-        respectively. By patent age, a substantial share of the active patent base has been filed within the past
-        seven years, reflecting the recency of the imaging-navigation-robotics convergence trend that now defines
-        the category's innovation frontier.
-      </p>
 
       <h3 class="subh reveal" data-n="9.3">Analysis by Patent Valuation and Key Players</h3>
 
