@@ -1541,6 +1541,53 @@
     .cm-v,.cm-none{opacity:1}
     .cm-fig.in .cm-bar.cap,.cm-fig.in .cm-bar.tco{transition:none}
   }
+
+  /* --- 7 - every segmentation dimension on one stacked view --- */
+  .sk-fig{margin-top:16px}
+  .sk-top{display:flex;align-items:center;justify-content:space-between;gap:14px;
+    flex-wrap:wrap;margin-top:12px}
+  .sk-toggle{display:inline-flex;padding:3px;border-radius:999px;background:#f1ecfd;
+    border:1px solid var(--line)}
+  .sk-y{appearance:none;border:0;background:none;border-radius:999px;padding:5px 15px;
+    font:inherit;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;
+    transition:background .18s ease,color .18s ease}
+  .sk-y.on{background:var(--purple-mid);color:#fff}
+  .sk-y:focus-visible{outline:2px solid #7c3aed;outline-offset:2px}
+  .sk-read{font-size:12px;color:var(--muted);min-height:18px}
+  .sk-read b{color:var(--purple-deep);font-weight:700}
+
+  .sk-rows{margin-top:14px}
+  .sk-row{display:grid;grid-template-columns:minmax(96px,130px) minmax(0,1fr);
+    align-items:center;column-gap:14px;margin-bottom:11px}
+  .sk-dim{font-size:12px;font-weight:600;color:var(--navy);text-align:right}
+  .sk-bar{display:flex;gap:2px;height:42px}
+  .sk-seg{position:relative;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;overflow:hidden;background:var(--c);color:#fff;
+    width:0;border-radius:3px;outline:none;
+    transition:width .6s cubic-bezier(.22,1,.36,1) var(--d),filter .18s ease,transform .18s ease}
+  .sk-fig.in .sk-seg{width:var(--w)}
+  .sk-seg:first-child{border-radius:7px 3px 3px 7px}
+  .sk-seg:last-child{border-radius:3px 7px 7px 3px}
+  .sk-seg b{font-size:10.5px;font-weight:600;line-height:1.2;padding:0 6px;text-align:center;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .sk-seg em{font-style:normal;font-size:11.5px;font-weight:700;line-height:1.25}
+  .sk-seg.hidename b{display:none}
+  .sk-seg.hidepct em{display:none}
+  .sk-seg.on{filter:brightness(1.22);transform:translateY(-2px);z-index:2}
+  .sk-seg:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.55)}
+
+  @media(max-width:640px){
+    .sk-row{grid-template-columns:1fr;row-gap:4px}
+    .sk-dim{text-align:left}
+    .sk-bar{height:38px}
+    .sk-seg b{font-size:10px}
+    .sk-seg em{font-size:10.5px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .sk-seg{transition:filter .18s ease}
+    .sk-fig.in .sk-seg{width:var(--w)}
+  }
+
 </style>
 </head>
 <body>
@@ -2930,6 +2977,74 @@
         suite, for example, represents a materially different commercial profile from a cloud-based planning
         software subscription used in an ambulatory orthopedic clinic.
       </p>
+
+      <figure class="md-fig sk-fig autoin" id="segSummary">
+        <h6>All Segments at a Glance</h6>
+        <p class="md-sub">Share of market revenue across every segmentation dimension - switch the year to watch the mix shift</p>
+        <div class="sk-top">
+          <div class="sk-toggle" role="group" aria-label="Year">
+            <button type="button" class="sk-y on" data-y="0">2025</button>
+            <button type="button" class="sk-y" data-y="1">2035F</button>
+          </div>
+          <div class="sk-read" id="skRead">Hover a band to read its share</div>
+        </div>
+        <div class="sk-rows">
+            <div class="sk-row">
+              <span class="sk-dim">By type</span>
+              <div class="sk-bar">
+                <span class="sk-seg" tabindex="0" data-dim="By type" data-n="Hardware" data-a="61" data-b="54"
+                      style="--c:#3b1178;--d:0ms"><b>Hardware</b><em>61%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By type" data-n="Software &amp; Solutions" data-a="39" data-b="46"
+                      style="--c:#4c1d95;--d:45ms"><b>Software &amp; Solutions</b><em>39%</em></span>
+              </div>
+            </div>
+            <div class="sk-row">
+              <span class="sk-dim">By technology</span>
+              <div class="sk-bar">
+                <span class="sk-seg" tabindex="0" data-dim="By technology" data-n="CT-Based" data-a="34" data-b="31"
+                      style="--c:#3b1178;--d:180ms"><b>CT-Based</b><em>34%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By technology" data-n="MRI-Based" data-a="27" data-b="26"
+                      style="--c:#4c1d95;--d:225ms"><b>MRI-Based</b><em>27%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By technology" data-n="Ultrasound-Based" data-a="19" data-b="23"
+                      style="--c:#5b21b6;--d:270ms"><b>Ultrasound-Based</b><em>19%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By technology" data-n="Optical / Fluoroscopy" data-a="14" data-b="14"
+                      style="--c:#6d28d9;--d:315ms"><b>Optical / Fluoroscopy</b><em>14%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By technology" data-n="Others" data-a="6" data-b="6"
+                      style="--c:#7c3aed;--d:360ms"><b>Others</b><em>6%</em></span>
+              </div>
+            </div>
+            <div class="sk-row">
+              <span class="sk-dim">By application</span>
+              <div class="sk-bar">
+                <span class="sk-seg" tabindex="0" data-dim="By application" data-n="Neurosurgery" data-a="27" data-b="30"
+                      style="--c:#3b1178;--d:360ms"><b>Neurosurgery</b><em>27%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By application" data-n="Orthopedic &amp; Spine" data-a="26" data-b="28"
+                      style="--c:#4c1d95;--d:405ms"><b>Orthopedic &amp; Spine</b><em>26%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By application" data-n="Radiology / General" data-a="21" data-b="18"
+                      style="--c:#5b21b6;--d:450ms"><b>Radiology / General</b><em>21%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By application" data-n="Cardiovascular" data-a="17" data-b="17"
+                      style="--c:#6d28d9;--d:495ms"><b>Cardiovascular</b><em>17%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By application" data-n="Others" data-a="9" data-b="7"
+                      style="--c:#7c3aed;--d:540ms"><b>Others</b><em>9%</em></span>
+              </div>
+            </div>
+            <div class="sk-row">
+              <span class="sk-dim">By end user</span>
+              <div class="sk-bar">
+                <span class="sk-seg" tabindex="0" data-dim="By end user" data-n="Hospitals" data-a="58" data-b="55"
+                      style="--c:#3b1178;--d:540ms"><b>Hospitals</b><em>58%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By end user" data-n="Ambulatory Surgical Centers" data-a="22" data-b="26"
+                      style="--c:#4c1d95;--d:585ms"><b>Ambulatory Surgical Centers</b><em>22%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By end user" data-n="Diagnostic &amp; Research" data-a="14" data-b="13"
+                      style="--c:#5b21b6;--d:630ms"><b>Diagnostic &amp; Research</b><em>14%</em></span>
+                <span class="sk-seg" tabindex="0" data-dim="By end user" data-n="Others" data-a="6" data-b="6"
+                      style="--c:#6d28d9;--d:675ms"><b>Others</b><em>6%</em></span>
+              </div>
+            </div>
+        </div>
+      
+        <figcaption class="md-cap">Every share shown is stated in the sub-sections that follow; the 2035 type split is derived from the software share reaching ~46%. Bands are ordered largest first within each dimension.</figcaption>
+      </figure>
 
       <h3 class="subh reveal" data-n="7.1">Market by Type</h3>
 
@@ -5060,6 +5175,48 @@
     });
     calc();
   })();
+
+  /* ---- 7 all-segments stacked summary ---- */
+  (function(){
+    var fig=document.getElementById('segSummary'); if(!fig) return;
+    var segs=[].slice.call(fig.querySelectorAll('.sk-seg'));
+    var read=document.getElementById('skRead');
+    var years=[].slice.call(fig.querySelectorAll('.sk-y'));
+    var yi=0, labels=['2025','2035F'];
+    function paint(){
+      segs.forEach(function(s){
+        var v=+s.getAttribute(yi?'data-b':'data-a');
+        s.style.setProperty('--w', v+'%');
+        s.querySelector('em').textContent=v+'%';
+        var px=s.parentNode.clientWidth*v/100;
+        s.classList.toggle('hidename', px<86);
+        s.classList.toggle('hidepct', px<26);
+        s.setAttribute('aria-label', s.getAttribute('data-dim')+', '+s.getAttribute('data-n')+', '+v+'% of '+labels[yi]+' revenue');
+      });
+    }
+    function say(s){
+      if(!s){ read.innerHTML='Hover a band to read its share'; return; }
+      var v=+s.getAttribute(yi?'data-b':'data-a');
+      read.innerHTML=s.getAttribute('data-dim')+' &middot; <b>'+s.getAttribute('data-n')+'</b> &mdash; '+v+'% of '+labels[yi]+' revenue';
+    }
+    segs.forEach(function(s){
+      function on(){ s.classList.add('on'); say(s); }
+      function off(){ s.classList.remove('on'); say(null); }
+      s.addEventListener('mouseenter',on); s.addEventListener('mouseleave',off);
+      s.addEventListener('focus',on); s.addEventListener('blur',off);
+    });
+    years.forEach(function(b){
+      b.addEventListener('click',function(){
+        yi=+b.getAttribute('data-y');
+        years.forEach(function(o){ o.classList.toggle('on', o===b); });
+        paint();
+        var cur=fig.querySelector('.sk-seg.on'); say(cur||null);
+      });
+    });
+    paint();
+    var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(paint,150); });
+  })();
+
 </script>
 </body>
 </html>
