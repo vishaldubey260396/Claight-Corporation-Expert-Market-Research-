@@ -1329,27 +1329,8 @@
   .dn-nm{flex:1 1 auto}
   .dn-pc{font-weight:700;color:var(--purple-deep);font-variant-numeric:tabular-nums}
 
-  /* one bar, two shares */
-  .sp-fig{margin-top:16px}
-  .sp-bar{display:flex;gap:3px;margin-top:14px}
-  .sp-seg{display:flex;align-items:center;justify-content:center;height:44px;border-radius:6px;
-    width:0;transition:width .9s cubic-bezier(.22,1,.36,1)}
-  .sp-seg b{font-size:13px;font-weight:700;color:#fff}
-  .sp-seg.a{background:linear-gradient(90deg,#7c3aed,#5b21b6)}
-  .sp-seg.b{background:linear-gradient(90deg,#a78bfa,#8b5cf6)}
-  .reveal.in .sp-seg,.sp-fig.in .sp-seg{width:var(--w)}
-  .sp-key{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:11px}
-  .sp-key span{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink)}
-  .sp-key i{width:12px;height:12px;border-radius:3px}
-  .sp-key i.a{background:#5b21b6}
-  .sp-key i.b{background:#8b5cf6}
-
   @media(max-width:640px){
     .dn-wrap{grid-template-columns:1fr}
-    .sp-seg b{font-size:12px}
-  }
-  @media(prefers-reduced-motion:reduce){
-    .sp-seg{transition:none}
   }
 
   /* --- 7.2 / 7.3 - horizontal share bars and a grouped 2025 vs 2035 chart --- */
@@ -1586,6 +1567,63 @@
   @media(prefers-reduced-motion:reduce){
     .sk-seg{transition:filter .18s ease}
     .sk-fig.in .sk-seg{width:var(--w)}
+  }
+
+
+  /* --- 7.1-7.4 uniform segment exhibit: 3D pie + value bars --- */
+  .pz-fig{margin-top:16px}
+  .pz-wrap{display:grid;grid-template-columns:minmax(0,264px) minmax(0,1fr);
+    gap:24px;align-items:start;margin-top:14px}
+  .pz-left{display:flex;flex-direction:column;gap:10px}
+  .pz-svg{width:100%;height:auto;display:block;overflow:visible}
+  .pz-sl{cursor:pointer;outline:none;
+    transform:translate(0,0);
+    transition:transform .32s cubic-bezier(.22,1,.36,1),filter .32s ease}
+  .pz-sl .pz-top{stroke:#fff;stroke-width:1.1;stroke-linejoin:round}
+  .pz-sl .pz-side{stroke:none}
+  .pz-sl.on{transform:translate(var(--px),var(--py));
+    filter:drop-shadow(0 10px 12px rgba(59,17,120,.32))}
+  .pz-sl:focus-visible .pz-top{stroke:#1e1b4b;stroke-width:2}
+
+  .pz-read{border-left:3px solid var(--purple-mid);padding:2px 0 2px 11px;min-height:56px}
+  .pz-read b{display:block;font-size:12px;font-weight:600;color:var(--purple-deep)}
+  .pz-read span{display:block;margin-top:3px;font-size:11.5px;line-height:1.5;color:var(--muted)}
+
+  .pz-rh{font-size:12.5px;font-weight:600;color:var(--navy)}
+  .pz-rs{margin-top:2px;font-size:11px;color:var(--muted)}
+  .pz-list{margin-top:12px}
+  .pz-item{padding:6px 8px 7px;border-radius:8px;margin:0 -8px;
+    transition:background .18s ease}
+  .pz-item+.pz-item{margin-top:4px}
+  .pz-item.on{background:#f7f3ff}
+  .pz-item:focus-visible{outline:2px solid #7c3aed;outline-offset:1px}
+  .pz-nm{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--navy)}
+  .pz-nm i{width:9px;height:9px;border-radius:3px;flex:none}
+  .pz-r{display:flex;align-items:center;gap:9px;margin-top:5px}
+  .pz-y{flex:none;width:30px;font-size:10.5px;color:var(--muted)}
+  .pz-t{position:relative;flex:1 1 auto;min-width:0;height:13px;border-radius:999px;
+    background:#f1ecfd}
+  .pz-f{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:999px;
+    transition:width .75s cubic-bezier(.22,1,.36,1) var(--d)}
+  .pz-f.a{background:#a78bfa}
+  .pz-f.b{background:#6d28d9}
+  .pz-fig.in .pz-f{width:var(--w)}
+  .pz-f em{position:absolute;left:100%;top:50%;transform:translateY(-50%);
+    margin-left:8px;font-style:normal;font-size:11px;font-weight:600;color:var(--navy);
+    white-space:nowrap}
+
+  @media(max-width:760px){
+    .pz-wrap{grid-template-columns:1fr;gap:16px}
+    .pz-left{max-width:300px;margin:0 auto;width:100%}
+  }
+  @media(max-width:420px){
+    .pz-y{width:26px;font-size:10px}
+    .pz-f em{font-size:10.5px;margin-left:6px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .pz-sl{transition:filter .2s ease}
+    .pz-f{transition:none}
+    .pz-fig.in .pz-f{width:var(--w)}
   }
 
 </style>
@@ -3049,327 +3087,260 @@
       <h3 class="subh reveal" data-n="7.1">Market by Type</h3>
 
       <p class="reveal">
-        By type, the market is segmented into hardware and software and solutions. Hardware, comprising imaging
-        systems and scanners alongside navigation and display hardware, is estimated to account for approximately
-        <strong>61% of total market revenue in 2025</strong>, reflecting the still-dominant role of capital
-        equipment sales in the category. Within hardware specifically, imaging systems and scanners represent
-        approximately <strong>68% of hardware revenue</strong>, with navigation and display hardware comprising
-        the balance.
+        Hardware still carries the market on capital-equipment sales, but software and solutions compounds at
+        13.5% a year against hardware's 10.0% - lifting it from roughly 39% of revenue in 2025 to about 46% by
+        2035.
       </p>
 
-      <figure class="md-fig dn-fig" id="typeMix">
-        <h6>Global 3D Medical and Surgical Imaging Platform Market by Type, 2025</h6>
-        <p class="md-sub">Hardware leads on capital equipment sales; software and solutions is the faster-growing category</p>
-        <div class="dn-wrap">
-          <div class="dn-plot">
-            <svg class="dn-svg" viewBox="0 0 180 180" role="img"
-                 aria-label="Doughnut chart: hardware 61 percent, software and solutions 39 percent of 2025 market revenue.">
-              <circle class="dn-track" cx="90" cy="90" r="64"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#6d28d9"
-                stroke-dasharray="245.30 156.83" stroke-dashoffset="0.00"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#a78bfa"
-                stroke-dasharray="156.83 245.30" stroke-dashoffset="-245.30"/>
+      <figure class="md-fig pz-fig autoin" id="typeMix" data-seg='[{"n": "Hardware", "p": 61, "q": 54, "a": 4.18, "b": 10.9, "t": "Imaging systems and scanners are about 68% of hardware revenue, navigation and display hardware the balance. Hardware was close to 65% of the market as recently as 2019. CAGR 10.0%."}, {"n": "Software &amp; Solutions", "p": 39, "q": 46, "a": 2.67, "b": 9.4, "t": "AI-based analytics, cloud connectivity and platform-agnostic visualization increasingly become standalone revenue lines rather than bundled hardware features. CAGR 13.5%."}]'>
+        <h6>Market by Type - 2025 mix and 2025-2035 value</h6>
+        <p class="md-sub">Hardware still leads on capital equipment; software and solutions compounds faster</p>
+        <div class="pz-wrap">
+          <div class="pz-left">
+            <svg class="pz-svg" viewBox="0 14 240 166" role="img" aria-label="3D pie of the 2025 revenue mix: Hardware 61 percent, Software &amp; Solutions 39 percent">
+            <g class="pz-sl" data-i="1" tabindex="0" style="--px:-10.35px;--py:-11.05px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#4c2392"/>
+              <path class="pz-top" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#7c3aed"/>
+            </g>
+            <g class="pz-sl" data-i="0" tabindex="0" style="--px:10.35px;--py:-6.95px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 56.81 128.38 Z" fill="#240a4a"/>
+              <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 56.81 128.38 Z" fill="#3b1178"/>
+            </g>
             </svg>
-            <div class="dn-mid"><b>2</b><span>segments</span></div>
+            <div class="pz-read"><b>2025 revenue mix</b><span>Hover a slice or a bar for detail</span></div>
           </div>
-          <div class="dn-legend">
-              <div class="dn-row"><span class="dn-sw" style="background:#6d28d9"></span>
-                <span class="dn-nm">Hardware</span><span class="dn-pc">61%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#a78bfa"></span>
-                <span class="dn-nm">Software &amp; Solutions</span><span class="dn-pc">39%</span></div>
+          <div class="pz-right">
+            <div class="pz-rh">Value by segment, USD bn</div>
+            <div class="pz-rs">2025 base year vs 2035 forecast</div>
+            <div class="pz-list">
+            <div class="pz-item" data-i="0" tabindex="0">
+              <span class="pz-nm"><i style="background:#3b1178"></i>Hardware</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:27.6%;--d:0ms"><em>$4.18</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:72.0%;--d:70ms"><em>$10.90</em></span></span></div>
+            </div>
+            <div class="pz-item" data-i="1" tabindex="0">
+              <span class="pz-nm"><i style="background:#7c3aed"></i>Software &amp; Solutions</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:17.6%;--d:120ms"><em>$2.67</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:62.1%;--d:190ms"><em>$9.40</em></span></span></div>
+            </div>
+            </div>
           </div>
         </div>
+        <figcaption class="md-cap">Shares and USD values are those published in this report's type table (total USD 6.85bn in 2025, USD 20.34bn in 2035F).</figcaption>
       </figure>
-
-      <div class="md-scroll reveal">
-        <table class="rd sg">
-          <thead><tr><th>Segment</th><th>2019</th><th>2025</th><th>2030F</th><th>2035F</th><th>CAGR 2026-35</th></tr></thead>
-          <tbody>
-        <tr><td>Hardware</td><td>2.6</td><td>4.18</td><td>6.9</td><td>10.9</td><td>10.0%</td></tr>
-        <tr><td>Software and Solutions</td><td>1.4</td><td>2.67</td><td>5.4</td><td>9.4</td><td>13.5%</td></tr>
-        <tr class="tot"><td><b>Total</b></td><td><b>4.0</b></td><td><b>6.85</b></td><td><b>12.3</b></td><td><b>20.34</b></td><td><b>11.50%</b></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="reveal">
-        Software and solutions is growing at a materially faster rate than hardware, consistent with the broader
-        medical-device industry shift toward recurring, subscription-based revenue models; by 2035, software and
-        solutions is projected to account for approximately <strong>46% of total market revenue</strong>, up from
-        around 39% in 2025, as AI-based analytics, cloud connectivity and platform-agnostic visualization software
-        increasingly become standalone revenue lines rather than bundled hardware features.
-      </p>
-
-      <p class="reveal">
-        Historically, hardware accounted for an even larger majority of market revenue, approaching 65% as
-        recently as 2019, before the current wave of AI-based analytics and cloud-platform investment began
-        meaningfully expanding the software category's share. This shift mirrors the broader trajectory of the
-        medical-imaging industry as a whole, in which imaging hardware has progressively matured into a more
-        commoditised category even as the software layer that interprets, analyses and acts upon the resulting
-        images has become an increasingly important and differentiated source of both clinical value and
-        commercial margin.
-      </p>
-
-      <figure class="md-fig sp-fig" id="hwSplit">
-        <h6>Hardware - Sub-Segment Share, 2025</h6>
-        <p class="md-sub">Share of hardware revenue</p>
-        <div class="sp-bar">
-          <span class="sp-seg a" style="--w:68%"><b>68%</b></span>
-          <span class="sp-seg b" style="--w:32%"><b>32%</b></span>
-        </div>
-        <div class="sp-key">
-          <span><i class="a"></i>Imaging Systems and Scanners</span>
-          <span><i class="b"></i>Navigation and Display Hardware</span>
-        </div>
-      </figure>
-
 
       <h3 class="subh reveal" data-n="7.2">Market by Technology</h3>
 
       <p class="reveal">
-        By underlying imaging technology, CT-based platforms hold the largest share of market revenue, followed by
-        MRI-based, ultrasound-based and optical/fluoroscopy-based platforms. CT-based systems benefit from their
-        established role in orthopedic and spine surgery, where bone and hard-tissue visualization is paramount,
-        while MRI-based platforms are concentrated in neurosurgical applications requiring superior soft-tissue
-        contrast.
+        Each modality maps onto a distinct clinical use case rather than competing head-to-head, so growth in one
+        rarely comes at another's expense; overall growth instead follows the widening set of procedures for which
+        3D visualization has become standard practice.
       </p>
 
-      <p class="reveal">
-        Each technology segment tends to map closely onto a specific clinical use case rather than competing
-        head-to-head as direct substitutes, meaning that growth in one modality does not necessarily come at the
-        expense of another; rather, overall market growth is increasingly driven by the expanding range of
-        procedures for which any form of three-dimensional visualization has become standard practice.
-      </p>
-
-      <figure class="md-fig hb-fig autoin" id="techMix">
-        <h6>3D Medical and Surgical Imaging Platform Market by Technology, 2025</h6>
-        <p class="md-sub">Ultrasound is the fastest-growing modality</p>
-        <div class="hb">
-            <div class="hb-row" style="--w:88.0%;--d:0ms">
-              <span class="hb-lab">CT-Based</span>
-              <span class="hb-trk"><span class="hb-fill"></span><span class="hb-val">34%</span></span>
+      <figure class="md-fig pz-fig autoin" id="techMix" data-seg='[{"n": "CT-Based", "p": 34, "q": 31, "a": 2.33, "b": 6.31, "t": "Established leader in orthopedic and spine hard-tissue visualization."}, {"n": "MRI-Based", "p": 27, "q": 26, "a": 1.85, "b": 5.29, "t": "Concentrated in neurosurgical applications requiring superior soft-tissue contrast."}, {"n": "Ultrasound-Based", "p": 19, "q": 23, "a": 1.3, "b": 4.68, "t": "Fastest-growing modality: non-ionising, lower cost than CT or MRI, and now integrated in real time with navigation platforms, as in the GE HealthCare and Medtronic bkActiv integration."}, {"n": "Optical / Fluoroscopy", "p": 14, "q": 14, "a": 0.96, "b": 2.85, "t": "Foundational to navigation-specific platforms, where tracking accuracy rather than imaging depth is the primary requirement."}, {"n": "Others", "p": 6, "q": 6, "a": 0.41, "b": 1.22, "t": "Emerging modalities and hybrid multi-modal systems."}]'>
+        <h6>Market by Technology - 2025 mix and 2025-2035 value</h6>
+        <p class="md-sub">CT leads on hard-tissue work; ultrasound is the fastest-rising modality</p>
+        <div class="pz-wrap">
+          <div class="pz-left">
+            <svg class="pz-svg" viewBox="0 14 240 166" role="img" aria-label="3D pie of the 2025 revenue mix: CT-Based 34 percent, MRI-Based 27 percent, Ultrasound-Based 19 percent, Optical / Fluoroscopy 14 percent, Others 6 percent">
+            <g class="pz-sl" data-i="4" tabindex="0" style="--px:-2.06px;--py:-14.94px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#79709c"/>
+              <path class="pz-top" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#c4b5fd"/>
+            </g>
+            <g class="pz-sl" data-i="3" tabindex="0" style="--px:-8.02px;--py:-13.14px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#67569b"/>
+              <path class="pz-top" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#a78bfa"/>
+            </g>
+            <g class="pz-sl" data-i="0" tabindex="0" style="--px:9.64px;--py:-11.91px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 199.06 115.47 Z" fill="#240a4a"/>
+              <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 199.06 115.47 Z" fill="#3b1178"/>
+            </g>
+            <g class="pz-sl" data-i="2" tabindex="0" style="--px:-10.56px;--py:-7.31px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#4c2392"/>
+              <path class="pz-top" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#7c3aed"/>
+            </g>
+            <g class="pz-sl" data-i="1" tabindex="0" style="--px:1.72px;--py:-3.02px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L199.06 115.47 A96.0 55.0 0 0 1 56.81 128.38 Z" fill="#381470"/>
+              <path class="pz-top" d="M118.00 86.00 L199.06 115.47 A96.0 55.0 0 0 1 56.81 128.38 Z" fill="#5b21b6"/>
+            </g>
+            </svg>
+            <div class="pz-read"><b>2025 revenue mix</b><span>Hover a slice or a bar for detail</span></div>
+          </div>
+          <div class="pz-right">
+            <div class="pz-rh">Value by segment, USD bn</div>
+            <div class="pz-rs">2025 base year vs 2035 forecast</div>
+            <div class="pz-list">
+            <div class="pz-item" data-i="0" tabindex="0">
+              <span class="pz-nm"><i style="background:#3b1178"></i>CT-Based</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:26.6%;--d:0ms"><em>$2.33</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:72.0%;--d:70ms"><em>$6.31</em></span></span></div>
             </div>
-            <div class="hb-row" style="--w:69.9%;--d:110ms">
-              <span class="hb-lab">MRI-Based</span>
-              <span class="hb-trk"><span class="hb-fill"></span><span class="hb-val">27%</span></span>
+            <div class="pz-item" data-i="1" tabindex="0">
+              <span class="pz-nm"><i style="background:#5b21b6"></i>MRI-Based</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:21.1%;--d:120ms"><em>$1.85</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:60.4%;--d:190ms"><em>$5.29</em></span></span></div>
             </div>
-            <div class="hb-row hot" style="--w:49.2%;--d:220ms">
-              <span class="hb-lab">Ultrasound-Based</span>
-              <span class="hb-trk"><span class="hb-fill"></span><span class="hb-val">19%</span></span>
+            <div class="pz-item" data-i="2" tabindex="0">
+              <span class="pz-nm"><i style="background:#7c3aed"></i>Ultrasound-Based</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:14.8%;--d:240ms"><em>$1.30</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:53.4%;--d:310ms"><em>$4.68</em></span></span></div>
             </div>
-            <div class="hb-row" style="--w:36.3%;--d:330ms">
-              <span class="hb-lab">Optical / Fluoroscopy</span>
-              <span class="hb-trk"><span class="hb-fill"></span><span class="hb-val">14%</span></span>
+            <div class="pz-item" data-i="3" tabindex="0">
+              <span class="pz-nm"><i style="background:#a78bfa"></i>Optical / Fluoroscopy</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:11.0%;--d:360ms"><em>$0.96</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:32.5%;--d:430ms"><em>$2.85</em></span></span></div>
             </div>
-            <div class="hb-row" style="--w:15.5%;--d:440ms">
-              <span class="hb-lab">Others</span>
-              <span class="hb-trk"><span class="hb-fill"></span><span class="hb-val">6%</span></span>
+            <div class="pz-item" data-i="4" tabindex="0">
+              <span class="pz-nm"><i style="background:#c4b5fd"></i>Others</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:4.7%;--d:480ms"><em>$0.41</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:13.9%;--d:550ms"><em>$1.22</em></span></span></div>
             </div>
+            </div>
+          </div>
         </div>
+        <figcaption class="md-cap">Shares are as published. USD values are those shares applied to the published market totals of USD 6.85bn (2025) and USD 20.34bn (2035F).</figcaption>
       </figure>
-
-      <p class="reveal">
-        Ultrasound-based platforms represent the fastest-growing technology category, benefiting from their
-        non-ionising nature, comparatively lower cost relative to CT or MRI-based systems, and growing real-time
-        integration with existing navigation platforms, as illustrated by the GE HealthCare and Medtronic bkActiv
-        integration. Optical and fluoroscopy-based systems remain foundational to navigation-specific platforms,
-        where tracking accuracy rather than raw imaging depth is the primary technical requirement.
-      </p>
-
-      <div class="md-scroll reveal">
-        <table class="rd tw">
-          <thead><tr><th>Technology</th><th>Share, 2025</th><th>Share, 2035F</th><th>Commentary</th></tr></thead>
-          <tbody>
-        <tr><td>CT-Based</td><td>34%</td><td>31%</td><td>Established leader in orthopedic and spine hard-tissue visualization</td></tr>
-        <tr><td>MRI-Based</td><td>27%</td><td>26%</td><td>Concentrated in neurosurgical applications requiring soft-tissue contrast</td></tr>
-        <tr><td>Ultrasound-Based</td><td>19%</td><td>23%</td><td>Fastest-growing modality given non-ionising, real-time visualization</td></tr>
-        <tr><td>Optical / Fluoroscopy-Based</td><td>14%</td><td>14%</td><td>Core to navigation and mixed-reality visualization systems</td></tr>
-        <tr><td><b>Others</b></td><td><b>6%</b></td><td><b>6%</b></td><td><b>Emerging modalities and hybrid multi-modal systems</b></td></tr>
-          </tbody>
-        </table>
-      </div>
 
       <h3 class="subh reveal" data-n="7.3">Market by Application</h3>
 
       <p class="reveal">
-        By application, neurosurgery and orthopedic and spine surgery together account for more than half of
-        market revenue, reflecting both the clinical criticality of precise three-dimensional visualization in
-        these specialties and the comparatively higher average platform value deployed in neurosurgical and spinal
-        suites. Cardiovascular surgery represents a smaller but steadily growing application, while
-        radiology-guided and general surgical applications form a broad base of more routine, lower-acuity use
-        cases.
+        Neurosurgery and orthopedic and spine surgery together account for more than half of revenue, reflecting
+        both the clinical criticality of precise 3D visualization and the higher average platform value deployed
+        in those suites.
       </p>
 
-      <figure class="md-fig gb-fig autoin" id="appMix">
-        <h6>3D Medical and Surgical Imaging Platform Market by Application, 2025-2035F</h6>
-        <p class="md-sub">Neurosurgery and orthopedic/spine applications together account for over half of market revenue throughout the forecast period</p>
-        <div class="gb">
-          <div class="gb-plot">
-            <div class="gb-grid" aria-hidden="true">
-              <div class="gb-t" style="bottom:0.00%"><span>0</span></div>
-              <div class="gb-t" style="bottom:25.00%"><span>9</span></div>
-              <div class="gb-t" style="bottom:50.00%"><span>18</span></div>
-              <div class="gb-t" style="bottom:75.00%"><span>27</span></div>
-              <div class="gb-t" style="bottom:100.00%"><span>36</span></div>
-            </div>
-            <div class="gb-bars">
-              <div class="gb-g" style="--d:0ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:75.0%" title="2025: 27%"></span>
-                  <span class="gb-b b" style="--h:83.3%" title="2035F: 30%"></span>
-                </div>
-                <div class="gb-x">Neuro</div>
-              </div>
-              <div class="gb-g" style="--d:110ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:72.2%" title="2025: 26%"></span>
-                  <span class="gb-b b" style="--h:77.8%" title="2035F: 28%"></span>
-                </div>
-                <div class="gb-x">Ortho/Spine</div>
-              </div>
-              <div class="gb-g" style="--d:220ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:47.2%" title="2025: 17%"></span>
-                  <span class="gb-b b" style="--h:47.2%" title="2035F: 17%"></span>
-                </div>
-                <div class="gb-x">Cardio</div>
-              </div>
-              <div class="gb-g" style="--d:330ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:58.3%" title="2025: 21%"></span>
-                  <span class="gb-b b" style="--h:50.0%" title="2035F: 18%"></span>
-                </div>
-                <div class="gb-x">Radiology/Gen</div>
-              </div>
-              <div class="gb-g" style="--d:440ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:25.0%" title="2025: 9%"></span>
-                  <span class="gb-b b" style="--h:19.4%" title="2035F: 7%"></span>
-                </div>
-                <div class="gb-x">Others</div>
-              </div>
-            </div>
-          </div>
-          <div class="gb-key"><span><i class="a"></i>2025</span><span><i class="b"></i>2035F</span></div>
-        </div>
-      </figure>
-
-      <div class="md-scroll reveal">
-        <table class="rd tw">
-          <thead><tr><th>Application</th><th>Share, 2025</th><th>Share, 2035F</th><th>Growth outlook</th></tr></thead>
-          <tbody>
-        <tr><td>Neurosurgery</td><td>27%</td><td>30%</td><td>Fastest-growing application given depth of AI and mixed-reality investment</td></tr>
-        <tr><td>Orthopedic and Spine Surgery</td><td>26%</td><td>28%</td><td>Largest volume driver; core use case for revision-avoidance economics</td></tr>
-        <tr><td>Cardiovascular Surgery</td><td>17%</td><td>17%</td><td>Steady growth tied to structural heart and vascular intervention volumes</td></tr>
-        <tr><td>Radiology-Guided / General Surgery</td><td>21%</td><td>18%</td><td>Broad base of routine, lower-acuity use cases</td></tr>
-        <tr><td><b>Others</b></td><td><b>9%</b></td><td><b>7%</b></td><td><b>Includes urology, ENT and emerging specialty applications</b></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <figure class="md-fig dn-fig" id="appShare">
-        <h6>3D Medical and Surgical Imaging Platform Market by Application - Current Share</h6>
-        <p class="md-sub">Share of 2025 market revenue</p>
-        <div class="dn-wrap">
-          <div class="dn-plot">
-            <svg class="dn-svg" viewBox="0 0 180 180" role="img" aria-label="Market by Application - Current Share, 2025: Neurosurgery 27 percent, Orthopedic &amp; Spine 26 percent, Radiology / General 21 percent, Cardiovascular 17 percent, Others 9 percent">
-              <circle class="dn-track" cx="90" cy="90" r="64"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#4c1d95"
-                stroke-dasharray="108.57 293.55" stroke-dashoffset="0.00"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#6d28d9"
-                stroke-dasharray="104.55 297.57" stroke-dashoffset="-108.57"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#8b5cf6"
-                stroke-dasharray="84.45 317.68" stroke-dashoffset="-213.13"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#a78bfa"
-                stroke-dasharray="68.36 333.76" stroke-dashoffset="-297.57"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#c4b5fd"
-                stroke-dasharray="36.19 365.93" stroke-dashoffset="-365.93"/>
+      <figure class="md-fig pz-fig autoin" id="appMix" data-seg='[{"n": "Neurosurgery", "p": 27, "q": 30, "a": 1.85, "b": 6.1, "t": "Fastest-growing application, given the depth of AI and mixed-reality investment."}, {"n": "Orthopedic &amp; Spine", "p": 26, "q": 28, "a": 1.78, "b": 5.7, "t": "Largest volume driver and the core use case for revision-avoidance economics."}, {"n": "Radiology / General", "p": 21, "q": 18, "a": 1.44, "b": 3.66, "t": "Broad base of routine, lower-acuity use cases."}, {"n": "Cardiovascular", "p": 17, "q": 17, "a": 1.16, "b": 3.46, "t": "Steady growth tied to structural heart and vascular intervention volumes."}, {"n": "Others", "p": 9, "q": 7, "a": 0.62, "b": 1.42, "t": "Includes urology, ENT and emerging specialty applications."}]'>
+        <h6>Market by Application - 2025 mix and 2025-2035 value</h6>
+        <p class="md-sub">Neurosurgery and orthopedic/spine together take more than half of revenue, and both gain share</p>
+        <div class="pz-wrap">
+          <div class="pz-left">
+            <svg class="pz-svg" viewBox="0 14 240 166" role="img" aria-label="3D pie of the 2025 revenue mix: Neurosurgery 27 percent, Orthopedic &amp; Spine 26 percent, Radiology / General 21 percent, Cardiovascular 17 percent, Others 9 percent">
+            <g class="pz-sl" data-i="4" tabindex="0" style="--px:-3.07px;--py:-14.81px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L66.56 39.56 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#79709c"/>
+              <path class="pz-top" d="M118.00 86.00 L66.56 39.56 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#c4b5fd"/>
+            </g>
+            <g class="pz-sl" data-i="0" tabindex="0" style="--px:8.25px;--py:-13.00px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 213.24 92.89 Z" fill="#240a4a"/>
+              <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 213.24 92.89 Z" fill="#3b1178"/>
+            </g>
+            <g class="pz-sl" data-i="3" tabindex="0" style="--px:-9.80px;--py:-11.75px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L22.19 89.45 A96.0 55.0 0 0 1 66.56 39.56 Z" fill="#67569b"/>
+              <path class="pz-top" d="M118.00 86.00 L22.19 89.45 A96.0 55.0 0 0 1 66.56 39.56 Z" fill="#a78bfa"/>
+            </g>
+            <g class="pz-sl" data-i="2" tabindex="0" style="--px:-8.25px;--py:-5.00px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L100.01 140.03 A96.0 55.0 0 0 1 22.19 89.45 Z" fill="#4c2392"/>
+              <path class="pz-top" d="M118.00 86.00 L100.01 140.03 A96.0 55.0 0 0 1 22.19 89.45 Z" fill="#7c3aed"/>
+            </g>
+            <g class="pz-sl" data-i="1" tabindex="0" style="--px:6.47px;--py:-4.11px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L213.24 92.89 A96.0 55.0 0 0 1 100.01 140.03 Z" fill="#381470"/>
+              <path class="pz-top" d="M118.00 86.00 L213.24 92.89 A96.0 55.0 0 0 1 100.01 140.03 Z" fill="#5b21b6"/>
+            </g>
             </svg>
-            <div class="dn-mid"><b>5</b><span>segments</span></div>
+            <div class="pz-read"><b>2025 revenue mix</b><span>Hover a slice or a bar for detail</span></div>
           </div>
-          <div class="dn-legend">
-              <div class="dn-row"><span class="dn-sw" style="background:#4c1d95"></span>
-                <span class="dn-nm">Neurosurgery</span><span class="dn-pc">27%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#6d28d9"></span>
-                <span class="dn-nm">Orthopedic &amp; Spine</span><span class="dn-pc">26%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#8b5cf6"></span>
-                <span class="dn-nm">Radiology / General</span><span class="dn-pc">21%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#a78bfa"></span>
-                <span class="dn-nm">Cardiovascular</span><span class="dn-pc">17%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#c4b5fd"></span>
-                <span class="dn-nm">Others</span><span class="dn-pc">9%</span></div>
+          <div class="pz-right">
+            <div class="pz-rh">Value by segment, USD bn</div>
+            <div class="pz-rs">2025 base year vs 2035 forecast</div>
+            <div class="pz-list">
+            <div class="pz-item" data-i="0" tabindex="0">
+              <span class="pz-nm"><i style="background:#3b1178"></i>Neurosurgery</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:21.8%;--d:0ms"><em>$1.85</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:72.0%;--d:70ms"><em>$6.10</em></span></span></div>
+            </div>
+            <div class="pz-item" data-i="1" tabindex="0">
+              <span class="pz-nm"><i style="background:#5b21b6"></i>Orthopedic &amp; Spine</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:21.0%;--d:120ms"><em>$1.78</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:67.3%;--d:190ms"><em>$5.70</em></span></span></div>
+            </div>
+            <div class="pz-item" data-i="2" tabindex="0">
+              <span class="pz-nm"><i style="background:#7c3aed"></i>Radiology / General</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:17.0%;--d:240ms"><em>$1.44</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:43.2%;--d:310ms"><em>$3.66</em></span></span></div>
+            </div>
+            <div class="pz-item" data-i="3" tabindex="0">
+              <span class="pz-nm"><i style="background:#a78bfa"></i>Cardiovascular</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:13.7%;--d:360ms"><em>$1.16</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:40.8%;--d:430ms"><em>$3.46</em></span></span></div>
+            </div>
+            <div class="pz-item" data-i="4" tabindex="0">
+              <span class="pz-nm"><i style="background:#c4b5fd"></i>Others</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:7.3%;--d:480ms"><em>$0.62</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:16.8%;--d:550ms"><em>$1.42</em></span></span></div>
+            </div>
+            </div>
           </div>
         </div>
+        <figcaption class="md-cap">Shares are as published. USD values are those shares applied to the published market totals of USD 6.85bn (2025) and USD 20.34bn (2035F).</figcaption>
       </figure>
 
       <h3 class="subh reveal" data-n="7.4">Market by End User</h3>
 
       <p class="reveal">
-        By end user, hospitals account for the majority of market revenue, reflecting their comprehensive surgical
-        capability and capital resources, followed by ambulatory surgical centers, whose adoption is accelerating
-        as software-subscription pricing and lower-cost mobile hardware options expand access beyond large
-        tertiary hospitals. Diagnostic and research centers represent a smaller but strategically important
-        end-user category, particularly for platform validation and early clinical adoption of next-generation
-        systems.
+        Hospitals anchor the market on capital resources and case mix, while ambulatory surgical centers gain
+        share as subscription pricing and lower-cost mobile hardware bring 3D navigation within reach of
+        outpatient facilities.
       </p>
 
-      <figure class="md-fig dn-fig" id="endUser">
-        <h6>3D Medical and Surgical Imaging Platform Market by End User, 2025</h6>
-        <p class="md-sub">Share of 2025 market revenue</p>
-        <div class="dn-wrap">
-          <div class="dn-plot">
-            <svg class="dn-svg" viewBox="0 0 180 180" role="img" aria-label="Market by End User, 2025: Hospitals 58 percent, Ambulatory Surgical Centers 22 percent, Diagnostic &amp; Research 14 percent, Others 6 percent">
-              <circle class="dn-track" cx="90" cy="90" r="64"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#4c1d95"
-                stroke-dasharray="233.23 168.89" stroke-dashoffset="0.00"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#6d28d9"
-                stroke-dasharray="88.47 313.66" stroke-dashoffset="-233.23"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#8b5cf6"
-                stroke-dasharray="56.30 345.83" stroke-dashoffset="-321.70"/>
-              <circle class="dn-seg" cx="90" cy="90" r="64" stroke="#a78bfa"
-                stroke-dasharray="24.13 378.00" stroke-dashoffset="-378.00"/>
+      <figure class="md-fig pz-fig autoin" id="endUser" data-seg='[{"n": "Hospitals", "p": 58, "q": 55, "a": 3.97, "b": 11.19, "t": "Anchor setting for capital-intensive integrated platforms."}, {"n": "Ambulatory Surgical Centers", "p": 22, "q": 26, "a": 1.51, "b": 5.29, "t": "Fastest-growing channel as mobile and subscription-priced hardware expand access beyond large tertiary hospitals."}, {"n": "Diagnostic &amp; Research", "p": 14, "q": 13, "a": 0.96, "b": 2.64, "t": "Important early-adoption and platform-validation channel."}, {"n": "Others", "p": 6, "q": 6, "a": 0.41, "b": 1.22, "t": "Includes military, academic and government healthcare facilities."}]'>
+        <h6>Market by End User - 2025 mix and 2025-2035 value</h6>
+        <p class="md-sub">Hospitals anchor the market; ambulatory surgical centers are the fastest-growing channel</p>
+        <div class="pz-wrap">
+          <div class="pz-left">
+            <svg class="pz-svg" viewBox="0 14 240 166" role="img" aria-label="3D pie of the 2025 revenue mix: Hospitals 58 percent, Ambulatory Surgical Centers 22 percent, Diagnostic &amp; Research 14 percent, Others 6 percent">
+            <g class="pz-sl" data-i="3" tabindex="0" style="--px:-2.06px;--py:-14.94px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#67569b"/>
+              <path class="pz-top" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#a78bfa"/>
+            </g>
+            <g class="pz-sl" data-i="2" tabindex="0" style="--px:-8.02px;--py:-13.14px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#4c2392"/>
+              <path class="pz-top" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#7c3aed"/>
+            </g>
+            <g class="pz-sl" data-i="0" tabindex="0" style="--px:10.65px;--py:-7.50px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 71.75 134.20 Z" fill="#240a4a"/>
+              <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 71.75 134.20 Z" fill="#3b1178"/>
+            </g>
+            <g class="pz-sl" data-i="1" tabindex="0" style="--px:-10.23px;--py:-6.77px">
+              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L71.75 134.20 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#381470"/>
+              <path class="pz-top" d="M118.00 86.00 L71.75 134.20 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#5b21b6"/>
+            </g>
             </svg>
-            <div class="dn-mid"><b>4</b><span>segments</span></div>
+            <div class="pz-read"><b>2025 revenue mix</b><span>Hover a slice or a bar for detail</span></div>
           </div>
-          <div class="dn-legend">
-              <div class="dn-row"><span class="dn-sw" style="background:#4c1d95"></span>
-                <span class="dn-nm">Hospitals</span><span class="dn-pc">58%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#6d28d9"></span>
-                <span class="dn-nm">Ambulatory Surgical Centers</span><span class="dn-pc">22%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#8b5cf6"></span>
-                <span class="dn-nm">Diagnostic &amp; Research</span><span class="dn-pc">14%</span></div>
-              <div class="dn-row"><span class="dn-sw" style="background:#a78bfa"></span>
-                <span class="dn-nm">Others</span><span class="dn-pc">6%</span></div>
+          <div class="pz-right">
+            <div class="pz-rh">Value by segment, USD bn</div>
+            <div class="pz-rs">2025 base year vs 2035 forecast</div>
+            <div class="pz-list">
+            <div class="pz-item" data-i="0" tabindex="0">
+              <span class="pz-nm"><i style="background:#3b1178"></i>Hospitals</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:25.5%;--d:0ms"><em>$3.97</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:72.0%;--d:70ms"><em>$11.19</em></span></span></div>
+            </div>
+            <div class="pz-item" data-i="1" tabindex="0">
+              <span class="pz-nm"><i style="background:#5b21b6"></i>Ambulatory Surgical Centers</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:9.7%;--d:120ms"><em>$1.51</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:34.0%;--d:190ms"><em>$5.29</em></span></span></div>
+            </div>
+            <div class="pz-item" data-i="2" tabindex="0">
+              <span class="pz-nm"><i style="background:#7c3aed"></i>Diagnostic &amp; Research</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:6.2%;--d:240ms"><em>$0.96</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:17.0%;--d:310ms"><em>$2.64</em></span></span></div>
+            </div>
+            <div class="pz-item" data-i="3" tabindex="0">
+              <span class="pz-nm"><i style="background:#a78bfa"></i>Others</span>
+              <div class="pz-r"><span class="pz-y">2025</span><span class="pz-t"><span class="pz-f a" style="--w:2.6%;--d:360ms"><em>$0.41</em></span></span></div>
+              <div class="pz-r"><span class="pz-y">2035</span><span class="pz-t"><span class="pz-f b" style="--w:7.8%;--d:430ms"><em>$1.22</em></span></span></div>
+            </div>
+            </div>
           </div>
         </div>
+        <figcaption class="md-cap">Shares are as published. USD values are those shares applied to the published market totals of USD 6.85bn (2025) and USD 20.34bn (2035F).</figcaption>
       </figure>
 
-      <div class="md-scroll reveal">
-        <table class="rd tw">
-          <thead><tr><th>End user</th><th>Share, 2025</th><th>Share, 2035F</th><th>Commentary</th></tr></thead>
-          <tbody>
-        <tr><td>Hospitals</td><td>58%</td><td>55%</td><td>Anchor setting for capital-intensive integrated platforms</td></tr>
-        <tr><td>Ambulatory Surgical Centers</td><td>22%</td><td>26%</td><td>Fastest-growing channel as mobile and subscription hardware options expand access</td></tr>
-        <tr><td>Diagnostic and Research Centers</td><td>14%</td><td>13%</td><td>Important early-adoption and platform-validation channel</td></tr>
-        <tr><td><b>Others</b></td><td><b>6%</b></td><td><b>6%</b></td><td><b>Includes military, academic and government healthcare facilities</b></td></tr>
-          </tbody>
-        </table>
-      </div>
-
       <p class="reveal">
-        The gradual gain in ambulatory surgical center share reflects a broader shift in where minimally invasive
-        surgery is performed, as software-subscription pricing and lower-cost mobile imaging hardware increasingly
-        make advanced 3D navigation accessible to outpatient facilities that would previously have been priced out
-        of the category entirely.
-      </p>
-
-      <p class="reveal">
-        This end-user shift carries meaningful implications for how manufacturers structure their commercial
-        organisations: selling into a large ambulatory surgical center network requires a materially different
-        sales motion, typically emphasising financing flexibility, compact footprint and simplified service
-        requirements, than selling a fully integrated hybrid suite platform into a major academic medical center,
-        and companies that fail to build distinct go-to-market capability for each channel risk ceding share to
-        more focused competitors in one segment or the other.
+        That shift changes the commercial model as much as the product: selling into an ambulatory network rewards
+        financing flexibility, compact footprint and simple service, where a hybrid-suite sale into an academic
+        center rewards depth of integration. Vendors without a distinct motion for each channel risk ceding one of
+        them.
       </p>
 
     </section>
@@ -5217,6 +5188,44 @@
     var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(paint,150); });
   })();
 
+
+  /* ---- 7.1-7.4 uniform segment exhibits: 3D pie + value bars ---- */
+  (function(){
+    [].forEach.call(document.querySelectorAll('.pz-fig'), function(fig){
+      var data; try{ data=JSON.parse(fig.getAttribute('data-seg')); }catch(e){ return; }
+      var svg=fig.querySelector('.pz-svg');
+      var order=[].slice.call(svg.querySelectorAll('.pz-sl'));
+      var items=[].slice.call(fig.querySelectorAll('.pz-item'));
+      var read=fig.querySelector('.pz-read');
+      var rb=read.querySelector('b'), rs=read.querySelector('span');
+      var cur=-1;
+      function byI(list,i){ for(var k=0;k<list.length;k++){ if(+list[k].getAttribute('data-i')===i) return list[k]; } return null; }
+      function reset(){
+        order.forEach(function(g){ svg.appendChild(g); });
+      }
+      function show(i){
+        if(cur===i) return; cur=i;
+        order.forEach(function(g){ g.classList.remove('on'); });
+        items.forEach(function(t){ t.classList.remove('on'); });
+        if(i<0){ reset(); rb.textContent='2025 revenue mix';
+          rs.textContent='Hover a slice or a bar for detail'; return; }
+        var d=data[i], g=byI(order,i), t=byI(items,i);
+        if(g){ reset(); svg.appendChild(g); g.classList.add('on'); }
+        if(t) t.classList.add('on');
+        rb.innerHTML=d.n+' &middot; '+d.p+'% of 2025 revenue';
+        rs.textContent='USD '+d.a.toFixed(2)+'bn in 2025 → USD '+d.b.toFixed(2)+
+          'bn in 2035F ('+d.q+'% share). '+d.t;
+      }
+      function wire(el,i){
+        el.addEventListener('mouseenter',function(){ show(i); });
+        el.addEventListener('mouseleave',function(){ show(-1); });
+        el.addEventListener('focus',function(){ show(i); });
+        el.addEventListener('blur',function(){ show(-1); });
+      }
+      order.forEach(function(g){ wire(g,+g.getAttribute('data-i')); });
+      items.forEach(function(t){ wire(t,+t.getAttribute('data-i')); });
+    });
+  })();
 </script>
 </body>
 </html>
