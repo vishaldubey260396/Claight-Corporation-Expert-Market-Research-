@@ -1466,47 +1466,62 @@
     .dv.in .dv-i{transition:none}
   }
 
-  /* --- 6 - cost model: capital outlay against five-year total cost --- */
-  .cm-fig{margin-top:16px}
-  .cm{margin-top:16px}
-  .cm-row{padding:13px 14px;border-radius:11px;border:1px solid var(--line);background:#fff;
-    margin-bottom:10px;outline:none;
-    transition:box-shadow .2s ease,border-color .2s ease}
-  .cm-row.on{border-color:#c4b5fd;box-shadow:0 8px 20px rgba(76,29,149,.13)}
-  .cm-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-  .cm-n{flex:none;width:22px;height:22px;border-radius:7px;background:#efe9ff;border:1px solid #ddd0ff;
-    display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
-    color:var(--purple-deep)}
-  .cm-row h6{margin:0;flex:1 1 auto;font-size:13px;font-weight:700;color:var(--navy)}
-  .cm-fee{flex:none;font-size:10.5px;font-weight:700;color:#92400e;background:#fdf6e8;
-    border:1px solid #f0e0be;border-radius:999px;padding:3px 9px;white-space:nowrap}
-  .cm-l{display:grid;grid-template-columns:minmax(90px,116px) minmax(0,1fr) minmax(96px,128px);
-    align-items:center;column-gap:12px}
-  .cm-l+.cm-l{margin-top:7px}
-  .cm-k{font-size:11px;font-weight:600;color:var(--muted);text-align:right}
-  .cm-trk{position:relative;height:16px;border-radius:4px;background:#f4f0fd}
-  .cm-bar{position:absolute;top:3px;height:10px;border-radius:5px;
-    transform:scaleX(0);transform-origin:left}
-  .cm-bar.cap{background:linear-gradient(90deg,#c4b5fd,#8b5cf6)}
-  .cm-bar.tco{background:linear-gradient(90deg,#7c3aed,#4c1d95)}
-  .cm-none{position:absolute;left:0;top:1px;font-size:10.5px;font-weight:600;color:var(--muted);
-    font-style:italic;opacity:0;transition:opacity .4s ease var(--d)}
-  .cm-v{font-size:11.5px;font-weight:600;color:var(--ink);white-space:nowrap;opacity:0;
-    transition:opacity .35s ease}
-  .cm-v.strong{font-weight:700;color:var(--purple-deep)}
-  /* the capital bar lands first, then the five-year bar extends past it */
-  .cm-fig.in .cm-bar.cap{transform:none;transition:transform .7s cubic-bezier(.22,1,.36,1) var(--d)}
-  .cm-fig.in .cm-bar.tco{transform:none;transition:transform .8s cubic-bezier(.22,1,.36,1) calc(var(--d) + .28s)}
-  .cm-fig.in .cm-none{opacity:1}
-  .cm-fig.in .cm-l:first-child .cm-v{opacity:1;transition-delay:calc(var(--d) + .45s)}
-  .cm-fig.in .cm-l+.cm-l .cm-v{opacity:1;transition-delay:calc(var(--d) + .8s)}
-  .cm-axis{display:grid;grid-template-columns:minmax(90px,116px) minmax(0,1fr) minmax(96px,128px);
-    column-gap:12px;margin-top:4px;padding:0 14px}
-  .cm-axin{grid-column:2;position:relative;height:16px;border-top:1px solid var(--line);padding-top:4px;
-    font-size:10.5px;font-weight:600;color:var(--muted)}
-  .cm-axin span{position:absolute;top:4px;transform:translateX(-50%);white-space:nowrap}
-  .cm-axin span:first-child{transform:none}
-  .cm-axin span:last-child{transform:translateX(-100%)}
+  /* --- 6 - what a platform really costs: price above the line, running cost below --- */
+  .ib-fig{margin-top:16px}
+  /* a left gutter so the waterline captions never sit on top of the first column */
+  .ib{position:relative;margin-top:18px;padding:0 0 6px 104px}
+  .ib-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .ib-c{display:flex;flex-direction:column;outline:none}
+  .ib-above{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
+    height:184px;gap:7px}
+  .ib-below{display:flex;flex-direction:column;align-items:center;height:172px;gap:7px;
+    padding-top:2px}
+  .ib-top,.ib-bot{width:58px;border-radius:6px 6px 0 0;height:0}
+  .ib-top{background:linear-gradient(180deg,#c4b5fd,#7c3aed);
+    box-shadow:0 -2px 10px rgba(124,58,237,.22)}
+  .ib-bot{border-radius:0 0 6px 6px;background:linear-gradient(180deg,#5b21b6,#3b1178);
+    box-shadow:0 6px 14px rgba(60,20,120,.28)}
+  .ib-cap,.ib-run{font-size:11.5px;font-weight:700;color:var(--purple-deep);text-align:center;
+    line-height:1.35;opacity:0;transition:opacity .4s ease}
+  .ib-run em{display:block;font-style:normal;font-size:10px;font-weight:600;color:var(--muted);
+    margin-top:2px}
+  .ib-name{margin-top:10px;text-align:center;font-size:12px;font-weight:700;color:var(--navy);
+    line-height:1.3}
+  .ib-name span{display:block;margin-top:4px;font-size:10.5px;font-weight:600;color:#92400e}
+
+  /* the waterline sits exactly between the two halves */
+  .ib-water{position:absolute;left:0;right:0;top:184px;height:0;pointer-events:none}
+  .ib-water::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
+    background:linear-gradient(90deg,rgba(8,145,178,0),#0891b2 12%,#0891b2 88%,rgba(8,145,178,0))}
+  .ib-lbl{position:absolute;left:0;width:96px;font-size:10px;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;color:#0e7490;line-height:1.3}
+  .ib-lbl.up{bottom:7px}
+  .ib-lbl.dn{top:7px}
+
+  /* the price block drops in, then the running cost grows down out of sight */
+  .ib-fig.in .ib-top{height:var(--h);transition:height .7s cubic-bezier(.22,1,.36,1) var(--d)}
+  .ib-fig.in .ib-bot{height:var(--h);transition:height .8s cubic-bezier(.22,1,.36,1) calc(var(--d) + .3s)}
+  .ib-fig.in .ib-cap{opacity:1;transition-delay:calc(var(--d) + .45s)}
+  .ib-fig.in .ib-run{opacity:1;transition-delay:calc(var(--d) + .85s)}
+  .ib-c.on .ib-top,.ib-c.on .ib-bot{filter:brightness(1.12) saturate(1.1)}
+  .ib-c.on .ib-name{color:var(--purple-deep)}
+  .ib-c:focus-visible .ib-name{outline:2px solid #7c3aed;outline-offset:3px;border-radius:4px}
+
+  @media(max-width:760px){
+    .ib{padding-left:0}
+    /* stacked columns should hug their bars instead of holding the shared plot height */
+    .ib-above,.ib-below{height:auto}
+    .ib-grid{grid-template-columns:repeat(2,1fr);gap:14px 10px}
+    .ib-water{display:none}
+    .ib-c{border-bottom:1px solid var(--line);padding-bottom:10px}
+    .ib-top,.ib-bot{width:44px}
+  }
+  @media(max-width:440px){.ib-grid{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){
+    .ib-top,.ib-bot{height:var(--h)}
+    .ib-cap,.ib-run{opacity:1}
+    .ib-fig.in .ib-top,.ib-fig.in .ib-bot{transition:none}
+  }
 
   .cm-notes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
   .cm-note{padding:14px 16px;border-radius:11px;border:1px solid var(--line);
@@ -2831,56 +2846,62 @@
         platforms - and increasingly how manufacturers structure what they sell.
       </p>
 
-      <figure class="md-fig cm-fig autoin" id="costModel">
-        <h6>Total Cost of Ownership by Platform Tier</h6>
-        <p class="md-sub">Capital outlay against five-year total cost - the gap between the two bars is the recurring charge (log scale)</p>
-        <div class="cm">
-            <article class="cm-row" data-i="1" tabindex="0" style="--d:0ms">
-              <header class="cm-hd"><span class="cm-n">01</span><h6>Integrated navigation + robotics</h6>
-                <span class="cm-fee">~12-15% of capital cost / yr</span></header>
-              <div class="cm-lines">
-                <div class="cm-l"><span class="cm-k">Capital, one-time</span>
-                  <span class="cm-trk"><span class="cm-bar cap" style="left:56.43%;width:13.82%"></span></span><span class="cm-v">USD 250-550k</span></div>
-                <div class="cm-l"><span class="cm-k">5-year total cost</span>
-                  <span class="cm-trk"><span class="cm-bar tco" style="left:64.67%;width:14.22%"></span></span>
-                  <span class="cm-v strong">USD 400-900k</span></div>
+      <figure class="md-fig ib-fig autoin" id="costModel">
+        <h6>What a Platform Really Costs</h6>
+        <p class="md-sub">Above the line is what a hospital pays to buy in; below it is what the next five years add</p>
+        <div class="ib">
+          <div class="ib-grid">
+            <div class="ib-c" data-i="1" tabindex="0" style="--d:0ms">
+              <div class="ib-above">
+                <span class="ib-cap">USD 250-550k</span>
+                <span class="ib-top" style="--h:44.4px"></span>
               </div>
-            </article>
-            <article class="cm-row" data-i="2" tabindex="0" style="--d:130ms">
-              <header class="cm-hd"><span class="cm-n">02</span><h6>Mobile intraoperative 3D imaging</h6>
-                <span class="cm-fee">~10-12% of capital cost / yr</span></header>
-              <div class="cm-lines">
-                <div class="cm-l"><span class="cm-k">Capital, one-time</span>
-                  <span class="cm-trk"><span class="cm-bar cap" style="left:50.67%;width:14.00%"></span></span><span class="cm-v">USD 180-400k</span></div>
-                <div class="cm-l"><span class="cm-k">5-year total cost</span>
-                  <span class="cm-trk"><span class="cm-bar tco" style="left:58.42%;width:13.94%"></span></span>
-                  <span class="cm-v strong">USD 280-620k</span></div>
+              <div class="ib-below">
+                <span class="ib-bot" style="--h:41.3px"></span>
+                <span class="ib-run">USD 400-900k<em>5-year total</em></span>
               </div>
-            </article>
-            <article class="cm-row" data-i="3" tabindex="0" style="--d:260ms">
-              <header class="cm-hd"><span class="cm-n">03</span><h6>Fixed intraoperative CT / MRI</h6>
-                <span class="cm-fee">~10-12% of capital cost / yr</span></header>
-              <div class="cm-lines">
-                <div class="cm-l"><span class="cm-k">Capital, one-time</span>
-                  <span class="cm-trk"><span class="cm-bar cap" style="left:78.89%;width:12.15%"></span></span><span class="cm-v">USD 0.9-1.8m</span></div>
-                <div class="cm-l"><span class="cm-k">5-year total cost</span>
-                  <span class="cm-trk"><span class="cm-bar tco" style="left:86.64%;width:12.15%"></span></span>
-                  <span class="cm-v strong">USD 1.4-2.8m</span></div>
+              <div class="ib-name">Integrated navigation + robotics<span>~12-15% of capital / yr</span></div>
+            </div>
+            <div class="ib-c" data-i="2" tabindex="0" style="--d:140ms">
+              <div class="ib-above">
+                <span class="ib-cap">USD 180-400k</span>
+                <span class="ib-top" style="--h:32.2px"></span>
               </div>
-            </article>
-            <article class="cm-row" data-i="4" tabindex="0" style="--d:390ms">
-              <header class="cm-hd"><span class="cm-n">04</span><h6>Software-only / cloud</h6>
-                <span class="cm-fee">USD 15-90k per year</span></header>
-              <div class="cm-lines">
-                <div class="cm-l"><span class="cm-k">Capital, one-time</span>
-                  <span class="cm-trk"><span class="cm-none">No capital outlay</span></span><span class="cm-v">No capital outlay</span></div>
-                <div class="cm-l"><span class="cm-k">5-year total cost</span>
-                  <span class="cm-trk"><span class="cm-bar tco" style="left:35.33%;width:31.41%"></span></span>
-                  <span class="cm-v strong">USD 75-450k</span></div>
+              <div class="ib-below">
+                <span class="ib-bot" style="--h:26.5px"></span>
+                <span class="ib-run">USD 280-620k<em>5-year total</em></span>
               </div>
-            </article>
-          <div class="cm-axis"><div class="cm-axin"><span style="left:0.00%">$10k</span><span style="left:40.37%">$100k</span><span style="left:80.74%">$1M</span><span style="left:100.00%">$3M</span></div></div>
+              <div class="ib-name">Mobile intraoperative 3D imaging<span>~10-12% of capital / yr</span></div>
+            </div>
+            <div class="ib-c" data-i="3" tabindex="0" style="--d:280ms">
+              <div class="ib-above">
+                <span class="ib-cap">USD 0.9-1.8m</span>
+                <span class="ib-top" style="--h:150.0px"></span>
+              </div>
+              <div class="ib-below">
+                <span class="ib-bot" style="--h:124.0px"></span>
+                <span class="ib-run">USD 1.4-2.8m<em>5-year total</em></span>
+              </div>
+              <div class="ib-name">Fixed intraoperative CT / MRI<span>~10-12% of capital / yr</span></div>
+            </div>
+            <div class="ib-c" data-i="4" tabindex="0" style="--d:420ms">
+              <div class="ib-above">
+                <span class="ib-cap">No capital outlay</span>
+              </div>
+              <div class="ib-below">
+                <span class="ib-bot" style="--h:43.5px"></span>
+                <span class="ib-run">USD 75-450k<em>5-year total</em></span>
+              </div>
+              <div class="ib-name">Software-only / cloud<span>USD 15-90k per year</span></div>
+            </div>
+          </div>
+          <div class="ib-water" aria-hidden="true">
+            <span class="ib-lbl up">Purchase price</span>
+            <span class="ib-lbl dn">Five-year running cost</span>
+          </div>
         </div>
+        <figcaption class="md-cap">Block heights use the midpoint of each stated range; the ranges themselves are
+          labelled. Software-only platforms carry no capital outlay, so their entire cost sits below the line.</figcaption>
       </figure>
 
       <div class="cm-notes reveal">
@@ -4956,17 +4977,17 @@
     els.forEach(function(e){ io.observe(e); });
   })();
 
-  /* ---------- Section 6 - cost model rows ---------- */
+  /* ---------- Section 6 - cost model columns ---------- */
   (function(){
     var fig=document.getElementById('costModel'); if(!fig) return;
-    var rows=[].slice.call(fig.querySelectorAll('.cm-row'));
-    rows.forEach(function(r){
-      var i=+r.dataset.i;
-      function set(on){ rows.forEach(function(x){ x.classList.toggle('on', on && +x.dataset.i===i); }); }
-      r.addEventListener('mouseenter',function(){ set(true); });
-      r.addEventListener('mouseleave',function(){ set(false); });
-      r.addEventListener('focus',function(){ set(true); });
-      r.addEventListener('blur',function(){ set(false); });
+    var cols=[].slice.call(fig.querySelectorAll('.ib-c'));
+    cols.forEach(function(c){
+      var i=+c.dataset.i;
+      function set(on){ cols.forEach(function(x){ x.classList.toggle('on', on && +x.dataset.i===i); }); }
+      c.addEventListener('mouseenter',function(){ set(true); });
+      c.addEventListener('mouseleave',function(){ set(false); });
+      c.addEventListener('focus',function(){ set(true); });
+      c.addEventListener('blur',function(){ set(false); });
     });
   })();
 </script>
