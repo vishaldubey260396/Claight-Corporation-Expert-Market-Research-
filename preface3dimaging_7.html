@@ -5044,6 +5044,15 @@
       }
       order.forEach(function(g){ wire(g,+g.getAttribute('data-i')); });
       items.forEach(function(t){ wire(t,+t.getAttribute('data-i')); });
+      function lock(){
+        var keep=cur; read.style.minHeight='0px';
+        var max=0;
+        for(var i=-1;i<data.length;i++){ cur=-2; show(i); if(read.offsetHeight>max) max=read.offsetHeight; }
+        read.style.minHeight=max+'px';
+        cur=-2; show(keep<0?-1:keep); cur=keep;
+      }
+      lock();
+      var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
     });
   })();
 
@@ -5074,6 +5083,15 @@
       g.addEventListener('focus',function(){ show(i); });
       g.addEventListener('blur',function(){ show(-1); });
     });
+    function lock(){
+      read.style.minHeight='0px';
+      var max=0;
+      for(var i=-1;i<data.length;i++){ show(i); if(read.offsetHeight>max) max=read.offsetHeight; }
+      read.style.minHeight=max+'px';
+      show(-1);
+    }
+    lock();
+    var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
   })();
 </script>
 </body>
