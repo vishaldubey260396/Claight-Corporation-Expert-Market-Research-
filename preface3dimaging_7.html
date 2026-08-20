@@ -1633,10 +1633,10 @@
   .bb-svg{width:100%;height:auto;display:block}
   .bb-gl,.bb-gv{stroke:#efe9fb;stroke-width:1}
   .bb-ln{stroke:#ded3f7;stroke-width:1.2}
-  .bb-ax,.bb-ay{fill:var(--muted);font-size:11px}
+  .bb-ax,.bb-ay{fill:var(--muted);font-size:9.5px}
   .bb-ax{text-anchor:middle}
   .bb-ay{text-anchor:end}
-  .bb-t1{fill:var(--navy);font-size:11.5px;font-weight:600}
+  .bb-t1{fill:var(--navy);font-size:10px;font-weight:600}
   .bb-g{cursor:pointer;outline:none}
   .bb-w,.bb-c{transform:scale(0);transform-box:fill-box;transform-origin:center;
     transition:transform .66s cubic-bezier(.34,1.5,.64,1) var(--d),opacity .24s ease}
@@ -1647,9 +1647,10 @@
   .bb-g:focus-visible .bb-c{stroke:#1e1b4b;stroke-width:2.5}
   .bb-l{pointer-events:none;opacity:0;transition:opacity .45s ease .78s}
   .bb-fig.in .bb-l{opacity:1}
-  .bb-l.n{font-size:12px;font-weight:700}
-  .bb-l.m{font-size:11px;fill:var(--muted)}
-  .bb-l.v{font-size:11.5px;font-weight:600;fill:var(--navy)}
+  .bb-l.n{font-size:10.5px;font-weight:700}
+  .bb-l.m{font-size:9.5px;fill:var(--muted)}
+  .bb-vv{fill:var(--navy);font-weight:600}
+  .bb-l.v{font-size:10px;font-weight:600;fill:var(--navy)}
 
   .bb-pill{margin:12px auto 0;max-width:max-content;padding:7px 20px;border-radius:999px;
     background:#f5f1ff;border:1px solid var(--line);font-size:11.5px;font-weight:600;
@@ -1660,7 +1661,7 @@
 
   @media(max-width:700px){
     .bb-plotwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-    .bb-svg{min-width:560px}
+    .bb-svg{min-width:530px}
   }
   @media(prefers-reduced-motion:reduce){
     .bb-w,.bb-c{transform:scale(1);transition:opacity .2s ease}
@@ -3403,7 +3404,7 @@
         <p class="md-sub">Position is 2025 share against 2026-2035 growth; bubble size is 2035 forecast revenue</p>
         <div class="bb-wrap">
           <div class="bb-plotwrap">
-            <svg class="bb-svg" viewBox="0 0 700 400" role="list"
+            <svg class="bb-svg" viewBox="19 1 599 298" role="list"
                  aria-label="Bubble chart of five regions: 2025 revenue share against 2026-2035 CAGR, sized by 2035 forecast revenue.">
               <defs>
                 <radialGradient id="bbf-na" cx="32%" cy="26%" r="82%">
@@ -3442,71 +3443,69 @@
                   <stop offset="1" stop-color="#c4b5fd" stop-opacity="0"/>
                 </radialGradient>
               </defs>
-              <line class="bb-gl" x1="62.0" y1="275.5" x2="520.0" y2="275.5"/>
-              <text class="bb-ay" x="51.0" y="279.5">10%</text>
-              <line class="bb-gl" x1="62.0" y1="220.9" x2="520.0" y2="220.9"/>
-              <text class="bb-ay" x="51.0" y="224.9">11%</text>
-              <line class="bb-gl" x1="62.0" y1="166.4" x2="520.0" y2="166.4"/>
-              <text class="bb-ay" x="51.0" y="170.4">12%</text>
-              <line class="bb-gl" x1="62.0" y1="111.8" x2="520.0" y2="111.8"/>
-              <text class="bb-ay" x="51.0" y="115.8">13%</text>
-              <line class="bb-gl" x1="62.0" y1="57.3" x2="520.0" y2="57.3"/>
-              <text class="bb-ay" x="51.0" y="61.3">14%</text>
-              <line class="bb-gv" x1="62.0" y1="30.0" x2="62.0" y2="330.0"/>
-              <text class="bb-ax" x="62.0" y="351.0">0%</text>
-              <line class="bb-gv" x1="153.6" y1="30.0" x2="153.6" y2="330.0"/>
-              <text class="bb-ax" x="153.6" y="351.0">10%</text>
-              <line class="bb-gv" x1="245.2" y1="30.0" x2="245.2" y2="330.0"/>
-              <text class="bb-ax" x="245.2" y="351.0">20%</text>
-              <line class="bb-gv" x1="336.8" y1="30.0" x2="336.8" y2="330.0"/>
-              <text class="bb-ax" x="336.8" y="351.0">30%</text>
-              <line class="bb-gv" x1="428.4" y1="30.0" x2="428.4" y2="330.0"/>
-              <text class="bb-ax" x="428.4" y="351.0">40%</text>
-              <line class="bb-gv" x1="520.0" y1="30.0" x2="520.0" y2="330.0"/>
-              <text class="bb-ax" x="520.0" y="351.0">50%</text>
-              <line class="bb-ln" x1="62.0" y1="30.0" x2="62.0" y2="330.0"/>
-              <line class="bb-ln" x1="62.0" y1="330.0" x2="520.0" y2="330.0"/>
-              <text class="bb-t1" x="51.0" y="19.0" text-anchor="start">Market growth (CAGR 2026-2035, %)</text>
-              <text class="bb-t1" x="520.0" y="374.0" text-anchor="end">Market share of 2025 revenue (%)</text>
+              <line class="bb-gl" x1="56.0" y1="209.3" x2="560.0" y2="209.3"/>
+              <text class="bb-ay" x="45.0" y="213.3">10%</text>
+              <line class="bb-gl" x1="56.0" y1="168.5" x2="560.0" y2="168.5"/>
+              <text class="bb-ay" x="45.0" y="172.5">11%</text>
+              <line class="bb-gl" x1="56.0" y1="127.8" x2="560.0" y2="127.8"/>
+              <text class="bb-ay" x="45.0" y="131.8">12%</text>
+              <line class="bb-gl" x1="56.0" y1="87.1" x2="560.0" y2="87.1"/>
+              <text class="bb-ay" x="45.0" y="91.1">13%</text>
+              <line class="bb-gl" x1="56.0" y1="46.4" x2="560.0" y2="46.4"/>
+              <text class="bb-ay" x="45.0" y="50.4">14%</text>
+              <line class="bb-gv" x1="56.0" y1="26.0" x2="56.0" y2="250.0"/>
+              <text class="bb-ax" x="56.0" y="271.0">0%</text>
+              <line class="bb-gv" x1="156.8" y1="26.0" x2="156.8" y2="250.0"/>
+              <text class="bb-ax" x="156.8" y="271.0">10%</text>
+              <line class="bb-gv" x1="257.6" y1="26.0" x2="257.6" y2="250.0"/>
+              <text class="bb-ax" x="257.6" y="271.0">20%</text>
+              <line class="bb-gv" x1="358.4" y1="26.0" x2="358.4" y2="250.0"/>
+              <text class="bb-ax" x="358.4" y="271.0">30%</text>
+              <line class="bb-gv" x1="459.2" y1="26.0" x2="459.2" y2="250.0"/>
+              <text class="bb-ax" x="459.2" y="271.0">40%</text>
+              <line class="bb-gv" x1="560.0" y1="26.0" x2="560.0" y2="250.0"/>
+              <text class="bb-ax" x="560.0" y="271.0">50%</text>
+              <line class="bb-ln" x1="56.0" y1="26.0" x2="56.0" y2="250.0"/>
+              <line class="bb-ln" x1="56.0" y1="250.0" x2="560.0" y2="250.0"/>
+              <text class="bb-t1" x="45.0" y="15.0" text-anchor="start">Market growth (CAGR 2026-2035, %)</text>
+              <text class="bb-t1" x="560.0" y="294.0" text-anchor="end">Market share of 2025 revenue (%)</text>
               <g class="bb-g" data-i="0" tabindex="0" role="listitem"
                  aria-label="North America: 42 percent of 2025 revenue, CAGR 10.8 percent, USD 8.0 billion in 2035">
-                <circle class="bb-w" cx="446.7" cy="231.8" r="64.8" fill="url(#bbg-na)" style="--d:0ms"/>
-                <circle class="bb-c" cx="446.7" cy="231.8" r="40.0" fill="url(#bbf-na)" style="--d:0ms"/>
-                <text class="bb-l n" x="497.7" y="219.8" text-anchor="start" fill="#3b1178">North America</text>
-                <text class="bb-l m" x="497.7" y="233.8" text-anchor="start">42%, 10.8%</text>
-                <text class="bb-l v" x="497.7" y="247.8" text-anchor="start">$8.0B</text>
+                <circle class="bb-w" cx="479.4" cy="176.7" r="61.6" fill="url(#bbg-na)" style="--d:0ms"/>
+                <circle class="bb-c" cx="479.4" cy="176.7" r="38.0" fill="url(#bbf-na)" style="--d:0ms"/>
+                <text class="bb-l n" x="528.4" y="164.7" text-anchor="start" fill="#3b1178">North America</text>
+                <text class="bb-l m" x="528.4" y="178.7" text-anchor="start">42%, 10.8%</text>
+                <text class="bb-l v" x="528.4" y="192.7" text-anchor="start">$8.0B</text>
               </g>
               <g class="bb-g" data-i="1" tabindex="0" role="listitem"
                  aria-label="Europe: 26 percent of 2025 revenue, CAGR 11.6 percent, USD 5.3 billion in 2035">
-                <circle class="bb-w" cx="300.2" cy="188.2" r="52.7" fill="url(#bbg-eu)" style="--d:110ms"/>
-                <circle class="bb-c" cx="300.2" cy="188.2" r="32.6" fill="url(#bbf-eu)" style="--d:110ms"/>
-                <text class="bb-l n" x="256.6" y="176.2" text-anchor="end" fill="#4c1d95">Europe</text>
-                <text class="bb-l m" x="256.6" y="190.2" text-anchor="end">26%, 11.6%</text>
-                <text class="bb-l v" x="256.6" y="204.2" text-anchor="end">$5.3B</text>
+                <circle class="bb-w" cx="318.1" cy="144.1" r="50.1" fill="url(#bbg-eu)" style="--d:110ms"/>
+                <circle class="bb-c" cx="318.1" cy="144.1" r="30.9" fill="url(#bbf-eu)" style="--d:110ms"/>
+                <text class="bb-l n" x="276.2" y="132.1" text-anchor="end" fill="#4c1d95">Europe</text>
+                <text class="bb-l m" x="276.2" y="146.1" text-anchor="end">26%, 11.6%</text>
+                <text class="bb-l v" x="276.2" y="160.1" text-anchor="end">$5.3B</text>
               </g>
               <g class="bb-g" data-i="2" tabindex="0" role="listitem"
                  aria-label="Asia Pacific: 22 percent of 2025 revenue, CAGR 13.6 percent, USD 5.4 billion in 2035">
-                <circle class="bb-w" cx="263.5" cy="79.1" r="53.2" fill="url(#bbg-ap)" style="--d:220ms"/>
-                <circle class="bb-c" cx="263.5" cy="79.1" r="32.9" fill="url(#bbf-ap)" style="--d:220ms"/>
-                <text class="bb-l n" x="307.4" y="67.1" text-anchor="start" fill="#6d28d9">Asia Pacific</text>
-                <text class="bb-l m" x="307.4" y="81.1" text-anchor="start">22%, 13.6%</text>
-                <text class="bb-l v" x="307.4" y="95.1" text-anchor="start">$5.4B</text>
+                <circle class="bb-w" cx="277.8" cy="62.7" r="50.6" fill="url(#bbg-ap)" style="--d:220ms"/>
+                <circle class="bb-c" cx="277.8" cy="62.7" r="31.2" fill="url(#bbf-ap)" style="--d:220ms"/>
+                <text class="bb-l n" x="320.0" y="50.7" text-anchor="start" fill="#6d28d9">Asia Pacific</text>
+                <text class="bb-l m" x="320.0" y="64.7" text-anchor="start">22%, 13.6%</text>
+                <text class="bb-l v" x="320.0" y="78.7" text-anchor="start">$5.4B</text>
               </g>
               <g class="bb-g" data-i="3" tabindex="0" role="listitem"
                  aria-label="Latin America: 6 percent of 2025 revenue, CAGR 10.4 percent, USD 1.1 billion in 2035">
-                <circle class="bb-w" cx="117.0" cy="253.6" r="24.0" fill="url(#bbg-la)" style="--d:330ms"/>
-                <circle class="bb-c" cx="117.0" cy="253.6" r="14.8" fill="url(#bbf-la)" style="--d:330ms"/>
-                <text class="bb-l n" x="142.8" y="223.6" text-anchor="start" fill="#6d28d9">Latin America</text>
-                <text class="bb-l m" x="142.8" y="237.6" text-anchor="start">6%, 10.4%</text>
-                <text class="bb-l v" x="142.8" y="251.6" text-anchor="start">$1.1B</text>
+                <circle class="bb-w" cx="116.5" cy="193.0" r="22.8" fill="url(#bbg-la)" style="--d:330ms"/>
+                <circle class="bb-c" cx="116.5" cy="193.0" r="14.1" fill="url(#bbf-la)" style="--d:330ms"/>
+                <text class="bb-l n" x="141.6" y="173.0" text-anchor="start" fill="#6d28d9">Latin America</text>
+                <text class="bb-l m" x="141.6" y="187.0" text-anchor="start">6%, 10.4% &#183; <tspan class="bb-vv">$1.1B</tspan></text>
               </g>
               <g class="bb-g" data-i="4" tabindex="0" role="listitem"
                  aria-label="Middle East and Africa: 4 percent of 2025 revenue, CAGR 10.0 percent, USD 0.7 billion in 2035">
-                <circle class="bb-w" cx="98.6" cy="275.5" r="19.2" fill="url(#bbg-me)" style="--d:440ms"/>
-                <circle class="bb-c" cx="98.6" cy="275.5" r="11.8" fill="url(#bbf-me)" style="--d:440ms"/>
-                <text class="bb-l n" x="121.5" y="283.5" text-anchor="start" fill="#7c3aed">Middle East &amp; Africa</text>
-                <text class="bb-l m" x="121.5" y="297.5" text-anchor="start">4%, 10.0%</text>
-                <text class="bb-l v" x="121.5" y="311.5" text-anchor="start">$0.7B</text>
+                <circle class="bb-w" cx="96.3" cy="209.3" r="18.2" fill="url(#bbg-me)" style="--d:440ms"/>
+                <circle class="bb-c" cx="96.3" cy="209.3" r="11.2" fill="url(#bbf-me)" style="--d:440ms"/>
+                <text class="bb-l n" x="118.6" y="225.3" text-anchor="start" fill="#7c3aed">Middle East &amp; Africa</text>
+                <text class="bb-l m" x="118.6" y="239.3" text-anchor="start">4%, 10.0% &#183; <tspan class="bb-vv">$0.7B</tspan></text>
               </g>
             </svg>
           </div>
