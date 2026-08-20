@@ -1574,14 +1574,15 @@
     gap:24px;align-items:start;margin-top:14px}
   .pz-left{display:flex;flex-direction:column;gap:10px}
   .pz-svg{width:100%;height:auto;display:block;overflow:visible}
-  .pz-sl{cursor:pointer;outline:none;
-    transform:translate(0,0);
+  .pz-art{pointer-events:none}
+  .pz-hit .pz-ht{fill:transparent;stroke:none;cursor:pointer;outline:none}
+  .pz-hit .pz-ht:focus-visible{stroke:#1e1b4b;stroke-width:2.5;stroke-linejoin:round}
+  .pz-sl{transform:translate(0,0);
     transition:transform .32s cubic-bezier(.22,1,.36,1),filter .32s ease}
   .pz-sl .pz-top{stroke:#fff;stroke-width:1.1;stroke-linejoin:round}
   .pz-sl .pz-side{stroke:none}
   .pz-sl.on{transform:translate(var(--px),var(--py));
     filter:drop-shadow(0 10px 12px rgba(59,17,120,.32))}
-  .pz-sl:focus-visible .pz-top{stroke:#1e1b4b;stroke-width:2}
 
   .pz-read{border-left:3px solid var(--purple-mid);padding:2px 0 2px 11px;min-height:56px}
   .pz-read b{display:block;font-size:12px;font-weight:600;color:var(--purple-deep)}
@@ -3135,14 +3136,20 @@
         <div class="pz-wrap">
           <div class="pz-left">
             <svg class="pz-svg" viewBox="0 14 240 166" role="img" aria-label="3D pie of the 2025 revenue mix: Hardware 61 percent, Software &amp; Solutions 39 percent">
-            <g class="pz-sl" data-i="1" tabindex="0" style="--px:-10.35px;--py:-11.05px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#4c2392"/>
-              <path class="pz-top" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#7c3aed"/>
-            </g>
-            <g class="pz-sl" data-i="0" tabindex="0" style="--px:10.35px;--py:-6.95px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 56.81 128.38 Z" fill="#240a4a"/>
-              <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 56.81 128.38 Z" fill="#3b1178"/>
-            </g>
+              <g class="pz-art">
+              <g class="pz-sl" data-i="1" style="--px:-10.35px;--py:-11.05px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#4c2392"/>
+                <path class="pz-top" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#7c3aed"/>
+              </g>
+              <g class="pz-sl" data-i="0" style="--px:10.35px;--py:-6.95px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 56.81 128.38 Z" fill="#240a4a"/>
+                <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 56.81 128.38 Z" fill="#3b1178"/>
+              </g>
+              </g>
+              <g class="pz-hit">
+                <path class="pz-ht" data-i="0" tabindex="0" role="button" aria-label="Hardware, 61 percent of 2025 revenue" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 56.81 128.38 Z"/>
+                <path class="pz-ht" data-i="1" tabindex="0" role="button" aria-label="Software and Solutions, 39 percent of 2025 revenue" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 118.00 31.00 Z"/>
+              </g>
             </svg>
             <div class="pz-read"><b>2025 revenue mix</b><span>Hover a slice or a bar for detail</span></div>
           </div>
@@ -3180,26 +3187,35 @@
         <div class="pz-wrap">
           <div class="pz-left">
             <svg class="pz-svg" viewBox="0 14 240 166" role="img" aria-label="3D pie of the 2025 revenue mix: CT-Based 34 percent, MRI-Based 27 percent, Ultrasound-Based 19 percent, Optical / Fluoroscopy 14 percent, Others 6 percent">
-            <g class="pz-sl" data-i="4" tabindex="0" style="--px:-2.06px;--py:-14.94px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#79709c"/>
-              <path class="pz-top" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#c4b5fd"/>
-            </g>
-            <g class="pz-sl" data-i="3" tabindex="0" style="--px:-8.02px;--py:-13.14px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#67569b"/>
-              <path class="pz-top" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#a78bfa"/>
-            </g>
-            <g class="pz-sl" data-i="0" tabindex="0" style="--px:9.64px;--py:-11.91px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 199.06 115.47 Z" fill="#240a4a"/>
-              <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 199.06 115.47 Z" fill="#3b1178"/>
-            </g>
-            <g class="pz-sl" data-i="2" tabindex="0" style="--px:-10.56px;--py:-7.31px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#4c2392"/>
-              <path class="pz-top" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#7c3aed"/>
-            </g>
-            <g class="pz-sl" data-i="1" tabindex="0" style="--px:1.72px;--py:-3.02px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L199.06 115.47 A96.0 55.0 0 0 1 56.81 128.38 Z" fill="#381470"/>
-              <path class="pz-top" d="M118.00 86.00 L199.06 115.47 A96.0 55.0 0 0 1 56.81 128.38 Z" fill="#5b21b6"/>
-            </g>
+              <g class="pz-art">
+              <g class="pz-sl" data-i="4" style="--px:-2.06px;--py:-14.94px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#79709c"/>
+                <path class="pz-top" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#c4b5fd"/>
+              </g>
+              <g class="pz-sl" data-i="3" style="--px:-8.02px;--py:-13.14px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#67569b"/>
+                <path class="pz-top" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#a78bfa"/>
+              </g>
+              <g class="pz-sl" data-i="0" style="--px:9.64px;--py:-11.91px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 199.06 115.47 Z" fill="#240a4a"/>
+                <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 199.06 115.47 Z" fill="#3b1178"/>
+              </g>
+              <g class="pz-sl" data-i="2" style="--px:-10.56px;--py:-7.31px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#4c2392"/>
+                <path class="pz-top" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#7c3aed"/>
+              </g>
+              <g class="pz-sl" data-i="1" style="--px:1.72px;--py:-3.02px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L199.06 115.47 A96.0 55.0 0 0 1 56.81 128.38 Z" fill="#381470"/>
+                <path class="pz-top" d="M118.00 86.00 L199.06 115.47 A96.0 55.0 0 0 1 56.81 128.38 Z" fill="#5b21b6"/>
+              </g>
+              </g>
+              <g class="pz-hit">
+                <path class="pz-ht" data-i="0" tabindex="0" role="button" aria-label="CT-Based, 34 percent of 2025 revenue" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 199.06 115.47 Z"/>
+                <path class="pz-ht" data-i="1" tabindex="0" role="button" aria-label="MRI-Based, 27 percent of 2025 revenue" d="M118.00 86.00 L199.06 115.47 A96.0 55.0 0 0 1 56.81 128.38 Z"/>
+                <path class="pz-ht" data-i="2" tabindex="0" role="button" aria-label="Ultrasound-Based, 19 percent of 2025 revenue" d="M118.00 86.00 L56.81 128.38 A96.0 55.0 0 0 1 26.70 69.00 Z"/>
+                <path class="pz-ht" data-i="3" tabindex="0" role="button" aria-label="Optical / Fluoroscopy, 14 percent of 2025 revenue" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z"/>
+                <path class="pz-ht" data-i="4" tabindex="0" role="button" aria-label="Others, 6 percent of 2025 revenue" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z"/>
+              </g>
             </svg>
             <div class="pz-read"><b>2025 revenue mix</b><span>Hover a slice or a bar for detail</span></div>
           </div>
@@ -3252,26 +3268,35 @@
         <div class="pz-wrap">
           <div class="pz-left">
             <svg class="pz-svg" viewBox="0 14 240 166" role="img" aria-label="3D pie of the 2025 revenue mix: Neurosurgery 27 percent, Orthopedic &amp; Spine 26 percent, Radiology / General 21 percent, Cardiovascular 17 percent, Others 9 percent">
-            <g class="pz-sl" data-i="4" tabindex="0" style="--px:-3.07px;--py:-14.81px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L66.56 39.56 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#79709c"/>
-              <path class="pz-top" d="M118.00 86.00 L66.56 39.56 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#c4b5fd"/>
-            </g>
-            <g class="pz-sl" data-i="0" tabindex="0" style="--px:8.25px;--py:-13.00px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 213.24 92.89 Z" fill="#240a4a"/>
-              <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 213.24 92.89 Z" fill="#3b1178"/>
-            </g>
-            <g class="pz-sl" data-i="3" tabindex="0" style="--px:-9.80px;--py:-11.75px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L22.19 89.45 A96.0 55.0 0 0 1 66.56 39.56 Z" fill="#67569b"/>
-              <path class="pz-top" d="M118.00 86.00 L22.19 89.45 A96.0 55.0 0 0 1 66.56 39.56 Z" fill="#a78bfa"/>
-            </g>
-            <g class="pz-sl" data-i="2" tabindex="0" style="--px:-8.25px;--py:-5.00px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L100.01 140.03 A96.0 55.0 0 0 1 22.19 89.45 Z" fill="#4c2392"/>
-              <path class="pz-top" d="M118.00 86.00 L100.01 140.03 A96.0 55.0 0 0 1 22.19 89.45 Z" fill="#7c3aed"/>
-            </g>
-            <g class="pz-sl" data-i="1" tabindex="0" style="--px:6.47px;--py:-4.11px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L213.24 92.89 A96.0 55.0 0 0 1 100.01 140.03 Z" fill="#381470"/>
-              <path class="pz-top" d="M118.00 86.00 L213.24 92.89 A96.0 55.0 0 0 1 100.01 140.03 Z" fill="#5b21b6"/>
-            </g>
+              <g class="pz-art">
+              <g class="pz-sl" data-i="4" style="--px:-3.07px;--py:-14.81px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L66.56 39.56 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#79709c"/>
+                <path class="pz-top" d="M118.00 86.00 L66.56 39.56 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#c4b5fd"/>
+              </g>
+              <g class="pz-sl" data-i="0" style="--px:8.25px;--py:-13.00px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 213.24 92.89 Z" fill="#240a4a"/>
+                <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 213.24 92.89 Z" fill="#3b1178"/>
+              </g>
+              <g class="pz-sl" data-i="3" style="--px:-9.80px;--py:-11.75px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L22.19 89.45 A96.0 55.0 0 0 1 66.56 39.56 Z" fill="#67569b"/>
+                <path class="pz-top" d="M118.00 86.00 L22.19 89.45 A96.0 55.0 0 0 1 66.56 39.56 Z" fill="#a78bfa"/>
+              </g>
+              <g class="pz-sl" data-i="2" style="--px:-8.25px;--py:-5.00px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L100.01 140.03 A96.0 55.0 0 0 1 22.19 89.45 Z" fill="#4c2392"/>
+                <path class="pz-top" d="M118.00 86.00 L100.01 140.03 A96.0 55.0 0 0 1 22.19 89.45 Z" fill="#7c3aed"/>
+              </g>
+              <g class="pz-sl" data-i="1" style="--px:6.47px;--py:-4.11px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L213.24 92.89 A96.0 55.0 0 0 1 100.01 140.03 Z" fill="#381470"/>
+                <path class="pz-top" d="M118.00 86.00 L213.24 92.89 A96.0 55.0 0 0 1 100.01 140.03 Z" fill="#5b21b6"/>
+              </g>
+              </g>
+              <g class="pz-hit">
+                <path class="pz-ht" data-i="0" tabindex="0" role="button" aria-label="Neurosurgery, 27 percent of 2025 revenue" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 0 1 213.24 92.89 Z"/>
+                <path class="pz-ht" data-i="1" tabindex="0" role="button" aria-label="Orthopedic and Spine, 26 percent of 2025 revenue" d="M118.00 86.00 L213.24 92.89 A96.0 55.0 0 0 1 100.01 140.03 Z"/>
+                <path class="pz-ht" data-i="2" tabindex="0" role="button" aria-label="Radiology / General, 21 percent of 2025 revenue" d="M118.00 86.00 L100.01 140.03 A96.0 55.0 0 0 1 22.19 89.45 Z"/>
+                <path class="pz-ht" data-i="3" tabindex="0" role="button" aria-label="Cardiovascular, 17 percent of 2025 revenue" d="M118.00 86.00 L22.19 89.45 A96.0 55.0 0 0 1 66.56 39.56 Z"/>
+                <path class="pz-ht" data-i="4" tabindex="0" role="button" aria-label="Others, 9 percent of 2025 revenue" d="M118.00 86.00 L66.56 39.56 A96.0 55.0 0 0 1 118.00 31.00 Z"/>
+              </g>
             </svg>
             <div class="pz-read"><b>2025 revenue mix</b><span>Hover a slice or a bar for detail</span></div>
           </div>
@@ -3324,22 +3349,30 @@
         <div class="pz-wrap">
           <div class="pz-left">
             <svg class="pz-svg" viewBox="0 14 240 166" role="img" aria-label="3D pie of the 2025 revenue mix: Hospitals 58 percent, Ambulatory Surgical Centers 22 percent, Diagnostic &amp; Research 14 percent, Others 6 percent">
-            <g class="pz-sl" data-i="3" tabindex="0" style="--px:-2.06px;--py:-14.94px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#67569b"/>
-              <path class="pz-top" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#a78bfa"/>
-            </g>
-            <g class="pz-sl" data-i="2" tabindex="0" style="--px:-8.02px;--py:-13.14px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#4c2392"/>
-              <path class="pz-top" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#7c3aed"/>
-            </g>
-            <g class="pz-sl" data-i="0" tabindex="0" style="--px:10.65px;--py:-7.50px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 71.75 134.20 Z" fill="#240a4a"/>
-              <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 71.75 134.20 Z" fill="#3b1178"/>
-            </g>
-            <g class="pz-sl" data-i="1" tabindex="0" style="--px:-10.23px;--py:-6.77px">
-              <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L71.75 134.20 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#381470"/>
-              <path class="pz-top" d="M118.00 86.00 L71.75 134.20 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#5b21b6"/>
-            </g>
+              <g class="pz-art">
+              <g class="pz-sl" data-i="3" style="--px:-2.06px;--py:-14.94px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#67569b"/>
+                <path class="pz-top" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z" fill="#a78bfa"/>
+              </g>
+              <g class="pz-sl" data-i="2" style="--px:-8.02px;--py:-13.14px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#4c2392"/>
+                <path class="pz-top" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z" fill="#7c3aed"/>
+              </g>
+              <g class="pz-sl" data-i="0" style="--px:10.65px;--py:-7.50px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 71.75 134.20 Z" fill="#240a4a"/>
+                <path class="pz-top" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 71.75 134.20 Z" fill="#3b1178"/>
+              </g>
+              <g class="pz-sl" data-i="1" style="--px:-10.23px;--py:-6.77px">
+                <path class="pz-side" transform="translate(0,17)" d="M118.00 86.00 L71.75 134.20 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#381470"/>
+                <path class="pz-top" d="M118.00 86.00 L71.75 134.20 A96.0 55.0 0 0 1 26.70 69.00 Z" fill="#5b21b6"/>
+              </g>
+              </g>
+              <g class="pz-hit">
+                <path class="pz-ht" data-i="0" tabindex="0" role="button" aria-label="Hospitals, 58 percent of 2025 revenue" d="M118.00 86.00 L118.00 31.00 A96.0 55.0 0 1 1 71.75 134.20 Z"/>
+                <path class="pz-ht" data-i="1" tabindex="0" role="button" aria-label="Ambulatory Surgical Centers, 22 percent of 2025 revenue" d="M118.00 86.00 L71.75 134.20 A96.0 55.0 0 0 1 26.70 69.00 Z"/>
+                <path class="pz-ht" data-i="2" tabindex="0" role="button" aria-label="Diagnostic and Research, 14 percent of 2025 revenue" d="M118.00 86.00 L26.70 69.00 A96.0 55.0 0 0 1 82.66 34.86 Z"/>
+                <path class="pz-ht" data-i="3" tabindex="0" role="button" aria-label="Others, 6 percent of 2025 revenue" d="M118.00 86.00 L82.66 34.86 A96.0 55.0 0 0 1 118.00 31.00 Z"/>
+              </g>
             </svg>
             <div class="pz-read"><b>2025 revenue mix</b><span>Hover a slice or a bar for detail</span></div>
           </div>
@@ -5007,15 +5040,16 @@
   (function(){
     [].forEach.call(document.querySelectorAll('.pz-fig'), function(fig){
       var data; try{ data=JSON.parse(fig.getAttribute('data-seg')); }catch(e){ return; }
-      var svg=fig.querySelector('.pz-svg');
-      var order=[].slice.call(svg.querySelectorAll('.pz-sl'));
+      var art=fig.querySelector('.pz-art');
+      var order=[].slice.call(art.querySelectorAll('.pz-sl'));
+      var hits=[].slice.call(fig.querySelectorAll('.pz-ht'));
       var items=[].slice.call(fig.querySelectorAll('.pz-item'));
       var read=fig.querySelector('.pz-read');
       var rb=read.querySelector('b'), rs=read.querySelector('span');
       var cur=-1;
       function byI(list,i){ for(var k=0;k<list.length;k++){ if(+list[k].getAttribute('data-i')===i) return list[k]; } return null; }
       function reset(){
-        order.forEach(function(g){ svg.appendChild(g); });
+        order.forEach(function(g){ art.appendChild(g); });
       }
       function show(i){
         if(cur===i) return; cur=i;
@@ -5024,7 +5058,7 @@
         if(i<0){ reset(); rb.textContent='2025 revenue mix';
           rs.textContent='Hover a slice or a bar for detail'; return; }
         var d=data[i], g=byI(order,i), t=byI(items,i);
-        if(g){ reset(); svg.appendChild(g); g.classList.add('on'); }
+        if(g){ reset(); art.appendChild(g); g.classList.add('on'); }
         if(t) t.classList.add('on');
         rb.innerHTML=d.n+' &middot; '+d.p+'% of 2025 revenue';
         rs.textContent='USD '+d.a.toFixed(2)+'bn in 2025 → USD '+d.b.toFixed(2)+
@@ -5036,7 +5070,7 @@
         el.addEventListener('focus',function(){ show(i); });
         el.addEventListener('blur',function(){ show(-1); });
       }
-      order.forEach(function(g){ wire(g,+g.getAttribute('data-i')); });
+      hits.forEach(function(p){ wire(p,+p.getAttribute('data-i')); });
       items.forEach(function(t){ wire(t,+t.getAttribute('data-i')); });
       function lock(){
         var keep=cur; read.style.minHeight='0px';
