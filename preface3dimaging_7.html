@@ -1751,57 +1751,39 @@
 
 
 
-  /* --- 12 - developments deck --- */
-  .dk-wrap{margin-top:16px}
-  .dk-keys{display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:12px}
-  .dk-k{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ink)}
-  .dk-k i{width:10px;height:10px;border-radius:3px;flex:none}
 
-  .dk-stage{display:grid;border-radius:14px;overflow:hidden;
-    background:linear-gradient(135deg,#f8f5ff 0%,#fdfcff 62%);border:1px solid var(--line)}
-  .dk-slide{grid-area:1/1;position:relative;padding:26px 30px 28px 34px;
-    visibility:hidden;opacity:0;transition:opacity .3s ease}
-  .dk-slide::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
-  .dk-slide.on{visibility:visible;opacity:1}
-  .dk-ghost{position:absolute;right:20px;bottom:-16px;font-size:104px;font-weight:800;
-    line-height:1;color:var(--c);opacity:.07;pointer-events:none;user-select:none}
-  .dk-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-  .dk-ix{font-size:12px;font-weight:700;color:var(--c)}
-  .dk-ix em{font-style:normal;font-weight:600;color:var(--muted)}
-  .dk-tag{font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:999px;
-    background:#fff;border:1px solid var(--line);color:var(--c)}
-  .dk-date{margin-top:14px;font-size:21px;font-weight:700;color:var(--purple-deep);line-height:1.15}
-  .dk-who{margin:5px 0 0;font-size:14.5px;font-weight:700;color:var(--navy);line-height:1.3}
-  .dk-txt{margin:10px 0 0;max-width:74ch;font-size:12.5px;line-height:1.7;color:var(--ink)}
+  /* --- 12 - developments lane chart --- */
+  .lc-fig{margin-top:16px}
+  .lc-plotwrap{margin-top:14px}
+  .lc-svg{width:100%;height:auto;display:block}
+  .lc-band{fill:#faf8ff}
+  .lc-div{stroke:#ece6f9;stroke-width:1}
+  .lc-brk{stroke:#d9cff5;stroke-width:1;stroke-dasharray:3 4}
+  .lc-lab{font-size:12px;font-weight:600;fill:var(--navy)}
+  .lc-cnt{font-size:10.5px;fill:var(--muted)}
+  .lc-yr{font-size:11px;font-weight:600;fill:var(--muted)}
+  .lc-dot{pointer-events:none;stroke:#fff;stroke-width:2;
+    transition:r .18s ease,filter .18s ease}
+  .lc-dot.on{r:10.5;filter:drop-shadow(0 4px 7px rgba(59,17,120,.34))}
+  .lc-hit{fill:transparent;cursor:pointer;outline:none}
+  .lc-hit:focus-visible{fill:rgba(124,58,237,.16)}
 
-  .dk-bar{display:flex;align-items:center;gap:12px;margin-top:14px}
-  .dk-nav{appearance:none;flex:none;width:34px;height:34px;border-radius:50%;cursor:pointer;
-    background:#fff;border:1px solid var(--line);position:relative;
-    transition:border-color .18s ease,background .18s ease}
-  .dk-nav::after{content:"";position:absolute;inset:0;margin:auto;width:8px;height:8px;
-    border-left:2px solid var(--purple-deep);border-bottom:2px solid var(--purple-deep);
-    transform:translateX(2px) rotate(45deg)}
-  .dk-nav.next::after{transform:translateX(-2px) rotate(-135deg)}
-  .dk-nav:hover{border-color:var(--purple-mid);background:#faf7ff}
-  .dk-nav:focus-visible{outline:2px solid #7c3aed;outline-offset:2px}
+  .lc-stage{display:grid;margin-top:14px;border-left:3px solid var(--purple-mid);padding-left:13px}
+  .lc-panel{grid-area:1/1;visibility:hidden;opacity:0;transition:opacity .25s ease}
+  .lc-panel.on{visibility:visible;opacity:1}
+  .lc-ph{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .lc-pd{font-size:12.5px;font-weight:700;color:var(--purple-deep)}
+  .lc-pt{font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:999px;
+    background:#f5f1ff;color:var(--c)}
+  .lc-pw{margin:6px 0 0;font-size:13px;font-weight:700;color:var(--navy)}
+  .lc-px{margin:5px 0 0;font-size:12px;line-height:1.65;color:var(--muted)}
 
-  .dk-rail{display:flex;flex:1 1 auto;gap:5px;min-width:0}
-  .dk-seg{appearance:none;flex:1 1 0;min-width:0;padding:8px 0;background:none;border:0;
-    cursor:pointer;display:block}
-  .dk-seg i{display:block;height:5px;border-radius:999px;background:var(--c);opacity:.28;
-    transition:opacity .18s ease,height .18s ease}
-  .dk-seg:hover i{opacity:.6}
-  .dk-seg.on i{opacity:1;height:8px}
-  .dk-seg:focus-visible{outline:2px solid #7c3aed;outline-offset:1px;border-radius:4px}
-
-  @media(max-width:640px){
-    .dk-slide{padding:20px 20px 22px 26px}
-    .dk-date{font-size:18px}
-    .dk-ghost{font-size:74px;right:12px}
-    .dk-rail{gap:3px}
+  @media(max-width:820px){
+    .lc-plotwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .lc-svg{min-width:800px}
   }
   @media(prefers-reduced-motion:reduce){
-    .dk-slide{transition:none}
+    .lc-dot,.lc-panel{transition:none}
   }
 
 </style>
@@ -4188,120 +4170,128 @@
       <h3 class="sub reveal" data-n="12" id="rd-title">Recent Industry Developments</h3>
 
       <p class="reveal">
-        Every development this report records, in order from mid-2024 to May 2026. Step through the deck, or jump
-        straight to one from the rail below.
+        Every development this report records, plotted by date and by the kind of event. Clearances and market
+        moves cluster into 2026, while partnership activity runs right through the window.
       </p>
 
-      <div class="dk-wrap reveal" id="devDeck">
-        <div class="dk-keys"><span class="dk-k"><i style="background:#3b1178"></i>Regulatory clearance</span><span class="dk-k"><i style="background:#6d28d9"></i>Partnership and integration</span><span class="dk-k"><i style="background:#9333ea"></i>Clinical validation</span><span class="dk-k"><i style="background:#7c3aed"></i>Market and adjacency</span></div>
-        <div class="dk-stage">
-              <article class="dk-slide on" data-i="0" style="--c:#6d28d9" aria-hidden="false">
-                <span class="dk-ghost" aria-hidden="true">01</span>
-                <div class="dk-head"><span class="dk-ix">01 <em>/ 11</em></span><span class="dk-tag">Partnership and integration</span></div>
-                <div class="dk-date">Mid-2024</div>
-                <h6 class="dk-who">Fujifilm and Brainlab</h6>
-                <p class="dk-txt">Fujifilm and Brainlab confirmed the availability of their combined ARIETTA Precision intraoperative ultrasound and navigation software solution for neurosurgery clinicians, extending real-time intraoperative ultrasound insight to Brainlab's broader digital surgery portfolio.</p>
-              </article>
-              <article class="dk-slide" data-i="1" style="--c:#6d28d9" aria-hidden="true">
-                <span class="dk-ghost" aria-hidden="true">02</span>
-                <div class="dk-head"><span class="dk-ix">02 <em>/ 11</em></span><span class="dk-tag">Partnership and integration</span></div>
-                <div class="dk-date">April 2025</div>
-                <h6 class="dk-who">Siemens Healthineers and Tower Health</h6>
-                <p class="dk-txt">Siemens Healthineers entered a ten-year Value Partnership with Tower Health, covering imaging equipment enhancement and digital-tools modernisation across radiology, oncology and cardiology.</p>
-              </article>
-              <article class="dk-slide" data-i="2" style="--c:#6d28d9" aria-hidden="true">
-                <span class="dk-ghost" aria-hidden="true">03</span>
-                <div class="dk-head"><span class="dk-ix">03 <em>/ 11</em></span><span class="dk-tag">Partnership and integration</span></div>
-                <div class="dk-date">June 2025</div>
-                <h6 class="dk-who">ChoiceSpine and eCential Robotics</h6>
-                <p class="dk-txt">ChoiceSpine LLC partnered with eCential Robotics to launch a dedicated spine-surgery application on the eCential Op.n robotic and navigation platform.</p>
-              </article>
-              <article class="dk-slide" data-i="3" style="--c:#9333ea" aria-hidden="true">
-                <span class="dk-ghost" aria-hidden="true">04</span>
-                <div class="dk-head"><span class="dk-ix">04 <em>/ 11</em></span><span class="dk-tag">Clinical validation</span></div>
-                <div class="dk-date">July 2025</div>
-                <h6 class="dk-who">MediView</h6>
-                <p class="dk-txt">MediView launched a multicenter study to validate its XR90 Holographic Surgical Navigation system as an adjunct to standard ultrasound and CT imaging in percutaneous tumor biopsies.</p>
-              </article>
-              <article class="dk-slide" data-i="4" style="--c:#3b1178" aria-hidden="true">
-                <span class="dk-ghost" aria-hidden="true">05</span>
-                <div class="dk-head"><span class="dk-ix">05 <em>/ 11</em></span><span class="dk-tag">Regulatory clearance</span></div>
-                <div class="dk-date">September 2025</div>
-                <h6 class="dk-who">Brainlab</h6>
-                <p class="dk-txt">Brainlab announced FDA 510(k) clearance and U.S. launch of its Spine Mixed Reality Navigation system, combining its established optical navigation platform with mixed-reality headset visualization for pedicle screw placement.</p>
-              </article>
-              <article class="dk-slide" data-i="5" style="--c:#3b1178" aria-hidden="true">
-                <span class="dk-ghost" aria-hidden="true">06</span>
-                <div class="dk-head"><span class="dk-ix">06 <em>/ 11</em></span><span class="dk-tag">Regulatory clearance</span></div>
-                <div class="dk-date">February 2026</div>
-                <h6 class="dk-who">Medtronic</h6>
-                <p class="dk-txt">Medtronic received FDA clearance for the Stealth AXiS surgical system, the first platform to natively integrate planning, navigation and robotics for spine surgery within its AiBLE smart ecosystem.</p>
-              </article>
-              <article class="dk-slide" data-i="6" style="--c:#7c3aed" aria-hidden="true">
-                <span class="dk-ghost" aria-hidden="true">07</span>
-                <div class="dk-head"><span class="dk-ix">07 <em>/ 11</em></span><span class="dk-tag">Market and adjacency</span></div>
-                <div class="dk-date">March 2026</div>
-                <h6 class="dk-who">Catalyst MedTech</h6>
-                <p class="dk-txt">Catalyst MedTech announced a Full Access Neurology Solution supporting brain PET implementation in the United States, illustrating continued expansion of advanced imaging capability into nuclear medicine and molecular imaging adjacent to the core surgical-imaging category.</p>
-              </article>
-              <article class="dk-slide" data-i="7" style="--c:#6d28d9" aria-hidden="true">
-                <span class="dk-ghost" aria-hidden="true">08</span>
-                <div class="dk-head"><span class="dk-ix">08 <em>/ 11</em></span><span class="dk-tag">Partnership and integration</span></div>
-                <div class="dk-date">April 2026</div>
-                <h6 class="dk-who">GE HealthCare and Medtronic</h6>
-                <p class="dk-txt">GE HealthCare announced a digital integration between its bkActiv intraoperative ultrasound system and Medtronic's Stealth AXiS surgical navigation system, providing real-time advanced imaging during cranial procedures without disrupting established navigation workflows.</p>
-              </article>
-              <article class="dk-slide" data-i="8" style="--c:#7c3aed" aria-hidden="true">
-                <span class="dk-ghost" aria-hidden="true">09</span>
-                <div class="dk-head"><span class="dk-ix">09 <em>/ 11</em></span><span class="dk-tag">Market and adjacency</span></div>
-                <div class="dk-date">April 2026</div>
-                <h6 class="dk-who">Premier Radiology Services and GLOBIS</h6>
-                <p class="dk-txt">Premier Radiology Services acquired Global Imaging Solutions (GLOBIS), a teleradiology group, reflecting continued consolidation in the broader imaging-services ecosystem adjacent to the surgical-platform market covered in this report.</p>
-              </article>
-              <article class="dk-slide" data-i="9" style="--c:#6d28d9" aria-hidden="true">
-                <span class="dk-ghost" aria-hidden="true">10</span>
-                <div class="dk-head"><span class="dk-ix">10 <em>/ 11</em></span><span class="dk-tag">Partnership and integration</span></div>
-                <div class="dk-date">April-May 2026</div>
-                <h6 class="dk-who">Siemens Healthineers and Onvida Health</h6>
-                <p class="dk-txt">Siemens Healthineers entered a ten-year Value Partnership with Onvida Health, and separately received FDA clearance for six interventional imaging systems across its Artis vision platform, including the AI-enabled Optiq system.</p>
-              </article>
-              <article class="dk-slide" data-i="10" style="--c:#3b1178" aria-hidden="true">
-                <span class="dk-ghost" aria-hidden="true">11</span>
-                <div class="dk-head"><span class="dk-ix">11 <em>/ 11</em></span><span class="dk-tag">Regulatory clearance</span></div>
-                <div class="dk-date">Prior milestone</div>
-                <h6 class="dk-who">Brainlab</h6>
-                <p class="dk-txt">Brainlab received FDA clearance for its Loop-X mobile intraoperative imaging robot and Cirq robotic alignment module, extending earlier CE Mark approval and taking the company's robotics-integrated digital surgery portfolio into the U.S. market.</p>
-              </article>
+      <figure class="md-fig lc-fig reveal" id="devLanes">
+        <h6>What Happened, and When</h6>
+        <p class="md-sub">Select a marker to read the development in full</p>
+        <div class="lc-plotwrap">
+          <svg class="lc-svg" viewBox="0 0 920 268" role="list"
+               aria-label="Eleven developments plotted across four categories between mid-2024 and May 2026.">
+              <rect class="lc-band" x="204" y="39.0" width="676.0" height="34"/>
+              <text class="lc-lab" x="186.0" y="57.0" text-anchor="end">Regulatory clearance</text>
+              <text class="lc-cnt" x="186.0" y="70.0" text-anchor="end">3 events</text>
+              <text class="lc-lab" x="186.0" y="103.0" text-anchor="end">Partnership and integration</text>
+              <text class="lc-cnt" x="186.0" y="116.0" text-anchor="end">5 events</text>
+              <rect class="lc-band" x="204" y="131.0" width="676.0" height="34"/>
+              <text class="lc-lab" x="186.0" y="149.0" text-anchor="end">Clinical validation</text>
+              <text class="lc-cnt" x="186.0" y="162.0" text-anchor="end">1 event</text>
+              <text class="lc-lab" x="186.0" y="195.0" text-anchor="end">Market and adjacency</text>
+              <text class="lc-cnt" x="186.0" y="208.0" text-anchor="end">2 events</text>
+              <line class="lc-div" x1="440.2" y1="34" x2="440.2" y2="240"/>
+              <line class="lc-div" x1="750.6" y1="34" x2="750.6" y2="240"/>
+              <line class="lc-brk" x1="248.0" y1="34" x2="248.0" y2="240"/>
+              <text class="lc-yr" x="356.1" y="258" text-anchor="middle">2024</text>
+              <text class="lc-yr" x="595.4" y="258" text-anchor="middle">2025</text>
+              <text class="lc-yr" x="815.3" y="258" text-anchor="middle">2026</text>
+              <text class="lc-yr" x="224.0" y="258" text-anchor="middle">Prior</text>
+              <circle class="lc-dot" data-i="0" cx="284.9" cy="102.0" r="7.5" fill="#6d28d9"/>
+              <circle class="lc-dot" data-i="1" cx="530.7" cy="102.0" r="7.5" fill="#6d28d9"/>
+              <circle class="lc-dot" data-i="2" cx="582.5" cy="102.0" r="7.5" fill="#6d28d9"/>
+              <circle class="lc-dot" data-i="3" cx="608.3" cy="148.0" r="7.5" fill="#9333ea"/>
+              <circle class="lc-dot" data-i="4" cx="660.1" cy="56.0" r="7.5" fill="#3b1178"/>
+              <circle class="lc-dot" data-i="5" cx="789.4" cy="56.0" r="7.5" fill="#3b1178"/>
+              <circle class="lc-dot" data-i="6" cx="815.3" cy="194.0" r="7.5" fill="#7c3aed"/>
+              <circle class="lc-dot" data-i="7" cx="841.2" cy="102.0" r="7.5" fill="#6d28d9"/>
+              <circle class="lc-dot" data-i="8" cx="841.2" cy="194.0" r="7.5" fill="#7c3aed"/>
+              <circle class="lc-dot" data-i="9" cx="867.1" cy="102.0" r="7.5" fill="#6d28d9"/>
+              <circle class="lc-dot" data-i="10" cx="224.0" cy="56.0" r="7.5" fill="#3b1178"/>
+              <circle class="lc-hit" data-i="0" cx="284.9" cy="102.0" r="12"
+                      tabindex="0" role="button" aria-label="Mid-2024: Fujifilm and Brainlab"/>
+              <circle class="lc-hit" data-i="1" cx="530.7" cy="102.0" r="12"
+                      tabindex="0" role="button" aria-label="April 2025: Siemens Healthineers and Tower Health"/>
+              <circle class="lc-hit" data-i="2" cx="582.5" cy="102.0" r="12"
+                      tabindex="0" role="button" aria-label="June 2025: ChoiceSpine and eCential Robotics"/>
+              <circle class="lc-hit" data-i="3" cx="608.3" cy="148.0" r="12"
+                      tabindex="0" role="button" aria-label="July 2025: MediView"/>
+              <circle class="lc-hit" data-i="4" cx="660.1" cy="56.0" r="12"
+                      tabindex="0" role="button" aria-label="September 2025: Brainlab"/>
+              <circle class="lc-hit" data-i="5" cx="789.4" cy="56.0" r="12"
+                      tabindex="0" role="button" aria-label="February 2026: Medtronic"/>
+              <circle class="lc-hit" data-i="6" cx="815.3" cy="194.0" r="12"
+                      tabindex="0" role="button" aria-label="March 2026: Catalyst MedTech"/>
+              <circle class="lc-hit" data-i="7" cx="841.2" cy="102.0" r="12"
+                      tabindex="0" role="button" aria-label="April 2026: GE HealthCare and Medtronic"/>
+              <circle class="lc-hit" data-i="8" cx="841.2" cy="194.0" r="12"
+                      tabindex="0" role="button" aria-label="April 2026: Premier Radiology Services and GLOBIS"/>
+              <circle class="lc-hit" data-i="9" cx="867.1" cy="102.0" r="12"
+                      tabindex="0" role="button" aria-label="April-May 2026: Siemens Healthineers and Onvida Health"/>
+              <circle class="lc-hit" data-i="10" cx="224.0" cy="56.0" r="12"
+                      tabindex="0" role="button" aria-label="Prior milestone: Brainlab"/>
+          </svg>
         </div>
-        <div class="dk-bar">
-          <button type="button" class="dk-nav" data-go="-1" aria-label="Previous development"></button>
-          <div class="dk-rail" role="group" aria-label="Jump to a development">
-            <button type="button" class="dk-seg on" data-i="0" style="--c:#6d28d9"
-                    aria-label="Mid-2024, Fujifilm and Brainlab"><i></i></button>
-            <button type="button" class="dk-seg" data-i="1" style="--c:#6d28d9"
-                    aria-label="April 2025, Siemens Healthineers and Tower Health"><i></i></button>
-            <button type="button" class="dk-seg" data-i="2" style="--c:#6d28d9"
-                    aria-label="June 2025, ChoiceSpine and eCential Robotics"><i></i></button>
-            <button type="button" class="dk-seg" data-i="3" style="--c:#9333ea"
-                    aria-label="July 2025, MediView"><i></i></button>
-            <button type="button" class="dk-seg" data-i="4" style="--c:#3b1178"
-                    aria-label="September 2025, Brainlab"><i></i></button>
-            <button type="button" class="dk-seg" data-i="5" style="--c:#3b1178"
-                    aria-label="February 2026, Medtronic"><i></i></button>
-            <button type="button" class="dk-seg" data-i="6" style="--c:#7c3aed"
-                    aria-label="March 2026, Catalyst MedTech"><i></i></button>
-            <button type="button" class="dk-seg" data-i="7" style="--c:#6d28d9"
-                    aria-label="April 2026, GE HealthCare and Medtronic"><i></i></button>
-            <button type="button" class="dk-seg" data-i="8" style="--c:#7c3aed"
-                    aria-label="April 2026, Premier Radiology Services and GLOBIS"><i></i></button>
-            <button type="button" class="dk-seg" data-i="9" style="--c:#6d28d9"
-                    aria-label="April-May 2026, Siemens Healthineers and Onvida Health"><i></i></button>
-            <button type="button" class="dk-seg" data-i="10" style="--c:#3b1178"
-                    aria-label="Prior milestone, Brainlab"><i></i></button>
-          </div>
-          <button type="button" class="dk-nav next" data-go="1" aria-label="Next development"></button>
+        <div class="lc-stage">
+            <article class="lc-panel on" data-i="0" style="--c:#6d28d9" aria-hidden="false">
+              <div class="lc-ph"><span class="lc-pd">Mid-2024</span><span class="lc-pt">Partnership and integration</span></div>
+              <h6 class="lc-pw">Fujifilm and Brainlab</h6>
+              <p class="lc-px">Fujifilm and Brainlab confirmed the availability of their combined ARIETTA Precision intraoperative ultrasound and navigation software solution for neurosurgery clinicians, extending real-time intraoperative ultrasound insight to Brainlab's broader digital surgery portfolio.</p>
+            </article>
+            <article class="lc-panel" data-i="1" style="--c:#6d28d9" aria-hidden="true">
+              <div class="lc-ph"><span class="lc-pd">April 2025</span><span class="lc-pt">Partnership and integration</span></div>
+              <h6 class="lc-pw">Siemens Healthineers and Tower Health</h6>
+              <p class="lc-px">Siemens Healthineers entered a ten-year Value Partnership with Tower Health, covering imaging equipment enhancement and digital-tools modernisation across radiology, oncology and cardiology.</p>
+            </article>
+            <article class="lc-panel" data-i="2" style="--c:#6d28d9" aria-hidden="true">
+              <div class="lc-ph"><span class="lc-pd">June 2025</span><span class="lc-pt">Partnership and integration</span></div>
+              <h6 class="lc-pw">ChoiceSpine and eCential Robotics</h6>
+              <p class="lc-px">ChoiceSpine LLC partnered with eCential Robotics to launch a dedicated spine-surgery application on the eCential Op.n robotic and navigation platform.</p>
+            </article>
+            <article class="lc-panel" data-i="3" style="--c:#9333ea" aria-hidden="true">
+              <div class="lc-ph"><span class="lc-pd">July 2025</span><span class="lc-pt">Clinical validation</span></div>
+              <h6 class="lc-pw">MediView</h6>
+              <p class="lc-px">MediView launched a multicenter study to validate its XR90 Holographic Surgical Navigation system as an adjunct to standard ultrasound and CT imaging in percutaneous tumor biopsies.</p>
+            </article>
+            <article class="lc-panel" data-i="4" style="--c:#3b1178" aria-hidden="true">
+              <div class="lc-ph"><span class="lc-pd">September 2025</span><span class="lc-pt">Regulatory clearance</span></div>
+              <h6 class="lc-pw">Brainlab</h6>
+              <p class="lc-px">Brainlab announced FDA 510(k) clearance and U.S. launch of its Spine Mixed Reality Navigation system, combining its established optical navigation platform with mixed-reality headset visualization for pedicle screw placement.</p>
+            </article>
+            <article class="lc-panel" data-i="5" style="--c:#3b1178" aria-hidden="true">
+              <div class="lc-ph"><span class="lc-pd">February 2026</span><span class="lc-pt">Regulatory clearance</span></div>
+              <h6 class="lc-pw">Medtronic</h6>
+              <p class="lc-px">Medtronic received FDA clearance for the Stealth AXiS surgical system, the first platform to natively integrate planning, navigation and robotics for spine surgery within its AiBLE smart ecosystem.</p>
+            </article>
+            <article class="lc-panel" data-i="6" style="--c:#7c3aed" aria-hidden="true">
+              <div class="lc-ph"><span class="lc-pd">March 2026</span><span class="lc-pt">Market and adjacency</span></div>
+              <h6 class="lc-pw">Catalyst MedTech</h6>
+              <p class="lc-px">Catalyst MedTech announced a Full Access Neurology Solution supporting brain PET implementation in the United States, illustrating continued expansion of advanced imaging capability into nuclear medicine and molecular imaging adjacent to the core surgical-imaging category.</p>
+            </article>
+            <article class="lc-panel" data-i="7" style="--c:#6d28d9" aria-hidden="true">
+              <div class="lc-ph"><span class="lc-pd">April 2026</span><span class="lc-pt">Partnership and integration</span></div>
+              <h6 class="lc-pw">GE HealthCare and Medtronic</h6>
+              <p class="lc-px">GE HealthCare announced a digital integration between its bkActiv intraoperative ultrasound system and Medtronic's Stealth AXiS surgical navigation system, providing real-time advanced imaging during cranial procedures without disrupting established navigation workflows.</p>
+            </article>
+            <article class="lc-panel" data-i="8" style="--c:#7c3aed" aria-hidden="true">
+              <div class="lc-ph"><span class="lc-pd">April 2026</span><span class="lc-pt">Market and adjacency</span></div>
+              <h6 class="lc-pw">Premier Radiology Services and GLOBIS</h6>
+              <p class="lc-px">Premier Radiology Services acquired Global Imaging Solutions (GLOBIS), a teleradiology group, reflecting continued consolidation in the broader imaging-services ecosystem adjacent to the surgical-platform market covered in this report.</p>
+            </article>
+            <article class="lc-panel" data-i="9" style="--c:#6d28d9" aria-hidden="true">
+              <div class="lc-ph"><span class="lc-pd">April-May 2026</span><span class="lc-pt">Partnership and integration</span></div>
+              <h6 class="lc-pw">Siemens Healthineers and Onvida Health</h6>
+              <p class="lc-px">Siemens Healthineers entered a ten-year Value Partnership with Onvida Health, and separately received FDA clearance for six interventional imaging systems across its Artis vision platform, including the AI-enabled Optiq system.</p>
+            </article>
+            <article class="lc-panel" data-i="10" style="--c:#3b1178" aria-hidden="true">
+              <div class="lc-ph"><span class="lc-pd">Prior milestone</span><span class="lc-pt">Regulatory clearance</span></div>
+              <h6 class="lc-pw">Brainlab</h6>
+              <p class="lc-px">Brainlab received FDA clearance for its Loop-X mobile intraoperative imaging robot and Cirq robotic alignment module, extending earlier CE Mark approval and taking the company's robotics-integrated digital surgery portfolio into the U.S. market.</p>
+            </article>
         </div>
-      </div>
+        <figcaption class="md-cap">One marker per development. The Loop-X and Cirq clearance is listed in this
+          report without a date and sits in the separate Prior column.</figcaption>
+      </figure>
 
     </section>
 
@@ -5653,28 +5643,24 @@
     var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
   })();
 
-  /* ---- 12 developments deck ---- */
+  /* ---- 12 developments lane chart ---- */
   (function(){
-    var wrap=document.getElementById('devDeck'); if(!wrap) return;
-    var slides=[].slice.call(wrap.querySelectorAll('.dk-slide'));
-    var segs=[].slice.call(wrap.querySelectorAll('.dk-seg'));
-    var navs=[].slice.call(wrap.querySelectorAll('.dk-nav'));
-    var i=0, n=slides.length;
-    function go(k){
-      i=(k+n)%n;
-      slides.forEach(function(s,j){
-        s.classList.toggle('on', j===i);
-        s.setAttribute('aria-hidden', j===i?'false':'true');
+    var fig=document.getElementById('devLanes'); if(!fig) return;
+    var dots=[].slice.call(fig.querySelectorAll('.lc-dot'));
+    var hits=[].slice.call(fig.querySelectorAll('.lc-hit'));
+    var panels=[].slice.call(fig.querySelectorAll('.lc-panel'));
+    function go(i){
+      dots.forEach(function(d,j){ d.classList.toggle('on', j===i); });
+      panels.forEach(function(p,j){
+        p.classList.toggle('on', j===i);
+        p.setAttribute('aria-hidden', j===i?'false':'true');
       });
-      segs.forEach(function(s,j){ s.classList.toggle('on', j===i); });
     }
-    segs.forEach(function(s,j){ s.addEventListener('click',function(){ go(j); }); });
-    navs.forEach(function(b){
-      b.addEventListener('click',function(){ go(i+(+b.getAttribute('data-go'))); });
-    });
-    wrap.addEventListener('keydown',function(e){
-      if(e.key==='ArrowRight'){ e.preventDefault(); go(i+1); }
-      else if(e.key==='ArrowLeft'){ e.preventDefault(); go(i-1); }
+    hits.forEach(function(h){
+      var i=+h.getAttribute('data-i');
+      h.addEventListener('mouseenter',function(){ go(i); });
+      h.addEventListener('focus',function(){ go(i); });
+      h.addEventListener('click',function(){ go(i); });
     });
     go(0);
   })();
