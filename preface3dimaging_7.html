@@ -1788,7 +1788,7 @@
 
 
   /* --- 13 - competitive landscape: treemap, vendor tiers, revenue mix --- */
-  .tm-fig,.vt-fig,.mx-fig{margin-top:16px}
+  .tm-fig,.vt-fig{margin-top:16px}
   .tm-plotwrap{margin-top:14px}
   .tm-svg{width:100%;height:auto;display:block}
   .tm-r{pointer-events:none;transition:filter .18s ease}
@@ -1827,16 +1827,6 @@
   .vt-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
   .vt-fig .tl-flag{margin-top:14px}
 
-  .mx-plotwrap{margin-top:14px;max-width:560px}
-  .mx-svg{width:100%;height:auto;display:block}
-  .mx-g{stroke:#efe9fb;stroke-width:1}
-  .mx-ax{fill:var(--muted);font-size:10.5px}
-  .mx-h{fill:var(--navy);font-size:11.5px;font-weight:700}
-  .mx-l{stroke-width:2.6;stroke-linecap:round}
-  .mx-d{stroke:#fff;stroke-width:2}
-  .mx-v{font-size:12.5px;font-weight:700}
-  .mx-n{font-size:12px;font-weight:700}
-  .mx-v2{font-size:12.5px;font-weight:700}
 
   @media(max-width:760px){
     .vt-body{grid-template-columns:1fr}
@@ -1846,6 +1836,71 @@
     .vt-row{grid-template-columns:1fr;gap:6px}
     .tm-plotwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
     .tm-svg{min-width:640px}
+  }
+
+
+  /* --- 13.3 company profiles, revenue split, key questions --- */
+  .cp-fig{margin-top:16px}
+  .cp-wrap{display:grid;grid-template-columns:minmax(0,236px) minmax(0,1fr);gap:18px;align-items:start}
+  .cp-rail{display:flex;flex-direction:column;gap:6px}
+  .cp-tab{appearance:none;font:inherit;text-align:left;cursor:pointer;display:flex;
+    align-items:center;justify-content:space-between;gap:10px;padding:11px 13px;
+    border-radius:10px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--c);
+    transition:background .18s ease,box-shadow .18s ease}
+  .cp-tab:hover,.cp-tab.on{background:#faf7ff;box-shadow:0 4px 12px rgba(59,17,120,.09)}
+  .cp-tab:focus-visible{outline:2px solid #7c3aed;outline-offset:2px}
+  .cp-tn{font-size:12px;font-weight:700;color:var(--navy);line-height:1.25}
+  .cp-ts{flex:none;font-size:11px;font-weight:700;color:var(--c)}
+  .cp-stage{display:grid;min-width:0}
+  .cp-panel{grid-area:1/1;visibility:hidden;opacity:0;transition:opacity .25s ease;min-width:0}
+  .cp-panel.on{visibility:visible;opacity:1}
+  .cp-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+    padding-bottom:9px;border-bottom:2px solid var(--c)}
+  .cp-hd h6{margin:0;font-size:14px;font-weight:700;color:var(--navy)}
+  .cp-sh{font-size:11px;font-weight:600;color:var(--c)}
+  .cp-rows{margin:0}
+  .cp-r{display:grid;grid-template-columns:minmax(120px,158px) minmax(0,1fr);gap:14px;
+    padding:9px 0;border-bottom:1px solid var(--line)}
+  .cp-r dt{font-size:11.5px;font-weight:700;color:var(--purple-deep)}
+  .cp-r dd{margin:0;font-size:12px;line-height:1.6;color:var(--ink)}
+  .cp-p{margin:12px 0 0;font-size:12px;line-height:1.7;color:var(--muted)}
+
+  .db-fig{margin-top:16px}
+  .db-plotwrap{margin-top:14px;max-width:780px}
+  .db-svg{width:100%;height:auto;display:block}
+  .db-ax{stroke:#d9cff5;stroke-width:1.4}
+  .db-hd{fill:var(--muted);font-size:11px;font-weight:700}
+  .db-n{fill:var(--navy);font-size:12px;font-weight:600;pointer-events:none}
+  .db-b{pointer-events:none;transition:filter .18s ease}
+  .db-b.sw{opacity:.55}
+  .db-v{fill:var(--purple-deep);font-size:11.5px;font-weight:700;pointer-events:none}
+  .db-hit{fill:transparent;cursor:pointer;outline:none}
+  .db-hit:focus-visible{fill:rgba(124,58,237,.08)}
+  .db-g.on .db-b{filter:brightness(1.14)}
+  .db-g.on .db-n{fill:var(--purple-deep);font-weight:700}
+  .db-read{margin-top:14px;border-left:3px solid var(--purple-mid);padding:2px 0 2px 12px}
+  .db-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
+  .db-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
+
+  .kq-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 22px;margin-top:16px}
+  .kq-i{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}
+  .kq-n{font-size:15px;font-weight:800;color:#e5dbfa;line-height:1.1}
+  .kq-q{margin:0;font-size:12.5px;font-weight:700;color:var(--navy);line-height:1.4}
+  .kq-a{margin:5px 0 0;font-size:12px;line-height:1.65;color:var(--muted)}
+
+  @media(max-width:900px){
+    .cp-wrap{grid-template-columns:1fr}
+    .cp-rail{flex-direction:row;flex-wrap:wrap}
+    .cp-tab{flex:1 1 160px}
+    .kq-list{grid-template-columns:1fr}
+  }
+  @media(max-width:760px){
+    .db-plotwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .db-svg{min-width:600px}
+    .cp-r{grid-template-columns:1fr;gap:3px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .cp-panel{transition:none}
   }
 
 </style>
@@ -4471,42 +4526,6 @@
           entrants partner with established hardware manufacturers rather than merely challenging them.</div>
       </figure>
 
-      <figure class="md-fig mx-fig reveal" id="cmpMix">
-        <h6>Medtronic and Stryker - Indicative Revenue Mix</h6>
-        <p class="md-sub">Share of navigation and imaging segment revenue</p>
-        <div class="mx-plotwrap">
-          <svg class="mx-svg" viewBox="0 0 520 250" role="img"
-               aria-label="Both companies remain hardware-weighted: Medtronic 70 percent hardware and 30 percent software, Stryker 75 percent hardware and 25 percent software.">
-              <line class="mx-g" x1="144.0" y1="206.0" x2="398.0" y2="206.0"/>
-              <text class="mx-ax" x="98.0" y="210.0" text-anchor="end">0%</text>
-              <line class="mx-g" x1="144.0" y1="165.5" x2="398.0" y2="165.5"/>
-              <text class="mx-ax" x="98.0" y="169.5" text-anchor="end">20%</text>
-              <line class="mx-g" x1="144.0" y1="125.0" x2="398.0" y2="125.0"/>
-              <text class="mx-ax" x="98.0" y="129.0" text-anchor="end">40%</text>
-              <line class="mx-g" x1="144.0" y1="84.5" x2="398.0" y2="84.5"/>
-              <text class="mx-ax" x="98.0" y="88.5" text-anchor="end">60%</text>
-              <line class="mx-g" x1="144.0" y1="44.0" x2="398.0" y2="44.0"/>
-              <text class="mx-ax" x="98.0" y="48.0" text-anchor="end">80%</text>
-              <text class="mx-h" x="150.0" y="22" text-anchor="middle">Hardware</text>
-              <text class="mx-h" x="392.0" y="22" text-anchor="middle">Software &amp; Solutions</text>
-              <line class="mx-l" x1="150.0" y1="64.2" x2="392.0" y2="145.2" stroke="#4c1d95"/>
-              <circle class="mx-d" cx="150.0" cy="64.2" r="6" fill="#4c1d95"/>
-              <circle class="mx-d" cx="392.0" cy="145.2" r="6" fill="#4c1d95"/>
-              <text class="mx-v" x="136.0" y="79.2" text-anchor="end" fill="#4c1d95">70%</text>
-              <text class="mx-n" x="406.0" y="126.2" fill="#4c1d95">Medtronic</text>
-              <text class="mx-v2" x="406.0" y="141.2" fill="#4c1d95">30%</text>
-              <line class="mx-l" x1="150.0" y1="54.1" x2="392.0" y2="155.4" stroke="#7c3aed"/>
-              <circle class="mx-d" cx="150.0" cy="54.1" r="6" fill="#7c3aed"/>
-              <circle class="mx-d" cx="392.0" cy="155.4" r="6" fill="#7c3aed"/>
-              <text class="mx-v" x="136.0" y="45.1" text-anchor="end" fill="#7c3aed">75%</text>
-              <text class="mx-n" x="406.0" y="170.4" fill="#7c3aed">Stryker</text>
-              <text class="mx-v2" x="406.0" y="185.4" fill="#7c3aed">25%</text>
-          </svg>
-        </div>
-        <figcaption class="md-cap">This mix is indicative, as labelled in the source exhibit, and is read from it
-          rather than stated as a precise figure. Both vendors remain hardware-weighted, Stryker slightly more so.</figcaption>
-      </figure>
-
       <h3 class="subh reveal">Market Share Analysis, Top Five Companies</h3>
 
       <ul class="dyn reveal">
@@ -4519,6 +4538,272 @@
         <li><b>Beyond the top tier,</b> competitive intensity is expected to rise steadily as Philips, Zimmer
           Biomet, Globus Medical and a widening cohort of AI-native software entrants invest in closing the gap.</li>
       </ul>
+
+
+      <h3 class="subh reveal" data-n="13.3">Company Profiles</h3>
+
+      <p class="reveal">
+        The five profiles below cover the companies identified above as the current market leaders; a broader
+        roster of other significant participants follows.
+      </p>
+
+      <figure class="md-fig cp-fig reveal" id="cmpProf">
+        <div class="cp-wrap">
+          <div class="cp-rail" role="tablist" aria-label="Company profiles">
+            <button type="button" class="cp-tab on" data-k="mdt" style="--c:#3b1178">
+              <span class="cp-tn">Medtronic PLC</span><span class="cp-ts">22%</span>
+            </button>
+            <button type="button" class="cp-tab" data-k="stk" style="--c:#4c1d95">
+              <span class="cp-tn">Stryker Corporation</span><span class="cp-ts">18%</span>
+            </button>
+            <button type="button" class="cp-tab" data-k="sie" style="--c:#5b21b6">
+              <span class="cp-tn">Siemens Healthineers AG</span><span class="cp-ts">15%</span>
+            </button>
+            <button type="button" class="cp-tab" data-k="bl" style="--c:#6d28d9">
+              <span class="cp-tn">Brainlab AG</span><span class="cp-ts">9%</span>
+            </button>
+            <button type="button" class="cp-tab" data-k="ge" style="--c:#7c3aed">
+              <span class="cp-tn">GE HealthCare Technologies Inc.</span><span class="cp-ts">12%</span>
+            </button>
+          </div>
+          <div class="cp-stage">
+            <article class="cp-panel on" data-k="mdt" style="--c:#3b1178" aria-hidden="false">
+              <div class="cp-hd"><h6>Medtronic PLC</h6><span class="cp-sh">22% of 2025 platform revenue</span></div>
+              <dl class="cp-rows">
+                <div class="cp-r"><dt>Headquarters</dt><dd>Galway, Ireland (operational headquarters); Dublin, Ireland (registered)</dd></div>
+                <div class="cp-r"><dt>Key products</dt><dd>Stealth AXiS surgical system; StealthStation navigation; O-arm imaging system</dd></div>
+                <div class="cp-r"><dt>Recent milestone</dt><dd>FDA clearance of Stealth AXiS (February 2026), the first integrated planning, navigation and robotics platform for spine surgery, featuring LiveAlign segmental tracking</dd></div>
+                <div class="cp-r"><dt>Strategic ecosystem</dt><dd>Stealth AXiS forms a cornerstone of Medtronic's broader AiBLE smart data ecosystem, and is architected to support future cranial and ENT applications pending additional clearance</dd></div>
+                <div class="cp-r"><dt>Revenue model</dt><dd>Primarily capital equipment sale for Stealth AXiS hardware, complemented by a growing recurring-revenue layer from AiBLE software and service subscriptions</dd></div>
+              </dl>
+              <p class="cp-p">Medtronic has positioned Stealth AXiS as a platform designed to work across hospitals and ambulatory surgical centers without requiring multiple standalone technologies, reflecting a broader strategy of consolidating planning, navigation and robotic execution into a single intelligent surgical system. The April 2026 digital integration with GE HealthCare's bkActiv intraoperative ultrasound system further extends the platform's real-time visualization capability without disrupting hospitals' existing navigation workflow.</p>
+            </article>
+            <article class="cp-panel" data-k="stk" style="--c:#4c1d95" aria-hidden="true">
+              <div class="cp-hd"><h6>Stryker Corporation</h6><span class="cp-sh">18% of 2025 platform revenue</span></div>
+              <dl class="cp-rows">
+                <div class="cp-r"><dt>Headquarters</dt><dd>Kalamazoo, Michigan, United States</dd></div>
+                <div class="cp-r"><dt>Key products</dt><dd>Q Guidance System; 1588 AIM Platform; NAV3i navigation platform; Trauma Navigation System</dd></div>
+                <div class="cp-r"><dt>Core strength</dt><dd>Deep installed base across orthopedic and neurosurgical navigation, with active optical tracking technology refined across successive platform generations</dd></div>
+                <div class="cp-r"><dt>Positioning</dt><dd>Broad navigation portfolio spanning trauma, cranial, ENT and spine applications, with continued investment in connected, video-integrated surgical imaging through its Endoscopy division</dd></div>
+                <div class="cp-r"><dt>Revenue model</dt><dd>Predominantly capital equipment sale across its navigation portfolio, with service and maintenance contracts forming the primary recurring-revenue component</dd></div>
+              </dl>
+              <p class="cp-p">Stryker's navigation portfolio benefits from one of the longest continuous track records in the category, with its NAV3i and successor platforms interfacing with CT, MRI and microscope imaging inputs across a broad range of surgical specialties. The 1588 AIM Platform reflects a parallel investment in connected, minimally invasive surgical visualization beyond navigation alone, reinforcing Stryker's position as one of the category's most diversified competitors.</p>
+            </article>
+            <article class="cp-panel" data-k="sie" style="--c:#5b21b6" aria-hidden="true">
+              <div class="cp-hd"><h6>Siemens Healthineers AG</h6><span class="cp-sh">15% of 2025 platform revenue</span></div>
+              <dl class="cp-rows">
+                <div class="cp-r"><dt>Headquarters</dt><dd>Erlangen, Germany</dd></div>
+                <div class="cp-r"><dt>Key products</dt><dd>Cios Spin (intraoperative 3D C-arm imaging); Artis vision and Artis icono angiography platforms; Optiq AI image-guided therapy system</dd></div>
+                <div class="cp-r"><dt>Recent milestone</dt><dd>FDA clearance for six interventional imaging systems across the Artis portfolio (May 2026), addressing a wide range of clinical uses, operational needs and financial considerations</dd></div>
+                <div class="cp-r"><dt>Strategic model</dt><dd>Successive ten-year Value Partnership contracts with major U.S. health systems, including Tower Health (April 2025) and Onvida Health (April 2026), bundling equipment upgrades with long-term service and digital-tools access</dd></div>
+                <div class="cp-r"><dt>Revenue model</dt><dd>Increasingly structured around Value Partnership contracts that bundle equipment, service and digital-tools access into a single multi-year agreement, blending capital sale with subscription-like recurring revenue</dd></div>
+              </dl>
+              <p class="cp-p">Siemens Healthineers competes through long-duration hospital partnerships rather than transactional equipment sales, which gives it annuity-like revenue visibility and gives partner health systems predictable access to successive generations of imaging technology. Cios Spin has been shown in clinical practice to reduce postoperative revision-surgery rates by letting surgeons correct implant misplacement intraoperatively rather than in a second procedure. Work on Cinematic Rendering with mixed-reality headsets shows visualization quality treated as a competitive axis alongside navigation accuracy.</p>
+            </article>
+            <article class="cp-panel" data-k="bl" style="--c:#6d28d9" aria-hidden="true">
+              <div class="cp-hd"><h6>Brainlab AG</h6><span class="cp-sh">9% of 2025 platform revenue</span></div>
+              <dl class="cp-rows">
+                <div class="cp-r"><dt>Headquarters</dt><dd>Munich, Germany</dd></div>
+                <div class="cp-r"><dt>Key products</dt><dd>Loop-X mobile intraoperative imaging robot; Cirq robotic alignment module; Spine Mixed Reality Navigation</dd></div>
+                <div class="cp-r"><dt>Recent milestone</dt><dd>FDA 510(k) clearance and U.S. launch of Spine Mixed Reality Navigation (September 2025), combining optical navigation with mixed-reality headset visualization for pedicle screw placement</dd></div>
+                <div class="cp-r"><dt>Development model</dt><dd>Loop-X was co-developed with Salzburg-based partner medPhoton; the company has also integrated Fujifilm's ARIETTA Precision intraoperative ultrasound alongside its own navigation software</dd></div>
+                <div class="cp-r"><dt>Revenue model</dt><dd>The most software-and-subscription-weighted of the five profiled companies, with Loop-X hardware sale complemented by ongoing software licensing across its navigation and mixed-reality platforms</dd></div>
+              </dl>
+              <p class="cp-p">Brainlab competes on software and digital-surgery innovation rather than hardware manufacturing scale. Loop-X's independently moving source and detector panels allow flexible patient positioning and non-isocentric imaging, cutting radiation exposure while widening treatable indications; it is controlled wirelessly from a tablet and, in Spain, performed the world's first navigated spine surgery using a mobile imaging robot. Spine Mixed Reality Navigation has shown surgeons can place a high volume of pedicle screws while keeping constant visual focus on anatomy, with the headset comfortable across procedures lasting up to seven hours.</p>
+            </article>
+            <article class="cp-panel" data-k="ge" style="--c:#7c3aed" aria-hidden="true">
+              <div class="cp-hd"><h6>GE HealthCare Technologies Inc.</h6><span class="cp-sh">12% of 2025 platform revenue</span></div>
+              <dl class="cp-rows">
+                <div class="cp-r"><dt>Headquarters</dt><dd>Chicago, Illinois, United States</dd></div>
+                <div class="cp-r"><dt>Key products</dt><dd>bkActiv intraoperative ultrasound system; OEC mobile C-arm imaging systems</dd></div>
+                <div class="cp-r"><dt>Recent milestone</dt><dd>April 2026 digital integration between bkActiv and Medtronic's Stealth AXiS surgical navigation system, extending an existing strategic alliance between the two companies</dd></div>
+                <div class="cp-r"><dt>Strategic positioning</dt><dd>Positions bkActiv as a plug-and-play, real-time visualization layer that can be added to an existing navigation workflow without requiring hospitals to replace established equipment</dd></div>
+                <div class="cp-r"><dt>Revenue model</dt><dd>Primarily capital equipment sale for OEC and bkActiv hardware, with bkActiv's digital-integration capability increasingly offered as an add-on software layer rather than a purely hardware transaction</dd></div>
+              </dl>
+              <p class="cp-p">GE HealthCare's strategic emphasis on interoperability, rather than closed single-vendor platform sales, reflects a distinct competitive approach within the category. The alliance with Medtronic allows neurosurgeons to incorporate real-time ultrasound visualization into cranial procedures using bkActiv without disrupting workflows built around Medtronic's Stealth AXiS navigation platform, an approach GE HealthCare has signalled it intends to extend to further strategic partnerships as the industry continues to prioritise cross-platform digital integration over vendor lock-in.</p>
+            </article>
+          </div>
+        </div>
+      </figure>
+
+      <h3 class="subh reveal">Comparative Analysis: Hardware vs Software and Solutions</h3>
+
+      <p class="reveal">
+        The five leaders differ meaningfully in how platform revenue divides between hardware and software and
+        solutions, reflecting each company's strategic positioning.
+      </p>
+
+      <figure class="md-fig db-fig reveal" id="cmpSplit" data-db='[{"n": "Medtronic PLC", "h": 70, "s": 30, "c": "#3b1178", "t": "Growing AiBLE software ecosystem layered onto a still hardware-anchored navigation and robotics base."}, {"n": "Stryker Corporation", "h": 75, "s": 25, "c": "#4c1d95", "t": "Deepest hardware installed base of the group; software revenue growing from a smaller starting point."}, {"n": "Siemens Healthineers AG", "h": 65, "s": 35, "c": "#5b21b6", "t": "Value Partnerships bundle service and digital-tools access with equipment, lifting the software-and-services share."}, {"n": "Brainlab AG", "h": 40, "s": 60, "c": "#6d28d9", "t": "The only company among the five where software and digital-surgery innovation, rather than hardware, is the primary strategic focus."}, {"n": "GE HealthCare Technologies Inc.", "h": 70, "s": 30, "c": "#7c3aed", "t": "bkActiv positioned as an add-on software and visualization layer; hardware remains the larger revenue base."}]'>
+        <h6>Estimated Revenue Split by Company</h6>
+        <p class="md-sub">Bars run out from the centre line; select a company to read its revenue-model note</p>
+        <div class="db-plotwrap">
+          <svg class="db-svg" viewBox="46 5 620 268" role="list"
+               aria-label="Estimated hardware versus software revenue split for the five leading companies.">
+              <line class="db-ax" x1="462.0" y1="30" x2="462.0" y2="266.0"/>
+              <text class="db-hd" x="338.0" y="22" text-anchor="middle">Hardware share</text>
+              <text class="db-hd" x="586.0" y="22" text-anchor="middle">Software and solutions</text>
+              <g class="db-g" data-i="0">
+                <text class="db-n" x="200.0" y="57.0" text-anchor="end">Medtronic</text>
+                <rect class="db-b hw" x="288.4" y="41.0" width="173.6" height="22" rx="4" fill="#3b1178"/>
+                <rect class="db-b sw" x="462.0" y="41.0" width="74.4" height="22" rx="4" fill="#3b1178"/>
+                <text class="db-v" x="280.4" y="57.0" text-anchor="end">~70%</text>
+                <text class="db-v" x="544.4" y="57.0">~30%</text>
+                <rect class="db-hit" data-i="0" x="0.0" y="30.0" width="920.0" height="44.0"
+                      tabindex="0" role="button" aria-label="Medtronic PLC, about 70 percent hardware and 30 percent software"/>
+              </g>
+              <g class="db-g" data-i="1">
+                <text class="db-n" x="200.0" y="101.0" text-anchor="end">Stryker</text>
+                <rect class="db-b hw" x="276.0" y="85.0" width="186.0" height="22" rx="4" fill="#4c1d95"/>
+                <rect class="db-b sw" x="462.0" y="85.0" width="62.0" height="22" rx="4" fill="#4c1d95"/>
+                <text class="db-v" x="268.0" y="101.0" text-anchor="end">~75%</text>
+                <text class="db-v" x="532.0" y="101.0">~25%</text>
+                <rect class="db-hit" data-i="1" x="0.0" y="74.0" width="920.0" height="44.0"
+                      tabindex="0" role="button" aria-label="Stryker Corporation, about 75 percent hardware and 25 percent software"/>
+              </g>
+              <g class="db-g" data-i="2">
+                <text class="db-n" x="200.0" y="145.0" text-anchor="end">Siemens Healthineers</text>
+                <rect class="db-b hw" x="300.8" y="129.0" width="161.2" height="22" rx="4" fill="#5b21b6"/>
+                <rect class="db-b sw" x="462.0" y="129.0" width="86.8" height="22" rx="4" fill="#5b21b6"/>
+                <text class="db-v" x="292.8" y="145.0" text-anchor="end">~65%</text>
+                <text class="db-v" x="556.8" y="145.0">~35%</text>
+                <rect class="db-hit" data-i="2" x="0.0" y="118.0" width="920.0" height="44.0"
+                      tabindex="0" role="button" aria-label="Siemens Healthineers AG, about 65 percent hardware and 35 percent software"/>
+              </g>
+              <g class="db-g" data-i="3">
+                <text class="db-n" x="200.0" y="189.0" text-anchor="end">Brainlab</text>
+                <rect class="db-b hw" x="362.8" y="173.0" width="99.2" height="22" rx="4" fill="#6d28d9"/>
+                <rect class="db-b sw" x="462.0" y="173.0" width="148.8" height="22" rx="4" fill="#6d28d9"/>
+                <text class="db-v" x="354.8" y="189.0" text-anchor="end">~40%</text>
+                <text class="db-v" x="618.8" y="189.0">~60%</text>
+                <rect class="db-hit" data-i="3" x="0.0" y="162.0" width="920.0" height="44.0"
+                      tabindex="0" role="button" aria-label="Brainlab AG, about 40 percent hardware and 60 percent software"/>
+              </g>
+              <g class="db-g" data-i="4">
+                <text class="db-n" x="200.0" y="233.0" text-anchor="end">GE HealthCare</text>
+                <rect class="db-b hw" x="288.4" y="217.0" width="173.6" height="22" rx="4" fill="#7c3aed"/>
+                <rect class="db-b sw" x="462.0" y="217.0" width="74.4" height="22" rx="4" fill="#7c3aed"/>
+                <text class="db-v" x="280.4" y="233.0" text-anchor="end">~70%</text>
+                <text class="db-v" x="544.4" y="233.0">~30%</text>
+                <rect class="db-hit" data-i="4" x="0.0" y="206.0" width="920.0" height="44.0"
+                      tabindex="0" role="button" aria-label="GE HealthCare Technologies Inc., about 70 percent hardware and 30 percent software"/>
+              </g>
+          </svg>
+        </div>
+        <div class="db-read"><b></b><span></span></div>
+        <figcaption class="md-cap">Shares are the estimates set out in this report and are approximate, as the
+          tilde marks indicate. Brainlab is the only one of the five weighted towards software and solutions.</figcaption>
+      </figure>
+
+      <h3 class="subh reveal">Other Key Players</h3>
+
+      <p class="reveal">
+        The competitive set beyond the two leading navigation vendors spans large-cap diversified imaging
+        companies, specialist navigation and visualization software developers, and a growing cohort of AI-native
+        entrants.
+      </p>
+
+      <div class="md-scroll reveal">
+        <table class="rd">
+          <thead><tr><th>Company</th><th>Headquarters</th><th>Relevance to market</th></tr></thead>
+          <tbody>
+        <tr><td>Siemens Healthineers AG</td><td>Erlangen, Germany</td><td>Cios Spin and Artis vision intraoperative imaging platforms; Cinematic Rendering mixed-reality visualization; successive multi-year U.S. hospital Value Partnerships</td></tr>
+        <tr><td>Brainlab AG</td><td>Munich, Germany</td><td>Loop-X mobile imaging robot (with medPhoton); Cirq robotic alignment module; Spine Mixed Reality Navigation (FDA cleared September 2025)</td></tr>
+        <tr><td>GE HealthCare Technologies Inc.</td><td>Chicago, Illinois, United States</td><td>bkActiv intraoperative ultrasound system; April 2026 digital integration with Medtronic's Stealth AXiS</td></tr>
+        <tr><td>Koninklijke Philips N.V.</td><td>Amsterdam, Netherlands</td><td>Image-guided therapy and interventional imaging systems across cardiovascular and neurovascular applications</td></tr>
+        <tr><td>Zimmer Biomet Holdings, Inc.</td><td>Warsaw, Indiana, United States</td><td>Orthopedic surgical navigation and robotics-assisted platforms</td></tr>
+        <tr><td>Globus Medical, Inc. (incl. NuVasive)</td><td>Audubon, Pennsylvania, United States</td><td>Spine surgery navigation and robotics platforms</td></tr>
+        <tr><td>DePuy Synthes (Johnson &amp; Johnson MedTech)</td><td>Raynham, Massachusetts, United States</td><td>Orthopedic and trauma surgical navigation systems</td></tr>
+        <tr><td>Karl Storz SE &amp; Co. KG</td><td>Tuttlingen, Germany</td><td>Endoscopic and navigation-integrated visualization systems</td></tr>
+        <tr><td>Kitware Inc.</td><td>Clifton Park, New York, United States</td><td>Open-source visualization and image-analysis software platforms widely used in research and commercial applications</td></tr>
+        <tr><td>Intelerad Medical Systems Inc. (incl. Ambra Health)</td><td>Montreal, Canada</td><td>Cloud-based medical imaging management and enterprise viewing platforms</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tl-flag lite reveal"><i aria-hidden="true"></i>The company list in this report is representative
+        rather than exhaustive. A complete company database, including financial analysis, product portfolio,
+        demographic reach, recent news and certifications for each profiled player, is available as part of the
+        full underlying dataset and can be customised to client requirements.</div>
+
+    </section>
+
+    <!-- ================= SECTION 14 - KOL INSIGHTS ================= -->
+    <section id="kol" aria-labelledby="kol-title">
+
+      <h3 class="sub reveal" data-n="14" id="kol-title">Key Opinion Leader Insights</h3>
+
+      <p class="reveal">
+        This section synthesises perspectives gathered through the study's primary research programme with
+        practising surgeons, radiologists and hospital procurement leads across the five regions covered. Key
+        opinion leaders were broadly consistent on several themes shaping adoption, independent of individual
+        company product cycles.
+      </p>
+
+      <ul class="dyn reveal">
+        <li><b>Platform thinking over point solutions:</b> surgeons increasingly evaluate imaging and navigation
+          platforms as part of a broader digital-surgery ecosystem rather than as standalone capital purchases,
+          placing growing weight on interoperability with existing robotics and electronic health record systems.</li>
+        <li><b>Revision-rate evidence as the purchasing trigger:</b> procurement leads consistently cited
+          demonstrated reduction in revision-surgery rates, rather than raw imaging resolution alone, as the most
+          persuasive evidence in internal capital-approval discussions.</li>
+        <li><b>Mixed-reality interest, tempered by ergonomics:</b> surgeons across specialties expressed growing
+          interest in headset-based visualization as a workflow improvement, provided comfort during long
+          procedures continues to be addressed by manufacturers.</li>
+        <li><b>Capital cost as the binding constraint:</b> across nearly every case discussed, respondents
+          identified capital cost and hospital budget-cycle timing, rather than clinical evidence or regulatory
+          clearance, as the primary barrier between current adoption levels and the penetration that surgical
+          volume alone would support.</li>
+      </ul>
+
+      <div class="tl-flag lite reveal"><i aria-hidden="true"></i>Additional bespoke KOL interview programmes,
+        including customised interview guides and expanded respondent panels by geography or specialty, can be
+        scoped to individual client requirements beyond the summary insights presented here.</div>
+
+    </section>
+
+    <!-- ================= SECTION 15 - KEY QUESTIONS ================= -->
+    <section id="questions" aria-labelledby="kq-title">
+
+      <h3 class="sub reveal" data-n="15" id="kq-title">Key Questions Answered in This Report</h3>
+
+      <div class="kq-list reveal">
+          <div class="kq-i">
+            <span class="kq-n">01</span>
+            <div><p class="kq-q">What was the value of the market in 2025?</p><p class="kq-a">The global 3D medical and surgical imaging platform market was valued at approximately USD 6.85 billion in 2025.</p></div>
+          </div>
+          <div class="kq-i">
+            <span class="kq-n">02</span>
+            <div><p class="kq-q">What is the market's forecast outlook for 2026-2035?</p><p class="kq-a">The market is projected to grow at a CAGR of 11.50% over 2026-2035, reaching approximately USD 20.34 billion by 2035.</p></div>
+          </div>
+          <div class="kq-i">
+            <span class="kq-n">03</span>
+            <div><p class="kq-q">What are the regional markets covered in this report?</p><p class="kq-a">This report covers North America, Europe, Asia Pacific, Latin America and the Middle East and Africa as the five major regions.</p></div>
+          </div>
+          <div class="kq-i">
+            <span class="kq-n">04</span>
+            <div><p class="kq-q">What is the market segmentation based on type?</p><p class="kq-a">The market is segmented by type into hardware and software and solutions, and further by technology, application and end user.</p></div>
+          </div>
+          <div class="kq-i">
+            <span class="kq-n">05</span>
+            <div><p class="kq-q">Which regional market is expected to lead in the forecast period?</p><p class="kq-a">North America is expected to remain the largest regional market throughout the forecast period, supported by its hospital infrastructure and regulatory environment.</p></div>
+          </div>
+          <div class="kq-i">
+            <span class="kq-n">06</span>
+            <div><p class="kq-q">Which region is expected to grow the fastest?</p><p class="kq-a">Asia Pacific is projected to record the fastest regional CAGR over the forecast period, reflecting rapidly expanding hospital capital expenditure across China, India and South Korea.</p></div>
+          </div>
+          <div class="kq-i">
+            <span class="kq-n">07</span>
+            <div><p class="kq-q">Who are the key players in this market?</p><p class="kq-a">Medtronic, Stryker, Siemens Healthineers, Brainlab and GE HealthCare are the leading players, alongside Philips, Zimmer Biomet, Globus Medical and a growing cohort of AI-native software entrants.</p></div>
+          </div>
+          <div class="kq-i">
+            <span class="kq-n">08</span>
+            <div><p class="kq-q">What are the major drivers, opportunities and restraints?</p><p class="kq-a">Rising minimally invasive surgical volumes and AI-enabled navigation accuracy are the primary drivers; cloud-based and robotics-integrated platforms represent the leading opportunities; high capital cost and interoperability constraints are the principal restraints.</p></div>
+          </div>
+          <div class="kq-i">
+            <span class="kq-n">09</span>
+            <div><p class="kq-q">How are partnerships shaping market dynamics?</p><p class="kq-a">Strategic dealmaking has centred on cross-platform digital integration and long-term hospital value partnerships rather than large-scale acquisition, exemplified by the 2026 GE HealthCare and Medtronic integration and Siemens Healthineers' successive multi-year Value Partnerships.</p></div>
+          </div>
+      </div>
 
     </section>
 
@@ -5936,6 +6221,56 @@
       '.vt-read',
       function(d){ return d.n; },
       function(d){ return d.t; });
+  })();
+
+  /* ---- 13.3 company profiles ---- */
+  (function(){
+    var fig=document.getElementById('cmpProf'); if(!fig) return;
+    var tabs=[].slice.call(fig.querySelectorAll('.cp-tab'));
+    var panels=[].slice.call(fig.querySelectorAll('.cp-panel'));
+    function go(k){
+      tabs.forEach(function(t){ t.classList.toggle('on', t.getAttribute('data-k')===k); });
+      panels.forEach(function(p){
+        var m=p.getAttribute('data-k')===k;
+        p.classList.toggle('on', m);
+        p.setAttribute('aria-hidden', m?'false':'true');
+      });
+    }
+    tabs.forEach(function(t){
+      var k=t.getAttribute('data-k');
+      t.addEventListener('click',function(){ go(k); });
+      t.addEventListener('mouseenter',function(){ go(k); });
+      t.addEventListener('focus',function(){ go(k); });
+    });
+    go(tabs[0].getAttribute('data-k'));
+  })();
+
+  /* ---- 13.3 revenue split ---- */
+  (function(){
+    var fig=document.getElementById('cmpSplit'); if(!fig) return;
+    var data; try{ data=JSON.parse(fig.getAttribute('data-db')); }catch(e){ return; }
+    var gs=[].slice.call(fig.querySelectorAll('.db-g'));
+    var read=fig.querySelector('.db-read');
+    var rb=read.querySelector('b'), rs=read.querySelector('span');
+    function go(i){
+      gs.forEach(function(g,j){ g.classList.toggle('on', j===i); });
+      rb.innerHTML=data[i].n+' &middot; ~'+data[i].h+'% hardware, ~'+data[i].s+'% software';
+      rb.style.color=data[i].c;
+      rs.textContent=data[i].t;
+    }
+    [].forEach.call(fig.querySelectorAll('.db-hit'),function(h){
+      var i=+h.getAttribute('data-i');
+      h.addEventListener('mouseenter',function(){ go(i); });
+      h.addEventListener('focus',function(){ go(i); });
+      h.addEventListener('click',function(){ go(i); });
+    });
+    function lock(){
+      read.style.minHeight='0px'; var max=0;
+      data.forEach(function(d,i){ go(i); if(read.offsetHeight>max) max=read.offsetHeight; });
+      read.style.minHeight=max+'px'; go(0);
+    }
+    lock();
+    var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
   })();
 </script>
 </body>
