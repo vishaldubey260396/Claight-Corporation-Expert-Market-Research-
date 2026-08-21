@@ -1634,11 +1634,6 @@
   .tl-n.on .tl-c{opacity:1;stroke-width:2.4}
   .tl-n.on .tl-t{fill:var(--navy)}
 
-  .tl-flag{display:flex;align-items:flex-start;gap:10px;margin-top:10px;padding:10px 14px;
-    border-radius:10px;background:#f5f1ff;border:1px solid var(--line);
-    font-size:12px;line-height:1.55;color:var(--purple-deep);font-weight:600}
-  .tl-flag i{flex:none;width:12px;height:14px;margin-top:2px;background:var(--purple-mid);
-    clip-path:polygon(0 0,100% 0,100% 62%,32% 62%,32% 100%,0 100%)}
   .tl-read{margin-top:12px;border-left:3px solid var(--purple-mid);padding:2px 0 2px 12px}
   .tl-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
   .tl-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
@@ -1688,7 +1683,6 @@
   .pn-read{margin-top:12px;border-left:3px solid var(--purple-mid);padding:2px 0 2px 12px}
   .pn-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
   .pn-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
-  .pn-fig .tl-flag{margin-top:14px}
 
   @media(max-width:800px){
     .pn-plotwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -1715,9 +1709,6 @@
   .rg-gate.two .rg-chip{background:#fff;border:1px solid var(--line);color:var(--purple-deep)}
   .rg-arrow{align-self:center;justify-self:center;width:22px;height:12px;background:var(--purple-mid);
     clip-path:polygon(0 34%,58% 34%,58% 0,100% 50%,58% 100%,58% 66%,0 66%)}
-  .rg-fig .tl-flag{margin-top:14px}
-  .tl-flag.lite{font-weight:500;color:var(--ink)}
-  .tl-flag.lite b{color:var(--purple-deep)}
 
   .rg-tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:14px}
   .rg-tile{appearance:none;text-align:left;font:inherit;cursor:pointer;
@@ -1825,7 +1816,6 @@
   .vt-read{margin-top:14px;border-left:3px solid var(--purple-mid);padding:2px 0 2px 12px}
   .vt-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
   .vt-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
-  .vt-fig .tl-flag{margin-top:14px}
 
 
   @media(max-width:760px){
@@ -1902,6 +1892,30 @@
   @media(prefers-reduced-motion:reduce){
     .cp-panel{transition:none}
   }
+
+
+  /* --- shared: stat block, takeaway rule, caveat and service notes --- */
+  .kstat{display:flex;align-items:baseline;gap:14px;margin-top:14px;padding:12px 0 0;
+    border-top:1px solid var(--line)}
+  .kstat b{flex:none;font-size:30px;font-weight:800;line-height:1;color:var(--brand);
+    letter-spacing:-.01em}
+  .kstat span{font-size:12px;line-height:1.6;color:var(--muted);max-width:64ch}
+
+  .kt{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+  .kt-l{display:block;font-size:10px;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--brand)}
+  .kt-t{margin:6px 0 0;font-size:13px;line-height:1.65;color:var(--navy);max-width:96ch}
+
+  .cav{margin:14px 0 0;font-size:11.5px;line-height:1.65;color:var(--muted);
+    padding-left:13px;border-left:2px dotted #c9b9f0}
+  .cav b{color:var(--purple-deep);font-weight:700}
+
+  .svc{position:relative;margin-top:18px;padding:16px 18px 15px;border-radius:12px;
+    background:none;border:1px dashed #cbbcf2}
+  .svc-t{position:absolute;top:-9px;left:16px;padding:2px 10px;border-radius:999px;
+    background:#fff;border:1px solid #cbbcf2;font-size:10px;font-weight:700;
+    letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+  .svc p{margin:0;font-size:12px;line-height:1.65;color:var(--muted)}
 
 </style>
 </head>
@@ -3930,8 +3944,8 @@
               </g>
           </svg>
         </div>
-        <div class="tl-flag"><i aria-hidden="true"></i>Patent filings specific to 3D surgical imaging and
-          navigation have more than tripled since 2018, reaching an index of 325 in 2025.</div>
+        <div class="kstat"><b>3.25&#215;</b><span>Patent filings specific to 3D surgical imaging and
+          navigation since 2018, an index of 325 in 2025 against a 2018 base of 100.</span></div>
         <div class="tl-read"><b>Seven dated milestones</b><span>Hover or focus a milestone to read what happened</span></div>
         <figcaption class="md-cap">Only milestones this report dates are plotted; each is tagged to the patent
           cluster it belongs to. Brainlab's Loop-X and Cirq clearance is listed in the report without a date and
@@ -4163,9 +4177,9 @@
           </svg>
         </div>
         <div class="pn-read"><b>Six disclosed partnerships</b><span>Hover a link or a company to read the agreement</span></div>
-        <div class="tl-flag"><i aria-hidden="true"></i>Announcements cluster around digital integration rather
-          than equity investment or acquisition, a signal that platform manufacturers now treat interoperability
-          as a competitive necessity rather than a threat to be resisted.</div>
+        <div class="kt"><span class="kt-l">Takeaway</span><p class="kt-t">Announcements cluster around digital
+          integration rather than equity investment or acquisition, a signal that platform manufacturers now treat
+          interoperability as a competitive necessity rather than a threat to be resisted.</p></div>
         <figcaption class="md-cap">Filled chips are platform developers; outlined chips are their partners.
           Dates and the nature of each agreement are those given in this report.</figcaption>
       </figure>
@@ -4229,8 +4243,9 @@
             </div>
           </div>
         </div>
-        <div class="tl-flag"><i aria-hidden="true"></i>This report's regional analysis shows the second gate has
-          become material to real-world penetration, often mattering as much as the speed of clearance itself.</div>
+        <div class="kt"><span class="kt-l">Takeaway</span><p class="kt-t">This report's regional analysis shows
+          the second gate has become material to real-world penetration, often mattering as much as the speed of
+          clearance itself.</p></div>
       </figure>
 
       <h3 class="subh reveal" data-n="11.1">Regulatory Overview by Geography</h3>
@@ -4273,11 +4288,13 @@
         <div class="rg-read" role="region" aria-live="polite"><b></b><span></span></div>
       </figure>
 
-      <div class="tl-flag lite reveal" style="margin-top:16px"><i aria-hidden="true"></i>Across all markets,
-        manufacturers increasingly use digital-integration and software-update pathways rather than full device
-        re-clearance, so AI analytics can improve without triggering a hardware-length review. The United States,
-        the European Union and Japan are each building more explicit frameworks for adaptive, AI-based software as
-        a medical device, which will shape how quickly future analytics upgrades reach clinical use.</div>
+      <p class="reveal">
+        Across all markets, manufacturers increasingly use digital-integration and software-update pathways rather
+        than full device re-clearance, so AI analytics can improve without triggering a hardware-length review.
+        The United States, the European Union and Japan are each building more explicit frameworks for adaptive,
+        AI-based software as a medical device, which will shape how quickly future analytics upgrades reach
+        clinical use.
+      </p>
 
     </section>
 
@@ -4483,11 +4500,13 @@
           and sum to 100%.</figcaption>
       </figure>
 
-      <div class="tl-flag lite reveal" style="margin-top:16px"><i aria-hidden="true"></i>The barriers that
-        preserve this structure are regulatory and clinical-relationship barriers, not pure technology barriers.
-        Navigation and imaging hardware has matured to the point where differentiation rests on software, workflow
-        integration and surgeon familiarity, which is exactly why partnership and digital integration, of the kind
-        GE HealthCare and Medtronic pursued, have become the attractive route to extending clinical footprint.</div>
+      <p class="reveal">
+        The barriers that preserve this structure are regulatory and clinical-relationship barriers, not pure
+        technology barriers. Navigation and imaging hardware has matured to the point where differentiation rests
+        on software, workflow integration and surgeon familiarity, which is exactly why partnership and digital
+        integration, of the kind GE HealthCare and Medtronic pursued, have become the attractive route to
+        extending clinical footprint.
+      </p>
 
       <h3 class="subh reveal" data-n="13.2">Vendor Positioning</h3>
 
@@ -4520,10 +4539,10 @@
           <div class="vt-mig" aria-hidden="true"><span class="vt-arrow"></span><span class="vt-mt">Migration path</span></div>
         </div>
         <div class="vt-read"><b></b><span></span></div>
-        <div class="tl-flag lite"><i aria-hidden="true"></i>Treat this as a snapshot of 2025-2026 conditions
-          rather than a stable long-run structure: several prospective leaders and niche players carry enough
-          technological momentum to reach the key-vendor tier by the early 2030s, particularly if AI-native
-          entrants partner with established hardware manufacturers rather than merely challenging them.</div>
+        <p class="cav"><b>How to read this:</b> treat it as a snapshot of 2025-2026 conditions rather than a
+          stable long-run structure. Several prospective leaders and niche players carry enough technological
+          momentum to reach the key-vendor tier by the early 2030s, particularly if AI-native entrants partner
+          with established hardware manufacturers rather than merely challenging them.</p>
       </figure>
 
       <h3 class="subh reveal">Market Share Analysis, Top Five Companies</h3>
@@ -4720,10 +4739,10 @@
         </table>
       </div>
 
-      <div class="tl-flag lite reveal"><i aria-hidden="true"></i>The company list in this report is representative
-        rather than exhaustive. A complete company database, including financial analysis, product portfolio,
-        demographic reach, recent news and certifications for each profiled player, is available as part of the
-        full underlying dataset and can be customised to client requirements.</div>
+      <div class="svc reveal"><span class="svc-t">Available on request</span><p>The company list here is
+        representative rather than exhaustive. A complete company database, including financial analysis, product
+        portfolio, demographic reach, recent news and certifications for each profiled player, forms part of the
+        full underlying dataset and can be customised to client requirements.</p></div>
 
     </section>
 
@@ -4755,9 +4774,9 @@
           volume alone would support.</li>
       </ul>
 
-      <div class="tl-flag lite reveal"><i aria-hidden="true"></i>Additional bespoke KOL interview programmes,
-        including customised interview guides and expanded respondent panels by geography or specialty, can be
-        scoped to individual client requirements beyond the summary insights presented here.</div>
+      <div class="svc reveal"><span class="svc-t">Available on request</span><p>Bespoke KOL interview
+        programmes, including customised interview guides and expanded respondent panels by geography or
+        specialty, can be scoped to individual client requirements beyond the summary insights presented here.</p></div>
 
     </section>
 
