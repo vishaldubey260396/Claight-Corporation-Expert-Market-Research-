@@ -1672,11 +1672,16 @@
 
   /* --- 10 - partnership momentum dots and the collaboration network --- */
   .pm-fig{margin-top:16px}
-  .pm-wrap{margin-top:14px;max-width:600px}
+  .pm-wrap{margin-top:14px}
   .pm-svg{width:100%;height:auto;display:block}
-  .pm-dot{fill:var(--purple-mid);opacity:var(--o)}
-  .pm-num{font-size:13px;font-weight:700;fill:var(--purple-deep)}
-  .pm-yr{font-size:11.5px;font-weight:600;fill:var(--muted)}
+  .pm-off{fill:#f1ecfd}
+  .pm-num{font-size:13.5px;font-weight:700;fill:var(--purple-deep)}
+  .pm-yr{font-size:12px;font-weight:600;fill:var(--navy)}
+
+  @media(max-width:640px){
+    .pm-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .pm-svg{min-width:520px}
+  }
 
   .pn-fig{margin-top:16px}
   .pn-keys{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px}
@@ -3820,55 +3825,75 @@
 
       <figure class="md-fig pm-fig autoin" id="partMom">
         <h6>Partnership and Collaboration Momentum, 2022-2026</h6>
-        <p class="md-sub">Each dot is one disclosed partnership or integration announcement</p>
+        <p class="md-sub">Each dot is one disclosed partnership or integration announcement; faint dots mark the distance to the 2026 pace</p>
         <div class="pm-wrap">
-          <svg class="pm-svg" viewBox="0 0 580 228" role="img"
+          <svg class="pm-svg" viewBox="0 0 740 192" role="img"
                aria-label="Disclosed partnership announcements per year: 2022 three, 2023 five, 2024 seven, 2025 nine, 2026 eleven.">
-              <text class="pm-num" x="58.0" y="147.0" text-anchor="middle">3</text>
-              <circle class="pm-dot" cx="58.0" cy="189.0" r="5.0" style="--o:0.42"/>
-              <circle class="pm-dot" cx="58.0" cy="174.0" r="5.0" style="--o:0.48"/>
-              <circle class="pm-dot" cx="58.0" cy="159.0" r="5.0" style="--o:0.54"/>
-              <text class="pm-yr" x="58.0" y="218.0" text-anchor="middle">2022</text>
-              <text class="pm-num" x="174.0" y="117.0" text-anchor="middle">5</text>
-              <circle class="pm-dot" cx="174.0" cy="189.0" r="5.0" style="--o:0.42"/>
-              <circle class="pm-dot" cx="174.0" cy="174.0" r="5.0" style="--o:0.48"/>
-              <circle class="pm-dot" cx="174.0" cy="159.0" r="5.0" style="--o:0.54"/>
-              <circle class="pm-dot" cx="174.0" cy="144.0" r="5.0" style="--o:0.59"/>
-              <circle class="pm-dot" cx="174.0" cy="129.0" r="5.0" style="--o:0.65"/>
-              <text class="pm-yr" x="174.0" y="218.0" text-anchor="middle">2023</text>
-              <text class="pm-num" x="290.0" y="87.0" text-anchor="middle">7</text>
-              <circle class="pm-dot" cx="290.0" cy="189.0" r="5.0" style="--o:0.42"/>
-              <circle class="pm-dot" cx="290.0" cy="174.0" r="5.0" style="--o:0.48"/>
-              <circle class="pm-dot" cx="290.0" cy="159.0" r="5.0" style="--o:0.54"/>
-              <circle class="pm-dot" cx="290.0" cy="144.0" r="5.0" style="--o:0.59"/>
-              <circle class="pm-dot" cx="290.0" cy="129.0" r="5.0" style="--o:0.65"/>
-              <circle class="pm-dot" cx="290.0" cy="114.0" r="5.0" style="--o:0.71"/>
-              <circle class="pm-dot" cx="290.0" cy="99.0" r="5.0" style="--o:0.77"/>
-              <text class="pm-yr" x="290.0" y="218.0" text-anchor="middle">2024</text>
-              <text class="pm-num" x="406.0" y="57.0" text-anchor="middle">9</text>
-              <circle class="pm-dot" cx="406.0" cy="189.0" r="5.0" style="--o:0.42"/>
-              <circle class="pm-dot" cx="406.0" cy="174.0" r="5.0" style="--o:0.48"/>
-              <circle class="pm-dot" cx="406.0" cy="159.0" r="5.0" style="--o:0.54"/>
-              <circle class="pm-dot" cx="406.0" cy="144.0" r="5.0" style="--o:0.59"/>
-              <circle class="pm-dot" cx="406.0" cy="129.0" r="5.0" style="--o:0.65"/>
-              <circle class="pm-dot" cx="406.0" cy="114.0" r="5.0" style="--o:0.71"/>
-              <circle class="pm-dot" cx="406.0" cy="99.0" r="5.0" style="--o:0.77"/>
-              <circle class="pm-dot" cx="406.0" cy="84.0" r="5.0" style="--o:0.83"/>
-              <circle class="pm-dot" cx="406.0" cy="69.0" r="5.0" style="--o:0.88"/>
-              <text class="pm-yr" x="406.0" y="218.0" text-anchor="middle">2025</text>
-              <text class="pm-num" x="522.0" y="27.0" text-anchor="middle">11</text>
-              <circle class="pm-dot" cx="522.0" cy="189.0" r="5.0" style="--o:0.42"/>
-              <circle class="pm-dot" cx="522.0" cy="174.0" r="5.0" style="--o:0.48"/>
-              <circle class="pm-dot" cx="522.0" cy="159.0" r="5.0" style="--o:0.54"/>
-              <circle class="pm-dot" cx="522.0" cy="144.0" r="5.0" style="--o:0.59"/>
-              <circle class="pm-dot" cx="522.0" cy="129.0" r="5.0" style="--o:0.65"/>
-              <circle class="pm-dot" cx="522.0" cy="114.0" r="5.0" style="--o:0.71"/>
-              <circle class="pm-dot" cx="522.0" cy="99.0" r="5.0" style="--o:0.77"/>
-              <circle class="pm-dot" cx="522.0" cy="84.0" r="5.0" style="--o:0.83"/>
-              <circle class="pm-dot" cx="522.0" cy="69.0" r="5.0" style="--o:0.88"/>
-              <circle class="pm-dot" cx="522.0" cy="54.0" r="5.0" style="--o:0.94"/>
-              <circle class="pm-dot" cx="522.0" cy="39.0" r="5.0" style="--o:1.00"/>
-              <text class="pm-yr" x="522.0" y="218.0" text-anchor="middle">2026</text>
+              <text class="pm-yr" x="52" y="30.5" text-anchor="end">2022</text>
+              <circle class="pm-dot" cx="94.2" cy="26.0" r="8.0" fill="#c4b5fd"/>
+              <circle class="pm-dot" cx="150.5" cy="26.0" r="8.0" fill="#c4b5fd"/>
+              <circle class="pm-dot" cx="206.9" cy="26.0" r="8.0" fill="#c4b5fd"/>
+              <circle class="pm-off" cx="263.3" cy="26.0" r="8.0"/>
+              <circle class="pm-off" cx="319.6" cy="26.0" r="8.0"/>
+              <circle class="pm-off" cx="376.0" cy="26.0" r="8.0"/>
+              <circle class="pm-off" cx="432.4" cy="26.0" r="8.0"/>
+              <circle class="pm-off" cx="488.7" cy="26.0" r="8.0"/>
+              <circle class="pm-off" cx="545.1" cy="26.0" r="8.0"/>
+              <circle class="pm-off" cx="601.5" cy="26.0" r="8.0"/>
+              <circle class="pm-off" cx="657.8" cy="26.0" r="8.0"/>
+              <text class="pm-num" x="702" y="30.8">3</text>
+              <text class="pm-yr" x="52" y="65.5" text-anchor="end">2023</text>
+              <circle class="pm-dot" cx="94.2" cy="61.0" r="8.0" fill="#a78bfa"/>
+              <circle class="pm-dot" cx="150.5" cy="61.0" r="8.0" fill="#a78bfa"/>
+              <circle class="pm-dot" cx="206.9" cy="61.0" r="8.0" fill="#a78bfa"/>
+              <circle class="pm-dot" cx="263.3" cy="61.0" r="8.0" fill="#a78bfa"/>
+              <circle class="pm-dot" cx="319.6" cy="61.0" r="8.0" fill="#a78bfa"/>
+              <circle class="pm-off" cx="376.0" cy="61.0" r="8.0"/>
+              <circle class="pm-off" cx="432.4" cy="61.0" r="8.0"/>
+              <circle class="pm-off" cx="488.7" cy="61.0" r="8.0"/>
+              <circle class="pm-off" cx="545.1" cy="61.0" r="8.0"/>
+              <circle class="pm-off" cx="601.5" cy="61.0" r="8.0"/>
+              <circle class="pm-off" cx="657.8" cy="61.0" r="8.0"/>
+              <text class="pm-num" x="702" y="65.8">5</text>
+              <text class="pm-yr" x="52" y="100.5" text-anchor="end">2024</text>
+              <circle class="pm-dot" cx="94.2" cy="96.0" r="8.0" fill="#8b5cf6"/>
+              <circle class="pm-dot" cx="150.5" cy="96.0" r="8.0" fill="#8b5cf6"/>
+              <circle class="pm-dot" cx="206.9" cy="96.0" r="8.0" fill="#8b5cf6"/>
+              <circle class="pm-dot" cx="263.3" cy="96.0" r="8.0" fill="#8b5cf6"/>
+              <circle class="pm-dot" cx="319.6" cy="96.0" r="8.0" fill="#8b5cf6"/>
+              <circle class="pm-dot" cx="376.0" cy="96.0" r="8.0" fill="#8b5cf6"/>
+              <circle class="pm-dot" cx="432.4" cy="96.0" r="8.0" fill="#8b5cf6"/>
+              <circle class="pm-off" cx="488.7" cy="96.0" r="8.0"/>
+              <circle class="pm-off" cx="545.1" cy="96.0" r="8.0"/>
+              <circle class="pm-off" cx="601.5" cy="96.0" r="8.0"/>
+              <circle class="pm-off" cx="657.8" cy="96.0" r="8.0"/>
+              <text class="pm-num" x="702" y="100.8">7</text>
+              <text class="pm-yr" x="52" y="135.5" text-anchor="end">2025</text>
+              <circle class="pm-dot" cx="94.2" cy="131.0" r="8.0" fill="#6d28d9"/>
+              <circle class="pm-dot" cx="150.5" cy="131.0" r="8.0" fill="#6d28d9"/>
+              <circle class="pm-dot" cx="206.9" cy="131.0" r="8.0" fill="#6d28d9"/>
+              <circle class="pm-dot" cx="263.3" cy="131.0" r="8.0" fill="#6d28d9"/>
+              <circle class="pm-dot" cx="319.6" cy="131.0" r="8.0" fill="#6d28d9"/>
+              <circle class="pm-dot" cx="376.0" cy="131.0" r="8.0" fill="#6d28d9"/>
+              <circle class="pm-dot" cx="432.4" cy="131.0" r="8.0" fill="#6d28d9"/>
+              <circle class="pm-dot" cx="488.7" cy="131.0" r="8.0" fill="#6d28d9"/>
+              <circle class="pm-dot" cx="545.1" cy="131.0" r="8.0" fill="#6d28d9"/>
+              <circle class="pm-off" cx="601.5" cy="131.0" r="8.0"/>
+              <circle class="pm-off" cx="657.8" cy="131.0" r="8.0"/>
+              <text class="pm-num" x="702" y="135.8">9</text>
+              <text class="pm-yr" x="52" y="170.5" text-anchor="end">2026</text>
+              <circle class="pm-dot" cx="94.2" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <circle class="pm-dot" cx="150.5" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <circle class="pm-dot" cx="206.9" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <circle class="pm-dot" cx="263.3" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <circle class="pm-dot" cx="319.6" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <circle class="pm-dot" cx="376.0" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <circle class="pm-dot" cx="432.4" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <circle class="pm-dot" cx="488.7" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <circle class="pm-dot" cx="545.1" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <circle class="pm-dot" cx="601.5" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <circle class="pm-dot" cx="657.8" cy="166.0" r="8.0" fill="#4c1d95"/>
+              <text class="pm-num" x="702" y="170.8">11</text>
           </svg>
         </div>
         <figcaption class="md-cap">Counts are indicative of the pace of disclosed announcements rather than an
