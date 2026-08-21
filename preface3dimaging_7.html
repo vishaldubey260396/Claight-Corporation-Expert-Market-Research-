@@ -1669,6 +1669,48 @@
     .tl-svg{min-width:760px}
   }
 
+
+  /* --- 10 - partnership momentum dots and the collaboration network --- */
+  .pm-fig{margin-top:16px}
+  .pm-wrap{margin-top:14px;max-width:600px}
+  .pm-svg{width:100%;height:auto;display:block}
+  .pm-dot{fill:var(--purple-mid);opacity:var(--o)}
+  .pm-num{font-size:13px;font-weight:700;fill:var(--purple-deep)}
+  .pm-yr{font-size:11.5px;font-weight:600;fill:var(--muted)}
+
+  .pn-fig{margin-top:16px}
+  .pn-keys{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px}
+  .pn-k{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ink)}
+  .pn-k i{width:10px;height:10px;border-radius:3px;flex:none}
+  .pn-plotwrap{margin-top:6px}
+  .pn-svg{width:100%;height:auto;display:block}
+  .pn-e{stroke-width:2.2;opacity:.55;transition:stroke-width .2s ease,opacity .2s ease}
+  .pn-hit{stroke:transparent;stroke-width:18;fill:none;pointer-events:stroke;
+    cursor:pointer;outline:none}
+  .pn-hit:focus-visible{stroke:rgba(124,58,237,.22)}
+  .pn-dt{pointer-events:none;font-size:10.5px;font-weight:600;fill:var(--muted);
+    paint-order:stroke;stroke:#fff;stroke-width:4;stroke-linejoin:round}
+  .pn-c{fill:#fff;stroke:#d6c9f5;stroke-width:1.4}
+  .pn-c.lead{fill:var(--purple-deep);stroke:var(--purple-deep)}
+  .pn-t{font-size:11.5px;font-weight:600;fill:var(--navy);pointer-events:none}
+  .pn-t.lead{fill:#fff}
+  .pn-node{cursor:pointer;outline:none}
+  .pn-node:focus-visible .pn-c{stroke:#1e1b4b;stroke-width:2.5}
+  .pn-e.on{stroke-width:4;opacity:1}
+  .pn-dt.on{fill:var(--purple-deep)}
+  .pn-c.on{stroke:var(--purple-mid);stroke-width:2.6}
+  .pn-c.lead.on{stroke:#1e1b4b}
+
+  .pn-read{margin-top:12px;border-left:3px solid var(--purple-mid);padding:2px 0 2px 12px}
+  .pn-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
+  .pn-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
+  .pn-fig .tl-flag{margin-top:14px}
+
+  @media(max-width:800px){
+    .pn-plotwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .pn-svg{min-width:720px}
+  }
+
 </style>
 </head>
 <body>
@@ -3771,106 +3813,176 @@
       <h3 class="sub reveal" data-n="10" id="pn-title">Partnership and Collaborations Analysis</h3>
 
       <p class="reveal">
-        Strategic partnership activity in the 3D surgical imaging category has accelerated markedly since 2023, as
-        established platform developers increasingly pursue cross-company integration, distribution and
-        technology-sharing agreements in place of, or alongside, outright acquisition.
+        Partnership activity has accelerated since 2023, with established platform developers pursuing
+        integration, distribution and technology-sharing agreements in place of, or alongside, outright
+        acquisition.
       </p>
 
-      <figure class="md-fig gb-fig gb-one autoin" id="partMom">
-        <h6>3D Surgical Imaging Market - Partnership and Collaboration Momentum, 2022-2026</h6>
-        <p class="md-sub">Cross-platform digital integrations are accelerating</p>
-        <div class="gb">
-          <div class="gb-plot">
-            <div class="gb-grid" aria-hidden="true">
-              <div class="gb-t" style="bottom:0.00%"><span>0</span></div>
-              <div class="gb-t" style="bottom:25.00%"><span>3.3</span></div>
-              <div class="gb-t" style="bottom:50.00%"><span>6.6</span></div>
-              <div class="gb-t" style="bottom:75.00%"><span>9.9</span></div>
-              <div class="gb-t" style="bottom:100.00%"><span>13.2</span></div>
-            </div>
-            <div class="gb-bars">
-              <div class="gb-g" style="--d:0ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:22.7%" title="2022: 3"></span>
-                </div>
-                <div class="gb-x">2022</div>
-              </div>
-              <div class="gb-g" style="--d:110ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:37.9%" title="2023: 5"></span>
-                </div>
-                <div class="gb-x">2023</div>
-              </div>
-              <div class="gb-g" style="--d:220ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:53.0%" title="2024: 7"></span>
-                </div>
-                <div class="gb-x">2024</div>
-              </div>
-              <div class="gb-g" style="--d:330ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:68.2%" title="2025: 9"></span>
-                </div>
-                <div class="gb-x">2025</div>
-              </div>
-              <div class="gb-g" style="--d:440ms">
-                <div class="gb-pair">
-                  <span class="gb-b a" style="--h:83.3%" title="2026: 11"></span>
-                </div>
-                <div class="gb-x">2026</div>
-              </div>
-            </div>
-          </div>
-          <div class="gb-key"><span><i class="a"></i>Disclosed partnerships &amp; integrations</span></div>
+      <figure class="md-fig pm-fig autoin" id="partMom">
+        <h6>Partnership and Collaboration Momentum, 2022-2026</h6>
+        <p class="md-sub">Each dot is one disclosed partnership or integration announcement</p>
+        <div class="pm-wrap">
+          <svg class="pm-svg" viewBox="0 0 580 228" role="img"
+               aria-label="Disclosed partnership announcements per year: 2022 three, 2023 five, 2024 seven, 2025 nine, 2026 eleven.">
+              <text class="pm-num" x="58.0" y="147.0" text-anchor="middle">3</text>
+              <circle class="pm-dot" cx="58.0" cy="189.0" r="5.0" style="--o:0.42"/>
+              <circle class="pm-dot" cx="58.0" cy="174.0" r="5.0" style="--o:0.48"/>
+              <circle class="pm-dot" cx="58.0" cy="159.0" r="5.0" style="--o:0.54"/>
+              <text class="pm-yr" x="58.0" y="218.0" text-anchor="middle">2022</text>
+              <text class="pm-num" x="174.0" y="117.0" text-anchor="middle">5</text>
+              <circle class="pm-dot" cx="174.0" cy="189.0" r="5.0" style="--o:0.42"/>
+              <circle class="pm-dot" cx="174.0" cy="174.0" r="5.0" style="--o:0.48"/>
+              <circle class="pm-dot" cx="174.0" cy="159.0" r="5.0" style="--o:0.54"/>
+              <circle class="pm-dot" cx="174.0" cy="144.0" r="5.0" style="--o:0.59"/>
+              <circle class="pm-dot" cx="174.0" cy="129.0" r="5.0" style="--o:0.65"/>
+              <text class="pm-yr" x="174.0" y="218.0" text-anchor="middle">2023</text>
+              <text class="pm-num" x="290.0" y="87.0" text-anchor="middle">7</text>
+              <circle class="pm-dot" cx="290.0" cy="189.0" r="5.0" style="--o:0.42"/>
+              <circle class="pm-dot" cx="290.0" cy="174.0" r="5.0" style="--o:0.48"/>
+              <circle class="pm-dot" cx="290.0" cy="159.0" r="5.0" style="--o:0.54"/>
+              <circle class="pm-dot" cx="290.0" cy="144.0" r="5.0" style="--o:0.59"/>
+              <circle class="pm-dot" cx="290.0" cy="129.0" r="5.0" style="--o:0.65"/>
+              <circle class="pm-dot" cx="290.0" cy="114.0" r="5.0" style="--o:0.71"/>
+              <circle class="pm-dot" cx="290.0" cy="99.0" r="5.0" style="--o:0.77"/>
+              <text class="pm-yr" x="290.0" y="218.0" text-anchor="middle">2024</text>
+              <text class="pm-num" x="406.0" y="57.0" text-anchor="middle">9</text>
+              <circle class="pm-dot" cx="406.0" cy="189.0" r="5.0" style="--o:0.42"/>
+              <circle class="pm-dot" cx="406.0" cy="174.0" r="5.0" style="--o:0.48"/>
+              <circle class="pm-dot" cx="406.0" cy="159.0" r="5.0" style="--o:0.54"/>
+              <circle class="pm-dot" cx="406.0" cy="144.0" r="5.0" style="--o:0.59"/>
+              <circle class="pm-dot" cx="406.0" cy="129.0" r="5.0" style="--o:0.65"/>
+              <circle class="pm-dot" cx="406.0" cy="114.0" r="5.0" style="--o:0.71"/>
+              <circle class="pm-dot" cx="406.0" cy="99.0" r="5.0" style="--o:0.77"/>
+              <circle class="pm-dot" cx="406.0" cy="84.0" r="5.0" style="--o:0.83"/>
+              <circle class="pm-dot" cx="406.0" cy="69.0" r="5.0" style="--o:0.88"/>
+              <text class="pm-yr" x="406.0" y="218.0" text-anchor="middle">2025</text>
+              <text class="pm-num" x="522.0" y="27.0" text-anchor="middle">11</text>
+              <circle class="pm-dot" cx="522.0" cy="189.0" r="5.0" style="--o:0.42"/>
+              <circle class="pm-dot" cx="522.0" cy="174.0" r="5.0" style="--o:0.48"/>
+              <circle class="pm-dot" cx="522.0" cy="159.0" r="5.0" style="--o:0.54"/>
+              <circle class="pm-dot" cx="522.0" cy="144.0" r="5.0" style="--o:0.59"/>
+              <circle class="pm-dot" cx="522.0" cy="129.0" r="5.0" style="--o:0.65"/>
+              <circle class="pm-dot" cx="522.0" cy="114.0" r="5.0" style="--o:0.71"/>
+              <circle class="pm-dot" cx="522.0" cy="99.0" r="5.0" style="--o:0.77"/>
+              <circle class="pm-dot" cx="522.0" cy="84.0" r="5.0" style="--o:0.83"/>
+              <circle class="pm-dot" cx="522.0" cy="69.0" r="5.0" style="--o:0.88"/>
+              <circle class="pm-dot" cx="522.0" cy="54.0" r="5.0" style="--o:0.94"/>
+              <circle class="pm-dot" cx="522.0" cy="39.0" r="5.0" style="--o:1.00"/>
+              <text class="pm-yr" x="522.0" y="218.0" text-anchor="middle">2026</text>
+          </svg>
         </div>
-        <figcaption class="md-cap">Bar heights show the relative pace of disclosed partnership and integration
-          announcements; the underlying counts are indicative rather than an exhaustive census.</figcaption>
+        <figcaption class="md-cap">Counts are indicative of the pace of disclosed announcements rather than an
+          exhaustive census.</figcaption>
       </figure>
 
       <h3 class="subh reveal" data-n="10.1">Key Partnerships and Collaborations</h3>
 
-      <div class="md-scroll reveal">
-        <table class="rd">
-          <thead><tr><th>Date</th><th>Companies</th><th>Nature of collaboration</th></tr></thead>
-          <tbody>
-        <tr><td>April 2026</td><td>GE HealthCare / Medtronic</td><td>Digital integration of GE's bkActiv intraoperative ultrasound system with Medtronic's Stealth AXiS surgical navigation platform</td></tr>
-        <tr><td>April 2026</td><td>Siemens Healthineers / Onvida Health</td><td>Ten-year Value Partnership covering imaging equipment enhancement and technology modernisation</td></tr>
-        <tr><td>April 2025</td><td>Siemens Healthineers / Tower Health</td><td>Ten-year Value Partnership across radiology, oncology and cardiology imaging infrastructure</td></tr>
-        <tr><td>2024 (available mid-2024)</td><td>Brainlab / Fujifilm</td><td>Integration of Fujifilm's ARIETTA Precision intraoperative ultrasound with Brainlab's navigation software for neurosurgery</td></tr>
-        <tr><td>June 2025</td><td>ChoiceSpine / eCential Robotics</td><td>Partnership to launch the ChoiceSpine app on the eCential Op.n robotic and navigation platform</td></tr>
-        <tr><td><b>Ongoing</b></td><td><b>Brainlab / medPhoton</b></td><td><b>Co-development partnership underpinning the Loop-X mobile intraoperative imaging robot</b></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="reveal">
-        The clustering of partnership announcements around digital integration, rather than equity investment or
-        outright acquisition, is itself a notable structural signal: it suggests that established platform
-        manufacturers increasingly view interoperability as a competitive necessity rather than a threat to be
-        resisted, a meaningful shift from the more closed, proprietary ecosystem strategies that characterised the
-        category as recently as five years ago.
-      </p>
+      <figure class="md-fig pn-fig autoin" id="partNet" data-pn='[{"a": "GE HealthCare", "b": "Medtronic", "ka": "ge", "kb": "mdt", "d": "April 2026", "y": "Cross-platform digital integration", "c": "#6d28d9", "t": "Digital integration of GE&#39;s bkActiv intraoperative ultrasound system with Medtronic&#39;s Stealth AXiS surgical navigation platform."}, {"a": "Siemens Healthineers", "b": "Onvida Health", "ka": "sie", "kb": "onv", "d": "April 2026", "y": "Long-term value and service", "c": "#3b1178", "t": "Ten-year Value Partnership covering imaging equipment enhancement and technology modernisation."}, {"a": "Siemens Healthineers", "b": "Tower Health", "ka": "sie", "kb": "twr", "d": "April 2025", "y": "Long-term value and service", "c": "#3b1178", "t": "Ten-year Value Partnership across radiology, oncology and cardiology imaging infrastructure."}, {"a": "Brainlab", "b": "Fujifilm", "ka": "bl", "kb": "fuj", "d": "Available mid-2024", "y": "Cross-platform digital integration", "c": "#6d28d9", "t": "Integration of Fujifilm&#39;s ARIETTA Precision intraoperative ultrasound with Brainlab&#39;s navigation software for neurosurgery."}, {"a": "Brainlab", "b": "medPhoton", "ka": "bl", "kb": "mph", "d": "Ongoing", "y": "Co-development", "c": "#a855f7", "t": "Co-development partnership underpinning the Loop-X mobile intraoperative imaging robot."}, {"a": "ChoiceSpine", "b": "eCential Robotics", "ka": "chs", "kb": "ecr", "d": "June 2025", "y": "Software and instrumentation distribution", "c": "#9333ea", "t": "Partnership to launch the ChoiceSpine app on the eCential Op.n robotic and navigation platform."}]'>
+        <h6>Who is Partnering with Whom</h6>
+        <p class="md-sub">Every collaboration this report names, coloured by the kind of agreement</p>
+        <div class="pn-keys"><span class="pn-k"><i style="background:#6d28d9"></i>Cross-platform digital integration</span><span class="pn-k"><i style="background:#3b1178"></i>Long-term value and service</span><span class="pn-k"><i style="background:#9333ea"></i>Software and instrumentation distribution</span><span class="pn-k"><i style="background:#a855f7"></i>Co-development</span></div>
+        <div class="pn-plotwrap">
+          <svg class="pn-svg" viewBox="58 45 771 283" role="list"
+               aria-label="Network of six disclosed partnerships between ten companies.">
+              <line class="pn-e" data-i="0" x1="120.0" y1="105.0" x2="310.0" y2="105.0" stroke="#6d28d9"/>
+              <line class="pn-e" data-i="1" x1="655.0" y1="68.0" x2="560.0" y2="150.0" stroke="#3b1178"/>
+              <line class="pn-e" data-i="2" x1="655.0" y1="68.0" x2="750.0" y2="150.0" stroke="#3b1178"/>
+              <line class="pn-e" data-i="3" x1="215.0" y1="223.0" x2="120.0" y2="305.0" stroke="#6d28d9"/>
+              <line class="pn-e" data-i="4" x1="215.0" y1="223.0" x2="310.0" y2="305.0" stroke="#a855f7"/>
+              <line class="pn-e" data-i="5" x1="560.0" y1="260.0" x2="750.0" y2="260.0" stroke="#9333ea"/>
+              <text class="pn-dt" data-i="0" x="215.0" y="109.0" text-anchor="middle">Apr 2026</text>
+              <text class="pn-dt" data-i="1" x="607.5" y="113.0" text-anchor="middle">Apr 2026</text>
+              <text class="pn-dt" data-i="2" x="702.5" y="113.0" text-anchor="middle">Apr 2025</text>
+              <text class="pn-dt" data-i="3" x="167.5" y="268.0" text-anchor="middle">Mid-2024</text>
+              <text class="pn-dt" data-i="4" x="262.5" y="268.0" text-anchor="middle">Ongoing</text>
+              <text class="pn-dt" data-i="5" x="655.0" y="264.0" text-anchor="middle">Jun 2025</text>
+              <line class="pn-hit" data-e="0" x1="120.0" y1="105.0" x2="310.0" y2="105.0"
+                    tabindex="0" role="button" aria-label="April 2026: GE HealthCare and Medtronic"/>
+              <line class="pn-hit" data-e="1" x1="655.0" y1="68.0" x2="560.0" y2="150.0"
+                    tabindex="0" role="button" aria-label="April 2026: Siemens Healthineers and Onvida Health"/>
+              <line class="pn-hit" data-e="2" x1="655.0" y1="68.0" x2="750.0" y2="150.0"
+                    tabindex="0" role="button" aria-label="April 2025: Siemens Healthineers and Tower Health"/>
+              <line class="pn-hit" data-e="3" x1="215.0" y1="223.0" x2="120.0" y2="305.0"
+                    tabindex="0" role="button" aria-label="Available mid-2024: Brainlab and Fujifilm"/>
+              <line class="pn-hit" data-e="4" x1="215.0" y1="223.0" x2="310.0" y2="305.0"
+                    tabindex="0" role="button" aria-label="Ongoing: Brainlab and medPhoton"/>
+              <line class="pn-hit" data-e="5" x1="560.0" y1="260.0" x2="750.0" y2="260.0"
+                    tabindex="0" role="button" aria-label="June 2025: ChoiceSpine and eCential Robotics"/>
+              <g class="pn-node" data-k="ge" tabindex="0" role="button" aria-label="GE HealthCare">
+                <rect class="pn-c lead" x="66.1" y="90.0" width="107.9" height="30.0" rx="15"/>
+                <text class="pn-t lead" x="120.0" y="109.2" text-anchor="middle">GE HealthCare</text>
+              </g>
+              <g class="pn-node" data-k="mdt" tabindex="0" role="button" aria-label="Medtronic">
+                <rect class="pn-c lead" x="268.6" y="90.0" width="82.7" height="30.0" rx="15"/>
+                <text class="pn-t lead" x="310.0" y="109.2" text-anchor="middle">Medtronic</text>
+              </g>
+              <g class="pn-node" data-k="sie" tabindex="0" role="button" aria-label="Siemens Healthineers">
+                <rect class="pn-c lead" x="579.0" y="53.0" width="152.0" height="30.0" rx="15"/>
+                <text class="pn-t lead" x="655.0" y="72.2" text-anchor="middle">Siemens Healthineers</text>
+              </g>
+              <g class="pn-node" data-k="onv" tabindex="0" role="button" aria-label="Onvida Health">
+                <rect class="pn-c" x="506.1" y="135.0" width="107.9" height="30.0" rx="15"/>
+                <text class="pn-t" x="560.0" y="154.2" text-anchor="middle">Onvida Health</text>
+              </g>
+              <g class="pn-node" data-k="twr" tabindex="0" role="button" aria-label="Tower Health">
+                <rect class="pn-c" x="699.2" y="135.0" width="101.6" height="30.0" rx="15"/>
+                <text class="pn-t" x="750.0" y="154.2" text-anchor="middle">Tower Health</text>
+              </g>
+              <g class="pn-node" data-k="bl" tabindex="0" role="button" aria-label="Brainlab">
+                <rect class="pn-c lead" x="176.8" y="208.0" width="76.4" height="30.0" rx="15"/>
+                <text class="pn-t lead" x="215.0" y="227.2" text-anchor="middle">Brainlab</text>
+              </g>
+              <g class="pn-node" data-k="fuj" tabindex="0" role="button" aria-label="Fujifilm">
+                <rect class="pn-c" x="81.8" y="290.0" width="76.4" height="30.0" rx="15"/>
+                <text class="pn-t" x="120.0" y="309.2" text-anchor="middle">Fujifilm</text>
+              </g>
+              <g class="pn-node" data-k="mph" tabindex="0" role="button" aria-label="medPhoton">
+                <rect class="pn-c" x="268.6" y="290.0" width="82.7" height="30.0" rx="15"/>
+                <text class="pn-t" x="310.0" y="309.2" text-anchor="middle">medPhoton</text>
+              </g>
+              <g class="pn-node" data-k="chs" tabindex="0" role="button" aria-label="ChoiceSpine">
+                <rect class="pn-c" x="512.4" y="245.0" width="95.3" height="30.0" rx="15"/>
+                <text class="pn-t" x="560.0" y="264.2" text-anchor="middle">ChoiceSpine</text>
+              </g>
+              <g class="pn-node" data-k="ecr" tabindex="0" role="button" aria-label="eCential Robotics">
+                <rect class="pn-c lead" x="683.5" y="245.0" width="133.1" height="30.0" rx="15"/>
+                <text class="pn-t lead" x="750.0" y="264.2" text-anchor="middle">eCential Robotics</text>
+              </g>
+          </svg>
+        </div>
+        <div class="pn-read"><b>Six disclosed partnerships</b><span>Hover a link or a company to read the agreement</span></div>
+        <div class="tl-flag"><i aria-hidden="true"></i>Announcements cluster around digital integration rather
+          than equity investment or acquisition, a signal that platform manufacturers now treat interoperability
+          as a competitive necessity rather than a threat to be resisted.</div>
+        <figcaption class="md-cap">Filled chips are platform developers; outlined chips are their partners.
+          Dates and the nature of each agreement are those given in this report.</figcaption>
+      </figure>
 
       <h3 class="subh reveal" data-n="10.2">Analysis by Type of Partnership</h3>
 
       <ul class="dyn reveal">
-        <li><b>Cross-Platform Digital Integration:</b> Agreements that digitally connect two companies' existing platforms without requiring hospitals to replace established hardware, exemplified by the GE HealthCare-Medtronic bkActiv integration, represent the fastest-growing category of collaboration, reflecting a broader industry preference for interoperability partnerships over costly, disruptive rip-and-replace hardware sales.</li>
-        <li><b>Long-Term Value and Service Partnerships:</b> Multi-year agreements bundling equipment upgrades, service and digital-tools access, exemplified by Siemens Healthineers' Value Partnership model, are becoming an increasingly important go-to-market structure for large capital-equipment sales, providing manufacturers with recurring, annuity-like revenue visibility.</li>
-        <li><b>Software and Instrumentation Distribution Partnerships:</b> Smaller specialist companies increasingly partner with larger navigation or robotics platform providers to distribute complementary software or instrumentation, exemplified by ChoiceSpine's partnership with eCential Robotics, allowing both parties to expand addressable use cases without the cost of independent platform development.</li>
+        <li><b>Cross-platform digital integration:</b> agreements that connect two companies' existing platforms
+          without hospitals replacing established hardware, as with the GE HealthCare and Medtronic bkActiv
+          integration. The fastest-growing category of collaboration.</li>
+        <li><b>Long-term value and service partnerships:</b> multi-year deals bundling equipment upgrades,
+          service and digital-tools access, as in Siemens Healthineers' Value Partnership model, giving
+          manufacturers recurring, annuity-like revenue visibility.</li>
+        <li><b>Software and instrumentation distribution:</b> specialists distribute through larger navigation or
+          robotics platforms, as ChoiceSpine does with eCential Robotics, expanding addressable use cases for
+          both sides without the cost of independent platform development.</li>
       </ul>
 
       <h3 class="subh reveal" data-n="10.3">Investment Outlook</h3>
 
-      <p class="reveal">
-        Capital continues to flow into the category at both the large-cap and emerging-company level. Established
-        platform developers continue to fund internal R&amp;D at scale while simultaneously pursuing external
-        partnerships to accelerate specific capability gaps, such as GE HealthCare's alliance with Medtronic for
-        ultrasound integration, rather than attempting to build every adjacent capability internally. Emerging
-        companies such as MediView continue to advance clinical-validation studies as a precursor to broader
-        commercial partnership or acquisition, a pattern well established in the broader medical-device industry,
-        where early-stage clinical evidence generation frequently precedes a strategic partnership or buyout by an
-        established platform manufacturer seeking to fill a specific technology gap.
-      </p>
+      <ul class="dyn reveal">
+        <li><b>Large-cap capital:</b> platform developers fund internal R&amp;D at scale while partnering to close
+          specific capability gaps, as GE HealthCare did with Medtronic for ultrasound integration, rather than
+          building every adjacent capability internally.</li>
+        <li><b>Emerging companies:</b> firms such as MediView continue to advance clinical-validation studies as a
+          precursor to broader commercial partnership or acquisition.</li>
+        <li><b>The established pattern:</b> across medical devices, early clinical-evidence generation frequently
+          precedes a partnership or buyout by a platform manufacturer seeking to fill a specific technology gap.</li>
+      </ul>
 
     </section>
 
@@ -5187,6 +5299,75 @@
       read.style.minHeight='0px'; var max=0;
       for(var i=-1;i<data.length;i++){ show(i); if(read.offsetHeight>max) max=read.offsetHeight; }
       read.style.minHeight=max+'px'; show(-1);
+    }
+    lock();
+    var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
+  })();
+
+  /* ---- 10 partnership network ---- */
+  (function(){
+    var fig=document.getElementById('partNet'); if(!fig) return;
+    var data; try{ data=JSON.parse(fig.getAttribute('data-pn')); }catch(e){ return; }
+    var es=[].slice.call(fig.querySelectorAll('.pn-e'));
+    var dts=[].slice.call(fig.querySelectorAll('.pn-dt'));
+    var chips=[].slice.call(fig.querySelectorAll('.pn-node'));
+    var read=fig.querySelector('.pn-read');
+    var rb=read.querySelector('b'), rs=read.querySelector('span');
+    function clear(){
+      es.forEach(function(e){ e.classList.remove('on'); });
+      dts.forEach(function(e){ e.classList.remove('on'); });
+      chips.forEach(function(c){ c.querySelector('.pn-c').classList.remove('on'); });
+    }
+    function idle(){
+      clear(); rb.textContent='Six disclosed partnerships'; rb.style.color='';
+      rs.textContent='Hover a link or a company to read the agreement';
+    }
+    function mark(i){
+      es[i].classList.add('on'); dts[i].classList.add('on');
+      [data[i].ka,data[i].kb].forEach(function(k){
+        var c=fig.querySelector('.pn-node[data-k="'+k+'"] .pn-c');
+        if(c) c.classList.add('on');
+      });
+    }
+    function showEdge(i){
+      clear(); mark(i); var d=data[i];
+      rb.innerHTML=d.a+' &amp; '+d.b+' &middot; '+d.d;
+      rb.style.color=d.c;
+      rs.textContent=d.y+'. '+d.t;
+    }
+    function showNode(k){
+      var idx=[]; data.forEach(function(d,i){ if(d.ka===k||d.kb===k) idx.push(i); });
+      if(!idx.length) return;
+      if(idx.length===1){ showEdge(idx[0]); return; }
+      clear(); idx.forEach(mark);
+      var nm = data[idx[0]].ka===k ? data[idx[0]].a : data[idx[0]].b;
+      rb.innerHTML=nm+' &middot; '+idx.length+' partnerships in this report';
+      rb.style.color='';
+      rs.textContent=idx.map(function(i){
+        var d=data[i]; return (d.ka===k?d.b:d.a)+' ('+d.d+'): '+d.t;
+      }).join(' ');
+    }
+    [].forEach.call(fig.querySelectorAll('.pn-hit'),function(hit){
+      var i=+hit.getAttribute('data-e');
+      hit.addEventListener('mouseenter',function(){ showEdge(i); });
+      hit.addEventListener('mouseleave',idle);
+      hit.addEventListener('focus',function(){ showEdge(i); });
+      hit.addEventListener('blur',idle);
+    });
+    chips.forEach(function(c){
+      var k=c.getAttribute('data-k');
+      c.addEventListener('mouseenter',function(){ showNode(k); });
+      c.addEventListener('mouseleave',idle);
+      c.addEventListener('focus',function(){ showNode(k); });
+      c.addEventListener('blur',idle);
+    });
+    function lock(){
+      read.style.minHeight='0px'; var max=0;
+      idle(); max=read.offsetHeight;
+      data.forEach(function(d,i){ showEdge(i); if(read.offsetHeight>max) max=read.offsetHeight; });
+      chips.forEach(function(c){ showNode(c.getAttribute('data-k'));
+        if(read.offsetHeight>max) max=read.offsetHeight; });
+      read.style.minHeight=max+'px'; idle();
     }
     lock();
     var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
