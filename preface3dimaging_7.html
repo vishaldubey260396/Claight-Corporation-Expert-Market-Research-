@@ -1716,6 +1716,60 @@
     .pn-svg{min-width:720px}
   }
 
+
+  /* --- 11 - the two regulatory gates and the jurisdiction tiles --- */
+  .rg-fig,.rg-fig2{margin-top:16px}
+  .rg-gates{display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);
+    align-items:stretch;margin-top:14px}
+  .rg-gate{display:flex;flex-direction:column;gap:5px;padding:16px 18px;border-radius:12px}
+  .rg-gate.one{background:var(--purple-deep);color:#fff}
+  .rg-gate.two{background:#f7f3ff;border:1px solid var(--line)}
+  .rg-num{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;opacity:.72}
+  .rg-gate.two .rg-num{color:var(--purple-mid);opacity:1}
+  .rg-gt{font-size:14px;font-weight:700;line-height:1.25}
+  .rg-gate.two .rg-gt{color:var(--navy)}
+  .rg-gq{font-size:12px;opacity:.82}
+  .rg-gate.two .rg-gq{color:var(--muted);opacity:1}
+  .rg-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+  .rg-chip{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px;
+    background:rgba(255,255,255,.16);color:#fff}
+  .rg-gate.two .rg-chip{background:#fff;border:1px solid var(--line);color:var(--purple-deep)}
+  .rg-arrow{align-self:center;justify-self:center;width:22px;height:12px;background:var(--purple-mid);
+    clip-path:polygon(0 34%,58% 34%,58% 0,100% 50%,58% 100%,58% 66%,0 66%)}
+  .rg-fig .tl-flag{margin-top:14px}
+  .tl-flag.lite{font-weight:500;color:var(--ink)}
+  .tl-flag.lite b{color:var(--purple-deep)}
+
+  .rg-tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:14px}
+  .rg-tile{appearance:none;text-align:left;font:inherit;cursor:pointer;
+    display:flex;flex-direction:column;gap:4px;padding:13px 14px 14px;border-radius:11px;
+    background:#fff;border:1px solid var(--line);
+    transition:border-color .18s ease,box-shadow .18s ease,background .18s ease}
+  .rg-tile:hover,.rg-tile.on{border-color:var(--purple-mid);background:#faf7ff;
+    box-shadow:0 4px 14px rgba(59,17,120,.09)}
+  .rg-tile:focus-visible{outline:2px solid #7c3aed;outline-offset:2px}
+  .rg-j{font-size:13px;font-weight:700;color:var(--navy);line-height:1.2}
+  .rg-r{align-self:flex-start;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;
+    background:#ede7fd;color:var(--purple-deep)}
+  .rg-p{font-size:11.5px;font-weight:600;color:var(--purple-deep);line-height:1.35;margin-top:2px}
+  .rg-d{font-size:11px;color:var(--muted);line-height:1.45}
+
+  .rg-read{margin-top:14px;border-left:3px solid var(--purple-mid);padding:2px 0 2px 12px}
+  .rg-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
+  .rg-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
+
+  @media(max-width:900px){
+    .rg-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+  }
+  @media(max-width:640px){
+    .rg-gates{grid-template-columns:1fr;gap:0}
+    .rg-arrow{transform:rotate(90deg);margin:10px 0}
+    .rg-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media(max-width:400px){
+    .rg-tiles{grid-template-columns:1fr}
+  }
+
 </style>
 </head>
 <body>
@@ -4017,39 +4071,80 @@
       <h3 class="sub reveal" data-n="11" id="rf-title">Regulatory Framework</h3>
 
       <p class="reveal">
-        Regulatory oversight of 3D medical and surgical imaging platforms operates at two distinct levels:
-        market-authorisation agencies that determine whether a device may be sold at all, and, in most markets, a
-        separate hospital procurement and capital-budget approval process that determines the actual pace of
-        clinical adoption once regulatory clearance has been achieved. This report's regional analysis illustrates
-        how material a factor the second layer has become in determining real-world platform penetration, often
-        mattering as much as the underlying speed of regulatory clearance itself.
+        Oversight runs at two levels: the agencies that decide whether a platform may be sold, and the hospital
+        procurement and capital-budget process that decides whether it is actually bought. Most platforms are
+        classified as <strong>Class II or Class III</strong> medical devices depending on intended use and risk.
       </p>
 
-      <p class="reveal">
-        Regulatory oversight operates primarily through medical device clearance and approval pathways, given that
-        most platforms are classified as <strong>Class II or Class III medical devices</strong> depending on their
-        intended use and risk profile.
-      </p>
+      <figure class="md-fig rg-fig reveal" id="regGates">
+        <h6>Two Gates to the Operating Room</h6>
+        <p class="md-sub">Clearance decides whether a platform can be sold; procurement decides how fast it is adopted</p>
+        <div class="rg-gates">
+          <div class="rg-gate one">
+            <span class="rg-num">Gate 1</span>
+            <span class="rg-gt">Market authorisation</span>
+            <span class="rg-gq">May it be sold?</span>
+            <div class="rg-chips"><span class="rg-chip">FDA</span><span class="rg-chip">EU MDR</span><span class="rg-chip">CDSCO</span><span class="rg-chip">PMDA</span><span class="rg-chip">NMPA</span><span class="rg-chip">Health Canada</span></div>
+          </div>
+          <div class="rg-arrow" aria-hidden="true"></div>
+          <div class="rg-gate two">
+            <span class="rg-num">Gate 2</span>
+            <span class="rg-gt">Procurement and capital budget</span>
+            <span class="rg-gq">Will it actually be bought?</span>
+            <div class="rg-chips">
+              <span class="rg-chip">Hospital procurement</span><span class="rg-chip">Capital-budget cycle</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-flag"><i aria-hidden="true"></i>This report's regional analysis shows the second gate has
+          become material to real-world penetration, often mattering as much as the speed of clearance itself.</div>
+      </figure>
 
       <h3 class="subh reveal" data-n="11.1">Regulatory Overview by Geography</h3>
 
-      <ul class="dyn reveal">
-        <li><b>United States - FDA:</b> Most 3D surgical imaging and navigation platforms are cleared through the agency's 510(k) premarket notification pathway, on the basis of substantial equivalence to a predicate device, as illustrated by Medtronic's Stealth AXiS clearance in February 2026, Siemens Healthineers' six-system Artis and Optiq AI clearances in May 2026, and Brainlab's Spine Mixed Reality Navigation clearance in September 2025.</li>
-        <li><b>Europe - EU EMA / MDR Framework:</b> Under the EU Medical Device Regulation (MDR), platforms require CE marking following conformity assessment by a notified body, with most navigation and imaging platforms classified as Class IIb or Class III devices given their surgical-guidance function; harmonised CE clearance allows manufacturers efficient access across all EU member states once obtained.</li>
-        <li><b>India - CDSCO:</b> The Central Drugs Standard Control Organisation regulates market authorisation for imported and domestically manufactured imaging and navigation devices, with India's growing domestic medical-device manufacturing base increasingly seeking indigenous regulatory pathways to support the government's broader medical-device self-reliance initiatives.</li>
-        <li><b>Japan - PMDA:</b> The Pharmaceuticals and Medical Devices Agency oversees approval, typically requiring Japan-specific clinical data even where a device has already achieved FDA or CE clearance, a factor that has historically lengthened time to market for foreign-developed platforms relative to Japan's own domestic manufacturers.</li>
-        <li><b>Other Markets:</b> Other major markets, including China's National Medical Products Administration and Health Canada, maintain their own distinct clearance pathways, with China in particular continuing to strengthen domestic clinical-data requirements as part of its broader push to build domestic medical-device manufacturing capability.</li>
-      </ul>
+      <figure class="md-fig rg-fig2 reveal" id="regGeo" data-jur='[{"k": "us", "j": "United States", "r": "FDA", "p": "510(k) premarket notification", "t": "Most 3D surgical imaging and navigation platforms are cleared through the FDA&#39;s 510(k) premarket notification pathway, on the basis of substantial equivalence to a predicate device. Recent examples: Medtronic&#39;s Stealth AXiS in February 2026, Siemens Healthineers&#39; six-system Artis and Optiq AI clearances in May 2026, and Brainlab&#39;s Spine Mixed Reality Navigation in September 2025."}, {"k": "eu", "j": "Europe", "r": "EU MDR", "p": "CE marking via notified body", "t": "Under the EU Medical Device Regulation, platforms require CE marking following conformity assessment by a notified body, with most navigation and imaging platforms classified as Class IIb or Class III given their surgical-guidance function. Harmonised CE clearance gives manufacturers efficient access across all EU member states once obtained."}, {"k": "in", "j": "India", "r": "CDSCO", "p": "Market authorisation", "t": "The Central Drugs Standard Control Organisation regulates market authorisation for imported and domestically manufactured imaging and navigation devices. India&#39;s growing domestic manufacturing base is increasingly seeking indigenous regulatory pathways to support the government&#39;s medical-device self-reliance initiatives."}, {"k": "jp", "j": "Japan", "r": "PMDA", "p": "Approval with local clinical data", "t": "The Pharmaceuticals and Medical Devices Agency oversees approval, typically requiring Japan-specific clinical data even where a device has already achieved FDA or CE clearance. This has historically lengthened time to market for foreign-developed platforms relative to Japan&#39;s own domestic manufacturers."}, {"k": "ot", "j": "Other markets", "r": "NMPA, Health Canada", "p": "Distinct national pathways", "t": "Other major markets, including China&#39;s National Medical Products Administration and Health Canada, maintain their own distinct clearance pathways. China in particular continues to strengthen domestic clinical-data requirements as part of its broader push to build domestic medical-device manufacturing capability."}]'>
+        <h6>Who Clears a Platform, and How</h6>
+        <p class="md-sub">Select a jurisdiction to read its pathway in full</p>
+        <div class="rg-tiles" role="tablist" aria-label="Jurisdictions">
+            <button type="button" class="rg-tile" data-k="us">
+              <span class="rg-j">United States</span>
+              <span class="rg-r">FDA</span>
+              <span class="rg-p">510(k) premarket notification</span>
+              <span class="rg-d">Cleared on substantial equivalence to a predicate device.</span>
+            </button>
+            <button type="button" class="rg-tile" data-k="eu">
+              <span class="rg-j">Europe</span>
+              <span class="rg-r">EU MDR</span>
+              <span class="rg-p">CE marking via notified body</span>
+              <span class="rg-d">One conformity assessment opens every EU member state.</span>
+            </button>
+            <button type="button" class="rg-tile" data-k="in">
+              <span class="rg-j">India</span>
+              <span class="rg-r">CDSCO</span>
+              <span class="rg-p">Market authorisation</span>
+              <span class="rg-d">Indigenous pathways growing with the self-reliance push.</span>
+            </button>
+            <button type="button" class="rg-tile" data-k="jp">
+              <span class="rg-j">Japan</span>
+              <span class="rg-r">PMDA</span>
+              <span class="rg-p">Approval with local clinical data</span>
+              <span class="rg-d">Extra data lengthens time to market for foreign platforms.</span>
+            </button>
+            <button type="button" class="rg-tile" data-k="ot">
+              <span class="rg-j">Other markets</span>
+              <span class="rg-r">NMPA, Health Canada</span>
+              <span class="rg-p">Distinct national pathways</span>
+              <span class="rg-d">China is strengthening domestic clinical-data requirements.</span>
+            </button>
+        </div>
+        <div class="rg-read" role="region" aria-live="polite"><b></b><span></span></div>
+      </figure>
 
-      <p class="reveal">
-        Across all markets, a common regulatory theme is the growing use of digital-integration and
-        software-update pathways, rather than full device re-clearance, as manufacturers seek to accelerate the
-        incremental improvement cycle for AI-based analytics components without triggering the lengthier review
-        processes typically associated with hardware changes. Regulators in the United States, the European Union
-        and Japan have each begun developing more explicit frameworks for evaluating adaptive, AI-based software
-        as a medical device, a regulatory evolution that is likely to shape how quickly future analytics upgrades
-        can reach clinical use relative to the hardware platforms they run on.
-      </p>
+      <div class="tl-flag lite reveal" style="margin-top:16px"><i aria-hidden="true"></i>Across all markets,
+        manufacturers increasingly use digital-integration and software-update pathways rather than full device
+        re-clearance, so AI analytics can improve without triggering a hardware-length review. The United States,
+        the European Union and Japan are each building more explicit frameworks for adaptive, AI-based software as
+        a medical device, which will shape how quickly future analytics upgrades reach clinical use.</div>
 
     </section>
 
@@ -5394,6 +5489,41 @@
         if(read.offsetHeight>max) max=read.offsetHeight; });
       read.style.minHeight=max+'px'; idle();
     }
+    lock();
+    var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
+  })();
+
+  /* ---- 11 jurisdiction tiles ---- */
+  (function(){
+    var fig=document.getElementById('regGeo'); if(!fig) return;
+    var data; try{ data=JSON.parse(fig.getAttribute('data-jur')); }catch(e){ return; }
+    var tiles=[].slice.call(fig.querySelectorAll('.rg-tile'));
+    var read=fig.querySelector('.rg-read');
+    var rb=read.querySelector('b'), rs=read.querySelector('span');
+    var cur=null;
+    function show(k){
+      cur=k;
+      tiles.forEach(function(t){ t.classList.toggle('on', t.getAttribute('data-k')===k); });
+      for(var i=0;i<data.length;i++){
+        if(data[i].k===k){
+          rb.innerHTML=data[i].j+' &middot; '+data[i].r+' &middot; '+data[i].p;
+          rs.textContent=data[i].t; return;
+        }
+      }
+    }
+    tiles.forEach(function(t){
+      var k=t.getAttribute('data-k');
+      t.addEventListener('click',function(){ show(k); });
+      t.addEventListener('mouseenter',function(){ show(k); });
+      t.addEventListener('focus',function(){ show(k); });
+    });
+    function lock(){
+      var keep=cur;
+      read.style.minHeight='0px'; var max=0;
+      data.forEach(function(d){ show(d.k); if(read.offsetHeight>max) max=read.offsetHeight; });
+      read.style.minHeight=max+'px'; show(keep||data[0].k);
+    }
+    show(data[0].k);
     lock();
     var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
   })();
