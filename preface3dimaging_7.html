@@ -1786,6 +1786,68 @@
     .hx-h,.hx-d,.hx-panel{transition:none}
   }
 
+
+  /* --- 13 - competitive landscape: treemap, vendor tiers, revenue mix --- */
+  .tm-fig,.vt-fig,.mx-fig{margin-top:16px}
+  .tm-plotwrap{margin-top:14px}
+  .tm-svg{width:100%;height:auto;display:block}
+  .tm-r{pointer-events:none;transition:filter .18s ease}
+  .tm-nm{pointer-events:none;fill:#fff;font-size:14px;font-weight:700}
+  .tm-pc{pointer-events:none;fill:#fff;font-size:13px;font-weight:700;opacity:.86}
+  .tm-pc.big{font-size:22px;opacity:.92}
+  .tm-hit{fill:transparent;cursor:pointer;outline:none}
+  .tm-hit:focus-visible{stroke:#fff;stroke-width:3}
+  .tm-cell.on .tm-r{filter:brightness(1.18)}
+  .tm-read{margin-top:14px;border-left:3px solid var(--purple-mid);padding:2px 0 2px 12px}
+  .tm-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
+  .tm-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
+
+  .vt-body{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:14px;
+    align-items:stretch;margin-top:14px}
+  .vt-rows{display:flex;flex-direction:column;gap:8px}
+  .vt-row{appearance:none;font:inherit;text-align:left;cursor:pointer;
+    display:grid;grid-template-columns:60px minmax(112px,auto) minmax(0,1fr);
+    align-items:center;gap:14px;padding:13px 16px;border-radius:11px;
+    background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);
+    transition:background .18s ease,box-shadow .18s ease}
+  .vt-row:hover,.vt-row.on{background:#faf7ff;box-shadow:0 4px 14px rgba(59,17,120,.09)}
+  .vt-row:focus-visible{outline:2px solid #7c3aed;outline-offset:2px}
+  .vt-n{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .vt-t{font-size:13px;font-weight:700;color:var(--c)}
+  .vt-cs{display:flex;flex-wrap:wrap;gap:6px}
+  .vt-chip{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px;
+    background:#f1ecfd;color:var(--purple-deep)}
+  .vt-mig{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    border-radius:11px;background:#f7f3ff;border:1px solid var(--line);padding:10px 6px}
+  .vt-arrow{width:14px;flex:1 1 auto;min-height:60px;background:var(--purple-mid);
+    clip-path:polygon(50% 0,100% 26%,68% 26%,68% 100%,32% 100%,32% 26%,0 26%)}
+  .vt-mt{font-size:10.5px;font-weight:600;color:var(--purple-deep);text-align:center;line-height:1.3}
+  .vt-read{margin-top:14px;border-left:3px solid var(--purple-mid);padding:2px 0 2px 12px}
+  .vt-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
+  .vt-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
+  .vt-fig .tl-flag{margin-top:14px}
+
+  .mx-plotwrap{margin-top:14px;max-width:560px}
+  .mx-svg{width:100%;height:auto;display:block}
+  .mx-g{stroke:#efe9fb;stroke-width:1}
+  .mx-ax{fill:var(--muted);font-size:10.5px}
+  .mx-h{fill:var(--navy);font-size:11.5px;font-weight:700}
+  .mx-l{stroke-width:2.6;stroke-linecap:round}
+  .mx-d{stroke:#fff;stroke-width:2}
+  .mx-v{font-size:12.5px;font-weight:700}
+  .mx-n{font-size:12px;font-weight:700}
+  .mx-v2{font-size:12.5px;font-weight:700}
+
+  @media(max-width:760px){
+    .vt-body{grid-template-columns:1fr}
+    .vt-mig{flex-direction:row;padding:8px 12px}
+    .vt-arrow{min-height:0;height:14px;width:auto;flex:1 1 auto;
+      clip-path:polygon(0 32%,74% 32%,74% 0,100% 50%,74% 100%,74% 68%,0 68%)}
+    .vt-row{grid-template-columns:1fr;gap:6px}
+    .tm-plotwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .tm-svg{min-width:640px}
+  }
+
 </style>
 </head>
 <body>
@@ -4297,6 +4359,169 @@
 
     </section>
 
+    <!-- ================= SECTION 13 - COMPETITIVE LANDSCAPE ================= -->
+    <section id="competitive" aria-labelledby="cl2-title">
+
+      <h3 class="sub reveal" data-n="13" id="cl2-title">Competitive Landscape</h3>
+
+      <h3 class="subh reveal" data-n="13.1">Market Structure and Share of Key Players</h3>
+
+      <p class="reveal">
+        The market remains moderately concentrated among a small number of diversified medical-technology majors.
+        Medtronic, Stryker, Siemens Healthineers, Brainlab and GE HealthCare together account for a substantial
+        majority of branded platform revenue, though the landscape is widening as software-native entrants and
+        Asian manufacturers advance credible offerings in AI analytics and mobile imaging hardware respectively.
+      </p>
+
+      <figure class="md-fig tm-fig reveal" id="cmpShare" data-tm='[{"n": "Medtronic", "v": 22, "c": "#3b1178", "t": "Deepest installed base of navigation systems across orthopedic and neurosurgical hospital departments, built on decades of surgical-relationship depth and the ability to bundle imaging, navigation and robotics into one platform."}, {"n": "Stryker", "v": 18, "c": "#4c1d95", "t": "The other half of the key-vendor tier, with an integrated navigation platform and the same deep orthopedic and neurosurgical hospital relationships."}, {"n": "Siemens Healthineers", "v": 15, "c": "#5b21b6", "t": "Among the broadest complementary imaging-hardware installed bases, now integrating navigation and AI-based analytics into its existing intraoperative imaging portfolio."}, {"n": "GE HealthCare", "v": 12, "c": "#6d28d9", "t": "Broad imaging-hardware installed base, extending into navigation through partnership rather than displacement, as with the bkActiv integration into Medtronic&#39;s Stealth AXiS."}, {"n": "Brainlab", "v": 9, "c": "#7c3aed", "t": "A distinctive position built on focused software and mixed-reality innovation rather than broad manufacturing scale."}, {"n": "Others", "v": 24, "c": "#6b7a90", "t": "Philips, Zimmer Biomet, Globus Medical and a widening cohort of AI-native software entrants, all investing to close the gap with the category&#39;s established leaders."}]'>
+        <h6>Competitive Landscape - Estimated Platform Revenue Share, 2025</h6>
+        <p class="md-sub">Each block is sized by its share; select one to read that participant's position</p>
+        <div class="tm-plotwrap">
+          <svg class="tm-svg" viewBox="0 0 900 330" role="list"
+               aria-label="Treemap of estimated 2025 platform revenue share: Medtronic 22 percent, Stryker 18 percent, Siemens Healthineers 15 percent, GE HealthCare 12 percent, Brainlab 9 percent, others 24 percent.">
+              <g class="tm-cell" data-i="0">
+                <rect class="tm-r" x="2.0" y="2.0" width="356.0" height="177.5" rx="6" fill="#3b1178"/>
+                <text class="tm-nm" x="18.0" y="30.0">Medtronic</text>
+                <text class="tm-pc big" x="18.0" y="64.0">22%</text>
+                <rect class="tm-hit" data-i="0" x="2.0" y="2.0" width="356.0" height="177.5" rx="6"
+                      tabindex="0" role="button" aria-label="Medtronic, 22 percent"/>
+              </g>
+              <g class="tm-cell" data-i="1">
+                <rect class="tm-r" x="362.0" y="2.0" width="290.5" height="177.5" rx="6" fill="#4c1d95"/>
+                <text class="tm-nm" x="378.0" y="30.0">Stryker</text>
+                <text class="tm-pc big" x="378.0" y="64.0">18%</text>
+                <rect class="tm-hit" data-i="1" x="362.0" y="2.0" width="290.5" height="177.5" rx="6"
+                      tabindex="0" role="button" aria-label="Stryker, 18 percent"/>
+              </g>
+              <g class="tm-cell" data-i="2">
+                <rect class="tm-r" x="656.5" y="2.0" width="241.5" height="177.5" rx="6" fill="#5b21b6"/>
+                <text class="tm-nm" x="672.5" y="30.0">Siemens Healthineers</text>
+                <text class="tm-pc big" x="672.5" y="64.0">15%</text>
+                <rect class="tm-hit" data-i="2" x="656.5" y="2.0" width="241.5" height="177.5" rx="6"
+                      tabindex="0" role="button" aria-label="Siemens Healthineers, 15 percent"/>
+              </g>
+              <g class="tm-cell" data-i="3">
+                <rect class="tm-r" x="2.0" y="183.5" width="236.0" height="144.5" rx="6" fill="#6d28d9"/>
+                <text class="tm-nm" x="18.0" y="211.5">GE HealthCare</text>
+                <text class="tm-pc big" x="18.0" y="245.5">12%</text>
+                <rect class="tm-hit" data-i="3" x="2.0" y="183.5" width="236.0" height="144.5" rx="6"
+                      tabindex="0" role="button" aria-label="GE HealthCare, 12 percent"/>
+              </g>
+              <g class="tm-cell" data-i="4">
+                <rect class="tm-r" x="242.0" y="183.5" width="176.0" height="144.5" rx="6" fill="#7c3aed"/>
+                <text class="tm-nm" x="258.0" y="211.5">Brainlab</text>
+                <text class="tm-pc big" x="258.0" y="245.5">9%</text>
+                <rect class="tm-hit" data-i="4" x="242.0" y="183.5" width="176.0" height="144.5" rx="6"
+                      tabindex="0" role="button" aria-label="Brainlab, 9 percent"/>
+              </g>
+              <g class="tm-cell" data-i="5">
+                <rect class="tm-r" x="422.0" y="183.5" width="476.0" height="144.5" rx="6" fill="#6b7a90"/>
+                <text class="tm-nm" x="438.0" y="211.5">Others</text>
+                <text class="tm-pc big" x="438.0" y="245.5">24%</text>
+                <rect class="tm-hit" data-i="5" x="422.0" y="183.5" width="476.0" height="144.5" rx="6"
+                      tabindex="0" role="button" aria-label="Others, 24 percent"/>
+              </g>
+          </svg>
+        </div>
+        <div class="tm-read"><b></b><span></span></div>
+        <figcaption class="md-cap">Shares are the estimated 2025 platform-revenue shares set out in this report
+          and sum to 100%.</figcaption>
+      </figure>
+
+      <div class="tl-flag lite reveal" style="margin-top:16px"><i aria-hidden="true"></i>The barriers that
+        preserve this structure are regulatory and clinical-relationship barriers, not pure technology barriers.
+        Navigation and imaging hardware has matured to the point where differentiation rests on software, workflow
+        integration and surgeon familiarity, which is exactly why partnership and digital integration, of the kind
+        GE HealthCare and Medtronic pursued, have become the attractive route to extending clinical footprint.</div>
+
+      <h3 class="subh reveal" data-n="13.2">Vendor Positioning</h3>
+
+      <figure class="md-fig vt-fig reveal" id="cmpTiers" data-vt='[{"n": "Key vendors", "c": "#3b1178", "t": "Commanding the largest share of current revenue through their respective integrated navigation platforms and deep orthopedic and neurosurgical hospital relationships. Both benefit from scale relationships built over decades of navigation-system deployment, a moat considerably slower to erode than any single product&#39;s technical specifications, since surgeons trained extensively on one platform&#39;s workflow face a genuine switching cost in both time and comfort."}, {"n": "Prospective leaders", "c": "#5b21b6", "t": "Both possess extensive imaging-hardware installed bases and are increasingly integrating navigation and AI-based analytics into their existing intraoperative imaging portfolios. Both pursue a distribution-and-integration strategy rather than trying to displace established navigation leaders outright, leveraging their installed-base advantage while avoiding the multi-year cycle of building surgeon trust in an entirely new platform."}, {"n": "Niche players", "c": "#7c3aed", "t": "Differentiated positions built from focused software and mixed-reality innovation rather than broad hardware scale. Because durable moats have not yet fully formed around any single technology stack, a niche player with genuinely superior AI-segmentation or mixed-reality capability retains a realistic path up the vendor hierarchy, particularly through partnership with an established hardware manufacturer rather than by displacing it."}, {"n": "Market disruptors", "c": "#9333ea", "t": "AI-native software entrants and Asian medical-device manufacturers expanding mobile and lower-cost imaging hardware are reshaping both the cost and the technology dimensions of competition. MediView&#39;s XR90 clinical-validation study and the export expansion of Chinese and South Korean mobile-imaging manufacturers show disruption arriving from two directions at once: premium software-differentiated visualisation at one end, lower-cost accessible hardware at the other."}]'>
+        <h6>Four Tiers, and the Route Between Them</h6>
+        <p class="md-sub">Select a tier to read how it competes</p>
+        <div class="vt-body">
+          <div class="vt-rows">
+            <button type="button" class="vt-row on" data-i="0" style="--c:#3b1178">
+              <span class="vt-n">Tier 1</span>
+              <span class="vt-t">Key vendors</span>
+              <span class="vt-cs"><span class="vt-chip">Medtronic</span><span class="vt-chip">Stryker</span></span>
+            </button>
+            <button type="button" class="vt-row" data-i="1" style="--c:#5b21b6">
+              <span class="vt-n">Tier 2</span>
+              <span class="vt-t">Prospective leaders</span>
+              <span class="vt-cs"><span class="vt-chip">Siemens Healthineers</span><span class="vt-chip">GE HealthCare</span></span>
+            </button>
+            <button type="button" class="vt-row" data-i="2" style="--c:#7c3aed">
+              <span class="vt-n">Tier 3</span>
+              <span class="vt-t">Niche players</span>
+              <span class="vt-cs"><span class="vt-chip">Brainlab</span><span class="vt-chip">Kitware</span></span>
+            </button>
+            <button type="button" class="vt-row" data-i="3" style="--c:#9333ea">
+              <span class="vt-n">Tier 4</span>
+              <span class="vt-t">Market disruptors</span>
+              <span class="vt-cs"><span class="vt-chip">AI-native software entrants</span><span class="vt-chip">Asian mobile-imaging manufacturers</span></span>
+            </button>
+          </div>
+          <div class="vt-mig" aria-hidden="true"><span class="vt-arrow"></span><span class="vt-mt">Migration path</span></div>
+        </div>
+        <div class="vt-read"><b></b><span></span></div>
+        <div class="tl-flag lite"><i aria-hidden="true"></i>Treat this as a snapshot of 2025-2026 conditions
+          rather than a stable long-run structure: several prospective leaders and niche players carry enough
+          technological momentum to reach the key-vendor tier by the early 2030s, particularly if AI-native
+          entrants partner with established hardware manufacturers rather than merely challenging them.</div>
+      </figure>
+
+      <figure class="md-fig mx-fig reveal" id="cmpMix">
+        <h6>Medtronic and Stryker - Indicative Revenue Mix</h6>
+        <p class="md-sub">Share of navigation and imaging segment revenue</p>
+        <div class="mx-plotwrap">
+          <svg class="mx-svg" viewBox="0 0 520 250" role="img"
+               aria-label="Both companies remain hardware-weighted: Medtronic 70 percent hardware and 30 percent software, Stryker 75 percent hardware and 25 percent software.">
+              <line class="mx-g" x1="144.0" y1="206.0" x2="398.0" y2="206.0"/>
+              <text class="mx-ax" x="98.0" y="210.0" text-anchor="end">0%</text>
+              <line class="mx-g" x1="144.0" y1="165.5" x2="398.0" y2="165.5"/>
+              <text class="mx-ax" x="98.0" y="169.5" text-anchor="end">20%</text>
+              <line class="mx-g" x1="144.0" y1="125.0" x2="398.0" y2="125.0"/>
+              <text class="mx-ax" x="98.0" y="129.0" text-anchor="end">40%</text>
+              <line class="mx-g" x1="144.0" y1="84.5" x2="398.0" y2="84.5"/>
+              <text class="mx-ax" x="98.0" y="88.5" text-anchor="end">60%</text>
+              <line class="mx-g" x1="144.0" y1="44.0" x2="398.0" y2="44.0"/>
+              <text class="mx-ax" x="98.0" y="48.0" text-anchor="end">80%</text>
+              <text class="mx-h" x="150.0" y="22" text-anchor="middle">Hardware</text>
+              <text class="mx-h" x="392.0" y="22" text-anchor="middle">Software &amp; Solutions</text>
+              <line class="mx-l" x1="150.0" y1="64.2" x2="392.0" y2="145.2" stroke="#4c1d95"/>
+              <circle class="mx-d" cx="150.0" cy="64.2" r="6" fill="#4c1d95"/>
+              <circle class="mx-d" cx="392.0" cy="145.2" r="6" fill="#4c1d95"/>
+              <text class="mx-v" x="136.0" y="79.2" text-anchor="end" fill="#4c1d95">70%</text>
+              <text class="mx-n" x="406.0" y="126.2" fill="#4c1d95">Medtronic</text>
+              <text class="mx-v2" x="406.0" y="141.2" fill="#4c1d95">30%</text>
+              <line class="mx-l" x1="150.0" y1="54.1" x2="392.0" y2="155.4" stroke="#7c3aed"/>
+              <circle class="mx-d" cx="150.0" cy="54.1" r="6" fill="#7c3aed"/>
+              <circle class="mx-d" cx="392.0" cy="155.4" r="6" fill="#7c3aed"/>
+              <text class="mx-v" x="136.0" y="45.1" text-anchor="end" fill="#7c3aed">75%</text>
+              <text class="mx-n" x="406.0" y="170.4" fill="#7c3aed">Stryker</text>
+              <text class="mx-v2" x="406.0" y="185.4" fill="#7c3aed">25%</text>
+          </svg>
+        </div>
+        <figcaption class="md-cap">This mix is indicative, as labelled in the source exhibit, and is read from it
+          rather than stated as a precise figure. Both vendors remain hardware-weighted, Stryker slightly more so.</figcaption>
+      </figure>
+
+      <h3 class="subh reveal" data-n="13.3">Market Share Analysis, Top Five Companies</h3>
+
+      <ul class="dyn reveal">
+        <li><b>Medtronic and Stryker</b> lead on the deepest installed base of navigation systems across
+          orthopedic and neurosurgical hospital departments.</li>
+        <li><b>Siemens Healthineers and GE HealthCare</b> bring the broadest complementary imaging-hardware
+          installed base to the category.</li>
+        <li><b>Brainlab</b> has carved out a distinctive position through focused software and mixed-reality
+          innovation rather than broad manufacturing scale.</li>
+        <li><b>Beyond the top tier,</b> competitive intensity is expected to rise steadily as Philips, Zimmer
+          Biomet, Globus Medical and a widening cohort of AI-native software entrants invest in closing the gap.</li>
+      </ul>
+
+    </section>
+
   </div>
 </div>
 
@@ -5669,6 +5894,48 @@
       h.addEventListener('click',function(){ go(i); });
     });
     go(0);
+  })();
+
+  /* ---- 13 competitive landscape ---- */
+  (function(){
+    function panel(figId,attr,items,readSel,head,body){
+      var fig=document.getElementById(figId); if(!fig) return;
+      var data; try{ data=JSON.parse(fig.getAttribute(attr)); }catch(e){ return; }
+      var els=[].slice.call(fig.querySelectorAll(items.sel));
+      var read=fig.querySelector(readSel);
+      var rb=read.querySelector('b'), rs=read.querySelector('span');
+      function go(i){
+        els.forEach(function(el){
+          var m=+el.getAttribute('data-i')===i;
+          (items.mark?items.mark(el):el).classList.toggle('on', m);
+        });
+        rb.innerHTML=head(data[i]); rb.style.color=data[i].c||'';
+        rs.textContent=body(data[i]);
+      }
+      els.forEach(function(el){
+        var i=+el.getAttribute('data-i');
+        el.addEventListener('mouseenter',function(){ go(i); });
+        el.addEventListener('focus',function(){ go(i); });
+        el.addEventListener('click',function(){ go(i); });
+      });
+      function lock(){
+        read.style.minHeight='0px'; var max=0;
+        data.forEach(function(d,i){ go(i); if(read.offsetHeight>max) max=read.offsetHeight; });
+        read.style.minHeight=max+'px'; go(0);
+      }
+      lock();
+      var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
+    }
+    panel('cmpShare','data-tm',
+      {sel:'.tm-hit', mark:function(el){ return el.parentNode; }},
+      '.tm-read',
+      function(d){ return d.n+' &middot; '+d.v+'% of 2025 platform revenue'; },
+      function(d){ return d.t; });
+    panel('cmpTiers','data-vt',
+      {sel:'.vt-row'},
+      '.vt-read',
+      function(d){ return d.n; },
+      function(d){ return d.t; });
   })();
 </script>
 </body>
