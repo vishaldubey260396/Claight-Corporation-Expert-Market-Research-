@@ -6341,7 +6341,7 @@
       var idxs=[0, Math.floor(hexes.length/2), hexes.length-1].filter(function(v,i,a){return a.indexOf(v)===i;});
       idxs.forEach(function(hi,k){
         var el=hexes[hi]; if(!el) return;
-        el.classList.remove('hx-pulse'); void el.offsetWidth;
+        el.classList.remove('hx-pulse'); void el.getBoundingClientRect();
         el.style.animationDelay=(k*140)+'ms';
         el.classList.add('hx-pulse');
       });
