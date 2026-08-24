@@ -1970,10 +1970,11 @@
 
   /* --- 13.1 compact treemap + side panel --- */
   .tm-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-    gap:26px;align-items:center;margin-top:14px}
+    gap:26px;align-items:start;margin-top:14px}
+  .tm-plotwrap{padding-top:6px}
   .tm-side{display:flex}
   .tm-side .tm-read{margin:0;border-left:3px solid var(--purple-mid);
-    padding:2px 0 2px 15px;display:flex;flex-direction:column;justify-content:center}
+    padding:2px 0 2px 15px;display:flex;flex-direction:column;justify-content:flex-start}
   .tm-side .tm-read b{display:block;font-size:15px;font-weight:700;color:var(--purple-deep)}
   .tm-side .tm-read span{display:block;margin-top:8px;font-size:13px;line-height:1.7;color:var(--ink)}
 
@@ -4483,42 +4484,42 @@
         <div class="tm-keys"><span class="tm-k"><i style="background:#3b1178"></i>Medtronic</span><span class="tm-k"><i style="background:#4c1d95"></i>Stryker</span><span class="tm-k"><i style="background:#5b21b6"></i>Siemens Healthineers</span><span class="tm-k"><i style="background:#6d28d9"></i>GE HealthCare</span><span class="tm-k"><i style="background:#7c3aed"></i>Brainlab</span><span class="tm-k"><i style="background:#6b7a90"></i>Others</span></div>
         <div class="tm-wrap">
           <div class="tm-plotwrap">
-          <svg class="tm-svg" viewBox="0 0 300 300" role="list"
+          <svg class="tm-svg" viewBox="0 0 300 224" role="list"
                aria-label="Treemap of estimated 2025 platform revenue share: Medtronic 22 percent, Stryker 18 percent, Siemens Healthineers 15 percent, GE HealthCare 12 percent, Brainlab 9 percent, others 24 percent.">
               <g class="tm-cell" data-i="0">
-                <rect class="tm-r" x="1.5" y="1.5" width="117.0" height="162.0" rx="7" fill="#3b1178"/>
-                <text class="tm-pc" x="60.0" y="90.7" font-size="24">22%</text>
-                <rect class="tm-hit" data-i="0" x="1.5" y="1.5" width="117.0" height="162.0" rx="7"
+                <rect class="tm-r" x="1.5" y="1.5" width="117.0" height="120.0" rx="7" fill="#3b1178"/>
+                <text class="tm-pc" x="60.0" y="69.7" font-size="24">22%</text>
+                <rect class="tm-hit" data-i="0" x="1.5" y="1.5" width="117.0" height="120.0" rx="7"
                       tabindex="0" role="button" aria-label="Medtronic, 22 percent"/>
               </g>
               <g class="tm-cell" data-i="1">
-                <rect class="tm-r" x="121.5" y="1.5" width="95.2" height="162.0" rx="7" fill="#4c1d95"/>
-                <text class="tm-pc" x="169.1" y="90.7" font-size="24">18%</text>
-                <rect class="tm-hit" data-i="1" x="121.5" y="1.5" width="95.2" height="162.0" rx="7"
+                <rect class="tm-r" x="121.5" y="1.5" width="95.2" height="120.0" rx="7" fill="#4c1d95"/>
+                <text class="tm-pc" x="169.1" y="69.7" font-size="24">18%</text>
+                <rect class="tm-hit" data-i="1" x="121.5" y="1.5" width="95.2" height="120.0" rx="7"
                       tabindex="0" role="button" aria-label="Stryker, 18 percent"/>
               </g>
               <g class="tm-cell" data-i="2">
-                <rect class="tm-r" x="219.7" y="1.5" width="78.8" height="162.0" rx="7" fill="#5b21b6"/>
-                <text class="tm-pc" x="259.1" y="88.6" font-size="18">15%</text>
-                <rect class="tm-hit" data-i="2" x="219.7" y="1.5" width="78.8" height="162.0" rx="7"
+                <rect class="tm-r" x="219.7" y="1.5" width="78.8" height="120.0" rx="7" fill="#5b21b6"/>
+                <text class="tm-pc" x="259.1" y="67.6" font-size="18">15%</text>
+                <rect class="tm-hit" data-i="2" x="219.7" y="1.5" width="78.8" height="120.0" rx="7"
                       tabindex="0" role="button" aria-label="Siemens Healthineers, 15 percent"/>
               </g>
               <g class="tm-cell" data-i="3">
-                <rect class="tm-r" x="1.5" y="166.5" width="77.0" height="132.0" rx="7" fill="#6d28d9"/>
-                <text class="tm-pc" x="40.0" y="238.6" font-size="18">12%</text>
-                <rect class="tm-hit" data-i="3" x="1.5" y="166.5" width="77.0" height="132.0" rx="7"
+                <rect class="tm-r" x="1.5" y="124.5" width="77.0" height="98.0" rx="7" fill="#6d28d9"/>
+                <text class="tm-pc" x="40.0" y="179.6" font-size="18">12%</text>
+                <rect class="tm-hit" data-i="3" x="1.5" y="124.5" width="77.0" height="98.0" rx="7"
                       tabindex="0" role="button" aria-label="GE HealthCare, 12 percent"/>
               </g>
               <g class="tm-cell" data-i="4">
-                <rect class="tm-r" x="81.5" y="166.5" width="57.0" height="132.0" rx="7" fill="#7c3aed"/>
-                <text class="tm-pc" x="110.0" y="238.6" font-size="18">9%</text>
-                <rect class="tm-hit" data-i="4" x="81.5" y="166.5" width="57.0" height="132.0" rx="7"
+                <rect class="tm-r" x="81.5" y="124.5" width="57.0" height="98.0" rx="7" fill="#7c3aed"/>
+                <text class="tm-pc" x="110.0" y="179.6" font-size="18">9%</text>
+                <rect class="tm-hit" data-i="4" x="81.5" y="124.5" width="57.0" height="98.0" rx="7"
                       tabindex="0" role="button" aria-label="Brainlab, 9 percent"/>
               </g>
               <g class="tm-cell" data-i="5">
-                <rect class="tm-r" x="141.5" y="166.5" width="157.0" height="132.0" rx="7" fill="#6b7a90"/>
-                <text class="tm-pc" x="220.0" y="240.7" font-size="24">24%</text>
-                <rect class="tm-hit" data-i="5" x="141.5" y="166.5" width="157.0" height="132.0" rx="7"
+                <rect class="tm-r" x="141.5" y="124.5" width="157.0" height="98.0" rx="7" fill="#6b7a90"/>
+                <text class="tm-pc" x="220.0" y="181.7" font-size="24">24%</text>
+                <rect class="tm-hit" data-i="5" x="141.5" y="124.5" width="157.0" height="98.0" rx="7"
                       tabindex="0" role="button" aria-label="Others, 24 percent"/>
               </g>
           </svg>
