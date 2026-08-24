@@ -1788,12 +1788,12 @@
   .tm-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
   .tm-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
 
-  .vt-body{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:14px;
-    align-items:stretch;margin-top:14px}
+  .vt-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:26px;align-items:center;margin-top:14px}
+  .vt-left{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:stretch}
   .vt-rows{display:flex;flex-direction:column;gap:8px}
   .vt-row{appearance:none;font:inherit;text-align:left;cursor:pointer;
-    display:grid;grid-template-columns:60px minmax(112px,auto) minmax(0,1fr);
-    align-items:center;gap:14px;padding:13px 16px;border-radius:11px;
+    display:flex;flex-direction:column;gap:6px;padding:12px 15px;border-radius:11px;
     background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);
     transition:background .18s ease,box-shadow .18s ease}
   .vt-row:hover,.vt-row.on{background:#faf7ff;box-shadow:0 4px 14px rgba(59,17,120,.09)}
@@ -1807,18 +1807,21 @@
     border-radius:11px;background:#f7f3ff;border:1px solid var(--line);padding:10px 6px}
   .vt-arrow{width:14px;flex:1 1 auto;min-height:60px;background:var(--purple-mid);
     clip-path:polygon(50% 0,100% 26%,68% 26%,68% 100%,32% 100%,32% 26%,0 26%)}
-  .vt-mt{font-size:10.5px;font-weight:600;color:var(--purple-deep);text-align:center;line-height:1.3}
-  .vt-read{margin-top:14px;border-left:3px solid var(--purple-mid);padding:2px 0 2px 12px}
-  .vt-read b{display:block;font-size:12.5px;font-weight:600;color:var(--purple-deep)}
-  .vt-read span{display:block;margin-top:3px;font-size:12px;line-height:1.55;color:var(--muted)}
-
+  .vt-mt{font-size:10px;font-weight:600;color:var(--purple-deep);text-align:center;line-height:1.25;
+    writing-mode:vertical-rl;transform:rotate(180deg)}
+  .vt-side{display:flex;flex-direction:column;justify-content:center}
+  .vt-read{border-left:3px solid var(--purple-mid);padding:2px 0 2px 15px}
+  .vt-read b{display:block;font-size:15px;font-weight:700;color:var(--purple-deep)}
+  .vt-read span{display:block;margin-top:8px;font-size:13px;line-height:1.7;color:var(--ink)}
+  .vt-side .cav{padding-left:15px;border-left:2px dotted #c9b9f0;margin-top:16px}
 
   @media(max-width:760px){
-    .vt-body{grid-template-columns:1fr}
+    .vt-wrap{grid-template-columns:1fr}
+    .vt-left{grid-template-columns:1fr}
     .vt-mig{flex-direction:row;padding:8px 12px}
     .vt-arrow{min-height:0;height:14px;width:auto;flex:1 1 auto;
       clip-path:polygon(0 32%,74% 32%,74% 0,100% 50%,74% 100%,74% 68%,0 68%)}
-    .vt-row{grid-template-columns:1fr;gap:6px}
+    .vt-mt{writing-mode:horizontal-tb;transform:none}
   }
 
 
@@ -4545,36 +4548,40 @@
       <figure class="md-fig vt-fig reveal" id="cmpTiers" data-vt='[{"n": "Key vendors", "c": "#3b1178", "t": "Commanding the largest share of current revenue through their respective integrated navigation platforms and deep orthopedic and neurosurgical hospital relationships. Both benefit from scale relationships built over decades of navigation-system deployment, a moat considerably slower to erode than any single product&#39;s technical specifications, since surgeons trained extensively on one platform&#39;s workflow face a genuine switching cost in both time and comfort."}, {"n": "Prospective leaders", "c": "#5b21b6", "t": "Both possess extensive imaging-hardware installed bases and are increasingly integrating navigation and AI-based analytics into their existing intraoperative imaging portfolios. Both pursue a distribution-and-integration strategy rather than trying to displace established navigation leaders outright, leveraging their installed-base advantage while avoiding the multi-year cycle of building surgeon trust in an entirely new platform."}, {"n": "Niche players", "c": "#7c3aed", "t": "Differentiated positions built from focused software and mixed-reality innovation rather than broad hardware scale. Because durable moats have not yet fully formed around any single technology stack, a niche player with genuinely superior AI-segmentation or mixed-reality capability retains a realistic path up the vendor hierarchy, particularly through partnership with an established hardware manufacturer rather than by displacing it."}, {"n": "Market disruptors", "c": "#9333ea", "t": "AI-native software entrants and Asian medical-device manufacturers expanding mobile and lower-cost imaging hardware are reshaping both the cost and the technology dimensions of competition. MediView&#39;s XR90 clinical-validation study and the export expansion of Chinese and South Korean mobile-imaging manufacturers show disruption arriving from two directions at once: premium software-differentiated visualisation at one end, lower-cost accessible hardware at the other."}]'>
         <h6>Four Tiers, and the Route Between Them</h6>
         <p class="md-sub">Select a tier to read how it competes</p>
-        <div class="vt-body">
-          <div class="vt-rows">
-            <button type="button" class="vt-row on" data-i="0" style="--c:#3b1178">
-              <span class="vt-n">Tier 1</span>
-              <span class="vt-t">Key vendors</span>
-              <span class="vt-cs"><span class="vt-chip">Medtronic</span><span class="vt-chip">Stryker</span></span>
-            </button>
-            <button type="button" class="vt-row" data-i="1" style="--c:#5b21b6">
-              <span class="vt-n">Tier 2</span>
-              <span class="vt-t">Prospective leaders</span>
-              <span class="vt-cs"><span class="vt-chip">Siemens Healthineers</span><span class="vt-chip">GE HealthCare</span></span>
-            </button>
-            <button type="button" class="vt-row" data-i="2" style="--c:#7c3aed">
-              <span class="vt-n">Tier 3</span>
-              <span class="vt-t">Niche players</span>
-              <span class="vt-cs"><span class="vt-chip">Brainlab</span><span class="vt-chip">Kitware</span></span>
-            </button>
-            <button type="button" class="vt-row" data-i="3" style="--c:#9333ea">
-              <span class="vt-n">Tier 4</span>
-              <span class="vt-t">Market disruptors</span>
-              <span class="vt-cs"><span class="vt-chip">AI-native software entrants</span><span class="vt-chip">Asian mobile-imaging manufacturers</span></span>
-            </button>
+        <div class="vt-wrap">
+          <div class="vt-left">
+            <div class="vt-mig" aria-hidden="true"><span class="vt-arrow"></span><span class="vt-mt">Migration path</span></div>
+            <div class="vt-rows">
+              <button type="button" class="vt-row on" data-i="0" style="--c:#3b1178">
+                <span class="vt-n">Tier 1</span>
+                <span class="vt-t">Key vendors</span>
+                <span class="vt-cs"><span class="vt-chip">Medtronic</span><span class="vt-chip">Stryker</span></span>
+              </button>
+              <button type="button" class="vt-row" data-i="1" style="--c:#5b21b6">
+                <span class="vt-n">Tier 2</span>
+                <span class="vt-t">Prospective leaders</span>
+                <span class="vt-cs"><span class="vt-chip">Siemens Healthineers</span><span class="vt-chip">GE HealthCare</span></span>
+              </button>
+              <button type="button" class="vt-row" data-i="2" style="--c:#7c3aed">
+                <span class="vt-n">Tier 3</span>
+                <span class="vt-t">Niche players</span>
+                <span class="vt-cs"><span class="vt-chip">Brainlab</span><span class="vt-chip">Kitware</span></span>
+              </button>
+              <button type="button" class="vt-row" data-i="3" style="--c:#9333ea">
+                <span class="vt-n">Tier 4</span>
+                <span class="vt-t">Market disruptors</span>
+                <span class="vt-cs"><span class="vt-chip">AI-native software entrants</span><span class="vt-chip">Asian mobile-imaging manufacturers</span></span>
+              </button>
+            </div>
           </div>
-          <div class="vt-mig" aria-hidden="true"><span class="vt-arrow"></span><span class="vt-mt">Migration path</span></div>
+          <div class="vt-side">
+            <div class="vt-read"><b></b><span></span></div>
+            <p class="cav"><b>How to read this:</b> treat it as a snapshot of 2025-2026 conditions rather than a
+              stable long-run structure. Several prospective leaders and niche players carry enough technological
+              momentum to reach the key-vendor tier by the early 2030s, particularly if AI-native entrants partner
+              with established hardware manufacturers rather than merely challenging them.</p>
+          </div>
         </div>
-        <div class="vt-read"><b></b><span></span></div>
-        <p class="cav"><b>How to read this:</b> treat it as a snapshot of 2025-2026 conditions rather than a
-          stable long-run structure. Several prospective leaders and niche players carry enough technological
-          momentum to reach the key-vendor tier by the early 2030s, particularly if AI-native entrants partner
-          with established hardware manufacturers rather than merely challenging them.</p>
       </figure>
 
       <h3 class="subh reveal">Market Share Analysis, Top Five Companies</h3>
@@ -6387,8 +6394,10 @@
       }
       els.forEach(function(el){
         var i=+el.getAttribute('data-i');
-        el.addEventListener('mouseenter',function(){ go(i); });
-        el.addEventListener('focus',function(){ go(i); });
+        if(!items.clickOnly){
+          el.addEventListener('mouseenter',function(){ go(i); });
+          el.addEventListener('focus',function(){ go(i); });
+        }
         el.addEventListener('click',function(){ go(i); });
       });
       function lock(){
@@ -6405,7 +6414,7 @@
       function(d){ return d.n+' &middot; '+d.v+'% of 2025 platform revenue'; },
       function(d){ return d.t; });
     panel('cmpTiers','data-vt',
-      {sel:'.vt-row'},
+      {sel:'.vt-row', clickOnly:true},
       '.vt-read',
       function(d){ return d.n; },
       function(d){ return d.t; });
