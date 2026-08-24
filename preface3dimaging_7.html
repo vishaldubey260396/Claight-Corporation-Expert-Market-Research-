@@ -1969,8 +1969,8 @@
 
 
   /* --- 13.1 compact treemap + side panel --- */
-  .tm-wrap{display:grid;grid-template-columns:minmax(0,272px) minmax(0,1fr);
-    gap:22px;align-items:stretch;margin-top:14px}
+  .tm-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:26px;align-items:center;margin-top:14px}
   .tm-side{display:flex}
   .tm-side .tm-read{margin:0;border-left:3px solid var(--purple-mid);
     padding:2px 0 2px 15px;display:flex;flex-direction:column;justify-content:center}
@@ -1979,7 +1979,7 @@
 
   @media(max-width:640px){
     .tm-wrap{grid-template-columns:1fr}
-    .tm-plotwrap{max-width:300px;margin:0 auto}
+    .tm-plotwrap{max-width:320px;margin:0 auto}
   }
 
 </style>
