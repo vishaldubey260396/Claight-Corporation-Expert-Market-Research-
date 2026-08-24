@@ -1921,31 +1921,45 @@
     font-size:11.5px;color:var(--muted)}
 
 
-  /* --- 10 - partnership activity heatmap --- */
-  .ht-fig{margin-top:16px}
-  .ht-wrap{margin-top:16px;max-width:720px;overflow-x:auto}
-  .ht-grid{display:grid;grid-template-columns:minmax(190px,1fr) repeat(5,66px);
-    gap:6px;align-items:stretch}
-  .ht-cell{display:flex;align-items:center;justify-content:center;text-align:center;
-    min-height:46px;border-radius:8px;font-size:14px}
-  .ht-corner{background:transparent}
-  .ht-colhead{font-size:12px;font-weight:700;color:var(--muted);align-items:flex-end;
-    padding-bottom:4px}
-  .ht-totlab{color:var(--purple-deep)}
-  .ht-rowhead{justify-content:flex-start;text-align:left;font-size:12.5px;font-weight:600;
-    color:var(--navy);padding-right:8px;line-height:1.3}
-  .ht-v{background:#f1ecfd;color:var(--muted);font-weight:700}
-  .ht-v[data-n="1"]{background:var(--c);color:#fff}
-  .ht-tot{font-weight:700;color:var(--purple-deep);background:#f1ecfd}
-  .ht-tot[data-n="1"]{background:#c9b4f2;color:#fff}
-  .ht-tot[data-n="2"]{background:var(--purple-deep);color:#fff}
-  .ht-grand{font-size:15px}
+
+  /* --- 10 - partnership scorecard (ProcureHub-style) --- */
+  .sc-fig{margin-top:16px}
+  .sc-wrap{margin-top:16px;overflow-x:auto}
+  @media(max-width:640px){
+    .sc-wrap{position:relative;
+      mask-image:linear-gradient(90deg,#000 92%,transparent);
+      -webkit-mask-image:linear-gradient(90deg,#000 92%,transparent)}
+  }
+  .sc-table{min-width:640px}
+  .sc-hrow{display:grid;grid-template-columns:1fr repeat(4,64px) 140px;gap:8px;
+    padding-bottom:9px;border-bottom:2px solid var(--purple-deep)}
+  .sc-hnm{}
+  .sc-h{align-self:end;text-align:center;font-size:11px;font-weight:700;
+    color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .sc-htot{color:var(--purple-deep)}
+  .sc-row{display:grid;grid-template-columns:1fr repeat(4,64px) 140px;gap:8px;
+    align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+  .sc-nm{font-size:12.5px;font-weight:600;color:var(--navy)}
+  .sc-cell{height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:800;color:#fff;background:var(--c)}
+  .sc-cell.sc-z{background:#f1ecfd;color:transparent}
+  .sc-bar{position:relative;display:flex;align-items:center;gap:9px;height:38px;
+    padding:0 2px}
+  .sc-bar::before{content:"";position:absolute;left:2px;right:2px;top:50%;height:9px;
+    transform:translateY(-50%);border-radius:999px;background:#f1ecfd}
+  .sc-fill{position:relative;flex:none;width:var(--w);height:9px;border-radius:999px;
+    background:linear-gradient(90deg,#9333ea,var(--purple-deep))}
+  .sc-bar b{position:relative;font-size:12.5px;font-weight:700;color:var(--purple-deep);
+    margin-left:auto}
+
+  .sc-keys{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px}
+  .sc-k{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ink)}
+  .sc-k i{width:16px;height:16px;border-radius:5px;background:#f1ecfd;flex:none}
+  .sc-k i.sc-one{background:var(--purple-mid)}
 
   @media(max-width:640px){
-    .ht-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-    .ht-grid{grid-template-columns:minmax(170px,1fr) repeat(5,56px);min-width:500px}
-    .ht-cell{min-height:40px;font-size:12.5px}
-    .ht-rowhead{font-size:11.5px}
+    .sc-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .sc-hrow,.sc-row{grid-template-columns:150px repeat(4,58px) 120px;min-width:600px}
   }
 
 </style>
@@ -4055,48 +4069,42 @@
         acquisition.
       </p>
 
-      <figure class="md-fig ht-fig reveal" id="partHeat">
+      <figure class="md-fig sc-fig reveal" id="partHeat">
         <h6>Partnership Activity by Type and Year</h6>
-        <p class="md-sub">Darker cells mark more of the six partnerships this report dates</p>
-        <div class="ht-wrap">
-          <div class="ht-grid">
-              <div class="ht-cell ht-corner"></div>
-              <div class="ht-cell ht-colhead">2024</div>
-              <div class="ht-cell ht-colhead">2025</div>
-              <div class="ht-cell ht-colhead">2026</div>
-              <div class="ht-cell ht-colhead">Ongoing</div>
-              <div class="ht-cell ht-colhead ht-totlab">Total</div>
-              <div class="ht-cell ht-rowhead">Cross-platform integration</div>
-              <div class="ht-cell ht-v" data-n="1" style="--c:#6d28d9">1</div>
-              <div class="ht-cell ht-v" data-n="0" style="--c:#6d28d9"></div>
-              <div class="ht-cell ht-v" data-n="1" style="--c:#6d28d9">1</div>
-              <div class="ht-cell ht-v" data-n="0" style="--c:#6d28d9"></div>
-              <div class="ht-cell ht-tot" data-n="2">2</div>
-              <div class="ht-cell ht-rowhead">Long-term value and service</div>
-              <div class="ht-cell ht-v" data-n="0" style="--c:#3b1178"></div>
-              <div class="ht-cell ht-v" data-n="1" style="--c:#3b1178">1</div>
-              <div class="ht-cell ht-v" data-n="1" style="--c:#3b1178">1</div>
-              <div class="ht-cell ht-v" data-n="0" style="--c:#3b1178"></div>
-              <div class="ht-cell ht-tot" data-n="2">2</div>
-              <div class="ht-cell ht-rowhead">Software and instrumentation distribution</div>
-              <div class="ht-cell ht-v" data-n="0" style="--c:#9333ea"></div>
-              <div class="ht-cell ht-v" data-n="1" style="--c:#9333ea">1</div>
-              <div class="ht-cell ht-v" data-n="0" style="--c:#9333ea"></div>
-              <div class="ht-cell ht-v" data-n="0" style="--c:#9333ea"></div>
-              <div class="ht-cell ht-tot" data-n="1">1</div>
-              <div class="ht-cell ht-rowhead">Co-development</div>
-              <div class="ht-cell ht-v" data-n="0" style="--c:#a855f7"></div>
-              <div class="ht-cell ht-v" data-n="0" style="--c:#a855f7"></div>
-              <div class="ht-cell ht-v" data-n="0" style="--c:#a855f7"></div>
-              <div class="ht-cell ht-v" data-n="1" style="--c:#a855f7">1</div>
-              <div class="ht-cell ht-tot" data-n="1">1</div>
-              <div class="ht-cell ht-rowhead ht-totlab">Total</div>
-              <div class="ht-cell ht-tot" data-n="1">1</div>
-              <div class="ht-cell ht-tot" data-n="2">2</div>
-              <div class="ht-cell ht-tot" data-n="2">2</div>
-              <div class="ht-cell ht-tot" data-n="1">1</div>
-              <div class="ht-cell ht-tot ht-grand" data-n="2">6</div>
+        <p class="md-sub">Cells score how many of the six partnerships this report dates fall in each type and
+          year; the bar totals each type out of six</p>
+        <div class="sc-wrap">
+          <div class="sc-table">
+            <div class="sc-hrow">
+              <div class="sc-hnm"></div>
+<div class="sc-h">2024</div><div class="sc-h">2025</div><div class="sc-h">2026</div><div class="sc-h">Ongoing</div>
+              <div class="sc-h sc-htot">Total / 6</div>
+            </div>
+          <div class="sc-row">
+            <div class="sc-nm">Cross-platform integration</div>
+            <div class="sc-cell" style="--c:#6d28d9">1</div>            <div class="sc-cell sc-z" style="--c:#6d28d9"></div>            <div class="sc-cell" style="--c:#6d28d9">1</div>            <div class="sc-cell sc-z" style="--c:#6d28d9"></div>
+            <div class="sc-bar"><span class="sc-fill" style="--w:33.3%"></span><b>2</b></div>
           </div>
+          <div class="sc-row">
+            <div class="sc-nm">Long-term value and service</div>
+            <div class="sc-cell sc-z" style="--c:#3b1178"></div>            <div class="sc-cell" style="--c:#3b1178">1</div>            <div class="sc-cell" style="--c:#3b1178">1</div>            <div class="sc-cell sc-z" style="--c:#3b1178"></div>
+            <div class="sc-bar"><span class="sc-fill" style="--w:33.3%"></span><b>2</b></div>
+          </div>
+          <div class="sc-row">
+            <div class="sc-nm">Software and instrumentation distribution</div>
+            <div class="sc-cell sc-z" style="--c:#9333ea"></div>            <div class="sc-cell" style="--c:#9333ea">1</div>            <div class="sc-cell sc-z" style="--c:#9333ea"></div>            <div class="sc-cell sc-z" style="--c:#9333ea"></div>
+            <div class="sc-bar"><span class="sc-fill" style="--w:16.7%"></span><b>1</b></div>
+          </div>
+          <div class="sc-row">
+            <div class="sc-nm">Co-development</div>
+            <div class="sc-cell sc-z" style="--c:#a855f7"></div>            <div class="sc-cell sc-z" style="--c:#a855f7"></div>            <div class="sc-cell sc-z" style="--c:#a855f7"></div>            <div class="sc-cell" style="--c:#a855f7">1</div>
+            <div class="sc-bar"><span class="sc-fill" style="--w:16.7%"></span><b>1</b></div>
+          </div>
+          </div>
+        </div>
+        <div class="sc-keys">
+          <span class="sc-k"><i class="sc-z"></i>0 &middot; none that year</span>
+          <span class="sc-k"><i class="sc-one"></i>1 &middot; one partnership</span>
         </div>
         <div class="kt"><span class="kt-l">Takeaway</span><p class="kt-t">Cross-platform integration and
           long-term value partnerships together account for four of the six partnerships this report dates,
