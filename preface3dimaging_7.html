@@ -1805,23 +1805,33 @@
   .vt-read{border-left:3px solid var(--purple-mid);padding:2px 0 2px 15px}
   .vt-read b{display:block;font-size:15px;font-weight:700;color:var(--purple-deep)}
   .vt-read span{display:block;margin-top:8px;font-size:13px;line-height:1.7;color:var(--ink)}
-  .vt-side .cav{padding-left:15px;border-left:2px dotted #c9b9f0;margin-top:16px}
 
-  .vq-frame{display:grid;grid-template-columns:20px minmax(0,1fr);
-    grid-template-rows:minmax(0,1fr) 20px;column-gap:10px;row-gap:10px;width:100%}
-  .vq-ay{grid-row:1;grid-column:1;writing-mode:vertical-rl;transform:rotate(180deg);
-    font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-    color:var(--muted);display:flex;align-items:center;justify-content:center;text-align:center}
+  .vq-frame{display:grid;grid-template-columns:24px minmax(0,1fr);
+    grid-template-rows:minmax(0,1fr) 24px;column-gap:10px;row-gap:10px;width:100%}
+  .vq-ay{grid-row:1;grid-column:1;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:8px}
+  .vq-ay svg{width:9px;height:auto;flex:none;fill:none;stroke:var(--muted);
+    stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .vq-ay span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:9.5px;font-weight:700;
+    letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:center}
   .vq-cells{grid-row:1;grid-column:2;display:grid;grid-template-columns:1fr 1fr;
     grid-template-rows:1fr 1fr;gap:10px}
-  .vq-ax{grid-row:2;grid-column:2;font-size:9.5px;font-weight:700;letter-spacing:.05em;
-    text-transform:uppercase;color:var(--muted);text-align:center}
+  .vq-ax{grid-row:2;grid-column:2;display:flex;align-items:center;justify-content:center;gap:8px}
+  .vq-ax svg{width:18px;height:auto;flex:none;fill:none;stroke:var(--muted);
+    stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .vq-ax span{font-size:9.5px;font-weight:700;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--muted)}
   .vq-cell{appearance:none;font:inherit;text-align:left;cursor:pointer;
-    display:flex;flex-direction:column;gap:9px;padding:14px 14px;border-radius:11px;
-    background:#fff;border:1px solid var(--line);border-top:5px solid var(--c);
-    min-height:104px;transition:background .18s ease,box-shadow .18s ease}
-  .vq-cell:hover,.vq-cell.on{background:#faf7ff;box-shadow:0 4px 14px rgba(59,17,120,.09)}
+    display:flex;flex-direction:column;gap:10px;padding:14px 14px;border-radius:11px;
+    background:var(--bg);border:1px solid var(--line);border-top:5px solid var(--c);
+    min-height:112px;transition:box-shadow .18s ease,transform .18s ease}
+  .vq-cell:hover,.vq-cell.on{box-shadow:0 6px 16px rgba(59,17,120,.14);transform:translateY(-2px)}
+  .vq-cell.on{border-color:var(--c)}
   .vq-cell:focus-visible{outline:2px solid #7c3aed;outline-offset:2px}
+  .vq-ico{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;
+    justify-content:center;background:#fff;flex:none}
+  .vq-ico svg{width:16px;height:16px;fill:none;stroke:var(--c);stroke-width:2;
+    stroke-linecap:round;stroke-linejoin:round}
   .vq-lbl{font-size:13px;font-weight:700;color:var(--c)}
 
   @media(max-width:760px){
@@ -4561,36 +4571,40 @@
         <div class="vt-wrap">
           <div class="vt-left">
             <div class="vq-frame">
-              <div class="vq-ay" aria-hidden="true">Market scale &#8593; installed base and current share</div>
+              <div class="vq-ay" aria-hidden="true">
+                <svg viewBox="0 0 10 20"><path d="M5 19V1M1.5 5.5 5 1l3.5 4.5"/></svg>
+                <span>Market scale &middot; installed base and current share</span>
+              </div>
               <div class="vq-cells">
-                <button type="button" class="vq-cell" data-i="1" style="--c:#5b21b6">
+                <button type="button" class="vq-cell" data-i="1" style="--c:#5b21b6;--bg:#f0e8fc">
+                  <span class="vq-ico"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
                   <span class="vq-lbl">Prospective leaders</span>
                   <span class="vt-cs"><span class="vt-chip">Siemens Healthineers</span><span class="vt-chip">GE HealthCare</span></span>
                 </button>
-                <button type="button" class="vq-cell on" data-i="0" style="--c:#3b1178">
+                <button type="button" class="vq-cell on" data-i="0" style="--c:#3b1178;--bg:#ece2f8">
+                  <span class="vq-ico"><svg viewBox="0 0 24 24"><path d="M3 18h18l-1.6-9-4.4 4-3-6-3 6-4.4-4L3 18z"/></svg></span>
                   <span class="vq-lbl">Key vendors</span>
                   <span class="vt-cs"><span class="vt-chip">Medtronic</span><span class="vt-chip">Stryker</span></span>
                 </button>
-                <button type="button" class="vq-cell" data-i="2" style="--c:#7c3aed">
+                <button type="button" class="vq-cell" data-i="2" style="--c:#7c3aed;--bg:#f2ebfd">
+                  <span class="vq-ico"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5 20 20"/></svg></span>
                   <span class="vq-lbl">Niche players</span>
                   <span class="vt-cs"><span class="vt-chip">Brainlab</span><span class="vt-chip">Kitware</span></span>
                 </button>
-                <button type="button" class="vq-cell" data-i="3" style="--c:#9333ea">
+                <button type="button" class="vq-cell" data-i="3" style="--c:#9333ea;--bg:#f5eefd">
+                  <span class="vq-ico"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
                   <span class="vq-lbl">Market disruptors</span>
                   <span class="vt-cs"><span class="vt-chip">AI-native software entrants</span><span class="vt-chip">Asian mobile-imaging manufacturers</span></span>
                 </button>
               </div>
-              <div class="vq-ax" aria-hidden="true">Technology-led differentiation &#8594;</div>
+              <div class="vq-ax" aria-hidden="true">
+                <span>Technology-led differentiation</span>
+                <svg viewBox="0 0 20 10"><path d="M1 5h18M14.5 1.5 19 5l-4.5 3.5"/></svg>
+              </div>
             </div>
           </div>
           <div class="vt-side">
             <div class="vt-read"><b></b><span></span></div>
-            <p class="cav"><b>How to read this:</b> quadrant position is a qualitative read of the tier structure
-              described in the text - market scale against technology-led differentiation - not a plotted numeric
-              score, and it is a snapshot of 2025-2026 conditions rather than a stable long-run structure. Several
-              prospective leaders and niche players carry enough technological momentum to reach the key-vendor
-              quadrant by the early 2030s, particularly if AI-native entrants partner with established hardware
-              manufacturers rather than merely challenging them.</p>
           </div>
         </div>
       </figure>
