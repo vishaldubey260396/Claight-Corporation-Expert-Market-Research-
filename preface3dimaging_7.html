@@ -1805,6 +1805,11 @@
   .vt-read{border-left:3px solid var(--purple-mid);padding:2px 0 2px 15px}
   .vt-read b{display:block;font-size:15px;font-weight:700;color:var(--purple-deep)}
   .vt-read span{display:block;margin-top:8px;font-size:13px;line-height:1.7;color:var(--ink)}
+  .vq-mini{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+    gap:6px;width:60px;margin:16px 0 0 15px}
+  .vq-mdot{width:100%;padding-top:100%;border-radius:6px;background:var(--c);
+    opacity:.28;transition:opacity .18s ease,transform .18s ease}
+  .vq-mdot.on{opacity:1;transform:scale(1.08)}
 
   .vq-frame{display:grid;grid-template-columns:24px minmax(0,1fr);
     grid-template-rows:minmax(0,1fr) 24px;column-gap:10px;row-gap:10px;width:100%}
@@ -1814,8 +1819,12 @@
     stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
   .vq-ay span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:9.5px;font-weight:700;
     letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:center}
-  .vq-cells{grid-row:1;grid-column:2;display:grid;grid-template-columns:1fr 1fr;
+  .vq-cells{grid-row:1;grid-column:2;position:relative;display:grid;grid-template-columns:1fr 1fr;
     grid-template-rows:1fr 1fr;gap:10px}
+  .vq-cells::before{content:'';position:absolute;left:50%;top:-14px;bottom:-14px;width:1px;
+    background:#e4d9f7;transform:translateX(-50%);pointer-events:none}
+  .vq-cells::after{content:'';position:absolute;top:50%;left:-14px;right:-14px;height:1px;
+    background:#e4d9f7;transform:translateY(-50%);pointer-events:none}
   .vq-ax{grid-row:2;grid-column:2;display:flex;align-items:center;justify-content:center;gap:8px}
   .vq-ax svg{width:18px;height:auto;flex:none;fill:none;stroke:var(--muted);
     stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -4605,6 +4614,12 @@
           </div>
           <div class="vt-side">
             <div class="vt-read"><b></b><span></span></div>
+            <div class="vq-mini" aria-hidden="true">
+              <span class="vq-mdot" data-i="1" style="--c:#5b21b6"></span>
+              <span class="vq-mdot" data-i="0" style="--c:#3b1178"></span>
+              <span class="vq-mdot" data-i="2" style="--c:#7c3aed"></span>
+              <span class="vq-mdot" data-i="3" style="--c:#9333ea"></span>
+            </div>
           </div>
         </div>
       </figure>
@@ -6385,6 +6400,7 @@
         });
         rb.innerHTML=head(data[i]); rb.style.color=data[i].c||'';
         rs.textContent=body(data[i]);
+        if(items.after) items.after(i);
       }
       els.forEach(function(el){
         var i=+el.getAttribute('data-i');
@@ -6407,8 +6423,10 @@
       '.tm-read',
       function(d){ return d.n+' &middot; '+d.v+'% of 2025 platform revenue'; },
       function(d){ return d.t; });
+    var vqMinis=[].slice.call(document.querySelectorAll('#cmpTiers .vq-mdot'));
     panel('cmpTiers','data-vt',
-      {sel:'.vq-cell', clickOnly:true},
+      {sel:'.vq-cell', clickOnly:true,
+        after:function(i){ vqMinis.forEach(function(m){ m.classList.toggle('on', +m.getAttribute('data-i')===i); }); }},
       '.vt-read',
       function(d){ return d.n; },
       function(d){ return d.t; });
