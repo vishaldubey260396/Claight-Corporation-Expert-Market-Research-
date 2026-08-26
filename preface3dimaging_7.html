@@ -1120,30 +1120,20 @@
     align-items:center;gap:16px}
   .sh-from{text-align:right;font-size:12.5px;line-height:1.45;color:var(--muted);
     text-decoration:line-through;text-decoration-color:#cdbcf0}
-  .sh-to{font-size:12.5px;line-height:1.45;font-weight:700;color:var(--tx);opacity:.32}
+  .sh-to{font-size:12.5px;line-height:1.45;font-weight:700;color:var(--tx)}
   .sh-track{position:relative;height:6px;border-radius:3px;background:#ede8fa}
-  .sh-track::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;
+  /* static - track, knob and the "to" label render straight to their final state */
+  .sh-track::after{content:"";position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:3px;
     background:linear-gradient(90deg,#ded2ff,var(--c))}
-  .sh-knob{position:absolute;top:50%;left:0;width:17px;height:17px;border-radius:50%;
+  .sh-knob{position:absolute;top:50%;left:100%;width:17px;height:17px;border-radius:50%;
     background:var(--c);transform:translate(-50%,-50%);
     box-shadow:0 0 0 3px #fff,0 3px 9px rgba(60,20,120,.32)}
   .sh-note{margin:12px 0 0;font-size:11.5px;line-height:1.6;color:#475569}
-
-  /* the knob travels the rail, the fill follows it, and the new state lights up on arrival */
-  .sh.in .sh-track::after{width:100%;transition:width 1s cubic-bezier(.5,0,.2,1) var(--d)}
-  .sh.in .sh-knob{left:100%;transition:left 1s cubic-bezier(.5,0,.2,1) var(--d)}
-  .sh.in .sh-to{opacity:1;transition:opacity .45s ease calc(var(--d) + .78s)}
 
   @media(max-width:760px){
     .sh-move{grid-template-columns:1fr;gap:9px}
     .sh-from{text-align:left}
     .sh-track{margin:2px 9px}
-  }
-  @media(prefers-reduced-motion:reduce){
-    .sh-track::after{width:100%}
-    .sh-knob{left:100%}
-    .sh-to{opacity:1}
-    .sh.in .sh-track::after,.sh.in .sh-knob,.sh.in .sh-to{transition:none}
   }
 
   /* --- 5.8 Value chain - an interlocking chevron ribbon --- */
@@ -1266,24 +1256,11 @@
     border-radius:2px;background:rgba(76,29,149,.10)}
   .md-prbar{position:absolute;top:6px;height:11px;border-radius:6px;
     background:linear-gradient(90deg,var(--cl),var(--c));
-    box-shadow:0 2px 8px rgba(60,20,120,.16);
-    transform:scaleX(0);transform-origin:left}
+    box-shadow:0 2px 8px rgba(60,20,120,.16)}
   .md-prrow{outline:none;transition:box-shadow .2s ease,border-color .2s ease}
-  .md-prlab,.md-prval{transition:opacity .18s ease}
-  .md-prrow .md-prlab,.md-prrow .md-prval{opacity:0}
-  /* bars sweep out from the axis, one tier at a time, each time the exhibit scrolls in */
-  .pri.in .md-prbar{transform:none;
-    transition:transform .8s cubic-bezier(.22,1,.36,1) var(--d)}
-  .pri.in .md-prlab{opacity:1;transition:opacity .4s ease var(--d)}
-  .pri.in .md-prval{opacity:1;transition:opacity .4s ease calc(var(--d) + .45s)}
-  /* no dimming - the hovered tier just picks up its own accent border and a lift */
+  /* static - bars and labels render straight to their final state, no scroll-triggered sweep */
   .md-prrow.on{box-shadow:0 8px 20px rgba(60,20,120,.14);border-color:var(--c)}
   .md-prrow:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.32)}
-  @media(prefers-reduced-motion:reduce){
-    .md-prbar{transform:none}
-    .md-prrow .md-prlab,.md-prrow .md-prval{opacity:1}
-    .pri.in .md-prbar,.pri.in .md-prlab,.pri.in .md-prval{transition:none}
-  }
   .md-prval{font-size:11.5px;font-weight:700;color:var(--tx);white-space:nowrap;
     padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--bd)}
   .md-prax{display:grid;grid-template-columns:minmax(190px,290px) 1fr auto;column-gap:16px;
