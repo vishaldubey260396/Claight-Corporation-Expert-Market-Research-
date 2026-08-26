@@ -299,19 +299,15 @@
   .ex-grid{stroke:#e9e2f7;stroke-width:1}
   .ex-axis{fill:#a99fc4;font-weight:600}
   .ex-xlab{fill:var(--muted);font-weight:600}
-  .ex-fill{fill:url(#exValFill)}
-  .ex-line{fill:none;stroke:var(--ex-value);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-  .ex-line.fc{stroke-dasharray:7 6}
-  .ex-refline{fill:none;stroke:var(--ex-ref);stroke-width:2;stroke-dasharray:2 5;stroke-linecap:round}
-  .ex-dot{fill:#fff;stroke:var(--ex-value);stroke-width:2.4;transition:r .12s ease}
-  .ex-cap{stroke:var(--ex-value);stroke-width:2.6;fill:var(--ex-value)}
+  .ex-bar{fill:var(--ex-value);transition:filter .12s ease}
+  .ex-bar.fc{fill:#c4b0ea}
+  .ex-barref{fill:var(--ex-ref);opacity:.82;transition:filter .12s ease,opacity .12s ease}
+  .ex-bar.on{filter:brightness(1.14)}
+  .ex-barref.on{filter:brightness(1.12);opacity:1}
   .ex-base{stroke:var(--purple);stroke-width:1.4;stroke-dasharray:4 5}
   .ex-baselab{fill:var(--purple);font-weight:700}
   .ex-endlab{fill:var(--ex-value);font-weight:700}
   .ex-endlab.ref{fill:var(--ex-ref)}
-  .ex-serieslab{fill:var(--ex-value);font-weight:700}
-  .ex-leader{stroke:var(--ex-ref);stroke-width:1}
-  .ex-serieslab.ref{fill:var(--ex-ref)}
   .ex-hit{fill:transparent;cursor:pointer}
   .ex-hit:focus{outline:none}
   .ex-hit:focus-visible{outline:2px solid var(--purple);outline-offset:-2px}
@@ -351,8 +347,8 @@
   .ex-legend li{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink)}
   .ex-legend .k{width:16px;height:10px;border-radius:3px;flex:none;background:var(--ex-a)}
   .ex-legend .k.b{background:var(--ex-value)}
-  .ex-legend .k.ln{height:0;border-top:3px solid var(--ex-value);border-radius:2px;background:none}
-  .ex-legend .k.rf{height:0;border-top:2px dotted var(--ex-ref);border-radius:0;background:none}
+  .ex-legend .k.split{background:linear-gradient(90deg,var(--ex-value) 50%,#c4b0ea 50%)}
+  .ex-legend .k.gr{background:var(--ex-ref)}
   .ex-note{font-size:11px;line-height:1.55;color:var(--muted);margin:14px 0 0;
     padding-top:12px;border-top:1px solid var(--line)}
   .ex-note b{color:var(--purple-deep);font-weight:700;letter-spacing:.06em;font-size:10px;text-transform:uppercase}
@@ -2396,14 +2392,14 @@
 
         <div class="ex-foot">
           <ul class="ex-legend">
-            <li><span class="k ln" aria-hidden="true"></span> Market value (solid to 2025, dashed forecast)</li>
-            <li><span class="k rf" aria-hidden="true"></span> Held at the 2019-25 pace (9.39%)</li>
+            <li><span class="k split" aria-hidden="true"></span> Market value (solid bars to 2025, lighter forecast bars)</li>
+            <li><span class="k gr" aria-hidden="true"></span> Held at the 2019-25 pace (9.39%)</li>
             <li><span class="k" aria-hidden="true"></span> 2025</li>
             <li><span class="k b" aria-hidden="true"></span> 2035</li>
           </ul>
           <p class="ex-note"><b>Note</b> Market value compounds from the reported USD 4.00B (2019) and USD 6.85B
             (2025) base at the stated CAGRs of 9.39% (2019-2025) and 11.50% (2026-2035); endpoints match the
-            published figures. The reference line holds the historical 9.39% pace from 2025 onward, reaching
+            published figures. The reference bars hold the historical 9.39% pace from 2025 onward, reaching
             USD 16.81B in 2035 - the USD 3.53B gap is the value attributable to the faster forecast pace. Segment
             split is indicative and sums to the published 2025 and 2035 totals.</p>
           <p class="ex-src">Source: MedTechHub syndicated estimates</p>
@@ -5107,26 +5103,16 @@
   var NS = 'http://www.w3.org/2000/svg';
   var el = function(n,a){ var e = document.createElementNS(NS,n);
     for(var k in a){ if(a.hasOwnProperty(k)) e.setAttribute(k,a[k]); } return e; };
-  var px = function(i){ return X0 + (i/(D.length-1))*(X1-X0); };
   var py = function(v){ return Y1 - (v/CEIL)*(Y1-Y0); };
-  var path = function(from,to,key,close){
-    var d = '';
-    for(var i=from;i<=to;i++){ d += (i===from?'M':'L') + px(i).toFixed(2) + ' ' + py(D[i][key]).toFixed(2) + ' '; }
-    if(close){ d += 'L'+px(to).toFixed(2)+' '+Y1+' L'+px(from).toFixed(2)+' '+Y1+' Z'; }
-    return d.trim();
-  };
+  var slot = (X1-X0)/D.length;
+  var cx = function(i){ return X0 + (i+0.5)*slot; };
+  var barW = slot*0.5, pairW = slot*0.34, pairGap = slot*0.06, pairTot = pairW*2+pairGap;
 
   var s = el('svg',{viewBox:'0 0 '+VW+' '+VH,role:'img',
-    'aria-label':'Line chart of global 3D medical and surgical imaging platform market value, USD billion. '+
-      'Market value rises from 4.00 in 2019 to 6.85 in the 2025 base year and a forecast 20.34 in 2035. '+
-      'A reference line holding the historical 9.39% growth rate from 2025 reaches only 16.81 in 2035, '+
+    'aria-label':'Bar chart of global 3D medical and surgical imaging platform market value, USD billion, by '+
+      'year. Market value rises from 4.00 in 2019 to 6.85 in the 2025 base year and a forecast 20.34 in 2035. '+
+      'A reference bar holding the historical 9.39% growth rate from 2025 reaches only 16.81 in 2035, '+
       'a gap of 3.53 billion.'});
-
-  var defs = el('defs');
-  var grad = el('linearGradient',{id:'exValFill',x1:'0',y1:'0',x2:'0',y2:'1'});
-  grad.appendChild(el('stop',{offset:'0%','stop-color':'#5b21b6','stop-opacity':'.16'}));
-  grad.appendChild(el('stop',{offset:'100%','stop-color':'#5b21b6','stop-opacity':'.02'}));
-  defs.appendChild(grad); s.appendChild(defs);
 
   /* value axis + gridlines */
   [0,5,10,15,20].forEach(function(v){
@@ -5139,50 +5125,48 @@
   var yt = el('text',{x:X0-9,y:py(20)-14,'class':'ex-axis','text-anchor':'start','font-size':11});
   yt.textContent = 'USD bn'; s.appendChild(yt);
 
-  /* filled area under the value line, then the reference line beneath the value line */
-  s.appendChild(el('path',{d:path(0,D.length-1,'v',true),'class':'ex-fill'}));
-  s.appendChild(el('path',{d:path(BASE,D.length-1,'r'),'class':'ex-refline'}));
+  /* one bar per year to 2025; a paired actual-vs-reference bar per forecast year from 2026 */
+  var barsByIndex = [], allBars = [];
+  D.forEach(function(d,i){
+    var group = [];
+    if(i <= BASE){
+      var r = el('rect',{x:(cx(i)-barW/2).toFixed(2),y:py(d.v).toFixed(2),
+        width:barW.toFixed(2),height:(Y1-py(d.v)).toFixed(2),rx:3,'class':'ex-bar'});
+      s.appendChild(r); group.push(r);
+    } else {
+      var xA = cx(i)-pairTot/2, xR = xA+pairW+pairGap;
+      var rr = el('rect',{x:xR.toFixed(2),y:py(d.r).toFixed(2),
+        width:pairW.toFixed(2),height:(Y1-py(d.r)).toFixed(2),rx:2.5,'class':'ex-barref'});
+      var rv = el('rect',{x:xA.toFixed(2),y:py(d.v).toFixed(2),
+        width:pairW.toFixed(2),height:(Y1-py(d.v)).toFixed(2),rx:2.5,'class':'ex-bar fc'});
+      s.appendChild(rr); s.appendChild(rv); group.push(rv,rr);
+    }
+    barsByIndex[i] = group; allBars = allBars.concat(group);
+  });
 
-  /* base-year marker */
-  s.appendChild(el('line',{x1:px(BASE),y1:Y0,x2:px(BASE),y2:Y1,'class':'ex-base'}));
-  var bl = el('text',{x:px(BASE),y:Y0-8,'class':'ex-baselab','text-anchor':'middle','font-size':11});
+  /* base-year marker, at the boundary between the last historical bar and the first forecast pair */
+  var baseX = X0 + (BASE+1)*slot;
+  s.appendChild(el('line',{x1:baseX,y1:Y0,x2:baseX,y2:Y1,'class':'ex-base'}));
+  var bl = el('text',{x:baseX,y:Y0-8,'class':'ex-baselab','text-anchor':'middle','font-size':11});
   bl.textContent = 'Base year 2025'; s.appendChild(bl);
 
-  /* value line: solid through the base year, dashed across the forecast */
-  s.appendChild(el('path',{d:path(0,BASE,'v'),'class':'ex-line'}));
-  s.appendChild(el('path',{d:path(BASE,D.length-1,'v'),'class':'ex-line fc'}));
-
-  /* year labels, every third year so 2019 and 2035 both land */
+  /* year labels, every fourth year so 2019 and 2035 both land */
   D.forEach(function(d,i){
     if(i % 4 !== 0 && i !== D.length-1) return;
-    var t = el('text',{x:px(i),y:Y1+21,'class':'ex-xlab','text-anchor':'middle','font-size':11.5});
+    var t = el('text',{x:cx(i),y:Y1+21,'class':'ex-xlab','text-anchor':'middle','font-size':11.5});
     t.textContent = d.y; s.appendChild(t);
   });
 
-  /* series labels, placed along each line rather than in a legend box */
-  /* Both lines climb steeply, so a horizontal label cannot sit in the wedge between them without
-     crossing a stroke: the value label is anchored back up its own line, and the reference label
-     sits clear below both lines with a short leader pointing back to it. */
-  var sl = el('text',{x:px(10),y:py(D[10].v)-14,'class':'ex-serieslab','text-anchor':'end','font-size':11.5});
-  sl.textContent = 'Market value'; s.appendChild(sl);
-  var ry = py(D[12].r);
-  s.appendChild(el('line',{x1:px(12),y1:ry+6,x2:px(12),y2:ry+22,'class':'ex-leader'}));
-  var rl = el('text',{x:px(12)+5,y:ry+30,'class':'ex-serieslab ref','text-anchor':'start','font-size':11});
-  rl.textContent = 'Held at the 2019-25 pace'; s.appendChild(rl);
-
-  /* endpoint markers + direct labels (the only numbers on the plot) */
-  s.appendChild(el('circle',{cx:px(BASE),cy:py(6.85),r:4.4,'class':'ex-dot'}));
-  s.appendChild(el('circle',{cx:px(D.length-1),cy:py(20.34),r:4.6,'class':'ex-cap'}));
-  var e1 = el('text',{x:px(BASE)-9,y:py(6.85)-11,'class':'ex-endlab','text-anchor':'end','font-size':12});
+  /* direct value labels (the only numbers on the plot) */
+  var e1 = el('text',{x:cx(BASE),y:py(6.85)-9,'class':'ex-endlab','text-anchor':'middle','font-size':12});
   e1.textContent = '6.85'; s.appendChild(e1);
-  var e2 = el('text',{x:px(D.length-1)+9,y:py(20.34)+4,'class':'ex-endlab','text-anchor':'start','font-size':12.5});
+  var lastPairR = cx(D.length-1)-pairTot/2+pairW+pairGap;
+  var e2 = el('text',{x:lastPairR+pairW+8,y:py(20.34)+4,'class':'ex-endlab','text-anchor':'start','font-size':12.5});
   e2.textContent = '20.34'; s.appendChild(e2);
-  var e3 = el('text',{x:px(D.length-1)+9,y:py(16.81)+4,'class':'ex-endlab ref','text-anchor':'start','font-size':12});
+  var e3 = el('text',{x:lastPairR+pairW+8,y:py(16.81)+4,'class':'ex-endlab ref','text-anchor':'start','font-size':12});
   e3.textContent = '16.81'; s.appendChild(e3);
 
-  /* hover / keyboard layer */
-  var band = (X1-X0)/(D.length-1);
-  var hoverDot = el('circle',{r:0,'class':'ex-dot','pointer-events':'none'});
+  /* hover / keyboard layer - one hit-column per year, highlighting that year's bar(s) */
   var show = function(i){
     var d = D[i];
     var html = '<div class="y">'+d.y+(i===BASE?' · base year':'')+'</div>'+
@@ -5192,14 +5176,18 @@
               '<div class="r"><span>Gap</span><b>+'+(d.v-d.r).toFixed(2)+'</b></div>';
     }
     tip.innerHTML = html;
-    tip.style.left = (px(i)/VW*100)+'%';
+    tip.style.left = (cx(i)/VW*100)+'%';
     tip.style.top  = (py(d.v)/VH*100)+'%';
     tip.classList.add('on');
-    hoverDot.setAttribute('cx',px(i)); hoverDot.setAttribute('cy',py(d.v)); hoverDot.setAttribute('r',5.2);
+    allBars.forEach(function(b){ b.classList.remove('on'); });
+    barsByIndex[i].forEach(function(b){ b.classList.add('on'); });
   };
-  var hide = function(){ tip.classList.remove('on'); hoverDot.setAttribute('r',0); };
+  var hide = function(){
+    tip.classList.remove('on');
+    allBars.forEach(function(b){ b.classList.remove('on'); });
+  };
   D.forEach(function(d,i){
-    var r = el('rect',{x:px(i)-band/2,y:Y0,width:band,height:Y1-Y0,'class':'ex-hit',
+    var r = el('rect',{x:(X0+i*slot).toFixed(2),y:Y0,width:slot.toFixed(2),height:Y1-Y0,'class':'ex-hit',
       tabindex:'0',role:'img',
       'aria-label':d.y+': market value USD '+d.v.toFixed(2)+' billion'+
         (d.r !== undefined && i > BASE ? ', versus USD '+d.r.toFixed(2)+' billion at the historical pace' : '')});
@@ -5208,7 +5196,6 @@
     r.addEventListener('blur',hide);
     s.appendChild(r);
   });
-  s.appendChild(hoverDot);
   s.addEventListener('mouseleave',hide);
   host.insertBefore(s,tip);
 })();
