@@ -6,16 +6,16 @@
 <title>PharmaHub - Global Obesity Market</title>
 <style>
   :root{
-    --purple:#7c3aed;
-    --purple-deep:#4c1d95;
-    --purple-mid:#6d28d9;
-    --purple-soft:#8663ff;
+    --blue:#2f6fed;
+    --blue-deep:#0e3a8f;
+    --blue-mid:#1d54c9;
+    --blue-soft:#5b9bff;
     --navy:#0f172a;
     --ink:#334155;
     --muted:#64748b;
-    --line:#e9e2f7;
-    --tint:#faf7ff;
-    --brand:#4901fd;
+    --line:#dbe7f7;
+    --tint:#f4f8ff;
+    --brand:#0a58ff;
   }
   *{box-sizing:border-box}
   body{
@@ -32,7 +32,7 @@
 
   /* ---------- HERO ---------- */
   .hero{background:#f4f4f8;padding:34px 22px 0}
-  .hero .eyebrow{font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--purple);margin-bottom:10px}
+  .hero .eyebrow{font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
   .hero h1{
     font-size:44px;line-height:1.02;font-weight:800;color:#141018;
     letter-spacing:-0.02em;margin:0 0 14px;
@@ -47,7 +47,7 @@
     grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(96px,auto)}
   .cell{
     position:relative;border-radius:10px;color:#fff;overflow:hidden;outline:none;
-    box-shadow:0 5px 14px rgba(60,20,120,.15);
+    box-shadow:0 5px 14px rgba(10,40,110,.15);
     transition:transform .16s ease,box-shadow .16s ease;
     display:grid;grid-template-columns:1fr;
   }
@@ -56,7 +56,7 @@
   .cell .pane{position:relative;z-index:2;padding:11px 14px;display:flex;flex-direction:column;justify-content:center}
   /* detail pane becomes a hover text box: reserves its column (layout unchanged) but content hidden */
   .cell .detail{position:relative;z-index:4;justify-content:center;
-    font-size:11px;line-height:1.38;color:#f2eefc;font-weight:500;
+    font-size:11px;line-height:1.38;color:#e9f1fd;font-weight:500;
     border-left:1px solid rgba(255,255,255,.10)}
   .cell .detail .dbox{
     position:absolute;inset:6px;display:flex;align-items:center;overflow:hidden;
@@ -67,15 +67,15 @@
     transition:opacity .2s ease,transform .2s ease;}
   .cell .detail .dbox>*{max-width:100%}
   .cell:hover .detail .dbox,.cell:focus-within .detail .dbox{opacity:1;transform:translateX(0)}
-  .cell:hover{transform:translateY(-3px);box-shadow:0 13px 28px rgba(60,20,120,.26)}
-  .cell:focus-visible{box-shadow:0 0 0 3px rgba(124,58,237,.55),0 13px 28px rgba(60,20,120,.26)}
+  .cell:hover{transform:translateY(-3px);box-shadow:0 13px 28px rgba(10,40,110,.26)}
+  .cell:focus-visible{box-shadow:0 0 0 3px rgba(47,111,237,.55),0 13px 28px rgba(10,40,110,.26)}
   .cell::after{content:"";position:absolute;inset:0;
     background-image:radial-gradient(rgba(255,255,255,.06) 1.1px,transparent 1.1px);
     background-size:20px 20px;pointer-events:none}
   .cell .lab{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.72)}
   /* highlighted value */
   .cell .big{font-weight:800;line-height:1;margin-top:6px;letter-spacing:-0.02em;position:relative;
-    color:#fff;text-shadow:0 0 22px rgba(200,170,255,.45),0 2px 6px rgba(0,0,0,.28)}
+    color:#fff;text-shadow:0 0 22px rgba(160,205,255,.45),0 2px 6px rgba(0,0,0,.28)}
   .cell .big .u{font-size:.55em;font-weight:800;opacity:.9}
   .cell .foot{font-size:11px;color:rgba(255,255,255,.72);margin-top:8px}
   .cell .pill{display:inline-block;background:rgba(255,255,255,.2);border-radius:6px;padding:3px 9px;
@@ -86,11 +86,11 @@
     background:radial-gradient(circle,rgba(255,255,255,.16) 0%,transparent 62%);pointer-events:none}
 
   /* gradients */
-  .g-navy{background:linear-gradient(150deg,#3b2170 0%,#241146 55%,#160b2b 100%)}
-  .g-violet{background:linear-gradient(150deg,#7c5cf0 0%,#6d3fd6 55%,#4a2b93 100%)}
-  .g-blue{background:linear-gradient(150deg,#5b6ee0 0%,#4a52c8 55%,#33308f 100%)}
-  .g-deep{background:linear-gradient(150deg,#2c1b52 0%,#1c1136 100%)}
-  .g-plum{background:linear-gradient(150deg,#6a41c0 0%,#4c2c93 100%)}
+  .g-navy{background:linear-gradient(150deg,#1e3a72 0%,#12254a 55%,#0a1730 100%)}
+  .g-violet{background:linear-gradient(150deg,#3b82f6 0%,#2563eb 55%,#1e40af 100%)}
+  .g-blue{background:linear-gradient(150deg,#3f6fe0 0%,#2f56c0 55%,#1e3f8f 100%)}
+  .g-deep{background:linear-gradient(150deg,#14264a 0%,#0a1730 100%)}
+  .g-plum{background:linear-gradient(150deg,#3a6bb5 0%,#234a86 100%)}
 
   .big.xl{font-size:31px}
   .big.lg{font-size:26px}
@@ -131,37 +131,37 @@
   ul.dyn{list-style:none;margin:14px 0;padding:0}
   ul.dyn li{position:relative;padding:8px 0 8px 20px;font-size:14.5px;border-radius:6px;transition:background .15s ease}
   ul.dyn li:hover{background:var(--tint)}
-  ul.dyn li::before{content:"";position:absolute;left:6px;top:15px;width:8px;height:8px;border-radius:2px;background:var(--purple);transition:transform .15s ease}
+  ul.dyn li::before{content:"";position:absolute;left:6px;top:15px;width:8px;height:8px;border-radius:2px;background:var(--blue);transition:transform .15s ease}
   ul.dyn li:hover::before{transform:scale(1.35)}
   ul.dyn li b{color:#141018;font-weight:600}
 
-  table.rd{width:100%;border-collapse:collapse;margin:16px 0;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(76,29,149,.13);font-size:14px}
-  table.rd th{padding:11px 14px;border:1px solid var(--purple-deep);
-    background:linear-gradient(180deg,var(--purple-mid),var(--purple-deep));color:#fff;text-align:left;font-size:14px;font-weight:700}
+  table.rd{width:100%;border-collapse:collapse;margin:16px 0;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(14,58,143,.13);font-size:14px}
+  table.rd th{padding:11px 14px;border:1px solid var(--blue-deep);
+    background:linear-gradient(180deg,var(--blue-mid),var(--blue-deep));color:#fff;text-align:left;font-size:14px;font-weight:700}
   table.rd td{padding:10px 14px;border:1px solid var(--line);color:var(--ink);vertical-align:top;transition:background .12s ease}
   table.rd td b{font-weight:600}
   table.rd tr:nth-child(even) td{background:#fff}
   table.rd tr:nth-child(odd) td{background:var(--tint)}
-  table.rd tbody tr:hover td{background:#efeafe}
+  table.rd tbody tr:hover td{background:#e6f0ff}
   table.rd td ul{margin:0;padding-left:18px}
   table.rd td ul li{margin:4px 0}
-  table.rd td ul li::marker{color:var(--purple)}
+  table.rd td ul li::marker{color:var(--blue)}
 
   /* ---------- KEY BOXES (Drivers / Constraints / Takeaways) ---------- */
   .kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 8px}
-  .kbox{background:linear-gradient(180deg,#fbfaff,#f5f2ff);border:1px solid var(--line);
-    border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(76,29,149,.08);
+  .kbox{background:linear-gradient(180deg,#f5f9ff,#eef5ff);border:1px solid var(--line);
+    border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(14,58,143,.08);
     transition:transform .16s ease,box-shadow .16s ease}
-  .kbox:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(76,29,149,.18)}
-  .kbox h5{margin:0 0 9px;font-size:14px;font-weight:800;color:var(--purple-deep);display:flex;align-items:center;gap:8px}
-  .kbox h5::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--purple)}
+  .kbox:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(14,58,143,.18)}
+  .kbox h5{margin:0 0 9px;font-size:14px;font-weight:800;color:var(--blue-deep);display:flex;align-items:center;gap:8px}
+  .kbox h5::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--blue)}
   .kbox p{margin:0;font-size:12.5px;line-height:1.55;color:var(--ink)}
   @media(max-width:720px){ .kgrid{grid-template-columns:1fr} }
   h4.khead{font-size:15px;font-weight:800;color:#141018;margin:24px 0 6px}
 
   /* ---------- DRIVERS vs CONSTRAINTS ---------- */
-  .dcwrap{margin:18px 0 8px;padding:18px 20px 20px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .dcwrap{margin:18px 0 8px;padding:18px 20px 20px;background:linear-gradient(180deg,#f5f9ff,#eef5ff);
+    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .dchead{font-size:14px;font-weight:800;color:var(--navy);margin:0 0 16px;text-align:center}
   .dcgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
   @media(max-width:640px){ .dcgrid{grid-template-columns:1fr;gap:18px} }
@@ -171,89 +171,89 @@
   .dccol.con h6{color:#e11d48}
   .dcitem{margin:10px 0}
   .dcitem .t{font-size:12.5px;color:var(--ink);margin-bottom:5px}
-  .dctrack{height:9px;border-radius:5px;background:#ece7f7;overflow:hidden}
+  .dctrack{height:9px;border-radius:5px;background:#e2ecf9;overflow:hidden}
   .dcfill{height:100%;width:0;border-radius:5px;transition:width 1s cubic-bezier(.22,1,.36,1)}
   .dccol.drv .dcfill{background:linear-gradient(90deg,#34d399,#059669)}
   .dccol.con .dcfill{background:linear-gradient(90deg,#fb7185,#e11d48)}
   .reveal.in .dcfill{width:var(--w)}
 
   /* ---------- PATENT MOMENTUM MINI-CHART ---------- */
-  .ptrend{margin:16px 0 8px;padding:18px 20px 14px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .ptrend{margin:16px 0 8px;padding:18px 20px 14px;background:linear-gradient(180deg,#f5f9ff,#eef5ff);
+    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .ptrend h6{margin:0;font-size:14px;font-weight:800;color:var(--navy)}
   .ptrend .cap{font-size:11.5px;color:var(--muted);margin:3px 0 16px}
-  .pbars{display:flex;align-items:flex-end;gap:14px;height:150px;border-bottom:2px solid #e3ddf5;padding-top:6px}
+  .pbars{display:flex;align-items:flex-end;gap:14px;height:150px;border-bottom:2px solid #dbe6f5;padding-top:6px}
   .pcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
   .pbar{width:100%;max-width:46px;border-radius:6px 6px 0 0;height:0;
-    background:linear-gradient(180deg,#8663ff,#6d28d9);box-shadow:0 4px 12px rgba(76,29,149,.18);
+    background:linear-gradient(180deg,#5b9bff,#1d54c9);box-shadow:0 4px 12px rgba(14,58,143,.18);
     transition:height 1s cubic-bezier(.22,1,.36,1)}
   .reveal.in .pbar{height:var(--h)}
-  .pcol .pv{font-size:11.5px;font-weight:800;color:var(--purple-deep);margin-bottom:6px}
+  .pcol .pv{font-size:11.5px;font-weight:800;color:var(--blue-deep);margin-bottom:6px}
   .pcol .py{font-size:11px;color:var(--muted);margin-top:7px;font-weight:600}
   .ptrend .note{font-size:11px;color:var(--muted);margin-top:12px}
 
-  blockquote.rb{margin:20px 0;padding:16px 18px;background:#f5f3ff;border:1px solid #ddd6fe;border-left:4px solid var(--purple);border-radius:10px}
+  blockquote.rb{margin:20px 0;padding:16px 18px;background:#eef6ff;border:1px solid #cfe0fb;border-left:4px solid var(--blue);border-radius:10px}
   blockquote.rb p{margin:6px 0}
-  blockquote.rb .h{font-weight:800;color:var(--purple-deep);font-size:14.5px;margin-bottom:2px}
+  blockquote.rb .h{font-weight:800;color:var(--blue-deep);font-size:14.5px;margin-bottom:2px}
   blockquote.rb ul{margin:8px 0 4px;padding-left:18px}
   blockquote.rb li{margin:4px 0;font-size:13.5px}
-  blockquote.src{margin:18px 0 4px;padding:10px 16px;background:#fbfaff;border-left:3px solid var(--purple-soft);border-radius:6px;font-size:12.5px;color:var(--muted)}
+  blockquote.src{margin:18px 0 4px;padding:10px 16px;background:#f5f9ff;border-left:3px solid var(--blue-soft);border-radius:6px;font-size:12.5px;color:var(--muted)}
   blockquote.src p{margin:0}
-  strong.acc{color:var(--purple)}
+  strong.acc{color:var(--blue)}
   p strong,.mo-lede strong{font-weight:600;color:#1e1a24}
 
   /* ---------- STACKED FORECAST CHART ---------- */
-  .chart{margin:18px 0 8px;padding:20px 20px 14px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .chart{margin:18px 0 8px;padding:20px 20px 14px;background:linear-gradient(180deg,#f5f9ff,#eef5ff);
+    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .chart .ct{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:6px}
   .chart .ct h4{margin:0;font-size:15px;font-weight:800;color:var(--navy)}
   .chart .ct .cap{font-size:12px;color:var(--muted)}
   .legend{display:flex;flex-wrap:wrap;gap:14px;margin:8px 0 16px}
   .legend .lg{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink);cursor:default}
   .legend .sw{width:13px;height:13px;border-radius:3px;flex:none}
-  .seg-hw{background:linear-gradient(180deg,#8663ff,#6d28d9)}
-  .seg-sw{background:linear-gradient(180deg,#5b6ee0,#4a52c8)}
-  .seg-sv{background:linear-gradient(180deg,#c4b5fd,#a78bfa)}
+  .seg-hw{background:linear-gradient(180deg,#5b9bff,#1d54c9)}
+  .seg-sw{background:linear-gradient(180deg,#3f6fe0,#2f56c0)}
+  .seg-sv{background:linear-gradient(180deg,#a9c8fb,#6fa8fb)}
 
   .plot{display:flex;align-items:flex-end;gap:10px;height:280px;padding-top:6px;
-    border-bottom:2px solid #e3ddf5;position:relative}
-  .plot .gl{position:absolute;left:0;right:0;border-top:1px dashed #e9e2f7;z-index:0}
+    border-bottom:2px solid #dbe6f5;position:relative}
+  .plot .gl{position:absolute;left:0;right:0;border-top:1px dashed #dbe7f7;z-index:0}
   .colwrap{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;position:relative;z-index:1;min-width:0}
   .col{width:100%;max-width:52px;display:flex;flex-direction:column;justify-content:flex-end;
     position:relative;cursor:default}
   .col .bars{width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;
-    border-radius:6px 6px 0 0;overflow:hidden;box-shadow:0 4px 12px rgba(76,29,149,.14)}
+    border-radius:6px 6px 0 0;overflow:hidden;box-shadow:0 4px 12px rgba(14,58,143,.14)}
   .col .part{width:100%;height:0;transition:height .9s cubic-bezier(.22,1,.36,1)}
-  .col .part.hw{background:linear-gradient(180deg,#8663ff,#6d28d9)}
-  .col .part.sw{background:linear-gradient(180deg,#5b6ee0,#4a52c8)}
-  .col .part.sv{background:linear-gradient(180deg,#c4b5fd,#a78bfa)}
-  .colwrap .tot{font-size:11.5px;font-weight:800;color:var(--purple-deep);margin-bottom:5px;opacity:0;transform:translateY(4px);transition:opacity .5s ease .5s,transform .5s ease .5s}
+  .col .part.hw{background:linear-gradient(180deg,#5b9bff,#1d54c9)}
+  .col .part.sw{background:linear-gradient(180deg,#3f6fe0,#2f56c0)}
+  .col .part.sv{background:linear-gradient(180deg,#a9c8fb,#6fa8fb)}
+  .colwrap .tot{font-size:11.5px;font-weight:800;color:var(--blue-deep);margin-bottom:5px;opacity:0;transform:translateY(4px);transition:opacity .5s ease .5s,transform .5s ease .5s}
   .colwrap.on .tot{opacity:1;transform:none}
   .colwrap .yr{font-size:11.5px;color:var(--muted);margin-top:7px;font-weight:600}
-  .colwrap.base .yr{color:var(--purple);font-weight:800}
-  .col:hover .bars{box-shadow:0 8px 22px rgba(76,29,149,.28)}
+  .colwrap.base .yr{color:var(--blue);font-weight:800}
+  .col:hover .bars{box-shadow:0 8px 22px rgba(14,58,143,.28)}
 
   /* per-year hover tooltip on the stacked chart */
   .colwrap .ctip{position:absolute;bottom:100%;left:50%;transform:translate(-50%,6px);
     background:rgba(20,14,32,.94);color:#fff;border-radius:9px;padding:9px 11px;font-size:11.5px;
     line-height:1.55;white-space:nowrap;z-index:9;opacity:0;pointer-events:none;
     transition:opacity .16s ease,transform .16s ease;box-shadow:0 10px 24px rgba(0,0,0,.32);margin-bottom:8px}
-  .colwrap .ctip b{color:var(--purple-soft)}
+  .colwrap .ctip b{color:var(--blue-soft)}
   .colwrap .ctip .row{display:flex;justify-content:space-between;gap:14px}
   .colwrap .ctip .tt{border-top:1px solid rgba(255,255,255,.18);margin-top:5px;padding-top:5px;font-weight:800}
   .colwrap:hover .ctip{opacity:1;transform:translate(-50%,0)}
-  .plot .yaxis{position:absolute;left:-2px;font-size:10.5px;color:#a99fc4;transform:translateY(-50%)}
+  .plot .yaxis{position:absolute;left:-2px;font-size:10.5px;color:#94a8c9;transform:translateY(-50%)}
   .chart .note{font-size:11.5px;color:var(--muted);margin-top:12px}
 
   /* ---------- METHODOLOGY FLOW (6 steps) ---------- */
-  .flowcard{margin:16px 0 6px;padding:20px 22px 22px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .flowcard{margin:16px 0 6px;padding:20px 22px 22px;background:linear-gradient(180deg,#f5f9ff,#eef5ff);
+    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .flowcard .ft h4{margin:0;font-size:15px;font-weight:800;color:var(--navy)}
-  .flowcard .ft .sub2{font-size:12.5px;color:var(--purple);margin:3px 0 16px;font-weight:600}
+  .flowcard .ft .sub2{font-size:12.5px;color:var(--blue);margin:3px 0 16px;font-weight:600}
   .flow{display:flex;align-items:stretch;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding:4px 2px 6px}
   .step{flex:1;min-width:120px;position:relative;
-    background:linear-gradient(180deg,#f3effe,#e9e1fb);
-    border:1px solid #ddd2f7;border-radius:12px;padding:14px 12px 13px;text-align:center;cursor:default;
+    background:linear-gradient(180deg,#eaf2fe,#dfeafc);
+    border:1px solid #d3e2f7;border-radius:12px;padding:14px 12px 13px;text-align:center;cursor:default;
     opacity:0;transform:translateY(10px) scale(.96);
     transition:opacity .45s ease,transform .45s ease,box-shadow .2s ease,background .2s ease;}
   .flow.in .step{opacity:1;transform:none}
@@ -263,15 +263,15 @@
   .flow.in .step:nth-child(4){transition-delay:.32s}
   .flow.in .step:nth-child(5){transition-delay:.41s}
   .flow.in .step:nth-child(6){transition-delay:.50s}
-  .step .n{font-size:22px;font-weight:800;color:var(--purple-mid);line-height:1;margin-bottom:8px;
+  .step .n{font-size:22px;font-weight:800;color:var(--blue-mid);line-height:1;margin-bottom:8px;
     transition:transform .2s ease,color .2s ease}
   .step .t{font-size:12.5px;font-weight:700;color:var(--navy);line-height:1.3}
-  .step:hover{background:linear-gradient(180deg,#f1ebfe,#e0d3fb);border-color:var(--purple-soft);
-    box-shadow:0 8px 20px rgba(76,29,149,.16);transform:translateY(-3px)}
-  .step:hover .n{color:var(--purple-mid);transform:scale(1.12)}
+  .step:hover{background:linear-gradient(180deg,#e7f0fe,#d7e6fa);border-color:var(--blue-soft);
+    box-shadow:0 8px 20px rgba(14,58,143,.16);transform:translateY(-3px)}
+  .step:hover .n{color:var(--blue-mid);transform:scale(1.12)}
   .step:hover .t{color:var(--navy)}
   .step .arw{position:absolute;right:-13px;top:50%;transform:translateY(-50%);z-index:3;
-    color:var(--purple-soft);font-size:16px;font-weight:800;line-height:1}
+    color:var(--blue-soft);font-size:16px;font-weight:800;line-height:1}
   .step:last-child .arw{display:none}
   @media(max-width:720px){ .flow{flex-wrap:nowrap} .step .arw{right:-11px;font-size:14px} }
 
@@ -305,52 +305,52 @@
   @media(max-width:460px){ .mo-kpis{grid-template-columns:1fr} }
 
   /* Chart shell */
-  .mo-chart{margin:16px 0 8px;padding:20px 20px 16px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .mo-chart{margin:16px 0 8px;padding:20px 20px 16px;background:linear-gradient(180deg,#f5f9ff,#eef5ff);
+    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .mo-chart figcaption{margin:0 0 2px;font-size:15px;font-weight:800;color:var(--navy)}
   .mo-chart .cap{font-size:12px;color:var(--muted);margin:0 0 12px}
   .mo-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 10px;padding:0;list-style:none}
   .mo-legend li{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink)}
-  .mo-legend .k{width:18px;height:0;border-top:3px solid var(--purple-deep);border-radius:2px;flex:none}
-  .mo-legend .k.fc{border-top-style:dashed;border-color:var(--purple-soft)}
-  .mo-legend .k.by{width:0;height:14px;border-top:0;border-left:2px dashed var(--purple);flex:none}
+  .mo-legend .k{width:18px;height:0;border-top:3px solid var(--blue-deep);border-radius:2px;flex:none}
+  .mo-legend .k.fc{border-top-style:dashed;border-color:var(--blue-soft)}
+  .mo-legend .k.by{width:0;height:14px;border-top:0;border-left:2px dashed var(--blue);flex:none}
 
   .mo-plotwrap{position:relative}
   .mo-plotwrap svg{display:block;width:100%;height:auto;overflow:visible}
   /* geometry (font-size, stroke-width, dash) is set per breakpoint as SVG attributes in JS */
-  .mo-grid{stroke:#e9e2f7;stroke-width:1}
-  .mo-axis{fill:#a99fc4}
+  .mo-grid{stroke:#dbe7f7;stroke-width:1}
+  .mo-axis{fill:#94a8c9}
   .mo-xlab{fill:var(--muted);font-weight:600}
   .mo-area-h{fill:url(#moHistFill)}
   .mo-area-f{fill:url(#moFcstFill)}
-  .mo-line-h{fill:none;stroke:var(--purple-deep);stroke-linecap:round;stroke-linejoin:round}
-  .mo-line-f{fill:none;stroke:var(--purple-soft);stroke-linecap:round;stroke-linejoin:round}
+  .mo-line-h{fill:none;stroke:var(--blue-deep);stroke-linecap:round;stroke-linejoin:round}
+  .mo-line-f{fill:none;stroke:var(--blue-soft);stroke-linecap:round;stroke-linejoin:round}
   .mo-dot{fill:#fff;stroke-width:2.4;transition:r .12s ease}
-  .mo-dot.h{stroke:var(--purple-deep)}
-  .mo-dot.f{stroke:var(--purple-soft)}
-  .mo-base{stroke:var(--purple);stroke-width:1.5;stroke-dasharray:5 5}
-  .mo-baselab{fill:var(--purple);font-weight:800}
-  .mo-callout{fill:var(--purple-deep);font-weight:800}
-  .mo-callout.f{fill:var(--purple-mid)}
+  .mo-dot.h{stroke:var(--blue-deep)}
+  .mo-dot.f{stroke:var(--blue-soft)}
+  .mo-base{stroke:var(--blue);stroke-width:1.5;stroke-dasharray:5 5}
+  .mo-baselab{fill:var(--blue);font-weight:800}
+  .mo-callout{fill:var(--blue-deep);font-weight:800}
+  .mo-callout.f{fill:var(--blue-mid)}
   .mo-badge rect{fill:#fff;stroke:var(--line)}
-  .mo-badge text{font-weight:800;fill:var(--purple-deep)}
-  .mo-badge.f text{fill:var(--purple-mid)}
+  .mo-badge text{font-weight:800;fill:var(--blue-deep)}
+  .mo-badge.f text{fill:var(--blue-mid)}
   .mo-hit{fill:transparent;cursor:pointer}
   .mo-hit:focus{outline:none}
-  .mo-hit:focus-visible{outline:2px solid var(--purple);outline-offset:-2px}
+  .mo-hit:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
   .mo-tip{position:absolute;z-index:9;background:rgba(20,14,32,.94);color:#fff;border-radius:9px;
     padding:8px 11px;font-size:12px;line-height:1.5;white-space:nowrap;pointer-events:none;
     box-shadow:0 10px 24px rgba(0,0,0,.32);opacity:0;transform:translate(-50%,-118%);
     transition:opacity .14s ease}
   .mo-tip.on{opacity:1}
   .mo-tip .y{font-weight:800;margin-bottom:2px}
-  .mo-tip .v{color:var(--purple-soft);font-weight:800}
+  .mo-tip .v{color:var(--blue-soft);font-weight:800}
   .mo-tip .s{color:rgba(255,255,255,.7);font-size:11px}
   .mo-chart .note{font-size:11.5px;color:var(--muted);margin:12px 0 0}
   .mo-data{margin:10px 0 0}
-  .mo-data summary{font-size:12.5px;font-weight:700;color:var(--purple-deep);cursor:pointer;
+  .mo-data summary{font-size:12.5px;font-weight:700;color:var(--blue-deep);cursor:pointer;
     padding:6px 0;list-style:revert}
-  .mo-data summary:hover{color:var(--purple)}
+  .mo-data summary:hover{color:var(--blue)}
   .mo-data table.rd{margin:8px 0 2px;font-size:13px}
   .mo-data table.rd th,.mo-data table.rd td{padding:7px 10px}
   .mo-tablescroll{overflow-x:auto}
@@ -358,23 +358,23 @@
   /* Insight / outlook cards */
   .mo-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0 6px;padding:0;list-style:none}
   .mo-cards.two{grid-template-columns:repeat(2,1fr)}
-  .mo-card{background:linear-gradient(180deg,#fbfaff,#f5f2ff);border:1px solid var(--line);
-    border-radius:12px;padding:16px 16px 17px;box-shadow:0 6px 18px rgba(76,29,149,.08);
+  .mo-card{background:linear-gradient(180deg,#f5f9ff,#eef5ff);border:1px solid var(--line);
+    border-radius:12px;padding:16px 16px 17px;box-shadow:0 6px 18px rgba(14,58,143,.08);
     transition:transform .16s ease,box-shadow .16s ease}
-  .mo-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(76,29,149,.18)}
+  .mo-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(14,58,143,.18)}
   .mo-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(150deg,#7c5cf0,#4c2c93);color:#fff;margin-bottom:11px;
-    box-shadow:0 4px 12px rgba(76,29,149,.24)}
+    background:linear-gradient(150deg,#3b82f6,#234a86);color:#fff;margin-bottom:11px;
+    box-shadow:0 4px 12px rgba(14,58,143,.24)}
   .mo-ico svg{width:18px;height:18px;display:block}
-  .mo-card h5{margin:0 0 7px;font-size:14px;font-weight:800;color:var(--purple-deep)}
+  .mo-card h5{margin:0 0 7px;font-size:14px;font-weight:800;color:var(--blue-deep)}
   .mo-card p{margin:0;font-size:13px;line-height:1.6;color:var(--ink)}
-  .mo-card .stat{display:inline-block;font-size:12px;font-weight:800;color:var(--purple-deep);
-    background:#efeafe;border:1px solid #ddd6fe;border-radius:6px;padding:2px 8px;margin-bottom:8px}
+  .mo-card .stat{display:inline-block;font-size:12px;font-weight:800;color:var(--blue-deep);
+    background:#e6f0ff;border:1px solid #cfe0fb;border-radius:6px;padding:2px 8px;margin-bottom:8px}
   @media(max-width:860px){ .mo-cards{grid-template-columns:1fr 1fr} }
   @media(max-width:560px){ .mo-cards,.mo-cards.two{grid-template-columns:1fr} }
 
   .mo-lede{font-size:15px;color:#3a3f52}
-  .mo-lede strong{color:var(--purple-deep)}
+  .mo-lede strong{color:var(--blue-deep)}
   .mo-vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
     clip:rect(0 0 0 0);white-space:nowrap;border:0}
   @media(prefers-reduced-motion:reduce){
@@ -384,8 +384,8 @@
   /* ================= EXTRA COMPONENTS (full-report sections) ================= */
 
   /* Tiered impact grid (Drivers vs Constraints, by degree of impact) */
-  .tier-wrap{margin:18px 0 8px;padding:18px 20px 20px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .tier-wrap{margin:18px 0 8px;padding:18px 20px 20px;background:linear-gradient(180deg,#f5f9ff,#eef5ff);
+    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .tier-heads{display:grid;grid-template-columns:96px 1fr 1fr;gap:12px;margin-bottom:10px}
   .tier-heads .h{font-size:12px;font-weight:800;text-align:center;text-transform:uppercase;letter-spacing:.04em}
   .tier-heads .h.drv{color:#1d4ed8}
@@ -396,13 +396,13 @@
   .tier-col{display:flex;flex-direction:column;gap:8px}
   .tier-chip{background:#fff;border:1.5px solid #c7d2fe;border-radius:10px;padding:9px 12px;font-size:12.5px;
     color:var(--ink);text-align:center;font-weight:700;transition:transform .15s ease,box-shadow .15s ease}
-  .tier-chip:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(76,29,149,.14)}
+  .tier-chip:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(14,58,143,.14)}
   .tier-chip.con{border-color:#fecdd3}
   @media(max-width:640px){ .tier-row,.tier-heads{grid-template-columns:52px 1fr 1fr;gap:7px} .tier-chip{font-size:11.5px;padding:7px} .tier-lab{font-size:9.5px;padding:4px} }
 
   /* SWOT quadrant */
   .swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:18px 0 8px;border-radius:14px;
-    overflow:hidden;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+    overflow:hidden;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .swot-box{padding:18px 20px;background:#f4f6fb}
   .swot-box.w{background:#fdf3f3}
   .swot-box.o{background:#f2f8f3}
@@ -417,14 +417,14 @@
   @media(max-width:640px){ .swot-grid{grid-template-columns:1fr} }
 
   /* Porter's Five Forces */
-  .porter-wrap{margin:18px 0 8px;padding:20px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .porter-wrap{margin:18px 0 8px;padding:20px;background:linear-gradient(180deg,#f5f9ff,#eef5ff);
+    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .porter-center{text-align:center;margin:0 0 16px}
   .porter-center .lab{font-size:13px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.04em}
   .porter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   .porter-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;
     transition:transform .15s ease,box-shadow .15s ease}
-  .porter-card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(76,29,149,.14)}
+  .porter-card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(14,58,143,.14)}
   .porter-card h6{margin:0 0 8px;font-size:12px;font-weight:800;color:var(--navy)}
   .porter-card p{margin:0;font-size:11.5px;color:var(--muted);line-height:1.5}
   .lvl{display:inline-block;font-size:11px;font-weight:800;padding:3px 11px;border-radius:14px;margin-bottom:8px}
@@ -435,19 +435,19 @@
   @media(max-width:460px){ .porter-grid{grid-template-columns:1fr} }
 
   /* Horizontal bar list (rankings / shares) */
-  .barlist{margin:16px 0 8px;padding:18px 20px;background:linear-gradient(180deg,#fbfaff,#f5f2ff);
-    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .barlist{margin:16px 0 8px;padding:18px 20px;background:linear-gradient(180deg,#f5f9ff,#eef5ff);
+    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .barlist h6{margin:0 0 4px;font-size:14px;font-weight:800;color:var(--navy)}
   .barlist .bl-cap{font-size:11.5px;color:var(--muted);margin:0 0 14px}
   .bl-item{margin:12px 0}
   .bl-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13px;margin-bottom:5px}
   .bl-top .nm{font-weight:700;color:var(--navy)}
   .bl-top .sub{font-size:11px;color:var(--muted);margin-left:5px;font-weight:500}
-  .bl-top .v{font-weight:800;color:var(--purple-deep);white-space:nowrap}
-  .bl-track{height:11px;border-radius:6px;background:#ece7f7;overflow:hidden}
-  .bl-fill{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#8663ff,#6d28d9);
+  .bl-top .v{font-weight:800;color:var(--blue-deep);white-space:nowrap}
+  .bl-track{height:11px;border-radius:6px;background:#e2ecf9;overflow:hidden}
+  .bl-fill{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#5b9bff,#1d54c9);
     transition:width 1s cubic-bezier(.22,1,.36,1)}
-  .bl-fill.alt{background:linear-gradient(90deg,#5b6ee0,#4a52c8)}
+  .bl-fill.alt{background:linear-gradient(90deg,#3f6fe0,#2f56c0)}
   .bl-fill.gold{background:linear-gradient(90deg,#f2c14e,#d99a1b)}
   .reveal.in .bl-fill{width:var(--w)}
 
@@ -455,21 +455,21 @@
   .tl{margin:16px 0 8px;padding:4px 0 4px 4px;border-left:2px solid var(--line)}
   .tl-item{position:relative;padding:6px 0 18px 22px}
   .tl-item::before{content:"";position:absolute;left:-7px;top:9px;width:12px;height:12px;border-radius:50%;
-    background:var(--purple);box-shadow:0 0 0 3px #fff}
-  .tl-item .dt{font-size:12px;font-weight:800;color:var(--purple-deep);margin-bottom:3px}
+    background:var(--blue);box-shadow:0 0 0 3px #fff}
+  .tl-item .dt{font-size:12px;font-weight:800;color:var(--blue-deep);margin-bottom:3px}
   .tl-item p{margin:0;font-size:13.5px;color:var(--ink);line-height:1.6}
 
   /* FAQ (Key Questions Answered) */
   .faq{margin:16px 0 8px}
-  .faq details{background:linear-gradient(180deg,#fbfaff,#f5f2ff);border:1px solid var(--line);border-radius:10px;
-    padding:12px 16px;margin:8px 0;box-shadow:0 4px 12px rgba(76,29,149,.06)}
+  .faq details{background:linear-gradient(180deg,#f5f9ff,#eef5ff);border:1px solid var(--line);border-radius:10px;
+    padding:12px 16px;margin:8px 0;box-shadow:0 4px 12px rgba(14,58,143,.06)}
   .faq summary{font-size:14px;font-weight:700;color:var(--navy);cursor:pointer;list-style:revert}
-  .faq summary:hover{color:var(--purple)}
+  .faq summary:hover{color:var(--blue)}
   .faq p{margin:10px 0 2px;font-size:13.5px;color:var(--ink);line-height:1.6}
 
   /* Company / attribute cards */
   .co-wrap{margin:18px 0 4px}
-  .co-name{font-size:15px;font-weight:800;color:var(--purple-deep);margin:22px 0 4px}
+  .co-name{font-size:15px;font-weight:800;color:var(--blue-deep);margin:22px 0 4px}
 
   @media(prefers-reduced-motion:reduce){
     .bl-fill{transition:none}
@@ -485,8 +485,8 @@
     <div class="eyebrow">PharmaHub &middot; Obesity &amp; Metabolic Therapeutics &middot; Syndicated Research</div>
     <h1>Global Obesity Market</h1>
     <p class="subtitle">
-      A rapidly re-rating obesity-treatment category - spanning pharmacotherapy, bariatric surgery and
-      nutritional products - driven by breakthrough GLP-1 receptor agonist efficacy, expanding insurance
+      A rapidly re-rating obesity-treatment category, spanning pharmacotherapy, bariatric surgery and
+      nutritional products, driven by breakthrough GLP-1 receptor agonist efficacy, expanding insurance
       and reimbursement coverage, and an accelerating clinical pipeline, with the United States leading and
       Asia Pacific among the fastest to grow.
     </p>
@@ -509,7 +509,7 @@
       health-system strategy teams, bariatric-surgery and medical-device investors, and healthcare
       strategy leaders who require a rigorous, evidence-based view of market size, growth trajectory,
       competitive structure, and the clinical, epidemiological and regulatory forces reshaping the
-      obesity-treatment continuum - pharmacotherapy, bariatric surgery and nutritional products - across
+      obesity-treatment continuum (pharmacotherapy, bariatric surgery and nutritional products) across
       the 2019-2035 study period. The market was valued at approximately
       <strong>USD 18.61 billion in 2025</strong> and is projected to reach roughly
       <strong>USD 48.71 billion by 2035</strong>, expanding at a CAGR of about
@@ -541,7 +541,7 @@
         <div class="foot">base-case trajectory</div>
       </div>
       <div class="pane detail"><div class="dbox">
-        A ~$30.1B gain over ten years - driven by GLP-1 receptor agonist adoption, oral formulations and
+        A ~$30.1B gain over ten years, driven by GLP-1 receptor agonist adoption, oral formulations and
         expanding reimbursement, not epidemiology alone.
       </div></div>
     </div>
@@ -623,16 +623,16 @@
         <tr><td><b>Currency &amp; real terms</b></td><td>All values are stated in <b>current USD</b>; forecast-year market sizes are presented in real terms, with no inflation separately layered onto reported values.</td></tr>
         <tr><td><b>Year convention</b></td><td>The <b>calendar year</b> is used for market estimation, while the <b>fiscal year</b> is used for company financial data.</td></tr>
         <tr><td><b>Rounding</b></td><td>All figures are rounded to the nearest decimal point; minor variances between totals and the sum of parts may occur as a result.</td></tr>
-        <tr><td><b>Market definition</b></td><td>The global obesity market covers the commercial ecosystem for diagnosis, treatment and management of obesity - prescription and OTC pharmacotherapy, bariatric/metabolic surgery, and nutritional / weight-management products.</td></tr>
+        <tr><td><b>Market definition</b></td><td>The global obesity market covers the commercial ecosystem for diagnosis, treatment and management of obesity: prescription and OTC pharmacotherapy, bariatric/metabolic surgery, and nutritional / weight-management products.</td></tr>
         <tr><td><b>Regulatory continuity</b></td><td>Existing frameworks (FDA, EMA, PMDA, CDSCO) are assumed to remain broadly in force, with reimbursement policy evolving along currently announced trajectories (e.g., U.S. Medicare from July 2026, France from June 2026) absent a major discontinuity.</td></tr>
       </tbody>
     </table>
 
-    <h3 class="subh reveal">Report Coverage - Key Segmentation and Scope</h3>
+    <h3 class="subh reveal">Report Coverage: Key Segmentation and Scope</h3>
 
     <h3 class="plainh reveal">Scope</h3>
     <p class="reveal">
-      This study examines the global obesity market across the complete treatment continuum - from
+      This study examines the global obesity market across the complete treatment continuum, from
       pharmacotherapy (GLP-1 receptor agonists, combination therapies, appetite suppressants) through
       bariatric and metabolic surgery to nutritional and weight-management products. The analysis
       quantifies market size and growth for the base year 2025, with historical context (2019-2025) and
@@ -697,7 +697,7 @@
     </table>
     <p class="reveal">
       Beyond sizing and segmentation, the study covers a comprehensive clinical disease overview, market
-      dynamics - opportunities, drivers, constraints, SWOT, PESTEL and Porter's Five Forces analysis -
+      dynamics (opportunities, drivers, constraints, SWOT, PESTEL and Porter's Five Forces analysis),
       cost of treatment, value-chain analysis, clinical trials and pipeline assessment, patent and funding
       analysis, and a detailed supplier landscape with company profiling.
     </p>
@@ -713,7 +713,7 @@
     <!-- ===== 5-STEP METHODOLOGY FLOW ===== -->
     <div class="flowcard reveal">
       <div class="ft">
-        <h4>Research Methodology - Overview</h4>
+        <h4>Research Methodology: Overview</h4>
         <div class="sub2">From secondary research to a three-step validation protocol</div>
       </div>
       <div class="flow">
@@ -738,7 +738,7 @@
     </p>
 
     <div class="barlist reveal">
-      <h6>Primary Research - Interviews by Designation</h6>
+      <h6>Primary Research: Interviews by Designation</h6>
       <div class="bl-cap">Supply-side and demand-side respondents spanning the obesity treatment value chain</div>
       <div class="bl-item"><div class="bl-top"><span class="nm">Senior Managers / Managers</span><span class="v">30%</span></div><div class="bl-track"><div class="bl-fill" style="--w:30%"></div></div></div>
       <div class="bl-item"><div class="bl-top"><span class="nm">VPs / Directors</span><span class="v">20%</span></div><div class="bl-track"><div class="bl-fill" style="--w:20%"></div></div></div>
@@ -751,8 +751,8 @@
     <h3 class="subhh reveal">Data Validation</h3>
     <p class="reveal">
       Market sizing and forecasting in this report combine two complementary estimation approaches. The
-      bottom-up approach aggregates revenue across each of the market's constituent segments - drugs, surgery
-      and nutritional products - at a country level, drawing on primary interviews with physicians, payers
+      bottom-up approach aggregates revenue across each of the market's constituent segments (drugs, surgery
+      and nutritional products) at a country level, drawing on primary interviews with physicians, payers
       and industry executives alongside industry reports. The top-down approach instead begins with the
       disclosed or estimated revenue of key market participants, such as Novo Nordisk and Eli Lilly, drawn
       from annual reports, investor presentations and primary interviews, and works downward to estimate
@@ -761,14 +761,14 @@
       segments.
     </p>
     <ul class="dyn reveal">
-      <li><b>Triangulation</b> - top-down (total market to sub-segment) and bottom-up (company-level revenue aggregation) estimates are cross-checked against macroeconomic indicators and regulatory filings.</li>
-      <li><b>Internal quality control</b> - a dedicated team reviews every figure for internal consistency before it advances to expert review.</li>
-      <li><b>Industry expert &amp; KOL validation</b> - estimates are checked against the judgement of industry experts and key opinion leaders.</li>
-      <li><b>Analytical cross-checking</b> - multiple data-analysis and cross-checking models are applied before a data point is considered final.</li>
+      <li><b>Triangulation</b>: top-down (total market to sub-segment) and bottom-up (company-level revenue aggregation) estimates are cross-checked against macroeconomic indicators and regulatory filings.</li>
+      <li><b>Internal quality control</b>: a dedicated team reviews every figure for internal consistency before it advances to expert review.</li>
+      <li><b>Industry expert &amp; KOL validation</b>: estimates are checked against the judgement of industry experts and key opinion leaders.</li>
+      <li><b>Analytical cross-checking</b>: multiple data-analysis and cross-checking models are applied before a data point is considered final.</li>
     </ul>
     <p class="reveal">
       Only once these three layers of validation are complete is a data point considered final and included
-      in this report - after which the report is compiled, peer-reviewed, revised, finalised and presented to
+      in this report, after which the report is compiled, peer-reviewed, revised, finalised and presented to
       stakeholders.
     </p>
 
@@ -816,7 +816,7 @@
       </div>
       <div class="kbox">
         <h5>Key Takeaways</h5>
-        <p>A USD 18.61B (2025) market growing to USD 48.71B by 2035 at 10.10% CAGR - drugs lead today at
+        <p>A USD 18.61B (2025) market growing to USD 48.71B by 2035 at 10.10% CAGR: drugs lead today at
         ~64% share and are set to approach 72% by 2035 as GLP-1 therapy continues to take share.</p>
       </div>
     </div>
@@ -824,7 +824,7 @@
     <h4 class="khead reveal">Key Drivers</h4>
     <ul class="dyn reveal">
       <li>Rising prevalence of obesity: The single most important structural driver of this market is the sheer scale and continued growth of the underlying disease population. With over 1 billion people living with obesity globally and prevalence still climbing in both developed and emerging markets, the addressable patient population for treatment continues to expand faster than most other chronic disease categories.</li>
-      <li>GLP-1 and incretin efficacy breakthrough: The clinical performance of modern incretin therapies, delivering 15-28% body-weight reduction, has transformed obesity from a condition managed primarily through lifestyle counselling and surgery into one increasingly addressed through chronic pharmacological management - comparable in ambition to how statins transformed the management of hyperlipidaemia.</li>
+      <li>GLP-1 and incretin efficacy breakthrough: The clinical performance of modern incretin therapies, delivering 15-28% body-weight reduction, has transformed obesity from a condition managed primarily through lifestyle counselling and surgery into one increasingly addressed through chronic pharmacological management, comparable in ambition to how statins transformed the management of hyperlipidaemia.</li>
       <li>Expanding reimbursement and access: The United States' extension of Medicare coverage to obesity GLP-1 therapy from July 1, 2026, and France's landmark reimbursement of Wegovy and Mounjaro from June 15, 2026 at 65-100% depending on comorbidity status, are expected to be followed by further coverage expansion across other European markets over the forecast period.</li>
       <li>Digital health and direct-to-consumer models: Digital health platforms integrating telehealth, pharmacy fulfilment and adherence support, such as Eli Lilly's LillyDirect, are lowering the friction associated with initiating and continuing obesity therapy, while employer-sponsored coverage programmes are emerging as an important access channel.</li>
     </ul>
@@ -860,8 +860,8 @@
       <h3 class="subh reveal">Market Snapshot</h3>
       <p class="mo-lede reveal">
         The global obesity market grew from an estimated
-        <strong>USD 8.50 billion in 2019</strong> to <strong>USD 18.61 billion in 2025</strong> - a historical
-        CAGR of approximately <strong>14.0%</strong> - and is projected to reach <strong>USD 48.71 billion by 2035</strong>
+        <strong>USD 8.50 billion in 2019</strong> to <strong>USD 18.61 billion in 2025</strong>, a historical
+        CAGR of approximately <strong>14.0%</strong>, and is projected to reach <strong>USD 48.71 billion by 2035</strong>
         at a forward CAGR of <strong>10.10%</strong>.
       </p>
 
@@ -907,13 +907,13 @@
         step-change in category demand that reshaped what had previously been a market weighted toward
         bariatric surgery and nutritional products. Looking ahead, this forward-looking growth rate is more
         moderate than the historical rate, reflecting a market transitioning from an early, high-velocity
-        adoption phase into a larger, more mature base - still expanding briskly as reimbursement widens,
+        adoption phase into a larger, more mature base, still expanding briskly as reimbursement widens,
         oral formulations scale, and next-generation multi-receptor agonists enter the market.
       </p>
 
       <figure class="mo-chart reveal" id="moChart">
         <figcaption>Global Obesity Market Size, 2019-2035 (USD Billion)</figcaption>
-        <p class="cap">Historical and forecast trend across the treatment continuum - drugs, surgery and nutritional products</p>
+        <p class="cap">Historical and forecast trend across the treatment continuum: drugs, surgery and nutritional products</p>
         <ul class="mo-legend">
           <li><span class="k" aria-hidden="true"></span> Historical (2019-2025)</li>
           <li><span class="k fc" aria-hidden="true"></span> Forecast (2026-2035)</li>
@@ -957,7 +957,7 @@
           </div>
           <h5>A multi-billion-dollar pharmacotherapy opportunity</h5>
           <p>Independent industry analysis places global obesity medicine sales (list price) at approximately
-            USD 66 billion in 2025, rising toward USD 92 billion in 2026 - underscoring the scale of the
+            USD 66 billion in 2025, rising toward USD 92 billion in 2026, underscoring the scale of the
             pharmacotherapy opportunity specifically, alongside the broader treatment ecosystem quantified in
             this report.</p>
         </li>
@@ -978,7 +978,7 @@
       <h3 class="subh reveal">Market Outlook</h3>
       <p class="mo-lede reveal">
         Growth of <strong>10.10%</strong> a year between 2026 and 2035 takes the market to approximately
-        <strong>USD 48.71 billion</strong> - propelled less by further efficacy breakthroughs than by how
+        <strong>USD 48.71 billion</strong>, propelled less by further efficacy breakthroughs than by how
         quickly access barriers are dismantled.
       </p>
       <ul class="mo-cards two reveal">
@@ -993,7 +993,7 @@
           <p>The acceleration reflects the market's transition from an injectable-led drug category into a
             broader treatment platform, where oral GLP-1 formulations, next-generation multi-receptor
             agonists and label expansion into cardiometabolic comorbidities are widening both the addressable
-            population and the average revenue captured per patient - drugs' share of total market value is
+            population and the average revenue captured per patient. Drugs' share of total market value is
             estimated to rise from ~46% in 2019 to ~64% in 2025 and approach ~72% by 2035.</p>
         </li>
         <li class="mo-card">
@@ -1113,7 +1113,7 @@
     <p class="reveal">
       Adipose tissue is now understood as a metabolically active endocrine organ rather than a passive energy
       store. In obesity, adipocyte hypertrophy and hyperplasia are accompanied by a shift in the tissue's
-      secretory profile - termed adipokines - including leptin, adiponectin, resistin and visfatin, alongside
+      secretory profile, termed adipokines, including leptin, adiponectin, resistin and visfatin, alongside
       pro-inflammatory cytokines such as tumour necrosis factor-alpha, interleukin-6 and monocyte
       chemoattractant protein-1. This shift drives a state of chronic, low-grade systemic inflammation that is
       now considered central to obesity's downstream metabolic consequences.
@@ -1137,7 +1137,7 @@
       <li><b>Step 4:</b> Where indicated, assess body composition directly via DEXA scanning or bioelectrical impedance analysis for a more precise measure than BMI alone.</li>
       <li><b>Step 5:</b> Evaluate for secondary or endocrine causes, including thyroid function and cortisol, in patients with atypical presentation or treatment-resistant weight gain.</li>
       <li><b>Step 6:</b> Apply a clinical staging framework, such as the Edmonton Obesity Staging System, to characterise disease severity beyond body size alone.</li>
-      <li><b>Step 7:</b> Assess eligibility for pharmacotherapy or bariatric surgery against established BMI-plus-comorbidity thresholds - typically a BMI of 30 or above, or 27 or above with a qualifying comorbidity, for pharmacotherapy, and a BMI of 35 with comorbidity or 40 alone for surgical intervention.</li>
+      <li><b>Step 7:</b> Assess eligibility for pharmacotherapy or bariatric surgery against established BMI-plus-comorbidity thresholds: typically a BMI of 30 or above, or 27 or above with a qualifying comorbidity, for pharmacotherapy, and a BMI of 35 with comorbidity or 40 alone for surgical intervention.</li>
     </ul>
 
     <h3 class="subh reveal">Diagnostic Tests</h3>
@@ -1181,7 +1181,7 @@
       Stigma remains a further, often underappreciated dimension of obesity's socioeconomic burden.
       Weight-based stigma in healthcare, workplace and social settings is well documented and is independently
       associated with reduced healthcare-seeking behaviour, poorer mental health outcomes and, paradoxically,
-      further weight gain through stress-related physiological and behavioural pathways - underscoring that
+      further weight gain through stress-related physiological and behavioural pathways, underscoring that
       addressing obesity's societal burden requires more than clinical or pharmacological intervention alone.
     </p>
 
@@ -1264,7 +1264,7 @@
       materially elevated risk of type 2 diabetes, cardiovascular disease, certain cancers and musculoskeletal
       disorders, and is linked to an estimated 4 million deaths annually worldwide. In the United States
       specifically, adult obesity prevalence climbed from roughly one in five adults in 1990 to <b>42.5%</b> in
-      2022 - equivalent to more than 107 million people - and a widely cited JAMA-published projection
+      2022, equivalent to more than 107 million people, and a widely cited JAMA-published projection
       suggests prevalence could approach 47% of U.S. adults by 2035 absent a material change in treatment
       uptake or prevention policy. Regional variation in prevalence is pronounced: WHO data shows overweight
       prevalence ranging from approximately 31% in the South-East Asia and African regions to 67% in the
@@ -1282,13 +1282,13 @@
       label-expansion strategy: Novo Nordisk's SELECT trial, demonstrating a 20% reduction in the risk of
       heart attack, stroke or cardiovascular death among overweight patients with semaglutide, and similar
       cardiometabolic and MASH-focused development programmes from Boehringer Ingelheim, Roche and others, are
-      each designed to reposition obesity therapy as cardiovascular and metabolic-disease prevention - a
+      each designed to reposition obesity therapy as cardiovascular and metabolic-disease prevention, a
       framing that materially strengthens the case for insurance reimbursement.
     </p>
     <p class="reveal">
       From a health-economic perspective, the direct medical costs associated with treating obesity-related
-      comorbidities - spanning diabetes management, cardiovascular intervention, joint replacement surgery and
-      cancer care - are estimated by public-health bodies to run into the hundreds of billions of dollars
+      comorbidities, spanning diabetes management, cardiovascular intervention, joint replacement surgery and
+      cancer care, are estimated by public-health bodies to run into the hundreds of billions of dollars
       annually across major economies, a burden that materially strengthens the argument payers and
       governments are increasingly willing to entertain: that upfront investment in effective obesity
       pharmacotherapy or surgery may be offset, over a sufficiently long time horizon, by avoided downstream
@@ -1308,7 +1308,7 @@
     </p>
 
     <div class="barlist reveal">
-      <h6>Obesity Drug Pipeline - Ranked by Reported Efficacy</h6>
+      <h6>Obesity Drug Pipeline: Ranked by Reported Efficacy</h6>
       <div class="bl-cap">Peak reported body-weight reduction in trials; next-generation multi-receptor agonists are pushing weight-loss ceilings well past 20%</div>
       <div class="bl-item"><div class="bl-top"><span><span class="nm">Retatrutide</span><span class="sub">Eli Lilly &middot; Phase III</span></span><span class="v">28.7%</span></div><div class="bl-track"><div class="bl-fill" style="--w:100%"></div></div></div>
       <div class="bl-item"><div class="bl-top"><span><span class="nm">CagriSema</span><span class="sub">Novo Nordisk &middot; Phase III</span></span><span class="v">22.7%</span></div><div class="bl-track"><div class="bl-fill" style="--w:79%"></div></div></div>
@@ -1365,7 +1365,7 @@
     <div class="co-name reveal">Pipeline Profile: Retatrutide (Eli Lilly and Company)</div>
     <table class="rd reveal">
       <tbody>
-        <tr><td><b>Mechanism of Action</b></td><td>Triple agonist - GLP-1, GIP and glucagon receptors</td></tr>
+        <tr><td><b>Mechanism of Action</b></td><td>Triple agonist: GLP-1, GIP and glucagon receptors</td></tr>
         <tr><td><b>Highest Developmental Phase</b></td><td>Phase III (pivotal trial successfully completed)</td></tr>
         <tr><td><b>Headline Efficacy</b></td><td>Mean weight loss of 28.7% at 68 weeks (highest reported to date for any obesity therapeutic); also demonstrated substantial relief from osteoarthritis-related pain</td></tr>
         <tr><td><b>Route of Administration</b></td><td>Subcutaneous injection</td></tr>
@@ -1398,7 +1398,7 @@
     <div class="co-name reveal">Pipeline Profile: CT-388 / Enicepatide (F. Hoffmann-La Roche Ltd)</div>
     <table class="rd reveal">
       <tbody>
-        <tr><td><b>Mechanism of Action</b></td><td>Dual agonist - GLP-1 and GIP receptors</td></tr>
+        <tr><td><b>Mechanism of Action</b></td><td>Dual agonist: GLP-1 and GIP receptors</td></tr>
         <tr><td><b>Highest Developmental Phase</b></td><td>Phase II</td></tr>
         <tr><td><b>Headline Efficacy</b></td><td>22.5% greater weight loss than placebo at 48 weeks (highest Phase II dose)</td></tr>
         <tr><td><b>Route of Administration</b></td><td>Subcutaneous injection</td></tr>
@@ -1491,8 +1491,8 @@
       </div>
     </div>
     <p class="reveal">
-      Read together, the SWOT framework points to a market whose internal strengths - chiefly clinical
-      efficacy and pipeline depth - are structurally sound and unlikely to be disrupted in the near term,
+      Read together, the SWOT framework points to a market whose internal strengths, chiefly clinical
+      efficacy and pipeline depth, are structurally sound and unlikely to be disrupted in the near term,
       while its principal vulnerabilities cluster around affordability and access rather than science. The
       most consequential opportunities and threats are, notably, largely policy-driven rather than
       technology-driven: reimbursement expansion (an opportunity) and pricing intervention or patent-cliff
@@ -1515,8 +1515,8 @@
     <p class="reveal">
       Of the six PESTEL dimensions, political and legal factors are currently exerting the most direct
       influence on near-term company-level outcomes, through pricing policy in the United States and
-      reimbursement decisions across Europe, while technological factors - particularly the maturation of
-      oral peptide-delivery platforms - are likely to be the most consequential dimension over the second half
+      reimbursement decisions across Europe, while technological factors, particularly the maturation of
+      oral peptide-delivery platforms, are likely to be the most consequential dimension over the second half
       of the forecast period.
     </p>
 
@@ -1552,8 +1552,8 @@
     <p class="reveal">
       Competitive rivalry within the obesity drug market is high, concentrated principally between Eli Lilly
       and Novo Nordisk, though intensifying as Roche, Pfizer, Amgen and a wave of Chinese biotechnology
-      entrants advance competing incretin franchises. The bargaining power of buyers - governments, PBMs and
-      insurers - is high and rising, reflected in Most Favoured Nation pricing pressure and mandated
+      entrants advance competing incretin franchises. The bargaining power of buyers, governments, PBMs and
+      insurers, is high and rising, reflected in Most Favoured Nation pricing pressure and mandated
       list-price reductions. Supplier bargaining power is moderate to high given the concentration of peptide
       manufacturing and fill-finish capacity among a small number of contract manufacturers. The threat of new
       entrants is moderate, tempered by the scale of clinical development and manufacturing investment
@@ -1567,7 +1567,7 @@
       <li><b>Expanding Application Areas:</b> Label expansion into cardiovascular risk reduction, obstructive sleep apnoea and MASH is widening the clinical and commercial rationale for GLP-1 therapy beyond weight loss alone. Each additional approved indication effectively creates a new reimbursement conversation in markets, such as Germany, where obesity alone does not currently qualify for statutory coverage.</li>
       <li><b>Disease Prevalence:</b> Continued growth in the global obesity-affected population, particularly in emerging markets undergoing rapid nutrition transition such as India and parts of Southeast Asia, sustains long-run structural demand independent of any single product cycle or reimbursement decision.</li>
       <li><b>Physician and Patient Acceptance:</b> Growing recognition of obesity as a chronic, relapsing disease requiring long-term management, rather than a failure of willpower, is improving prescribing confidence and patient willingness to initiate and continue therapy.</li>
-      <li><b>Market Dynamics:</b> The entry of oral formulations and, over time, lower-cost follow-on products is expected to progressively lower the effective price per treated patient even as overall market value continues to expand on volume - a dynamic that closely mirrors the historical adoption curve of statins and SGLT2 inhibitors.</li>
+      <li><b>Market Dynamics:</b> The entry of oral formulations and, over time, lower-cost follow-on products is expected to progressively lower the effective price per treated patient even as overall market value continues to expand on volume, a dynamic that closely mirrors the historical adoption curve of statins and SGLT2 inhibitors.</li>
     </ul>
 
     <h3 class="subh reveal">Key Price Indicators</h3>
@@ -1596,7 +1596,7 @@
 
     <div class="flowcard reveal">
       <div class="ft">
-        <h4>Obesity Market - Value Chain Overview</h4>
+        <h4>Obesity Market: Value Chain Overview</h4>
         <div class="sub2">Manufacturing capacity, not clinical demand, has been the binding constraint on market growth through 2022-2025</div>
       </div>
       <div class="flow">
@@ -1627,8 +1627,8 @@
       back coverage in response to cost pressure. Public-health advocacy organisations, including the World
       Obesity Federation, continue to run structured awareness initiatives, such as its "Changing Perspectives:
       Let's Talk About Obesity" campaign, aimed at reducing stigma and encouraging recognition of obesity as a
-      chronic disease. Finally, the "consumerisation" of obesity care - direct-to-consumer telehealth
-      platforms, employer-direct purchasing arrangements, and manufacturer-run patient support programmes - is
+      chronic disease. Finally, the "consumerisation" of obesity care, encompassing direct-to-consumer telehealth
+      platforms, employer-direct purchasing arrangements, and manufacturer-run patient support programmes, is
       reshaping the traditional physician-payer-pharmacy value chain and is expected to remain one of the
       defining structural trends of the market through the remainder of this decade.
     </p>
@@ -1642,7 +1642,7 @@
     </p>
 
     <div class="barlist reveal">
-      <h6>GLP-1 Obesity Therapy - Indicative Monthly Cost by Market</h6>
+      <h6>GLP-1 Obesity Therapy: Indicative Monthly Cost by Market</h6>
       <div class="bl-cap">Wide list-price dispersion across geographies shapes access, reimbursement policy and cross-border pricing debates</div>
       <div class="bl-item"><div class="bl-top"><span class="nm">United States (list price)</span><span class="v">$1,350</span></div><div class="bl-track"><div class="bl-fill" style="--w:100%"></div></div></div>
       <div class="bl-item"><div class="bl-top"><span class="nm">Denmark</span><span class="v">&asymp;$318</span></div><div class="bl-track"><div class="bl-fill alt" style="--w:24%"></div></div></div>
@@ -1667,8 +1667,8 @@
     <h3 class="sub reveal">Global Obesity Market Segmentation (2019-2035)</h3>
     <p class="reveal">
       This section presents a detailed, segment-wise historical and forecast analysis of the global obesity
-      market. Each segmentation dimension - type, route of administration, distribution channel and end user
-      - is analysed independently, since a given patient's treatment pathway typically involves a distinct
+      market. Each segmentation dimension, type, route of administration, distribution channel and end user,
+      is analysed independently, since a given patient's treatment pathway typically involves a distinct
       combination across all four dimensions.
     </p>
 
@@ -1735,7 +1735,7 @@
     </p>
     <div class="chart reveal">
       <div class="ct">
-        <h4>Route of Administration - Historical and Forecast Share</h4>
+        <h4>Route of Administration: Historical and Forecast Share</h4>
         <span class="cap">Oral GLP-1 therapies are rapidly narrowing the gap with injectable formulations</span>
       </div>
       <div class="legend">
@@ -1757,7 +1757,7 @@
     </p>
     <div class="chart reveal">
       <div class="ct">
-        <h4>Distribution Channel - Historical and Forecast Share (USD Value Basis)</h4>
+        <h4>Distribution Channel: Historical and Forecast Share (USD Value Basis)</h4>
         <span class="cap">Online / direct-to-consumer is the fastest-growing channel</span>
       </div>
       <div class="legend">
@@ -1796,7 +1796,7 @@
       </tbody>
     </table>
     <div class="barlist reveal">
-      <h6>Global Obesity Market by End User - 2025 vs 2035F</h6>
+      <h6>Global Obesity Market by End User: 2025 vs 2035F</h6>
       <div class="bl-cap">Hospitals retain leadership on multidisciplinary care; specialty clinics gain share as outpatient GLP-1 therapy scales</div>
       <div class="bl-item"><div class="bl-top"><span><span class="nm">Hospitals</span><span class="sub">2025</span></span><span class="v">39%</span></div><div class="bl-track"><div class="bl-fill" style="--w:39%"></div></div></div>
       <div class="bl-item"><div class="bl-top"><span><span class="nm">Hospitals</span><span class="sub">2035F</span></span><span class="v">42%</span></div><div class="bl-track"><div class="bl-fill" style="--w:42%"></div></div></div>
@@ -1827,7 +1827,7 @@
     </p>
 
     <div class="barlist reveal">
-      <h6>Global Obesity Market - Regional Revenue Share, 2025</h6>
+      <h6>Global Obesity Market: Regional Revenue Share, 2025</h6>
       <div class="bl-cap">North America accounts for roughly two-thirds of the market on FDA approvals and biopharma depth</div>
       <div class="bl-item"><div class="bl-top"><span class="nm">North America</span><span class="v">67.1%</span></div><div class="bl-track"><div class="bl-fill" style="--w:67.1%"></div></div></div>
       <div class="bl-item"><div class="bl-top"><span class="nm">Europe</span><span class="v">19.5%</span></div><div class="bl-track"><div class="bl-fill alt" style="--w:19.5%"></div></div></div>
@@ -1955,8 +1955,8 @@
     </p>
 
     <div class="ptrend reveal">
-      <h6>Obesity Market - Patent Filing Activity, 2018-2025</h6>
-      <div class="cap">Obesity / incretin-related patent filings (indicative count) - activity has more than doubled following the GLP-1 efficacy breakthrough</div>
+      <h6>Obesity Market: Patent Filing Activity, 2018-2025</h6>
+      <div class="cap">Obesity / incretin-related patent filings (indicative count): activity has more than doubled following the GLP-1 efficacy breakthrough</div>
       <div class="pbars">
         <div class="pcol"><div class="pv">48</div><div class="pbar" style="--h:18%"></div><div class="py">2018</div></div>
         <div class="pcol"><div class="pv">62</div><div class="pbar" style="--h:24%"></div><div class="py">2019</div></div>
@@ -1995,8 +1995,8 @@
     </p>
 
     <div class="ptrend reveal">
-      <h6>Obesity Market - Strategic Initiatives &amp; Dealmaking Momentum</h6>
-      <div class="cap">Major M&amp;A / partnership announcements per year (indicative count) - activity has accelerated sharply as large-cap pharma races to secure next-gen obesity assets</div>
+      <h6>Obesity Market: Strategic Initiatives &amp; Dealmaking Momentum</h6>
+      <div class="cap">Major M&amp;A / partnership announcements per year (indicative count): activity has accelerated sharply as large-cap pharma races to secure next-gen obesity assets</div>
       <div class="pbars">
         <div class="pcol"><div class="pv">2</div><div class="pbar" style="--h:25%"></div><div class="py">2022</div></div>
         <div class="pcol"><div class="pv">3</div><div class="pbar" style="--h:38%"></div><div class="py">2023</div></div>
@@ -2062,15 +2062,15 @@
       agencies that determine whether a therapy or device may be sold at all, and, in most markets outside the
       United States, a separate health-technology-assessment and pricing authority that determines whether,
       and at what price, that therapy will be reimbursed by public or statutory insurance. This report's
-      regional analysis illustrates how material a factor the second layer - reimbursement policy - has
+      regional analysis illustrates how material a factor the second layer, reimbursement policy, has
       become in determining actual patient access, often mattering more than the underlying speed of clinical
       approval itself.
     </p>
     <ul class="dyn reveal">
-      <li><b>United States - FDA:</b> The FDA regulates the approval of obesity pharmacotherapy and medical devices, and has approved a growing roster of GLP-1 and dual/triple-agonist therapies for chronic weight management since 2021. Following the resolution of branded-supply shortages in 2024-2025, the agency has shifted its regulatory focus toward closing the compounding pathway, with a further proposal in April 2026 to permanently exclude semaglutide, tirzepatide and liraglutide from the substances eligible for large-scale compounding.</li>
-      <li><b>Europe - EMA and National HTA Bodies:</b> The European Medicines Agency (EMA) and national health technology assessment bodies, such as France's Haute Autorite de Sante (HAS) and the UK's National Institute for Health and Care Excellence (NICE), govern both market authorisation and the reimbursement pathway, with national payers such as France's Comite Economique des Produits de Sante (CEPS) responsible for price negotiation.</li>
-      <li><b>Japan - PMDA:</b> The Pharmaceuticals and Medical Devices Agency (PMDA) governs approval, working alongside the national health insurance system's drug-pricing organisation to set reimbursed prices, typically at a discount to U.S. and, increasingly, European list prices.</li>
-      <li><b>India - CDSCO:</b> The Central Drugs Standard Control Organisation (CDSCO) oversees market authorisation; given the near-total absence of public reimbursement for obesity pharmacotherapy, affordability and out-of-pocket pricing, rather than regulatory approval timelines, are the principal gating factors for market expansion.</li>
+      <li><b>United States (FDA):</b> The FDA regulates the approval of obesity pharmacotherapy and medical devices, and has approved a growing roster of GLP-1 and dual/triple-agonist therapies for chronic weight management since 2021. Following the resolution of branded-supply shortages in 2024-2025, the agency has shifted its regulatory focus toward closing the compounding pathway, with a further proposal in April 2026 to permanently exclude semaglutide, tirzepatide and liraglutide from the substances eligible for large-scale compounding.</li>
+      <li><b>Europe (EMA and National HTA Bodies):</b> The European Medicines Agency (EMA) and national health technology assessment bodies, such as France's Haute Autorite de Sante (HAS) and the UK's National Institute for Health and Care Excellence (NICE), govern both market authorisation and the reimbursement pathway, with national payers such as France's Comite Economique des Produits de Sante (CEPS) responsible for price negotiation.</li>
+      <li><b>Japan (PMDA):</b> The Pharmaceuticals and Medical Devices Agency (PMDA) governs approval, working alongside the national health insurance system's drug-pricing organisation to set reimbursed prices, typically at a discount to U.S. and, increasingly, European list prices.</li>
+      <li><b>India (CDSCO):</b> The Central Drugs Standard Control Organisation (CDSCO) oversees market authorisation; given the near-total absence of public reimbursement for obesity pharmacotherapy, affordability and out-of-pocket pricing, rather than regulatory approval timelines, are the principal gating factors for market expansion.</li>
     </ul>
     <p class="reveal">
       Across all markets, a common regulatory theme is the increasing use of label expansion, particularly
@@ -2094,7 +2094,7 @@
     </p>
 
     <div class="barlist reveal">
-      <h6>Obesity Drug Market - Competitive Landscape, 2025</h6>
+      <h6>Obesity Drug Market: Competitive Landscape, 2025</h6>
       <div class="bl-cap">A Lilly-Novo Nordisk duopoly commands over 80% of branded obesity drug revenue</div>
       <div class="bl-item"><div class="bl-top"><span class="nm">Eli Lilly</span><span class="v">42%</span></div><div class="bl-track"><div class="bl-fill" style="--w:42%"></div></div></div>
       <div class="bl-item"><div class="bl-top"><span class="nm">Novo Nordisk</span><span class="v">39%</span></div><div class="bl-track"><div class="bl-fill alt" style="--w:39%"></div></div></div>
@@ -2113,10 +2113,10 @@
       large-cap challengers such as Roche and Pfizer.
     </p>
 
-    <h3 class="subhh reveal">Eli Lilly vs. Novo Nordisk - Obesity/Metabolic Segment Revenue</h3>
+    <h3 class="subhh reveal">Eli Lilly vs. Novo Nordisk: Obesity/Metabolic Segment Revenue</h3>
     <p class="reveal">Lilly's tirzepatide franchise (Mounjaro, Zepbound) is closing the gap with Novo's semaglutide franchise.</p>
     <table class="rd reveal">
-      <thead><tr><th>Year</th><th>Eli Lilly - Cardiometabolic Health</th><th>Novo Nordisk - Diabetes &amp; Obesity</th></tr></thead>
+      <thead><tr><th>Year</th><th>Eli Lilly: Cardiometabolic Health</th><th>Novo Nordisk: Diabetes &amp; Obesity</th></tr></thead>
       <tbody>
         <tr><td>2022</td><td>$8B</td><td>$22B</td></tr>
         <tr><td>2023</td><td>$14B</td><td>$28B</td></tr>
@@ -2187,8 +2187,8 @@
       approval of Foundayo (orforglipron), the first GLP-1 pill requiring no food or water restrictions,
       positions Lilly to lead the emerging oral-GLP-1 category, while its Phase III retatrutide programme
       underpins the company's next wave of growth. Lilly has simultaneously pursued an active acquisition
-      strategy - including deals for Orna Therapeutics, Centessa Pharmaceuticals, Kelonia Therapeutics and
-      Ajax Therapeutics - using its obesity-driven cash generation to diversify into adjacent modalities.
+      strategy, including deals for Orna Therapeutics, Centessa Pharmaceuticals, Kelonia Therapeutics and
+      Ajax Therapeutics, using its obesity-driven cash generation to diversify into adjacent modalities.
     </p>
 
     <div class="co-name reveal">F. Hoffmann-La Roche Ltd</div>
@@ -2234,14 +2234,14 @@
     <table class="rd reveal">
       <tbody>
         <tr><td><b>Headquarters</b></td><td>Thousand Oaks, California, United States</td></tr>
-        <tr><td><b>Key Products</b></td><td>MariTide (maridebart cafraglutide) - Phase III MARITIME programme</td></tr>
+        <tr><td><b>Key Products</b></td><td>MariTide (maridebart cafraglutide), Phase III MARITIME programme</td></tr>
         <tr><td><b>Recent Milestone</b></td><td>Phase II data showing up to approximately 20% body-weight reduction after one year in adults without type 2 diabetes, with once-monthly dosing</td></tr>
         <tr><td><b>Strategic Ecosystem</b></td><td>MARITIME programme extends the molecule into obesity-related sleep apnoea and cardiovascular disease, positioning MariTide as a differentiated, lower-frequency alternative to weekly incretin therapies</td></tr>
       </tbody>
     </table>
     <p class="reveal">
       Amgen has taken a deliberately contrarian mechanistic path with MariTide, activating the GLP-1 receptor
-      while blocking the GIP receptor - the opposite approach to tirzepatide's dual-agonism - betting that
+      while blocking the GIP receptor (the opposite approach to tirzepatide's dual-agonism), betting that
       this combination can deliver comparable or superior weight loss with the convenience of monthly, rather
       than weekly, dosing. If the Phase III MARITIME programme confirms this profile at scale, Amgen's
       existing biologics manufacturing infrastructure and commercial reach in cardiometabolic and inflammatory
@@ -2296,7 +2296,7 @@
       updates.
     </p>
     <ul class="dyn reveal">
-      <li><b>Obesity as Chronic Disease:</b> Specialists increasingly frame obesity management as a lifelong, relapsing-condition model analogous to hypertension or type 2 diabetes, rather than a course of treatment with a defined endpoint - a shift with material implications for how payers should evaluate the long-run cost-effectiveness of GLP-1 therapy.</li>
+      <li><b>Obesity as Chronic Disease:</b> Specialists increasingly frame obesity management as a lifelong, relapsing-condition model analogous to hypertension or type 2 diabetes, rather than a course of treatment with a defined endpoint, a shift with material implications for how payers should evaluate the long-run cost-effectiveness of GLP-1 therapy.</li>
       <li><b>Sequencing of Therapy:</b> A growing number of bariatric surgeons report using GLP-1 therapy pre-operatively to reduce surgical risk and post-operatively to consolidate weight loss and manage weight regain, reinforcing this report's view that pharmacotherapy and surgery are becoming complementary rather than purely substitutive pathways.</li>
       <li><b>Muscle Mass and Body Composition:</b> Clinicians consulted flagged preservation of lean muscle mass during rapid pharmacological weight loss as an emerging area of clinical concern and commercial opportunity, likely to shape the design of next-generation combination therapies and adjunctive resistance-training and nutritional protocols.</li>
       <li><b>Access as the Binding Constraint:</b> Across nearly every market covered in this study, specialists identified reimbursement and out-of-pocket cost, rather than drug supply or clinical evidence, as the primary barrier standing between current prescribing practice and the level of treatment that underlying epidemiological need would otherwise support.</li>
@@ -2342,7 +2342,7 @@
       breakthrough of GLP-1 and multi-receptor incretin therapies, which have driven the market from an
       estimated USD 8.5 billion in 2019 to USD 18.61 billion in 2025 and are projected to carry it to
       approximately USD 48.71 billion by 2035. The forward decade of growth will be defined less by further
-      efficacy breakthroughs - though retatrutide and CagriSema suggest more may be coming - and more by the
+      efficacy breakthroughs (though retatrutide and CagriSema suggest more may be coming) and more by the
       pace at which access barriers are dismantled: the transition to oral formulations, the expansion of
       reimbursement across Medicare and major European markets, and the resolution of manufacturing capacity
       constraints that have, for much of this decade, throttled supply well below underlying epidemiological
@@ -2571,8 +2571,8 @@
     var defs = el('defs');
     ['moHistFill','moFcstFill'].forEach(function(id,n){
       var g = el('linearGradient',{id:id,x1:'0',y1:'0',x2:'0',y2:'1'});
-      g.appendChild(el('stop',{offset:'0%','stop-color':n?'#a78bfa':'#6d28d9','stop-opacity':n?'.26':'.22'}));
-      g.appendChild(el('stop',{offset:'100%','stop-color':n?'#a78bfa':'#6d28d9','stop-opacity':'.02'}));
+      g.appendChild(el('stop',{offset:'0%','stop-color':n?'#6fa8fb':'#1d54c9','stop-opacity':n?'.26':'.22'}));
+      g.appendChild(el('stop',{offset:'100%','stop-color':n?'#6fa8fb':'#1d54c9','stop-opacity':'.02'}));
       defs.appendChild(g);
     });
     s.appendChild(defs);
