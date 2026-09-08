@@ -254,6 +254,27 @@
   .colwrap .ctip .tt{border-top:1px solid rgba(255,255,255,.18);margin-top:5px;padding-top:5px;font-weight:800}
   .colwrap:hover .ctip{opacity:1;transform:translate(-50%,0)}
   .plot .yaxis{position:absolute;left:-2px;font-size:10.5px;color:#94a8c9;transform:translateY(-50%)}
+
+  /* ---------- Horizontal stacked bar variant (rows instead of columns) ---------- */
+  .plot.horiz{flex-direction:column;align-items:stretch;justify-content:flex-start;
+    height:auto;gap:18px;border-bottom:none;padding:30px 4px 4px}
+  .plot.horiz .gl,.plot.horiz .yaxis{display:none}
+  .plot.horiz .hgl{position:absolute;top:28px;bottom:22px;border-left:1px dashed #dbe7f7;z-index:0}
+  .plot.horiz .hxaxis{position:absolute;top:0;font-size:10.5px;color:#94a8c9;transform:translateX(-50%)}
+  .plot.horiz .colwrap{flex-direction:row;align-items:center;height:auto;
+    justify-content:flex-start;gap:12px;position:relative;z-index:1}
+  .plot.horiz .yr{width:52px;flex:none;margin:0;text-align:right;font-size:12px}
+  .plot.horiz .tot{width:58px;flex:none;margin:0;text-align:left;font-size:12.5px}
+  .plot.horiz .col{flex:1;height:26px;max-width:none;min-width:0}
+  .plot.horiz .col .bars{flex-direction:row;border-radius:6px}
+  .plot.horiz .col .part{height:100%;width:0}
+  .plot.horiz .colwrap .ctip{bottom:auto;left:100%;top:50%;margin:0 0 0 8px;
+    transform:translate(6px,-50%)}
+  .plot.horiz .colwrap:hover .ctip{transform:translate(0,-50%)}
+  @media(max-width:560px){
+    .plot.horiz .yr{width:42px;font-size:11px}
+    .plot.horiz .tot{width:48px;font-size:11.5px}
+  }
   .chart .note{font-size:11.5px;color:var(--muted);margin-top:12px}
 
   /* ---------- METHODOLOGY FLOW (6 steps) ---------- */
@@ -794,7 +815,7 @@
         <span class="lg"><span class="sw seg-sw"></span> Surgery</span>
         <span class="lg"><span class="sw seg-sv"></span> Nutritional Products</span>
       </div>
-      <div class="plot" id="plot" aria-label="Stacked column chart of market size by segment"></div>
+      <div class="plot" id="plot" aria-label="Horizontal stacked bar chart of market size by segment"></div>
       <p class="note">Exact historical and forecast checkpoints (2019, 2022, 2025 base year, 2030F, 2035F) as
         reported in the by-type sizing table; totals reflect Claight syndicated estimates.</p>
     </div>
@@ -2661,28 +2682,39 @@
 
   /* ---------- Generalized stacked-column chart builder ---------- */
   // series: [{key, cls, label}]; unit 'B' (USD billion) or 'pct' (share of 100%)
-  function buildStackChart(plotId, data, series, ceil, gridVals, unit){
+  function buildStackChart(plotId, data, series, ceil, gridVals, unit, opts){
+    var horiz = !!(opts && opts.horiz);
+    var dim = horiz ? 'width' : 'height';
     var plot = document.getElementById(plotId);
     if(!plot) return;
+    if(horiz) plot.classList.add('horiz');
     data.forEach(function(d){
       var t = 0; series.forEach(function(s){ t += d[s.key]; }); d.tot = t;
     });
-    gridVals.forEach(function(v){
-      var g=document.createElement('div'); g.className='gl';
-      g.style.bottom=(v/ceil*100)+'%';
-      var y=document.createElement('div'); y.className='yaxis'; y.style.bottom=(v/ceil*100)+'%'; y.textContent=v;
-      g.appendChild(y); plot.appendChild(g);
-    });
+    if(horiz){
+      gridVals.forEach(function(v){
+        var g=document.createElement('div'); g.className='hgl';
+        g.style.left=(v/ceil*100)+'%';
+        var x=document.createElement('div'); x.className='hxaxis'; x.style.left=(v/ceil*100)+'%'; x.textContent=v;
+        g.appendChild(x); plot.appendChild(g);
+      });
+    } else {
+      gridVals.forEach(function(v){
+        var g=document.createElement('div'); g.className='gl';
+        g.style.bottom=(v/ceil*100)+'%';
+        var y=document.createElement('div'); y.className='yaxis'; y.style.bottom=(v/ceil*100)+'%'; y.textContent=v;
+        g.appendChild(y); plot.appendChild(g);
+      });
+    }
     var fmt = function(n){ return unit==='pct' ? Math.round(n)+'%' : n.toFixed(2); };
-    var revSeries = series.slice().reverse();
+    var revSeries = horiz ? series : series.slice().reverse();
     var colRecords = [];
     data.forEach(function(d){
       var wrap=document.createElement('div'); wrap.className='colwrap'+(d.base?' base':'');
       var tot=document.createElement('div'); tot.className='tot';
       tot.textContent = unit==='pct' ? '' : fmt(d.tot);
-      wrap.appendChild(tot);
       var col=document.createElement('div'); col.className='col';
-      col.style.height=(d.tot/ceil*100)+'%';
+      col.style[dim]=(d.tot/ceil*100)+'%';
       var bars=document.createElement('div'); bars.className='bars';
       var parts={};
       revSeries.forEach(function(s){
@@ -2696,8 +2728,10 @@
       var rows = series.map(function(s){ return '<div class="row"><span>'+s.label+'</span><b>'+fmt(d[s.key])+'</b></div>'; }).join('');
       tip.innerHTML='<div style="font-weight:800;margin-bottom:4px">'+d.yr+(d.base?' <b>(base)</b>':'')+'</div>'+rows+
         '<div class="row tt"><span>Total</span><span>'+(unit==='pct'?'100%':'USD '+fmt(d.tot)+'B')+'</span></div>';
-      col.appendChild(tip); wrap.appendChild(col);
-      var yr=document.createElement('div'); yr.className='yr'; yr.textContent=d.yr; wrap.appendChild(yr);
+      col.appendChild(tip);
+      var yr=document.createElement('div'); yr.className='yr'; yr.textContent=d.yr;
+      if(horiz){ wrap.appendChild(yr); wrap.appendChild(col); wrap.appendChild(tot); }
+      else{ wrap.appendChild(tot); wrap.appendChild(col); wrap.appendChild(yr); }
       plot.appendChild(wrap);
       colRecords.push({d:d, col:col, tot:tot, parts:parts});
     });
@@ -2714,13 +2748,13 @@
         colRecords.forEach(function(rec){
           var visTot = 0;
           visSeries.forEach(function(s){ visTot += rec.d[s.key]; });
-          rec.col.style.height = (visTot/ceil*100)+'%';
+          rec.col.style[dim] = (visTot/ceil*100)+'%';
           rec.tot.textContent = unit==='pct' ? '' : fmt(visTot);
           series.forEach(function(s){
             var part = rec.parts[s.key];
             if(!part) return;
-            if(!visible[s.key]){ part.style.height = '0%'; }
-            else{ part.style.height = (visTot ? (rec.d[s.key]/visTot*100) : 0)+'%'; }
+            if(!visible[s.key]){ part.style[dim] = '0%'; }
+            else{ part.style[dim] = (visTot ? (rec.d[s.key]/visTot*100) : 0)+'%'; }
           });
         });
       };
@@ -2748,7 +2782,7 @@
       var wraps=plot.querySelectorAll('.colwrap');
       wraps.forEach(function(w){
         w.classList.add('on');
-        w.querySelectorAll('.part').forEach(function(p){ p.style.height=p.dataset.h+'%'; });
+        w.querySelectorAll('.part').forEach(function(p){ p.style[dim]=p.dataset.h+'%'; });
       });
     };
     if(reduce){ animate(); }
@@ -2771,7 +2805,7 @@
     {yr:'2025', drugs:11.9, surgery:5.0, nutri:1.71, base:true},
     {yr:'2030F', drugs:24.4, surgery:7.5, nutri:2.6},
     {yr:'2035F', drugs:35.1, surgery:10.4, nutri:3.21}
-  ], TYPE_SERIES, 55, [10,20,30,40,50], 'B');
+  ], TYPE_SERIES, 55, [10,20,30,40,50], 'B', {horiz:true});
 
   buildStackChart('routePlot', [
     {yr:'2023', inj:93, oral:7},
