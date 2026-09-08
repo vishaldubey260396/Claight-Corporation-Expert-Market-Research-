@@ -268,7 +268,9 @@
   .plot.horiz .col{flex:1;height:15px;max-width:none;min-width:0;
     display:flex;flex-direction:row;align-items:center;justify-content:flex-start}
   .plot.horiz .col .bars{flex:0 0 auto;width:0;flex-direction:row;border-radius:4px;
-    transition:width .9s cubic-bezier(.22,1,.36,1)}
+    position:relative;overflow:visible;transition:width .9s cubic-bezier(.22,1,.36,1)}
+  .plot.horiz .col .bars .part:first-child{border-radius:4px 0 0 4px}
+  .plot.horiz .col .bars .part:last-child{border-radius:0 4px 4px 0}
   .plot.horiz .col .part{height:100%;width:0}
   .plot.horiz .col .tot{flex:0 0 auto;margin:0 0 0 8px;font-size:12.5px;white-space:nowrap}
   .plot.horiz .colwrap .ctip{bottom:auto;left:100%;top:50%;margin:0 0 0 8px;
@@ -2732,7 +2734,7 @@
       var rows = series.map(function(s){ return '<div class="row"><span>'+s.label+'</span><b>'+fmt(d[s.key])+'</b></div>'; }).join('');
       tip.innerHTML='<div style="font-weight:800;margin-bottom:4px">'+d.yr+(d.base?' <b>(base)</b>':'')+'</div>'+rows+
         '<div class="row tt"><span>Total</span><span>'+(unit==='pct'?'100%':'USD '+fmt(d.tot)+'B')+'</span></div>';
-      col.appendChild(tip);
+      if(horiz){ bars.appendChild(tip); } else { col.appendChild(tip); }
       var yr=document.createElement('div'); yr.className='yr'; yr.textContent=d.yr;
       if(horiz){ col.appendChild(tot); wrap.appendChild(yr); wrap.appendChild(col); }
       else{ wrap.appendChild(tot); wrap.appendChild(col); wrap.appendChild(yr); }
