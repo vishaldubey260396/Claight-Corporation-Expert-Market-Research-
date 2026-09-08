@@ -182,11 +182,16 @@
     border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .ptrend h6{margin:0;font-size:14px;font-weight:800;color:var(--navy)}
   .ptrend .cap{font-size:11.5px;color:var(--muted);margin:3px 0 16px}
-  .pbars{display:flex;align-items:flex-end;gap:14px;height:150px;border-bottom:2px solid #dbe6f5;padding-top:6px}
-  .pcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+  .pbars{display:flex;align-items:flex-end;gap:14px;height:150px;border-bottom:2px solid #dbe6f5;padding-top:6px;position:relative}
+  .pcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;
+    cursor:pointer;border-radius:8px;transition:background .15s ease}
+  .pcol:hover,.pcol:focus-visible{background:rgba(91,155,255,.10)}
+  .pcol:focus{outline:none}
+  .pcol:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
   .pbar{width:100%;max-width:46px;border-radius:6px 6px 0 0;height:0;
     background:linear-gradient(180deg,#5b9bff,#1d54c9);box-shadow:0 4px 12px rgba(14,58,143,.18);
-    transition:height 1s cubic-bezier(.22,1,.36,1)}
+    transition:height 1s cubic-bezier(.22,1,.36,1),filter .15s ease,box-shadow .15s ease}
+  .pbar.ph-on{filter:brightness(1.18);box-shadow:0 8px 20px rgba(14,58,143,.34)}
   .reveal.in .pbar{height:var(--h)}
   .pcol .pv{font-size:11.5px;font-weight:800;color:var(--blue-deep);margin-bottom:6px}
   .pcol .py{font-size:11px;color:var(--muted);margin-top:7px;font-weight:600}
@@ -209,8 +214,14 @@
   .chart .ct h4{margin:0;font-size:15px;font-weight:800;color:var(--navy)}
   .chart .ct .cap{font-size:12px;color:var(--muted)}
   .legend{display:flex;flex-wrap:wrap;gap:14px;margin:8px 0 16px}
-  .legend .lg{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink);cursor:default}
-  .legend .sw{width:13px;height:13px;border-radius:3px;flex:none}
+  .legend .lg{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink);cursor:pointer;
+    padding:3px 8px 3px 3px;border-radius:7px;transition:opacity .18s ease,background .15s ease;user-select:none}
+  .legend .lg:hover{background:var(--tint)}
+  .legend .lg:focus{outline:none}
+  .legend .lg:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .legend .lg.lg-off{opacity:.4}
+  .legend .lg.lg-off .sw{filter:grayscale(1)}
+  .legend .sw{width:13px;height:13px;border-radius:3px;flex:none;transition:filter .15s ease}
   .seg-hw{background:linear-gradient(180deg,#5b9bff,#1d54c9)}
   .seg-sw{background:linear-gradient(180deg,#3f6fe0,#2f56c0)}
   .seg-sv{background:linear-gradient(180deg,#a9c8fb,#6fa8fb)}
@@ -220,7 +231,7 @@
   .plot .gl{position:absolute;left:0;right:0;border-top:1px dashed #dbe7f7;z-index:0}
   .colwrap{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;position:relative;z-index:1;min-width:0}
   .col{width:100%;max-width:52px;display:flex;flex-direction:column;justify-content:flex-end;
-    position:relative;cursor:default}
+    position:relative;cursor:default;transition:height .5s ease}
   .col .bars{width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;
     border-radius:6px 6px 0 0;overflow:hidden;box-shadow:0 4px 12px rgba(14,58,143,.14)}
   .col .part{width:100%;height:0;transition:height .9s cubic-bezier(.22,1,.36,1)}
@@ -439,14 +450,19 @@
     border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(14,58,143,.08)}
   .barlist h6{margin:0 0 4px;font-size:14px;font-weight:800;color:var(--navy)}
   .barlist .bl-cap{font-size:11.5px;color:var(--muted);margin:0 0 14px}
-  .bl-item{margin:12px 0}
+  .bl-item{margin:12px -10px;padding:6px 10px;border-radius:9px;transition:background .15s ease}
+  .bl-item:hover,.bl-item:focus-visible{background:var(--tint)}
+  .bl-item:focus{outline:none}
+  .bl-item:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
   .bl-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13px;margin-bottom:5px}
   .bl-top .nm{font-weight:700;color:var(--navy)}
-  .bl-top .sub{font-size:11px;color:var(--muted);margin-left:5px;font-weight:500}
+  .bl-top .sub{font-size:11px;color:var(--muted);margin-left:5px;font-weight:500;transition:color .15s ease,font-weight .15s ease}
+  .bl-item:hover .bl-top .sub,.bl-item:focus-visible .bl-top .sub{color:var(--blue-deep);font-weight:800}
   .bl-top .v{font-weight:800;color:var(--blue-deep);white-space:nowrap}
   .bl-track{height:11px;border-radius:6px;background:#e2ecf9;overflow:hidden}
   .bl-fill{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#5b9bff,#1d54c9);
-    transition:width 1s cubic-bezier(.22,1,.36,1)}
+    transition:width 1s cubic-bezier(.22,1,.36,1),filter .15s ease}
+  .bl-item:hover .bl-fill,.bl-item:focus-visible .bl-fill{filter:brightness(1.12)}
   .bl-fill.alt{background:linear-gradient(90deg,#3f6fe0,#2f56c0)}
   .bl-fill.gold{background:linear-gradient(90deg,#f2c14e,#d99a1b)}
   .reveal.in .bl-fill{width:var(--w)}
@@ -474,6 +490,7 @@
   @media(prefers-reduced-motion:reduce){
     .bl-fill{transition:none}
     .tier-chip:hover,.porter-card:hover{transform:none}
+    .col,.col .part{transition:none}
   }
 
   /* ================= GROWTH EXHIBIT (3-panel data card) ================= */
@@ -527,10 +544,18 @@
   .gx-sv.ref{color:var(--gx-ref)}
   .gx-sv.sm{font-size:18px}
 
+  .gx-bars{position:relative}
   .gx-grp+.gx-grp{margin-top:15px}
   .gx-gl{font-size:12.5px;font-weight:800;color:var(--navy);margin-bottom:7px}
-  .gx-row{display:flex;align-items:center;gap:8px}
+  .gx-row{display:flex;align-items:center;gap:8px;cursor:pointer;padding:2px 4px;margin:0 -4px;
+    border-radius:7px;transition:background .15s ease}
   .gx-row+.gx-row{margin-top:4px}
+  .gx-row:hover,.gx-row:focus-visible{background:var(--tint)}
+  .gx-row:focus{outline:none}
+  .gx-row:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+  .gx-row:hover .gx-fillbar,.gx-row:focus-visible .gx-fillbar{filter:brightness(1.14)}
+  .gx-row.gx-row-on{background:var(--tint)}
+  .gx-row.gx-row-on .gx-fillbar{filter:brightness(1.14)}
   .gx-yr{font-size:11px;color:var(--muted);font-weight:700;flex:none;width:28px}
   .gx-track{display:block;position:relative;flex:1;min-width:0;height:16px;background:var(--gx-track);border-radius:8px}
   .gx-fillbar{display:block;height:100%;border-radius:8px;background:var(--gx-fc);width:0}
@@ -1042,18 +1067,18 @@
             <div class="gx-phs">Compound annual growth</div>
             <div class="gx-stat">
               <div class="gx-sl">Historical<br>2019-2025</div>
-              <div class="gx-sv ref">+14.00<span>%</span></div>
+              <div class="gx-sv ref" data-count-to="14.00" data-sign="+">+14.00<span>%</span></div>
             </div>
             <div class="gx-stat">
               <div class="gx-sl">Forecast<br>2026-2035</div>
-              <div class="gx-sv">+10.10<span>%</span></div>
+              <div class="gx-sv" data-count-to="10.10" data-sign="+">+10.10<span>%</span></div>
             </div>
             <div class="gx-stat">
               <div class="gx-sl">Pace change</div>
-              <div class="gx-sv sm">&minus;3.90<span>pp</span></div>
+              <div class="gx-sv sm" data-count-to="3.90" data-sign="-">&minus;3.90<span>pp</span></div>
             </div>
           </div>
-          <div class="gx-panel gx-bars">
+          <div class="gx-panel gx-bars" id="gxBars">
             <h6 class="gx-ph">Value by Segment, USD bn</h6>
             <div class="gx-phs">2025 base year vs 2035 forecast</div>
             <div class="gx-grp">
@@ -1083,6 +1108,7 @@
                 <span class="gx-track"><span class="gx-fillbar" style="--w:9.1%"></span>
                   <span class="gx-bv" style="left:calc(9.1% + 8px)">$3.2</span></span></div>
             </div>
+            <div class="gx-tip" id="gxBarsTip" role="status" aria-live="polite"></div>
           </div>
         </div>
         <div class="gx-foot">
@@ -2649,6 +2675,7 @@
     });
     var fmt = function(n){ return unit==='pct' ? Math.round(n)+'%' : n.toFixed(2); };
     var revSeries = series.slice().reverse();
+    var colRecords = [];
     data.forEach(function(d){
       var wrap=document.createElement('div'); wrap.className='colwrap'+(d.base?' base':'');
       var tot=document.createElement('div'); tot.className='tot';
@@ -2657,10 +2684,12 @@
       var col=document.createElement('div'); col.className='col';
       col.style.height=(d.tot/ceil*100)+'%';
       var bars=document.createElement('div'); bars.className='bars';
+      var parts={};
       revSeries.forEach(function(s){
         var p=document.createElement('div'); p.className='part '+s.cls;
         p.dataset.h=(d[s.key]/d.tot*100);
         bars.appendChild(p);
+        parts[s.key]=p;
       });
       col.appendChild(bars);
       var tip=document.createElement('div'); tip.className='ctip';
@@ -2670,7 +2699,51 @@
       col.appendChild(tip); wrap.appendChild(col);
       var yr=document.createElement('div'); yr.className='yr'; yr.textContent=d.yr; wrap.appendChild(yr);
       plot.appendChild(wrap);
+      colRecords.push({d:d, col:col, tot:tot, parts:parts});
     });
+
+    /* ---- legend: click/keyboard toggle of a segment's visibility across every column ---- */
+    var chartEl = plot.closest ? plot.closest('.chart') : null;
+    var legendEl = chartEl ? chartEl.querySelector('.legend') : null;
+    if(legendEl){
+      var lgItems = [].slice.call(legendEl.querySelectorAll('.lg'));
+      var visible = {};
+      series.forEach(function(s){ visible[s.key] = true; });
+      var applyVisibility = function(){
+        var visSeries = series.filter(function(s){ return visible[s.key]; });
+        colRecords.forEach(function(rec){
+          var visTot = 0;
+          visSeries.forEach(function(s){ visTot += rec.d[s.key]; });
+          rec.col.style.height = (visTot/ceil*100)+'%';
+          rec.tot.textContent = unit==='pct' ? '' : fmt(visTot);
+          series.forEach(function(s){
+            var part = rec.parts[s.key];
+            if(!part) return;
+            if(!visible[s.key]){ part.style.height = '0%'; }
+            else{ part.style.height = (visTot ? (rec.d[s.key]/visTot*100) : 0)+'%'; }
+          });
+        });
+      };
+      lgItems.forEach(function(lg, idx){
+        var s = series[idx];
+        if(!s) return;
+        lg.setAttribute('role','switch');
+        lg.setAttribute('tabindex','0');
+        lg.setAttribute('aria-checked','true');
+        lg.setAttribute('aria-label','Toggle '+s.label+' series on or off');
+        var toggle = function(){
+          visible[s.key] = !visible[s.key];
+          lg.setAttribute('aria-checked', visible[s.key] ? 'true' : 'false');
+          lg.classList.toggle('lg-off', !visible[s.key]);
+          applyVisibility();
+        };
+        lg.addEventListener('click', toggle);
+        lg.addEventListener('keydown', function(e){
+          if(e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar'){ e.preventDefault(); toggle(); }
+        });
+      });
+    }
+
     var animate=function(){
       var wraps=plot.querySelectorAll('.colwrap');
       wraps.forEach(function(w){
@@ -2734,6 +2807,58 @@
       flows.forEach(function(f){ fio.observe(f); });
     } else { flows.forEach(function(f){ f.classList.add('in'); }); }
   }
+
+  /* ---------- Horizontal bar lists: keyboard focus for the hover/detail affordance ---------- */
+  [].slice.call(document.querySelectorAll('.barlist .bl-item')).forEach(function(el){
+    if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
+  });
+
+  /* ---------- Patent / dealmaking mini bar charts: hover + keyboard tooltip ---------- */
+  [].slice.call(document.querySelectorAll('.ptrend')).forEach(function(block){
+    var bars = block.querySelector('.pbars');
+    if(!bars) return;
+    var cols = [].slice.call(bars.querySelectorAll('.pcol'));
+    if(!cols.length) return;
+    var vals = cols.map(function(c){
+      var pv = c.querySelector('.pv');
+      return pv ? parseFloat(pv.textContent.replace(/,/g,'')) : NaN;
+    });
+    var tip = document.createElement('div');
+    tip.className = 'gx-tip';
+    tip.setAttribute('role','status'); tip.setAttribute('aria-live','polite');
+    bars.appendChild(tip);
+    var show = function(i){
+      var c = cols[i], v = vals[i];
+      var pvEl = c.querySelector('.pv'), pyEl = c.querySelector('.py'), barEl = c.querySelector('.pbar');
+      var yr = pyEl ? pyEl.textContent : '';
+      if(isNaN(v)) return;
+      var html = '<div class="y">'+yr+'</div><div class="r"><span>Value</span><b>'+(pvEl?pvEl.textContent:v)+'</b></div>';
+      if(i > 0 && !isNaN(vals[i-1]) && vals[i-1] !== 0){
+        var d = v - vals[i-1], pct = (d/vals[i-1]*100);
+        html += '<div class="r"><span>vs prior period</span><b>'+(d>=0?'+':'')+d.toFixed(0)+' ('+(pct>=0?'+':'')+pct.toFixed(1)+'%)</b></div>';
+      }
+      tip.innerHTML = html;
+      var rect = c.getBoundingClientRect(), pRect = bars.getBoundingClientRect();
+      tip.style.left = (rect.left - pRect.left + rect.width/2)+'px';
+      tip.style.top = (rect.top - pRect.top)+'px';
+      tip.style.transform = 'translate(-50%,-112%)';
+      tip.classList.add('on');
+      cols.forEach(function(cc){ var b=cc.querySelector('.pbar'); if(b) b.classList.remove('ph-on'); });
+      if(barEl) barEl.classList.add('ph-on');
+    };
+    var hide = function(){
+      tip.classList.remove('on');
+      cols.forEach(function(cc){ var b=cc.querySelector('.pbar'); if(b) b.classList.remove('ph-on'); });
+    };
+    cols.forEach(function(c,i){
+      if(!c.hasAttribute('tabindex')) c.setAttribute('tabindex','0');
+      c.addEventListener('mouseenter', function(){ show(i); });
+      c.addEventListener('focus', function(){ show(i); });
+      c.addEventListener('mouseleave', hide);
+      c.addEventListener('blur', hide);
+    });
+    bars.addEventListener('mouseleave', hide);
+  });
 })();
 
 /* ================= GROWTH EXHIBIT - MARKET VALUE vs HISTORICAL-PACE REFERENCE ================= */
@@ -2861,6 +2986,100 @@
       tr.innerHTML = '<td>'+d.y+'</td><td>'+d.v.toFixed(2)+'</td><td>'+
         (i<=BASE ? (i===BASE?'Base year':'Historical') : 'Forecast')+'</td>';
       tb.appendChild(tr);
+    });
+  }
+
+  /* ---------- CAGR stat panel: count up from 0 on reveal (skipped under reduced motion) ---------- */
+  var reduceGx = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var MINUS = '−';
+  var statEls = [].slice.call(document.querySelectorAll('#gxGrowth .gx-sv[data-count-to]'));
+  var countUp = function(el){
+    var target = parseFloat(el.getAttribute('data-count-to'));
+    var prefix = el.getAttribute('data-sign') === '-' ? MINUS : '+';
+    var textNode = el.firstChild;
+    if(!textNode || textNode.nodeType !== 3 || isNaN(target)) return;
+    if(reduceGx){ textNode.nodeValue = prefix+target.toFixed(2); return; }
+    var start = null, dur = 900;
+    var step = function(ts){
+      if(start === null) start = ts;
+      var p = Math.min((ts-start)/dur, 1);
+      var eased = 1 - Math.pow(1-p, 3);
+      textNode.nodeValue = prefix+(target*eased).toFixed(2);
+      if(p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  if(statEls.length){
+    var figEl = document.getElementById('gxGrowth');
+    if(reduceGx || !('IntersectionObserver' in window)){
+      statEls.forEach(countUp);
+    } else {
+      var sio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ statEls.forEach(countUp); sio.disconnect(); }
+        });
+      },{threshold:.35});
+      sio.observe(figEl || statEls[0]);
+    }
+  }
+
+  /* ---------- Value-by-segment rows: hover/click/keyboard tooltip comparing 2025 vs 2035 ---------- */
+  var barsPanel = document.getElementById('gxBars');
+  var barsTip = document.getElementById('gxBarsTip');
+  if(barsPanel && barsTip){
+    var pinned = null;
+    var parseVal = function(txt){ return parseFloat(String(txt).replace(/[^0-9.\-]/g,'')); };
+    [].slice.call(barsPanel.querySelectorAll('.gx-grp')).forEach(function(grp){
+      var glEl = grp.querySelector('.gx-gl');
+      var groupLabel = glEl ? glEl.textContent : '';
+      var rows = [].slice.call(grp.querySelectorAll('.gx-row'));
+      if(rows.length !== 2) return;
+      var bvEls = rows.map(function(r){ return r.querySelector('.gx-bv'); });
+      var vals = bvEls.map(function(b){ return b ? parseVal(b.textContent) : NaN; });
+      var v25 = vals[0], v35 = vals[1];
+      rows.forEach(function(row,i){
+        var yrEl = row.querySelector('.gx-yr');
+        var yr = yrEl ? yrEl.textContent : '';
+        var val = vals[i];
+        row.setAttribute('tabindex','0');
+        row.setAttribute('role','button');
+        row.setAttribute('aria-label', groupLabel+' '+yr+': USD '+(isNaN(val)?'':val.toFixed(1))+' billion');
+        var showTip = function(){
+          var html = '<div class="y">'+groupLabel+' &middot; '+yr+'</div>'+
+            '<div class="r"><span>Value</span><b>USD '+(isNaN(val)?'-':val.toFixed(1))+'B</b></div>';
+          if(!isNaN(v25) && !isNaN(v35) && v25 !== 0){
+            var pct = ((v35-v25)/v25*100);
+            html += '<div class="r ref"><span>2025 &rarr; 2035</span><b>'+(pct>=0?'+':'')+pct.toFixed(0)+'% &middot; '+(v35/v25).toFixed(1)+'x</b></div>';
+          }
+          barsTip.innerHTML = html;
+          var rRect = row.getBoundingClientRect(), pRect = barsPanel.getBoundingClientRect();
+          barsTip.style.left = (rRect.left - pRect.left + 14)+'px';
+          barsTip.style.top = (rRect.top - pRect.top)+'px';
+          barsTip.style.transform = 'translate(0,-108%)';
+          barsTip.classList.add('on');
+          rows.forEach(function(r){ r.classList.remove('gx-row-on'); });
+          row.classList.add('gx-row-on');
+        };
+        var hideTip = function(){
+          if(pinned === row) return;
+          barsTip.classList.remove('on');
+          row.classList.remove('gx-row-on');
+        };
+        row.addEventListener('mouseenter', showTip);
+        row.addEventListener('focus', showTip);
+        row.addEventListener('mouseleave', hideTip);
+        row.addEventListener('blur', hideTip);
+        row.addEventListener('click', function(){
+          if(pinned === row){ pinned = null; hideTip(); }
+          else { pinned = row; showTip(); }
+        });
+        row.addEventListener('keydown', function(e){
+          if(e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar'){
+            e.preventDefault();
+            if(pinned === row){ pinned = null; hideTip(); } else { pinned = row; showTip(); }
+          }
+        });
+      });
     });
   }
 })();
