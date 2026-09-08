@@ -256,24 +256,34 @@
   .plot .yaxis{position:absolute;left:-2px;font-size:10.5px;color:#94a8c9;transform:translateY(-50%)}
 
   /* ---------- Horizontal stacked bar variant (rows instead of columns) ---------- */
+  /* Each row is [label][full-width track][value]; the coloured bar sits inside the track sized to
+     its own value/ceil share, so bar length is proportional and the value label sits right after
+     the bar ends - not a separate fixed-width column. */
   .plot.horiz{flex-direction:column;align-items:stretch;justify-content:flex-start;
-    height:auto;gap:12px;border-bottom:none;padding:30px 4px 4px}
+    height:auto;gap:11px;border-bottom:none;padding:4px 4px 22px}
   .plot.horiz .gl,.plot.horiz .yaxis{display:none}
-  .plot.horiz .hgl{position:absolute;top:28px;bottom:18px;border-left:1px dashed #dbe7f7;z-index:0}
-  .plot.horiz .hxaxis{position:absolute;top:0;font-size:10.5px;color:#94a8c9;transform:translateX(-50%)}
   .plot.horiz .colwrap{flex-direction:row;align-items:center;height:auto;
     justify-content:flex-start;gap:12px;position:relative;z-index:1}
-  .plot.horiz .yr{width:52px;flex:none;margin:0;text-align:right;font-size:12px}
-  .plot.horiz .tot{width:58px;flex:none;margin:0;text-align:left;font-size:12.5px}
-  .plot.horiz .col{flex:1;height:14px;max-width:none;min-width:0}
-  .plot.horiz .col .bars{flex-direction:row;border-radius:6px}
+  .plot.horiz .yr{width:100px;flex:none;margin:0;text-align:right;font-size:12.5px}
+  .plot.horiz .col{flex:1;height:15px;max-width:none;min-width:0;
+    display:flex;align-items:center;justify-content:flex-start}
+  .plot.horiz .col .bars{flex:0 0 auto;width:0;flex-direction:row;border-radius:4px;
+    transition:width .9s cubic-bezier(.22,1,.36,1)}
   .plot.horiz .col .part{height:100%;width:0}
+  .plot.horiz .col .tot{flex:0 0 auto;margin:0 0 0 8px;font-size:12.5px;white-space:nowrap}
   .plot.horiz .colwrap .ctip{bottom:auto;left:100%;top:50%;margin:0 0 0 8px;
     transform:translate(6px,-50%)}
   .plot.horiz .colwrap:hover .ctip{transform:translate(0,-50%)}
+  .plot.horiz .haxisrow{display:flex;align-items:center;gap:12px;margin-top:2px}
+  .plot.horiz .haxisrow .yr{visibility:hidden}
+  .plot.horiz .haxis-track{position:relative;height:1px;border-top:1px solid #dbe6f5;flex:1}
+  .plot.horiz .haxis-lab{position:absolute;top:5px;font-size:10.5px;color:#94a8c9;font-weight:600}
+  .plot.horiz .haxis-lab.r{right:0}
+  .plot.horiz .haxis-lab:not(.r){left:0}
+  .plot.horiz .haxis-spacer{flex:0 0 auto;width:0}
   @media(max-width:560px){
-    .plot.horiz .yr{width:42px;font-size:11px}
-    .plot.horiz .tot{width:48px;font-size:11.5px}
+    .plot.horiz .yr{width:76px;font-size:11px}
+    .plot.horiz .col .tot{font-size:11.5px}
   }
   .chart .note{font-size:11.5px;color:var(--muted);margin-top:12px}
 
@@ -2691,14 +2701,7 @@
     data.forEach(function(d){
       var t = 0; series.forEach(function(s){ t += d[s.key]; }); d.tot = t;
     });
-    if(horiz){
-      gridVals.forEach(function(v){
-        var g=document.createElement('div'); g.className='hgl';
-        g.style.left=(v/ceil*100)+'%';
-        var x=document.createElement('div'); x.className='hxaxis'; x.style.left=(v/ceil*100)+'%'; x.textContent=v;
-        g.appendChild(x); plot.appendChild(g);
-      });
-    } else {
+    if(!horiz){
       gridVals.forEach(function(v){
         var g=document.createElement('div'); g.className='gl';
         g.style.bottom=(v/ceil*100)+'%';
@@ -2714,8 +2717,9 @@
       var tot=document.createElement('div'); tot.className='tot';
       tot.textContent = unit==='pct' ? '' : fmt(d.tot);
       var col=document.createElement('div'); col.className='col';
-      col.style[dim]=(d.tot/ceil*100)+'%';
       var bars=document.createElement('div'); bars.className='bars';
+      var sizeEl = horiz ? bars : col;
+      sizeEl.style[dim]=(d.tot/ceil*100)+'%';
       var parts={};
       revSeries.forEach(function(s){
         var p=document.createElement('div'); p.className='part '+s.cls;
@@ -2730,11 +2734,22 @@
         '<div class="row tt"><span>Total</span><span>'+(unit==='pct'?'100%':'USD '+fmt(d.tot)+'B')+'</span></div>';
       col.appendChild(tip);
       var yr=document.createElement('div'); yr.className='yr'; yr.textContent=d.yr;
-      if(horiz){ wrap.appendChild(yr); wrap.appendChild(col); wrap.appendChild(tot); }
+      if(horiz){ col.appendChild(tot); wrap.appendChild(yr); wrap.appendChild(col); }
       else{ wrap.appendChild(tot); wrap.appendChild(col); wrap.appendChild(yr); }
       plot.appendChild(wrap);
-      colRecords.push({d:d, col:col, tot:tot, parts:parts});
+      colRecords.push({d:d, sizeEl:sizeEl, tot:tot, parts:parts});
     });
+    if(horiz){
+      var axisRow=document.createElement('div'); axisRow.className='haxisrow';
+      var axYr=document.createElement('div'); axYr.className='yr'; axYr.textContent='0';
+      var axTrack=document.createElement('div'); axTrack.className='haxis-track';
+      var axMin=document.createElement('span'); axMin.className='haxis-lab'; axMin.textContent='0';
+      var axMax=document.createElement('span'); axMax.className='haxis-lab r'; axMax.textContent=ceil;
+      axTrack.appendChild(axMin); axTrack.appendChild(axMax);
+      var axSp=document.createElement('div'); axSp.className='haxis-spacer';
+      axisRow.appendChild(axYr); axisRow.appendChild(axTrack); axisRow.appendChild(axSp);
+      plot.appendChild(axisRow);
+    }
 
     /* ---- legend: click/keyboard toggle of a segment's visibility across every column ---- */
     var chartEl = plot.closest ? plot.closest('.chart') : null;
@@ -2748,7 +2763,7 @@
         colRecords.forEach(function(rec){
           var visTot = 0;
           visSeries.forEach(function(s){ visTot += rec.d[s.key]; });
-          rec.col.style[dim] = (visTot/ceil*100)+'%';
+          rec.sizeEl.style[dim] = (visTot/ceil*100)+'%';
           rec.tot.textContent = unit==='pct' ? '' : fmt(visTot);
           series.forEach(function(s){
             var part = rec.parts[s.key];
