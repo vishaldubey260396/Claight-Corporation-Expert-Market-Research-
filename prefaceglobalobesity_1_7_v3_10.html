@@ -855,10 +855,10 @@
         <span class="lg"><span class="sw seg-sv"></span> Nutritional Products</span>
       </div>
       <div class="plot" id="plot" aria-label="Stacked column chart of market size by segment"></div>
-      <p class="note">2019, 2022, 2025 (base year), 2030F and 2035F are the exact checkpoints reported in the
-        by-type sizing table; the intervening years (2021, 2023, 2027F, 2029F, 2031F, 2033F) are modelled by
-        compounding each segment between its two nearest reported checkpoints, added here purely to show the
-        shape of the curve between known points. Totals reflect Claight syndicated estimates.</p>
+      <p class="note">2019, 2025 (base year) and 2035 are exact checkpoints reported in the by-type sizing
+        table; the other years shown here (2021, 2023, 2027, 2029, 2031, 2033) are modelled by compounding each
+        segment between its two nearest reported checkpoints, added purely to show the shape of the curve between
+        known points. Totals reflect Claight syndicated estimates.</p>
     </div>
 
     <p class="reveal">
@@ -2853,15 +2853,13 @@
   buildStackChart('plot', [
     {yr:'2019', drugs:3.90, surgery:3.60, nutri:1.00},
     {yr:'2021', drugs:6.40, surgery:3.53, nutri:0.93},
-    {yr:'2022', drugs:8.20, surgery:3.50, nutri:0.90},
     {yr:'2023', drugs:9.28, surgery:3.94, nutri:1.11},
     {yr:'2025', drugs:11.90, surgery:5.00, nutri:1.71, base:true},
-    {yr:'2027F', drugs:15.86, surgery:5.88, nutri:2.02},
-    {yr:'2029F', drugs:21.14, surgery:6.92, nutri:2.39},
-    {yr:'2030F', drugs:24.40, surgery:7.50, nutri:2.60},
-    {yr:'2031F', drugs:26.24, surgery:8.01, nutri:2.71},
-    {yr:'2033F', drugs:30.35, surgery:9.13, nutri:2.95},
-    {yr:'2035F', drugs:35.10, surgery:10.40, nutri:3.21}
+    {yr:'2027', drugs:15.86, surgery:5.88, nutri:2.02},
+    {yr:'2029', drugs:21.14, surgery:6.92, nutri:2.39},
+    {yr:'2031', drugs:26.24, surgery:8.01, nutri:2.71},
+    {yr:'2033', drugs:30.35, surgery:9.13, nutri:2.95},
+    {yr:'2035', drugs:35.10, surgery:10.40, nutri:3.21}
   ], TYPE_SERIES, 55, [10,20,30,40,50], 'B');
 
   buildStackChart('routePlot', [
