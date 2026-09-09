@@ -513,12 +513,26 @@
   .pie-leader-dot{fill:var(--purple);opacity:0;transition:opacity .16s ease}
   .pie-leader.on,.pie-leader-dot.on{opacity:1}
   .pie-side{display:flex;flex-direction:column;justify-content:center}
-  .pie-read{border-left:3px solid var(--purple-mid);padding:2px 0 2px 14px;min-height:64px;
-    display:flex;flex-direction:column;justify-content:center}
-  .pie-read b{display:block;font-size:14px;font-weight:700;color:var(--purple-deep)}
-  .pie-read span{display:block;margin-top:5px;font-size:12.5px;line-height:1.6;color:var(--ink)}
+  .pie-list{display:flex;flex-direction:column;gap:11px}
+  .pie-li{padding:6px 8px;border-radius:8px;transition:background .15s ease}
+  .pie-li.on{background:var(--tint)}
+  .pie-li-top{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .pie-dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--c)}
+  .pie-li-top b{font-size:12.5px;font-weight:700;color:var(--navy)}
+  .pie-li-track{position:relative;height:9px;border-radius:5px;background:var(--tint);overflow:visible}
+  .pie-li-fill{height:100%;width:0;border-radius:5px;background:var(--c);
+    transition:width 1s cubic-bezier(.22,1,.36,1)}
+  .reveal.in .pie-li-fill{width:var(--w)}
+  .pie-li-v{position:absolute;left:calc(var(--w) + 8px);top:50%;transform:translateY(-50%);
+    font-size:11.5px;font-weight:700;color:var(--purple-deep);white-space:nowrap;
+    opacity:0;transition:opacity .4s ease .7s}
+  .reveal.in .pie-li-v{opacity:1}
   @media(max-width:700px){
     .pie-wrap{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .pie-li-fill{transition:none}
+    .pie-li-v{transition:none}
   }
   .bl-item{margin:12px -10px;padding:6px 10px;border-radius:9px;transition:background .15s ease}
   .bl-item:hover,.bl-item:focus-visible{background:var(--tint)}
@@ -970,7 +984,32 @@
           </svg>
         </div>
         <div class="pie-side">
-          <div class="pie-read" id="pieRead"><b>Six designations</b><span>Select or hover a wedge to read its share of primary-research respondents</span></div>
+          <div class="pie-list" id="pieList">
+            <div class="pie-li" data-i="0" tabindex="0" style="--c:#a78bfa">
+              <div class="pie-li-top"><i class="pie-dot"></i><b>CXOs</b></div>
+              <div class="pie-li-track"><div class="pie-li-fill" style="--w:10%"></div><span class="pie-li-v">10%</span></div>
+            </div>
+            <div class="pie-li" data-i="1" tabindex="0" style="--c:#8f6ff2">
+              <div class="pie-li-top"><i class="pie-dot"></i><b>Researchers / Academics</b></div>
+              <div class="pie-li-track"><div class="pie-li-fill" style="--w:10%"></div><span class="pie-li-v">10%</span></div>
+            </div>
+            <div class="pie-li" data-i="2" tabindex="0" style="--c:#7c3aed">
+              <div class="pie-li-top"><i class="pie-dot"></i><b>Others</b></div>
+              <div class="pie-li-track"><div class="pie-li-fill" style="--w:10%"></div><span class="pie-li-v">10%</span></div>
+            </div>
+            <div class="pie-li" data-i="3" tabindex="0" style="--c:#6d28d9">
+              <div class="pie-li-top"><i class="pie-dot"></i><b>VPs / Directors</b></div>
+              <div class="pie-li-track"><div class="pie-li-fill" style="--w:20%"></div><span class="pie-li-v">20%</span></div>
+            </div>
+            <div class="pie-li" data-i="4" tabindex="0" style="--c:#5b21b6">
+              <div class="pie-li-top"><i class="pie-dot"></i><b>Healthcare Professionals</b></div>
+              <div class="pie-li-track"><div class="pie-li-fill" style="--w:20%"></div><span class="pie-li-v">20%</span></div>
+            </div>
+            <div class="pie-li" data-i="5" tabindex="0" style="--c:#4c1d95">
+              <div class="pie-li-top"><i class="pie-dot"></i><b>Senior Managers / Managers</b></div>
+              <div class="pie-li-track"><div class="pie-li-fill" style="--w:30%"></div><span class="pie-li-v">30%</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2944,18 +2983,15 @@
     if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
   });
 
-  /* ---------- 3D pie: hover/focus a wedge, draw a leader line out to the side panel ---------- */
+  /* ---------- 3D pie: hover/focus a wedge, draw a leader line and highlight the matching list row ---------- */
   (function(){
     var fig = document.getElementById('desigPie');
     if(!fig) return;
-    var data; try{ data = JSON.parse(fig.getAttribute('data-pie')); }catch(e){ return; }
     var slices = [].slice.call(fig.querySelectorAll('.pie-slice'));
-    var rims = [].slice.call(fig.querySelectorAll('.pie-rim'));
+    var items = [].slice.call(fig.querySelectorAll('.pie-li'));
     var leader = document.getElementById('pieLeader');
     var dotA = document.getElementById('pieLeaderA');
     var dotB = document.getElementById('pieLeaderB');
-    var read = document.getElementById('pieRead');
-    var rb = read.querySelector('b'), rs = read.querySelector('span');
     /* mid-angle anchor point on the outer rim for each wedge, in the same coordinate
        space the SVG polygons were generated in (top-start, clockwise, cx=190 cy=150) */
     var anchors = [
@@ -2964,21 +3000,19 @@
     ];
     function show(i){
       slices.forEach(function(s){ s.classList.toggle('on', +s.getAttribute('data-i')===i); });
-      var d = data[i], a = anchors[i];
+      items.forEach(function(it){ it.classList.toggle('on', +it.getAttribute('data-i')===i); });
+      var a = anchors[i];
       var lx = a.x < 190 ? 12 : 368;
       leader.setAttribute('x1', a.x); leader.setAttribute('y1', a.y);
       leader.setAttribute('x2', lx); leader.setAttribute('y2', a.y);
       leader.classList.add('on');
       dotA.setAttribute('cx', a.x); dotA.setAttribute('cy', a.y); dotA.classList.add('on');
       dotB.setAttribute('cx', lx); dotB.setAttribute('cy', a.y); dotB.classList.add('on');
-      rb.textContent = d.n;
-      rs.textContent = d.p + '% of primary-research respondents interviewed for this study.';
     }
     function hide(){
       slices.forEach(function(s){ s.classList.remove('on'); });
+      items.forEach(function(it){ it.classList.remove('on'); });
       leader.classList.remove('on'); dotA.classList.remove('on'); dotB.classList.remove('on');
-      rb.textContent = 'Six designations';
-      rs.textContent = 'Select or hover a wedge to read its share of primary-research respondents';
     }
     slices.forEach(function(el){
       var i = +el.getAttribute('data-i');
@@ -2987,6 +3021,13 @@
       el.addEventListener('focus', function(){ show(i); });
       el.addEventListener('blur', hide);
       el.addEventListener('click', function(){ show(i); });
+    });
+    items.forEach(function(el){
+      var i = +el.getAttribute('data-i');
+      el.addEventListener('mouseenter', function(){ show(i); });
+      el.addEventListener('mouseleave', hide);
+      el.addEventListener('focus', function(){ show(i); });
+      el.addEventListener('blur', hide);
     });
   })();
 
