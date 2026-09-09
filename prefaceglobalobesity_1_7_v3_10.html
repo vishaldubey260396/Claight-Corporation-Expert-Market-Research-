@@ -44,7 +44,7 @@
 
   /* ---------- STAT MOSAIC (Cotton/ProcureHub split-cell style) ---------- */
   .mosaic{padding:18px 22px 18px;background:#f4f4f8;display:grid;gap:12px;
-    grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(142px,auto)}
+    grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(156px,auto)}
   .cell{
     position:relative;border-radius:10px;color:#fff;overflow:hidden;outline:none;
     box-shadow:0 5px 14px rgba(48,10,110,.15);
@@ -717,14 +717,17 @@
       </div></div>
     </div>
 
-    <!-- Largest region -->
-    <div class="cell g-deep p-buyer" tabindex="0">
+    <!-- Largest region (split) -->
+    <div class="cell g-deep split p-buyer" tabindex="0">
       <div class="pane">
         <div class="lab">Largest Region</div>
         <div class="big md" style="font-size:18px">North America</div>
-        <div class="foot">~2/3 of global revenue - deep biopharma infrastructure and expanding Medicare
-          coverage keep the tilt with the U.S.</div>
+        <div class="foot">~2/3 of global revenue</div>
       </div>
+      <div class="pane detail"><div class="dbox">
+        Deep biopharmaceutical infrastructure, landmark FDA approvals and expanding Medicare coverage keep
+        the tilt with the U.S.; India and other Asia Pacific markets are fastest-growing off a low base.
+      </div></div>
     </div>
 
     <!-- Row 2 -->
@@ -750,15 +753,18 @@
       </div>
     </div>
 
-    <!-- Companies / signals -->
-    <div class="cell g-navy p-comp" tabindex="0">
+    <!-- Companies / signals (split) -->
+    <div class="cell g-navy split p-comp" tabindex="0">
       <div class="pane">
         <div class="lab">Companies</div>
         <div class="big md">15+</div>
         <div class="sig"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="foot">profiled - Eli Lilly, Novo Nordisk, Roche, Pfizer, Amgen, J&amp;J, Boston Scientific,
-          Zealand Pharma, Boehringer Ingelheim, Innovent Biologics &amp; others</div>
+        <div class="foot">profiled</div>
       </div>
+      <div class="pane detail"><div class="dbox">
+        Eli Lilly, Novo Nordisk, Roche, Pfizer, Amgen, Johnson &amp; Johnson, Boston Scientific (Apollo
+        Endosurgery), Zealand Pharma, Boehringer Ingelheim, Innovent Biologics &amp; other value-chain vendors.
+      </div></div>
     </div>
 
   </div>
