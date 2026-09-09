@@ -488,6 +488,14 @@
     border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
   .barlist h6{margin:0 0 4px;font-size:14px;font-weight:800;color:var(--navy)}
   .barlist .bl-cap{font-size:11.5px;color:var(--muted);margin:0 0 14px}
+
+  /* Seniority pyramid (Primary Research respondents) */
+  .pyr-wrap{max-width:340px;margin:6px auto 0}
+  .pyr-svg{width:100%;height:auto;display:block}
+  .pyr-t{transition:filter .15s ease;cursor:default}
+  .pyr-t:hover{filter:brightness(1.14)}
+  .pyr-lab{pointer-events:none;font-weight:600}
+  .pyr-pct{pointer-events:none;font-weight:800}
   .bl-item{margin:12px -10px;padding:6px 10px;border-radius:9px;transition:background .15s ease}
   .bl-item:hover,.bl-item:focus-visible{background:var(--tint)}
   .bl-item:focus{outline:none}
@@ -894,13 +902,31 @@
 
     <div class="barlist reveal">
       <h6>Primary Research: Interviews by Designation</h6>
-      <div class="bl-cap">Supply-side and demand-side respondents spanning the obesity treatment value chain</div>
-      <div class="bl-item"><div class="bl-top"><span class="nm">Senior Managers / Managers</span><span class="v">30%</span></div><div class="bl-track"><div class="bl-fill" style="--w:30%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span class="nm">VPs / Directors</span><span class="v">20%</span></div><div class="bl-track"><div class="bl-fill" style="--w:20%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span class="nm">Healthcare Professionals</span><span class="v">20%</span></div><div class="bl-track"><div class="bl-fill" style="--w:20%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span class="nm">CXOs</span><span class="v">10%</span></div><div class="bl-track"><div class="bl-fill" style="--w:10%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span class="nm">Researchers / Academics</span><span class="v">10%</span></div><div class="bl-track"><div class="bl-fill" style="--w:10%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span class="nm">Others</span><span class="v">10%</span></div><div class="bl-track"><div class="bl-fill" style="--w:10%"></div></div></div>
+      <div class="bl-cap">Supply-side and demand-side respondents spanning the obesity treatment value chain,
+        arranged from the most senior designation at the apex to the broadest base of respondents</div>
+      <div class="pyr-wrap">
+        <svg class="pyr-svg" viewBox="0 0 420 300" role="img"
+             aria-label="Pyramid chart of primary-research respondents by designation: CXOs 10%, VPs or Directors 20%, Senior Managers or Managers 30%, Healthcare Professionals 20%, Researchers or Academics 10%, Others 10%, narrowest at the top and widest at the base.">
+          <polygon class="pyr-t" data-i="0" points="210.0,12.0 210.0,12.0 239.2,58.7 180.8,58.7" fill="#3b1178"><title>CXOs - 10%</title></polygon>
+          <text class="pyr-lab" x="210" y="31.3" text-anchor="middle" font-size="11.5" fill="#fff">CXOs</text>
+          <text class="pyr-pct" x="210" y="49.8" text-anchor="middle" font-size="13" fill="#c9b3ff">10%</text>
+          <polygon class="pyr-t" data-i="1" points="180.8,58.7 239.2,58.7 268.3,105.3 151.7,105.3" fill="#4c1d95"><title>VPs / Directors - 20%</title></polygon>
+          <text class="pyr-lab" x="210" y="78.0" text-anchor="middle" font-size="9.5" fill="#fff">VPs / Directors</text>
+          <text class="pyr-pct" x="210" y="94.5" text-anchor="middle" font-size="11" fill="#c9b3ff">20%</text>
+          <polygon class="pyr-t" data-i="2" points="151.7,105.3 268.3,105.3 297.5,152.0 122.5,152.0" fill="#5b21b6"><title>Senior Managers / Managers - 30%</title></polygon>
+          <text class="pyr-lab" x="210" y="124.7" text-anchor="middle" font-size="9" fill="#fff">Senior Managers / Managers</text>
+          <text class="pyr-pct" x="210" y="140.7" text-anchor="middle" font-size="10.5" fill="#c9b3ff">30%</text>
+          <polygon class="pyr-t" data-i="3" points="122.5,152.0 297.5,152.0 326.7,198.7 93.3,198.7" fill="#6d28d9"><title>Healthcare Professionals - 20%</title></polygon>
+          <text class="pyr-lab" x="210" y="171.3" text-anchor="middle" font-size="12.5" fill="#fff">Healthcare Professionals</text>
+          <text class="pyr-pct" x="210" y="190.8" text-anchor="middle" font-size="14" fill="#c9b3ff">20%</text>
+          <polygon class="pyr-t" data-i="4" points="93.3,198.7 326.7,198.7 355.8,245.3 64.2,245.3" fill="#7c3aed"><title>Researchers / Academics - 10%</title></polygon>
+          <text class="pyr-lab" x="210" y="218.0" text-anchor="middle" font-size="12.5" fill="#fff">Researchers / Academics</text>
+          <text class="pyr-pct" x="210" y="237.5" text-anchor="middle" font-size="14" fill="#c9b3ff">10%</text>
+          <polygon class="pyr-t" data-i="5" points="64.2,245.3 355.8,245.3 385.0,292.0 35.0,292.0" fill="#a78bfa"><title>Others - 10%</title></polygon>
+          <text class="pyr-lab" x="210" y="264.7" text-anchor="middle" font-size="12.5" fill="#2a1454">Others</text>
+          <text class="pyr-pct" x="210" y="284.2" text-anchor="middle" font-size="14" fill="#5b21b6">10%</text>
+        </svg>
+      </div>
     </div>
 
     <h3 class="subhh reveal">Data Validation</h3>
