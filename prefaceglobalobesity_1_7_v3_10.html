@@ -255,6 +255,13 @@
   .colwrap:hover,.colwrap:focus-within{z-index:20}
   .plot .yaxis{position:absolute;left:-2px;font-size:10.5px;color:#a894c9;transform:translateY(-50%)}
 
+  /* historical / forecast divider on the vertical stacked chart */
+  .plot.has-hf{padding-top:28px}
+  .hf-div{position:absolute;top:2px;bottom:0;width:0;border-left:1px dashed #c9b9f0;z-index:0;pointer-events:none}
+  .hf-lab{position:absolute;top:-20px;font-size:11px;font-weight:700;color:var(--muted);pointer-events:none}
+  .hf-lab.hist{text-align:right;padding-right:8px}
+  .hf-lab.fore{color:var(--purple);text-align:left;padding-left:8px}
+
   /* ---------- Horizontal stacked bar variant (rows instead of columns) ---------- */
   /* Each row is [label][full-width track][value]; the coloured bar sits inside the track sized to
      its own value/ceil share, so bar length is proportional and the value label sits right after
@@ -838,7 +845,7 @@
         <span class="lg"><span class="sw seg-sw"></span> Surgery</span>
         <span class="lg"><span class="sw seg-sv"></span> Nutritional Products</span>
       </div>
-      <div class="plot" id="plot" aria-label="Horizontal stacked bar chart of market size by segment"></div>
+      <div class="plot" id="plot" aria-label="Stacked column chart of market size by segment"></div>
       <p class="note">Exact historical and forecast checkpoints (2019, 2022, 2025 base year, 2030F, 2035F) as
         reported in the by-type sizing table; totals reflect Claight syndicated estimates.</p>
     </div>
@@ -2752,6 +2759,24 @@
       plot.appendChild(wrap);
       colRecords.push({d:d, sizeEl:sizeEl, tot:tot, parts:parts});
     });
+    if(!horiz){
+      var baseIdx = -1;
+      data.forEach(function(d,i){ if(d.base) baseIdx = i; });
+      if(baseIdx > -1 && baseIdx < data.length-1){
+        plot.classList.add('has-hf');
+        var wraps = plot.querySelectorAll('.colwrap');
+        var plotRect = plot.getBoundingClientRect();
+        var baseRect = wraps[baseIdx].getBoundingClientRect();
+        var nextRect = wraps[baseIdx+1].getBoundingClientRect();
+        var xPct = ((baseRect.right + nextRect.left)/2 - plotRect.left) / plotRect.width * 100;
+        var div = document.createElement('div'); div.className='hf-div'; div.style.left = xPct+'%';
+        var histLab = document.createElement('div'); histLab.className='hf-lab hist';
+        histLab.textContent = 'Historical'; histLab.style.left='0'; histLab.style.width=xPct+'%';
+        var foreLab = document.createElement('div'); foreLab.className='hf-lab fore';
+        foreLab.textContent = 'Forecast'; foreLab.style.left=xPct+'%'; foreLab.style.right='0';
+        plot.appendChild(div); plot.appendChild(histLab); plot.appendChild(foreLab);
+      }
+    }
     if(horiz){
       var axisRow=document.createElement('div'); axisRow.className='haxisrow';
       var axYr=document.createElement('div'); axYr.className='yr'; axYr.textContent='0';
@@ -2833,7 +2858,7 @@
     {yr:'2025', drugs:11.9, surgery:5.0, nutri:1.71, base:true},
     {yr:'2030F', drugs:24.4, surgery:7.5, nutri:2.6},
     {yr:'2035F', drugs:35.1, surgery:10.4, nutri:3.21}
-  ], TYPE_SERIES, 55, [10,20,30,40,50], 'B', {horiz:true});
+  ], TYPE_SERIES, 55, [10,20,30,40,50], 'B');
 
   buildStackChart('routePlot', [
     {yr:'2023', inj:93, oral:7},
