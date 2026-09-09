@@ -531,6 +531,31 @@
   @media(max-width:700px){
     .pie-wrap{grid-template-columns:1fr}
   }
+
+  /* Confidence Stack (Data Validation pyramid) */
+  .cstack{margin:16px 0 8px;padding:20px 22px;background:linear-gradient(180deg,#f9f5ff,#f4eeff);
+    border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .cstack-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--purple)}
+  .cstack-head h4{margin:5px 0 4px;font-size:17px;font-weight:800;color:var(--navy)}
+  .cstack-head p{margin:0;font-size:12.5px;color:var(--muted);max-width:640px}
+  .cstack-body{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+    gap:18px;align-items:center;margin-top:16px}
+  .cstack-pyrwrap{width:100%;max-width:360px;margin:0 auto}
+  .cstack-pyr{width:100%;height:auto;display:block;overflow:visible}
+  .cstack-t{stroke:#f9f5ff;stroke-width:2}
+  .cstack-line{stroke:#c9b9f0;stroke-width:1.2;stroke-dasharray:2 3}
+  .cstack-dot{fill:var(--purple)}
+  .cstack-side{display:flex;flex-direction:column;justify-content:space-between;gap:12px;height:100%}
+  .cstack-li b{display:block;font-size:12.5px;font-weight:700;color:var(--purple-deep)}
+  .cstack-li span{display:block;margin-top:3px;font-size:11.5px;line-height:1.5;color:var(--ink)}
+  .cstack-result{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+    font-size:12.5px;line-height:1.6;color:var(--ink)}
+  .cstack-result b{color:var(--purple-deep);font-weight:700}
+  @media(max-width:760px){
+    .cstack-body{grid-template-columns:1fr}
+    .cstack-pyrwrap{max-width:300px}
+  }
   @media(prefers-reduced-motion:reduce){
     .pie-li-fill{transition:none}
     .pie-li-v{transition:none}
@@ -1018,22 +1043,60 @@
       of participants such as Novo Nordisk and Eli Lilly). The two are reconciled at every level, from the
       global market to individual segments.
     </p>
-    <ul class="dyn reveal">
-      <li><b>Triangulation</b>: top-down (total market to sub-segment) and bottom-up (company-level revenue aggregation) estimates are cross-checked against macroeconomic indicators and regulatory filings.</li>
-      <li><b>Internal quality control</b>: a dedicated team reviews every figure for internal consistency before it advances to expert review.</li>
-      <li><b>Industry expert &amp; KOL validation</b>: estimates are checked against the judgement of industry experts and key opinion leaders.</li>
-      <li><b>Analytical cross-checking</b>: multiple data-analysis and cross-checking models are applied before a data point is considered final.</li>
-    </ul>
-    <p class="reveal">
-      Only once these three layers of validation are complete is a data point considered final and included
-      in this report, after which the report is compiled, peer-reviewed, revised, finalised and presented to
-      stakeholders.
-    </p>
+    <div class="cstack reveal">
+      <div class="cstack-head">
+        <span class="cstack-eyebrow">Confidence Stack</span>
+        <h4>Layer by Layer, Higher Confidence</h4>
+        <p>Each validation layer adds a layer of scrutiny, building toward a data point this report can stand behind.</p>
+      </div>
+      <div class="cstack-body">
+        <div class="cstack-pyrwrap">
+          <svg class="cstack-pyr" viewBox="0 0 340 280" role="img" aria-label="Five-layer validation stack, from Triangulation at the base up to a Verified Data Point at the apex.">
+            <polygon class="cstack-t" points="130.0,12.0 210.0,12.0 232.0,63.2 108.0,63.2" fill="#a78bfa"/>
+            <text x="170" y="42" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2a1454">Verified</text>
+            <text x="170" y="55" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2a1454">Data Point</text>
+            <line class="cstack-line" x1="232.0" y1="37.6" x2="330" y2="37.6"/>
+            <circle class="cstack-dot" cx="330" cy="37.6" r="3"/>
+
+            <polygon class="cstack-t" points="108.0,63.2 232.0,63.2 254.0,114.4 86.0,114.4" fill="#8f6fe0"/>
+            <text x="170" y="93" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Analytical</text>
+            <text x="170" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Cross-Checking</text>
+            <line class="cstack-line" x1="254.0" y1="88.8" x2="330" y2="88.8"/>
+            <circle class="cstack-dot" cx="330" cy="88.8" r="3"/>
+
+            <polygon class="cstack-t" points="86.0,114.4 254.0,114.4 276.0,165.6 64.0,165.6" fill="#7c3aed"/>
+            <text x="170" y="144" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">Expert &amp; KOL</text>
+            <text x="170" y="157" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">Validation</text>
+            <line class="cstack-line" x1="276.0" y1="140.0" x2="330" y2="140.0"/>
+            <circle class="cstack-dot" cx="330" cy="140.0" r="3"/>
+
+            <polygon class="cstack-t" points="64.0,165.6 276.0,165.6 298.0,216.8 42.0,216.8" fill="#6529c4"/>
+            <text x="170" y="187" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Internal</text>
+            <text x="170" y="201" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Quality Control</text>
+            <line class="cstack-line" x1="298.0" y1="191.2" x2="330" y2="191.2"/>
+            <circle class="cstack-dot" cx="330" cy="191.2" r="3"/>
+
+            <polygon class="cstack-t" points="42.0,216.8 298.0,216.8 320.0,268.0 20.0,268.0" fill="#4c1d95"/>
+            <text x="170" y="247" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Triangulation</text>
+            <line class="cstack-line" x1="320.0" y1="242.4" x2="330" y2="242.4"/>
+            <circle class="cstack-dot" cx="330" cy="242.4" r="3"/>
+          </svg>
+        </div>
+        <div class="cstack-side">
+          <div class="cstack-li"><b>Verified Data Point</b><span>Included in this report only once every layer below is complete.</span></div>
+          <div class="cstack-li"><b>Analytical Cross-Checking</b><span>Multiple data-analysis and cross-checking models are applied before a figure is treated as final.</span></div>
+          <div class="cstack-li"><b>Expert &amp; KOL Validation</b><span>Estimates are checked against the judgement of industry experts and key opinion leaders.</span></div>
+          <div class="cstack-li"><b>Internal Quality Control</b><span>A dedicated team reviews every figure for internal consistency before it advances to expert review.</span></div>
+          <div class="cstack-li"><b>Triangulation</b><span>Top-down and bottom-up estimates are cross-checked against macroeconomic indicators and regulatory filings.</span></div>
+        </div>
+      </div>
+      <div class="cstack-result"><b>The result:</b> a reconciled, four-layer-validated market estimate, compiled, peer-reviewed and finalised before it is presented to stakeholders.</div>
+    </div>
 
     <div class="flowcard reveal">
       <div class="ft">
         <h4>Report Compilation and Delivery</h4>
-        <div class="sub2">The final stage, following three-step validation</div>
+        <div class="sub2">The final stage, following four-layer validation</div>
       </div>
       <div class="flow">
         <div class="step"><div class="n">1</div><div class="t">Compilation of market report</div><span class="arw">&rsaquo;</span></div>
