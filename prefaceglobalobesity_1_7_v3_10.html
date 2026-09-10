@@ -419,6 +419,7 @@
   /* Insight / outlook cards */
   .mo-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0 6px;padding:0;list-style:none}
   .mo-cards.two{grid-template-columns:repeat(2,1fr)}
+  .mo-cards.one{grid-template-columns:1fr;max-width:620px;margin-left:auto;margin-right:auto}
   .mo-card{background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
     border-radius:12px;padding:16px 16px 17px;box-shadow:0 6px 18px rgba(76,29,149,.08);
     transition:transform .16s ease,box-shadow .16s ease}
@@ -1194,7 +1195,7 @@
         <strong>USD 48.71 billion</strong>, propelled less by further efficacy breakthroughs than by how
         quickly access barriers are dismantled.
       </p>
-      <ul class="mo-cards two reveal">
+      <ul class="mo-cards one reveal">
         <li class="mo-card">
           <div class="mo-ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1232,19 +1233,13 @@
             </div>
           </div>
         </li>
-        <li class="mo-card">
-          <div class="mo-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"></circle><polyline points="12 6.5 12 12 16 14"></polyline>
-            </svg>
-          </div>
-          <h5>A pattern with precedent</h5>
-          <p>The trajectory mirrors other transformative chronic-disease drug classes, such as statins and
-            SGLT2 inhibitors, that moved from a high-priced, access-constrained launch phase to broad,
-            reimbursed, standard-of-care status as oral formulations and follow-on competition matured over
-            time.</p>
-        </li>
       </ul>
+      <p class="reveal">
+        <strong>A pattern with precedent:</strong> the trajectory mirrors other transformative chronic-disease
+        drug classes, such as statins and SGLT2 inhibitors, that moved from a high-priced, access-constrained
+        launch phase to broad, reimbursed, standard-of-care status as oral formulations and follow-on
+        competition matured over time.
+      </p>
 
     </section>
 
