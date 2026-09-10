@@ -354,11 +354,14 @@
 
   /* ================= SECTION 3 - GLOBAL MARKET OVERVIEW ================= */
   /* KPI snapshot row (reuses .cell gradients from the hero mosaic) */
-  .mo-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 6px}
-  .mo-kpis .cell{min-height:118px}
-  .mo-kpis .cell .big{font-size:27px}
-  .mo-kpis .cell .pill{align-self:flex-start}
-  .mo-kpis .cell .foot{margin-top:auto;padding-top:8px}
+  .mo-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 6px}
+  .mo-kpis .cell{min-height:86px}
+  .mo-kpis .cell .pane{padding:9px 12px}
+  .mo-kpis .cell .lab{font-size:9px}
+  .mo-kpis .cell .big{font-size:19px;margin-top:4px}
+  .mo-kpis .cell .pill{align-self:flex-start;font-size:9.5px;padding:2px 7px;margin-top:5px}
+  .mo-kpis .cell .foot{margin-top:auto;padding-top:5px;font-size:10px}
+  .mo-kpis .cell .glyph{height:13px;margin-top:5px}
   @media(max-width:760px){ .mo-kpis{grid-template-columns:1fr 1fr} }
   @media(max-width:460px){ .mo-kpis{grid-template-columns:1fr} }
 
