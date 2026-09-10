@@ -445,6 +445,22 @@
     border-radius:12px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
   .dsc-standalone .dsc-svg{max-width:300px}
   .dsc-standalone .dsc-xlabs{max-width:300px}
+
+  /* range card: single-metric horizontal track + value badge */
+  .rc{display:flex;align-items:center;gap:18px;margin:16px 0;padding:15px 20px;
+    border-left:4px solid var(--purple);border-radius:10px;
+    background:linear-gradient(180deg,#f9f5ff,#f4eeff);box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .rc-left{flex:1.1;min-width:0}
+  .rc-title{font-size:13.5px;font-weight:800;color:var(--navy)}
+  .rc-desc{font-size:12px;line-height:1.5;color:var(--muted);margin-top:4px}
+  .rc-right{display:flex;align-items:center;gap:12px;flex:1;justify-content:flex-end}
+  .rc-track{flex:1;max-width:200px;height:8px;background:#e4d9f8;border-radius:999px;overflow:hidden}
+  .rc-fill{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#a78bfa,#6d28d9)}
+  .rc-badge{flex:none;font-size:12px;font-weight:800;color:var(--purple-deep);background:#fff;
+    border:1px solid var(--line);border-radius:999px;padding:5px 13px;white-space:nowrap;
+    box-shadow:0 3px 8px rgba(76,29,149,.12)}
+  @media(max-width:640px){ .rc{flex-direction:column;align-items:stretch;gap:12px}
+    .rc-right{justify-content:flex-start} }
   .dsc-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
   .dsc-title{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--navy)}
   .dsc-badge{flex:none;font-size:10px;font-weight:800;color:#fff;white-space:nowrap;
@@ -1200,6 +1216,17 @@
         into a broader treatment platform, where oral GLP-1 formulations, next-generation multi-receptor
         agonists and label expansion into cardiometabolic comorbidities are widening both the addressable
         population and the average revenue captured per patient.</p>
+      <div class="rc reveal">
+        <div class="rc-left">
+          <div class="rc-title">Drugs' Share of Total Market Value</div>
+          <div class="rc-desc">Widening lead as GLP-1 pharmacotherapy displaces surgery and
+            nutritional-product spend.</div>
+        </div>
+        <div class="rc-right">
+          <span class="rc-track"><span class="rc-fill" style="width:72%"></span></span>
+          <span class="rc-badge">~46% &rarr; ~72%</span>
+        </div>
+      </div>
       <p class="reveal">Drugs' share of total market value is estimated to rise from ~46% in 2019 to ~64% in
         2025 and approach ~72% by 2035.</p>
       <div class="dsc dsc-standalone">
