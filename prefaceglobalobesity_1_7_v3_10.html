@@ -616,12 +616,12 @@
     margin:18px 0 10px;background:linear-gradient(180deg,#f9f5ff,#f4eeff);
     border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 22px rgba(76,29,149,.10);
     overflow:hidden}
-  .gx-head{padding:18px 20px 15px;background:linear-gradient(150deg,#28144a 0%,#180a30 100%)}
+  .gx-head{padding:18px 20px 15px;background:transparent;border-bottom:1px dashed var(--line)}
   .gx-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--purple-soft);margin-bottom:6px}
-  .gx-title{margin:0;font-size:17px;line-height:1.32;font-weight:800;color:#fff;letter-spacing:-.01em}
-  .gx-sub{margin:6px 0 0;font-size:12.5px;color:rgba(255,255,255,.72)}
-  .gx-body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.68fr) minmax(0,1.18fr);
+    color:var(--purple);margin-bottom:6px}
+  .gx-title{margin:0;font-size:17px;line-height:1.32;font-weight:800;color:var(--navy);letter-spacing:-.01em}
+  .gx-sub{margin:6px 0 0;font-size:12.5px;color:var(--muted)}
+  .gx-body{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,.55fr) minmax(0,1.18fr);
     gap:0;padding:20px 22px 6px}
   .gx-panel{min-width:0}
   .gx-panel+.gx-panel{border-left:1px dashed var(--line);padding-left:22px;margin-left:22px}
@@ -657,10 +657,9 @@
 
   .gx-stat+.gx-stat{margin-top:17px;padding-top:17px;border-top:1px dashed var(--line)}
   .gx-sl{font-size:11.5px;color:var(--muted);line-height:1.35}
-  .gx-sv{font-size:24px;font-weight:800;color:var(--gx-v);letter-spacing:-.02em;line-height:1.1;margin-top:4px}
+  .gx-sv{font-size:22px;font-weight:800;color:var(--gx-v);letter-spacing:-.02em;line-height:1.1;margin-top:4px}
   .gx-sv span{font-size:.56em;font-weight:800}
   .gx-sv.ref{color:var(--gx-ref)}
-  .gx-sv.sm{font-size:18px}
 
   .gx-bars{position:relative}
   .gx-grp+.gx-grp{margin-top:15px}
@@ -2981,8 +2980,8 @@
     {y:2032,v:36.50,r:46.57},{y:2033,v:40.18,r:53.09},{y:2034,v:44.24,r:60.52},
     {y:2035,v:48.71,r:68.99}
   ];
-  var BASE = 6, CEIL = 70, VW = 560, VH = 330;
-  var X0 = 42, X1 = 512, Y0 = 30, Y1 = 276;
+  var BASE = 6, CEIL = 70, VW = 620, VH = 380;
+  var X0 = 42, X1 = 572, Y0 = 30, Y1 = 316;
   var NS = 'http://www.w3.org/2000/svg';
   var el = function(n,a){ var e = document.createElementNS(NS,n);
     for(var k in a){ if(a.hasOwnProperty(k)) e.setAttribute(k,a[k]); } return e; };
