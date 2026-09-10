@@ -440,6 +440,11 @@
 
   /* Drugs' share of market value: small trend chart embedded in a mo-card */
   .dsc{margin-top:11px;padding-top:10px;border-top:1px dashed var(--line)}
+  .dsc-standalone{margin:14px auto 10px;padding:16px 18px;max-width:420px;border-top:0;
+    background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
+    border-radius:12px;box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .dsc-standalone .dsc-svg{max-width:300px}
+  .dsc-standalone .dsc-xlabs{max-width:300px}
   .dsc-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
   .dsc-title{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--navy)}
   .dsc-badge{flex:none;font-size:10px;font-weight:800;color:#fff;white-space:nowrap;
@@ -1190,45 +1195,36 @@
         <strong>USD 48.71 billion</strong>, propelled less by further efficacy breakthroughs than by how
         quickly access barriers are dismantled.
       </p>
-      <ul class="mo-cards one reveal">
-        <li class="mo-card">
-          <div class="mo-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
-              <rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
-            </svg>
-          </div>
-          <h5>From injectable pharmacotherapy to a multi-modal platform</h5>
-          <p>The acceleration reflects the market's transition from an injectable-led drug category into a
-            broader treatment platform, where oral GLP-1 formulations, next-generation multi-receptor
-            agonists and label expansion into cardiometabolic comorbidities are widening both the addressable
-            population and the average revenue captured per patient. Drugs' share of total market value is
-            estimated to rise from ~46% in 2019 to ~64% in 2025 and approach ~72% by 2035.</p>
-          <div class="dsc">
-            <div class="dsc-head">
-              <span class="dsc-title">Drugs' Share of Total Market Value</span>
-              <span class="dsc-badge">+26 pts</span>
-            </div>
-            <svg class="dsc-svg" viewBox="0 0 300 100" role="img"
-              aria-label="Line chart: drugs' share of total obesity market value rises from about 46% in 2019 to about 64% in the 2025 base year, and is forecast to reach about 72% by 2035.">
-              <polygon class="dsc-area" points="150,52 280,36 280,92 150,92"></polygon>
-              <polyline class="dsc-solid" points="20,88 150,52"></polyline>
-              <polyline class="dsc-dash" points="150,52 280,36"></polyline>
-              <text class="dsc-val" x="20" y="76">~46%</text>
-              <text class="dsc-val" x="150" y="40">~64%</text>
-              <text class="dsc-val" x="280" y="24">~72%</text>
-              <circle class="dsc-dot" cx="20" cy="88" r="4"></circle>
-              <circle class="dsc-dot" cx="150" cy="52" r="5"></circle>
-              <circle class="dsc-dot hollow" cx="280" cy="36" r="5"></circle>
-            </svg>
-            <div class="dsc-xlabs">
-              <div><b>2019</b></div>
-              <div><b>2025</b><i>Base year</i></div>
-              <div><b>2035</b><i>Forecast</i></div>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <h4 class="khead reveal">From injectable pharmacotherapy to a multi-modal platform</h4>
+      <p class="reveal">The acceleration reflects the market's transition from an injectable-led drug category
+        into a broader treatment platform, where oral GLP-1 formulations, next-generation multi-receptor
+        agonists and label expansion into cardiometabolic comorbidities are widening both the addressable
+        population and the average revenue captured per patient.</p>
+      <p class="reveal">Drugs' share of total market value is estimated to rise from ~46% in 2019 to ~64% in
+        2025 and approach ~72% by 2035.</p>
+      <div class="dsc dsc-standalone">
+        <div class="dsc-head">
+          <span class="dsc-title">Drugs' Share of Total Market Value</span>
+          <span class="dsc-badge">+26 pts</span>
+        </div>
+        <svg class="dsc-svg" viewBox="0 0 300 100" role="img"
+          aria-label="Line chart: drugs' share of total obesity market value rises from about 46% in 2019 to about 64% in the 2025 base year, and is forecast to reach about 72% by 2035.">
+          <polygon class="dsc-area" points="150,52 280,36 280,92 150,92"></polygon>
+          <polyline class="dsc-solid" points="20,88 150,52"></polyline>
+          <polyline class="dsc-dash" points="150,52 280,36"></polyline>
+          <text class="dsc-val" x="20" y="76">~46%</text>
+          <text class="dsc-val" x="150" y="40">~64%</text>
+          <text class="dsc-val" x="280" y="24">~72%</text>
+          <circle class="dsc-dot" cx="20" cy="88" r="4"></circle>
+          <circle class="dsc-dot" cx="150" cy="52" r="5"></circle>
+          <circle class="dsc-dot hollow" cx="280" cy="36" r="5"></circle>
+        </svg>
+        <div class="dsc-xlabs">
+          <div><b>2019</b></div>
+          <div><b>2025</b><i>Base year</i></div>
+          <div><b>2035</b><i>Forecast</i></div>
+        </div>
+      </div>
       <p class="reveal">
         <strong>A pattern with precedent:</strong> the trajectory mirrors other transformative chronic-disease
         drug classes, such as statins and SGLT2 inhibitors, that moved from a high-priced, access-constrained
