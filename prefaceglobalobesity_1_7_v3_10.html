@@ -503,22 +503,20 @@
   .caps-col{position:relative;display:flex;flex-direction:column;justify-content:center;gap:13px;
     width:230px;flex:none;transition:opacity .2s ease}
   .caps-col.dim{opacity:.38}
-  .caps-col.left::after{content:"";position:absolute;right:0;top:8%;bottom:8%;width:1.5px;
-    background:var(--purple)}
-  .caps-col.right::after{content:"";position:absolute;left:0;top:8%;bottom:8%;width:1.5px;
-    background:var(--purple)}
+  .caps-col.right{padding-left:64px}
+  .caps-col.left{padding-right:64px}
+  .caps-connectors{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
+  .caps-connectors path{fill:none;stroke:var(--purple);stroke-width:1.5}
   .caps-point{display:flex;align-items:center;width:100%}
-  .caps-point-line{flex:1;height:1.5px;min-width:14px;background:var(--purple)}
-  .caps-point-text{flex:none;max-width:180px;font-size:11.5px;line-height:1.4;color:var(--ink)}
-  .caps-col.left .caps-point-text{text-align:right;margin-right:8px}
-  .caps-col.right .caps-point-text{text-align:left;margin-left:8px}
+  .caps-point-text{font-size:11.5px;line-height:1.4;color:var(--ink)}
+  .caps-col.left .caps-point-text{text-align:right}
+  .caps-col.right .caps-point-text{text-align:left}
   @media(max-width:760px){
     .caps-diagram{flex-direction:column;gap:14px}
     .capsule-real{order:-1;max-width:340px;height:96px}
-    .caps-col{width:100%;max-width:340px}
-    .caps-col.left::after,.caps-col.right::after{display:none}
-    .caps-col.left .caps-point{flex-direction:row-reverse}
-    .caps-col.left .caps-point-text{text-align:left;margin-right:0;margin-left:8px}
+    .caps-col{width:100%;max-width:340px;padding-left:0;padding-right:0}
+    .caps-connectors{display:none}
+    .caps-col.left .caps-point-text{text-align:left}
   }
   .dsc-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
   .dsc-title{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--navy)}
@@ -1350,11 +1348,12 @@
     <div class="caps-wrap reveal" id="capsWrap">
       <div class="caps-diagram">
         <div class="caps-col left" id="capsColLeft">
-          <div class="caps-point"><span class="caps-point-text">Elevated BMI (&ge;30 kg/m&sup2;), central/visceral fat</span><span class="caps-point-line"></span></div>
-          <div class="caps-point"><span class="caps-point-text">Breathlessness, low exercise tolerance, joint pain</span><span class="caps-point-line"></span></div>
-          <div class="caps-point"><span class="caps-point-text">Snoring and signs of sleep apnoea</span><span class="caps-point-line"></span></div>
-          <div class="caps-point"><span class="caps-point-text">Skin changes: acanthosis nigricans, intertrigo</span><span class="caps-point-line"></span></div>
-          <div class="caps-point"><span class="caps-point-text">Progressive loss of mobility, advanced disease</span><span class="caps-point-line"></span></div>
+          <svg class="caps-connectors" id="capsConnLeft"></svg>
+          <div class="caps-point"><span class="caps-point-text">Elevated BMI (&ge;30 kg/m&sup2;), central/visceral fat</span></div>
+          <div class="caps-point"><span class="caps-point-text">Breathlessness, low exercise tolerance, joint pain</span></div>
+          <div class="caps-point"><span class="caps-point-text">Snoring and signs of sleep apnoea</span></div>
+          <div class="caps-point"><span class="caps-point-text">Skin changes: acanthosis nigricans, intertrigo</span></div>
+          <div class="caps-point"><span class="caps-point-text">Progressive loss of mobility, advanced disease</span></div>
         </div>
         <div class="capsule-real">
           <button type="button" class="cap-half left active" data-panel="ccp">
@@ -1365,12 +1364,13 @@
           </button>
         </div>
         <div class="caps-col right" id="capsColRight">
-          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Cardiometabolic:</b> diabetes, hypertension, NAFLD</span></div>
-          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Musculoskeletal:</b> osteoarthritis, knee/hip strain</span></div>
-          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Respiratory:</b> sleep apnoea, hypoventilation</span></div>
-          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Oncological:</b> endometrial, breast, colorectal risk</span></div>
-          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Reproductive:</b> PCOS, subfertility</span></div>
-          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Psychological:</b> depression, anxiety, body image</span></div>
+          <svg class="caps-connectors" id="capsConnRight"></svg>
+          <div class="caps-point"><span class="caps-point-text"><b>Cardiometabolic:</b> diabetes, hypertension, NAFLD</span></div>
+          <div class="caps-point"><span class="caps-point-text"><b>Musculoskeletal:</b> osteoarthritis, knee/hip strain</span></div>
+          <div class="caps-point"><span class="caps-point-text"><b>Respiratory:</b> sleep apnoea, hypoventilation</span></div>
+          <div class="caps-point"><span class="caps-point-text"><b>Oncological:</b> endometrial, breast, colorectal risk</span></div>
+          <div class="caps-point"><span class="caps-point-text"><b>Reproductive:</b> PCOS, subfertility</span></div>
+          <div class="caps-point"><span class="caps-point-text"><b>Psychological:</b> depression, anxiety, body image</span></div>
         </div>
       </div>
     </div>
@@ -3364,6 +3364,46 @@
     h.addEventListener('focus', function(){ activate(h.dataset.panel); });
   });
   wrap.addEventListener('mouseleave', reset);
+
+  /* fan-style elbow connectors: every point converges on one anchor at the capsule's edge */
+  var capsule = wrap.querySelector('.capsule-real');
+  var NS = 'http://www.w3.org/2000/svg';
+  var draw = function(col, svg, side){
+    if(!col || !svg || !capsule) return;
+    var colR = col.getBoundingClientRect();
+    var capR = capsule.getBoundingClientRect();
+    var w = colR.width, h = colR.height;
+    if(!w || !h) return;
+    svg.setAttribute('width', w);
+    svg.setAttribute('height', h);
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    var anchorX = side === 'right' ? 0 : w;
+    var anchorY = (capR.top + capR.height / 2) - colR.top;
+    var kneeOffset = 46;
+    var kneeX = side === 'right' ? anchorX + kneeOffset : anchorX - kneeOffset;
+    var texts = col.querySelectorAll('.caps-point-text');
+    texts.forEach(function(t){
+      var r = t.getBoundingClientRect();
+      var itemY = (r.top + r.height / 2) - colR.top;
+      var endX = side === 'right' ? (r.left - colR.left) - 8 : (r.right - colR.left) + 8;
+      var d = 'M' + anchorX + ',' + anchorY.toFixed(1) +
+        ' L' + kneeX + ',' + itemY.toFixed(1) +
+        ' L' + endX.toFixed(1) + ',' + itemY.toFixed(1);
+      var path = document.createElementNS(NS, 'path');
+      path.setAttribute('d', d);
+      svg.appendChild(path);
+    });
+  };
+  var redraw = function(){
+    draw(document.getElementById('capsColLeft'), document.getElementById('capsConnLeft'), 'left');
+    draw(document.getElementById('capsColRight'), document.getElementById('capsConnRight'), 'right');
+  };
+  redraw();
+  window.addEventListener('resize', redraw);
+  if(window.ResizeObserver){
+    new ResizeObserver(redraw).observe(wrap);
+  }
 })();
 </script>
 </body>
