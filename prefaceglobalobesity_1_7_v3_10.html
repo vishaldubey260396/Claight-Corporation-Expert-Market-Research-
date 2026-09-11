@@ -510,6 +510,35 @@
   .caps-col.left{padding-right:64px}
   @media(prefers-reduced-motion:reduce){ .caps-col{opacity:1;transform:none;transition:none} }
 
+  /* BMI classification rings: circles that expand on hover/focus to reveal their content inline */
+  .bmirings{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:18px 0}
+  .bmiring-cell{display:flex}
+  .bmirings{align-items:start}
+  .bmiring{position:relative;width:100%;max-width:150px;height:150px;margin:0 auto;border-radius:50%;
+    cursor:pointer;box-shadow:0 10px 24px rgba(76,29,149,.22);outline:none;
+    transition:max-width .45s cubic-bezier(.4,0,.2,1),height .45s cubic-bezier(.4,0,.2,1),
+      border-radius .45s cubic-bezier(.4,0,.2,1),box-shadow .3s ease}
+  .bmiring.c1{background:linear-gradient(160deg,#fbbf24,#d97706)}
+  .bmiring.c2{background:linear-gradient(160deg,#fb923c,#c2410c)}
+  .bmiring.c3{background:linear-gradient(160deg,#f87171,#b91c1c)}
+  .bmiring:hover,.bmiring:focus-within{max-width:100%;height:190px;border-radius:20px;
+    box-shadow:0 16px 34px rgba(76,29,149,.32)}
+  .bmiring-face,.bmiring-detail{position:absolute;inset:0;display:flex;align-items:center;
+    justify-content:center;padding:18px;color:#fff}
+  .bmiring-face{flex-direction:column;gap:3px;text-align:center;transition:opacity .2s ease;
+    transition-delay:.15s}
+  .bmiring:hover .bmiring-face,.bmiring:focus-within .bmiring-face{opacity:0;transition-delay:0s}
+  .bmiring-lab{font-size:14px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
+  .bmiring-range{font-size:11.5px;font-weight:600;opacity:.92}
+  .bmiring-detail{opacity:0;transition:opacity .25s ease;transition-delay:0s}
+  .bmiring:hover .bmiring-detail,.bmiring:focus-within .bmiring-detail{opacity:1;transition-delay:.2s}
+  .bmiring-detail p{margin:0;font-size:13px;line-height:1.55;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.12)}
+  @media(max-width:640px){
+    .bmirings{grid-template-columns:1fr}
+    .bmiring{max-width:100%}
+    .bmiring:hover,.bmiring:focus-within{height:150px;border-radius:20px}
+  }
+
   /* BMI classification gauge: three clickable colour-coded severity zones,
      plus two topic tabs, all feeding one shared detail panel (no separate prose) */
   .bmigauge{margin:18px 0 8px}
@@ -1445,40 +1474,37 @@
 
     <h3 class="subh reveal">Classification of Obesity</h3>
 
+    <p class="reveal">
+      Obesity is classified using both anthropometric and clinical-risk-based systems. The World Health
+      Organization's BMI-based system defines three classes &mdash; hover or focus a circle below to read
+      each one.
+    </p>
+
+    <div class="bmirings reveal" id="bmiRings">
+      <div class="bmiring c1" tabindex="0">
+        <div class="bmiring-face"><span class="bmiring-lab">Class I</span><span class="bmiring-range">30.0&ndash;34.9</span></div>
+        <div class="bmiring-detail"><p>The entry tier of clinical obesity: <b>30.0&ndash;34.9 kg/m&sup2;</b> on
+          the WHO's BMI-based classification.</p></div>
+      </div>
+      <div class="bmiring c2" tabindex="0">
+        <div class="bmiring-face"><span class="bmiring-lab">Class II</span><span class="bmiring-range">35.0&ndash;39.9</span></div>
+        <div class="bmiring-detail"><p><b>35.0&ndash;39.9 kg/m&sup2;</b>, reflecting a materially higher burden
+          of obesity-related risk than Class I.</p></div>
+      </div>
+      <div class="bmiring c3" tabindex="0">
+        <div class="bmiring-face"><span class="bmiring-lab">Class III</span><span class="bmiring-range">&ge;40.0</span></div>
+        <div class="bmiring-detail"><p><b>40.0 kg/m&sup2;</b> and above &mdash; historically termed severe or
+          morbid obesity, the tier of greatest clinical risk.</p></div>
+      </div>
+    </div>
+
     <div class="bmigauge reveal" id="bmiGauge">
-      <div class="bmigauge-bar">
-        <button type="button" class="bmigauge-zone c1 active" data-d="c1">
-          <span class="bmigauge-lab">Class I</span>
-          <span class="bmigauge-range">30.0&ndash;34.9</span>
-        </button>
-        <button type="button" class="bmigauge-zone c2" data-d="c2">
-          <span class="bmigauge-lab">Class II</span>
-          <span class="bmigauge-range">35.0&ndash;39.9</span>
-        </button>
-        <button type="button" class="bmigauge-zone c3" data-d="c3">
-          <span class="bmigauge-lab">Class III</span>
-          <span class="bmigauge-range">&ge;40.0</span>
-        </button>
-      </div>
-      <div class="bmigauge-ticks">
-        <span style="left:0%">30</span>
-        <span style="left:33.33%">35</span>
-        <span style="left:66.66%">40</span>
-        <span style="left:100%">45+</span>
-      </div>
       <div class="bmigauge-tabs">
-        <button type="button" class="bmigauge-tab" data-d="waist">Waist Circumference</button>
+        <button type="button" class="bmigauge-tab active" data-d="waist">Waist Circumference</button>
         <button type="button" class="bmigauge-tab" data-d="eoss">EOSS Staging</button>
       </div>
       <div class="bmigauge-panel">
-        <p data-d="c1">Obesity is classified using both anthropometric and clinical-risk-based systems. The
-          WHO's BMI-based classification places <b>Class I</b> at <b>30.0&ndash;34.9 kg/m&sup2;</b>, the entry
-          tier of clinical obesity.</p>
-        <p data-d="c2" hidden><b>Class II</b> spans <b>35.0&ndash;39.9 kg/m&sup2;</b>, reflecting a materially
-          higher burden of obesity-related risk than Class I.</p>
-        <p data-d="c3" hidden><b>Class III</b> covers <b>40.0 kg/m&sup2;</b> and above &mdash; historically
-          termed severe or morbid obesity, the tier associated with the greatest clinical risk.</p>
-        <p data-d="waist" hidden>Waist circumference and waist-to-hip ratio provide a complementary measure of
+        <p data-d="waist">Waist circumference and waist-to-hip ratio provide a complementary measure of
           central adiposity, which correlates more closely with cardiometabolic risk than BMI alone.</p>
         <p data-d="eoss" hidden>Because BMI-based classification does not capture individual variation in
           health risk at a given body size, the <b>Edmonton Obesity Staging System (EOSS)</b> has emerged as a
