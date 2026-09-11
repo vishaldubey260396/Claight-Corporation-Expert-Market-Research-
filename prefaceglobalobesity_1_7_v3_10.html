@@ -486,28 +486,40 @@
     stroke-linecap:round;stroke-linejoin:round}
   @media(max-width:560px){ .dring-arrow{transform:rotate(90deg);margin:0} .dring-row{flex-direction:column} }
 
-  /* two-part medicine-capsule selector: hover/focus a half to reveal its full point list */
+  /* two-part medicine capsule with leader-line annotations on both sides */
   .caps-wrap{margin:22px 0}
-  .caps-body{display:flex;flex-direction:column;align-items:center;gap:12px}
-  .capsule-real{display:flex;width:min(380px,90%);height:96px;border-radius:48px;overflow:hidden;
-    box-shadow:0 12px 26px rgba(76,29,149,.3),0 0 0 1px rgba(255,255,255,.5) inset}
+  .caps-diagram{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:22px}
+  .capsule-real{display:flex;width:100%;min-width:130px;height:118px;border-radius:59px;
+    overflow:hidden;box-shadow:0 12px 26px rgba(76,29,149,.3),0 0 0 1px rgba(255,255,255,.5) inset}
   .cap-half{display:flex;align-items:center;justify-content:center;width:50%;height:100%;
-    border:none;padding:0 16px;cursor:pointer;transition:filter .15s ease}
+    border:none;padding:0 14px;cursor:pointer;transition:filter .15s ease}
   .cap-half.left{background:linear-gradient(120deg,#d8cbfb 0%,#a78bfa 55%,#8858f0 100%);
-    border-radius:48px 0 0 48px}
+    border-radius:59px 0 0 59px}
   .cap-half.right{background:linear-gradient(120deg,#7c3aed 0%,#5b21b6 60%,#3d1e72 100%);
-    border-radius:0 48px 48px 0;border-left:2px solid rgba(255,255,255,.55)}
+    border-radius:0 59px 59px 0;border-left:2px solid rgba(255,255,255,.55)}
   .cap-half:hover,.cap-half:focus-visible{filter:brightness(1.1)}
-  .cap-lab{font-size:13.5px;font-weight:800;line-height:1.3;text-align:center;
+  .cap-lab{font-size:13px;font-weight:800;line-height:1.3;text-align:center;
     text-shadow:0 1px 3px rgba(0,0,0,.12)}
   .cap-half.left .cap-lab{color:#2c1560}
   .cap-half.right .cap-lab{color:#fff}
-  .caps-panel{display:none;margin:16px auto 0;max-width:640px;padding:16px 20px;border-radius:12px;
-    background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
-    box-shadow:0 6px 18px rgba(76,29,149,.08)}
-  .caps-panel.show{display:block}
-  .caps-panel .dyn{margin:0}
-  @media(max-width:560px){ .capsule-real{height:80px} }
+  .caps-col{display:flex;flex-direction:column;justify-content:center;gap:13px;
+    transition:opacity .2s ease}
+  .caps-col.left{align-items:flex-end}
+  .caps-col.right{align-items:flex-start}
+  .caps-col.dim{opacity:.38}
+  .caps-point{display:flex;align-items:center;gap:8px;max-width:230px}
+  .caps-col.left .caps-point{flex-direction:row-reverse}
+  .caps-point-line{width:22px;height:1.5px;background:var(--purple);flex:none}
+  .caps-point-text{font-size:11.5px;line-height:1.4;color:var(--ink)}
+  .caps-col.left .caps-point-text{text-align:right}
+  .caps-col.right .caps-point-text{text-align:left}
+  @media(max-width:760px){
+    .caps-diagram{grid-template-columns:1fr}
+    .capsule-real{order:-1;max-width:340px;margin:0 auto 6px;height:96px}
+    .caps-col.left,.caps-col.right{align-items:flex-start}
+    .caps-col.left .caps-point{flex-direction:row}
+    .caps-col.left .caps-point-text{text-align:left}
+  }
   .dsc-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
   .dsc-title{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--navy)}
   .dsc-badge{flex:none;font-size:10px;font-weight:800;color:#fff;white-space:nowrap;
@@ -1336,7 +1348,14 @@
     </p>
 
     <div class="caps-wrap reveal" id="capsWrap">
-      <div class="caps-body">
+      <div class="caps-diagram">
+        <div class="caps-col left" id="capsColLeft">
+          <div class="caps-point"><span class="caps-point-text">Elevated BMI (&ge;30 kg/m&sup2;), central/visceral fat</span><span class="caps-point-line"></span></div>
+          <div class="caps-point"><span class="caps-point-text">Breathlessness, low exercise tolerance, joint pain</span><span class="caps-point-line"></span></div>
+          <div class="caps-point"><span class="caps-point-text">Snoring and signs of sleep apnoea</span><span class="caps-point-line"></span></div>
+          <div class="caps-point"><span class="caps-point-text">Skin changes: acanthosis nigricans, intertrigo</span><span class="caps-point-line"></span></div>
+          <div class="caps-point"><span class="caps-point-text">Progressive loss of mobility, advanced disease</span><span class="caps-point-line"></span></div>
+        </div>
         <div class="capsule-real">
           <button type="button" class="cap-half left active" data-panel="ccp">
             <span class="cap-lab">Core Clinical Presentations</span>
@@ -1345,25 +1364,14 @@
             <span class="cap-lab">Comorbidity Burden</span>
           </button>
         </div>
-      </div>
-      <div class="caps-panel show" id="capsPanel-ccp">
-        <ul class="dyn">
-          <li>Elevated body mass index (BMI of 30 kg/m&sup2; or above), typically with disproportionate central or visceral fat distribution.</li>
-          <li>Exertional breathlessness, reduced exercise tolerance, and joint pain, particularly affecting weight-bearing joints such as the knees and hips.</li>
-          <li>Snoring, witnessed apnoea episodes, and excessive daytime somnolence suggestive of obstructive sleep apnoea.</li>
-          <li>Dermatological signs including acanthosis nigricans, a marker of underlying insulin resistance, along with skin-fold intertrigo and striae.</li>
-          <li>Progressive reduction in mobility and functional capacity in more advanced disease.</li>
-        </ul>
-      </div>
-      <div class="caps-panel" id="capsPanel-cb">
-        <ul class="dyn">
-          <li><b>Cardiometabolic:</b> type 2 diabetes, hypertension, dyslipidaemia and non-alcoholic fatty liver disease.</li>
-          <li><b>Musculoskeletal:</b> osteoarthritis, particularly of the knee and hip, and reduced load-bearing tolerance.</li>
-          <li><b>Respiratory:</b> obstructive sleep apnoea and, in severe cases, obesity hypoventilation syndrome.</li>
-          <li><b>Oncological:</b> elevated risk of endometrial, postmenopausal breast, colorectal and several other cancers.</li>
-          <li><b>Reproductive:</b> polycystic ovary syndrome, subfertility and increased pregnancy-related complications.</li>
-          <li><b>Psychological:</b> depression, anxiety and body-image distress, which frequently interact bidirectionally with further weight gain.</li>
-        </ul>
+        <div class="caps-col right" id="capsColRight">
+          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Cardiometabolic:</b> diabetes, hypertension, NAFLD</span></div>
+          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Musculoskeletal:</b> osteoarthritis, knee/hip strain</span></div>
+          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Respiratory:</b> sleep apnoea, hypoventilation</span></div>
+          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Oncological:</b> endometrial, breast, colorectal risk</span></div>
+          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Reproductive:</b> PCOS, subfertility</span></div>
+          <div class="caps-point"><span class="caps-point-line"></span><span class="caps-point-text"><b>Psychological:</b> depression, anxiety, body image</span></div>
+        </div>
       </div>
     </div>
     <p class="reveal">
@@ -3335,20 +3343,27 @@
   });
 })();
 
-/* ---------- capsule selector: hover/focus a half to swap the point list below ---------- */
+/* ---------- capsule: hover/focus a half to highlight its side of the diagram ---------- */
 (function(){
   var wrap = document.getElementById('capsWrap');
   if(!wrap) return;
   var halves = wrap.querySelectorAll('.cap-half');
-  var panels = wrap.querySelectorAll('.caps-panel');
+  var colLeft = document.getElementById('capsColLeft');
+  var colRight = document.getElementById('capsColRight');
   var activate = function(key){
     halves.forEach(function(h){ h.classList.toggle('active', h.dataset.panel === key); });
-    panels.forEach(function(p){ p.classList.toggle('show', p.id === 'capsPanel-' + key); });
+    if(colLeft) colLeft.classList.toggle('dim', key === 'cb');
+    if(colRight) colRight.classList.toggle('dim', key === 'ccp');
+  };
+  var reset = function(){
+    if(colLeft) colLeft.classList.remove('dim');
+    if(colRight) colRight.classList.remove('dim');
   };
   halves.forEach(function(h){
     h.addEventListener('mouseenter', function(){ activate(h.dataset.panel); });
     h.addEventListener('focus', function(){ activate(h.dataset.panel); });
   });
+  wrap.addEventListener('mouseleave', reset);
 })();
 </script>
 </body>
