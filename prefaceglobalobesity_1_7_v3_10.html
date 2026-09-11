@@ -509,6 +509,30 @@
   .caps-col.right{padding-left:64px}
   .caps-col.left{padding-right:64px}
   @media(prefers-reduced-motion:reduce){ .caps-col{opacity:1;transform:none;transition:none} }
+
+  /* BMI classification gauge: three colour-coded severity zones */
+  .bmigauge{margin:18px 0 8px}
+  .bmigauge-bar{display:flex;height:64px;border-radius:12px;overflow:hidden;
+    box-shadow:0 8px 20px rgba(76,29,149,.14)}
+  .bmigauge-zone{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:2px;color:#fff;text-align:center}
+  .bmigauge-zone.c1{background:linear-gradient(160deg,#fbbf24,#d97706)}
+  .bmigauge-zone.c2{background:linear-gradient(160deg,#fb923c,#c2410c)}
+  .bmigauge-zone.c3{background:linear-gradient(160deg,#f87171,#b91c1c)}
+  .bmigauge-lab{font-size:13px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
+  .bmigauge-range{font-size:11px;font-weight:600;opacity:.92}
+  .bmigauge-ticks{position:relative;height:16px;margin-top:4px}
+  .bmigauge-ticks span{position:absolute;transform:translateX(-50%);font-size:10.5px;
+    font-weight:700;color:var(--muted)}
+  .bmigauge-ticks span:first-child{transform:translateX(0)}
+  .bmigauge-ticks span:last-child{transform:translateX(-100%)}
+  .bmigauge-cap{margin-top:6px;font-size:11px;color:var(--muted);text-align:center}
+  @media(max-width:560px){
+    .bmigauge-bar{height:auto}
+    .bmigauge-zone{padding:10px 6px}
+    .bmigauge-lab{font-size:12px}
+    .bmigauge-range{font-size:10px}
+  }
   .caps-connectors{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
   .caps-connectors path{fill:none;stroke:var(--purple);stroke-width:1.5}
   .caps-point{display:flex;align-items:center;width:100%}
@@ -1419,6 +1443,30 @@
       staging framework that grades disease severity based on medical, functional and psychological impact
       rather than body size alone.
     </p>
+
+    <div class="bmigauge reveal">
+      <div class="bmigauge-bar">
+        <div class="bmigauge-zone c1">
+          <span class="bmigauge-lab">Class I</span>
+          <span class="bmigauge-range">30.0&ndash;34.9</span>
+        </div>
+        <div class="bmigauge-zone c2">
+          <span class="bmigauge-lab">Class II</span>
+          <span class="bmigauge-range">35.0&ndash;39.9</span>
+        </div>
+        <div class="bmigauge-zone c3">
+          <span class="bmigauge-lab">Class III</span>
+          <span class="bmigauge-range">&ge;40.0</span>
+        </div>
+      </div>
+      <div class="bmigauge-ticks">
+        <span style="left:0%">30</span>
+        <span style="left:33.33%">35</span>
+        <span style="left:66.66%">40</span>
+        <span style="left:100%">45+</span>
+      </div>
+      <div class="bmigauge-cap">BMI, kg/m&sup2; &middot; WHO classification &middot; Class III is historically termed severe or morbid obesity</div>
+    </div>
 
     <h3 class="subh reveal">Stages of Obesity</h3>
     <p class="reveal">
