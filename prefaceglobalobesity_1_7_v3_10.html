@@ -3420,12 +3420,15 @@
   if(reduceCaps || !('IntersectionObserver' in window)){
     showColumns();
   } else {
+    /* watch the capsule pill itself (not the tall wrap, which is mostly the
+       still-hidden side lists) so the trigger tracks when the capsule is
+       actually on screen, from either scroll direction */
     var capsIo = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if(e.isIntersecting){ showColumns(); capsIo.unobserve(e.target); }
       });
-    },{threshold:.5});
-    capsIo.observe(wrap);
+    },{threshold:.75});
+    capsIo.observe(capsule);
   }
 })();
 </script>
