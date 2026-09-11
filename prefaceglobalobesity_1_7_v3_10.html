@@ -485,6 +485,28 @@
   .dring-arrow svg{width:34px;height:10px;stroke:#c3b2ee;stroke-width:2;fill:none;
     stroke-linecap:round;stroke-linejoin:round}
   @media(max-width:560px){ .dring-arrow{transform:rotate(90deg);margin:0} .dring-row{flex-direction:column} }
+
+  /* two-part capsule selector: hover/focus a half to reveal its full point list */
+  .caps-wrap{margin:18px 0}
+  .caps{display:flex;align-items:stretch;height:58px;border-radius:999px;overflow:hidden;
+    box-shadow:0 8px 20px rgba(76,29,149,.2)}
+  .caps-half{flex:1;border:none;cursor:pointer;font:inherit;font-size:13.5px;font-weight:800;
+    color:#fff;letter-spacing:.01em;padding:0 16px;text-align:center;
+    display:flex;align-items:center;justify-content:center;
+    transition:flex .22s ease,filter .15s ease}
+  .caps-half.a{background:linear-gradient(135deg,#a78bfa,#7c3aed)}
+  .caps-half.b{background:linear-gradient(135deg,#6d28d9,#3d1e72)}
+  .caps-half:hover,.caps-half:focus-visible{filter:brightness(1.12)}
+  .caps-half.active{flex:1.18}
+  .caps-seam{width:3px;flex:none;background:rgba(255,255,255,.45)}
+  .caps-panel{display:none;margin-top:14px;padding:16px 20px;border-radius:12px;
+    background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
+    box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .caps-panel.show{display:block}
+  .caps-panel .dyn{margin:0}
+  @media(max-width:560px){ .caps{flex-direction:column;height:auto;border-radius:16px}
+    .caps-half{padding:13px 14px} .caps-half.active{flex:1}
+    .caps-seam{width:auto;height:2px} }
   .dsc-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
   .dsc-title{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--navy)}
   .dsc-badge{flex:none;font-size:10px;font-weight:800;color:#fff;white-space:nowrap;
@@ -1312,24 +1334,32 @@
       physical manifestations of excess body fat and a wide-ranging pattern of associated comorbidities.
     </p>
 
-    <h3 class="subhh reveal">Core Clinical Presentations</h3>
-    <ul class="dyn reveal">
-      <li>Elevated body mass index (BMI of 30 kg/m&sup2; or above), typically with disproportionate central or visceral fat distribution.</li>
-      <li>Exertional breathlessness, reduced exercise tolerance, and joint pain, particularly affecting weight-bearing joints such as the knees and hips.</li>
-      <li>Snoring, witnessed apnoea episodes, and excessive daytime somnolence suggestive of obstructive sleep apnoea.</li>
-      <li>Dermatological signs including acanthosis nigricans, a marker of underlying insulin resistance, along with skin-fold intertrigo and striae.</li>
-      <li>Progressive reduction in mobility and functional capacity in more advanced disease.</li>
-    </ul>
-
-    <h3 class="subhh reveal">Comorbidity Burden</h3>
-    <ul class="dyn reveal">
-      <li><b>Cardiometabolic:</b> type 2 diabetes, hypertension, dyslipidaemia and non-alcoholic fatty liver disease.</li>
-      <li><b>Musculoskeletal:</b> osteoarthritis, particularly of the knee and hip, and reduced load-bearing tolerance.</li>
-      <li><b>Respiratory:</b> obstructive sleep apnoea and, in severe cases, obesity hypoventilation syndrome.</li>
-      <li><b>Oncological:</b> elevated risk of endometrial, postmenopausal breast, colorectal and several other cancers.</li>
-      <li><b>Reproductive:</b> polycystic ovary syndrome, subfertility and increased pregnancy-related complications.</li>
-      <li><b>Psychological:</b> depression, anxiety and body-image distress, which frequently interact bidirectionally with further weight gain.</li>
-    </ul>
+    <div class="caps-wrap reveal" id="capsWrap">
+      <div class="caps">
+        <button type="button" class="caps-half a active" data-panel="ccp">Core Clinical Presentations</button>
+        <span class="caps-seam" aria-hidden="true"></span>
+        <button type="button" class="caps-half b" data-panel="cb">Comorbidity Burden</button>
+      </div>
+      <div class="caps-panel show" id="capsPanel-ccp">
+        <ul class="dyn">
+          <li>Elevated body mass index (BMI of 30 kg/m&sup2; or above), typically with disproportionate central or visceral fat distribution.</li>
+          <li>Exertional breathlessness, reduced exercise tolerance, and joint pain, particularly affecting weight-bearing joints such as the knees and hips.</li>
+          <li>Snoring, witnessed apnoea episodes, and excessive daytime somnolence suggestive of obstructive sleep apnoea.</li>
+          <li>Dermatological signs including acanthosis nigricans, a marker of underlying insulin resistance, along with skin-fold intertrigo and striae.</li>
+          <li>Progressive reduction in mobility and functional capacity in more advanced disease.</li>
+        </ul>
+      </div>
+      <div class="caps-panel" id="capsPanel-cb">
+        <ul class="dyn">
+          <li><b>Cardiometabolic:</b> type 2 diabetes, hypertension, dyslipidaemia and non-alcoholic fatty liver disease.</li>
+          <li><b>Musculoskeletal:</b> osteoarthritis, particularly of the knee and hip, and reduced load-bearing tolerance.</li>
+          <li><b>Respiratory:</b> obstructive sleep apnoea and, in severe cases, obesity hypoventilation syndrome.</li>
+          <li><b>Oncological:</b> elevated risk of endometrial, postmenopausal breast, colorectal and several other cancers.</li>
+          <li><b>Reproductive:</b> polycystic ovary syndrome, subfertility and increased pregnancy-related complications.</li>
+          <li><b>Psychological:</b> depression, anxiety and body-image distress, which frequently interact bidirectionally with further weight gain.</li>
+        </ul>
+      </div>
+    </div>
     <p class="reveal">
       Importantly, Body Mass Index alone does not fully capture individual health risk: it cannot distinguish
       fat mass from lean muscle mass, nor does it characterise fat distribution, meaning two patients with an
@@ -3296,6 +3326,22 @@
       else if(k === 'End') n = last;
       if(n !== null){ e.preventDefault(); select(n,true); }
     });
+  });
+})();
+
+/* ---------- capsule selector: hover/focus a half to swap the point list below ---------- */
+(function(){
+  var wrap = document.getElementById('capsWrap');
+  if(!wrap) return;
+  var halves = wrap.querySelectorAll('.caps-half');
+  var panels = wrap.querySelectorAll('.caps-panel');
+  var activate = function(key){
+    halves.forEach(function(h){ h.classList.toggle('active', h.dataset.panel === key); });
+    panels.forEach(function(p){ p.classList.toggle('show', p.id === 'capsPanel-' + key); });
+  };
+  halves.forEach(function(h){
+    h.addEventListener('mouseenter', function(){ activate(h.dataset.panel); });
+    h.addEventListener('focus', function(){ activate(h.dataset.panel); });
   });
 })();
 </script>
