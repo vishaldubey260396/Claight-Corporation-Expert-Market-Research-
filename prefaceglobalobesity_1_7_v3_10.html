@@ -491,19 +491,17 @@
   .caps-body{display:flex;flex-direction:column;align-items:center;gap:12px}
   .capsule-real{display:flex;width:min(380px,90%);height:96px;border-radius:48px;overflow:hidden;
     box-shadow:0 12px 26px rgba(76,29,149,.3),0 0 0 1px rgba(255,255,255,.5) inset}
-  .cap-half{display:block;width:50%;height:100%;border:none;padding:0;cursor:pointer;
-    transition:filter .15s ease}
+  .cap-half{display:flex;align-items:center;justify-content:center;width:50%;height:100%;
+    border:none;padding:0 16px;cursor:pointer;transition:filter .15s ease}
   .cap-half.left{background:linear-gradient(120deg,#d8cbfb 0%,#a78bfa 55%,#8858f0 100%);
     border-radius:48px 0 0 48px}
   .cap-half.right{background:linear-gradient(120deg,#7c3aed 0%,#5b21b6 60%,#3d1e72 100%);
     border-radius:0 48px 48px 0;border-left:2px solid rgba(255,255,255,.55)}
   .cap-half:hover,.cap-half:focus-visible{filter:brightness(1.1)}
-  .caps-legend{display:flex;width:min(380px,90%);justify-content:space-between}
-  .caps-leg{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;
-    opacity:.5;transition:opacity .2s ease}
-  .caps-leg.active{opacity:1}
-  .caps-leg-line{width:2px;height:14px;background:var(--purple)}
-  .caps-leg-lab{font-size:13px;font-weight:800;color:var(--navy);text-align:center}
+  .cap-lab{font-size:13.5px;font-weight:800;line-height:1.3;text-align:center;
+    text-shadow:0 1px 3px rgba(0,0,0,.12)}
+  .cap-half.left .cap-lab{color:#2c1560}
+  .cap-half.right .cap-lab{color:#fff}
   .caps-panel{display:none;margin:16px auto 0;max-width:640px;padding:16px 20px;border-radius:12px;
     background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
     box-shadow:0 6px 18px rgba(76,29,149,.08)}
@@ -1340,12 +1338,12 @@
     <div class="caps-wrap reveal" id="capsWrap">
       <div class="caps-body">
         <div class="capsule-real">
-          <button type="button" class="cap-half left active" data-panel="ccp" aria-label="Core Clinical Presentations"></button>
-          <button type="button" class="cap-half right" data-panel="cb" aria-label="Comorbidity Burden"></button>
-        </div>
-        <div class="caps-legend">
-          <div class="caps-leg active" data-legend="ccp"><span class="caps-leg-line"></span><span class="caps-leg-lab">Core Clinical Presentations</span></div>
-          <div class="caps-leg" data-legend="cb"><span class="caps-leg-line"></span><span class="caps-leg-lab">Comorbidity Burden</span></div>
+          <button type="button" class="cap-half left active" data-panel="ccp">
+            <span class="cap-lab">Core Clinical Presentations</span>
+          </button>
+          <button type="button" class="cap-half right" data-panel="cb">
+            <span class="cap-lab">Comorbidity Burden</span>
+          </button>
         </div>
       </div>
       <div class="caps-panel show" id="capsPanel-ccp">
@@ -3342,11 +3340,9 @@
   var wrap = document.getElementById('capsWrap');
   if(!wrap) return;
   var halves = wrap.querySelectorAll('.cap-half');
-  var legend = wrap.querySelectorAll('.caps-leg');
   var panels = wrap.querySelectorAll('.caps-panel');
   var activate = function(key){
     halves.forEach(function(h){ h.classList.toggle('active', h.dataset.panel === key); });
-    legend.forEach(function(l){ l.classList.toggle('active', l.dataset.legend === key); });
     panels.forEach(function(p){ p.classList.toggle('show', p.id === 'capsPanel-' + key); });
   };
   halves.forEach(function(h){
