@@ -3409,13 +3409,16 @@
     new ResizeObserver(redraw).observe(wrap);
   }
 
-  /* the capsule is always visible; the flanking point-lists only reveal once it is
-     well into view, so scrolling past it shows just the capsule until it settles on screen */
+  /* the capsule is always visible; the flanking point-lists reveal every time it comes
+     well into view and hide again once it scrolls away, in either scroll direction */
   var reduceCaps = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var showColumns = function(){
     wrap.classList.add('in');
     requestAnimationFrame(function(){ requestAnimationFrame(redraw); });
     setTimeout(redraw, 550);
+  };
+  var hideColumns = function(){
+    wrap.classList.remove('in');
   };
   if(reduceCaps || !('IntersectionObserver' in window)){
     showColumns();
@@ -3425,7 +3428,7 @@
        actually on screen, from either scroll direction */
     var capsIo = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if(e.isIntersecting){ showColumns(); capsIo.unobserve(e.target); }
+        if(e.isIntersecting){ showColumns(); } else { hideColumns(); }
       });
     },{threshold:.75});
     capsIo.observe(capsule);
