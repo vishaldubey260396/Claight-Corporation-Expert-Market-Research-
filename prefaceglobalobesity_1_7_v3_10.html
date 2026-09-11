@@ -501,10 +501,14 @@
   .cap-lab{font-size:13px;font-weight:800;line-height:1.3;text-align:center;color:#fff;
     text-shadow:0 1px 3px rgba(0,0,0,.22)}
   .caps-col{position:relative;display:flex;flex-direction:column;justify-content:center;gap:21px;
-    width:250px;flex:none;transition:opacity .2s ease}
-  .caps-col.dim{opacity:.38}
+    width:250px;flex:none;opacity:0;transition:opacity .5s ease,transform .5s ease}
+  .caps-col.left{transform:translateX(-22px)}
+  .caps-col.right{transform:translateX(22px)}
+  .caps-wrap.in .caps-col{opacity:1;transform:none}
+  .caps-wrap.in .caps-col.dim{opacity:.38}
   .caps-col.right{padding-left:64px}
   .caps-col.left{padding-right:64px}
+  @media(prefers-reduced-motion:reduce){ .caps-col{opacity:1;transform:none;transition:none} }
   .caps-connectors{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
   .caps-connectors path{fill:none;stroke:var(--purple);stroke-width:1.5}
   .caps-point{display:flex;align-items:center;width:100%}
@@ -1345,7 +1349,7 @@
       physical manifestations of excess body fat and a wide-ranging pattern of associated comorbidities.
     </p>
 
-    <div class="caps-wrap reveal" id="capsWrap">
+    <div class="caps-wrap" id="capsWrap">
       <div class="caps-diagram">
         <div class="caps-col left" id="capsColLeft">
           <svg class="caps-connectors" id="capsConnLeft"></svg>
@@ -3403,6 +3407,25 @@
   window.addEventListener('resize', redraw);
   if(window.ResizeObserver){
     new ResizeObserver(redraw).observe(wrap);
+  }
+
+  /* the capsule is always visible; the flanking point-lists only reveal once it is
+     well into view, so scrolling past it shows just the capsule until it settles on screen */
+  var reduceCaps = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var showColumns = function(){
+    wrap.classList.add('in');
+    requestAnimationFrame(function(){ requestAnimationFrame(redraw); });
+    setTimeout(redraw, 550);
+  };
+  if(reduceCaps || !('IntersectionObserver' in window)){
+    showColumns();
+  } else {
+    var capsIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ showColumns(); capsIo.unobserve(e.target); }
+      });
+    },{threshold:.5});
+    capsIo.observe(wrap);
   }
 })();
 </script>
