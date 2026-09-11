@@ -510,15 +510,19 @@
   .caps-col.left{padding-right:64px}
   @media(prefers-reduced-motion:reduce){ .caps-col{opacity:1;transform:none;transition:none} }
 
-  /* BMI classification gauge: three colour-coded severity zones */
+  /* BMI classification gauge: three clickable colour-coded severity zones,
+     plus two topic tabs, all feeding one shared detail panel (no separate prose) */
   .bmigauge{margin:18px 0 8px}
   .bmigauge-bar{display:flex;height:64px;border-radius:12px;overflow:hidden;
     box-shadow:0 8px 20px rgba(76,29,149,.14)}
   .bmigauge-zone{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:2px;color:#fff;text-align:center}
+    gap:2px;color:#fff;text-align:center;border:none;cursor:pointer;font:inherit;
+    transition:filter .15s ease,transform .15s ease}
   .bmigauge-zone.c1{background:linear-gradient(160deg,#fbbf24,#d97706)}
   .bmigauge-zone.c2{background:linear-gradient(160deg,#fb923c,#c2410c)}
   .bmigauge-zone.c3{background:linear-gradient(160deg,#f87171,#b91c1c)}
+  .bmigauge-zone:hover{filter:brightness(1.08)}
+  .bmigauge-zone.active{box-shadow:inset 0 0 0 3px rgba(255,255,255,.85)}
   .bmigauge-lab{font-size:13px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
   .bmigauge-range{font-size:11px;font-weight:600;opacity:.92}
   .bmigauge-ticks{position:relative;height:16px;margin-top:4px}
@@ -526,7 +530,15 @@
     font-weight:700;color:var(--muted)}
   .bmigauge-ticks span:first-child{transform:translateX(0)}
   .bmigauge-ticks span:last-child{transform:translateX(-100%)}
-  .bmigauge-cap{margin-top:6px;font-size:11px;color:var(--muted);text-align:center}
+  .bmigauge-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .bmigauge-tab{appearance:none;font:inherit;cursor:pointer;font-size:12.5px;font-weight:700;
+    color:var(--purple-deep);background:#fff;border:1.5px solid var(--line);border-radius:999px;
+    padding:6px 14px;transition:color .15s ease,border-color .15s ease,background .15s ease}
+  .bmigauge-tab:hover{border-color:var(--purple-soft);background:var(--tint)}
+  .bmigauge-tab.active{color:#fff;background:linear-gradient(150deg,#7b3fe0,#481e8f);border-color:transparent}
+  .bmigauge-panel{margin-top:12px;padding:14px 18px;border-radius:10px;
+    background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line)}
+  .bmigauge-panel p{margin:0;font-size:13px;line-height:1.6;color:var(--ink)}
   @media(max-width:560px){
     .bmigauge-bar{height:auto}
     .bmigauge-zone{padding:10px 6px}
@@ -1432,32 +1444,21 @@
     </p>
 
     <h3 class="subh reveal">Classification of Obesity</h3>
-    <p class="reveal">
-      Obesity is classified using both anthropometric and clinical-risk-based systems. The World Health
-      Organization classification, based on Body Mass Index, divides obesity into three classes: <b>Class I</b>
-      (30.0-34.9 kg/m&sup2;), <b>Class II</b> (35.0-39.9 kg/m&sup2;), and <b>Class III</b> (40 kg/m&sup2; or above,
-      historically termed severe or morbid obesity). Waist circumference and waist-to-hip ratio provide a
-      complementary measure of central adiposity, which correlates more closely with cardiometabolic risk
-      than BMI alone. Because BMI-based classification does not capture individual variation in health risk at
-      a given body size, the Edmonton Obesity Staging System (EOSS) has emerged as a widely used clinical
-      staging framework that grades disease severity based on medical, functional and psychological impact
-      rather than body size alone.
-    </p>
 
-    <div class="bmigauge reveal">
+    <div class="bmigauge reveal" id="bmiGauge">
       <div class="bmigauge-bar">
-        <div class="bmigauge-zone c1">
+        <button type="button" class="bmigauge-zone c1 active" data-d="c1">
           <span class="bmigauge-lab">Class I</span>
           <span class="bmigauge-range">30.0&ndash;34.9</span>
-        </div>
-        <div class="bmigauge-zone c2">
+        </button>
+        <button type="button" class="bmigauge-zone c2" data-d="c2">
           <span class="bmigauge-lab">Class II</span>
           <span class="bmigauge-range">35.0&ndash;39.9</span>
-        </div>
-        <div class="bmigauge-zone c3">
+        </button>
+        <button type="button" class="bmigauge-zone c3" data-d="c3">
           <span class="bmigauge-lab">Class III</span>
           <span class="bmigauge-range">&ge;40.0</span>
-        </div>
+        </button>
       </div>
       <div class="bmigauge-ticks">
         <span style="left:0%">30</span>
@@ -1465,7 +1466,25 @@
         <span style="left:66.66%">40</span>
         <span style="left:100%">45+</span>
       </div>
-      <div class="bmigauge-cap">BMI, kg/m&sup2; &middot; WHO classification &middot; Class III is historically termed severe or morbid obesity</div>
+      <div class="bmigauge-tabs">
+        <button type="button" class="bmigauge-tab" data-d="waist">Waist Circumference</button>
+        <button type="button" class="bmigauge-tab" data-d="eoss">EOSS Staging</button>
+      </div>
+      <div class="bmigauge-panel">
+        <p data-d="c1">Obesity is classified using both anthropometric and clinical-risk-based systems. The
+          WHO's BMI-based classification places <b>Class I</b> at <b>30.0&ndash;34.9 kg/m&sup2;</b>, the entry
+          tier of clinical obesity.</p>
+        <p data-d="c2" hidden><b>Class II</b> spans <b>35.0&ndash;39.9 kg/m&sup2;</b>, reflecting a materially
+          higher burden of obesity-related risk than Class I.</p>
+        <p data-d="c3" hidden><b>Class III</b> covers <b>40.0 kg/m&sup2;</b> and above &mdash; historically
+          termed severe or morbid obesity, the tier associated with the greatest clinical risk.</p>
+        <p data-d="waist" hidden>Waist circumference and waist-to-hip ratio provide a complementary measure of
+          central adiposity, which correlates more closely with cardiometabolic risk than BMI alone.</p>
+        <p data-d="eoss" hidden>Because BMI-based classification does not capture individual variation in
+          health risk at a given body size, the <b>Edmonton Obesity Staging System (EOSS)</b> has emerged as a
+          widely used clinical staging framework that grades disease severity based on medical, functional and
+          psychological impact rather than body size alone.</p>
+      </div>
     </div>
 
     <h3 class="subh reveal">Stages of Obesity</h3>
@@ -3487,6 +3506,24 @@
     },{threshold:.75});
     capsIo.observe(capsule);
   }
+})();
+
+/* ---------- BMI gauge: zones + topic tabs all drive one shared detail panel ---------- */
+(function(){
+  var gauge = document.getElementById('bmiGauge');
+  if(!gauge) return;
+  var triggers = [].slice.call(gauge.querySelectorAll('[data-d]'));
+  var panels = [].slice.call(gauge.querySelectorAll('.bmigauge-panel [data-d]'));
+  triggers.forEach(function(t){
+    if(t.tagName !== 'BUTTON') return;
+    t.addEventListener('click', function(){
+      var key = t.dataset.d;
+      triggers.forEach(function(o){
+        if(o.tagName === 'BUTTON') o.classList.toggle('active', o.dataset.d === key);
+      });
+      panels.forEach(function(p){ p.hidden = p.dataset.d !== key; });
+    });
+  });
 })();
 </script>
 </body>
