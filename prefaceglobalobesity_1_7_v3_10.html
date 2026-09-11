@@ -540,6 +540,20 @@
     .bmiring-slot{width:130px;height:130px}
     .bmiring:hover,.bmiring:focus-within{width:220px;height:170px}
   }
+
+  /* Waist circumference / EOSS: icon-led info cards, distinct from the class rings */
+  .bmiextra{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 8px}
+  .bmiextra-item{display:flex;gap:12px;background:linear-gradient(180deg,#f9f5ff,#f4eeff);
+    border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+    box-shadow:0 6px 18px rgba(76,29,149,.08)}
+  .bmiextra-ico{flex:none;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;
+    justify-content:center;background:linear-gradient(150deg,#813bf6,#482386);color:#fff;
+    box-shadow:0 4px 12px rgba(76,29,149,.24)}
+  .bmiextra-ico svg{width:18px;height:18px}
+  .bmiextra-item h6{margin:0 0 5px;font-size:13.5px;font-weight:800;color:var(--purple-deep)}
+  .bmiextra-item p{margin:0;font-size:12.5px;line-height:1.55;color:var(--ink)}
+  @media(max-width:640px){ .bmiextra{grid-template-columns:1fr} }
+
   .caps-connectors{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
   .caps-connectors path{fill:none;stroke:var(--purple);stroke-width:1.5}
   .caps-point{display:flex;align-items:center;width:100%}
@@ -1468,18 +1482,31 @@
             morbid obesity, the tier of greatest clinical risk.</p></div>
         </div>
       </div>
-      <div class="bmiring-slot">
-        <div class="bmiring c4" tabindex="0">
-          <div class="bmiring-face"><span class="bmiring-lab">Waist<br>Circumference</span></div>
-          <div class="bmiring-detail"><p>A complementary measure of central adiposity that correlates more
-            closely with cardiometabolic risk than BMI alone.</p></div>
+    </div>
+
+    <div class="bmiextra reveal" id="bmiExtra">
+      <div class="bmiextra-item">
+        <div class="bmiextra-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3c-3.5 3-3.5 15 0 18M12 3c3.5 3 3.5 15 0 18M4 8h16M4 16h16"></path>
+          </svg>
+        </div>
+        <div>
+          <h6>Waist Circumference</h6>
+          <p>A complementary measure of central adiposity that correlates more closely with cardiometabolic
+            risk than BMI alone.</p>
         </div>
       </div>
-      <div class="bmiring-slot">
-        <div class="bmiring c5" tabindex="0">
-          <div class="bmiring-face"><span class="bmiring-lab">EOSS<br>Staging</span></div>
-          <div class="bmiring-detail"><p>The <b>Edmonton Obesity Staging System</b> grades disease severity by
-            medical, functional and psychological impact rather than body size alone.</p></div>
+      <div class="bmiextra-item">
+        <div class="bmiextra-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19 8 9l4 7 3-5 5 8"></path>
+          </svg>
+        </div>
+        <div>
+          <h6>EOSS Staging</h6>
+          <p>The <b>Edmonton Obesity Staging System</b> grades disease severity by medical, functional and
+            psychological impact rather than body size alone.</p>
         </div>
       </div>
     </div>
