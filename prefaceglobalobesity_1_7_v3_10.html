@@ -559,12 +559,28 @@
   /* obesity stage flow: five chevron arrows, green to red, hover swaps to clinical implication */
   .stageflow{display:flex;margin:18px 0 6px;height:124px}
   .stage-arrow{position:relative;flex:1;min-width:0;margin-right:-16px;cursor:pointer;outline:none;
+    overflow:hidden;
     clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%,16px 50%);
     transition:filter .15s ease}
   .stage-arrow:first-child{clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%)}
   .stage-arrow:last-child{margin-right:0;
     clip-path:polygon(0 0,100% 0,100% 100%,0 100%,16px 50%)}
   .stage-arrow:hover,.stage-arrow:focus-within{filter:brightness(1.08);z-index:2}
+  .stage-arrow::before{content:"";position:absolute;top:0;left:-45%;width:30%;height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.55) 45%,transparent 90%);
+    transform:skewX(-18deg);pointer-events:none;
+    animation:stageShine 3.6s ease-in-out infinite}
+  .stage-arrow:nth-child(1)::before{animation-delay:0s}
+  .stage-arrow:nth-child(2)::before{animation-delay:.5s}
+  .stage-arrow:nth-child(3)::before{animation-delay:1s}
+  .stage-arrow:nth-child(4)::before{animation-delay:1.5s}
+  .stage-arrow:nth-child(5)::before{animation-delay:2s}
+  @keyframes stageShine{
+    0%{left:-45%}
+    55%{left:130%}
+    100%{left:130%}
+  }
+  @media(prefers-reduced-motion:reduce){ .stage-arrow::before{animation:none;display:none} }
   .stage-arrow.s0{background:linear-gradient(160deg,#4ade80,#16a34a)}
   .stage-arrow.s1{background:linear-gradient(160deg,#a3e635,#65a30d)}
   .stage-arrow.s2{background:linear-gradient(160deg,#fbbf24,#d97706)}
