@@ -488,8 +488,8 @@
 
   /* two-part medicine capsule with leader-line annotations on both sides */
   .caps-wrap{margin:22px 0}
-  .caps-diagram{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:22px}
-  .capsule-real{display:flex;width:100%;min-width:130px;height:118px;border-radius:59px;
+  .caps-diagram{display:flex;align-items:center;justify-content:center;gap:0}
+  .capsule-real{display:flex;flex:none;width:300px;height:118px;border-radius:59px;
     overflow:hidden;box-shadow:0 12px 26px rgba(76,29,149,.3),0 0 0 1px rgba(255,255,255,.5) inset}
   .cap-half{display:flex;align-items:center;justify-content:center;width:50%;height:100%;
     border:none;padding:0 14px;cursor:pointer;transition:filter .15s ease}
@@ -503,22 +503,19 @@
   .cap-half.left .cap-lab{color:#2c1560}
   .cap-half.right .cap-lab{color:#fff}
   .caps-col{display:flex;flex-direction:column;justify-content:center;gap:13px;
-    transition:opacity .2s ease}
-  .caps-col.left{align-items:flex-end}
-  .caps-col.right{align-items:flex-start}
+    width:230px;flex:none;transition:opacity .2s ease}
   .caps-col.dim{opacity:.38}
-  .caps-point{display:flex;align-items:center;gap:8px;max-width:230px}
-  .caps-col.left .caps-point{flex-direction:row-reverse}
-  .caps-point-line{width:22px;height:1.5px;background:var(--purple);flex:none}
-  .caps-point-text{font-size:11.5px;line-height:1.4;color:var(--ink)}
-  .caps-col.left .caps-point-text{text-align:right}
-  .caps-col.right .caps-point-text{text-align:left}
+  .caps-point{display:flex;align-items:center;width:100%}
+  .caps-point-line{flex:1;height:1.5px;min-width:14px;background:var(--purple)}
+  .caps-point-text{flex:none;max-width:180px;font-size:11.5px;line-height:1.4;color:var(--ink)}
+  .caps-col.left .caps-point-text{text-align:right;margin-right:8px}
+  .caps-col.right .caps-point-text{text-align:left;margin-left:8px}
   @media(max-width:760px){
-    .caps-diagram{grid-template-columns:1fr}
-    .capsule-real{order:-1;max-width:340px;margin:0 auto 6px;height:96px}
-    .caps-col.left,.caps-col.right{align-items:flex-start}
-    .caps-col.left .caps-point{flex-direction:row}
-    .caps-col.left .caps-point-text{text-align:left}
+    .caps-diagram{flex-direction:column;gap:14px}
+    .capsule-real{order:-1;max-width:340px;height:96px}
+    .caps-col{width:100%;max-width:340px}
+    .caps-col.left .caps-point{flex-direction:row-reverse}
+    .caps-col.left .caps-point-text{text-align:left;margin-right:0;margin-left:8px}
   }
   .dsc-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
   .dsc-title{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--navy)}
