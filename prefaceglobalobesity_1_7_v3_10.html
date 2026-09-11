@@ -510,69 +510,35 @@
   .caps-col.left{padding-right:64px}
   @media(prefers-reduced-motion:reduce){ .caps-col{opacity:1;transform:none;transition:none} }
 
-  /* BMI classification rings: circles that expand on hover/focus to reveal their content inline */
-  .bmirings{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:18px 0}
-  .bmiring-cell{display:flex}
-  .bmirings{align-items:start}
-  .bmiring{position:relative;width:100%;max-width:150px;height:150px;margin:0 auto;border-radius:50%;
-    cursor:pointer;box-shadow:0 10px 24px rgba(76,29,149,.22);outline:none;
-    transition:max-width .45s cubic-bezier(.4,0,.2,1),height .45s cubic-bezier(.4,0,.2,1),
-      border-radius .45s cubic-bezier(.4,0,.2,1),box-shadow .3s ease}
+  /* BMI classification rings: circles that pop out on hover/focus to reveal their content inline,
+     absolutely positioned within a fixed-size slot so neighbours never reflow */
+  .bmirings{display:flex;flex-wrap:wrap;justify-content:center;gap:22px 18px;margin:18px 0}
+  .bmiring-slot{position:relative;width:150px;height:150px;flex:none}
+  .bmiring{position:absolute;inset:0;border-radius:50%;cursor:pointer;outline:none;
+    box-shadow:0 10px 24px rgba(76,29,149,.22);
+    transition:width .4s cubic-bezier(.4,0,.2,1),height .4s cubic-bezier(.4,0,.2,1),
+      border-radius .4s cubic-bezier(.4,0,.2,1),box-shadow .3s ease,left .4s ease,top .4s ease}
   .bmiring.c1{background:linear-gradient(160deg,#fbbf24,#d97706)}
   .bmiring.c2{background:linear-gradient(160deg,#fb923c,#c2410c)}
   .bmiring.c3{background:linear-gradient(160deg,#f87171,#b91c1c)}
-  .bmiring:hover,.bmiring:focus-within{max-width:100%;height:190px;border-radius:20px;
-    box-shadow:0 16px 34px rgba(76,29,149,.32)}
+  .bmiring.c4{background:linear-gradient(160deg,#a78bfa,#6d28d9)}
+  .bmiring.c5{background:linear-gradient(160deg,#818cf8,#4338ca)}
+  .bmiring:hover,.bmiring:focus-within{width:205px;height:180px;border-radius:20px;
+    left:50%;top:50%;inset:auto;transform:translate(-50%,-50%);z-index:5;
+    box-shadow:0 18px 36px rgba(76,29,149,.34)}
   .bmiring-face,.bmiring-detail{position:absolute;inset:0;display:flex;align-items:center;
-    justify-content:center;padding:18px;color:#fff}
+    justify-content:center;padding:16px;color:#fff}
   .bmiring-face{flex-direction:column;gap:3px;text-align:center;transition:opacity .2s ease;
     transition-delay:.15s}
   .bmiring:hover .bmiring-face,.bmiring:focus-within .bmiring-face{opacity:0;transition-delay:0s}
-  .bmiring-lab{font-size:14px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
+  .bmiring-lab{font-size:13.5px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
   .bmiring-range{font-size:11.5px;font-weight:600;opacity:.92}
   .bmiring-detail{opacity:0;transition:opacity .25s ease;transition-delay:0s}
   .bmiring:hover .bmiring-detail,.bmiring:focus-within .bmiring-detail{opacity:1;transition-delay:.2s}
-  .bmiring-detail p{margin:0;font-size:13px;line-height:1.55;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.12)}
+  .bmiring-detail p{margin:0;font-size:12.5px;line-height:1.55;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.12)}
   @media(max-width:640px){
-    .bmirings{grid-template-columns:1fr}
-    .bmiring{max-width:100%}
-    .bmiring:hover,.bmiring:focus-within{height:150px;border-radius:20px}
-  }
-
-  /* BMI classification gauge: three clickable colour-coded severity zones,
-     plus two topic tabs, all feeding one shared detail panel (no separate prose) */
-  .bmigauge{margin:18px 0 8px}
-  .bmigauge-bar{display:flex;height:64px;border-radius:12px;overflow:hidden;
-    box-shadow:0 8px 20px rgba(76,29,149,.14)}
-  .bmigauge-zone{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:2px;color:#fff;text-align:center;border:none;cursor:pointer;font:inherit;
-    transition:filter .15s ease,transform .15s ease}
-  .bmigauge-zone.c1{background:linear-gradient(160deg,#fbbf24,#d97706)}
-  .bmigauge-zone.c2{background:linear-gradient(160deg,#fb923c,#c2410c)}
-  .bmigauge-zone.c3{background:linear-gradient(160deg,#f87171,#b91c1c)}
-  .bmigauge-zone:hover{filter:brightness(1.08)}
-  .bmigauge-zone.active{box-shadow:inset 0 0 0 3px rgba(255,255,255,.85)}
-  .bmigauge-lab{font-size:13px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
-  .bmigauge-range{font-size:11px;font-weight:600;opacity:.92}
-  .bmigauge-ticks{position:relative;height:16px;margin-top:4px}
-  .bmigauge-ticks span{position:absolute;transform:translateX(-50%);font-size:10.5px;
-    font-weight:700;color:var(--muted)}
-  .bmigauge-ticks span:first-child{transform:translateX(0)}
-  .bmigauge-ticks span:last-child{transform:translateX(-100%)}
-  .bmigauge-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-  .bmigauge-tab{appearance:none;font:inherit;cursor:pointer;font-size:12.5px;font-weight:700;
-    color:var(--purple-deep);background:#fff;border:1.5px solid var(--line);border-radius:999px;
-    padding:6px 14px;transition:color .15s ease,border-color .15s ease,background .15s ease}
-  .bmigauge-tab:hover{border-color:var(--purple-soft);background:var(--tint)}
-  .bmigauge-tab.active{color:#fff;background:linear-gradient(150deg,#7b3fe0,#481e8f);border-color:transparent}
-  .bmigauge-panel{margin-top:12px;padding:14px 18px;border-radius:10px;
-    background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line)}
-  .bmigauge-panel p{margin:0;font-size:13px;line-height:1.6;color:var(--ink)}
-  @media(max-width:560px){
-    .bmigauge-bar{height:auto}
-    .bmigauge-zone{padding:10px 6px}
-    .bmigauge-lab{font-size:12px}
-    .bmigauge-range{font-size:10px}
+    .bmiring-slot{width:130px;height:130px}
+    .bmiring:hover,.bmiring:focus-within{width:220px;height:170px}
   }
   .caps-connectors{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
   .caps-connectors path{fill:none;stroke:var(--purple);stroke-width:1.5}
@@ -1481,35 +1447,40 @@
     </p>
 
     <div class="bmirings reveal" id="bmiRings">
-      <div class="bmiring c1" tabindex="0">
-        <div class="bmiring-face"><span class="bmiring-lab">Class I</span><span class="bmiring-range">30.0&ndash;34.9</span></div>
-        <div class="bmiring-detail"><p>The entry tier of clinical obesity: <b>30.0&ndash;34.9 kg/m&sup2;</b> on
-          the WHO's BMI-based classification.</p></div>
+      <div class="bmiring-slot">
+        <div class="bmiring c1" tabindex="0">
+          <div class="bmiring-face"><span class="bmiring-lab">Class I</span><span class="bmiring-range">30.0&ndash;34.9</span></div>
+          <div class="bmiring-detail"><p>The entry tier of clinical obesity: <b>30.0&ndash;34.9 kg/m&sup2;</b> on
+            the WHO's BMI-based classification.</p></div>
+        </div>
       </div>
-      <div class="bmiring c2" tabindex="0">
-        <div class="bmiring-face"><span class="bmiring-lab">Class II</span><span class="bmiring-range">35.0&ndash;39.9</span></div>
-        <div class="bmiring-detail"><p><b>35.0&ndash;39.9 kg/m&sup2;</b>, reflecting a materially higher burden
-          of obesity-related risk than Class I.</p></div>
+      <div class="bmiring-slot">
+        <div class="bmiring c2" tabindex="0">
+          <div class="bmiring-face"><span class="bmiring-lab">Class II</span><span class="bmiring-range">35.0&ndash;39.9</span></div>
+          <div class="bmiring-detail"><p><b>35.0&ndash;39.9 kg/m&sup2;</b>, reflecting a materially higher burden
+            of obesity-related risk than Class I.</p></div>
+        </div>
       </div>
-      <div class="bmiring c3" tabindex="0">
-        <div class="bmiring-face"><span class="bmiring-lab">Class III</span><span class="bmiring-range">&ge;40.0</span></div>
-        <div class="bmiring-detail"><p><b>40.0 kg/m&sup2;</b> and above &mdash; historically termed severe or
-          morbid obesity, the tier of greatest clinical risk.</p></div>
+      <div class="bmiring-slot">
+        <div class="bmiring c3" tabindex="0">
+          <div class="bmiring-face"><span class="bmiring-lab">Class III</span><span class="bmiring-range">&ge;40.0</span></div>
+          <div class="bmiring-detail"><p><b>40.0 kg/m&sup2;</b> and above &mdash; historically termed severe or
+            morbid obesity, the tier of greatest clinical risk.</p></div>
+        </div>
       </div>
-    </div>
-
-    <div class="bmigauge reveal" id="bmiGauge">
-      <div class="bmigauge-tabs">
-        <button type="button" class="bmigauge-tab active" data-d="waist">Waist Circumference</button>
-        <button type="button" class="bmigauge-tab" data-d="eoss">EOSS Staging</button>
+      <div class="bmiring-slot">
+        <div class="bmiring c4" tabindex="0">
+          <div class="bmiring-face"><span class="bmiring-lab">Waist<br>Circumference</span></div>
+          <div class="bmiring-detail"><p>A complementary measure of central adiposity that correlates more
+            closely with cardiometabolic risk than BMI alone.</p></div>
+        </div>
       </div>
-      <div class="bmigauge-panel">
-        <p data-d="waist">Waist circumference and waist-to-hip ratio provide a complementary measure of
-          central adiposity, which correlates more closely with cardiometabolic risk than BMI alone.</p>
-        <p data-d="eoss" hidden>Because BMI-based classification does not capture individual variation in
-          health risk at a given body size, the <b>Edmonton Obesity Staging System (EOSS)</b> has emerged as a
-          widely used clinical staging framework that grades disease severity based on medical, functional and
-          psychological impact rather than body size alone.</p>
+      <div class="bmiring-slot">
+        <div class="bmiring c5" tabindex="0">
+          <div class="bmiring-face"><span class="bmiring-lab">EOSS<br>Staging</span></div>
+          <div class="bmiring-detail"><p>The <b>Edmonton Obesity Staging System</b> grades disease severity by
+            medical, functional and psychological impact rather than body size alone.</p></div>
+        </div>
       </div>
     </div>
 
@@ -3534,23 +3505,6 @@
   }
 })();
 
-/* ---------- BMI gauge: zones + topic tabs all drive one shared detail panel ---------- */
-(function(){
-  var gauge = document.getElementById('bmiGauge');
-  if(!gauge) return;
-  var triggers = [].slice.call(gauge.querySelectorAll('[data-d]'));
-  var panels = [].slice.call(gauge.querySelectorAll('.bmigauge-panel [data-d]'));
-  triggers.forEach(function(t){
-    if(t.tagName !== 'BUTTON') return;
-    t.addEventListener('click', function(){
-      var key = t.dataset.d;
-      triggers.forEach(function(o){
-        if(o.tagName === 'BUTTON') o.classList.toggle('active', o.dataset.d === key);
-      });
-      panels.forEach(function(p){ p.hidden = p.dataset.d !== key; });
-    });
-  });
-})();
 </script>
 </body>
 </html>
