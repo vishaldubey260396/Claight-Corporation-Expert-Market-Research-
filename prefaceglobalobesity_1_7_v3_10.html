@@ -512,40 +512,40 @@
 
   /* BMI classification triangle: 3 purple circles, each with a static arrow pointing to
      where its detail box opens on hover/focus; two static boxes (Waist/EOSS) sit in the middle */
-  .bmitri{position:relative;width:100%;max-width:680px;height:620px;margin:20px auto 10px}
-  .bt-circle{flex:none;width:160px;height:160px;border-radius:50%;cursor:pointer;outline:none;
+  .bmitri{position:relative;width:100%;max-width:640px;height:500px;margin:20px auto 10px}
+  .bt-circle{flex:none;width:140px;height:140px;border-radius:50%;cursor:pointer;outline:none;
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
     color:#fff;text-align:center;background:linear-gradient(160deg,#a78bfa,#6d28d9);
     box-shadow:0 10px 22px rgba(76,29,149,.28)}
-  .bt-lab{font-size:16px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
-  .bt-range{font-size:13px;font-weight:600;opacity:.92}
-  .bt-arrow{flex:none;width:34px;height:auto;overflow:visible}
+  .bt-lab{font-size:15px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
+  .bt-range{font-size:12.5px;font-weight:600;opacity:.92}
+  .bt-arrow{flex:none;width:30px;height:auto;overflow:visible}
   .bt-arrow path{fill:none;stroke:var(--purple);stroke-width:2.6;stroke-linecap:round}
   .bt-arrow polyline{fill:none;stroke:var(--purple);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-  .bt-box{flex:none;width:190px;padding:11px 14px;border-radius:10px;
+  .bt-box{flex:none;width:170px;padding:10px 13px;border-radius:10px;
     background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
     box-shadow:0 8px 20px rgba(76,29,149,.14);
     opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
   .bt-box p{margin:0;font-size:11.5px;line-height:1.5;color:var(--ink)}
   .bt-node:hover .bt-box,.bt-node:focus-within .bt-box{opacity:1;pointer-events:auto;transform:none}
 
-  .bt-c1{position:absolute;top:0;left:260px;display:flex;align-items:center;gap:4px}
+  .bt-c1{position:absolute;top:0;left:250px;display:flex;align-items:center;gap:4px}
   .bt-box-r{transform:translateX(-10px)}
 
-  .bt-c2{position:absolute;top:300px;right:0;display:flex;flex-direction:column;
+  .bt-c2{position:absolute;top:242px;right:0;display:flex;flex-direction:column;
     align-items:center;gap:0}
-  .bt-box-d{transform:translateY(-10px);width:190px}
+  .bt-box-d{transform:translateY(-10px);width:170px}
 
-  .bt-c3{position:absolute;top:166px;left:0;display:flex;flex-direction:column;
+  .bt-c3{position:absolute;top:134px;left:0;display:flex;flex-direction:column;
     align-items:center;gap:0}
   .bt-box-u{transform:translateY(10px)}
 
-  .bt-mid{position:absolute;left:255px;top:190px;width:170px;display:flex;
-    flex-direction:column;gap:10px}
+  .bt-mid{position:absolute;left:205px;top:153px;width:230px;display:flex;
+    flex-direction:column;gap:8px}
   .bt-midbox{background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
-    border-radius:10px;padding:11px 13px;box-shadow:0 6px 16px rgba(76,29,149,.1)}
-  .bt-midbox h6{margin:0 0 4px;font-size:12px;font-weight:800;color:var(--purple-deep)}
-  .bt-midbox p{margin:0;font-size:11px;line-height:1.5;color:var(--ink)}
+    border-radius:10px;padding:10px 14px;box-shadow:0 6px 16px rgba(76,29,149,.1)}
+  .bt-midbox h6{margin:0 0 3px;font-size:12px;font-weight:800;color:var(--purple-deep)}
+  .bt-midbox p{margin:0;font-size:11px;line-height:1.45;color:var(--ink)}
 
   @media(max-width:760px){
     .bmitri{height:auto;max-width:420px;display:flex;flex-direction:column;
@@ -1537,11 +1537,10 @@
       </div>
       <div class="bt-mid">
         <div class="bt-midbox"><h6>Waist Circumference</h6>
-          <p>A complementary measure of central adiposity that correlates more closely with cardiometabolic
-            risk than BMI alone.</p></div>
+          <p>Correlates more closely with cardiometabolic risk than BMI alone.</p></div>
         <div class="bt-midbox"><h6>EOSS Staging</h6>
-          <p>The <b>Edmonton Obesity Staging System</b> grades disease severity by medical, functional and
-            psychological impact rather than body size alone.</p></div>
+          <p><b>Edmonton Obesity Staging System</b> &mdash; grades severity by medical, functional and
+            psychological impact, not just body size.</p></div>
       </div>
     </div>
 
