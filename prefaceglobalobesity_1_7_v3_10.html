@@ -3721,6 +3721,7 @@
   var vals = [].slice.call(wrap.querySelectorAll('.dring-val'));
   var nums = [].slice.call(wrap.querySelectorAll('.dring-num'));
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timers = [];
   var fill = function(){
     vals.forEach(function(v,i){
       v.style.transitionDelay = (0.15 + i*0.28) + 's';
@@ -3730,7 +3731,7 @@
   var count = function(){
     nums.forEach(function(n,i){
       var to = parseInt(n.dataset.to,10)||0, dur = 1200, start = null, delay = 150 + i*280;
-      setTimeout(function(){
+      timers.push(setTimeout(function(){
         requestAnimationFrame(function step(ts){
           if(start===null) start=ts;
           var p = Math.min((ts-start)/dur, 1);
@@ -3738,22 +3739,26 @@
           n.textContent = Math.round(to*e);
           if(p<1) requestAnimationFrame(step);
         });
-      }, delay);
+      }, delay));
     });
   };
-  var done = false;
-  var play = function(){ if(done) return; done = true; fill(); count(); };
+  var reset = function(){
+    timers.forEach(function(t){ clearTimeout(t); }); timers = [];
+    vals.forEach(function(v){ v.style.transitionDelay = '0s'; v.setAttribute('stroke-dasharray','0 '+C); });
+    nums.forEach(function(n){ n.textContent = '0'; });
+  };
   if(reduce){
     vals.forEach(function(v){ v.setAttribute('stroke-dasharray',(v.dataset.dash||'0')+' '+C); });
     nums.forEach(function(n){ n.textContent = n.dataset.to; });
     return;
   }
   if('IntersectionObserver' in window){
+    /* replay every time the chart re-enters the viewport (reset on leave) */
     var io = new IntersectionObserver(function(en){
-      en.forEach(function(e){ if(e.isIntersecting){ play(); io.disconnect(); } });
+      en.forEach(function(e){ if(e.isIntersecting){ fill(); count(); } else { reset(); } });
     },{threshold:.4});
     io.observe(wrap);
-  } else { play(); }
+  } else { fill(); count(); }
 })();
 
 </script>
