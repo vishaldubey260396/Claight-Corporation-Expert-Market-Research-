@@ -522,12 +522,14 @@
   .bt-circle{position:absolute;width:180px;height:180px;border-radius:50%;cursor:default;
     outline:none;pointer-events:auto;
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-    color:#fff;text-align:center;background:linear-gradient(160deg,#a78bfa,#6d28d9);
-    box-shadow:0 10px 22px rgba(76,29,149,.28);
+    color:var(--purple-deep);text-align:center;
+    background:linear-gradient(160deg,#f1eafc 0%,#e3d5f7 100%);
+    border:1.6px solid rgba(124,58,237,.42);
+    box-shadow:0 10px 22px rgba(76,29,149,.15);
     opacity:0;transform:scale(.55);
     transition:opacity .5s ease,transform .55s cubic-bezier(.22,1.2,.36,1)}
-  .bt-lab{font-size:17px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
-  .bt-range{font-size:13.5px;font-weight:600;opacity:.92}
+  .bt-lab{font-size:17px;font-weight:800;color:var(--purple-deep)}
+  .bt-range{font-size:13.5px;font-weight:600;color:var(--purple-mid);opacity:.95}
 
   /* equal-size detail boxes */
   .bt-box{position:absolute;width:188px;height:98px;padding:12px 15px;border-radius:10px;
