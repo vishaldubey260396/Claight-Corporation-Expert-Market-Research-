@@ -559,23 +559,16 @@
   }
 
   /* obesity stage flow: five chevron arrows, green to red, hover shows clinical implication below */
-  .stageflow{display:flex;margin:18px 0 0;height:112px;
-    background:linear-gradient(90deg,#16a34a 0%,#84cc16 25%,#f59e0b 50%,#ea580c 75%,#dc2626 100%)}
-  .stage-arrow{position:relative;flex:1;min-width:0;margin-right:-16px;cursor:pointer;outline:none;
-    overflow:hidden;background:transparent;
-    clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%,16px 50%);
-    transition:filter .15s ease}
-  .stage-arrow:first-child{clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%)}
-  .stage-arrow:last-child{margin-right:0;
-    clip-path:polygon(0 0,100% 0,100% 100%,0 100%,16px 50%)}
-  .stage-arrow:hover,.stage-arrow:focus-within{filter:brightness(1.08);z-index:2}
+  .stageflow{position:relative;display:flex;margin:18px 0 0;height:112px}
+  .stageflow-svg{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+  .stage-poly{transition:filter .15s ease}
+  .stage-poly.active{filter:brightness(1.12)}
+  .stage-arrow{position:relative;flex:1;min-width:0;cursor:pointer;outline:none}
   .stage-face{position:absolute;inset:0;display:flex;flex-direction:column;
     align-items:center;justify-content:center;gap:4px;text-align:center;color:#fff;
-    padding:10px 30px 10px 34px}
-  .stage-arrow:last-child .stage-face{padding-right:16px}
-  .stage-arrow:first-child .stage-face{padding-left:16px}
-  .stage-face b{font-size:14.5px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
-  .stage-face span{font-size:12px;line-height:1.4;opacity:.95}
+    padding:10px 26px}
+  .stage-face b{font-size:14.5px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.25)}
+  .stage-face span{font-size:12px;line-height:1.4;opacity:.95;text-shadow:0 1px 2px rgba(0,0,0,.15)}
   .stage-caret{width:0;height:0;margin:0 auto;border-left:9px solid transparent;border-right:9px solid transparent;
     border-top:9px solid var(--purple);opacity:0;transition:opacity .2s ease,transform .2s ease}
   .stage-detailbox{margin:0 0 8px;min-height:52px;border-radius:10px;background:#f4f0fd;
@@ -584,14 +577,15 @@
   .stage-detailbox.active{background:#ece2fb;border-color:var(--purple)}
   .stage-detailbox span{font-size:12.5px;font-weight:700;line-height:1.45;color:var(--purple-deep)}
   @media(max-width:700px){
-    .stageflow{flex-direction:column;height:auto;gap:6px}
-    .stage-arrow{flex:none;margin-right:0;width:100%;height:86px;
-      clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),50% 100%,0 calc(100% - 14px))}
-    .stage-arrow:first-child{clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),50% 100%,0 calc(100% - 14px))}
-    .stage-arrow:last-child{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
-    .stage-face{padding:8px 14px 18px}
-    .stage-arrow:first-child .stage-face,
-    .stage-arrow:last-child .stage-face{padding:8px 14px 18px}
+    .stageflow{flex-direction:column;height:auto;gap:10px}
+    .stageflow-svg{display:none}
+    .stage-arrow{flex:none;width:100%;height:86px;border-radius:10px;
+      background:linear-gradient(90deg,#16a34a,#84cc16)}
+    .stage-arrow.s1{background:linear-gradient(90deg,#84cc16,#f59e0b)}
+    .stage-arrow.s2{background:linear-gradient(90deg,#f59e0b,#ea580c)}
+    .stage-arrow.s3{background:linear-gradient(90deg,#ea580c,#dc2626)}
+    .stage-arrow.s4{background:linear-gradient(90deg,#dc2626,#b91c1c)}
+    .stage-face{padding:8px 14px}
     .stage-caret{display:none}
   }
 
@@ -1560,6 +1554,22 @@
       stages describe disease progression:
     </p>
     <div class="stageflow reveal" id="stageFlow">
+      <svg class="stageflow-svg" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="stageGrad" x1="0" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#16a34a"/>
+            <stop offset="25%" stop-color="#84cc16"/>
+            <stop offset="50%" stop-color="#f59e0b"/>
+            <stop offset="75%" stop-color="#ea580c"/>
+            <stop offset="100%" stop-color="#dc2626"/>
+          </linearGradient>
+        </defs>
+        <polygon id="stagePoly0" class="stage-poly" points="0,0 184,0 200,50 184,100 0,100" fill="url(#stageGrad)" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-linejoin="round"/>
+        <polygon id="stagePoly1" class="stage-poly" points="200,0 384,0 400,50 384,100 200,100 216,50" fill="url(#stageGrad)" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-linejoin="round"/>
+        <polygon id="stagePoly2" class="stage-poly" points="400,0 584,0 600,50 584,100 400,100 416,50" fill="url(#stageGrad)" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-linejoin="round"/>
+        <polygon id="stagePoly3" class="stage-poly" points="600,0 784,0 800,50 784,100 600,100 616,50" fill="url(#stageGrad)" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-linejoin="round"/>
+        <polygon id="stagePoly4" class="stage-poly" points="800,0 1000,0 1000,100 800,100 816,50" fill="url(#stageGrad)" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
       <div class="stage-arrow s0" tabindex="0" data-detail="Preventive counselling; population-level risk remains elevated despite absence of symptoms">
         <div class="stage-face"><b>Stage 0</b><span>No apparent risk factors, symptoms, or functional limitations</span></div>
       </div>
@@ -1587,7 +1597,8 @@
       var caret = document.getElementById('stageCaret');
       var hint = 'Hover or focus a stage to see its clinical implication.';
       var arrows = flow.querySelectorAll('.stage-arrow');
-      function show(el){
+      function polyFor(el, idx){ return document.getElementById('stagePoly' + idx); }
+      function show(el, idx){
         text.textContent = el.getAttribute('data-detail');
         box.classList.add('active');
         var fr = flow.getBoundingClientRect();
@@ -1595,17 +1606,21 @@
         var cx = ar.left + ar.width/2 - fr.left - fr.width/2;
         caret.style.opacity = '1';
         caret.style.transform = 'translateX(' + cx + 'px)';
+        var p = polyFor(el, idx);
+        if(p) p.classList.add('active');
       }
-      function hide(){
+      function hide(idx){
         text.textContent = hint;
         box.classList.remove('active');
         caret.style.opacity = '0';
+        var p = document.getElementById('stagePoly' + idx);
+        if(p) p.classList.remove('active');
       }
-      arrows.forEach(function(a){
-        a.addEventListener('mouseenter', function(){ show(a); });
-        a.addEventListener('focus', function(){ show(a); });
-        a.addEventListener('mouseleave', hide);
-        a.addEventListener('blur', hide);
+      arrows.forEach(function(a, idx){
+        a.addEventListener('mouseenter', function(){ show(a, idx); });
+        a.addEventListener('focus', function(){ show(a, idx); });
+        a.addEventListener('mouseleave', function(){ hide(idx); });
+        a.addEventListener('blur', function(){ hide(idx); });
       });
     })();
     </script>
