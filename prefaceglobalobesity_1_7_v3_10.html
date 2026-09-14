@@ -472,7 +472,7 @@
   .dring-svg{display:block;width:96px;height:96px;margin:0 auto}
   .dring-track{fill:none;stroke:#e9e1f9;stroke-width:9}
   .dring-val{fill:none;stroke:var(--purple-deep);stroke-width:9;stroke-linecap:round;
-    transition:stroke-dasharray .3s ease}
+    transition:stroke-dasharray 1.2s cubic-bezier(.33,1,.68,1)}
   .dring-pct{position:absolute;top:36px;left:0;right:0;font-size:18px;font-weight:800;
     color:var(--purple-deep);letter-spacing:-.02em}
   .dring-pct span{font-size:.6em}
@@ -1445,9 +1445,9 @@
             <svg class="dring-svg" viewBox="0 0 100 100" aria-hidden="true">
               <circle class="dring-track" cx="50" cy="50" r="42"></circle>
               <circle class="dring-val" cx="50" cy="50" r="42"
-                stroke-dasharray="121.4 263.9" transform="rotate(-90 50 50)"></circle>
+                stroke-dasharray="0 263.9" data-dash="121.4" transform="rotate(-90 50 50)"></circle>
             </svg>
-            <div class="dring-pct">~46<span>%</span></div>
+            <div class="dring-pct">~<span class="dring-num" data-to="46">0</span><span>%</span></div>
             <div class="dring-yr">2019</div>
           </div>
           <div class="dring-arrow"><span class="dring-delta">+18pts</span><svg viewBox="0 0 40 12" aria-hidden="true"><path d="M1 6 H33 M27 1 L34 6 L27 11"></path></svg></div>
@@ -1455,9 +1455,9 @@
             <svg class="dring-svg" viewBox="0 0 100 100" aria-hidden="true">
               <circle class="dring-track" cx="50" cy="50" r="42"></circle>
               <circle class="dring-val" cx="50" cy="50" r="42"
-                stroke-dasharray="168.9 263.9" transform="rotate(-90 50 50)"></circle>
+                stroke-dasharray="0 263.9" data-dash="168.9" transform="rotate(-90 50 50)"></circle>
             </svg>
-            <div class="dring-pct">~64<span>%</span></div>
+            <div class="dring-pct">~<span class="dring-num" data-to="64">0</span><span>%</span></div>
             <div class="dring-yr">2025<i>Base year</i></div>
           </div>
           <div class="dring-arrow"><span class="dring-delta">+8pts</span><svg viewBox="0 0 40 12" aria-hidden="true"><path d="M1 6 H33 M27 1 L34 6 L27 11"></path></svg></div>
@@ -1465,9 +1465,9 @@
             <svg class="dring-svg" viewBox="0 0 100 100" aria-hidden="true">
               <circle class="dring-track" cx="50" cy="50" r="42"></circle>
               <circle class="dring-val" cx="50" cy="50" r="42"
-                stroke-dasharray="190.0 263.9" transform="rotate(-90 50 50)"></circle>
+                stroke-dasharray="0 263.9" data-dash="190.0" transform="rotate(-90 50 50)"></circle>
             </svg>
-            <div class="dring-pct">~72<span>%</span></div>
+            <div class="dring-pct">~<span class="dring-num" data-to="72">0</span><span>%</span></div>
             <div class="dring-yr">2035<i>Forecast</i></div>
           </div>
         </div>
@@ -3710,6 +3710,49 @@
       en.forEach(function(e){ if(e.isIntersecting){ play(); bio.disconnect(); } });
     },{threshold:.35});
     bio.observe(tri);
+  } else { play(); }
+})();
+
+/* ===== Drugs'-share progress rings: sweep the arc + count the % up on scroll ===== */
+(function(){
+  var wrap = document.querySelector('.dring-wrap');
+  if(!wrap) return;
+  var C = 263.9;
+  var vals = [].slice.call(wrap.querySelectorAll('.dring-val'));
+  var nums = [].slice.call(wrap.querySelectorAll('.dring-num'));
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fill = function(){
+    vals.forEach(function(v,i){
+      v.style.transitionDelay = (0.15 + i*0.28) + 's';
+      v.setAttribute('stroke-dasharray', (v.dataset.dash||'0') + ' ' + C);
+    });
+  };
+  var count = function(){
+    nums.forEach(function(n,i){
+      var to = parseInt(n.dataset.to,10)||0, dur = 1200, start = null, delay = 150 + i*280;
+      setTimeout(function(){
+        requestAnimationFrame(function step(ts){
+          if(start===null) start=ts;
+          var p = Math.min((ts-start)/dur, 1);
+          var e = 1-Math.pow(1-p,3); // ease-out cubic
+          n.textContent = Math.round(to*e);
+          if(p<1) requestAnimationFrame(step);
+        });
+      }, delay);
+    });
+  };
+  var done = false;
+  var play = function(){ if(done) return; done = true; fill(); count(); };
+  if(reduce){
+    vals.forEach(function(v){ v.setAttribute('stroke-dasharray',(v.dataset.dash||'0')+' '+C); });
+    nums.forEach(function(n){ n.textContent = n.dataset.to; });
+    return;
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ play(); io.disconnect(); } });
+    },{threshold:.4});
+    io.observe(wrap);
   } else { play(); }
 })();
 
