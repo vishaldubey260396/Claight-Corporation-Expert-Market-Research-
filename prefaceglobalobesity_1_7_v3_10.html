@@ -513,14 +513,14 @@
   /* BMI classification triangle: 3 large purple circles in a symmetric triangle, each with a
      curved arrow in a shared rotational direction to its always-open detail box; two static
      boxes (Waist/EOSS) sit in the middle */
-  .bmitri{position:relative;width:100%;max-width:720px;height:580px;margin:20px auto 10px}
+  .bmitri{position:relative;width:100%;max-width:640px;height:490px;margin:20px auto 10px}
   .bt-circle{flex:none;width:180px;height:180px;border-radius:50%;cursor:default;outline:none;
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
     color:#fff;text-align:center;background:linear-gradient(160deg,#a78bfa,#6d28d9);
     box-shadow:0 10px 22px rgba(76,29,149,.28)}
   .bt-lab{font-size:17px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
   .bt-range{font-size:13.5px;font-weight:600;opacity:.92}
-  .bt-arrow{flex:none;width:32px;height:auto;overflow:visible}
+  .bt-arrow{flex:none;width:40px;height:auto;overflow:visible}
   .bt-arrow path{fill:none;stroke:var(--purple);stroke-width:2.8;stroke-linecap:round}
   .bt-arrow polyline{fill:none;stroke:var(--purple);stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
   .bt-box{flex:none;width:180px;padding:11px 14px;border-radius:10px;
@@ -528,21 +528,25 @@
     box-shadow:0 8px 20px rgba(76,29,149,.14)}
   .bt-box p{margin:0;font-size:11.5px;line-height:1.5;color:var(--ink)}
 
-  .bt-c1{position:absolute;top:0;left:270px;display:flex;align-items:center;gap:6px}
+  .bt-c1{position:absolute;top:0;left:230px;display:flex;align-items:center;gap:2px}
 
-  .bt-c2{position:absolute;top:230px;right:0;display:flex;flex-direction:column;
-    align-items:center;gap:6px}
+  .bt-c2{position:absolute;top:172px;right:0;display:flex;flex-direction:column;
+    align-items:center;gap:2px}
 
-  .bt-c3{position:absolute;top:230px;left:0}
-  .bt-c3 .bt-arrow-u{position:absolute;left:74px;bottom:186px}
-  .bt-c3 .bt-box-u{position:absolute;left:0;bottom:236px}
+  .bt-c3{position:absolute;top:172px;left:0}
+  .bt-c3 .bt-arrow-u{position:absolute;left:70px;bottom:182px}
+  .bt-c3 .bt-box-u{position:absolute;left:0;bottom:232px}
 
-  .bt-mid{position:absolute;left:245px;top:200px;width:230px;display:flex;
+  .bt-mid{position:absolute;left:205px;top:185px;width:230px;display:flex;
     flex-direction:column;gap:8px}
   .bt-midbox{background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
-    border-radius:10px;padding:10px 14px;box-shadow:0 6px 16px rgba(76,29,149,.1)}
-  .bt-midbox h6{margin:0 0 3px;font-size:12px;font-weight:800;color:var(--purple-deep)}
-  .bt-midbox p{margin:0;font-size:11px;line-height:1.45;color:var(--ink)}
+    border-radius:10px;padding:10px 14px;box-shadow:0 6px 16px rgba(76,29,149,.1);
+    cursor:pointer;outline:none;transition:box-shadow .2s ease}
+  .bt-midbox:hover,.bt-midbox:focus-within{box-shadow:0 8px 20px rgba(76,29,149,.2)}
+  .bt-midbox h6{margin:0;font-size:12px;font-weight:800;color:var(--purple-deep)}
+  .bt-midbox p{margin:0;font-size:11px;line-height:1.45;color:var(--ink);
+    max-height:0;opacity:0;overflow:hidden;transition:max-height .3s ease,opacity .25s ease,margin-top .25s ease}
+  .bt-midbox:hover p,.bt-midbox:focus-within p{max-height:140px;opacity:1;margin-top:5px}
 
   @media(max-width:760px){
     .bmitri{height:auto;max-width:420px;display:flex;flex-direction:column;
@@ -554,6 +558,7 @@
     .bt-box{width:auto;flex:1}
     .bt-arrow{display:none}
     .bt-mid{position:static;width:auto}
+    .bt-midbox p{max-height:none;opacity:1;margin-top:5px}
   }
 
   /* obesity stage flow: five chevron arrows, green to red, hover shows clinical implication below */
@@ -1498,9 +1503,9 @@
         <div class="bt-circle">
           <span class="bt-lab">Class I</span><span class="bt-range">30.0&ndash;34.9</span>
         </div>
-        <svg class="bt-arrow bt-arrow-r" viewBox="0 0 44 32" aria-hidden="true">
-          <path d="M3 6 C20 6 18 25 39 23"></path>
-          <polyline points="31,18 39,23 33,29"></polyline>
+        <svg class="bt-arrow bt-arrow-r" viewBox="0 0 46 34" aria-hidden="true">
+          <path d="M4 14 A 30 30 0 0 1 42 20"></path>
+          <polyline points="33,14 42,20 34,27"></polyline>
         </svg>
         <div class="bt-box bt-box-r">
           <p>The entry tier of clinical obesity: <b>30.0&ndash;34.9 kg/m&sup2;</b> on the WHO's BMI-based
@@ -1511,9 +1516,9 @@
         <div class="bt-circle">
           <span class="bt-lab">Class II</span><span class="bt-range">35.0&ndash;39.9</span>
         </div>
-        <svg class="bt-arrow bt-arrow-d" viewBox="0 0 32 44" aria-hidden="true">
-          <path d="M6 3 C6 20 25 18 23 39"></path>
-          <polyline points="18,31 23,39 29,33"></polyline>
+        <svg class="bt-arrow bt-arrow-d" viewBox="0 0 34 46" aria-hidden="true">
+          <path d="M14 4 A 30 30 0 0 1 20 42"></path>
+          <polyline points="14,33 20,42 27,34"></polyline>
         </svg>
         <div class="bt-box bt-box-d">
           <p><b>35.0&ndash;39.9 kg/m&sup2;</b>, reflecting a materially higher burden of obesity-related risk
@@ -1525,18 +1530,18 @@
           <p><b>40.0 kg/m&sup2;</b> and above &mdash; historically termed severe or morbid obesity, the tier
             of greatest clinical risk.</p>
         </div>
-        <svg class="bt-arrow bt-arrow-u" viewBox="0 0 32 44" aria-hidden="true">
-          <path d="M6 41 C6 24 25 26 23 5"></path>
-          <polyline points="18,13 23,5 29,11"></polyline>
+        <svg class="bt-arrow bt-arrow-u" viewBox="0 0 34 46" aria-hidden="true">
+          <path d="M20 42 A 30 30 0 0 0 14 4"></path>
+          <polyline points="20,13 14,4 7,12"></polyline>
         </svg>
         <div class="bt-circle">
           <span class="bt-lab">Class III</span><span class="bt-range">&ge;40.0</span>
         </div>
       </div>
       <div class="bt-mid">
-        <div class="bt-midbox"><h6>Waist Circumference</h6>
+        <div class="bt-midbox" tabindex="0"><h6>Waist Circumference</h6>
           <p>Correlates more closely with cardiometabolic risk than BMI alone.</p></div>
-        <div class="bt-midbox"><h6>EOSS Staging</h6>
+        <div class="bt-midbox" tabindex="0"><h6>EOSS Staging</h6>
           <p><b>Edmonton Obesity Staging System</b> &mdash; grades severity by medical, functional and
             psychological impact, not just body size.</p></div>
       </div>
