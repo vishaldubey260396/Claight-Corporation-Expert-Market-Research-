@@ -558,8 +558,8 @@
     .bt-mid{position:static;width:auto}
   }
 
-  /* obesity stage flow: five chevron arrows, green to red, hover swaps to clinical implication */
-  .stageflow{display:flex;margin:18px 0 6px;height:124px;
+  /* obesity stage flow: five chevron arrows, green to red, hover shows clinical implication below */
+  .stageflow{display:flex;margin:18px 0 0;height:112px;
     background:linear-gradient(90deg,#16a34a 0%,#84cc16 25%,#f59e0b 50%,#ea580c 75%,#dc2626 100%)}
   .stage-arrow{position:relative;flex:1;min-width:0;margin-right:-16px;cursor:pointer;outline:none;
     overflow:hidden;background:transparent;
@@ -569,43 +569,30 @@
   .stage-arrow:last-child{margin-right:0;
     clip-path:polygon(0 0,100% 0,100% 100%,0 100%,16px 50%)}
   .stage-arrow:hover,.stage-arrow:focus-within{filter:brightness(1.08);z-index:2}
-  .stage-arrow::before{content:"";position:absolute;top:0;left:-45%;width:30%;height:100%;
-    background:linear-gradient(100deg,transparent,rgba(255,255,255,.55) 45%,transparent 90%);
-    transform:skewX(-18deg);pointer-events:none;
-    animation:stageShine 3.6s ease-in-out infinite}
-  .stage-arrow:nth-child(1)::before{animation-delay:0s}
-  .stage-arrow:nth-child(2)::before{animation-delay:.5s}
-  .stage-arrow:nth-child(3)::before{animation-delay:1s}
-  .stage-arrow:nth-child(4)::before{animation-delay:1.5s}
-  .stage-arrow:nth-child(5)::before{animation-delay:2s}
-  @keyframes stageShine{
-    0%{left:-45%}
-    55%{left:130%}
-    100%{left:130%}
-  }
-  @media(prefers-reduced-motion:reduce){ .stage-arrow::before{animation:none;display:none} }
-  .stage-face,.stage-detail{position:absolute;inset:0;display:flex;flex-direction:column;
+  .stage-face{position:absolute;inset:0;display:flex;flex-direction:column;
     align-items:center;justify-content:center;gap:4px;text-align:center;color:#fff;
     padding:10px 30px 10px 34px}
-  .stage-arrow:last-child .stage-face,.stage-arrow:last-child .stage-detail{padding-right:16px}
-  .stage-arrow:first-child .stage-face,.stage-arrow:first-child .stage-detail{padding-left:16px}
+  .stage-arrow:last-child .stage-face{padding-right:16px}
+  .stage-arrow:first-child .stage-face{padding-left:16px}
   .stage-face b{font-size:14.5px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
   .stage-face span{font-size:12px;line-height:1.4;opacity:.95}
-  .stage-face{transition:opacity .2s ease;transition-delay:.15s}
-  .stage-arrow:hover .stage-face,.stage-arrow:focus-within .stage-face{opacity:0;transition-delay:0s}
-  .stage-detail{opacity:0;transition:opacity .25s ease}
-  .stage-detail span{font-size:12.5px;font-weight:700;line-height:1.45;text-shadow:0 1px 2px rgba(0,0,0,.12)}
-  .stage-arrow:hover .stage-detail,.stage-arrow:focus-within .stage-detail{opacity:1;transition-delay:.2s}
-  .stageflow-hint{margin:0 0 8px;font-size:11.5px;color:var(--muted);text-align:center}
+  .stage-caret{width:0;height:0;margin:0 auto;border-left:9px solid transparent;border-right:9px solid transparent;
+    border-top:9px solid var(--purple);opacity:0;transition:opacity .2s ease,transform .2s ease}
+  .stage-detailbox{margin:0 0 8px;min-height:52px;border-radius:10px;background:#f4f0fd;
+    border:1px solid #ddd2f7;display:flex;align-items:center;justify-content:center;
+    padding:10px 22px;text-align:center;transition:background .2s ease,border-color .2s ease}
+  .stage-detailbox.active{background:#ece2fb;border-color:var(--purple)}
+  .stage-detailbox span{font-size:12.5px;font-weight:700;line-height:1.45;color:var(--purple-deep)}
   @media(max-width:700px){
     .stageflow{flex-direction:column;height:auto;gap:6px}
     .stage-arrow{flex:none;margin-right:0;width:100%;height:86px;
       clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),50% 100%,0 calc(100% - 14px))}
     .stage-arrow:first-child{clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),50% 100%,0 calc(100% - 14px))}
     .stage-arrow:last-child{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
-    .stage-face,.stage-detail{padding:8px 14px 18px}
-    .stage-arrow:first-child .stage-face,.stage-arrow:first-child .stage-detail,
-    .stage-arrow:last-child .stage-face,.stage-arrow:last-child .stage-detail{padding:8px 14px 18px}
+    .stage-face{padding:8px 14px 18px}
+    .stage-arrow:first-child .stage-face,
+    .stage-arrow:last-child .stage-face{padding:8px 14px 18px}
+    .stage-caret{display:none}
   }
 
   .caps-connectors{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
@@ -1573,28 +1560,55 @@
       stages describe disease progression:
     </p>
     <div class="stageflow reveal" id="stageFlow">
-      <div class="stage-arrow s0" tabindex="0">
+      <div class="stage-arrow s0" tabindex="0" data-detail="Preventive counselling; population-level risk remains elevated despite absence of symptoms">
         <div class="stage-face"><b>Stage 0</b><span>No apparent risk factors, symptoms, or functional limitations</span></div>
-        <div class="stage-detail"><span>Preventive counselling; population-level risk remains elevated despite absence of symptoms</span></div>
       </div>
-      <div class="stage-arrow s1" tabindex="0">
+      <div class="stage-arrow s1" tabindex="0" data-detail="Represents an early intervention window before disease progression">
         <div class="stage-face"><b>Stage 1</b><span>Subclinical risk factors, mild physical symptoms</span></div>
-        <div class="stage-detail"><span>Represents an early intervention window before disease progression</span></div>
       </div>
-      <div class="stage-arrow s2" tabindex="0">
+      <div class="stage-arrow s2" tabindex="0" data-detail="The single largest group of clinically presenting patients">
         <div class="stage-face"><b>Stage 2</b><span>Established chronic disease (diabetes, hypertension, sleep apnoea)</span></div>
-        <div class="stage-detail"><span>The single largest group of clinically presenting patients</span></div>
       </div>
-      <div class="stage-arrow s3" tabindex="0">
+      <div class="stage-arrow s3" tabindex="0" data-detail="Nearly half of individuals with obesity fall into this stage or higher">
         <div class="stage-face"><b>Stage 3</b><span>Significant end-organ damage and functional limitation</span></div>
-        <div class="stage-detail"><span>Nearly half of individuals with obesity fall into this stage or higher</span></div>
       </div>
-      <div class="stage-arrow s4" tabindex="0">
+      <div class="stage-arrow s4" tabindex="0" data-detail="Reflects the most advanced, highest-risk clinical phenotype">
         <div class="stage-face"><b>Stage 4</b><span>Severe, potentially end-stage disability</span></div>
-        <div class="stage-detail"><span>Reflects the most advanced, highest-risk clinical phenotype</span></div>
       </div>
     </div>
-    <p class="stageflow-hint reveal">Hover or focus a stage to see its clinical implication.</p>
+    <div class="stage-caret" id="stageCaret"></div>
+    <div class="stage-detailbox reveal" id="stageDetailBox"><span id="stageDetailText">Hover or focus a stage to see its clinical implication.</span></div>
+    <script>
+    (function(){
+      var flow = document.getElementById('stageFlow');
+      if(!flow) return;
+      var box = document.getElementById('stageDetailBox');
+      var text = document.getElementById('stageDetailText');
+      var caret = document.getElementById('stageCaret');
+      var hint = 'Hover or focus a stage to see its clinical implication.';
+      var arrows = flow.querySelectorAll('.stage-arrow');
+      function show(el){
+        text.textContent = el.getAttribute('data-detail');
+        box.classList.add('active');
+        var fr = flow.getBoundingClientRect();
+        var ar = el.getBoundingClientRect();
+        var cx = ar.left + ar.width/2 - fr.left - fr.width/2;
+        caret.style.opacity = '1';
+        caret.style.transform = 'translateX(' + cx + 'px)';
+      }
+      function hide(){
+        text.textContent = hint;
+        box.classList.remove('active');
+        caret.style.opacity = '0';
+      }
+      arrows.forEach(function(a){
+        a.addEventListener('mouseenter', function(){ show(a); });
+        a.addEventListener('focus', function(){ show(a); });
+        a.addEventListener('mouseleave', hide);
+        a.addEventListener('blur', hide);
+      });
+    })();
+    </script>
 
     <h3 class="subh reveal">Risk Factors</h3>
     <table class="rd reveal">
