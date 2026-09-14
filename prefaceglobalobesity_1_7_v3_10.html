@@ -616,8 +616,19 @@
   .stage-face{position:absolute;inset:0;display:flex;flex-direction:column;
     align-items:center;justify-content:center;gap:1px;text-align:center;color:#fff;
     padding:3px 18px}
-  .stage-face b{font-size:11.5px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.25)}
-  .stage-face span{font-size:9px;line-height:1.22;opacity:.95;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+  .stage-face b{font-size:13.5px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.25)}
+  .stage-face .sf-desc{font-size:9px;line-height:1.22;opacity:.95;text-shadow:0 1px 2px rgba(0,0,0,.15);display:none}
+
+  /* per-stage descriptions shown just below each chevron (desktop) */
+  .stage-descs{display:flex;margin:9px 0 2px}
+  .stage-desc{flex:1;min-width:0;padding:0 12px;text-align:center;
+    font-size:11px;line-height:1.4;color:#334155}
+  .stage-desc::before{content:"";display:block;width:26px;height:3px;border-radius:2px;margin:0 auto 7px}
+  .stage-desc.s0::before{background:#22a94e}
+  .stage-desc.s1::before{background:#84cc16}
+  .stage-desc.s2::before{background:#e0a90a}
+  .stage-desc.s3::before{background:#ea580c}
+  .stage-desc.s4::before{background:#dc2626}
   .stage-caret{width:0;height:0;margin:0 auto;border-left:9px solid transparent;border-right:9px solid transparent;
     border-top:9px solid var(--purple);opacity:0;transition:opacity .2s ease,transform .2s ease}
   .stage-detailbox{margin:0 0 8px;min-height:52px;border-radius:10px;background:#f4f0fd;
@@ -635,6 +646,8 @@
     .stage-arrow.s3{background:linear-gradient(90deg,#ea580c,#dc2626)}
     .stage-arrow.s4{background:linear-gradient(90deg,#dc2626,#b91c1c)}
     .stage-face{padding:8px 14px}
+    .stage-face .sf-desc{display:block;font-size:11.5px;line-height:1.35}
+    .stage-descs{display:none}
     .stage-caret{display:none}
   }
 
@@ -1622,20 +1635,27 @@
         <polygon id="stagePoly4" class="stage-poly" points="800,0 984,0 1000,50 984,100 800,100 816,50" fill="url(#stageGrad)" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-linejoin="round"/>
       </svg>
       <div class="stage-arrow s0" tabindex="0" data-detail="Preventive counselling; population-level risk remains elevated despite absence of symptoms">
-        <div class="stage-face"><b>Stage 0</b><span>No apparent risk factors, symptoms, or functional limitations</span></div>
+        <div class="stage-face"><b>Stage 0</b><span class="sf-desc">No apparent risk factors, symptoms, or functional limitations</span></div>
       </div>
       <div class="stage-arrow s1" tabindex="0" data-detail="Represents an early intervention window before disease progression">
-        <div class="stage-face"><b>Stage 1</b><span>Subclinical risk factors, mild physical symptoms</span></div>
+        <div class="stage-face"><b>Stage 1</b><span class="sf-desc">Subclinical risk factors, mild physical symptoms</span></div>
       </div>
       <div class="stage-arrow s2" tabindex="0" data-detail="The single largest group of clinically presenting patients">
-        <div class="stage-face"><b>Stage 2</b><span>Established chronic disease (diabetes, hypertension, sleep apnoea)</span></div>
+        <div class="stage-face"><b>Stage 2</b><span class="sf-desc">Established chronic disease (diabetes, hypertension, sleep apnoea)</span></div>
       </div>
       <div class="stage-arrow s3" tabindex="0" data-detail="Nearly half of individuals with obesity fall into this stage or higher">
-        <div class="stage-face"><b>Stage 3</b><span>Significant end-organ damage and functional limitation</span></div>
+        <div class="stage-face"><b>Stage 3</b><span class="sf-desc">Significant end-organ damage and functional limitation</span></div>
       </div>
       <div class="stage-arrow s4" tabindex="0" data-detail="Reflects the most advanced, highest-risk clinical phenotype">
-        <div class="stage-face"><b>Stage 4</b><span>Severe, potentially end-stage disability</span></div>
+        <div class="stage-face"><b>Stage 4</b><span class="sf-desc">Severe, potentially end-stage disability</span></div>
       </div>
+    </div>
+    <div class="stage-descs">
+      <div class="stage-desc s0">No apparent risk factors, symptoms, or functional limitations</div>
+      <div class="stage-desc s1">Subclinical risk factors, mild physical symptoms</div>
+      <div class="stage-desc s2">Established chronic disease (diabetes, hypertension, sleep apnoea)</div>
+      <div class="stage-desc s3">Significant end-organ damage and functional limitation</div>
+      <div class="stage-desc s4">Severe, potentially end-stage disability</div>
     </div>
     <div class="stage-caret" id="stageCaret"></div>
     <div class="stage-detailbox reveal" id="stageDetailBox"><span id="stageDetailText">Hover or focus a stage to see its clinical implication.</span></div>
