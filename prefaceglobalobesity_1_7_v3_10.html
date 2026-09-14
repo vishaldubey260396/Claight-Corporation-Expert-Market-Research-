@@ -558,10 +558,10 @@
   .bt-c2 .bt-circle{left:410px;top:250px}
   .bt-c2 .bt-box{left:226px;top:446px;transform-origin:right top}
   .bt-c2 .bt-arrow{left:396px;top:398px;transform:rotate(190deg)}
-  /* Class III : bottom-left circle, box above */
+  /* Class III : bottom-left circle, box above (shifted left to clear the Class I circle) */
   .bt-c3 .bt-circle{left:50px;top:250px}
-  .bt-c3 .bt-box{left:46px;top:110px;transform-origin:center bottom}
-  .bt-c3 .bt-arrow{left:118px;top:206px;transform:rotate(0deg)}
+  .bt-c3 .bt-box{left:32px;top:110px;transform-origin:center bottom}
+  .bt-c3 .bt-arrow{left:102px;top:206px;transform:rotate(0deg)}
 
   /* clockwise chakra reveal: circles pop first, then each arm (arrow + box together) */
   .bmitri.play .bt-circle{opacity:1;transform:none}
@@ -575,8 +575,9 @@
   .bt-c2 .bt-arrow path{transition-delay:.75s} .bt-c2 .bt-box{transition-delay:.8s} .bt-c2 .bt-arrow polyline{transition-delay:1.3s}
   .bt-c3 .bt-arrow path{transition-delay:1.15s} .bt-c3 .bt-box{transition-delay:1.2s} .bt-c3 .bt-arrow polyline{transition-delay:1.7s}
 
-  /* centred mid-boxes at the triangle centroid (320,270) */
-  .bt-mid{position:absolute;left:222px;top:236px;width:196px;display:flex;
+  /* centred mid-boxes at the triangle centroid (320,270); width kept inside the
+     230..410 gap so the boxes never touch the Class II / III circles */
+  .bt-mid{position:absolute;left:234px;top:236px;width:172px;display:flex;
     flex-direction:column;gap:8px;pointer-events:auto}
   .bt-midbox{background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
     border-radius:10px;padding:10px 14px;box-shadow:0 6px 16px rgba(76,29,149,.1);
