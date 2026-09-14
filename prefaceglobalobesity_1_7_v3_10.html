@@ -510,37 +510,34 @@
   .caps-col.left{padding-right:64px}
   @media(prefers-reduced-motion:reduce){ .caps-col{opacity:1;transform:none;transition:none} }
 
-  /* BMI classification triangle: 3 purple circles, each with a static arrow pointing to
-     where its detail box opens on hover/focus; two static boxes (Waist/EOSS) sit in the middle */
-  .bmitri{position:relative;width:100%;max-width:640px;height:500px;margin:20px auto 10px}
-  .bt-circle{flex:none;width:140px;height:140px;border-radius:50%;cursor:pointer;outline:none;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  /* BMI classification triangle: 3 large purple circles in a symmetric triangle, each with a
+     curved arrow in a shared rotational direction to its always-open detail box; two static
+     boxes (Waist/EOSS) sit in the middle */
+  .bmitri{position:relative;width:100%;max-width:720px;height:580px;margin:20px auto 10px}
+  .bt-circle{flex:none;width:180px;height:180px;border-radius:50%;cursor:default;outline:none;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
     color:#fff;text-align:center;background:linear-gradient(160deg,#a78bfa,#6d28d9);
     box-shadow:0 10px 22px rgba(76,29,149,.28)}
-  .bt-lab{font-size:15px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
-  .bt-range{font-size:12.5px;font-weight:600;opacity:.92}
-  .bt-arrow{flex:none;width:30px;height:auto;overflow:visible}
-  .bt-arrow path{fill:none;stroke:var(--purple);stroke-width:2.6;stroke-linecap:round}
-  .bt-arrow polyline{fill:none;stroke:var(--purple);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-  .bt-box{flex:none;width:170px;padding:10px 13px;border-radius:10px;
+  .bt-lab{font-size:17px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
+  .bt-range{font-size:13.5px;font-weight:600;opacity:.92}
+  .bt-arrow{flex:none;width:32px;height:auto;overflow:visible}
+  .bt-arrow path{fill:none;stroke:var(--purple);stroke-width:2.8;stroke-linecap:round}
+  .bt-arrow polyline{fill:none;stroke:var(--purple);stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+  .bt-box{flex:none;width:180px;padding:11px 14px;border-radius:10px;
     background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
-    box-shadow:0 8px 20px rgba(76,29,149,.14);
-    opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+    box-shadow:0 8px 20px rgba(76,29,149,.14)}
   .bt-box p{margin:0;font-size:11.5px;line-height:1.5;color:var(--ink)}
-  .bt-node:hover .bt-box,.bt-node:focus-within .bt-box{opacity:1;pointer-events:auto;transform:none}
 
-  .bt-c1{position:absolute;top:0;left:250px;display:flex;align-items:center;gap:4px}
-  .bt-box-r{transform:translateX(-10px)}
+  .bt-c1{position:absolute;top:0;left:270px;display:flex;align-items:center;gap:6px}
 
-  .bt-c2{position:absolute;top:242px;right:0;display:flex;flex-direction:column;
-    align-items:center;gap:0}
-  .bt-box-d{transform:translateY(-10px);width:170px}
+  .bt-c2{position:absolute;top:230px;right:0;display:flex;flex-direction:column;
+    align-items:center;gap:6px}
 
-  .bt-c3{position:absolute;top:134px;left:0;display:flex;flex-direction:column;
-    align-items:center;gap:0}
-  .bt-box-u{transform:translateY(10px)}
+  .bt-c3{position:absolute;top:230px;left:0}
+  .bt-c3 .bt-arrow-u{position:absolute;left:74px;bottom:186px}
+  .bt-c3 .bt-box-u{position:absolute;left:0;bottom:236px}
 
-  .bt-mid{position:absolute;left:205px;top:153px;width:230px;display:flex;
+  .bt-mid{position:absolute;left:245px;top:200px;width:230px;display:flex;
     flex-direction:column;gap:8px}
   .bt-midbox{background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
     border-radius:10px;padding:10px 14px;box-shadow:0 6px 16px rgba(76,29,149,.1)}
@@ -550,10 +547,11 @@
   @media(max-width:760px){
     .bmitri{height:auto;max-width:420px;display:flex;flex-direction:column;
       align-items:stretch;gap:16px}
-    .bt-c1,.bt-c2,.bt-c3{position:static;flex-direction:row;align-items:center;
+    .bt-c1,.bt-c2,.bt-c3{position:static;display:flex;flex-direction:row;align-items:center;
       justify-content:flex-start;gap:12px}
     .bt-c3{flex-direction:row-reverse;justify-content:flex-end}
-    .bt-box{opacity:1;pointer-events:auto;transform:none;width:auto;flex:1}
+    .bt-c3 .bt-arrow-u,.bt-c3 .bt-box-u{position:static}
+    .bt-box{width:auto;flex:1}
     .bt-arrow{display:none}
     .bt-mid{position:static;width:auto}
   }
