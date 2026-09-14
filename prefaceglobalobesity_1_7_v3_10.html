@@ -520,9 +520,11 @@
     box-shadow:0 10px 22px rgba(76,29,149,.28)}
   .bt-lab{font-size:17px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
   .bt-range{font-size:13.5px;font-weight:600;opacity:.92}
-  .bt-arrow{flex:none;width:42px;height:auto;overflow:visible}
-  .bt-arrow path{fill:none;stroke:var(--purple);stroke-width:9;stroke-linecap:round}
-  .bt-arrow polygon{fill:var(--purple)}
+  .bt-arrow{flex:none;width:46px;height:auto;overflow:visible}
+  .bt-arrow path{fill:none;stroke:var(--purple);stroke-width:7;stroke-linecap:round}
+  .bt-arrow polyline{fill:none;stroke:var(--purple);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+  .bt-arrow-r{transform:rotate(90deg)}
+  .bt-arrow-d{transform:rotate(180deg)}
   .bt-box{flex:none;width:180px;padding:11px 14px;border-radius:10px;
     background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
     box-shadow:0 8px 20px rgba(76,29,149,.14)}
@@ -1503,9 +1505,9 @@
         <div class="bt-circle">
           <span class="bt-lab">Class I</span><span class="bt-range">30.0&ndash;34.9</span>
         </div>
-        <svg class="bt-arrow bt-arrow-r" viewBox="0 0 60 60" aria-hidden="true">
-          <path d="M8 16 A 34 34 0 0 1 46 28"></path>
-          <polygon points="58,38 41,34 53,20"></polygon>
+        <svg class="bt-arrow bt-arrow-r" viewBox="0 0 60 72" aria-hidden="true">
+          <path d="M42 66 C 10 60, 2 30, 18 14 C 25 7, 34 5, 42 9"></path>
+          <polyline points="31,4 42,9 35,18"></polyline>
         </svg>
         <div class="bt-box bt-box-r">
           <p>The entry tier of clinical obesity: <b>30.0&ndash;34.9 kg/m&sup2;</b> on the WHO's BMI-based
@@ -1516,9 +1518,9 @@
         <div class="bt-circle">
           <span class="bt-lab">Class II</span><span class="bt-range">35.0&ndash;39.9</span>
         </div>
-        <svg class="bt-arrow bt-arrow-d" viewBox="0 0 60 60" aria-hidden="true">
-          <path d="M16 8 A 34 34 0 0 1 28 46"></path>
-          <polygon points="38,58 34,41 20,53"></polygon>
+        <svg class="bt-arrow bt-arrow-d" viewBox="0 0 60 72" aria-hidden="true">
+          <path d="M42 66 C 10 60, 2 30, 18 14 C 25 7, 34 5, 42 9"></path>
+          <polyline points="31,4 42,9 35,18"></polyline>
         </svg>
         <div class="bt-box bt-box-d">
           <p><b>35.0&ndash;39.9 kg/m&sup2;</b>, reflecting a materially higher burden of obesity-related risk
@@ -1530,9 +1532,9 @@
           <p><b>40.0 kg/m&sup2;</b> and above &mdash; historically termed severe or morbid obesity, the tier
             of greatest clinical risk.</p>
         </div>
-        <svg class="bt-arrow bt-arrow-u" viewBox="0 0 60 60" aria-hidden="true">
-          <path d="M30 50 A 34 34 0 0 0 18 14"></path>
-          <polygon points="6,4 10,21 24,9"></polygon>
+        <svg class="bt-arrow bt-arrow-u" viewBox="0 0 60 72" aria-hidden="true">
+          <path d="M42 66 C 10 60, 2 30, 18 14 C 25 7, 34 5, 42 9"></path>
+          <polyline points="31,4 42,9 35,18"></polyline>
         </svg>
         <div class="bt-circle">
           <span class="bt-lab">Class III</span><span class="bt-range">&ge;40.0</span>
