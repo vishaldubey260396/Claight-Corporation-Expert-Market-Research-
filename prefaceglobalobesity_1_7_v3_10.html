@@ -540,40 +540,41 @@
     transition:opacity .5s ease,transform .6s cubic-bezier(.22,1.15,.36,1)}
   .bt-box p{margin:0;font-size:11.5px;line-height:1.5;color:var(--ink)}
 
-  /* circular-arc arrows, drawn via stroke-dashoffset (pathLength normalised to 1) */
-  .bt-arrow{position:absolute;width:48px;height:48px;overflow:visible;pointer-events:none}
-  .bt-arrow path,.bt-arrow polyline{fill:none;stroke:var(--purple);stroke-width:5;
-    stroke-linecap:round;stroke-linejoin:round}
-  .bt-arrow path{stroke-dasharray:1;stroke-dashoffset:1;
-    transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1)}
-  .bt-arrow polyline{stroke-dasharray:1;stroke-dashoffset:1;
-    transition:stroke-dashoffset .28s ease}
+  /* uniform curved arrows: a stroked arc that draws on scroll (pathLength=1) plus a
+     filled triangular head that fades in as the arc finishes. One shape, centred in a
+     square 64x64 viewBox, rotated per node so every arrow looks identical. */
+  .bt-arrow{position:absolute;width:52px;height:52px;overflow:visible;pointer-events:none}
+  .bt-arrow path{fill:none;stroke:var(--purple);stroke-width:5.5;
+    stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:1;stroke-dashoffset:1;
+    transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1)}
+  .bt-arrow polygon{fill:var(--purple);opacity:0;transition:opacity .22s ease}
 
   /* --- node geometry (640 x 560 field) --- */
   /* Class I : top-centre circle, box to the right */
   .bt-c1 .bt-circle{left:230px;top:40px}
   .bt-c1 .bt-box{left:442px;top:81px;transform-origin:left center}
-  .bt-c1 .bt-arrow{left:404px;top:108px;transform:rotate(45deg)}
+  .bt-c1 .bt-arrow{left:400px;top:106px;transform:rotate(40deg)}
   /* Class II : bottom-right circle, box below-left under the EOSS mid-box */
   .bt-c2 .bt-circle{left:410px;top:250px}
   .bt-c2 .bt-box{left:226px;top:446px;transform-origin:right top}
-  .bt-c2 .bt-arrow{left:396px;top:398px;transform:rotate(190deg)}
+  .bt-c2 .bt-arrow{left:392px;top:396px;transform:rotate(178deg)}
   /* Class III : bottom-left circle, box above (shifted left to clear the Class I circle) */
   .bt-c3 .bt-circle{left:50px;top:250px}
   .bt-c3 .bt-box{left:32px;top:110px;transform-origin:center bottom}
-  .bt-c3 .bt-arrow{left:102px;top:206px;transform:rotate(0deg)}
+  .bt-c3 .bt-arrow{left:98px;top:198px;transform:rotate(305deg)}
 
   /* clockwise chakra reveal: circles pop first, then each arm (arrow + box together) */
   .bmitri.play .bt-circle{opacity:1;transform:none}
   .bmitri.play .bt-box{opacity:1;transform:none}
   .bmitri.play .bt-arrow path{stroke-dashoffset:0}
-  .bmitri.play .bt-arrow polyline{stroke-dashoffset:0}
+  .bmitri.play .bt-arrow polygon{opacity:1}
   .bt-c1 .bt-circle{transition-delay:.05s}
   .bt-c2 .bt-circle{transition-delay:.15s}
   .bt-c3 .bt-circle{transition-delay:.25s}
-  .bt-c1 .bt-arrow path{transition-delay:.35s} .bt-c1 .bt-box{transition-delay:.4s} .bt-c1 .bt-arrow polyline{transition-delay:.9s}
-  .bt-c2 .bt-arrow path{transition-delay:.75s} .bt-c2 .bt-box{transition-delay:.8s} .bt-c2 .bt-arrow polyline{transition-delay:1.3s}
-  .bt-c3 .bt-arrow path{transition-delay:1.15s} .bt-c3 .bt-box{transition-delay:1.2s} .bt-c3 .bt-arrow polyline{transition-delay:1.7s}
+  .bt-c1 .bt-arrow path{transition-delay:.35s} .bt-c1 .bt-box{transition-delay:.4s} .bt-c1 .bt-arrow polygon{transition-delay:.82s}
+  .bt-c2 .bt-arrow path{transition-delay:.75s} .bt-c2 .bt-box{transition-delay:.8s} .bt-c2 .bt-arrow polygon{transition-delay:1.22s}
+  .bt-c3 .bt-arrow path{transition-delay:1.15s} .bt-c3 .bt-box{transition-delay:1.2s} .bt-c3 .bt-arrow polygon{transition-delay:1.62s}
 
   /* centred mid-boxes at the triangle centroid (320,270); width kept inside the
      230..410 gap so the boxes never touch the Class II / III circles */
@@ -602,7 +603,8 @@
   }
   @media(prefers-reduced-motion:reduce){
     .bt-circle,.bt-box{opacity:1;transform:none;transition:none}
-    .bt-arrow path,.bt-arrow polyline{stroke-dashoffset:0;transition:none}
+    .bt-arrow path{stroke-dashoffset:0;transition:none}
+    .bt-arrow polygon{opacity:1;transition:none}
   }
 
   /* obesity stage flow: five chevron arrows, green to red, hover shows clinical implication below */
@@ -1548,9 +1550,9 @@
         <div class="bt-circle" tabindex="0">
           <span class="bt-lab">Class I</span><span class="bt-range">30.0&ndash;34.9</span>
         </div>
-        <svg class="bt-arrow" viewBox="0 0 70 70" aria-hidden="true">
-          <path pathLength="1" d="M18 46 A 28 28 0 0 1 42 18"></path>
-          <polyline pathLength="1" points="32,16 44,17 42,29"></polyline>
+        <svg class="bt-arrow" viewBox="0 0 64 64" aria-hidden="true">
+          <path pathLength="1" d="M15.74 36.97 A 17 17 0 0 0 48.26 36.97"></path>
+          <polygon points="56.28,29.44 48.26,36.97 45.82,26.24"></polygon>
         </svg>
         <div class="bt-box">
           <p>The entry tier of clinical obesity: <b>30.0&ndash;34.9 kg/m&sup2;</b> on the WHO's BMI-based
@@ -1562,9 +1564,9 @@
         <div class="bt-circle" tabindex="0">
           <span class="bt-lab">Class II</span><span class="bt-range">35.0&ndash;39.9</span>
         </div>
-        <svg class="bt-arrow" viewBox="0 0 70 70" aria-hidden="true">
-          <path pathLength="1" d="M18 46 A 28 28 0 0 1 42 18"></path>
-          <polyline pathLength="1" points="32,16 44,17 42,29"></polyline>
+        <svg class="bt-arrow" viewBox="0 0 64 64" aria-hidden="true">
+          <path pathLength="1" d="M15.74 36.97 A 17 17 0 0 0 48.26 36.97"></path>
+          <polygon points="56.28,29.44 48.26,36.97 45.82,26.24"></polygon>
         </svg>
         <div class="bt-box">
           <p><b>35.0&ndash;39.9 kg/m&sup2;</b>, reflecting a materially higher burden of obesity-related risk
@@ -1576,9 +1578,9 @@
         <div class="bt-circle" tabindex="0">
           <span class="bt-lab">Class III</span><span class="bt-range">&ge;40.0</span>
         </div>
-        <svg class="bt-arrow" viewBox="0 0 70 70" aria-hidden="true">
-          <path pathLength="1" d="M18 46 A 28 28 0 0 1 42 18"></path>
-          <polyline pathLength="1" points="32,16 44,17 42,29"></polyline>
+        <svg class="bt-arrow" viewBox="0 0 64 64" aria-hidden="true">
+          <path pathLength="1" d="M15.74 36.97 A 17 17 0 0 0 48.26 36.97"></path>
+          <polygon points="56.28,29.44 48.26,36.97 45.82,26.24"></polygon>
         </svg>
         <div class="bt-box">
           <p><b>40.0 kg/m&sup2;</b> and above &mdash; historically termed severe or morbid obesity, the tier
