@@ -987,6 +987,11 @@
   .sth .chlab{font-weight:800;fill:var(--purple-deep)}
   .sth .chsub{font-weight:600;fill:var(--muted)}
   .sth .ptag{font-weight:700;fill:var(--purple-deep)}
+  .sth .bxt{font-weight:800;fill:var(--purple-deep)}
+  .sth .bxs{font-weight:600;fill:var(--muted)}
+  .sth .bxrect{fill:#f4eeff;stroke:#e0d5f7;stroke-width:1}
+  .sth .bxln{fill:none;stroke:#c3b2ee;stroke-width:2.2;stroke-linecap:round;opacity:0;transition:opacity .4s ease .55s}
+  .sth.play .bxln{opacity:1}
   .sth .tb{stroke-linecap:round;stroke-linejoin:round;fill:none;
     stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .8s ease}
   .sth.play .tb{stroke-dashoffset:0}
@@ -1781,6 +1786,30 @@
         <path class="flow" d="M336 322 C 330 408, 268 430, 290 498 C 312 566, 472 566, 560 552"></path>
         <path class="flow" d="M336 316 C 276 296, 195 262, 170 186"></path>
         <path class="flow" d="M336 316 C 396 296, 475 262, 500 186"></path>
+        <!-- left pathway detail boxes -->
+        <path class="bxln" d="M168 184 Q 120 194 92 191"></path>
+        <path class="bxln" d="M92 233 V 269"></path>
+        <path class="bxln" d="M92 313 V 349"></path>
+        <g class="pop" style="transition-delay:1.35s"><rect class="bxrect" x="19" y="189" width="146" height="44" rx="11"></rect>
+          <text class="bxt" x="92" y="208" text-anchor="middle" font-size="11.5">ER stress &middot; SOCS3 &uarr;</text>
+          <text class="bxs" x="92" y="223" text-anchor="middle" font-size="9">blunts leptin signalling</text></g>
+        <g class="pop" style="transition-delay:1.5s"><rect class="bxrect" x="19" y="269" width="146" height="44" rx="11"></rect>
+          <text class="bxt" x="92" y="288" text-anchor="middle" font-size="11.5">Appetite unchecked</text>
+          <text class="bxs" x="92" y="303" text-anchor="middle" font-size="9">satiety signals blunted</text></g>
+        <g class="pop" style="transition-delay:1.65s"><rect class="bxrect" x="19" y="349" width="146" height="44" rx="11"></rect>
+          <text class="bxt" x="92" y="375" text-anchor="middle" font-size="12">Weight gain</text></g>
+        <!-- right pathway detail boxes -->
+        <path class="bxln" d="M502 184 Q 560 194 588 191"></path>
+        <path class="bxln" d="M588 233 V 269"></path>
+        <path class="bxln" d="M588 313 V 349"></path>
+        <g class="pop" style="transition-delay:1.45s"><rect class="bxrect" x="515" y="189" width="146" height="44" rx="11"></rect>
+          <text class="bxt" x="588" y="208" text-anchor="middle" font-size="11.5">Free fatty acids &uarr;</text>
+          <text class="bxs" x="588" y="223" text-anchor="middle" font-size="9">excess release</text></g>
+        <g class="pop" style="transition-delay:1.6s"><rect class="bxrect" x="515" y="269" width="146" height="44" rx="11"></rect>
+          <text class="bxt" x="588" y="288" text-anchor="middle" font-size="11">Macrophages &uarr;</text>
+          <text class="bxs" x="588" y="303" text-anchor="middle" font-size="9">tissue infiltration</text></g>
+        <g class="pop" style="transition-delay:1.75s"><rect class="bxrect" x="515" y="349" width="146" height="44" rx="11"></rect>
+          <text class="bxt" x="588" y="375" text-anchor="middle" font-size="12">Type 2 diabetes</text></g>
         <g class="pop p-ch">
           <circle cx="596" cy="546" r="42" fill="url(#sMetal)"></circle>
           <circle cx="596" cy="546" r="31" fill="url(#sDrum)"></circle>
@@ -1794,12 +1823,10 @@
           <text class="corelab" x="336" y="323" text-anchor="middle" font-size="16">Chronic inflammation</text>
         </g>
         <g class="pop p-l">
-          <text class="ptag" x="170" y="42" text-anchor="middle" font-size="11.5">appetite &rarr; weight gain</text>
           <circle cx="170" cy="120" r="66" fill="url(#sHub)"></circle>
           <text class="ctitle" x="170" y="114" text-anchor="middle" font-size="20">Leptin<tspan x="170" dy="22">resistance</tspan></text>
         </g>
         <g class="pop p-r">
-          <text class="ptag" x="500" y="42" text-anchor="middle" font-size="11.5">FFA &middot; macrophages &rarr; Type 2 diabetes</text>
           <circle cx="500" cy="120" r="66" fill="url(#sHub)"></circle>
           <text class="ctitle" x="500" y="114" text-anchor="middle" font-size="20">Insulin<tspan x="500" dy="22">resistance</tspan></text>
         </g>
