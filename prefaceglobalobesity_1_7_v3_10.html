@@ -3802,14 +3802,14 @@
   var tri = document.getElementById('bmiTri');
   if(!tri) return;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var play = function(){ tri.classList.add('play'); };
-  if(reduce){ play(); return; }
+  if(reduce){ tri.classList.add('play'); return; }
   if('IntersectionObserver' in window){
+    /* replay every time the triangle re-enters the viewport */
     var bio = new IntersectionObserver(function(en){
-      en.forEach(function(e){ if(e.isIntersecting){ play(); bio.disconnect(); } });
+      en.forEach(function(e){ tri.classList.toggle('play', e.isIntersecting); });
     },{threshold:.35});
     bio.observe(tri);
-  } else { play(); }
+  } else { tri.classList.add('play'); }
 })();
 
 /* ===== Drugs'-share progress rings: sweep the arc + count the % up on scroll ===== */
