@@ -532,13 +532,18 @@
   .bt-range{font-size:13.5px;font-weight:600;color:var(--purple-mid);opacity:.95}
 
   /* equal-size detail boxes */
-  .bt-box{position:absolute;width:188px;height:98px;padding:12px 15px;border-radius:10px;
+  .bt-box{position:absolute;width:188px;min-height:98px;padding:12px 15px;border-radius:10px;
     display:flex;align-items:center;pointer-events:auto;
     background:linear-gradient(180deg,#f9f5ff,#f4eeff);border:1px solid var(--line);
     box-shadow:0 8px 20px rgba(76,29,149,.14);
     opacity:0;transform:scale(.7) rotate(-16deg);
     transition:opacity .5s ease,transform .6s cubic-bezier(.22,1.15,.36,1)}
   .bt-box p{margin:0;font-size:11.5px;line-height:1.5;color:var(--ink)}
+  .bt-box ul{list-style:none;margin:0;padding:0;width:100%}
+  .bt-box li{position:relative;padding-left:14px;margin:3px 0;font-size:10.8px;line-height:1.35;
+    font-weight:600;color:var(--ink)}
+  .bt-box li::before{content:"";position:absolute;left:2px;top:5px;width:5px;height:5px;border-radius:50%;background:var(--purple)}
+  .bt-box li b{color:var(--purple-deep);font-weight:800}
 
   /* uniform curved arrows: a stroked arc that draws on scroll (pathLength=1) plus a
      filled triangular head that fades in as the arc finishes. One shape, centred in a
@@ -1639,8 +1644,11 @@
           <polygon points="33.25,14.52 23.94,26.95 18.12,10.98"></polygon>
         </svg>
         <div class="bt-box">
-          <p>The entry tier of clinical obesity: <b>30.0&ndash;34.9 kg/m&sup2;</b> on the WHO's BMI-based
-            classification.</p>
+          <ul>
+            <li>Entry tier of clinical obesity</li>
+            <li>BMI <b>30.0&ndash;34.9 kg/m&sup2;</b></li>
+            <li>WHO BMI-based classification</li>
+          </ul>
         </div>
       </div>
       <!-- Class II - bottom right, box below -->
@@ -1653,8 +1661,11 @@
           <polygon points="33.25,14.52 23.94,26.95 18.12,10.98"></polygon>
         </svg>
         <div class="bt-box">
-          <p><b>35.0&ndash;39.9 kg/m&sup2;</b>, reflecting a materially higher burden of obesity-related risk
-            than Class I.</p>
+          <ul>
+            <li>BMI <b>35.0&ndash;39.9 kg/m&sup2;</b></li>
+            <li>Materially higher risk burden</li>
+            <li>Greater than Class I</li>
+          </ul>
         </div>
       </div>
       <!-- Class III - bottom left, box above -->
@@ -1667,8 +1678,11 @@
           <polygon points="33.25,14.52 23.94,26.95 18.12,10.98"></polygon>
         </svg>
         <div class="bt-box">
-          <p><b>40.0 kg/m&sup2;</b> and above &mdash; historically termed severe or morbid obesity, the tier
-            of greatest clinical risk.</p>
+          <ul>
+            <li>BMI <b>&ge;40.0 kg/m&sup2;</b></li>
+            <li>Historically severe / morbid obesity</li>
+            <li>Greatest clinical-risk tier</li>
+          </ul>
         </div>
       </div>
       <div class="bt-mid">
