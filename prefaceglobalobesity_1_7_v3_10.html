@@ -1045,18 +1045,25 @@
       box-shadow:none;border:1px solid var(--line);border-left:3px solid var(--sc);border-top-width:1px}
   }
   /* ===== Diagnostic Tests: category tree (3 families) with hover detail ===== */
-  .tr-wrap{margin:18px 0 40px;padding:0 6px}
+  .tr-wrap{margin:18px 0 118px;padding:0 6px}
   .tr-cap{font-size:12px;color:var(--muted);text-align:center;margin:0 0 18px}
   .tree{display:flex;flex-wrap:wrap;justify-content:center;gap:22px 20px;align-items:flex-start}
-  .tg{display:flex;flex-direction:column;align-items:stretch}
+  .tg{display:flex;flex-direction:column;align-items:stretch;width:var(--w,240px);flex:0 0 auto}
   .tg-hw{position:relative;padding-bottom:20px}
   .tg-hw::after{content:"";position:absolute;left:50%;bottom:0;width:2.5px;height:20px;background:var(--cc);transform:translateX(-50%);opacity:0;transition:opacity .4s ease .15s}
   .tree.play .tg-hw::after{opacity:.55}
-  .tg-head{border-radius:11px;padding:11px 12px;text-align:center;color:#fff;font-weight:800;font-size:13.5px;
+  .tg-head{position:relative;white-space:nowrap;border-radius:11px;padding:11px 40px;text-align:center;color:#fff;font-weight:800;font-size:13.5px;
     background:linear-gradient(150deg,var(--c1),var(--c2));box-shadow:0 8px 18px -6px var(--cc);
     opacity:0;transform:translateY(-8px);transition:opacity .45s ease,transform .5s ease}
   .tree.play .tg-head{opacity:1;transform:none}
-  .tg-kids{display:flex;justify-content:center}
+  .tg-tog{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:7px;
+    border:none;cursor:pointer;background:rgba(255,255,255,.22);color:#fff;font-size:18px;font-weight:800;line-height:1;
+    display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s ease}
+  .tg-tog:hover{background:rgba(255,255,255,.36)}
+  .tg.tg-col .tg-kids{max-height:0}
+  .tg.tg-col .tg-hw{padding-bottom:0}
+  .tg.tg-col .tg-hw::after{display:none}
+  .tg-kids{display:flex;justify-content:center;overflow:hidden;max-height:360px;transition:max-height .35s ease}
   .tg-kid{position:relative;padding:20px 6px 0}
   .tg-kid::before{content:"";position:absolute;top:0;left:50%;height:20px;border-left:2.5px solid var(--cc);opacity:0;transition:opacity .4s ease .15s}
   .tg-kid::after{content:"";position:absolute;top:0;left:0;right:0;height:20px;border-top:2.5px solid var(--cc);opacity:0;transition:opacity .4s ease .15s}
@@ -1072,7 +1079,7 @@
   .tg-av{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.02em}
   .tg-av i{width:6px;height:6px;border-radius:50%;flex:0 0 6px}
   .tg .a-wide i{background:#16a34a}.tg .a-acc i{background:#0891b2}.tg .a-rout i{background:#2563eb}.tg .a-spec i{background:#d97706}
-  .tg-pop{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(6px);width:210px;
+  .tg-pop{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(6px);width:246px;
     background:#fff;border:1px solid var(--line);border-top:3px solid var(--cc);border-radius:11px;padding:9px 12px;
     box-shadow:0 14px 30px -10px rgba(76,29,149,.5);opacity:0;visibility:hidden;
     transition:opacity .2s ease,transform .2s ease;z-index:30;text-align:left}
@@ -1085,8 +1092,10 @@
   @media(prefers-reduced-motion:reduce){ .tg-head,.tg-box{opacity:1;transform:none;transition:none} .tree .tg-hw::after,.tree .tg-kid::before,.tree .tg-kid::after{opacity:.55} }
   @media(max-width:700px){
     .tree{flex-direction:column;align-items:stretch;gap:16px}
+    .tg{width:auto}
+    .tg.tg-col .tg-kids{max-height:0}
     .tg-hw{padding-bottom:0} .tg-hw::after{display:none}
-    .tg-kids{flex-direction:column;gap:8px;margin-top:10px}
+    .tg-kids{flex-direction:column;gap:8px;margin-top:10px;max-height:2000px}
     .tg-kid{padding:0;display:flex;gap:10px;align-items:stretch} .tg-kid::before,.tg-kid::after{display:none}
     .tg-box{flex:0 0 132px;width:132px;min-height:0;border-top-width:1px;border-left:3px solid var(--cc);flex-direction:row;justify-content:flex-start;text-align:left;gap:6px;flex-wrap:wrap;transform:none;opacity:1}
     .tg-pop{position:static;transform:none;opacity:1;visibility:visible;width:auto;flex:1 1 auto;box-shadow:none;border:1px solid var(--line);border-left:3px solid var(--cc)}
@@ -1920,26 +1929,26 @@
     <div class="tr-wrap reveal">
       <div class="tr-cap">Obesity diagnostic modalities &mdash; classified into three families (hover any test for detail)</div>
       <div class="tree" id="dxpanel">
-        <div class="tg" style="--cc:#7c3aed;--c1:#6d28d9;--c2:#7c3aed">
-          <div class="tg-hw"><div class="tg-head">Anthropometric</div></div>
+        <div class="tg" style="--cc:#7c3aed;--c1:#6d28d9;--c2:#7c3aed;--n:3;--w:372px">
+          <div class="tg-hw"><div class="tg-head"><span>Anthropometric</span><button class="tg-tog" type="button" aria-expanded="true" aria-label="Collapse Anthropometric">&minus;</button></div></div>
           <div class="tg-kids">
-            <div class="tg-kid eL"><div class="tg-box"><span class="tg-nm">BMI</span><span class="tg-av a-wide"><i></i>Widely available</span></div><div class="tg-pop"><b>Body Mass Index (BMI)</b><div class="p">Population-level screening &amp; classification</div><div class="k">Simple and widely available; does not distinguish fat from muscle mass or capture fat distribution.</div></div></div>
-            <div class="tg-kid"><div class="tg-box"><span class="tg-nm">Waist circumference</span><span class="tg-av a-wide"><i></i>Widely available</span></div><div class="tg-pop"><b>Waist Circumference</b><div class="p">Central &amp; visceral adiposity</div><div class="k">More closely correlated with cardiometabolic risk than BMI alone; technique varies by guideline.</div></div></div>
-            <div class="tg-kid eR"><div class="tg-box"><span class="tg-nm">Waist-to-hip ratio</span><span class="tg-av a-wide"><i></i>Widely available</span></div><div class="tg-pop"><b>Waist-to-Hip Ratio</b><div class="p">Fat-distribution pattern</div><div class="k">Useful adjunct where BMI is borderline or in muscular individuals.</div></div></div>
+            <div class="tg-kid eL"><div class="tg-box"><span class="tg-nm">BMI</span><span class="tg-av a-wide"><i></i>Widely available</span></div><div class="tg-pop"><b>Body Mass Index (BMI)</b><div class="p">Population-level screening &amp; classification</div><div class="k">Does not distinguish fat from muscle mass or fat distribution.</div></div></div>
+            <div class="tg-kid"><div class="tg-box"><span class="tg-nm">Waist circumference</span><span class="tg-av a-wide"><i></i>Widely available</span></div><div class="tg-pop"><b>Waist Circumference</b><div class="p">Central &amp; visceral adiposity</div><div class="k">More correlated with cardiometabolic risk than BMI; technique varies.</div></div></div>
+            <div class="tg-kid eR"><div class="tg-box"><span class="tg-nm">Waist-to-hip ratio</span><span class="tg-av a-wide"><i></i>Widely available</span></div><div class="tg-pop"><b>Waist-to-Hip Ratio</b><div class="p">Fat-distribution pattern</div><div class="k">Useful adjunct where BMI is borderline or in muscular people.</div></div></div>
           </div>
         </div>
-        <div class="tg" style="--cc:#5b21b6;--c1:#4c1d95;--c2:#6d28d9">
-          <div class="tg-hw"><div class="tg-head">Body composition</div></div>
+        <div class="tg" style="--cc:#5b21b6;--c1:#4c1d95;--c2:#6d28d9;--n:2;--w:264px">
+          <div class="tg-hw"><div class="tg-head"><span>Body composition</span><button class="tg-tog" type="button" aria-expanded="true" aria-label="Collapse Body composition">&minus;</button></div></div>
           <div class="tg-kids">
-            <div class="tg-kid eL"><div class="tg-box"><span class="tg-nm">DEXA</span><span class="tg-av a-spec"><i></i>Specialised</span></div><div class="tg-pop"><b>DEXA</b><div class="p">Fat, lean mass &amp; bone density</div><div class="k">Reference-standard body-composition method; limited by cost and access.</div></div></div>
-            <div class="tg-kid eR"><div class="tg-box"><span class="tg-nm">Bioelectrical impedance</span><span class="tg-av a-acc"><i></i>Accessible</span></div><div class="tg-pop"><b>Bioelectrical Impedance (BIA)</b><div class="p">Body-fat % via electrical resistance</div><div class="k">More accessible than DEXA; accuracy affected by hydration status.</div></div></div>
+            <div class="tg-kid eL"><div class="tg-box"><span class="tg-nm">DEXA</span><span class="tg-av a-spec"><i></i>Specialised</span></div><div class="tg-pop"><b>DEXA</b><div class="p">Fat, lean mass &amp; bone density</div><div class="k">Reference-standard method; limited by cost and access.</div></div></div>
+            <div class="tg-kid eR"><div class="tg-box"><span class="tg-nm">Bioelectrical impedance</span><span class="tg-av a-acc"><i></i>Accessible</span></div><div class="tg-pop"><b>Bioelectrical Impedance (BIA)</b><div class="p">Body-fat % via electrical resistance</div><div class="k">More accessible than DEXA; accuracy affected by hydration.</div></div></div>
           </div>
         </div>
-        <div class="tg" style="--cc:#2f4fb0;--c1:#2f4fb0;--c2:#4f6ef0">
-          <div class="tg-hw"><div class="tg-head">Comorbidity screening</div></div>
+        <div class="tg" style="--cc:#2f4fb0;--c1:#2f4fb0;--c2:#4f6ef0;--n:2;--w:300px">
+          <div class="tg-hw"><div class="tg-head"><span>Comorbidity screening</span><button class="tg-tog" type="button" aria-expanded="true" aria-label="Collapse Comorbidity screening">&minus;</button></div></div>
           <div class="tg-kids">
-            <div class="tg-kid eL"><div class="tg-box"><span class="tg-nm">Lipids &amp; glucose</span><span class="tg-av a-rout"><i></i>Routine bloods</span></div><div class="tg-pop"><b>Fasting Lipid Panel &amp; Glucose/HbA1c</b><div class="p">Cardiometabolic comorbidity screen</div><div class="k">Essential for comorbidity-based treatment eligibility and risk stratification.</div></div></div>
-            <div class="tg-kid eR"><div class="tg-box"><span class="tg-nm">Sleep study</span><span class="tg-av a-spec"><i></i>Specialised</span></div><div class="tg-pop"><b>Sleep Study (Polysomnography)</b><div class="p">Confirms obstructive sleep apnoea</div><div class="k">Recommended where snoring, witnessed apnoea or daytime somnolence are present.</div></div></div>
+            <div class="tg-kid eL"><div class="tg-box"><span class="tg-nm">Lipids &amp; glucose</span><span class="tg-av a-rout"><i></i>Routine bloods</span></div><div class="tg-pop"><b>Fasting Lipid Panel &amp; Glucose/HbA1c</b><div class="p">Cardiometabolic comorbidity screen</div><div class="k">Essential for comorbidity-based treatment eligibility.</div></div></div>
+            <div class="tg-kid eR"><div class="tg-box"><span class="tg-nm">Sleep study</span><span class="tg-av a-spec"><i></i>Specialised</span></div><div class="tg-pop"><b>Sleep Study (Polysomnography)</b><div class="p">Confirms obstructive sleep apnoea</div><div class="k">For snoring, witnessed apnoea or daytime somnolence.</div></div></div>
           </div>
         </div>
       </div>
@@ -3978,6 +3987,16 @@
     },{threshold:.2});
     io.observe(el);
   } else { el.classList.add('play'); }
+  /* +/- expand-collapse on each category header */
+  document.querySelectorAll('.tg-tog').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var tg = btn.closest('.tg');
+      var collapsed = tg.classList.toggle('tg-col');
+      btn.textContent = collapsed ? '+' : '−';
+      btn.setAttribute('aria-expanded', String(!collapsed));
+      btn.setAttribute('aria-label', (collapsed ? 'Expand ' : 'Collapse ') + (tg.querySelector('.tg-head span') ? tg.querySelector('.tg-head span').textContent : ''));
+    });
+  });
 })();
 
 /* ===== Screening staircase: fall the steps in on scroll (repeats) ===== */
