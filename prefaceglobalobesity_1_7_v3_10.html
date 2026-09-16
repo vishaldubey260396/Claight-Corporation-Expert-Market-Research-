@@ -979,12 +979,22 @@
   /* ===== Pathophysiology: what rises vs what is blunted (two big arrows) ===== */
   .ua-wrap{margin:16px 0 8px}
   .ua-cap{font-size:12px;color:var(--muted);text-align:center;margin:0 0 6px}
-  .ua{display:block;width:100%;max-width:660px;margin:0 auto;overflow:visible}
+  .ua{display:block;width:100%;max-width:720px;margin:0 auto;overflow:visible}
   .ua .hchip{fill:#f4eeff}
   .ua .htext{font-weight:800}
   .ua .htext.up{fill:#5b21b6} .ua .htext.dn{fill:#2f4fb0}
-  .ua .it{font-weight:700;fill:var(--ink)}
-  .ua .dot-up{fill:#6d28d9} .ua .dot-dn{fill:#3a63c9}
+  .ua .conn{stroke-width:1.6;fill:none;stroke-linecap:round}
+  .ua .conn.up{stroke:#cdbdf2} .ua .conn.dn{stroke:#c3cdf0}
+  .ua .it{font-weight:600;fill:var(--muted)}
+  .ua .it.up{fill:var(--muted)} .ua .it.dn{fill:var(--muted)}
+  .ua .dot{r:4}
+  .ua .dot-up{fill:#8b6fe0} .ua .dot-dn{fill:#7f95dd}
+  .ua .it.main{font-weight:800;font-size:15px}
+  .ua .it.main.up{fill:var(--purple-deep)} .ua .it.main.dn{fill:#2f4fb0}
+  .ua .dot.main{r:6}
+  .ua .dot.main.up{fill:#6d28d9} .ua .dot.main.dn{fill:#3a63c9}
+  .ua .ring{fill:none;stroke-width:2}
+  .ua .ring.up{stroke:#c4b1f0} .ua .ring.dn{stroke:#b9c6ee}
   .ua .uparrow{transform:scaleY(0);transform-box:fill-box;transform-origin:bottom;
     transition:transform .75s cubic-bezier(.22,1,.36,1) .1s}
   .ua .dnarrow{transform:scaleY(0);transform-box:fill-box;transform-origin:top;
@@ -1751,29 +1761,29 @@
 
     <div class="ua-wrap reveal">
       <div class="ua-cap">In obese adipose tissue: what rises &uarr; vs what is blunted &darr;</div>
-      <svg class="ua" id="ua" viewBox="0 0 680 430" role="img"
-        aria-label="Two arrows contrasting obese adipose tissue: increased factors (leptin, resistin, visfatin, TNF-alpha, IL-6, MCP-1, free fatty acids, chronic inflammation) versus blunted factors (insulin sensitivity, leptin signalling, appetite suppression, energy expenditure).">
+      <svg class="ua" id="ua" viewBox="0 0 720 440" role="img"
+        aria-label="Central up and down arrows contrasting obese adipose tissue: increased factors (leptin, resistin, visfatin, TNF-alpha, IL-6, MCP-1, free fatty acids, chronic inflammation) branch to the left, blunted factors (insulin sensitivity, leptin signalling, appetite suppression, energy expenditure) branch to the right.">
         <defs>
           <linearGradient id="uaUp" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#4c1d95"/><stop offset="100%" stop-color="#8663ff"/></linearGradient>
           <linearGradient id="uaDn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5b6ee0"/><stop offset="100%" stop-color="#33308f"/></linearGradient>
         </defs>
-        <polygon class="uparrow" points="85,60 145,150 114,150 114,392 56,392 56,150 25,150" fill="url(#uaUp)"></polygon>
-        <polygon class="dnarrow" points="595,392 535,302 566,302 566,60 624,60 624,302 655,302" fill="url(#uaDn)"></polygon>
+        <polygon class="uparrow" points="336,74 368,132 352,132 352,398 320,398 320,132 304,132" fill="url(#uaUp)"></polygon>
+        <polygon class="dnarrow" points="384,398 352,340 368,340 368,74 400,74 400,340 416,340" fill="url(#uaDn)"></polygon>
         <g class="hgrp">
-          <rect class="hchip" x="30" y="18" width="112" height="26" rx="13"></rect>
-          <text class="htext up" x="86" y="36" text-anchor="middle" font-size="13">&uarr; Increased</text>
-          <rect class="hchip" x="538" y="18" width="116" height="26" rx="13"></rect>
-          <text class="htext dn" x="596" y="36" text-anchor="middle" font-size="13">&darr; Blunted</text>
+          <rect class="hchip" x="118" y="16" width="120" height="26" rx="13"></rect>
+          <text class="htext up" x="178" y="34" text-anchor="middle" font-size="13">&uarr; Increased</text>
+          <rect class="hchip" x="482" y="16" width="120" height="26" rx="13"></rect>
+          <text class="htext dn" x="542" y="34" text-anchor="middle" font-size="13">&darr; Blunted</text>
         </g>
-        <g class="row" style="transition-delay:.5s"><circle class="dot-up" cx="172" cy="122" r="4.5"></circle><text class="it" x="186" y="126" font-size="14">Leptin</text></g>
-        <g class="row" style="transition-delay:.62s"><circle class="dot-up" cx="172" cy="182" r="4.5"></circle><text class="it" x="186" y="186" font-size="14">Resistin &middot; Visfatin</text></g>
-        <g class="row" style="transition-delay:.74s"><circle class="dot-up" cx="172" cy="242" r="4.5"></circle><text class="it" x="186" y="246" font-size="14">TNF-&alpha; &middot; IL-6 &middot; MCP-1</text></g>
-        <g class="row" style="transition-delay:.86s"><circle class="dot-up" cx="172" cy="302" r="4.5"></circle><text class="it" x="186" y="306" font-size="14">Free fatty acids</text></g>
-        <g class="row" style="transition-delay:.98s"><circle class="dot-up" cx="172" cy="362" r="4.5"></circle><text class="it" x="186" y="366" font-size="14">Chronic inflammation</text></g>
-        <g class="row" style="transition-delay:.55s"><text class="it" x="508" y="156" text-anchor="end" font-size="14">Insulin sensitivity</text><circle class="dot-dn" cx="522" cy="152" r="4.5"></circle></g>
-        <g class="row" style="transition-delay:.68s"><text class="it" x="508" y="216" text-anchor="end" font-size="14">Leptin signalling</text><circle class="dot-dn" cx="522" cy="212" r="4.5"></circle></g>
-        <g class="row" style="transition-delay:.81s"><text class="it" x="508" y="276" text-anchor="end" font-size="14">Appetite suppression</text><circle class="dot-dn" cx="522" cy="272" r="4.5"></circle></g>
-        <g class="row" style="transition-delay:.94s"><text class="it" x="508" y="336" text-anchor="end" font-size="14">Energy expenditure</text><circle class="dot-dn" cx="522" cy="332" r="4.5"></circle></g>
+        <g class="row" style="transition-delay:.5s"><path class="conn up" d="M304 100 H286"></path><circle class="dot main up" cx="280" cy="100"></circle><circle class="ring up" cx="280" cy="100" r="6"></circle><text class="it main up" x="266" y="105" text-anchor="end">Leptin</text></g>
+        <g class="row" style="transition-delay:.6s"><path class="conn up" d="M304 170 H286"></path><circle class="dot dot-up" cx="280" cy="170"></circle><text class="it up" x="266" y="174" text-anchor="end" font-size="13.5">Resistin &middot; Visfatin</text></g>
+        <g class="row" style="transition-delay:.7s"><path class="conn up" d="M304 240 H286"></path><circle class="dot dot-up" cx="280" cy="240"></circle><text class="it up" x="266" y="244" text-anchor="end" font-size="13.5">TNF-&alpha; &middot; IL-6 &middot; MCP-1</text></g>
+        <g class="row" style="transition-delay:.8s"><path class="conn up" d="M304 310 H286"></path><circle class="dot dot-up" cx="280" cy="310"></circle><text class="it up" x="266" y="314" text-anchor="end" font-size="13.5">Free fatty acids</text></g>
+        <g class="row" style="transition-delay:.9s"><path class="conn up" d="M304 380 H286"></path><circle class="dot main up" cx="280" cy="380"></circle><circle class="ring up" cx="280" cy="380" r="6"></circle><text class="it main up" x="266" y="385" text-anchor="end">Chronic inflammation</text></g>
+        <g class="row" style="transition-delay:.55s"><path class="conn dn" d="M416 120 H434"></path><circle class="dot main dn" cx="440" cy="120"></circle><circle class="ring dn" cx="440" cy="120" r="6"></circle><text class="it main dn" x="454" y="125" text-anchor="start">Insulin sensitivity</text></g>
+        <g class="row" style="transition-delay:.68s"><path class="conn dn" d="M416 200 H434"></path><circle class="dot main dn" cx="440" cy="200"></circle><circle class="ring dn" cx="440" cy="200" r="6"></circle><text class="it main dn" x="454" y="205" text-anchor="start">Leptin signalling</text></g>
+        <g class="row" style="transition-delay:.81s"><path class="conn dn" d="M416 280 H434"></path><circle class="dot dot-dn" cx="440" cy="280"></circle><text class="it dn" x="454" y="284" text-anchor="start" font-size="13.5">Appetite suppression</text></g>
+        <g class="row" style="transition-delay:.94s"><path class="conn dn" d="M416 360 H434"></path><circle class="dot dot-dn" cx="440" cy="360"></circle><text class="it dn" x="454" y="364" text-anchor="start" font-size="13.5">Energy expenditure</text></g>
       </svg>
     </div>
 
