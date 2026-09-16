@@ -1030,6 +1030,8 @@
   .lab-main{flex:1 1 auto;min-width:0}
   .lab-nm{font-weight:800;font-size:14px;color:var(--ink)}
   .lab-ms{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
+  .lab-note{font-size:11.5px;color:var(--muted);font-weight:600;margin-top:5px;line-height:1.45}
+  .lab-note b{color:var(--purple-mid);font-weight:800;font-size:10px;letter-spacing:.4px;text-transform:uppercase;margin-right:6px}
   .lab-tags{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
   .lab .chip{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
   .lab .chip.anth{background:#f1eafe;color:#6d28d9}
@@ -1859,37 +1861,37 @@
       </div>
       <div class="lab-row" style="transition-delay:.05s">
         <div class="lab-ic c-anth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v3M10 7v4M14 7v3M18 7v4"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Body Mass Index (BMI)</div><div class="lab-ms">Population-level screening &amp; classification</div></div>
+        <div class="lab-main"><div class="lab-nm">Body Mass Index (BMI)</div><div class="lab-ms">Population-level screening &amp; classification</div><div class="lab-note"><b>Key spec</b>Simple and widely available; does not distinguish fat from muscle mass or capture fat distribution</div></div>
         <div class="lab-tags"><span class="chip anth">Anthropometric</span><span class="avl a-wide"><i></i>Widely available</span></div>
       </div>
       <div class="lab-row" style="transition-delay:.12s">
         <div class="lab-ic c-anth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v3M10 7v4M14 7v3M18 7v4"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Waist Circumference</div><div class="lab-ms">Central &amp; visceral adiposity</div></div>
+        <div class="lab-main"><div class="lab-nm">Waist Circumference</div><div class="lab-ms">Central &amp; visceral adiposity</div><div class="lab-note"><b>Key spec</b>More closely correlated with cardiometabolic risk than BMI alone; measurement technique varies by guideline</div></div>
         <div class="lab-tags"><span class="chip anth">Anthropometric</span><span class="avl a-wide"><i></i>Widely available</span></div>
       </div>
       <div class="lab-row" style="transition-delay:.19s">
         <div class="lab-ic c-anth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v3M10 7v4M14 7v3M18 7v4"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Waist-to-Hip Ratio</div><div class="lab-ms">Fat-distribution pattern</div></div>
+        <div class="lab-main"><div class="lab-nm">Waist-to-Hip Ratio</div><div class="lab-ms">Fat-distribution pattern</div><div class="lab-note"><b>Key spec</b>Useful adjunct where BMI is borderline or in muscular individuals</div></div>
         <div class="lab-tags"><span class="chip anth">Anthropometric</span><span class="avl a-wide"><i></i>Widely available</span></div>
       </div>
       <div class="lab-row" style="transition-delay:.26s">
         <div class="lab-ic c-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M3 12h18"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">DEXA</div><div class="lab-ms">Fat, lean mass &amp; bone density &middot; reference-standard</div></div>
+        <div class="lab-main"><div class="lab-nm">DEXA</div><div class="lab-ms">Fat, lean mass &amp; bone density &middot; reference-standard</div><div class="lab-note"><b>Key spec</b>Considered a reference-standard body-composition method; limited by cost and access</div></div>
         <div class="lab-tags"><span class="chip body">Body composition</span><span class="avl a-spec"><i></i>Specialised</span></div>
       </div>
       <div class="lab-row" style="transition-delay:.33s">
         <div class="lab-ic c-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M3 12h18"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Bioelectrical Impedance (BIA)</div><div class="lab-ms">Body-fat % via electrical resistance</div></div>
+        <div class="lab-main"><div class="lab-nm">Bioelectrical Impedance (BIA)</div><div class="lab-ms">Body-fat % via electrical resistance</div><div class="lab-note"><b>Key spec</b>More accessible than DEXA; accuracy affected by hydration status</div></div>
         <div class="lab-tags"><span class="chip body">Body composition</span><span class="avl a-acc"><i></i>Accessible</span></div>
       </div>
       <div class="lab-row" style="transition-delay:.40s">
         <div class="lab-ic c-lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11Z"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Fasting Lipid Panel &amp; Glucose/HbA1c</div><div class="lab-ms">Cardiometabolic comorbidity screen</div></div>
+        <div class="lab-main"><div class="lab-nm">Fasting Lipid Panel &amp; Glucose/HbA1c</div><div class="lab-ms">Cardiometabolic comorbidity screen</div><div class="lab-note"><b>Key spec</b>Essential for comorbidity-based treatment eligibility and risk stratification</div></div>
         <div class="lab-tags"><span class="chip lab">Laboratory</span><span class="avl a-rout"><i></i>Routine bloods</span></div>
       </div>
       <div class="lab-row" style="transition-delay:.47s">
         <div class="lab-ic c-phys"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-5 3 10 2-7 2 4h5"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Sleep Study (Polysomnography)</div><div class="lab-ms">Confirms suspected obstructive sleep apnoea</div></div>
+        <div class="lab-main"><div class="lab-nm">Sleep Study (Polysomnography)</div><div class="lab-ms">Confirms suspected obstructive sleep apnoea</div><div class="lab-note"><b>Key spec</b>Recommended where snoring, witnessed apnoea or daytime somnolence are present</div></div>
         <div class="lab-tags"><span class="chip phys">Physiologic</span><span class="avl a-spec"><i></i>Specialised</span></div>
       </div>
     </div>
