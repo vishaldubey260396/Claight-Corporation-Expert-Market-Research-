@@ -1009,6 +1009,46 @@
     .ua .uparrow,.ua .dnarrow{transform:none;transition:none}
     .ua .row,.ua .hgrp{opacity:1;transform:none;transition:none}
   }
+  /* ===== Diagnostic Tests: clinical lab-panel dashboard ===== */
+  .lab{margin:18px 0 10px;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    box-shadow:0 12px 32px -20px rgba(76,29,149,.4)}
+  .lab-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:14px 18px;background:linear-gradient(135deg,var(--purple-deep),var(--purple-mid));color:#fff}
+  .lab-hd .t{font-weight:800;font-size:14.5px;letter-spacing:.2px}
+  .lab-hd .s{font-size:11.5px;opacity:.85;font-weight:600;margin-top:1px}
+  .lab-hd .pulse{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;opacity:.95;white-space:nowrap}
+  .lab-hd .pulse i{width:8px;height:8px;border-radius:50%;background:#7ee0b8;animation:labpulse 1.8s infinite}
+  @keyframes labpulse{0%{box-shadow:0 0 0 0 rgba(126,224,184,.6)}70%{box-shadow:0 0 0 7px rgba(126,224,184,0)}100%{box-shadow:0 0 0 0 rgba(126,224,184,0)}}
+  .lab-row{display:flex;align-items:center;gap:14px;padding:13px 18px;border-top:1px solid var(--line);background:#fff}
+  .lab-row:nth-child(even){background:#faf8ff}
+  .lab-ic{flex:0 0 40px;width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center}
+  .lab-ic svg{width:20px;height:20px}
+  .lab .c-anth{background:#f1eafe;color:#6d28d9}
+  .lab .c-body{background:#eae6fb;color:#4c1d95}
+  .lab .c-lab{background:#e7edfc;color:#2f4fb0}
+  .lab .c-phys{background:#e5f0fb;color:#1f6fb0}
+  .lab-main{flex:1 1 auto;min-width:0}
+  .lab-nm{font-weight:800;font-size:14px;color:var(--ink)}
+  .lab-ms{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
+  .lab-tags{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+  .lab .chip{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+  .lab .chip.anth{background:#f1eafe;color:#6d28d9}
+  .lab .chip.body{background:#eae6fb;color:#4c1d95}
+  .lab .chip.lab{background:#e7edfc;color:#2f4fb0}
+  .lab .chip.phys{background:#e5f0fb;color:#1f6fb0}
+  .lab .avl{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap}
+  .lab .avl i{width:8px;height:8px;border-radius:50%}
+  .lab .a-wide i{background:#16a34a}.lab .a-acc i{background:#0891b2}.lab .a-rout i{background:#2563eb}.lab .a-spec i{background:#d97706}
+  .lab .lab-row{opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease,transform .5s cubic-bezier(.22,1,.36,1)}
+  .lab.play .lab-row{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){ .lab .lab-row{opacity:1;transform:none;transition:none} }
+  @media(max-width:560px){
+    .lab-row{flex-wrap:wrap;padding:13px 14px}
+    .lab-main{flex:1 1 60%}
+    .lab-tags{flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:wrap;
+      width:100%;padding-left:54px;margin-top:4px;gap:8px 12px}
+  }
 </style>
 </head>
 <body>
@@ -1811,6 +1851,49 @@
         <tr><td><b>Sleep Study (Polysomnography)</b></td><td>Confirms suspected obstructive sleep apnoea</td><td>Recommended where snoring, witnessed apnoea or daytime somnolence are present</td></tr>
       </tbody>
     </table>
+
+    <div class="lab" id="dxpanel">
+      <div class="lab-hd">
+        <div><div class="t">Obesity diagnostic panel</div><div class="s">Seven modalities &mdash; classified by test type &amp; availability</div></div>
+        <div class="pulse"><i></i>7 MODALITIES</div>
+      </div>
+      <div class="lab-row" style="transition-delay:.05s">
+        <div class="lab-ic c-anth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v3M10 7v4M14 7v3M18 7v4"/></svg></div>
+        <div class="lab-main"><div class="lab-nm">Body Mass Index (BMI)</div><div class="lab-ms">Population-level screening &amp; classification</div></div>
+        <div class="lab-tags"><span class="chip anth">Anthropometric</span><span class="avl a-wide"><i></i>Widely available</span></div>
+      </div>
+      <div class="lab-row" style="transition-delay:.12s">
+        <div class="lab-ic c-anth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v3M10 7v4M14 7v3M18 7v4"/></svg></div>
+        <div class="lab-main"><div class="lab-nm">Waist Circumference</div><div class="lab-ms">Central &amp; visceral adiposity</div></div>
+        <div class="lab-tags"><span class="chip anth">Anthropometric</span><span class="avl a-wide"><i></i>Widely available</span></div>
+      </div>
+      <div class="lab-row" style="transition-delay:.19s">
+        <div class="lab-ic c-anth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v3M10 7v4M14 7v3M18 7v4"/></svg></div>
+        <div class="lab-main"><div class="lab-nm">Waist-to-Hip Ratio</div><div class="lab-ms">Fat-distribution pattern</div></div>
+        <div class="lab-tags"><span class="chip anth">Anthropometric</span><span class="avl a-wide"><i></i>Widely available</span></div>
+      </div>
+      <div class="lab-row" style="transition-delay:.26s">
+        <div class="lab-ic c-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M3 12h18"/></svg></div>
+        <div class="lab-main"><div class="lab-nm">DEXA</div><div class="lab-ms">Fat, lean mass &amp; bone density &middot; reference-standard</div></div>
+        <div class="lab-tags"><span class="chip body">Body composition</span><span class="avl a-spec"><i></i>Specialised</span></div>
+      </div>
+      <div class="lab-row" style="transition-delay:.33s">
+        <div class="lab-ic c-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M3 12h18"/></svg></div>
+        <div class="lab-main"><div class="lab-nm">Bioelectrical Impedance (BIA)</div><div class="lab-ms">Body-fat % via electrical resistance</div></div>
+        <div class="lab-tags"><span class="chip body">Body composition</span><span class="avl a-acc"><i></i>Accessible</span></div>
+      </div>
+      <div class="lab-row" style="transition-delay:.40s">
+        <div class="lab-ic c-lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11Z"/></svg></div>
+        <div class="lab-main"><div class="lab-nm">Fasting Lipid Panel &amp; Glucose/HbA1c</div><div class="lab-ms">Cardiometabolic comorbidity screen</div></div>
+        <div class="lab-tags"><span class="chip lab">Laboratory</span><span class="avl a-rout"><i></i>Routine bloods</span></div>
+      </div>
+      <div class="lab-row" style="transition-delay:.47s">
+        <div class="lab-ic c-phys"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-5 3 10 2-7 2 4h5"/></svg></div>
+        <div class="lab-main"><div class="lab-nm">Sleep Study (Polysomnography)</div><div class="lab-ms">Confirms suspected obstructive sleep apnoea</div></div>
+        <div class="lab-tags"><span class="chip phys">Physiologic</span><span class="avl a-spec"><i></i>Specialised</span></div>
+      </div>
+    </div>
+
     <p class="reveal">
       <b>Key Insight:</b> No single test fully characterises obesity-related health risk. BMI-based screening
       must be paired with body-composition or comorbidity-specific testing to properly stage disease severity
@@ -3828,6 +3911,20 @@
     var io = new IntersectionObserver(function(en){
       en.forEach(function(e){ el.classList.toggle('play', e.isIntersecting); });
     },{threshold:.3});
+    io.observe(el);
+  } else { el.classList.add('play'); }
+})();
+
+/* ===== Diagnostic lab-panel: stagger the rows in on scroll (repeats) ===== */
+(function(){
+  var el = document.getElementById('dxpanel');
+  if(!el) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ el.classList.add('play'); return; }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(e){ el.classList.toggle('play', e.isIntersecting); });
+    },{threshold:.2});
     io.observe(el);
   } else { el.classList.add('play'); }
 })();
