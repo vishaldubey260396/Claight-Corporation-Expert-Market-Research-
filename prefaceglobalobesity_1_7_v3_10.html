@@ -1044,47 +1044,52 @@
     .st-pop{position:static;transform:none;opacity:1;visibility:visible;width:auto;flex:1 1 auto;
       box-shadow:none;border:1px solid var(--line);border-left:3px solid var(--sc);border-top-width:1px}
   }
-  /* ===== Diagnostic Tests: clinical lab-panel dashboard ===== */
-  .labpanel{margin:18px 0 10px;border:1px solid var(--line);border-radius:16px;overflow:hidden;
-    box-shadow:0 12px 32px -20px rgba(76,29,149,.4)}
-  .lab-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;
-    padding:14px 18px;background:linear-gradient(135deg,var(--purple-deep),var(--purple-mid));color:#fff}
-  .lab-hd .t{font-weight:800;font-size:14.5px;letter-spacing:.2px}
-  .lab-hd .s{font-size:11.5px;opacity:.85;font-weight:600;margin-top:1px}
-  .lab-hd .pulse{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;opacity:.95;white-space:nowrap}
-  .lab-hd .pulse i{width:8px;height:8px;border-radius:50%;background:#7ee0b8;animation:labpulse 1.8s infinite}
-  @keyframes labpulse{0%{box-shadow:0 0 0 0 rgba(126,224,184,.6)}70%{box-shadow:0 0 0 7px rgba(126,224,184,0)}100%{box-shadow:0 0 0 0 rgba(126,224,184,0)}}
-  .lab-row{display:flex;align-items:center;gap:14px;padding:13px 18px;border-top:1px solid var(--line);background:#fff}
-  .lab-row:nth-child(even){background:#faf8ff}
-  .lab-ic{flex:0 0 40px;width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center}
-  .lab-ic svg{width:20px;height:20px}
-  .labpanel .c-anth{background:#f1eafe;color:#6d28d9}
-  .labpanel .c-body{background:#eae6fb;color:#4c1d95}
-  .labpanel .c-lab{background:#e7edfc;color:#2f4fb0}
-  .labpanel .c-phys{background:#e5f0fb;color:#1f6fb0}
-  .lab-main{flex:1 1 auto;min-width:0}
-  .lab-nm{font-weight:800;font-size:14px;color:var(--ink)}
-  .lab-ms{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
-  .lab-note{font-size:11.5px;color:var(--muted);font-weight:600;margin-top:5px;line-height:1.45}
-  .lab-note b{color:var(--purple-mid);font-weight:800;font-size:10px;letter-spacing:.4px;text-transform:uppercase;margin-right:6px}
-  .lab-tags{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-  .labpanel .chip{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
-  .labpanel .chip.anth{background:#f1eafe;color:#6d28d9}
-  .labpanel .chip.body{background:#eae6fb;color:#4c1d95}
-  .labpanel .chip.labo{background:#e7edfc;color:#2f4fb0}
-  .labpanel .chip.phys{background:#e5f0fb;color:#1f6fb0}
-  .labpanel .avl{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap}
-  .labpanel .avl i{width:8px;height:8px;border-radius:50%}
-  .labpanel .a-wide i{background:#16a34a}.labpanel .a-acc i{background:#0891b2}.labpanel .a-rout i{background:#2563eb}.labpanel .a-spec i{background:#d97706}
-  .labpanel .lab-row{opacity:0;transform:translateY(10px);
-    transition:opacity .45s ease,transform .5s cubic-bezier(.22,1,.36,1)}
-  .labpanel.play .lab-row{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){ .labpanel .lab-row{opacity:1;transform:none;transition:none} }
-  @media(max-width:560px){
-    .lab-row{flex-wrap:wrap;padding:13px 14px}
-    .lab-main{flex:1 1 60%}
-    .lab-tags{flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:wrap;
-      width:100%;padding-left:54px;margin-top:4px;gap:8px 12px}
+  /* ===== Diagnostic Tests: category tree (3 families) with hover detail ===== */
+  .tr-wrap{margin:18px 0 40px;padding:0 6px}
+  .tr-cap{font-size:12px;color:var(--muted);text-align:center;margin:0 0 18px}
+  .tree{display:flex;flex-wrap:wrap;justify-content:center;gap:22px 20px;align-items:flex-start}
+  .tg{display:flex;flex-direction:column;align-items:stretch}
+  .tg-hw{position:relative;padding-bottom:20px}
+  .tg-hw::after{content:"";position:absolute;left:50%;bottom:0;width:2.5px;height:20px;background:var(--cc);transform:translateX(-50%);opacity:0;transition:opacity .4s ease .15s}
+  .tree.play .tg-hw::after{opacity:.55}
+  .tg-head{border-radius:11px;padding:11px 12px;text-align:center;color:#fff;font-weight:800;font-size:13.5px;
+    background:linear-gradient(150deg,var(--c1),var(--c2));box-shadow:0 8px 18px -6px var(--cc);
+    opacity:0;transform:translateY(-8px);transition:opacity .45s ease,transform .5s ease}
+  .tree.play .tg-head{opacity:1;transform:none}
+  .tg-kids{display:flex;justify-content:center}
+  .tg-kid{position:relative;padding:20px 6px 0}
+  .tg-kid::before{content:"";position:absolute;top:0;left:50%;height:20px;border-left:2.5px solid var(--cc);opacity:0;transition:opacity .4s ease .15s}
+  .tg-kid::after{content:"";position:absolute;top:0;left:0;right:0;height:20px;border-top:2.5px solid var(--cc);opacity:0;transition:opacity .4s ease .15s}
+  .tree.play .tg-kid::before,.tree.play .tg-kid::after{opacity:.55}
+  .tg-kid:first-child::after{left:50%} .tg-kid:last-child::after{right:50%} .tg-kid:only-child::after{display:none}
+  .tg-box{position:relative;width:108px;min-height:58px;border-radius:10px;background:#faf8ff;
+    border:1px solid var(--line);border-top:3px solid var(--cc);padding:8px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;
+    box-shadow:0 5px 14px -9px rgba(76,29,149,.6);cursor:default;
+    opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .55s cubic-bezier(.22,1,.36,1) .12s}
+  .tree.play .tg-box{opacity:1;transform:none}
+  .tg-nm{font-weight:800;font-size:12px;color:var(--ink);line-height:1.2}
+  .tg-av{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.02em}
+  .tg-av i{width:6px;height:6px;border-radius:50%;flex:0 0 6px}
+  .tg .a-wide i{background:#16a34a}.tg .a-acc i{background:#0891b2}.tg .a-rout i{background:#2563eb}.tg .a-spec i{background:#d97706}
+  .tg-pop{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(6px);width:210px;
+    background:#fff;border:1px solid var(--line);border-top:3px solid var(--cc);border-radius:11px;padding:9px 12px;
+    box-shadow:0 14px 30px -10px rgba(76,29,149,.5);opacity:0;visibility:hidden;
+    transition:opacity .2s ease,transform .2s ease;z-index:30;text-align:left}
+  .tg-kid:hover .tg-pop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .tg-pop b{display:block;font-size:12px;color:var(--cc);font-weight:800;margin-bottom:3px}
+  .tg-pop .p{font-size:11px;color:var(--ink);font-weight:700;margin-bottom:4px}
+  .tg-pop .k{font-size:11px;color:var(--muted);font-weight:600;line-height:1.45}
+  .tg-kid.eL .tg-pop{left:0;transform:translateX(0) translateY(6px)} .tg-kid.eL:hover .tg-pop{transform:translateX(0) translateY(0)}
+  .tg-kid.eR .tg-pop{left:auto;right:0;transform:translateX(0) translateY(6px)} .tg-kid.eR:hover .tg-pop{transform:translateX(0) translateY(0)}
+  @media(prefers-reduced-motion:reduce){ .tg-head,.tg-box{opacity:1;transform:none;transition:none} .tree .tg-hw::after,.tree .tg-kid::before,.tree .tg-kid::after{opacity:.55} }
+  @media(max-width:700px){
+    .tree{flex-direction:column;align-items:stretch;gap:16px}
+    .tg-hw{padding-bottom:0} .tg-hw::after{display:none}
+    .tg-kids{flex-direction:column;gap:8px;margin-top:10px}
+    .tg-kid{padding:0;display:flex;gap:10px;align-items:stretch} .tg-kid::before,.tg-kid::after{display:none}
+    .tg-box{flex:0 0 132px;width:132px;min-height:0;border-top-width:1px;border-left:3px solid var(--cc);flex-direction:row;justify-content:flex-start;text-align:left;gap:6px;flex-wrap:wrap;transform:none;opacity:1}
+    .tg-pop{position:static;transform:none;opacity:1;visibility:visible;width:auto;flex:1 1 auto;box-shadow:none;border:1px solid var(--line);border-left:3px solid var(--cc)}
   }
 </style>
 </head>
@@ -1912,45 +1917,31 @@
       </tbody>
     </table>
 
-    <div class="labpanel" id="dxpanel">
-      <div class="lab-hd">
-        <div><div class="t">Obesity diagnostic panel</div><div class="s">Seven modalities &mdash; classified by test type &amp; availability</div></div>
-        <div class="pulse"><i></i>7 MODALITIES</div>
-      </div>
-      <div class="lab-row" style="transition-delay:.05s">
-        <div class="lab-ic c-anth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v3M10 7v4M14 7v3M18 7v4"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Body Mass Index (BMI)</div><div class="lab-ms">Population-level screening &amp; classification</div><div class="lab-note"><b>Key spec</b>Simple and widely available; does not distinguish fat from muscle mass or capture fat distribution</div></div>
-        <div class="lab-tags"><span class="chip anth">Anthropometric</span><span class="avl a-wide"><i></i>Widely available</span></div>
-      </div>
-      <div class="lab-row" style="transition-delay:.12s">
-        <div class="lab-ic c-anth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v3M10 7v4M14 7v3M18 7v4"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Waist Circumference</div><div class="lab-ms">Central &amp; visceral adiposity</div><div class="lab-note"><b>Key spec</b>More closely correlated with cardiometabolic risk than BMI alone; measurement technique varies by guideline</div></div>
-        <div class="lab-tags"><span class="chip anth">Anthropometric</span><span class="avl a-wide"><i></i>Widely available</span></div>
-      </div>
-      <div class="lab-row" style="transition-delay:.19s">
-        <div class="lab-ic c-anth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v3M10 7v4M14 7v3M18 7v4"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Waist-to-Hip Ratio</div><div class="lab-ms">Fat-distribution pattern</div><div class="lab-note"><b>Key spec</b>Useful adjunct where BMI is borderline or in muscular individuals</div></div>
-        <div class="lab-tags"><span class="chip anth">Anthropometric</span><span class="avl a-wide"><i></i>Widely available</span></div>
-      </div>
-      <div class="lab-row" style="transition-delay:.26s">
-        <div class="lab-ic c-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M3 12h18"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">DEXA</div><div class="lab-ms">Fat, lean mass &amp; bone density &middot; reference-standard</div><div class="lab-note"><b>Key spec</b>Considered a reference-standard body-composition method; limited by cost and access</div></div>
-        <div class="lab-tags"><span class="chip body">Body composition</span><span class="avl a-spec"><i></i>Specialised</span></div>
-      </div>
-      <div class="lab-row" style="transition-delay:.33s">
-        <div class="lab-ic c-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M3 12h18"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Bioelectrical Impedance (BIA)</div><div class="lab-ms">Body-fat % via electrical resistance</div><div class="lab-note"><b>Key spec</b>More accessible than DEXA; accuracy affected by hydration status</div></div>
-        <div class="lab-tags"><span class="chip body">Body composition</span><span class="avl a-acc"><i></i>Accessible</span></div>
-      </div>
-      <div class="lab-row" style="transition-delay:.40s">
-        <div class="lab-ic c-lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11Z"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Fasting Lipid Panel &amp; Glucose/HbA1c</div><div class="lab-ms">Cardiometabolic comorbidity screen</div><div class="lab-note"><b>Key spec</b>Essential for comorbidity-based treatment eligibility and risk stratification</div></div>
-        <div class="lab-tags"><span class="chip labo">Laboratory</span><span class="avl a-rout"><i></i>Routine bloods</span></div>
-      </div>
-      <div class="lab-row" style="transition-delay:.47s">
-        <div class="lab-ic c-phys"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-5 3 10 2-7 2 4h5"/></svg></div>
-        <div class="lab-main"><div class="lab-nm">Sleep Study (Polysomnography)</div><div class="lab-ms">Confirms suspected obstructive sleep apnoea</div><div class="lab-note"><b>Key spec</b>Recommended where snoring, witnessed apnoea or daytime somnolence are present</div></div>
-        <div class="lab-tags"><span class="chip phys">Physiologic</span><span class="avl a-spec"><i></i>Specialised</span></div>
+    <div class="tr-wrap reveal">
+      <div class="tr-cap">Obesity diagnostic modalities &mdash; classified into three families (hover any test for detail)</div>
+      <div class="tree" id="dxpanel">
+        <div class="tg" style="--cc:#7c3aed;--c1:#6d28d9;--c2:#7c3aed">
+          <div class="tg-hw"><div class="tg-head">Anthropometric</div></div>
+          <div class="tg-kids">
+            <div class="tg-kid eL"><div class="tg-box"><span class="tg-nm">BMI</span><span class="tg-av a-wide"><i></i>Widely available</span></div><div class="tg-pop"><b>Body Mass Index (BMI)</b><div class="p">Population-level screening &amp; classification</div><div class="k">Simple and widely available; does not distinguish fat from muscle mass or capture fat distribution.</div></div></div>
+            <div class="tg-kid"><div class="tg-box"><span class="tg-nm">Waist circumference</span><span class="tg-av a-wide"><i></i>Widely available</span></div><div class="tg-pop"><b>Waist Circumference</b><div class="p">Central &amp; visceral adiposity</div><div class="k">More closely correlated with cardiometabolic risk than BMI alone; technique varies by guideline.</div></div></div>
+            <div class="tg-kid eR"><div class="tg-box"><span class="tg-nm">Waist-to-hip ratio</span><span class="tg-av a-wide"><i></i>Widely available</span></div><div class="tg-pop"><b>Waist-to-Hip Ratio</b><div class="p">Fat-distribution pattern</div><div class="k">Useful adjunct where BMI is borderline or in muscular individuals.</div></div></div>
+          </div>
+        </div>
+        <div class="tg" style="--cc:#5b21b6;--c1:#4c1d95;--c2:#6d28d9">
+          <div class="tg-hw"><div class="tg-head">Body composition</div></div>
+          <div class="tg-kids">
+            <div class="tg-kid eL"><div class="tg-box"><span class="tg-nm">DEXA</span><span class="tg-av a-spec"><i></i>Specialised</span></div><div class="tg-pop"><b>DEXA</b><div class="p">Fat, lean mass &amp; bone density</div><div class="k">Reference-standard body-composition method; limited by cost and access.</div></div></div>
+            <div class="tg-kid eR"><div class="tg-box"><span class="tg-nm">Bioelectrical impedance</span><span class="tg-av a-acc"><i></i>Accessible</span></div><div class="tg-pop"><b>Bioelectrical Impedance (BIA)</b><div class="p">Body-fat % via electrical resistance</div><div class="k">More accessible than DEXA; accuracy affected by hydration status.</div></div></div>
+          </div>
+        </div>
+        <div class="tg" style="--cc:#2f4fb0;--c1:#2f4fb0;--c2:#4f6ef0">
+          <div class="tg-hw"><div class="tg-head">Comorbidity screening</div></div>
+          <div class="tg-kids">
+            <div class="tg-kid eL"><div class="tg-box"><span class="tg-nm">Lipids &amp; glucose</span><span class="tg-av a-rout"><i></i>Routine bloods</span></div><div class="tg-pop"><b>Fasting Lipid Panel &amp; Glucose/HbA1c</b><div class="p">Cardiometabolic comorbidity screen</div><div class="k">Essential for comorbidity-based treatment eligibility and risk stratification.</div></div></div>
+            <div class="tg-kid eR"><div class="tg-box"><span class="tg-nm">Sleep study</span><span class="tg-av a-spec"><i></i>Specialised</span></div><div class="tg-pop"><b>Sleep Study (Polysomnography)</b><div class="p">Confirms obstructive sleep apnoea</div><div class="k">Recommended where snoring, witnessed apnoea or daytime somnolence are present.</div></div></div>
+          </div>
+        </div>
       </div>
     </div>
 
