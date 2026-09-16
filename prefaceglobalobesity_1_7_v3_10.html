@@ -978,38 +978,32 @@
   .segtabs .tt-panel ul.dyn{margin:8px 0 0}
   @media(max-width:560px){ .segtabs .tt-panels{padding:16px 16px} .segtabs .tt-btn{padding:7px 13px;font-size:12.5px} }
 
-  /* ===== Pathophysiology: what rises vs what is blunted (two big arrows) ===== */
-  .ua-wrap{margin:16px 0 8px}
-  .ua-cap{font-size:12px;color:var(--muted);text-align:center;margin:0 0 6px}
-  .ua{display:block;width:100%;max-width:720px;margin:0 auto;overflow:visible}
-  .ua .hchip{fill:#f4eeff}
-  .ua .htext{font-weight:800}
-  .ua .htext.up{fill:#5b21b6} .ua .htext.dn{fill:#2f4fb0}
-  .ua .conn{stroke-width:1.6;fill:none;stroke-linecap:round}
-  .ua .conn.up{stroke:#cdbdf2} .ua .conn.dn{stroke:#c3cdf0}
-  .ua .it{font-weight:600;fill:var(--muted)}
-  .ua .it.up{fill:var(--muted)} .ua .it.dn{fill:var(--muted)}
-  .ua .dot{r:4}
-  .ua .dot-up{fill:#8b6fe0} .ua .dot-dn{fill:#7f95dd}
-  .ua .it.main{font-weight:800;font-size:15px}
-  .ua .it.main.up{fill:var(--purple-deep)} .ua .it.main.dn{fill:#2f4fb0}
-  .ua .dot.main{r:6}
-  .ua .dot.main.up{fill:#6d28d9} .ua .dot.main.dn{fill:#3a63c9}
-  .ua .ring{fill:none;stroke-width:2}
-  .ua .ring.up{stroke:#c4b1f0} .ua .ring.dn{stroke:#b9c6ee}
-  .ua .uparrow{transform:scaleY(0);transform-box:fill-box;transform-origin:bottom;
-    transition:transform .75s cubic-bezier(.22,1,.36,1) .1s}
-  .ua .dnarrow{transform:scaleY(0);transform-box:fill-box;transform-origin:top;
-    transition:transform .75s cubic-bezier(.22,1,.36,1) .1s}
-  .ua.play .uparrow,.ua.play .dnarrow{transform:none}
-  .ua .row{opacity:0;transform:translateY(8px);transform-box:fill-box;
-    transition:opacity .4s ease,transform .45s ease}
-  .ua.play .row{opacity:1;transform:none}
-  .ua .hgrp{opacity:0;transition:opacity .4s ease .05s}
-  .ua.play .hgrp{opacity:1}
+  /* ===== Pathophysiology: converging arrows (secretory shift -> metabolic consequences) ===== */
+  .cv-wrap{margin:16px 0 8px}
+  .cv-cap{font-size:12px;color:var(--muted);text-align:center;margin:0 0 8px}
+  .cv{display:block;width:100%;max-width:900px;margin:0 auto;overflow:visible}
+  .cv .arw-l{fill:url(#cvL)} .cv .arw-r{fill:url(#cvR)}
+  .cv .rail{fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .cv .rail.l{stroke:#cbb8f0} .cv .rail.r{stroke:#bcc6ef}
+  .cv .dot.l{fill:#7c3aed} .cv .dot.r{fill:#3a63c9}
+  .cv .ttl{font-weight:800;font-size:16px}
+  .cv .ttl.l{fill:#5b21b6} .cv .ttl.r{fill:#2f4fb0}
+  .cv .dsc{font-weight:600;font-size:12px;fill:var(--muted)}
+  .cv .ico{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .cv .ico-f{fill:#fff}
+  /* animation: arrows slide inward, rails + items stagger in on scroll (repeats) */
+  .cv .cvarL{opacity:0;transform:translateX(-34px);
+    transition:opacity .55s ease,transform .6s cubic-bezier(.22,1,.36,1)}
+  .cv .cvarR{opacity:0;transform:translateX(34px);
+    transition:opacity .55s ease,transform .6s cubic-bezier(.22,1,.36,1)}
+  .cv.play .cvarL,.cv.play .cvarR{opacity:1;transform:none}
+  .cv .rail{opacity:0;transition:opacity .5s ease .25s}
+  .cv.play .rail{opacity:1}
+  .cv .row{opacity:0;transform:translateY(8px);transform-box:fill-box;
+    transition:opacity .45s ease,transform .5s ease}
+  .cv.play .row{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){
-    .ua .uparrow,.ua .dnarrow{transform:none;transition:none}
-    .ua .row,.ua .hgrp{opacity:1;transform:none;transition:none}
+    .cv .cvarL,.cv .cvarR,.cv .rail,.cv .row{opacity:1;transform:none;transition:none}
   }
   /* ===== Diagnostic Tests: clinical lab-panel dashboard ===== */
   .labpanel{margin:18px 0 10px;border:1px solid var(--line);border-radius:16px;overflow:hidden;
@@ -1812,31 +1806,42 @@
       from diet, an active area of ongoing mechanistic and therapeutic investigation.
     </p>
 
-    <div class="ua-wrap reveal">
-      <div class="ua-cap">In obese adipose tissue: what rises &uarr; vs what is blunted &darr;</div>
-      <svg class="ua" id="ua" viewBox="0 0 720 440" role="img"
-        aria-label="Central up and down arrows contrasting obese adipose tissue: increased factors (leptin, resistin, visfatin, TNF-alpha, IL-6, MCP-1, free fatty acids, chronic inflammation) branch to the left, blunted factors (insulin sensitivity, leptin signalling, appetite suppression, energy expenditure) branch to the right.">
+    <div class="cv-wrap reveal">
+      <div class="cv-cap">Obese adipose tissue: a shift in secretion (left) drives downstream metabolic consequences (right)</div>
+      <svg class="cv" id="ua" viewBox="0 0 960 430" role="img"
+        aria-label="Two converging block arrows. Left (adipose-tissue secretory changes): adipokines, cytokines, free fatty acids and inflammation. Right (metabolic consequences): reduced insulin sensitivity, impaired leptin signalling, failed appetite suppression and decreased energy expenditure.">
         <defs>
-          <linearGradient id="uaUp" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#4c1d95"/><stop offset="100%" stop-color="#8663ff"/></linearGradient>
-          <linearGradient id="uaDn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5b6ee0"/><stop offset="100%" stop-color="#33308f"/></linearGradient>
+          <linearGradient id="cvL" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#4c1d95"/><stop offset="100%" stop-color="#8b63f0"/></linearGradient>
+          <linearGradient id="cvR" x1="1" y1="0" x2="0" y2="0"><stop offset="0%" stop-color="#33308f"/><stop offset="100%" stop-color="#5b6ee0"/></linearGradient>
         </defs>
-        <polygon class="uparrow" points="312,86 345,156 325,156 325,392 299,392 299,156 279,156" fill="url(#uaUp)"></polygon>
-        <polygon class="dnarrow" points="408,392 375,322 395,322 395,86 421,86 421,322 441,322" fill="url(#uaDn)"></polygon>
-        <g class="hgrp">
-          <rect class="hchip" x="112" y="16" width="120" height="26" rx="13"></rect>
-          <text class="htext up" x="172" y="34" text-anchor="middle" font-size="13">&uarr; Increased</text>
-          <rect class="hchip" x="488" y="16" width="120" height="26" rx="13"></rect>
-          <text class="htext dn" x="548" y="34" text-anchor="middle" font-size="13">&darr; Blunted</text>
+
+        <path class="rail l" d="M330 210 H300 M300 55 V385 M300 55 H268 M300 168 H268 M300 281 H268 M300 385 H268"></path>
+        <g class="row" style="transition-delay:.05s"><circle class="dot l" cx="262" cy="55" r="4"></circle><text class="ttl l" x="248" y="50" text-anchor="end">Adipokines</text><text class="dsc" x="248" y="68" text-anchor="end">Leptin, resistin &amp;</text><text class="dsc" x="248" y="83" text-anchor="end">visfatin levels</text></g>
+        <g class="row" style="transition-delay:.18s"><circle class="dot l" cx="262" cy="168" r="4"></circle><text class="ttl l" x="248" y="163" text-anchor="end">Cytokines</text><text class="dsc" x="248" y="181" text-anchor="end">TNF-&alpha;, IL-6 &amp; MCP-1</text></g>
+        <g class="row" style="transition-delay:.31s"><circle class="dot l" cx="262" cy="281" r="4"></circle><text class="ttl l" x="248" y="276" text-anchor="end">Free fatty acids</text><text class="dsc" x="248" y="294" text-anchor="end">Excess free fatty</text><text class="dsc" x="248" y="309" text-anchor="end">acid release</text></g>
+        <g class="row" style="transition-delay:.44s"><circle class="dot l" cx="262" cy="385" r="4"></circle><text class="ttl l" x="248" y="380" text-anchor="end">Inflammation</text><text class="dsc" x="248" y="398" text-anchor="end">Chronic low-grade</text><text class="dsc" x="248" y="413" text-anchor="end">systemic response</text></g>
+
+        <path class="rail r" d="M630 210 H660 M660 55 V385 M660 55 H692 M660 168 H692 M660 281 H692 M660 385 H692"></path>
+        <g class="row" style="transition-delay:.11s"><circle class="dot r" cx="698" cy="55" r="4"></circle><text class="ttl r" x="712" y="50" text-anchor="start">Insulin sensitivity</text><text class="dsc" x="712" y="68" text-anchor="start">Reduced cellular</text><text class="dsc" x="712" y="83" text-anchor="start">response to insulin</text></g>
+        <g class="row" style="transition-delay:.24s"><circle class="dot r" cx="698" cy="168" r="4"></circle><text class="ttl r" x="712" y="163" text-anchor="start">Leptin signalling</text><text class="dsc" x="712" y="181" text-anchor="start">Impaired hypothalamic</text><text class="dsc" x="712" y="196" text-anchor="start">appetite regulation</text></g>
+        <g class="row" style="transition-delay:.37s"><circle class="dot r" cx="698" cy="281" r="4"></circle><text class="ttl r" x="712" y="276" text-anchor="start">Appetite suppression</text><text class="dsc" x="712" y="294" text-anchor="start">Failure to inhibit</text><text class="dsc" x="712" y="309" text-anchor="start">hunger signals</text></g>
+        <g class="row" style="transition-delay:.50s"><circle class="dot r" cx="698" cy="385" r="4"></circle><text class="ttl r" x="712" y="380" text-anchor="start">Energy expenditure</text><text class="dsc" x="712" y="398" text-anchor="start">Decreased metabolic</text><text class="dsc" x="712" y="413" text-anchor="start">rate &amp; output</text></g>
+
+        <g class="cvarL">
+          <polygon class="arw-l" points="330,158 430,158 430,120 475,210 430,300 430,262 330,262"></polygon>
+          <g class="ico" transform="translate(366,196)">
+            <path d="M8 0 H18 M10 0 V7 L3 22 a2 2 0 0 0 2 3 H21 a2 2 0 0 0 2 -3 L16 7 V0"></path>
+          </g>
+          <circle class="ico-f" cx="375" cy="215" r="1.6"></circle><circle class="ico-f" cx="381" cy="216" r="1.6"></circle><circle class="ico-f" cx="379" cy="211" r="1.6"></circle>
         </g>
-        <g class="row" style="transition-delay:.5s"><path class="conn up" d="M280 100 H296"></path><circle class="dot main up" cx="270" cy="100"></circle><circle class="ring up" cx="270" cy="100" r="6"></circle><text class="it main up" x="256" y="105" text-anchor="end">Leptin</text></g>
-        <g class="row" style="transition-delay:.6s"><path class="conn up" d="M280 170 H296"></path><circle class="dot dot-up" cx="270" cy="170"></circle><text class="it up" x="256" y="174" text-anchor="end" font-size="13.5">Resistin &middot; Visfatin</text></g>
-        <g class="row" style="transition-delay:.7s"><path class="conn up" d="M280 240 H296"></path><circle class="dot dot-up" cx="270" cy="240"></circle><text class="it up" x="256" y="244" text-anchor="end" font-size="13.5">TNF-&alpha; &middot; IL-6 &middot; MCP-1</text></g>
-        <g class="row" style="transition-delay:.8s"><path class="conn up" d="M280 310 H296"></path><circle class="dot dot-up" cx="270" cy="310"></circle><text class="it up" x="256" y="314" text-anchor="end" font-size="13.5">Free fatty acids</text></g>
-        <g class="row" style="transition-delay:.9s"><path class="conn up" d="M280 380 H296"></path><circle class="dot main up" cx="270" cy="380"></circle><circle class="ring up" cx="270" cy="380" r="6"></circle><text class="it main up" x="256" y="385" text-anchor="end">Chronic inflammation</text></g>
-        <g class="row" style="transition-delay:.55s"><path class="conn dn" d="M424 120 H440"></path><circle class="dot main dn" cx="450" cy="120"></circle><circle class="ring dn" cx="450" cy="120" r="6"></circle><text class="it main dn" x="464" y="125" text-anchor="start">Insulin sensitivity</text></g>
-        <g class="row" style="transition-delay:.68s"><path class="conn dn" d="M424 200 H440"></path><circle class="dot main dn" cx="450" cy="200"></circle><circle class="ring dn" cx="450" cy="200" r="6"></circle><text class="it main dn" x="464" y="205" text-anchor="start">Leptin signalling</text></g>
-        <g class="row" style="transition-delay:.81s"><path class="conn dn" d="M424 280 H440"></path><circle class="dot dot-dn" cx="450" cy="280"></circle><text class="it dn" x="464" y="284" text-anchor="start" font-size="13.5">Appetite suppression</text></g>
-        <g class="row" style="transition-delay:.94s"><path class="conn dn" d="M424 360 H440"></path><circle class="dot dot-dn" cx="450" cy="360"></circle><text class="it dn" x="464" y="364" text-anchor="start" font-size="13.5">Energy expenditure</text></g>
+        <g class="cvarR">
+          <polygon class="arw-r" points="630,158 530,158 530,120 485,210 530,300 530,262 630,262"></polygon>
+          <g class="ico" transform="translate(560,192)">
+            <path d="M14 4 a4 4 0 0 0 -8 0 V22 a6 6 0 1 0 8 0 Z"></path>
+            <path d="M26 8 V22 M22 17 L26 22 L30 17"></path>
+          </g>
+          <circle class="ico-f" cx="570" cy="218" r="3.2"></circle>
+        </g>
       </svg>
     </div>
 
