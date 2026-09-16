@@ -1005,6 +1005,27 @@
   @media(prefers-reduced-motion:reduce){
     .cv .cvarL,.cv .cvarR,.cv .rail,.cv .row{opacity:1;transform:none;transition:none}
   }
+  /* ===== Screening and Diagnosis: cascading waterfall of 7 steps ===== */
+  .wf-wrap{margin:16px 0 8px}
+  .wf-cap{font-size:12px;color:var(--muted);text-align:center;margin:0 0 14px}
+  .wf{position:relative;--u:26px;max-width:840px;margin:0 auto}
+  .wf-step{position:relative;display:flex;gap:14px;align-items:flex-start;
+    padding-left:calc(var(--i)*var(--u));margin-bottom:14px}
+  .wf-step::before{content:"";position:absolute;left:calc(var(--i)*var(--u) - 6px);top:-18px;width:var(--u);height:30px;
+    border-left:2.5px solid var(--sc);border-bottom:2.5px solid var(--sc);border-bottom-left-radius:9px;opacity:.55}
+  .wf-step:first-child::before{display:none}
+  .wf-num{position:relative;z-index:2;flex:0 0 auto;width:40px;height:40px;border-radius:12px;
+    background:linear-gradient(150deg,var(--sc),var(--sc2));color:#fff;font-weight:800;font-size:16px;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 7px 16px -5px var(--sc)}
+  .wf-card{flex:1 1 auto;background:#faf8ff;border:1px solid var(--line);border-left:4px solid var(--sc);
+    border-radius:12px;padding:11px 16px;box-shadow:0 6px 16px -12px rgba(76,29,149,.5)}
+  .wf-t{font-weight:800;font-size:15px;color:var(--ink)}
+  .wf-d{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:3px;line-height:1.5}
+  .wf-step{opacity:0;transform:translateY(-14px);
+    transition:opacity .5s ease,transform .55s cubic-bezier(.22,1,.36,1);transition-delay:calc(var(--i)*.09s)}
+  .wf.play .wf-step{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){ .wf-step{opacity:1;transform:none;transition:none} }
+  @media(max-width:600px){ .wf{--u:9px} .wf-card{padding:10px 13px} .wf-t{font-size:14px} }
   /* ===== Diagnostic Tests: clinical lab-panel dashboard ===== */
   .labpanel{margin:18px 0 10px;border:1px solid var(--line);border-radius:16px;overflow:hidden;
     box-shadow:0 12px 32px -20px rgba(76,29,149,.4)}
@@ -1846,15 +1867,39 @@
     </div>
 
     <h3 class="subh reveal">Screening and Diagnosis</h3>
-    <ul class="dyn reveal">
-      <li><b>Step 1:</b> Calculate Body Mass Index (weight in kilograms divided by height in metres squared) as the initial population-level screening measure.</li>
-      <li><b>Step 2:</b> Measure waist circumference to assess central adiposity, since BMI alone does not distinguish fat from lean mass or characterise fat distribution.</li>
-      <li><b>Step 3:</b> Screen for cardiometabolic comorbidities via blood pressure measurement, a fasting lipid panel, and fasting glucose or HbA1c.</li>
-      <li><b>Step 4:</b> Where indicated, assess body composition directly via DEXA scanning or bioelectrical impedance analysis for a more precise measure than BMI alone.</li>
-      <li><b>Step 5:</b> Evaluate for secondary or endocrine causes, including thyroid function and cortisol, in patients with atypical presentation or treatment-resistant weight gain.</li>
-      <li><b>Step 6:</b> Apply a clinical staging framework, such as the Edmonton Obesity Staging System, to characterise disease severity beyond body size alone.</li>
-      <li><b>Step 7:</b> Assess eligibility for pharmacotherapy or bariatric surgery against established BMI-plus-comorbidity thresholds: typically a BMI of 30 or above, or 27 or above with a qualifying comorbidity, for pharmacotherapy, and a BMI of 35 with comorbidity or 40 alone for surgical intervention.</li>
-    </ul>
+    <div class="wf-wrap reveal">
+      <div class="wf-cap">Screening &amp; diagnosis: a seven-step clinical cascade &mdash; broad population screening down to individual treatment eligibility</div>
+      <div class="wf" id="wfall">
+        <div class="wf-step" style="--i:0;--sc:#a78bfa;--sc2:#9a7af6">
+          <div class="wf-num">1</div>
+          <div class="wf-card"><div class="wf-t">Calculate BMI</div><div class="wf-d">Weight (kg) &divide; height (m&sup2;) as the initial population-level screening measure.</div></div>
+        </div>
+        <div class="wf-step" style="--i:1;--sc:#9a7af6;--sc2:#8b5cf6">
+          <div class="wf-num">2</div>
+          <div class="wf-card"><div class="wf-t">Measure waist circumference</div><div class="wf-d">Assesses central adiposity, since BMI alone cannot distinguish fat from lean mass or characterise fat distribution.</div></div>
+        </div>
+        <div class="wf-step" style="--i:2;--sc:#8b5cf6;--sc2:#7c3aed">
+          <div class="wf-num">3</div>
+          <div class="wf-card"><div class="wf-t">Screen cardiometabolic comorbidities</div><div class="wf-d">Blood-pressure measurement, a fasting lipid panel, and fasting glucose or HbA1c.</div></div>
+        </div>
+        <div class="wf-step" style="--i:3;--sc:#7c3aed;--sc2:#6d28d9">
+          <div class="wf-num">4</div>
+          <div class="wf-card"><div class="wf-t">Assess body composition</div><div class="wf-d">Where indicated, DEXA or bioelectrical impedance analysis for a more precise measure than BMI alone.</div></div>
+        </div>
+        <div class="wf-step" style="--i:4;--sc:#6d28d9;--sc2:#5b21b6">
+          <div class="wf-num">5</div>
+          <div class="wf-card"><div class="wf-t">Evaluate secondary / endocrine causes</div><div class="wf-d">Including thyroid function and cortisol in atypical presentation or treatment-resistant weight gain.</div></div>
+        </div>
+        <div class="wf-step" style="--i:5;--sc:#5b21b6;--sc2:#4c1d95">
+          <div class="wf-num">6</div>
+          <div class="wf-card"><div class="wf-t">Apply a clinical staging framework</div><div class="wf-d">Such as the Edmonton Obesity Staging System &mdash; disease severity beyond body size alone.</div></div>
+        </div>
+        <div class="wf-step" style="--i:6;--sc:#4c1d95;--sc2:#3b1478">
+          <div class="wf-num">7</div>
+          <div class="wf-card"><div class="wf-t">Assess treatment eligibility</div><div class="wf-d">Against BMI-plus-comorbidity thresholds: BMI &ge;30, or &ge;27 with a comorbidity, for pharmacotherapy; BMI &ge;35 with comorbidity or &ge;40 for surgery.</div></div>
+        </div>
+      </div>
+    </div>
 
     <h3 class="subh reveal">Diagnostic Tests</h3>
     <table class="rd reveal">
@@ -3943,6 +3988,20 @@
     var io = new IntersectionObserver(function(en){
       en.forEach(function(e){ el.classList.toggle('play', e.isIntersecting); });
     },{threshold:.2});
+    io.observe(el);
+  } else { el.classList.add('play'); }
+})();
+
+/* ===== Screening waterfall: cascade the steps in on scroll (repeats) ===== */
+(function(){
+  var el = document.getElementById('wfall');
+  if(!el) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ el.classList.add('play'); return; }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(e){ el.classList.toggle('play', e.isIntersecting); });
+    },{threshold:.15});
     io.observe(el);
   } else { el.classList.add('play'); }
 })();
