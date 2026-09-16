@@ -1019,7 +1019,7 @@
     .ua .row,.ua .hgrp{opacity:1;transform:none;transition:none}
   }
   /* ===== Diagnostic Tests: clinical lab-panel dashboard ===== */
-  .lab{margin:18px 0 10px;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  .labpanel{margin:18px 0 10px;border:1px solid var(--line);border-radius:16px;overflow:hidden;
     box-shadow:0 12px 32px -20px rgba(76,29,149,.4)}
   .lab-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;
     padding:14px 18px;background:linear-gradient(135deg,var(--purple-deep),var(--purple-mid));color:#fff}
@@ -1032,28 +1032,28 @@
   .lab-row:nth-child(even){background:#faf8ff}
   .lab-ic{flex:0 0 40px;width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center}
   .lab-ic svg{width:20px;height:20px}
-  .lab .c-anth{background:#f1eafe;color:#6d28d9}
-  .lab .c-body{background:#eae6fb;color:#4c1d95}
-  .lab .c-lab{background:#e7edfc;color:#2f4fb0}
-  .lab .c-phys{background:#e5f0fb;color:#1f6fb0}
+  .labpanel .c-anth{background:#f1eafe;color:#6d28d9}
+  .labpanel .c-body{background:#eae6fb;color:#4c1d95}
+  .labpanel .c-lab{background:#e7edfc;color:#2f4fb0}
+  .labpanel .c-phys{background:#e5f0fb;color:#1f6fb0}
   .lab-main{flex:1 1 auto;min-width:0}
   .lab-nm{font-weight:800;font-size:14px;color:var(--ink)}
   .lab-ms{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
   .lab-note{font-size:11.5px;color:var(--muted);font-weight:600;margin-top:5px;line-height:1.45}
   .lab-note b{color:var(--purple-mid);font-weight:800;font-size:10px;letter-spacing:.4px;text-transform:uppercase;margin-right:6px}
   .lab-tags{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-  .lab .chip{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
-  .lab .chip.anth{background:#f1eafe;color:#6d28d9}
-  .lab .chip.body{background:#eae6fb;color:#4c1d95}
-  .lab .chip.lab{background:#e7edfc;color:#2f4fb0}
-  .lab .chip.phys{background:#e5f0fb;color:#1f6fb0}
-  .lab .avl{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap}
-  .lab .avl i{width:8px;height:8px;border-radius:50%}
-  .lab .a-wide i{background:#16a34a}.lab .a-acc i{background:#0891b2}.lab .a-rout i{background:#2563eb}.lab .a-spec i{background:#d97706}
-  .lab .lab-row{opacity:0;transform:translateY(10px);
+  .labpanel .chip{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+  .labpanel .chip.anth{background:#f1eafe;color:#6d28d9}
+  .labpanel .chip.body{background:#eae6fb;color:#4c1d95}
+  .labpanel .chip.labo{background:#e7edfc;color:#2f4fb0}
+  .labpanel .chip.phys{background:#e5f0fb;color:#1f6fb0}
+  .labpanel .avl{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap}
+  .labpanel .avl i{width:8px;height:8px;border-radius:50%}
+  .labpanel .a-wide i{background:#16a34a}.labpanel .a-acc i{background:#0891b2}.labpanel .a-rout i{background:#2563eb}.labpanel .a-spec i{background:#d97706}
+  .labpanel .lab-row{opacity:0;transform:translateY(10px);
     transition:opacity .45s ease,transform .5s cubic-bezier(.22,1,.36,1)}
-  .lab.play .lab-row{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){ .lab .lab-row{opacity:1;transform:none;transition:none} }
+  .labpanel.play .lab-row{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){ .labpanel .lab-row{opacity:1;transform:none;transition:none} }
   @media(max-width:560px){
     .lab-row{flex-wrap:wrap;padding:13px 14px}
     .lab-main{flex:1 1 60%}
@@ -1872,7 +1872,7 @@
       </tbody>
     </table>
 
-    <div class="lab" id="dxpanel">
+    <div class="labpanel" id="dxpanel">
       <div class="lab-hd">
         <div><div class="t">Obesity diagnostic panel</div><div class="s">Seven modalities &mdash; classified by test type &amp; availability</div></div>
         <div class="pulse"><i></i>7 MODALITIES</div>
@@ -1905,7 +1905,7 @@
       <div class="lab-row" style="transition-delay:.40s">
         <div class="lab-ic c-lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11Z"/></svg></div>
         <div class="lab-main"><div class="lab-nm">Fasting Lipid Panel &amp; Glucose/HbA1c</div><div class="lab-ms">Cardiometabolic comorbidity screen</div><div class="lab-note"><b>Key spec</b>Essential for comorbidity-based treatment eligibility and risk stratification</div></div>
-        <div class="lab-tags"><span class="chip lab">Laboratory</span><span class="avl a-rout"><i></i>Routine bloods</span></div>
+        <div class="lab-tags"><span class="chip labo">Laboratory</span><span class="avl a-rout"><i></i>Routine bloods</span></div>
       </div>
       <div class="lab-row" style="transition-delay:.47s">
         <div class="lab-ic c-phys"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-5 3 10 2-7 2 4h5"/></svg></div>
