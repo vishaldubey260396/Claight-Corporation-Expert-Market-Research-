@@ -489,20 +489,25 @@
   /* two-part medicine capsule with leader-line annotations on both sides */
   .caps-wrap{margin:22px 0}
   .caps-diagram{display:flex;align-items:center;justify-content:center;gap:0}
-  .capsule-real{position:relative;display:flex;flex:none;width:320px;height:158px;
-    filter:drop-shadow(0 12px 22px rgba(76,29,149,.28))}
+  .capsule-real{position:relative;display:flex;flex:none;width:340px;height:196px;
+    filter:drop-shadow(0 14px 24px rgba(76,29,149,.26))}
   .cap-half{position:relative;display:flex;align-items:center;justify-content:center;width:50%;height:100%;
-    border:none;padding:0 10px;background:transparent;cursor:pointer;transition:filter .15s ease}
-  .cap-half.left{background:linear-gradient(120deg,#6ee7a8 0%,#22c55e 55%,#15803d 100%);
-    clip-path:path("M118,14 C92,2 44,6 26,34 C6,66 8,104 30,132 C44,150 78,152 100,142 C116,135 122,118 112,102 C105,90 118,82 116,68 C114,48 128,30 118,14 Z")}
-  .cap-half.right{background:linear-gradient(120deg,#fca5a5 0%,#ef4444 55%,#b91c1c 100%);
-    clip-path:path("M42,14 C68,2 116,6 134,34 C154,66 152,104 130,132 C116,150 82,152 60,142 C44,135 38,118 48,102 C55,90 42,82 44,68 C46,48 32,30 42,14 Z")}
-  .cap-half:hover,.cap-half:focus-visible{filter:brightness(1.1)}
-  .cap-half.left .cap-lab{transform:translateX(-8px)} .cap-half.right .cap-lab{transform:translateX(8px)}
-  .cap-lab{position:relative;z-index:3;font-size:12px;font-weight:800;line-height:1.3;text-align:center;color:#fff;
-    max-width:104px;text-shadow:0 1px 3px rgba(0,0,0,.28)}
-  .lungs-tra{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:80px;height:88px;z-index:2;
+    border:none;padding:0 8px;background:transparent;cursor:pointer;transition:filter .15s ease}
+  .cap-half.left{background:linear-gradient(125deg,#6ee7a8 0%,#22c55e 55%,#15803d 100%);
+    clip-path:path("M150,26 C150,14 146,6 136,6 C120,6 92,10 62,30 C34,48 14,80 12,116 C10,146 24,168 48,180 C72,192 104,190 124,176 C138,166 146,150 148,128 C149,112 150,96 150,80 C150,62 150,44 150,26 Z")}
+  .cap-half.right{background:linear-gradient(125deg,#fca5a5 0%,#ef4444 55%,#b91c1c 100%);
+    clip-path:path("M20,26 C20,14 24,6 34,6 C50,6 78,10 108,30 C136,48 156,80 158,116 C160,146 146,168 122,180 C98,192 66,190 46,176 C32,166 24,150 22,128 C21,112 20,96 20,80 C20,62 20,44 20,26 Z")}
+  .cap-half:hover,.cap-half:focus-visible{filter:brightness(1.08)}
+  .cap-half.left .cap-lab{transform:translate(-10px,14px)} .cap-half.right .cap-lab{transform:translate(10px,14px)}
+  .cap-lab{position:relative;z-index:4;font-size:12px;font-weight:800;line-height:1.3;text-align:center;color:#fff;
+    max-width:100px;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .lungs-fis{position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:visible}
+  .lungs-fis path{fill:none;stroke:rgba(255,255,255,.55);stroke-width:2}
+  .lungs-tra{position:absolute;top:-26px;left:50%;transform:translateX(-50%);width:64px;height:150px;z-index:2;
     pointer-events:none;overflow:visible}
+  .lungs-tra .tube{fill:none;stroke:#5b1e3f;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+  .lungs-tra .ring{fill:none;stroke:#5b1e3f;stroke-width:2.4;stroke-linecap:round}
+  .lungs-tra .fillp{fill:#f6eef4}
   .caps-col{position:relative;display:flex;flex-direction:column;justify-content:center;gap:21px;
     width:250px;flex:none;opacity:0;transition:opacity .5s ease,transform .5s ease}
   .caps-col.left{transform:translateX(-22px)}
@@ -664,7 +669,7 @@
   .caps-col.right .caps-point-text{text-align:left}
   @media(max-width:760px){
     .caps-diagram{flex-direction:column;gap:14px}
-    .capsule-real{order:-1;width:320px;height:158px}
+    .capsule-real{order:-1;width:340px;height:196px}
     .caps-col{width:100%;max-width:340px;padding-left:0;padding-right:0}
     .caps-connectors{display:none}
     .caps-col.left .caps-point-text{text-align:left}
@@ -1686,14 +1691,25 @@
           <button type="button" class="cap-half right" data-panel="cb">
             <span class="cap-lab">Comorbidity Burden</span>
           </button>
-          <svg class="lungs-tra" viewBox="0 0 80 88" fill="none" aria-hidden="true">
-            <path d="M40,6 L40,44" stroke="#5b21b6" stroke-width="9" stroke-linecap="round"/>
-            <path d="M40,42 C40,58 26,58 18,74" stroke="#5b21b6" stroke-width="8" stroke-linecap="round"/>
-            <path d="M40,42 C40,58 54,58 62,74" stroke="#5b21b6" stroke-width="8" stroke-linecap="round"/>
-            <path d="M40,6 L40,44" stroke="#a78bfa" stroke-width="3.4" stroke-linecap="round"/>
-            <path d="M40,42 C40,58 26,58 18,74" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"/>
-            <path d="M40,42 C40,58 54,58 62,74" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"/>
-            <circle cx="40" cy="6" r="6" fill="#5b21b6"/>
+          <svg class="lungs-fis" viewBox="0 0 340 196" fill="none" aria-hidden="true">
+            <path d="M150,70 C120,86 96,104 84,140"/>
+            <path d="M190,70 C220,86 244,104 256,140"/>
+          </svg>
+          <svg class="lungs-tra" viewBox="0 0 64 150" aria-hidden="true">
+            <ellipse class="fillp" cx="32" cy="12" rx="15" ry="8"/>
+            <ellipse class="tube" cx="32" cy="12" rx="15" ry="8"/>
+            <ellipse class="ring" cx="32" cy="12" rx="8.5" ry="4"/>
+            <path class="fillp" d="M18,15 C18,15 17,60 22,78 L42,78 C47,60 46,15 46,15 Z"/>
+            <path class="tube" d="M18,16 C17,40 17,62 23,80"/>
+            <path class="tube" d="M46,16 C47,40 47,62 41,80"/>
+            <path class="ring" d="M18,24 Q32,29 46,24"/>
+            <path class="ring" d="M17.5,33 Q32,38 46.5,33"/>
+            <path class="ring" d="M17.5,42 Q32,47 46.5,42"/>
+            <path class="ring" d="M18,51 Q32,56 46,51"/>
+            <path class="ring" d="M18.5,60 Q32,65 45.5,60"/>
+            <path class="ring" d="M20,69 Q32,74 44,69"/>
+            <path class="tube" d="M25,80 C22,94 12,100 4,110"/>
+            <path class="tube" d="M39,80 C42,94 52,100 60,110"/>
           </svg>
         </div>
         <div class="caps-col right" id="capsColRight">
