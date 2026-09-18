@@ -1106,17 +1106,21 @@
   }
   /* ===== Risk Factors: modifiable vs non-modifiable — lungs map ===== */
   .rf-wrap{margin:16px 0 10px}
-  .rf{display:flex;align-items:flex-start;justify-content:center;gap:24px;position:relative;max-width:948px;margin:0 auto}
+  .rf{display:flex;align-items:flex-start;justify-content:center;gap:18px;position:relative;max-width:940px;margin:0 auto}
   .rf-side{flex:1 1 0;position:relative;padding-top:48px}
   .rf-cards{display:flex;flex-direction:column;gap:14px}
   .rf-left .rf-cards{align-items:flex-end} .rf-right .rf-cards{align-items:flex-start}
-  .rf-lungs{flex:0 0 190px;align-self:center;position:relative;
-    opacity:0;transform:scale(.92);transition:opacity .6s ease,transform .6s cubic-bezier(.22,1,.36,1)}
+  .rf-lungs{flex:0 0 272px;align-self:center;position:relative;
+    opacity:0;transform:scale(.94);transition:opacity .6s ease,transform .6s cubic-bezier(.22,1,.36,1)}
   .rf.play .rf-lungs{opacity:1;transform:none}
-  .rf-lungs svg{display:block;width:190px;height:auto;overflow:visible;filter:drop-shadow(0 12px 22px rgba(76,29,149,.24))}
-  .rf-lungs .cap{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);white-space:nowrap;
-    background:linear-gradient(135deg,var(--purple-deep),var(--purple-mid));color:#fff;font-weight:800;font-size:11.5px;
-    padding:6px 14px;border-radius:20px;box-shadow:0 8px 18px -6px var(--purple);letter-spacing:.2px}
+  .rf-lungs svg{display:block;width:272px;height:auto;overflow:visible;filter:drop-shadow(0 10px 20px rgba(76,29,149,.16))}
+  .rf-lungs .ln-out{fill:url(#rfFill);stroke:var(--purple-deep);stroke-width:3.4;stroke-linejoin:round}
+  .rf-lungs .ln-fis{fill:none;stroke:var(--purple-mid);stroke-width:2.2;stroke-linecap:round;opacity:.85}
+  .rf-lungs .ln-tra{fill:none;stroke:var(--purple-deep);stroke-linecap:round;stroke-linejoin:round}
+  .rf-lungs .ln-fillp{fill:#f3ecfd}
+  .rf-lungs .cap{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);white-space:nowrap;
+    background:linear-gradient(135deg,var(--purple-deep),var(--purple-mid));color:#fff;font-weight:800;font-size:12px;
+    padding:6px 15px;border-radius:20px;box-shadow:0 8px 18px -6px var(--purple);letter-spacing:.2px}
   .rf-head{position:absolute;top:0;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:7px;
     font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.05em;padding:7px 14px;border-radius:20px;
     white-space:nowrap;opacity:0;transition:opacity .5s ease}
@@ -1125,7 +1129,7 @@
   .rf-head.non{color:#2b428f;background:#e9edfb;border:1px solid #cdd7f3}
   .rf-head i{width:8px;height:8px;border-radius:50%}
   .rf-head.mod i{background:#12a150} .rf-head.non i{background:#3a5bd0}
-  .rf-box{position:relative;width:300px;max-width:100%;background:#faf8ff;border:1px solid var(--line);border-radius:11px;
+  .rf-box{position:relative;width:262px;max-width:100%;background:#faf8ff;border:1px solid var(--line);border-radius:11px;
     padding:10px 14px;box-shadow:0 6px 16px -11px rgba(76,29,149,.6);
     opacity:0;transition:opacity .5s ease,transform .55s cubic-bezier(.22,1,.36,1)}
   .rf-left .rf-box{border-right:3px solid #12a150;transform:translateX(-26px)}
@@ -1888,34 +1892,33 @@
           </div>
         </div>
         <div class="rf-lungs">
-          <svg viewBox="0 -32 340 234" aria-hidden="true">
+          <svg viewBox="0 -38 340 246" aria-hidden="true">
             <defs>
-              <linearGradient id="rfLungL" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#6ee7a8"/><stop offset=".55" stop-color="#22c55e"/><stop offset="1" stop-color="#15803d"/>
-              </linearGradient>
-              <linearGradient id="rfLungR" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#9db6f6"/><stop offset=".55" stop-color="#3a5bd0"/><stop offset="1" stop-color="#263f9c"/>
+              <linearGradient id="rfFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#faf7ff"/><stop offset="1" stop-color="#ede4fb"/>
               </linearGradient>
             </defs>
-            <path fill="url(#rfLungL)" d="M150,26 C150,14 146,6 136,6 C120,6 92,10 62,30 C34,48 14,80 12,116 C10,146 24,168 48,180 C72,192 104,190 124,176 C138,166 146,150 148,128 C149,112 150,96 150,80 C150,62 150,44 150,26 Z"/>
-            <path fill="url(#rfLungR)" d="M190,26 C190,14 194,6 204,6 C220,6 248,10 278,30 C306,48 326,80 328,116 C330,146 316,168 292,180 C268,192 236,190 216,176 C202,166 194,150 192,128 C191,112 190,96 190,80 C190,62 190,44 190,26 Z"/>
-            <path fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2.4" d="M150,74 C126,88 108,104 98,138"/>
-            <path fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2.4" d="M190,74 C214,88 232,104 242,138"/>
-            <g transform="translate(138,-30)" fill="none" stroke="#5b1e3f" stroke-linecap="round" stroke-linejoin="round">
-              <ellipse cx="32" cy="12" rx="15" ry="8" fill="#f6eef4"/>
-              <ellipse cx="32" cy="12" rx="15" ry="8" stroke-width="3.2"/>
-              <ellipse cx="32" cy="12" rx="8.5" ry="4" stroke-width="2.4"/>
-              <path fill="#f6eef4" stroke="none" d="M18,15 C18,15 17,60 22,78 L42,78 C47,60 46,15 46,15 Z"/>
-              <path stroke-width="3.2" d="M18,16 C17,40 17,62 23,80"/>
-              <path stroke-width="3.2" d="M46,16 C47,40 47,62 41,80"/>
-              <path stroke-width="2.4" d="M18,24 Q32,29 46,24"/>
-              <path stroke-width="2.4" d="M17.5,33 Q32,38 46.5,33"/>
-              <path stroke-width="2.4" d="M17.5,42 Q32,47 46.5,42"/>
-              <path stroke-width="2.4" d="M18,51 Q32,56 46,51"/>
-              <path stroke-width="2.4" d="M18.5,60 Q32,65 45.5,60"/>
-              <path stroke-width="2.4" d="M20,69 Q32,74 44,69"/>
-              <path stroke-width="3.2" d="M25,80 C22,94 12,100 4,110"/>
-              <path stroke-width="3.2" d="M39,80 C42,94 52,100 60,110"/>
+            <path class="ln-out" d="M150,26 C150,14 146,6 136,6 C120,6 92,10 62,30 C34,48 14,80 12,116 C10,146 24,168 48,180 C72,192 104,190 124,176 C138,166 146,150 148,128 C149,112 150,96 150,80 C150,62 150,44 150,26 Z"/>
+            <path class="ln-out" d="M190,26 C190,14 194,6 204,6 C220,6 248,10 278,30 C306,48 326,80 328,116 C330,146 316,168 292,180 C268,192 236,190 216,176 C202,166 194,150 192,128 C191,112 190,96 190,80 C190,62 190,44 190,26 Z"/>
+            <path class="ln-fis" d="M132,54 C108,86 82,116 58,166"/>
+            <path class="ln-fis" d="M96,150 C78,150 60,156 44,170"/>
+            <path class="ln-fis" d="M208,54 C232,86 258,116 282,166"/>
+            <path class="ln-fis" d="M244,150 C262,150 280,156 296,170"/>
+            <g class="ln-tra" transform="translate(138,-36)">
+              <ellipse class="ln-fillp" cx="32" cy="12" rx="16" ry="8.5"/>
+              <ellipse cx="32" cy="12" rx="16" ry="8.5" stroke-width="3.4"/>
+              <ellipse cx="32" cy="12" rx="9" ry="4.2" stroke-width="2.4"/>
+              <path class="ln-fillp" d="M17,15 C16,44 16,64 22,82 L42,82 C48,64 48,44 47,15 Z"/>
+              <path stroke-width="3.4" d="M17,16 C16,42 16,64 22,84"/>
+              <path stroke-width="3.4" d="M47,16 C48,42 48,64 42,84"/>
+              <path stroke-width="2.4" d="M17,25 Q32,30 47,25"/>
+              <path stroke-width="2.4" d="M16.5,35 Q32,40 47.5,35"/>
+              <path stroke-width="2.4" d="M16.5,45 Q32,50 47.5,45"/>
+              <path stroke-width="2.4" d="M17,55 Q32,60 47,55"/>
+              <path stroke-width="2.4" d="M17.5,65 Q32,70 46.5,65"/>
+              <path stroke-width="2.4" d="M19,75 Q32,80 45,75"/>
+              <path stroke-width="3.4" d="M25,84 C22,100 12,108 2,120"/>
+              <path stroke-width="3.4" d="M39,84 C42,100 52,108 62,120"/>
             </g>
           </svg>
           <span class="cap">Obesity risk factors</span>
