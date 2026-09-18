@@ -1107,7 +1107,10 @@
   /* ===== Risk Factors: modifiable vs non-modifiable — lungs map ===== */
   .rf-wrap{margin:16px 0 10px}
   .rf{display:flex;align-items:flex-start;justify-content:center;gap:18px;position:relative;max-width:940px;margin:0 auto}
-  .rf-side{flex:1 1 0;position:relative;padding-top:48px}
+  .rf-side{flex:1 1 0;position:relative;padding-top:48px;transition:opacity .3s ease}
+  .rf-lungs .ln-hit{fill:#000;fill-opacity:0;pointer-events:all;cursor:pointer}
+  .rf.play .rf-side.rf-dim{opacity:.28}
+  .rf.play .rf-side.rf-lit .rf-box{box-shadow:0 10px 22px -8px rgba(76,29,149,.5)}
   .rf-cards{display:flex;flex-direction:column;gap:14px}
   .rf-left .rf-cards{align-items:flex-end} .rf-right .rf-cards{align-items:flex-start}
   .rf-lungs{flex:0 0 272px;align-self:center;position:relative;
@@ -1916,6 +1919,8 @@
             <path class="ln-fis" d="M292,172.5 C266,190.9 240,193.2 216,179.4"/>
             <path class="ln-line" d="M138,9.2 C90,11.5 48,29.9 24,62.1 C12,115 14,172.5 30,202.4 C52,218.5 86,220.8 116,211.6 C138,202.4 146,172.5 148,138 C150,92 150,46 138,9.2 Z"/>
             <path class="ln-line" d="M202,9.2 C250,11.5 292,29.9 316,62.1 C328,115 326,172.5 310,202.4 C288,218.5 254,220.8 224,211.6 C202,202.4 194,172.5 192,138 C190,92 190,46 202,9.2 Z"/>
+            <path class="ln-hit" data-side="l" d="M138,9.2 C90,11.5 48,29.9 24,62.1 C12,115 14,172.5 30,202.4 C52,218.5 86,220.8 116,211.6 C138,202.4 146,172.5 148,138 C150,92 150,46 138,9.2 Z"/>
+            <path class="ln-hit" data-side="r" d="M202,9.2 C250,11.5 292,29.9 316,62.1 C328,115 326,172.5 310,202.4 C288,218.5 254,220.8 224,211.6 C202,202.4 194,172.5 192,138 C190,92 190,46 202,9.2 Z"/>
             <g class="ln-tra" transform="translate(138,-38)">
               <ellipse class="ln-fillp" cx="32" cy="12" rx="16" ry="8.5"/>
               <ellipse cx="32" cy="12" rx="16" ry="8.5" stroke-width="3.4"/>
@@ -4102,6 +4107,21 @@
 (function(){
   var el = document.getElementById('rfmap');
   if(!el) return;
+  /* hover a lung to spotlight its own risks and fade the opposite side */
+  var sideL = el.querySelector('.rf-left'), sideR = el.querySelector('.rf-right');
+  var clearSides = function(){
+    [sideL, sideR].forEach(function(s){ if(s) s.classList.remove('rf-dim','rf-lit'); });
+  };
+  var spotlight = function(side){
+    if(!sideL || !sideR) return;
+    if(side === 'l'){ sideL.classList.add('rf-lit'); sideL.classList.remove('rf-dim'); sideR.classList.add('rf-dim'); sideR.classList.remove('rf-lit'); }
+    else { sideR.classList.add('rf-lit'); sideR.classList.remove('rf-dim'); sideL.classList.add('rf-dim'); sideL.classList.remove('rf-lit'); }
+  };
+  el.querySelectorAll('.ln-hit').forEach(function(h){
+    h.addEventListener('mouseenter', function(){ spotlight(h.getAttribute('data-side')); });
+    h.addEventListener('focus', function(){ spotlight(h.getAttribute('data-side')); });
+  });
+  el.addEventListener('mouseleave', clearSides);
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce){ el.classList.add('play'); return; }
   if('IntersectionObserver' in window){
