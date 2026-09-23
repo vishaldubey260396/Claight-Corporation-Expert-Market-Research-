@@ -1215,6 +1215,33 @@
   .pm-lr span{display:block;font-size:11px;font-weight:600;color:var(--muted);line-height:1.3;margin-top:1px}
   .pm-note{font-size:10.5px;color:var(--muted);margin-top:6px;font-style:italic}
   @media(max-width:680px){ .pm-main{flex-direction:column;align-items:stretch} .pm-leg{flex-basis:auto} }
+  /* ===== Investment decision fork ===== */
+  .df-wrap{max-width:900px;margin:18px auto 8px;border:1px solid var(--line);border-radius:16px;padding:24px 26px;
+    box-shadow:0 10px 30px -18px rgba(76,29,149,.35)}
+  .df-q{font-size:16.5px;font-weight:800;color:var(--ink);margin:0 0 20px;line-height:1.35}
+  .df-body{display:flex;align-items:center;gap:6px}
+  .df-face{flex:0 0 76px;width:76px;height:76px;border-radius:50%;background:#f6f4fc;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center}
+  .df-face svg{width:46px;height:46px;stroke:#475569;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .df-conn{flex:0 0 116px;height:206px}
+  .df-conn path{fill:none;stroke:#94a3b8;stroke-width:2.4;stroke-linecap:round}
+  .df-conn circle{fill:#94a3b8}
+  .df-branches{flex:1 1 auto;display:flex;flex-direction:column;gap:26px}
+  .df-b{min-height:90px;display:flex;gap:16px;align-items:flex-start}
+  .df-ico{flex:0 0 46px;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .df-ico svg{width:28px;height:28px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .df-b.g .df-ico{background:#e7f8f1} .df-b.g .df-ico svg{stroke:#059669}
+  .df-b.r .df-ico{background:#fdecec} .df-b.r .df-ico svg{stroke:#dc2626}
+  .df-h{font-size:15px;font-weight:800;margin:2px 0 4px}
+  .df-b.g .df-h{color:#059669} .df-b.r .df-h{color:#dc2626}
+  .df-d{font-size:12.5px;font-weight:600;color:var(--muted);line-height:1.5;max-width:560px}
+  @media(max-width:640px){
+    .df-body{flex-direction:column;align-items:stretch;gap:16px}
+    .df-conn{display:none}
+    .df-face{align-self:center}
+    .df-b{border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-height:0}
+    .df-b.g{border-left:4px solid #10b981} .df-b.r{border-left:4px solid #ef4444}
+  }
   @media(max-width:600px){
     .nc-fr{display:none}
     .nc-grid{grid-template-columns:1fr;padding-top:0;gap:12px}
@@ -2408,6 +2435,33 @@
       reimbursement decision and the rationale several other European governments are understood to be
       evaluating as they consider following France's lead.
     </p>
+
+    <div class="df-wrap reveal">
+      <div class="df-q">Should we invest in obesity treatment to reduce long-term healthcare costs?</div>
+      <div class="df-body">
+        <div class="df-face">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="22" cy="19" r="13"/><path d="M17 17.5h.02M27 17.5h.02"/><path d="M18 25c2 1.6 6 1.6 8-.4"/><path d="M15 31c-2 1-4 3-4 5.5 0 2 1.6 3 3.2 2.6"/><path d="M13.5 39c1.6.6 3.4.2 4.4-1"/></svg>
+        </div>
+        <svg class="df-conn" viewBox="0 0 116 206" aria-hidden="true">
+          <path d="M0,103 H42"/>
+          <path d="M42,103 C80,103 84,45 116,45"/>
+          <path d="M42,103 C80,103 84,161 116,161"/>
+          <circle cx="42" cy="103" r="4"/>
+        </svg>
+        <div class="df-branches">
+          <div class="df-b g">
+            <div class="df-ico"><svg viewBox="0 0 28 28"><path d="M14 24C5 18 3 12 6.5 8.5 9 6 12 7.5 14 11c2-3.5 5-5 7.5-2.5C25 12 23 18 14 24Z"/><path d="M14 11.5v9M16.4 13.2c-.6-.7-1.6-1-2.6-1-1.2 0-2.2.7-2.2 1.8s1 1.6 2.4 1.8 2.4.8 2.4 1.9-1 1.8-2.4 1.8c-1.1 0-2.1-.4-2.7-1.1"/></svg></div>
+            <div><div class="df-h">Invest in Obesity Treatment</div>
+              <div class="df-d">Upfront spending on effective pharmacotherapy or surgery may be offset, over a long horizon, by avoided downstream comorbidity costs &mdash; strengthening the case for reimbursement, as in France's 2026 decision.</div></div>
+          </div>
+          <div class="df-b r">
+            <div class="df-ico"><svg viewBox="0 0 28 28"><path d="M4 22l6-6 4 3.5L24 8"/><path d="M18.5 8H24v5.5"/><path d="M8 25.5v-2.5M8 4.5v2.5M9.6 6.2c-.5-.5-1.2-.8-2-.8-1 0-1.8.6-1.8 1.5s.8 1.3 1.9 1.5 1.9.6 1.9 1.5-.8 1.5-1.8 1.5c-.9 0-1.6-.3-2.1-.9"/></svg></div>
+            <div><div class="df-h">Do Not Invest in Obesity Treatment</div>
+              <div class="df-d">Avoids immediate costs, but untreated obesity keeps driving type 2 diabetes and 20&ndash;30% of cardiovascular deaths &mdash; pushing long-term comorbidity spending into the hundreds of billions.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ================= SECTION 6 - CLINICAL TRIALS AND PIPELINE ANALYSIS ================= -->
     <h3 class="sub reveal">Clinical Trials and Pipeline Analysis</h3>
