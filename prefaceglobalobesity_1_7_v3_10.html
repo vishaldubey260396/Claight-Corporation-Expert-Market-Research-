@@ -1157,6 +1157,40 @@
     .rf-left .rf-box{border-right:1px solid var(--line);border-left:3px solid #12a150}
     .rf-box::after,.rf-box::before{display:none}
   }
+  /* ===== Socioeconomic burden: Newton's-cradle pendulum map ===== */
+  .nc-wrap{max-width:780px;margin:18px auto 8px}
+  .nc{position:relative;padding:0 8px}
+  .nc-fr{position:absolute;background:linear-gradient(180deg,#7c5fd6,#5b34b0);border-radius:9px;box-shadow:0 6px 14px -8px rgba(76,29,149,.45);z-index:1}
+  .nc-rail{top:36px;left:14px;right:14px;height:13px}
+  .nc-leg{top:42px;width:13px;height:190px} .nc-leg.l{left:14px} .nc-leg.r{right:14px}
+  .nc-base{left:0;right:0;top:230px;height:15px;background:linear-gradient(180deg,#6d4fc6,#4c2a9a)}
+  .nc-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(5,1fr);padding-top:44px}
+  .nc-item{display:flex;flex-direction:column;align-items:center}
+  .nc-pend{position:relative;width:74px;height:184px;transform-origin:top center}
+  .nc-pend .str{position:absolute;top:0;left:50%;transform:translateX(-50%);width:1.6px;height:112px;
+    background:linear-gradient(180deg,rgba(76,29,149,.12),rgba(76,29,149,.5))}
+  .nc-ball{position:absolute;top:110px;left:50%;transform:translateX(-50%);width:74px;height:74px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 12px 22px -8px rgba(76,29,149,.55);
+    background:radial-gradient(circle at 34% 28%,rgba(255,255,255,.5),rgba(255,255,255,0) 46%),var(--nc-bg)}
+  .nc-ball svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  @keyframes ncL{0%{transform:rotate(-27deg)}18%{transform:rotate(0)}72%{transform:rotate(0)}100%{transform:rotate(-27deg)}}
+  @keyframes ncR{0%{transform:rotate(0)}28%{transform:rotate(0)}50%{transform:rotate(27deg)}72%{transform:rotate(0)}100%{transform:rotate(0)}}
+  .nc.play .nc-pend.p1{animation:ncL 2.4s cubic-bezier(.4,0,.6,1) infinite}
+  .nc.play .nc-pend.p5{animation:ncR 2.4s cubic-bezier(.4,0,.6,1) infinite}
+  .nc-lab{text-align:center;padding:32px 6px 0}
+  .nc-lab b{display:block;font-size:13.5px;font-weight:800;color:var(--purple-deep)}
+  .nc-lab span{display:block;font-size:11.5px;font-weight:600;color:var(--muted);line-height:1.4;margin-top:3px}
+  @media(prefers-reduced-motion:reduce){ .nc.play .nc-pend.p1,.nc.play .nc-pend.p5{animation:none} }
+  @media(max-width:600px){
+    .nc-fr{display:none}
+    .nc-grid{grid-template-columns:1fr;padding-top:0;gap:12px}
+    .nc-item{flex-direction:row;align-items:center;gap:14px;text-align:left}
+    .nc-pend{width:56px;height:56px;transform:none!important;animation:none!important;flex:0 0 56px}
+    .nc-pend .str{display:none}
+    .nc-ball{position:static;transform:none;width:56px;height:56px}
+    .nc-ball svg{width:26px;height:26px}
+    .nc-lab{text-align:left;padding:0}
+  }
 </style>
 </head>
 <body>
@@ -2066,29 +2100,45 @@
 
     <h3 class="subh reveal">Global Disease Burden and Socioeconomic Context</h3>
     <p class="reveal">
-      Obesity represents one of the most consequential chronic disease burdens globally, both in direct
-      clinical terms and in its downstream economic footprint. Global economic costs attributable to
-      overweight and obesity are projected to exceed <b>USD 4.32 trillion annually by 2035</b>, equivalent to
-      roughly 3% of global GDP, encompassing direct healthcare expenditure alongside the substantial indirect
-      costs of lost productivity, absenteeism and premature mortality. Obesity-related comorbidities,
-      particularly type 2 diabetes, cardiovascular disease and several cancers, collectively contribute to
-      more than 5 million deaths annually worldwide.
+      Obesity's impact reaches far beyond the individual, cascading into a wider socioeconomic burden. Its
+      direct clinical toll is compounded by staggering economic costs, rising mortality from comorbidities,
+      deep health inequities across regions, and pervasive weight-based stigma. Like a Newton's cradle, a
+      single driver sets each of these interconnected downstream burdens in motion &mdash; making obesity one
+      of the most consequential chronic-disease challenges of our time.
     </p>
-    <p class="reveal">
-      The burden is increasingly concentrated in low- and middle-income countries: over 70% of individuals
-      living with obesity now reside in developing nations, reflecting the rapid nutritional and lifestyle
-      transition accompanying urbanisation, even as these health systems often remain least equipped to
-      deliver comprehensive obesity care. This inequity extends to diagnosis and treatment access, with
-      patients in lower-resource settings considerably less likely to receive body-composition assessment,
-      specialist referral, or access to newer pharmacotherapy, reinforcing existing health disparities.
-    </p>
-    <p class="reveal">
-      Stigma remains a further, often underappreciated dimension of obesity's socioeconomic burden.
-      Weight-based stigma in healthcare, workplace and social settings is well documented and is independently
-      associated with reduced healthcare-seeking behaviour, poorer mental health outcomes and, paradoxically,
-      further weight gain through stress-related physiological and behavioural pathways, underscoring that
-      addressing obesity's societal burden requires more than clinical or pharmacological intervention alone.
-    </p>
+
+    <div class="nc-wrap reveal">
+      <div class="nc" id="ncradle">
+        <div class="nc-fr nc-rail"></div><div class="nc-fr nc-leg l"></div><div class="nc-fr nc-leg r"></div><div class="nc-fr nc-base"></div>
+        <div class="nc-grid">
+          <div class="nc-item">
+            <div class="nc-pend p1"><div class="str"></div>
+              <div class="nc-ball" style="--nc-bg:linear-gradient(150deg,#6d28d9,#4c1d95)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6" r="2.6"/><path d="M8.5 22c0-4 .8-7 3.5-7s3.5 3 3.5 7"/><path d="M7 12.5c1.2-1.4 2.9-2.2 5-2.2s3.8.8 5 2.2"/></svg></div></div>
+            <div class="nc-lab"><b>Obesity</b><span>Chronic disease burden</span></div>
+          </div>
+          <div class="nc-item">
+            <div class="nc-pend"><div class="str"></div>
+              <div class="nc-ball" style="--nc-bg:linear-gradient(150deg,#7c3aed,#5b21b6)"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="7" rx="6" ry="2.4"/><path d="M6 7v3c0 1.3 2.7 2.4 6 2.4s6-1.1 6-2.4V7"/><path d="M6 12.5v3c0 1.3 2.7 2.4 6 2.4s6-1.1 6-2.4v-3"/></svg></div></div>
+            <div class="nc-lab"><b>Economic Costs</b><span>USD 4.32 trillion annually by 2035</span></div>
+          </div>
+          <div class="nc-item">
+            <div class="nc-pend"><div class="str"></div>
+              <div class="nc-ball" style="--nc-bg:linear-gradient(150deg,#8b5cf6,#6d28d9)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h4l2-5 3 9 2-5h2.5"/><path d="M15 13.5c0 2 2 3.4 3.5 4.8C20 16.9 22 15.5 22 13.5c0-1.4-1-2.5-2.3-2.5-.9 0-1.5.5-1.9 1.1-.4-.6-1-1.1-1.9-1.1-1.1 0-2 .9-2 2z"/></svg></div></div>
+            <div class="nc-lab"><b>Mortality</b><span>5 million+ deaths annually</span></div>
+          </div>
+          <div class="nc-item">
+            <div class="nc-pend"><div class="str"></div>
+              <div class="nc-ball" style="--nc-bg:linear-gradient(150deg,#9a6bf2,#7c3aed)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15"/><path d="M6 19h12"/><path d="M5 7l7-1.4L19 7"/><path d="M5 7l-2 5h4z"/><path d="M19 7l-2 5h4z"/></svg></div></div>
+            <div class="nc-lab"><b>Health Disparities</b><span>&gt;70% in low- &amp; middle-income countries</span></div>
+          </div>
+          <div class="nc-item">
+            <div class="nc-pend p5"><div class="str"></div>
+              <div class="nc-ball" style="--nc-bg:linear-gradient(150deg,#a78bfa,#8b5cf6)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="6" r="2.4"/><path d="M6.5 21c0-4 .7-7 3.5-7s3.5 3 3.5 7"/><circle cx="18" cy="8" r=".9"/><circle cx="19.5" cy="12" r=".9"/><circle cx="17" cy="14" r=".9"/></svg></div></div>
+            <div class="nc-lab"><b>Stigma</b><span>Reduced healthcare-seeking behaviour</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ================= SECTION 5 - EPIDEMIOLOGY AND DISEASE BURDEN ================= -->
     <h3 class="sub reveal">Epidemiology and Disease Burden</h3>
@@ -4128,6 +4178,18 @@
     var io = new IntersectionObserver(function(en){
       en.forEach(function(e){ el.classList.toggle('play', e.isIntersecting); });
     },{threshold:.2});
+    io.observe(el);
+  } else { el.classList.add('play'); }
+})();
+
+/* ===== Socioeconomic Newton's cradle: swing while in view (repeats) ===== */
+(function(){
+  var el = document.getElementById('ncradle');
+  if(!el) return;
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(e){ el.classList.toggle('play', e.isIntersecting); });
+    },{threshold:.25});
     io.observe(el);
   } else { el.classList.add('play'); }
 })();
