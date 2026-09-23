@@ -1206,10 +1206,10 @@
   .db-svg .db-row:hover .db-name{fill:var(--purple-deep)}
   @media(max-width:560px){ .db-svg .db-v{font-size:9px} .db-svg .db-name{font-size:10px} }
   /* ===== Investment decision fork ===== */
-  .df-wrap{max-width:900px;margin:18px 0 8px;border:1px solid var(--line);border-radius:16px;padding:24px 26px;
+  .df-wrap{margin:18px 0 8px;border:1px solid var(--line);border-radius:16px;padding:24px 26px;
     box-shadow:0 10px 30px -18px rgba(76,29,149,.35)}
   .df-q{font-size:16.5px;font-weight:800;color:var(--ink);margin:0 0 20px;line-height:1.35}
-  .df-body{display:flex;align-items:center;gap:6px}
+  .df-body{display:flex;align-items:center;gap:6px;max-width:860px;margin:0 auto}
   .df-face{flex:0 0 76px;width:76px;height:76px;border-radius:50%;background:#f6f4fc;border:1px solid var(--line);
     display:flex;align-items:center;justify-content:center}
   .df-face svg{width:46px;height:46px;stroke:#475569;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -1220,17 +1220,17 @@
   .df-b{min-height:90px;display:flex;gap:16px;align-items:flex-start}
   .df-ico{flex:0 0 46px;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-top:2px}
   .df-ico svg{width:28px;height:28px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .df-b.g .df-ico{background:#e7f8f1} .df-b.g .df-ico svg{stroke:#059669}
-  .df-b.r .df-ico{background:#fdecec} .df-b.r .df-ico svg{stroke:#dc2626}
+  .df-b.g .df-ico{background:#ede4fb} .df-b.g .df-ico svg{stroke:#7c3aed}
+  .df-b.r .df-ico{background:#e7e0f5} .df-b.r .df-ico svg{stroke:#4c1d95}
   .df-h{font-size:15px;font-weight:800;margin:2px 0 4px}
-  .df-b.g .df-h{color:#059669} .df-b.r .df-h{color:#dc2626}
+  .df-b.g .df-h{color:#7c3aed} .df-b.r .df-h{color:#4c1d95}
   .df-d{font-size:12.5px;font-weight:600;color:var(--muted);line-height:1.5;max-width:560px}
   @media(max-width:640px){
     .df-body{flex-direction:column;align-items:stretch;gap:16px}
     .df-conn{display:none}
     .df-face{align-self:center}
     .df-b{border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-height:0}
-    .df-b.g{border-left:4px solid #10b981} .df-b.r{border-left:4px solid #ef4444}
+    .df-b.g{border-left:4px solid #7c3aed} .df-b.r{border-left:4px solid #4c1d95}
   }
   @media(max-width:600px){
     .nc-fr{display:none}
