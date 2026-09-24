@@ -1248,9 +1248,10 @@
   .pa-main{display:flex;gap:26px;align-items:center}
   .pa-chart{flex:0 0 330px}
   .pa-svg{display:block;width:330px;height:auto;overflow:visible}
-  .pa-ring path{transition:transform .22s cubic-bezier(.34,1.4,.5,1),filter .22s ease}
   .pa-ring{cursor:pointer}
-  .pa-ring.float path{transform:translate(9px,-9px);filter:url(#paSh) brightness(1.06)}
+  .pa-hit{fill:transparent;pointer-events:all}
+  .pa-face{pointer-events:none;transition:transform .22s cubic-bezier(.34,1.4,.5,1),filter .22s ease}
+  .pa-ring.float .pa-face{transform:translate(9px,-9px);filter:url(#paSh) brightness(1.06)}
   .pa-legend{flex:1 1 auto;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;align-content:center}
   .pa-item{display:flex;gap:11px;align-items:flex-start;padding:8px 10px;border-radius:10px;cursor:pointer;
     transition:background .16s ease}
@@ -2427,17 +2428,17 @@
         <div class="pa-chart">
           <svg viewBox="0 0 320 318" class="pa-svg" role="img" aria-label="Obesity drug pipeline ranked by efficacy, concentric arcs">
           <defs><filter id="paSh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#4c1d95" flood-opacity="0.35"/></filter></defs>
-          <g class="pa-ring" data-i="0"><path d="M305.0,302.0 A283,283 0 0 0 22.0,19.0 L22.0,40.0 A262,262 0 0 1 284.0,302.0 Z" fill="#ded4fb" stroke="#fff" stroke-width="1.4"/></g>
-          <g class="pa-ring" data-i="1"><path d="M284.0,302.0 A262,262 0 0 0 22.0,40.0 L22.0,61.0 A241,241 0 0 1 263.0,302.0 Z" fill="#c9b7f5" stroke="#fff" stroke-width="1.4"/></g>
-          <g class="pa-ring" data-i="2"><path d="M263.0,302.0 A241,241 0 0 0 22.0,61.0 L22.0,82.0 A220,220 0 0 1 242.0,302.0 Z" fill="#b49bf0" stroke="#fff" stroke-width="1.4"/></g>
-          <g class="pa-ring" data-i="3"><path d="M242.0,302.0 A220,220 0 0 0 22.0,82.0 L22.0,103.0 A199,199 0 0 1 221.0,302.0 Z" fill="#a78bfa" stroke="#fff" stroke-width="1.4"/></g>
-          <g class="pa-ring" data-i="4"><path d="M221.0,302.0 A199,199 0 0 0 22.0,103.0 L22.0,124.0 A178,178 0 0 1 200.0,302.0 Z" fill="#9575f0" stroke="#fff" stroke-width="1.4"/></g>
-          <g class="pa-ring" data-i="5"><path d="M200.0,302.0 A178,178 0 0 0 22.0,124.0 L22.0,145.0 A157,157 0 0 1 179.0,302.0 Z" fill="#8b5cf6" stroke="#fff" stroke-width="1.4"/></g>
-          <g class="pa-ring" data-i="6"><path d="M179.0,302.0 A157,157 0 0 0 22.0,145.0 L22.0,166.0 A136,136 0 0 1 158.0,302.0 Z" fill="#7c3aed" stroke="#fff" stroke-width="1.4"/></g>
-          <g class="pa-ring" data-i="7"><path d="M158.0,302.0 A136,136 0 0 0 22.0,166.0 L22.0,187.0 A115,115 0 0 1 137.0,302.0 Z" fill="#6d28d9" stroke="#fff" stroke-width="1.4"/></g>
-          <g class="pa-ring" data-i="8"><path d="M137.0,302.0 A115,115 0 0 0 22.0,187.0 L22.0,208.0 A94,94 0 0 1 116.0,302.0 Z" fill="#5f22c4" stroke="#fff" stroke-width="1.4"/></g>
-          <g class="pa-ring" data-i="9"><path d="M116.0,302.0 A94,94 0 0 0 22.0,208.0 L22.0,229.0 A73,73 0 0 1 95.0,302.0 Z" fill="#5b21b6" stroke="#fff" stroke-width="1.4"/></g>
-          <g class="pa-ring" data-i="10"><path d="M95.0,302.0 A73,73 0 0 0 22.0,229.0 L22.0,250.0 A52,52 0 0 1 74.0,302.0 Z" fill="#4c1d95" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="0"><path class="pa-hit" d="M305.0,302.0 A283,283 0 0 0 22.0,19.0 L22.0,40.0 A262,262 0 0 1 284.0,302.0 Z"/><path class="pa-face" d="M305.0,302.0 A283,283 0 0 0 22.0,19.0 L22.0,40.0 A262,262 0 0 1 284.0,302.0 Z" fill="#ded4fb" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="1"><path class="pa-hit" d="M284.0,302.0 A262,262 0 0 0 22.0,40.0 L22.0,61.0 A241,241 0 0 1 263.0,302.0 Z"/><path class="pa-face" d="M284.0,302.0 A262,262 0 0 0 22.0,40.0 L22.0,61.0 A241,241 0 0 1 263.0,302.0 Z" fill="#c9b7f5" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="2"><path class="pa-hit" d="M263.0,302.0 A241,241 0 0 0 22.0,61.0 L22.0,82.0 A220,220 0 0 1 242.0,302.0 Z"/><path class="pa-face" d="M263.0,302.0 A241,241 0 0 0 22.0,61.0 L22.0,82.0 A220,220 0 0 1 242.0,302.0 Z" fill="#b49bf0" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="3"><path class="pa-hit" d="M242.0,302.0 A220,220 0 0 0 22.0,82.0 L22.0,103.0 A199,199 0 0 1 221.0,302.0 Z"/><path class="pa-face" d="M242.0,302.0 A220,220 0 0 0 22.0,82.0 L22.0,103.0 A199,199 0 0 1 221.0,302.0 Z" fill="#a78bfa" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="4"><path class="pa-hit" d="M221.0,302.0 A199,199 0 0 0 22.0,103.0 L22.0,124.0 A178,178 0 0 1 200.0,302.0 Z"/><path class="pa-face" d="M221.0,302.0 A199,199 0 0 0 22.0,103.0 L22.0,124.0 A178,178 0 0 1 200.0,302.0 Z" fill="#9575f0" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="5"><path class="pa-hit" d="M200.0,302.0 A178,178 0 0 0 22.0,124.0 L22.0,145.0 A157,157 0 0 1 179.0,302.0 Z"/><path class="pa-face" d="M200.0,302.0 A178,178 0 0 0 22.0,124.0 L22.0,145.0 A157,157 0 0 1 179.0,302.0 Z" fill="#8b5cf6" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="6"><path class="pa-hit" d="M179.0,302.0 A157,157 0 0 0 22.0,145.0 L22.0,166.0 A136,136 0 0 1 158.0,302.0 Z"/><path class="pa-face" d="M179.0,302.0 A157,157 0 0 0 22.0,145.0 L22.0,166.0 A136,136 0 0 1 158.0,302.0 Z" fill="#7c3aed" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="7"><path class="pa-hit" d="M158.0,302.0 A136,136 0 0 0 22.0,166.0 L22.0,187.0 A115,115 0 0 1 137.0,302.0 Z"/><path class="pa-face" d="M158.0,302.0 A136,136 0 0 0 22.0,166.0 L22.0,187.0 A115,115 0 0 1 137.0,302.0 Z" fill="#6d28d9" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="8"><path class="pa-hit" d="M137.0,302.0 A115,115 0 0 0 22.0,187.0 L22.0,208.0 A94,94 0 0 1 116.0,302.0 Z"/><path class="pa-face" d="M137.0,302.0 A115,115 0 0 0 22.0,187.0 L22.0,208.0 A94,94 0 0 1 116.0,302.0 Z" fill="#5f22c4" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="9"><path class="pa-hit" d="M116.0,302.0 A94,94 0 0 0 22.0,208.0 L22.0,229.0 A73,73 0 0 1 95.0,302.0 Z"/><path class="pa-face" d="M116.0,302.0 A94,94 0 0 0 22.0,208.0 L22.0,229.0 A73,73 0 0 1 95.0,302.0 Z" fill="#5b21b6" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="10"><path class="pa-hit" d="M95.0,302.0 A73,73 0 0 0 22.0,229.0 L22.0,250.0 A52,52 0 0 1 74.0,302.0 Z"/><path class="pa-face" d="M95.0,302.0 A73,73 0 0 0 22.0,229.0 L22.0,250.0 A52,52 0 0 1 74.0,302.0 Z" fill="#4c1d95" stroke="#fff" stroke-width="1.4"/></g>
           </svg>
         </div>
         <div class="pa-legend">
@@ -4363,7 +4364,15 @@
   var rings=[].slice.call(document.querySelectorAll('.pa-ring'));
   var items=[].slice.call(document.querySelectorAll('.pa-item'));
   if(!rings.length) return;
-  function set(i,on){ var r=rings[i]; if(r){ r.classList.toggle('float',on); if(on) r.parentNode.appendChild(r); } if(items[i]) items[i].classList.toggle('on',on); }
+  var svg=rings[0].parentNode, byIndex=[];
+  rings.forEach(function(r){ byIndex[+r.dataset.i]=r; });
+  function restore(){ byIndex.forEach(function(r){ if(r) svg.appendChild(r); }); }
+  function set(i,on){
+    var r=byIndex[i];
+    if(r) r.classList.toggle('float',on);
+    if(items[i]) items[i].classList.toggle('on',on);
+    if(on){ if(r) svg.appendChild(r); } else { restore(); }
+  }
   items.forEach(function(it){ var i=+it.dataset.i;
     it.addEventListener('mouseenter',function(){set(i,true);});
     it.addEventListener('mouseleave',function(){set(i,false);}); });
