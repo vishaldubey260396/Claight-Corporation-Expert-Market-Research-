@@ -1251,15 +1251,16 @@
   .pa-ring path{transition:transform .22s cubic-bezier(.34,1.4,.5,1),filter .22s ease}
   .pa-ring{cursor:pointer}
   .pa-ring.float path{transform:translate(9px,-9px);filter:url(#paSh) brightness(1.06)}
-  .pa-legend{flex:1 1 auto;display:flex;flex-direction:column;gap:4px}
+  .pa-legend{flex:1 1 auto;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;align-content:center}
   .pa-item{display:flex;gap:11px;align-items:flex-start;padding:8px 10px;border-radius:10px;cursor:pointer;
     transition:background .16s ease}
   .pa-item:hover,.pa-item.on{background:#f6f2fe}
   .pa-dot{flex:0 0 12px;width:12px;height:12px;border-radius:50%;margin-top:3px;box-shadow:0 1px 3px rgba(76,29,149,.3)}
   .pa-item b{display:block;font-size:13px;font-weight:800;color:var(--ink);line-height:1.25}
+  .pa-item .pa-v{display:inline;color:var(--purple-deep);font-weight:800}
   .pa-item span{display:block;font-size:11.5px;font-weight:600;color:var(--muted);line-height:1.4;margin-top:2px}
   .pa-item:hover b,.pa-item.on b{color:var(--purple-deep)}
-  @media(max-width:720px){ .pa-main{flex-direction:column;align-items:flex-start} .pa-chart{align-self:center} }
+  @media(max-width:720px){ .pa-main{flex-direction:column;align-items:flex-start} .pa-chart{align-self:center} .pa-legend{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -2420,20 +2421,39 @@
       reduction already demonstrated by first-generation therapies.
     </p>
 
-    <div class="barlist reveal">
-      <h6>Obesity Drug Pipeline: Ranked by Reported Efficacy</h6>
-      <div class="bl-cap">Peak reported body-weight reduction in trials; next-generation multi-receptor agonists are pushing weight-loss ceilings well past 20%</div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">Retatrutide</span><span class="sub">Eli Lilly &middot; Phase III</span></span><span class="v">28.7%</span></div><div class="bl-track"><div class="bl-fill" style="--w:100%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">CagriSema</span><span class="sub">Novo Nordisk &middot; Phase III</span></span><span class="v">22.7%</span></div><div class="bl-track"><div class="bl-fill" style="--w:79%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">CT-388 / Enicepatide</span><span class="sub">Roche &middot; Phase II</span></span><span class="v">22.5%</span></div><div class="bl-track"><div class="bl-fill alt" style="--w:78%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">MariTide</span><span class="sub">Amgen &middot; Phase III</span></span><span class="v">20.0%</span></div><div class="bl-track"><div class="bl-fill" style="--w:70%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">Survodutide</span><span class="sub">Boehringer Ingelheim / Zealand &middot; Phase III</span></span><span class="v">19.0%</span></div><div class="bl-track"><div class="bl-fill" style="--w:66%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">PF-08653944</span><span class="sub">Pfizer / Metsera &middot; Phase IIb</span></span><span class="v">15.0%</span></div><div class="bl-track"><div class="bl-fill alt" style="--w:52%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">VK2735</span><span class="sub">Viking Therapeutics &middot; injectable + oral, Phase III</span></span><span class="v">14.7%</span></div><div class="bl-track"><div class="bl-fill" style="--w:51%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">Eloralintide</span><span class="sub">Eli Lilly &middot; Phase II</span></span><span class="v">14.5%</span></div><div class="bl-track"><div class="bl-fill alt" style="--w:51%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">Amycretin</span><span class="sub">Novo Nordisk &middot; Phase II</span></span><span class="v">14.5%</span></div><div class="bl-track"><div class="bl-fill alt" style="--w:51%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">Oral Semaglutide 25mg (Wegovy pill)</span><span class="sub">Novo Nordisk &middot; Filed / Approved</span></span><span class="v">13.6%</span></div><div class="bl-track"><div class="bl-fill gold" style="--w:47%"></div></div></div>
-      <div class="bl-item"><div class="bl-top"><span><span class="nm">Orforglipron (Foundayo)</span><span class="sub">Eli Lilly &middot; Filed / Approved</span></span><span class="v">11.2%</span></div><div class="bl-track"><div class="bl-fill gold" style="--w:39%"></div></div></div>
+    <div class="pa-wrap reveal">
+      <div class="pa-sub">Peak reported body-weight reduction in trials, ranked &mdash; hover any drug to lift its band</div>
+      <div class="pa-main">
+        <div class="pa-chart">
+          <svg viewBox="0 0 320 318" class="pa-svg" role="img" aria-label="Obesity drug pipeline ranked by efficacy, concentric arcs">
+          <defs><filter id="paSh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#4c1d95" flood-opacity="0.35"/></filter></defs>
+          <g class="pa-ring" data-i="0"><path d="M305.0,302.0 A283,283 0 0 0 22.0,19.0 L22.0,40.0 A262,262 0 0 1 284.0,302.0 Z" fill="#ded4fb" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="1"><path d="M284.0,302.0 A262,262 0 0 0 22.0,40.0 L22.0,61.0 A241,241 0 0 1 263.0,302.0 Z" fill="#c9b7f5" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="2"><path d="M263.0,302.0 A241,241 0 0 0 22.0,61.0 L22.0,82.0 A220,220 0 0 1 242.0,302.0 Z" fill="#b49bf0" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="3"><path d="M242.0,302.0 A220,220 0 0 0 22.0,82.0 L22.0,103.0 A199,199 0 0 1 221.0,302.0 Z" fill="#a78bfa" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="4"><path d="M221.0,302.0 A199,199 0 0 0 22.0,103.0 L22.0,124.0 A178,178 0 0 1 200.0,302.0 Z" fill="#9575f0" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="5"><path d="M200.0,302.0 A178,178 0 0 0 22.0,124.0 L22.0,145.0 A157,157 0 0 1 179.0,302.0 Z" fill="#8b5cf6" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="6"><path d="M179.0,302.0 A157,157 0 0 0 22.0,145.0 L22.0,166.0 A136,136 0 0 1 158.0,302.0 Z" fill="#7c3aed" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="7"><path d="M158.0,302.0 A136,136 0 0 0 22.0,166.0 L22.0,187.0 A115,115 0 0 1 137.0,302.0 Z" fill="#6d28d9" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="8"><path d="M137.0,302.0 A115,115 0 0 0 22.0,187.0 L22.0,208.0 A94,94 0 0 1 116.0,302.0 Z" fill="#5f22c4" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="9"><path d="M116.0,302.0 A94,94 0 0 0 22.0,208.0 L22.0,229.0 A73,73 0 0 1 95.0,302.0 Z" fill="#5b21b6" stroke="#fff" stroke-width="1.4"/></g>
+          <g class="pa-ring" data-i="10"><path d="M95.0,302.0 A73,73 0 0 0 22.0,229.0 L22.0,250.0 A52,52 0 0 1 74.0,302.0 Z" fill="#4c1d95" stroke="#fff" stroke-width="1.4"/></g>
+          </svg>
+        </div>
+        <div class="pa-legend">
+          <div class="pa-item" data-i="0"><span class="pa-dot" style="background:#ded4fb"></span><div><b>Retatrutide <span class="pa-v">28.7%</span></b><span>Eli Lilly &middot; Phase III</span></div></div>
+          <div class="pa-item" data-i="1"><span class="pa-dot" style="background:#c9b7f5"></span><div><b>CagriSema <span class="pa-v">22.7%</span></b><span>Novo Nordisk &middot; Phase III</span></div></div>
+          <div class="pa-item" data-i="2"><span class="pa-dot" style="background:#b49bf0"></span><div><b>CT-388 / Enicepatide <span class="pa-v">22.5%</span></b><span>Roche &middot; Phase II</span></div></div>
+          <div class="pa-item" data-i="3"><span class="pa-dot" style="background:#a78bfa"></span><div><b>MariTide <span class="pa-v">20.0%</span></b><span>Amgen &middot; Phase III</span></div></div>
+          <div class="pa-item" data-i="4"><span class="pa-dot" style="background:#9575f0"></span><div><b>Survodutide <span class="pa-v">19.0%</span></b><span>Boehringer Ingelheim / Zealand &middot; Phase III</span></div></div>
+          <div class="pa-item" data-i="5"><span class="pa-dot" style="background:#8b5cf6"></span><div><b>PF-08653944 <span class="pa-v">15.0%</span></b><span>Pfizer / Metsera &middot; Phase IIb</span></div></div>
+          <div class="pa-item" data-i="6"><span class="pa-dot" style="background:#7c3aed"></span><div><b>VK2735 <span class="pa-v">14.7%</span></b><span>Viking Therapeutics &middot; Phase III</span></div></div>
+          <div class="pa-item" data-i="7"><span class="pa-dot" style="background:#6d28d9"></span><div><b>Eloralintide <span class="pa-v">14.5%</span></b><span>Eli Lilly &middot; Phase II</span></div></div>
+          <div class="pa-item" data-i="8"><span class="pa-dot" style="background:#5f22c4"></span><div><b>Amycretin <span class="pa-v">14.5%</span></b><span>Novo Nordisk &middot; Phase II</span></div></div>
+          <div class="pa-item" data-i="9"><span class="pa-dot" style="background:#5b21b6"></span><div><b>Oral Semaglutide 25mg <span class="pa-v">13.6%</span></b><span>Novo Nordisk &middot; Filed / Approved</span></div></div>
+          <div class="pa-item" data-i="10"><span class="pa-dot" style="background:#4c1d95"></span><div><b>Orforglipron (Foundayo) <span class="pa-v">11.2%</span></b><span>Eli Lilly &middot; Filed / Approved</span></div></div>
+        </div>
+      </div>
     </div>
 
     <h3 class="subh reveal">Clinical Trial Activity</h3>
@@ -2458,32 +2478,13 @@
     </p>
 
     <h3 class="subh reveal">Pipeline by Mechanism of Action</h3>
-    <div class="pa-wrap reveal">
-      <div class="pa-sub">Concentric bands by drug-class family &mdash; hover a mechanism to lift its band</div>
-      <div class="pa-main">
-        <div class="pa-chart">
-          <svg viewBox="0 0 326 318" class="pa-svg" role="img" aria-label="Obesity pipeline by mechanism, concentric arcs">
-          <defs><filter id="paSh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#4c1d95" flood-opacity="0.35"/></filter></defs>
-          <g class="pa-ring" data-i="0"><path d="M310.0,302.0 A288,288 0 0 0 22.0,14.0 L22.0,46.0 A256,256 0 0 1 278.0,302.0 Z" fill="#c4b5fd" stroke="#fff" stroke-width="1.6"/></g>
-          <g class="pa-ring" data-i="1"><path d="M278.0,302.0 A256,256 0 0 0 22.0,46.0 L22.0,78.0 A224,224 0 0 1 246.0,302.0 Z" fill="#a78bfa" stroke="#fff" stroke-width="1.6"/></g>
-          <g class="pa-ring" data-i="2"><path d="M246.0,302.0 A224,224 0 0 0 22.0,78.0 L22.0,110.0 A192,192 0 0 1 214.0,302.0 Z" fill="#8b5cf6" stroke="#fff" stroke-width="1.6"/></g>
-          <g class="pa-ring" data-i="3"><path d="M214.0,302.0 A192,192 0 0 0 22.0,110.0 L22.0,142.0 A160,160 0 0 1 182.0,302.0 Z" fill="#7c3aed" stroke="#fff" stroke-width="1.6"/></g>
-          <g class="pa-ring" data-i="4"><path d="M182.0,302.0 A160,160 0 0 0 22.0,142.0 L22.0,174.0 A128,128 0 0 1 150.0,302.0 Z" fill="#6d28d9" stroke="#fff" stroke-width="1.6"/></g>
-          <g class="pa-ring" data-i="5"><path d="M150.0,302.0 A128,128 0 0 0 22.0,174.0 L22.0,206.0 A96,96 0 0 1 118.0,302.0 Z" fill="#5b21b6" stroke="#fff" stroke-width="1.6"/></g>
-          <g class="pa-ring" data-i="6"><path d="M118.0,302.0 A96,96 0 0 0 22.0,206.0 L22.0,238.0 A64,64 0 0 1 86.0,302.0 Z" fill="#4c1d95" stroke="#fff" stroke-width="1.6"/></g>
-          </svg>
-        </div>
-        <div class="pa-legend">
-          <div class="pa-item" data-i="0"><span class="pa-dot" style="background:#c4b5fd"></span><div><b>Triple Agonists</b><span>Lilly's retatrutide: 28.7% weight loss — the highest reported in a Phase III obesity trial.</span></div></div>
-          <div class="pa-item" data-i="1"><span class="pa-dot" style="background:#a78bfa"></span><div><b>Dual GLP-1/GIP Agonists</b><span>Tirzepatide ~20%; Roche's CT-388 +22.5% vs placebo; Viking's VK2735 in Phase III.</span></div></div>
-          <div class="pa-item" data-i="2"><span class="pa-dot" style="background:#8b5cf6"></span><div><b>Contrarian GLP-1 / GIP Antagonist</b><span>Amgen's MariTide: up to ~20% with once-monthly dosing; Phase III MARITIME.</span></div></div>
-          <div class="pa-item" data-i="3"><span class="pa-dot" style="background:#7c3aed"></span><div><b>GLP-1/Glucagon Agonists</b><span>Survodutide (BI/Zealand): ~19% at 48 weeks; Phase III SYNCHRONIZE.</span></div></div>
-          <div class="pa-item" data-i="4"><span class="pa-dot" style="background:#6d28d9"></span><div><b>Amylin Analogues</b><span>CagriSema 22.7%; amycretin 14.5%; petrelintide entering Phase III.</span></div></div>
-          <div class="pa-item" data-i="5"><span class="pa-dot" style="background:#5b21b6"></span><div><b>Oral Small-Molecule GLP-1</b><span>Orforglipron 11.2% (FDA-approved); oral semaglutide 13.6%.</span></div></div>
-          <div class="pa-item" data-i="6"><span class="pa-dot" style="background:#4c1d95"></span><div><b>Emerging & Regional Entrants</b><span>Pfizer/Metsera PF-08653944; China's mazdutide & ecnoglutide.</span></div></div>
-        </div>
-      </div>
-    </div>
+    <ul class="dyn reveal">
+      <li><b>Size and forecast</b> the global obesity market and each constituent segment across the 2026-2035 window, with 2025 as the base year.</li>
+      <li><b>Map the epidemiological drivers</b> underpinning demand, from rising global obesity prevalence to region-specific comorbidity burden.</li>
+      <li><b>Assess the competitive and clinical pipeline landscape</b>, profiling leading pharmacotherapy, surgical-device and nutritional-product vendors.</li>
+      <li><b>Identify demand drivers, restraints, and opportunities</b> shaping treatment uptake across pharmacotherapy, surgery and nutritional products.</li>
+      <li><b>Analyze regional dynamics</b> across the five regions covered, distinguishing the largest markets from the fastest-growing ones and the factors behind each.</li>
+    </ul>
 
     <h3 class="subh reveal">Pipeline Drug Profiles</h3>
     <p class="reveal">
