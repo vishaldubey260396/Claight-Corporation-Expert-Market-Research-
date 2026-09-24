@@ -1242,6 +1242,24 @@
     .nc-ball svg{width:26px;height:26px}
     .nc-lab{text-align:left;padding:0}
   }
+  /* ===== Pipeline concentric-arc map ===== */
+  .pa-wrap{margin:14px 0 8px}
+  .pa-sub{font-size:12px;color:var(--muted);margin:0 0 12px}
+  .pa-main{display:flex;gap:26px;align-items:center}
+  .pa-chart{flex:0 0 330px}
+  .pa-svg{display:block;width:330px;height:auto;overflow:visible}
+  .pa-ring path{transition:transform .22s cubic-bezier(.34,1.4,.5,1),filter .22s ease}
+  .pa-ring{cursor:pointer}
+  .pa-ring.float path{transform:translate(9px,-9px);filter:url(#paSh) brightness(1.06)}
+  .pa-legend{flex:1 1 auto;display:flex;flex-direction:column;gap:4px}
+  .pa-item{display:flex;gap:11px;align-items:flex-start;padding:8px 10px;border-radius:10px;cursor:pointer;
+    transition:background .16s ease}
+  .pa-item:hover,.pa-item.on{background:#f6f2fe}
+  .pa-dot{flex:0 0 12px;width:12px;height:12px;border-radius:50%;margin-top:3px;box-shadow:0 1px 3px rgba(76,29,149,.3)}
+  .pa-item b{display:block;font-size:13px;font-weight:800;color:var(--ink);line-height:1.25}
+  .pa-item span{display:block;font-size:11.5px;font-weight:600;color:var(--muted);line-height:1.4;margin-top:2px}
+  .pa-item:hover b,.pa-item.on b{color:var(--purple-deep)}
+  @media(max-width:720px){ .pa-main{flex-direction:column;align-items:flex-start} .pa-chart{align-self:center} }
 </style>
 </head>
 <body>
@@ -2440,15 +2458,32 @@
     </p>
 
     <h3 class="subh reveal">Pipeline by Mechanism of Action</h3>
-    <ul class="dyn reveal">
-      <li><b>Triple Agonists (GLP-1/GIP/Glucagon):</b> Eli Lilly's retatrutide has delivered the highest weight reduction reported to date in a Phase III obesity trial, with the highest dose achieving a mean weight loss of 28.7% over 68 weeks, alongside meaningful improvement in osteoarthritis-related pain in its first successful Phase III readout.</li>
-      <li><b>Dual GLP-1/GIP Agonists:</b> Eli Lilly's tirzepatide (Mounjaro/Zepbound) remains the category benchmark, delivering approximately 20% body-weight reduction in pivotal trials. Viking Therapeutics' VK2735 is being developed in both subcutaneous and oral formulations, with the Phase III VANQUISH-1 and VANQUISH-2 trials fully enrolled as of early 2026 and an oral Phase III trial expected to begin in Q4 2026. Roche's CT-388 (enicepatide), acquired through the 2024 Carmot Therapeutics deal, achieved 22.5% greater weight loss than placebo after 48 weeks in Phase II.</li>
-      <li><b>Contrarian GLP-1 Agonist / GIP Antagonist:</b> Amgen's MariTide takes a differentiated mechanistic approach, activating the GLP-1 receptor while blocking the GIP receptor. In its Phase II study, adults without type 2 diabetes lost up to approximately 20% of body weight with once-monthly dosing, and the Phase III MARITIME programme is now evaluating the molecule across obesity, sleep apnoea and cardiovascular disease.</li>
-      <li><b>GLP-1/Glucagon Agonists:</b> Boehringer Ingelheim and Zealand Pharma's survodutide, which combines GLP-1 and glucagon receptor agonism, achieved approximately 19% weight loss at 48 weeks in Phase II and is advancing through the four-trial Phase III SYNCHRONIZE programme, spanning obesity, type 2 diabetes and MASH, with first Phase III readouts expected in 2026.</li>
-      <li><b>Amylin Analogues:</b> Novo Nordisk's amycretin (a unimolecular GLP-1/amylin agonist) demonstrated 14.5% weight loss over 36 weeks in Phase II and is entering Phase III in 2026; the company's CagriSema (semaglutide plus cagrilintide) achieved 22.7% weight loss at 68 weeks in the REDEFINE 1 trial, with an FDA filing expected in late 2026, although the separate REDEFINE 4 trial narrowly missed its primary endpoint despite 23% weight loss. Zealand Pharma and Roche's petrelintide, a once-weekly amylin analogue, is scheduled to enter Phase III for chronic weight management in H2 2026.</li>
-      <li><b>Oral Small-Molecule GLP-1 Agonists:</b> Eli Lilly's orforglipron (branded Foundayo), an oral non-peptide GLP-1 agonist with no food or water restrictions, achieved an 11.2% mean weight loss over 72 weeks in the Phase III ATTAIN-1 trial and has since secured FDA approval. Novo Nordisk's oral semaglutide 25mg formulation (the Wegovy tablet) achieved a 13.6% mean weight loss over 64 weeks in the OASIS-4 trial and launched in the United States in January 2026, booking USD 2.26 billion in its first quarter on the market with over one million patients initiated.</li>
-      <li><b>Emerging and Regional Entrants:</b> Pfizer re-entered the obesity race through its acquisition of Metsera, gaining PF-08653944, an ultra-long-acting injectable GLP-1 candidate with positive Phase IIb data and ten Phase III trials expected to advance in 2026. In China, Innovent Biologics' mazdutide (Xinermei) launched in 2025 and Sciwind Biosciences' ecnoglutide launched in 2026, while Kailera Therapeutics is advancing ribupatide in partnership with Hengrui Pharma through a global Phase III programme.</li>
-    </ul>
+    <div class="pa-wrap reveal">
+      <div class="pa-sub">Concentric bands by drug-class family &mdash; hover a mechanism to lift its band</div>
+      <div class="pa-main">
+        <div class="pa-chart">
+          <svg viewBox="0 0 326 318" class="pa-svg" role="img" aria-label="Obesity pipeline by mechanism, concentric arcs">
+          <defs><filter id="paSh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#4c1d95" flood-opacity="0.35"/></filter></defs>
+          <g class="pa-ring" data-i="0"><path d="M310.0,302.0 A288,288 0 0 0 22.0,14.0 L22.0,46.0 A256,256 0 0 1 278.0,302.0 Z" fill="#c4b5fd" stroke="#fff" stroke-width="1.6"/></g>
+          <g class="pa-ring" data-i="1"><path d="M278.0,302.0 A256,256 0 0 0 22.0,46.0 L22.0,78.0 A224,224 0 0 1 246.0,302.0 Z" fill="#a78bfa" stroke="#fff" stroke-width="1.6"/></g>
+          <g class="pa-ring" data-i="2"><path d="M246.0,302.0 A224,224 0 0 0 22.0,78.0 L22.0,110.0 A192,192 0 0 1 214.0,302.0 Z" fill="#8b5cf6" stroke="#fff" stroke-width="1.6"/></g>
+          <g class="pa-ring" data-i="3"><path d="M214.0,302.0 A192,192 0 0 0 22.0,110.0 L22.0,142.0 A160,160 0 0 1 182.0,302.0 Z" fill="#7c3aed" stroke="#fff" stroke-width="1.6"/></g>
+          <g class="pa-ring" data-i="4"><path d="M182.0,302.0 A160,160 0 0 0 22.0,142.0 L22.0,174.0 A128,128 0 0 1 150.0,302.0 Z" fill="#6d28d9" stroke="#fff" stroke-width="1.6"/></g>
+          <g class="pa-ring" data-i="5"><path d="M150.0,302.0 A128,128 0 0 0 22.0,174.0 L22.0,206.0 A96,96 0 0 1 118.0,302.0 Z" fill="#5b21b6" stroke="#fff" stroke-width="1.6"/></g>
+          <g class="pa-ring" data-i="6"><path d="M118.0,302.0 A96,96 0 0 0 22.0,206.0 L22.0,238.0 A64,64 0 0 1 86.0,302.0 Z" fill="#4c1d95" stroke="#fff" stroke-width="1.6"/></g>
+          </svg>
+        </div>
+        <div class="pa-legend">
+          <div class="pa-item" data-i="0"><span class="pa-dot" style="background:#c4b5fd"></span><div><b>Triple Agonists</b><span>Lilly's retatrutide: 28.7% weight loss — the highest reported in a Phase III obesity trial.</span></div></div>
+          <div class="pa-item" data-i="1"><span class="pa-dot" style="background:#a78bfa"></span><div><b>Dual GLP-1/GIP Agonists</b><span>Tirzepatide ~20%; Roche's CT-388 +22.5% vs placebo; Viking's VK2735 in Phase III.</span></div></div>
+          <div class="pa-item" data-i="2"><span class="pa-dot" style="background:#8b5cf6"></span><div><b>Contrarian GLP-1 / GIP Antagonist</b><span>Amgen's MariTide: up to ~20% with once-monthly dosing; Phase III MARITIME.</span></div></div>
+          <div class="pa-item" data-i="3"><span class="pa-dot" style="background:#7c3aed"></span><div><b>GLP-1/Glucagon Agonists</b><span>Survodutide (BI/Zealand): ~19% at 48 weeks; Phase III SYNCHRONIZE.</span></div></div>
+          <div class="pa-item" data-i="4"><span class="pa-dot" style="background:#6d28d9"></span><div><b>Amylin Analogues</b><span>CagriSema 22.7%; amycretin 14.5%; petrelintide entering Phase III.</span></div></div>
+          <div class="pa-item" data-i="5"><span class="pa-dot" style="background:#5b21b6"></span><div><b>Oral Small-Molecule GLP-1</b><span>Orforglipron 11.2% (FDA-approved); oral semaglutide 13.6%.</span></div></div>
+          <div class="pa-item" data-i="6"><span class="pa-dot" style="background:#4c1d95"></span><div><b>Emerging & Regional Entrants</b><span>Pfizer/Metsera PF-08653944; China's mazdutide & ecnoglutide.</span></div></div>
+        </div>
+      </div>
+    </div>
 
     <h3 class="subh reveal">Pipeline Drug Profiles</h3>
     <p class="reveal">
@@ -4320,6 +4355,20 @@
     },{threshold:.2});
     io.observe(el);
   } else { el.classList.add('play'); }
+})();
+
+/* ===== Pipeline arcs: hover a legend item (or band) to float that band ===== */
+(function(){
+  var rings=[].slice.call(document.querySelectorAll('.pa-ring'));
+  var items=[].slice.call(document.querySelectorAll('.pa-item'));
+  if(!rings.length) return;
+  function set(i,on){ var r=rings[i]; if(r){ r.classList.toggle('float',on); if(on) r.parentNode.appendChild(r); } if(items[i]) items[i].classList.toggle('on',on); }
+  items.forEach(function(it){ var i=+it.dataset.i;
+    it.addEventListener('mouseenter',function(){set(i,true);});
+    it.addEventListener('mouseleave',function(){set(i,false);}); });
+  rings.forEach(function(rg){ var i=+rg.dataset.i;
+    rg.addEventListener('mouseenter',function(){set(i,true);});
+    rg.addEventListener('mouseleave',function(){set(i,false);}); });
 })();
 
 /* ===== Socioeconomic Newton's cradle: swing while in view (repeats) ===== */
