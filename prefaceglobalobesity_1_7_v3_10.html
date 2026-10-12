@@ -1443,6 +1443,31 @@
   @media(max-width:900px){ .cp-wrap{grid-template-columns:1fr} .cp-rail{flex-direction:row;flex-wrap:wrap} .cp-tab{flex:1 1 160px} }
   @media(max-width:760px){ .cp-r{grid-template-columns:1fr;gap:3px} }
 
+  /* ===== 14.1 - Market share donut ===== */
+  .dn-fig{margin:16px 0 10px;padding:18px 22px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 28px -18px rgba(76,29,149,.5)}
+  .dn-fig>h6{margin:0;font-size:14px;font-weight:800;color:var(--ink)}
+  .dn-sub{margin:3px 0 0;font-size:12px;color:var(--muted)}
+  .dn-plotwrap{width:100%;max-width:300px;margin:12px auto 2px}
+  .dn-svg{width:100%;height:auto;display:block;overflow:visible}
+  .dn-sl{transition:transform .2s ease,filter .2s ease;transform-box:fill-box;transform-origin:center;cursor:pointer}
+  .dn-sl.on{transform:translate(calc(var(--dx)*7px),calc(var(--dy)*7px));filter:drop-shadow(0 6px 12px rgba(20,14,32,.22))}
+  .dn-fig.has-sel .dn-sl:not(.on){opacity:.42}
+  .dn-sl{transition:transform .2s ease,filter .2s ease,opacity .2s ease}
+  .dn-hit{fill:#000;fill-opacity:0;cursor:pointer;outline:none}
+  .dn-hit:focus-visible{fill-opacity:.05}
+  .dn-ctrpc{font-size:30px;font-weight:800;fill:var(--purple-deep)}
+  .dn-ctrlb{font-size:11px;font-weight:700;fill:var(--muted)}
+  .dn-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 16px;margin-top:14px}
+  .dn-li{display:grid;grid-template-columns:14px 1fr;grid-template-rows:auto auto;column-gap:8px;row-gap:3px;
+    text-align:left;background:none;border:0;padding:6px 6px;border-radius:9px;cursor:pointer;font:inherit;transition:background .15s ease}
+  .dn-li:hover,.dn-li.on{background:#f6f1ff}
+  .dn-dot{width:12px;height:12px;border-radius:50%;margin-top:3px;grid-row:1/3}
+  .dn-pc{font-size:13px;font-weight:800;color:var(--ink);line-height:1.2}
+  .dn-ds{grid-column:2;font-size:11px;color:var(--muted);line-height:1.4}
+  .dn-cap{margin:12px 0 0;font-size:10.5px;font-style:italic;color:var(--muted);line-height:1.5}
+  @media(max-width:640px){ .dn-legend{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media(max-width:420px){ .dn-legend{grid-template-columns:1fr} }
+
   /* ===== 14 - Competitive treemap: blocks sized by share + read-out ===== */
   .tm-fig{margin:16px 0 10px;padding:18px 22px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 28px -18px rgba(76,29,149,.5)}
   .tm-fig>h6{margin:0;font-size:14px;font-weight:800;color:var(--ink)}
@@ -4264,15 +4289,50 @@
       domestically developed candidates with international ambitions.
     </p>
 
-    <figure class="tm-fig reveal" id="cmpShare" data-tm='[{&quot;n&quot;: &quot;Eli Lilly&quot;, &quot;v&quot;: 42, &quot;c&quot;: &quot;#3b1178&quot;, &quot;t&quot;: &quot;Momentum leader and the larger half of the duopoly on tirzepatide (Mounjaro, Zepbound); the first pharma to reach a ~USD 1 trillion market cap, with the oral Foundayo extending its lead into the oral-GLP-1 category.&quot;}, {&quot;n&quot;: &quot;Novo Nordisk&quot;, &quot;v&quot;: 39, &quot;c&quot;: &quot;#4c1d95&quot;, &quot;t&quot;: &quot;Category pioneer and cumulative revenue leader (Wegovy, Saxenda), navigating a 2025-26 transition; its response centres on the oral Wegovy tablet and on CagriSema and amycretin to close the efficacy gap with tirzepatide.&quot;}, {&quot;n&quot;: &quot;Roche&quot;, &quot;v&quot;: 4, &quot;c&quot;: &quot;#5b21b6&quot;, &quot;t&quot;: &quot;Prospective leader entering via acquisition (Carmot) with CT-388 and an amylin combination through Zealand; a ~USD 2bn U.S. manufacturing build positions it for a long-term challenge to the duopoly.&quot;}, {&quot;n&quot;: &quot;Pfizer&quot;, &quot;v&quot;: 3, &quot;c&quot;: &quot;#6d28d9&quot;, &quot;t&quot;: &quot;Prospective leader rebuilt through the up-to-USD-10bn Metsera acquisition after the danuglipron setback; roughly ten Phase III trials are expected to advance in 2026.&quot;}, {&quot;n&quot;: &quot;Amgen&quot;, &quot;v&quot;: 3, &quot;c&quot;: &quot;#7c3aed&quot;, &quot;t&quot;: &quot;Convenience-differentiated challenger with MariTide (GLP-1 agonism plus GIP antagonism, once-monthly dosing); ~20% weight loss in Phase II, now in the Phase III MARITIME programme.&quot;}, {&quot;n&quot;: &quot;Others / Emerging&quot;, &quot;v&quot;: 9, &quot;c&quot;: &quot;#6b7a90&quot;, &quot;t&quot;: &quot;Zealand Pharma, Viking Therapeutics, Boehringer Ingelheim and Chinese innovators (Innovent, Hengrui, Sciwind), plus bariatric-device and nutritional players, competing on niche pipelines and geography.&quot;}]'>
-      <h6>Competitive Landscape, Estimated Branded Revenue Share, 2025</h6>
-      <p class="tm-sub">Each block is sized by its share; select one to read that participant&rsquo;s position</p>
-      <div class="tm-keys"><span class="tm-k"><i style="background:#3b1178"></i>Eli Lilly</span><span class="tm-k"><i style="background:#4c1d95"></i>Novo Nordisk</span><span class="tm-k"><i style="background:#5b21b6"></i>Roche</span><span class="tm-k"><i style="background:#6d28d9"></i>Pfizer</span><span class="tm-k"><i style="background:#7c3aed"></i>Amgen</span><span class="tm-k"><i style="background:#6b7a90"></i>Others / Emerging</span></div>
-      <div class="tm-wrap">
-        <div class="tm-plotwrap"><svg class="tm-svg" viewBox="0 0 300 224" role="list" aria-label="Treemap of estimated 2025 branded obesity revenue share."><g class="tm-cell" data-i="0"><rect class="tm-r" x="1.5" y="1.5" width="152.4" height="176.6" rx="7" fill="#3b1178"/><text class="tm-pc" x="77.7" y="98.0" font-size="24">42%</text><rect class="tm-hit" data-i="0" x="1.5" y="1.5" width="152.4" height="176.6" rx="7" tabindex="0" role="button" aria-label="Eli Lilly, 42 percent"/></g><g class="tm-cell" data-i="1"><rect class="tm-r" x="156.9" y="1.5" width="141.6" height="176.6" rx="7" fill="#4c1d95"/><text class="tm-pc" x="227.7" y="98.0" font-size="24">39%</text><rect class="tm-hit" data-i="1" x="156.9" y="1.5" width="141.6" height="176.6" rx="7" tabindex="0" role="button" aria-label="Novo Nordisk, 39 percent"/></g><g class="tm-cell" data-i="2"><rect class="tm-r" x="1.5" y="181.1" width="60.6" height="41.4" rx="7" fill="#5b21b6"/><text class="tm-pc" x="31.8" y="206.2" font-size="13">4%</text><rect class="tm-hit" data-i="2" x="1.5" y="181.1" width="60.6" height="41.4" rx="7" tabindex="0" role="button" aria-label="Roche, 4 percent"/></g><g class="tm-cell" data-i="3"><rect class="tm-r" x="65.1" y="181.1" width="45.5" height="41.4" rx="7" fill="#6d28d9"/><text class="tm-pc" x="87.9" y="206.2" font-size="13">3%</text><rect class="tm-hit" data-i="3" x="65.1" y="181.1" width="45.5" height="41.4" rx="7" tabindex="0" role="button" aria-label="Pfizer, 3 percent"/></g><g class="tm-cell" data-i="4"><rect class="tm-r" x="113.6" y="181.1" width="45.5" height="41.4" rx="7" fill="#7c3aed"/><text class="tm-pc" x="136.3" y="206.2" font-size="13">3%</text><rect class="tm-hit" data-i="4" x="113.6" y="181.1" width="45.5" height="41.4" rx="7" tabindex="0" role="button" aria-label="Amgen, 3 percent"/></g><g class="tm-cell" data-i="5"><rect class="tm-r" x="162.1" y="181.1" width="136.4" height="41.4" rx="7" fill="#6b7a90"/><text class="tm-pc" x="230.3" y="206.9" font-size="15">9%</text><rect class="tm-hit" data-i="5" x="162.1" y="181.1" width="136.4" height="41.4" rx="7" tabindex="0" role="button" aria-label="Others / Emerging, 9 percent"/></g></svg></div>
-        <div class="tm-side"><div class="tm-read"><b></b><span></span></div></div>
+    <figure class="dn-fig reveal" id="cmpDonut" data-dn='[{"n": "Eli Lilly", "v": 42, "c": "#7c3aed"}, {"n": "Novo Nordisk", "v": 39, "c": "#22c3a6"}, {"n": "Others / Emerging", "v": 9, "c": "#94a3b8"}, {"n": "Roche", "v": 4, "c": "#4ade80"}, {"n": "Pfizer", "v": 3, "c": "#a3e635"}, {"n": "Amgen", "v": 3, "c": "#facc15"}]'>
+      <h6>Global Branded Obesity Drug Market Share, 2025</h6>
+      <p class="dn-sub">Estimated share of 2025 branded obesity drug revenue; hover a slice or a company to focus it</p>
+      <div class="dn-plotwrap">
+        <svg class="dn-svg" viewBox="0 0 260 260" role="img" aria-label="Donut chart of estimated 2025 branded obesity drug market share by company.">
+          <g class="dn-slices"><path class="dn-sl" data-i="0" d="M131.09 26.01 A104.0 104.0 0 0 1 181.05 220.61 L161.42 185.76 A64.0 64.0 0 0 0 130.67 66.00 Z" fill="#7c3aed" style="--dx:0.969;--dy:-0.249"/><path class="dn-sl" data-i="1" d="M179.15 221.66 A104.0 104.0 0 0 1 32.91 92.73 L70.25 107.06 A64.0 64.0 0 0 0 160.24 186.40 Z" fill="#22c3a6" style="--dx:-0.661;--dy:0.750"/><path class="dn-sl" data-i="2" d="M33.71 90.70 A104.0 104.0 0 0 1 67.99 46.51 L91.84 78.62 A64.0 64.0 0 0 0 70.74 105.82 Z" fill="#94a3b8" style="--dx:-0.790;--dy:-0.613"/><path class="dn-sl" data-i="3" d="M69.75 45.23 A104.0 104.0 0 0 1 90.70 33.71 L105.82 70.74 A64.0 64.0 0 0 0 92.93 77.83 Z" fill="#4ade80" style="--dx:-0.482;--dy:-0.876"/><path class="dn-sl" data-i="4" d="M92.73 32.91 A104.0 104.0 0 0 1 109.44 28.05 L117.35 67.26 A64.0 64.0 0 0 0 107.06 70.25 Z" fill="#a3e635" style="--dx:-0.279;--dy:-0.960"/><path class="dn-sl" data-i="5" d="M111.58 27.64 A104.0 104.0 0 0 1 128.91 26.01 L129.33 66.00 A64.0 64.0 0 0 0 118.67 67.01 Z" fill="#facc15" style="--dx:-0.094;--dy:-0.996"/></g>
+          <text class="dn-ctrpc" x="130" y="124" text-anchor="middle">100%</text>
+          <text class="dn-ctrlb" x="130" y="146" text-anchor="middle">2025 branded share</text>
+          <g class="dn-hits"><path class="dn-hit" data-i="0" d="M130.00 26.00 A104.0 104.0 0 0 1 180.10 221.14 L160.83 186.08 A64.0 64.0 0 0 0 130.00 66.00 Z" tabindex="0" role="button" aria-label="Eli Lilly, 42 percent"/><path class="dn-hit" data-i="1" d="M180.10 221.14 A104.0 104.0 0 0 1 33.30 91.72 L70.49 106.44 A64.0 64.0 0 0 0 160.83 186.08 Z" tabindex="0" role="button" aria-label="Novo Nordisk, 39 percent"/><path class="dn-hit" data-i="2" d="M33.30 91.72 A104.0 104.0 0 0 1 68.87 45.86 L92.38 78.22 A64.0 64.0 0 0 0 70.49 106.44 Z" tabindex="0" role="button" aria-label="Others / Emerging, 9 percent"/><path class="dn-hit" data-i="3" d="M68.87 45.86 A104.0 104.0 0 0 1 91.72 33.30 L106.44 70.49 A64.0 64.0 0 0 0 92.38 78.22 Z" tabindex="0" role="button" aria-label="Roche, 4 percent"/><path class="dn-hit" data-i="4" d="M91.72 33.30 A104.0 104.0 0 0 1 110.51 27.84 L118.01 67.13 A64.0 64.0 0 0 0 106.44 70.49 Z" tabindex="0" role="button" aria-label="Pfizer, 3 percent"/><path class="dn-hit" data-i="5" d="M110.51 27.84 A104.0 104.0 0 0 1 130.00 26.00 L130.00 66.00 A64.0 64.0 0 0 0 118.01 67.13 Z" tabindex="0" role="button" aria-label="Amgen, 3 percent"/></g>
+        </svg>
       </div>
-      <p class="tm-cap">A Lilly-Novo Nordisk duopoly commands over 80% of branded obesity drug revenue, leaving a long tail of challengers competing on pipeline and convenience.</p>
+      <div class="dn-legend">
+        <button class="dn-li" data-i="0" type="button">
+          <span class="dn-dot" style="background:#7c3aed"></span>
+          <span class="dn-pc">42% Eli Lilly</span>
+          <span class="dn-ds">Tirzepatide leader; superior head-to-head efficacy</span>
+        </button>
+        <button class="dn-li" data-i="1" type="button">
+          <span class="dn-dot" style="background:#22c3a6"></span>
+          <span class="dn-pc">39% Novo Nordisk</span>
+          <span class="dn-ds">First-mover advantage and manufacturing scale</span>
+        </button>
+        <button class="dn-li" data-i="2" type="button">
+          <span class="dn-dot" style="background:#94a3b8"></span>
+          <span class="dn-pc">9% Others / Emerging</span>
+          <span class="dn-ds">Smaller players and new entrants</span>
+        </button>
+        <button class="dn-li" data-i="3" type="button">
+          <span class="dn-dot" style="background:#4ade80"></span>
+          <span class="dn-pc">4% Roche</span>
+          <span class="dn-ds">Established late-stage pipeline position</span>
+        </button>
+        <button class="dn-li" data-i="4" type="button">
+          <span class="dn-dot" style="background:#a3e635"></span>
+          <span class="dn-pc">3% Pfizer</span>
+          <span class="dn-ds">Re-entered via the Metsera acquisition</span>
+        </button>
+        <button class="dn-li" data-i="5" type="button">
+          <span class="dn-dot" style="background:#facc15"></span>
+          <span class="dn-pc">3% Amgen</span>
+          <span class="dn-ds">MariTide; once-monthly differentiation</span>
+        </button>
+      </div>
+      <p class="dn-cap">A Lilly, Novo Nordisk duopoly commands over 80% of branded obesity drug revenue, leaving a long tail of challengers competing on pipeline and convenience. Shares are this report's estimates, not company-reported figures.</p>
     </figure>
 
     <p class="reveal">
@@ -6062,6 +6122,36 @@
     read.style.minHeight=max+'px'; go(0); }
   lock();
   var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
+})();
+
+/* ===== 14.1 market-share donut: focus a slice / company ===== */
+(function(){
+  var fig=document.getElementById('cmpDonut'); if(!fig) return;
+  var data; try{ data=JSON.parse(fig.getAttribute('data-dn')); }catch(e){ return; }
+  var sls=[].slice.call(fig.querySelectorAll('.dn-sl'));
+  var lis=[].slice.call(fig.querySelectorAll('.dn-li'));
+  var pc=fig.querySelector('.dn-ctrpc'), lb=fig.querySelector('.dn-ctrlb');
+  function focus(i){
+    fig.classList.add('has-sel');
+    sls.forEach(function(s){ s.classList.toggle('on', +s.getAttribute('data-i')===i); });
+    lis.forEach(function(l){ l.classList.toggle('on', +l.getAttribute('data-i')===i); });
+    pc.textContent=data[i].v+'%'; pc.setAttribute('fill',data[i].c); lb.textContent=data[i].n;
+  }
+  function clear(){
+    fig.classList.remove('has-sel');
+    sls.forEach(function(s){ s.classList.remove('on'); });
+    lis.forEach(function(l){ l.classList.remove('on'); });
+    pc.textContent='100%'; pc.setAttribute('fill','#4c1d95'); lb.textContent='2025 branded share';
+  }
+  function bind(el){ var i=+el.getAttribute('data-i');
+    el.addEventListener('mouseenter',function(){ focus(i); });
+    el.addEventListener('focus',function(){ focus(i); });
+    el.addEventListener('click',function(){ focus(i); });
+  }
+  [].forEach.call(fig.querySelectorAll('.dn-hit'),bind);
+  lis.forEach(bind);
+  fig.querySelector('.dn-svg').addEventListener('mouseleave',clear);
+  fig.querySelector('.dn-legend').addEventListener('mouseleave',clear);
 })();
 
 /* ===== 4.5 risk-factors Venn: select a lobe to read its factors ===== */
