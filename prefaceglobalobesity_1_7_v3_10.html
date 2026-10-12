@@ -1727,6 +1727,47 @@
     .rf-left .rf-box{border-right:1px solid var(--line);border-left:3px solid #12a150}
     .rf-box::after,.rf-box::before{display:none}
   }
+  /* ===== 4.5 Risk Factors: overlapping Venn ===== */
+  .vn-fig{margin:16px 0 10px}
+  .vn-title{margin:0 0 4px;text-align:center;font-size:16px;font-weight:800;color:var(--purple-deep)}
+  .vn-shared{text-align:center;margin:0 auto 2px;max-width:360px}
+  .vn-shared b{display:block;font-size:12.5px;font-weight:800;color:var(--ink)}
+  .vn-shared span{display:block;font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:2px}
+  .vn-main{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;max-width:860px;margin:6px auto 0}
+  .vn-lab{max-width:200px}
+  .vn-lab.l{justify-self:end;text-align:right}
+  .vn-lab.r{justify-self:start;text-align:left}
+  .vn-lab b{display:block;font-size:13.5px;font-weight:800;line-height:1.25}
+  .vn-lab.l b{color:#0d9488} .vn-lab.r b{color:var(--purple-deep)}
+  .vn-lab span{display:block;font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:3px}
+  .vn-stage{width:380px;max-width:100%}
+  .vn-svg{width:100%;height:auto;display:block;overflow:visible}
+  .vn-c{mix-blend-mode:multiply;stroke-width:2;fill-opacity:.5;transition:fill-opacity .22s ease,filter .22s ease}
+  .vn-c.l{fill:#5eead4;stroke:#0d9488}
+  .vn-c.r{fill:#b7c3fb;stroke:var(--purple-mid)}
+  .vn-ic{pointer-events:none;fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;transition:opacity .2s ease}
+  .vn-ic.l{stroke:#0f766e} .vn-ic.m{stroke:#0e7490} .vn-ic.r{stroke:var(--purple-deep)}
+  .vn-hit{fill:#000;fill-opacity:0;cursor:pointer;outline:none}
+  .vn-hit:focus-visible{fill-opacity:.04}
+  .vn-fig.sel-mod .vn-c.l{fill-opacity:.9;filter:drop-shadow(0 6px 14px rgba(13,148,136,.4))}
+  .vn-fig.sel-non .vn-c.r{fill-opacity:.9;filter:drop-shadow(0 6px 14px rgba(109,40,217,.38))}
+  .vn-fig.sel-shared .vn-c{fill-opacity:.82}
+  .vn-fig.sel-mod .vn-lab.r,.vn-fig.sel-non .vn-lab.l,.vn-fig.sel-mod .vn-shared,.vn-fig.sel-non .vn-shared{opacity:.5}
+  .vn-fig.sel-shared .vn-lab{opacity:.5}
+  .vn-lab,.vn-shared{transition:opacity .2s ease}
+  .vn-read{margin:14px auto 0;max-width:620px;border-left:3px solid var(--purple-mid);padding:4px 0 4px 14px}
+  .vn-read .rh{font-size:13px;font-weight:800;color:var(--purple-deep)}
+  .vn-read .rs{font-size:11.5px;color:var(--muted);margin:2px 0 8px}
+  .vn-chips{display:flex;flex-wrap:wrap;gap:7px}
+  .vn-chip{font-size:11.5px;font-weight:600;color:var(--ink);background:#f4eeff;border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+  .vn-fig.sel-mod .vn-read{border-color:#0d9488} .vn-fig.sel-mod .vn-read .rh{color:#0f766e}
+  .vn-fig.sel-mod .vn-chip{background:#e6faf4;border-color:#bfebe0}
+  @media(max-width:720px){
+    .vn-main{grid-template-columns:1fr;justify-items:center;gap:10px}
+    .vn-lab{max-width:320px;text-align:center}
+    .vn-lab.l,.vn-lab.r{justify-self:center;text-align:center}
+    .vn-lab.l{order:1} .vn-stage{order:2} .vn-lab.r{order:3}
+  }
   /* ===== Socioeconomic burden: Newton's-cradle pendulum map ===== */
   .nc-wrap{margin:18px 0 8px;border:1px solid var(--line);border-radius:16px;padding:22px 24px 18px;
     box-shadow:0 10px 30px -18px rgba(76,29,149,.35)}
@@ -2647,73 +2688,27 @@
     </script>
 
     <h3 class="subh reveal">Risk Factors</h3>
-    <div class="rf-wrap vizcard reveal">
-      <div class="rf" id="rfmap">
-        <div class="rf-side rf-left">
-          <div class="rf-head mod"><i></i>Modifiable</div>
-          <div class="rf-cards">
-            <div class="rf-box"><div class="rf-nm">Physical inactivity</div><div class="rf-nt">Sedentary behaviour, a key modifiable target for prevention</div></div>
-            <div class="rf-box"><div class="rf-nm">Poor sleep quality &amp; duration</div><div class="rf-nt">Disrupts appetite-regulating hormones</div></div>
-            <div class="rf-box"><div class="rf-nm">Weight-gain medications</div><div class="rf-nt">Monitor and select alternative agents where feasible</div></div>
-            <div class="rf-box"><div class="rf-nm">Pregnancy &amp; postpartum retention</div><div class="rf-nt">A distinct, time-limited window for intervention</div></div>
-          </div>
-        </div>
-        <div class="rf-lungs">
-          <svg viewBox="0 -40 340 268" aria-hidden="true">
-            <defs>
-              <radialGradient id="rfVolL" cx="38%" cy="28%" r="82%">
-                <stop offset="0" stop-color="#fefdff"/><stop offset=".5" stop-color="#e6d8fa"/><stop offset="1" stop-color="#c3aaeb"/>
-              </radialGradient>
-              <radialGradient id="rfVolR" cx="62%" cy="28%" r="82%">
-                <stop offset="0" stop-color="#fefdff"/><stop offset=".5" stop-color="#e6d8fa"/><stop offset="1" stop-color="#c3aaeb"/>
-              </radialGradient>
-              <filter id="rfSoft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
-              <clipPath id="rfClipL"><path d="M138,9.2 C90,11.5 48,29.9 24,62.1 C12,115 14,172.5 30,202.4 C52,218.5 86,220.8 116,211.6 C138,202.4 146,172.5 148,138 C150,92 150,46 138,9.2 Z"/></clipPath>
-              <clipPath id="rfClipR"><path d="M202,9.2 C250,11.5 292,29.9 316,62.1 C328,115 326,172.5 310,202.4 C288,218.5 254,220.8 224,211.6 C202,202.4 194,172.5 192,138 C190,92 190,46 202,9.2 Z"/></clipPath>
-            </defs>
-            <path fill="url(#rfVolL)" d="M138,9.2 C90,11.5 48,29.9 24,62.1 C12,115 14,172.5 30,202.4 C52,218.5 86,220.8 116,211.6 C138,202.4 146,172.5 148,138 C150,92 150,46 138,9.2 Z"/>
-            <path fill="url(#rfVolR)" d="M202,9.2 C250,11.5 292,29.9 316,62.1 C328,115 326,172.5 310,202.4 C288,218.5 254,220.8 224,211.6 C202,202.4 194,172.5 192,138 C190,92 190,46 202,9.2 Z"/>
-            <g clip-path="url(#rfClipL)"><ellipse cx="118" cy="214" rx="96" ry="58" fill="#4c1d95" opacity=".28" filter="url(#rfSoft)"/><ellipse cx="150" cy="120" rx="26" ry="120" fill="#4c1d95" opacity=".16" filter="url(#rfSoft)"/></g>
-            <g clip-path="url(#rfClipR)"><ellipse cx="222" cy="214" rx="96" ry="58" fill="#4c1d95" opacity=".28" filter="url(#rfSoft)"/><ellipse cx="190" cy="120" rx="26" ry="120" fill="#4c1d95" opacity=".16" filter="url(#rfSoft)"/></g>
-            <g clip-path="url(#rfClipL)"><ellipse cx="74" cy="70" rx="46" ry="60" fill="#ffffff" opacity=".55" filter="url(#rfSoft)"/></g>
-            <g clip-path="url(#rfClipR)"><ellipse cx="266" cy="70" rx="46" ry="60" fill="#ffffff" opacity=".55" filter="url(#rfSoft)"/></g>
-            <path class="ln-fis" d="M128,50.6 C104,96.6 76,133.4 44,170.2"/>
-            <path class="ln-fis" d="M48,172.5 C74,190.9 100,193.2 124,179.4"/>
-            <path class="ln-fis" d="M212,50.6 C236,96.6 264,133.4 296,170.2"/>
-            <path class="ln-fis" d="M292,172.5 C266,190.9 240,193.2 216,179.4"/>
-            <path class="ln-line" d="M138,9.2 C90,11.5 48,29.9 24,62.1 C12,115 14,172.5 30,202.4 C52,218.5 86,220.8 116,211.6 C138,202.4 146,172.5 148,138 C150,92 150,46 138,9.2 Z"/>
-            <path class="ln-line" d="M202,9.2 C250,11.5 292,29.9 316,62.1 C328,115 326,172.5 310,202.4 C288,218.5 254,220.8 224,211.6 C202,202.4 194,172.5 192,138 C190,92 190,46 202,9.2 Z"/>
-            <path class="ln-hit" data-side="l" d="M138,9.2 C90,11.5 48,29.9 24,62.1 C12,115 14,172.5 30,202.4 C52,218.5 86,220.8 116,211.6 C138,202.4 146,172.5 148,138 C150,92 150,46 138,9.2 Z"/>
-            <path class="ln-hit" data-side="r" d="M202,9.2 C250,11.5 292,29.9 316,62.1 C328,115 326,172.5 310,202.4 C288,218.5 254,220.8 224,211.6 C202,202.4 194,172.5 192,138 C190,92 190,46 202,9.2 Z"/>
-            <g class="ln-tra" transform="translate(138,-38)">
-              <ellipse class="ln-fillp" cx="32" cy="12" rx="16" ry="8.5"/>
-              <ellipse cx="32" cy="12" rx="16" ry="8.5" stroke-width="3.4"/>
-              <ellipse cx="32" cy="12" rx="9" ry="4.2" stroke-width="2.4"/>
-              <path class="ln-fillp" d="M17,15 C16,44 16,64 22,82 L42,82 C48,64 48,44 47,15 Z"/>
-              <path stroke-width="3.4" d="M17,16 C16,42 16,64 22,84"/>
-              <path stroke-width="3.4" d="M47,16 C48,42 48,64 42,84"/>
-              <path stroke-width="2.4" d="M17,25 Q32,30 47,25"/>
-              <path stroke-width="2.4" d="M16.5,35 Q32,40 47.5,35"/>
-              <path stroke-width="2.4" d="M16.5,45 Q32,50 47.5,45"/>
-              <path stroke-width="2.4" d="M17,55 Q32,60 47,55"/>
-              <path stroke-width="2.4" d="M17.5,65 Q32,70 46.5,65"/>
-              <path stroke-width="2.4" d="M19,75 Q32,80 45,75"/>
-              <path stroke-width="3.4" d="M25,84 C22,100 12,108 2,120"/>
-              <path stroke-width="3.4" d="M39,84 C42,100 52,108 62,120"/>
-            </g>
+    <figure class="vn-fig vizcard reveal sel-shared" id="rfVenn" data-vn='{"mod": {"t": "Modifiable Risk Factors", "s": "Lifestyle choices that can be changed", "f": ["Physical inactivity", "Poor sleep quality &amp; duration", "Weight-gain medications", "Pregnancy &amp; postpartum retention"]}, "shared": {"t": "Shared Obesity Risk", "s": "Factors that contribute to obesity regardless of individual control", "f": ["Obesogenic food environment", "Chronic stress &amp; cortisol", "Gut microbiome composition", "Developmental / in-utero programming"]}, "non": {"t": "Non-modifiable Risk Factors", "s": "Inherited or environmental influences", "f": ["Parental obesity", "Genetic &amp; syndromic variants", "Lower socioeconomic status"]}}'>
+      <p class="vn-title">Overlapping Obesity Risk Factors</p>
+      <div class="vn-shared"><b>Shared Obesity Risk</b><span>Factors that contribute to obesity regardless of control</span></div>
+      <div class="vn-main">
+        <div class="vn-lab l"><b>Modifiable Risk Factors</b><span>Lifestyle choices that can be changed</span></div>
+        <div class="vn-stage">
+          <svg class="vn-svg" viewBox="0 0 420 300" role="img" aria-label="Venn diagram of modifiable, shared and non-modifiable obesity risk factors">
+            <circle class="vn-c l" cx="150" cy="165" r="110"/>
+            <circle class="vn-c r" cx="270" cy="165" r="110"/>
+            <g class="vn-ic l" transform="translate(79,147) scale(1.5)"><path d="M1 12h4l2-6 4 12 2-6h4"/></g>
+            <g class="vn-ic m" transform="translate(192,149) scale(1.4)"><circle cx="7" cy="5.5" r="2.4"/><path d="M2.5 17c0-3 1.6-5 4.5-5s4.5 2 4.5 5"/><circle cx="15.5" cy="5.5" r="2.4"/><path d="M11.8 17c.1-3 1.7-5 4.2-5 1 0 1.9.3 2.6.9"/></g>
+            <g class="vn-ic r" transform="translate(300,147) scale(1.45)"><circle cx="4.5" cy="4.5" r="1.8"/><circle cx="4.5" cy="12" r="1.8"/><circle cx="4.5" cy="19.5" r="1.8"/><circle cx="16" cy="12" r="2.3"/><path d="M6.3 5.2 13.8 11M6.3 18.8 13.8 13M6.5 12h7"/></g>
+            <circle class="vn-hit" data-k="mod" cx="103" cy="165" r="50" tabindex="0" role="button" aria-label="Modifiable risk factors"/>
+            <circle class="vn-hit" data-k="shared" cx="210" cy="165" r="40" tabindex="0" role="button" aria-label="Shared obesity risk"/>
+            <circle class="vn-hit" data-k="non" cx="317" cy="165" r="50" tabindex="0" role="button" aria-label="Non-modifiable risk factors"/>
           </svg>
-          <span class="cap">Obesity risk factors</span>
         </div>
-        <div class="rf-side rf-right">
-          <div class="rf-head non"><i></i>Non-modifiable</div>
-          <div class="rf-cards">
-            <div class="rf-box"><div class="rf-nm">Parental obesity</div><div class="rf-nt">Strongest single predictor of childhood-onset obesity</div></div>
-            <div class="rf-box"><div class="rf-nm">Genetic &amp; syndromic variants</div><div class="rf-nt">Rare but high-penetrance; consider genetic evaluation</div></div>
-            <div class="rf-box"><div class="rf-nm">Lower socioeconomic status</div><div class="rf-nt">Reflects food-environment and healthcare-access disparities</div></div>
-          </div>
-        </div>
+        <div class="vn-lab r"><b>Non-modifiable Risk Factors</b><span>Inherited or environmental influences</span></div>
       </div>
-    </div>
+      <div class="vn-read"><div class="rh"></div><div class="rs"></div><div class="vn-chips"></div></div>
+    </figure>
 
     <h3 class="subh reveal">Pathophysiology</h3>
     <p class="reveal">
@@ -6067,6 +6062,26 @@
     read.style.minHeight=max+'px'; go(0); }
   lock();
   var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(lock,160); });
+})();
+
+/* ===== 4.5 risk-factors Venn: select a lobe to read its factors ===== */
+(function(){
+  var fig=document.getElementById('rfVenn'); if(!fig) return;
+  var data; try{ data=JSON.parse(fig.getAttribute('data-vn')); }catch(e){ return; }
+  var rh=fig.querySelector('.vn-read .rh'), rs=fig.querySelector('.vn-read .rs'), chips=fig.querySelector('.vn-chips');
+  function go(k){
+    var d=data[k]; if(!d) return;
+    fig.classList.remove('sel-mod','sel-shared','sel-non'); fig.classList.add('sel-'+k);
+    rh.textContent=d.t; rs.textContent=d.s;
+    chips.innerHTML=d.f.map(function(x){ return '<span class="vn-chip">'+x+'</span>'; }).join('');
+  }
+  [].forEach.call(fig.querySelectorAll('.vn-hit'),function(h){
+    var k=h.getAttribute('data-k');
+    h.addEventListener('mouseenter',function(){ go(k); });
+    h.addEventListener('focus',function(){ go(k); });
+    h.addEventListener('click',function(){ go(k); });
+  });
+  go('shared');
 })();
 
 /* ===== 14.3.1 comparative split: select a company to read its positioning note ===== */
